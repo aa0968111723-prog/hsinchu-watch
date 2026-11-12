@@ -1,0 +1,43 @@
+name: Hsinchu news — every 30 minutes
+
+on:
+  schedule:
+    # UTC; :11/:41 is also :11/:41 in Taiwan. Avoid top-of-hour contention.
+    - cron: '11,41 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hsinchu-news-monitor
+  cancel-in-progress: false
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test RSS parser without network
+        run: python -m unittest discover -s tests -p 'test_collect_hsinchu_news.py' -v
+      - name: Collect newest eligible articles
+        run: python scripts/collect_hsinchu_news.py
+      - name: Commit updated snapshots only if changed
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/news-monitor/ docs/news-watch/latest.md
+          if git diff --cached --quiet; then
+            echo 'No changes to news snapshots; no commit needed.'
+            exit 0
+          fi
+          git commit -m 'data(news): refresh latest Hsinchu headlines [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
