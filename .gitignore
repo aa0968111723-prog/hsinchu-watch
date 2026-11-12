@@ -17,6 +17,7 @@ __pycache__/
 *.bak-*
 *.sqlite
 *.db
+!public/data/civic/watch.sqlite
 *.pem
 *.key
 test-results/

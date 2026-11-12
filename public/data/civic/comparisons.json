@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "note": "同一問題只連結已經收錄的文件。缺少的一方是 null，不另寫一篇相反意見來湊數。這些連結不是民調，也不是政治評分。",
+  "questions": [
+    {
+      "id": "q-hsc-baozhong-2026-11",
+      "question": "新埔褒忠路拓寬在 2026-11-12 的機關公告，能對上哪些經費與尚未取得的證據？",
+      "window": {"start": "2026-11-12", "end": "2026-11-12"},
+      "agency_record_ids": ["rec-0d1317419e1a8f88"],
+      "project_ids": ["hsinchu-county-baozhong-road"],
+      "support_record_ids": null,
+      "criticism_record_ids": null,
+      "response_record_ids": null,
+      "counterevidence_record_ids": null,
+      "unknown": ["spent_twd", "定期施工進度", "驗收與通車文件"],
+      "note": "縣府新聞與既有治理案卷指向同一份開工公告。核定金額與契約金額沿用案卷；支用額是 null。沒有同時段的批評或獨立查核可連結。"
+    },
+    {
+      "id": "q-dgbas-supplemental-budget-2026-10",
+      "question": "主計總處對「追加預算適法性」媒體報導的澄清，是否已包含立法院預算中心評估報告原文？",
+      "window": {"start": "2026-10-01", "end": "2026-10-01"},
+      "agency_record_ids": ["rec-aeb62c33833a685e"],
+      "project_ids": [],
+      "support_record_ids": null,
+      "criticism_record_ids": null,
+      "response_record_ids": ["rec-aeb62c33833a685e"],
+      "counterevidence_record_ids": null,
+      "unknown": ["立法院預算中心評估報告原文"],
+      "note": "這裡只有主計總處的澄清稿。預算中心報告未收錄，澄清不能當成該報告已受獨立查核。"
+    }
+  ]
+}

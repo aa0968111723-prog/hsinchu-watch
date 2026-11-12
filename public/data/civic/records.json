@@ -1,0 +1,2171 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "rec-66532530a97b54c1",
+      "kind": "news_report",
+      "source_id": "cna-atom",
+      "source_url": "https://www.cna.com.tw/newsworld/article/20261112n001/",
+      "title": "圓山跨年搖滾派對登場 遠眺台北101煙火迎接2027",
+      "published_at": "2026-11-12T12:53:35+08:00",
+      "collected_at": "2026-11-13T00:41:52+08:00",
+      "checked_at": "2026-11-13T00:41:52+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "圓山跨年搖滾派對登場 遠眺台北101煙火迎接2027",
+      "claim_origin": "news_report",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-0da1de31d70ca1a1",
+      "kind": "news_report",
+      "source_id": "cna-atom",
+      "source_url": "https://www.cna.com.tw/news/asoc/202611120380.aspx",
+      "title": "新北三峽犬用品社火警 2至3樓延燒逾2小時",
+      "published_at": "2026-11-12T23:06:17+08:00",
+      "collected_at": "2026-11-13T00:41:52+08:00",
+      "checked_at": "2026-11-13T00:41:52+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "新北三峽犬用品社火警 2至3樓延燒逾2小時",
+      "claim_origin": "news_report",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-2fa3f790a76e2be0",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236702",
+      "title": "115年7月底工業及服務業受僱員工人數為862萬7千人，本月總薪資平均為71,165元",
+      "published_at": "2026-09-14T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、7月本國籍全時受僱員工經常性薪資平均數為52,528元，年增3.67%；獎金及加班費等非經常性薪資22,299元，合計後總薪資平均數為74,827元，年增8.08%。經常性薪資中位數為41,397元，年增4.04%。 二、7月部分工時員工經常性薪資平均數為21,666元，年增3.73%；加計獎金及加班費後，總薪資平均數為22,544元，年增4.11%。經…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-97e2af8624c344c2",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236709",
+      "title": "114年工業及服務業勞動報酬統計結果",
+      "published_at": "2026-09-14T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "114年全年工業及服務業受僱員工每人平均勞動報酬為88.3萬元（年增3.2萬元或3.8%），包括薪資報酬76.1萬元（年增2.9萬元或3.9%）、非薪資報酬12.2萬元（年增3.7千元或3.1%），二者占勞動報酬之比重分別為86.1%及13.9%。 114年工業及服務業勞動報酬統計結果 (PDF) 【附表】 表1、歷年工業及服務業受僱員工每人勞動報酬及結構…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-63bb5a2485065971",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236719",
+      "title": "115年8月就業人數為1,165.5萬人，失業人數為41.1萬人，失業率為3.41%，季調失業率為3.32%，勞動力參與率為59.69%",
+      "published_at": "2026-09-22T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、戶籍人口就業失業統計結果 (一)8月就業人數為1,165萬5千人，較上（7）月增加4千人或0.03%；失業人數為41萬1千人，較上月增加2千人或0.63%。 (二)8月勞動力參與率為59.69%，較上月上升0.03個百分點。 (三)8月失業率為3.41%，較上月上升0.02個百分點；經季節調整後失業率為3.32%，較上月下降0.01個百分點。 二、常住人…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-aeb62c33833a685e",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236753",
+      "title": "針對115年10月1日媒體報導引述立法院預算中心評估報告所提「追加預算適法性」之澄清說明",
+      "published_at": "2026-10-01T19:21:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、 115年度追加預算案係依預算法第79條所定事由，合法編列各機關基於實際新增之重大事故或原預算案已不足調應之經費需求等，應屬妥適，仍需俟立法院議決及總統公布後，始得動支。 二、行政院已於 115年1月將老年農民福利津貼暫行條例、國民年金法送請立法院審議，為及時照顧老年農民與國民年金領取者，採「修法與預算籌編並行」，後續將俟立法院完成修法後，始得動支。 三…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-672dd0d01ebb6bda",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236759",
+      "title": "115年9月消費者物價指數(CPI)年增率漲2.73％，生產者物價指數(PPI)年增率漲18.12％，美元計價之進、出口物價指數(IPI、EPI)年增率分別漲24.07％及漲25.76％",
+      "published_at": "2026-10-07T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、9月消費者物價總指數(CPI)，較上(8)月漲0.44％，經調整季節變動因素後漲0.17％；較上(114)年同月漲2.73％，1-9月平均，較上年同期漲1.94％。 二、9月生產者物價總指數(PPI)，較上月漲0.76％，較上年同月漲18.12％，1-9月平均，較上年同期漲10.16％。 三、9月進口物價總指數(IPI)以美元計價，較上月漲3.01％，較…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-d95d4d4e16f43f7e",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236789",
+      "title": "114年工業及服務業受僱員工進退與特徵概況統計結果",
+      "published_at": "2026-10-15T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、114年工業及服務業受僱員工進退概況 (一)各項退出原因中，以自動辭職占總退出人次比率86.9%最多，被解僱或資遣者占4.8%，因退休（含優惠退休）而離職者亦占4.8%。 (二)退出工作場所員工以年資未滿3年者占近7成4居多。 (三)觀察全年流動率，各年齡層以未滿25歲者7.28%較高，各教育程度別以大學程度者3.21%較高。 二、114年底工業及服務業…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-ed4926b7100619df",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236785",
+      "title": "115年8月工業及服務業本國籍全時員工人數為753萬5千人，經常性薪資中位數為41,353元，平均數為52,523元，分別年增3.46%及3.28%",
+      "published_at": "2026-10-15T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、本國籍全時受僱員工8月薪資 （一）經常性薪資中位數為41,353元，年增3.46%。 （二）經常性薪資平均數為52,523元，年增3.28%；加計獎金、紅利及加班費等非經常性薪資16,997元，總薪資平均數為69,520元，年增6.64%。 二、部分工時員工8月薪資 （一）經常性薪資中位數為16,680元，年增2.38%。 （二）經常性薪資平均數為22,…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-39890f1dd80e2068",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236801",
+      "title": "115年9月就業人數為1,164萬人，失業人數為40.5萬人，失業率為3.36%，季調失業率為3.33%，勞動力參與率為59.59%",
+      "published_at": "2026-10-23T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、戶籍人口就業失業統計結果 (一)9月就業人數為1,164萬人，較上（8）月減少1萬5千人或0.13%；失業人數為40萬5千人，較上月減少6千人或1.54%。 (二)9月勞動力參與率為59.59%，較上月下降0.10個百分點。 (三)9月失業率為3.36%，較上月下降0.05個百分點；經季節調整後失業率為3.33%，較上月上升0.01個百分點。 二、常住人…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-64355b2820805c81",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236807",
+      "title": "115年人力運用調查統計結果",
+      "published_at": "2026-10-23T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、115年5月非典型（部分時間、臨時性或人力派遣）工作者計79.3萬人，占全體 就業人數6.82%，係102年以來最低水準（101年為6.79%）。 二、曾遇就業機會卻未接受之失業者計17.3萬人，主要原因為「待遇不符期望」，占逾6成6。 三、15～49歲有偶育齡婦女勞動力參與率升至79.33%，近10年間上升9.95個百分點。 11509新聞稿(含附表及…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-530e79653d1b9a11",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236826",
+      "title": "115年第3季經濟成長率概估統計saar為13.48％，yoy為14.36％",
+      "published_at": "2026-10-30T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、115年第3季未經季節調整實質GDP與114年同季比較之經濟成長率(yoy)概估為14.36％，較8月預測數(11.42％)增加2.94個百分點。 二、115年第3季經季節調整後實質GDP，與上季比較折算年率之經濟成長率(saar)為13.48％。 新聞稿本文 (PDF) (WORD) (ODF) news11510.odt news11510.pdf…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-cf1d7e9ef631affa",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236836",
+      "title": "115年10月消費者物價指數(CPI)年增率漲2.33％，生產者物價指數(PPI)年增率漲19.66％，美元計價之進、出口物價指數(IPI、EPI)年增率分別漲26.72％及漲26.38％",
+      "published_at": "2026-11-05T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、10月消費者物價總指數(CPI)，較上(9)月漲0.06％，經調整季節變動因素後漲0.20％；較上(114)年同月漲2.33％，1-10月平均，較上年同期漲1.98％。 二、10月生產者物價總指數(PPI)，較上月漲1.48％，較上年同月漲19.66％，1-10月平均，較上年同期漲11.12％。 三、10月進口物價總指數(IPI)以美元計價，較上月漲1.…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-08cf85e83d586c6f",
+      "kind": "agency_release",
+      "source_id": "dgbas-news-rss",
+      "source_url": "https://www.dgbas.gov.tw/News_Content.aspx?n=3602&s=236856",
+      "title": "115年9月工業及服務業本國籍全時員工人數為753萬9千人，經常性薪資中位數為41,356元，平均數為52,522元，分別年增3.22%及3.14%",
+      "published_at": "2026-11-11T16:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:dgbas",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "一、本國籍全時受僱員工9月薪資 （一）經常性薪資中位數為41,356元，年增3.22%。 （二）經常性薪資平均數為52,522元，年增3.14%，增幅低於中位數；加計獎金、紅利及加班費等非經常性薪資11,347元，總薪資平均數為63,869元，年增4.84%。 二、部分工時員工9月薪資 （一）經常性薪資中位數為15,729元，年減1.26%。 （二）經常性薪…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-7631ea2d1d6c3a0f",
+      "kind": "agency_release",
+      "source_id": "ey-news-html",
+      "source_url": "https://www.ey.gov.tw/Page/9277F759E41CCD91/daf51ed4-4237-415b-89d6-7bc2ea2aed56",
+      "title": "卓揆：全面擴充新興毒品檢驗量能 守護國人生命安全",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ey",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "卓揆：全面擴充新興毒品檢驗量能 守護國人生命安全",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-8c282c4c7d42fcd6",
+      "kind": "agency_release",
+      "source_id": "ey-news-html",
+      "source_url": "https://www.ey.gov.tw/Page/9277F759E41CCD91/2bf5da95-69d8-49ba-9a19-53a611672d0b",
+      "title": "115資訊月暨臺灣教育科技展開幕 卓揆：公私協力推動AI服務、培育人才向下扎根 共創AI新時代",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ey",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "115資訊月暨臺灣教育科技展開幕 卓揆：公私協力推動AI服務、培育人才向下扎根 共創AI新時代",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-f3076b6461e1f7b8",
+      "kind": "agency_release",
+      "source_id": "ey-news-html",
+      "source_url": "https://www.ey.gov.tw/Page/9277F759E41CCD91/ce11120b-83d3-4d4d-9340-cca8c5c51415",
+      "title": "卓揆：落實選務、疏運及維安整備 確保選舉平安、社會安定",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ey",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "卓揆：落實選務、疏運及維安整備 確保選舉平安、社會安定",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-f4ce532f97c7a0c0",
+      "kind": "agency_release",
+      "source_id": "ey-news-html",
+      "source_url": "https://www.ey.gov.tw/Page/9277F759E41CCD91/3e1ca979-057e-4b00-81be-3d061228db6e",
+      "title": "配合韓國政府組織調整 政院備查「駐韓國台北代表部與駐臺北韓國代表部避免所得稅雙重課稅及防杜逃稅協定」修正協議",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ey",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "配合韓國政府組織調整 政院備查「駐韓國台北代表部與駐臺北韓國代表部避免所得稅雙重課稅及防杜逃稅協定」修正協議",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-00559933074031ad",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30207&serno=c252abb8-5f45-4705-8758-2767826c28d5",
+      "title": "網路謠傳身就大樓草地噴灑除草劑絕非事實！竹市府澄清全程人工及機械割草 每日巡查、定期修剪守護公共環境安全",
+      "published_at": "2026-10-28",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "網路謠傳身就大樓草地噴灑除草劑絕非事實！竹市府澄清全程人工及機械割草 每日巡查、定期修剪守護公共環境安全",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-84dd8b75f8829b74",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30207&serno=4b00ea72-1125-40cb-a524-b0c09bc42233",
+      "title": "嚴正駁斥有心人士針對香山高中通學步道工程之造謠 該案係高虹安市長傾聽香中學子提案 皆於高虹安市長任內規劃設計、招標發包、開完工",
+      "published_at": "2026-10-28",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "嚴正駁斥有心人士針對香山高中通學步道工程之造謠 該案係高虹安市長傾聽香中學子提案 皆於高虹安市長任內規劃設計、招標發包、開完工",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-9041ad20368fce95",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30207&serno=ea24f331-7678-4562-93e0-d73072723910",
+      "title": "竹市府澄清未任意調整號誌！經國路尖峰通行時間最多縮短120秒 離峰號誌配置兼顧交通安全",
+      "published_at": "2026-10-28",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市府澄清未任意調整號誌！經國路尖峰通行時間最多縮短120秒 離峰號誌配置兼顧交通安全",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-2e2bf04351bce3aa",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30207&serno=6a83e44c-75e7-475b-a9a6-7651667af2ff",
+      "title": "駁斥惡意不實謠言！有關新竹火車站周邊建案文資疑義 竹市府澄清：文化部認不涉文資法第34條、111年4月都設通過 非於高虹安市長任內",
+      "published_at": "2026-11-05",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "駁斥惡意不實謠言！有關新竹火車站周邊建案文資疑義 竹市府澄清：文化部認不涉文資法第34條、111年4月都設通過 非於高虹安市長任內",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-996033527d237946",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30207&serno=0b6b2f89-b440-4634-bd6d-f439c834c4ae",
+      "title": "嚴正駁斥造謠抹黑！新竹市政府說明年底公務出訪：市政延續不受政治干擾 持續帶領新竹走向國際",
+      "published_at": "2026-11-06",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "嚴正駁斥造謠抹黑！新竹市政府說明年底公務出訪：市政延續不受政治干擾 持續帶領新竹走向國際",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-00a0ab02d696d09d",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=e1c09e7a-fab1-4d4b-9d0c-e266eff98fa0",
+      "title": "關新路人行道工程強化督導 受損地坪18日起全面修復 樹穴植栽同步改善",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "關新路人行道工程強化督導 受損地坪18日起全面修復 樹穴植栽同步改善",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-00dfee6fb22ddf37",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=3498e406-a04f-4889-aa2a-041b22a8197e",
+      "title": "工程開工+1！竹市南寮消防分隊廳舍興建動土！高虹安市長：斥資4.3億強化沿海防救災量能",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "工程開工+1！竹市南寮消防分隊廳舍興建動土！高虹安市長：斥資4.3億強化沿海防救災量能",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-24d88c1c54fe40f7",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=454f2337-0f7f-4e27-ac04-8ac87f7d1c76",
+      "title": "竹市近35年最大公辦重劃不到1年完成配地！高虹安市長：同步招商、擴校 打造科技產業新聚落",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市近35年最大公辦重劃不到1年完成配地！高虹安市長：同步招商、擴校 打造科技產業新聚落",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-581e075a94ccea1b",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=a955c4ef-39db-44dd-85cb-57142a1d9324",
+      "title": "竹市社區規劃師培訓融入植栽與水循環 高虹安市長：培力在地行動共創永續社區",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市社區規劃師培訓融入植栽與水循環 高虹安市長：培力在地行動共創永續社區",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-d372addbb3867c8b",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=980c5ea5-bd0d-44bf-9a86-3b1f54007367",
+      "title": "夢想起飛！竹市心願卡圓夢活動敲鑼 高虹安市長：528個心願邀民眾一起成為圓夢人",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "夢想起飛！竹市心願卡圓夢活動敲鑼 高虹安市長：528個心願邀民眾一起成為圓夢人",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-d60fad94ccfe203d",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=f1873968-0667-45ed-af74-9ce14dcf64ce",
+      "title": "《潮汐的對譯：從黃金町到新竹》藝術家陳彥瑋分享駐村創作歷程 展現臺日藝術交流成果",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "《潮汐的對譯：從黃金町到新竹》藝術家陳彥瑋分享駐村創作歷程 展現臺日藝術交流成果",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-e2a861032c6326d3",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=4784c51f-2641-4644-ad1a-cada14f3cbd4",
+      "title": "竹市培英國中創校71週年 高虹安市長與親師生同樂慶生：4年補助培英逾9.2億 打造青春活力校園",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市培英國中創校71週年 高虹安市長與親師生同樂慶生：4年補助培英逾9.2億 打造青春活力校園",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-6a203a3957a83148",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358124",
+      "title": "國家級建築獎項肯定 文興國中落成揭牌迎向改制高中里程碑",
+      "published_at": "2026-11-10T12:45:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府斥資新臺幣14億4,650萬餘元興建的新竹縣立文興國民中學校舍，今（10）日上午舉行落成暨揭牌典禮，縣長楊文科、國教署署長彭富源、地方民意代表、教育界同仁及社區鄉親等人共同見證榮獲國家建築金獎與國家卓越建設獎的文興國中校舍落成及揭牌，並期許116學年度改制高中，充實新竹縣高中量能。 「校舍落成不僅是工程建設的圓滿成果，更是地方教育發展的重要里程碑」…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-cbf00956e16eae68",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358129",
+      "title": "HBL開賽!12月首度移師竹縣開打 縣長楊文科邀全國球迷共襄盛舉",
+      "published_at": "2026-11-10T16:38:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "115學年度高中籃球甲級聯賽（HBL）今（10日）在臺北市舉辦開賽記者會，本屆男子組12強複賽及女子組預賽首度移師新竹縣立體育館舉辦，新竹縣長楊文科受邀出席為新賽事揭開序幕。高中體育總會也感謝新竹縣政府的支持與出借場地，並由縣長楊文科代表接受。新竹縣籃球名校東泰高中總教練高丁國柱亦率領球員紀伍柏俊、高丁子權出席，展現全力備戰、爭取榮耀的堅定氣勢。 縣長楊文科…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-df79303b90256948",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358156",
+      "title": "竹縣府攜手竹北就業中心聯合15家企業 助中高齡與二度就業族群開創職涯「第二春」",
+      "published_at": "2026-11-11T10:32:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "為協助民眾求職、就業，新竹縣政府攜手竹北就業中心，與15家企業合作，將於11月13日（星期五）下午13:30至16:00，在新竹產業園區服務中心2樓舉辦聯合徵才活動，歡迎求職民眾踴躍參加，現場亦有提供全職、兼職工作，讓中高齡、二度就業民眾，也能依據體力、家庭照顧等需求，靈活選擇合適工作。 新竹縣長楊文科表示，許多中高齡長輩與二度就業民眾依然保有豐富的社會經驗…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-5d05e68914bdb4d4",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358167",
+      "title": "新竹縣公辦政見發表會11月18日起登場 縣長政見發表電視+YT直播邀鄉親收看",
+      "published_at": "2026-11-11T11:15:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "115年新竹縣地方公職人員選舉即將登場，為使選民充分瞭解候選人的政見及施政理念，新竹縣選舉委員會將於11月18日至25日辦理第21屆縣議員選舉公辦政見發表會，歡迎民眾踴躍到場聆聽。今年更首度辦理縣長選舉公辦電視政見發表會，將於11月19日上午10時至12時舉行，並透過北視有線電視及新竹縣選舉委員會YouTube頻道同步直播，讓鄉親不受地點限制，收看候選人政見…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-7d8174fd6ea7cbbc",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358175",
+      "title": "讓學生成為國際交流舞台上的主角 竹縣東興國中以閱讀開啟臺捷對話",
+      "published_at": "2026-11-11T11:50:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣立東興國民中學昨(10日)下午舉辦「閱讀歐洲｜捷克文化交流日」活動，邀請捷克Crystal Valley（水晶谷）代表Helena Sojkova女士及利貝雷茨理工大學Dr. Vladimir Sojka博士、捷克經濟文化辦事處張先瑄等貴賓參與、交流，活動以「在東興，與世界相遇」為主題，讓學生從課前閱讀到英語提問，再從介紹校園到分享家鄉，以閱讀、發表、…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-908cf07c98c49728",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358176",
+      "title": "高中五大方案再添里程碑！竹縣首座公辦公營「竹北實驗高中」今揭牌啟航",
+      "published_at": "2026-11-11T12:05:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府推動「高中五大方案」再添重要里程碑！新竹縣副縣長徐元棟今(11日)代表縣長楊文科出席新竹縣立竹北實驗高級中等學校揭牌典禮，與各級民意代表、教育夥伴、全校師生，共同見證新竹縣首座公辦公營實驗高中正式啟航，徐元棟期許學校秉持實驗教育精神，兼顧學科學習與跨域創新，培養具備自主學習、國際視野及社會責任的未來人才，為新竹縣教育開創新典範。 徐元棟表示，楊文科…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-33d2679f67d246fa",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358180",
+      "title": "竹縣「逐風趣」深度農旅開跑 串聯3大路線帶您探索客庄與原鄉魅力",
+      "published_at": "2026-11-11T15:05:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "為讓旅客深度體驗新竹縣農村特色與魅力，新竹縣政府推動「逐風趣」深度農遊三大路線，分別是串聯新埔與關西的「黃金客庄」、尖石與橫山的「香草森林」，及五峰的「原鄉野趣」，結合在地農業物產、產業文化、淺山生態及原住民族文化。縣府農業處今（11日）於關西鎮農會舉辦啟動儀式，邀請全國旅客走進新竹縣，感受土地孕育的豐富風貌。 新竹縣長楊文科表示，新竹縣擁有豐富的農業物產與…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-2f7a82e6c494443b",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358192",
+      "title": "打造學生藝文展演的夢想舞台 竹縣光明國小向陽館落成啟用",
+      "published_at": "2026-11-12T13:26:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府投入2億157萬元興建的新竹縣竹北市光明國民小學綜合活動中心「向陽館」今（12日）舉行落成啟用典禮，縣長楊文科與各界代表一同參與剪綵儀式，典禮以「光明點燈，向陽築夢」為主題，將這座兼具體育教學與藝文展演功能的新場館提供予全校親師生使用，成為光明學子藝文展演的夢想舞台。 縣長楊文科說，新建綜合活動中心經歷任校長及現任校長李孟印共同努力之下終於完工。並…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-b5a55089160d6563",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358193",
+      "title": "剩餘財產分配免契稅！房屋、土地規定大不同！",
+      "published_at": "2026-11-12T13:42:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府稅務局表示，配偶因離婚或一方死亡等事由致法定財產制關係消滅，依法行使「剩餘財產差額分配請求權」而取得房屋，因其移轉性質與一般買賣、贈與等不同，非屬契稅課徵範圍，因此免辦理契稅申報，也無須繳納契稅。 該局進一步說明，依契稅條例第2條規定，不動產因買賣、承典、交換、贈與、分割或因占有而取得所有權者，應依法申報繳納契稅。然而，配偶行使剩餘財產差額分配請求…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-0d1317419e1a8f88",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358194",
+      "title": "十大交通建設再邁前一步 新埔褒忠路道路拓寬工程開工",
+      "published_at": "2026-11-12T14:15:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府於今(12)日舉辦「縣道117線18K+480-19K+840(褒忠路)道路拓寬工程」開工動土典禮，縣長楊文科、新埔鎮長陳英樓、立委徐欣瑩等民意代表手持金鏟動土，在新埔褒忠亭義民廟董事長林光華共同見證下，宣告十大交通建設再邁向全新里程碑！褒忠路長期作為竹北、新埔與湖口周邊產業園區的重要交通動脈，改善已刻不容緩，本次工程將徹底打通道路瓶頸，全面提升整…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-784619150ffb70ea",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358196",
+      "title": "臺灣國際茶業博覽會週五登場 竹縣「茶里拾光」特色展區邀您入場品好茶",
+      "published_at": "2026-11-12T15:25:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "2026臺灣國際茶業博覽會明(13日)起至16日在臺北南港展覽館一館一樓盛大展出。今年新竹縣特色茶展區以「茶里拾光」主題參展，將展出最優質的東方美人茶(膨風茶)、高山烏龍茶等竹縣特色好茶，新竹縣政府農業處邀請全國朋友共襄盛舉，在茶里拾起土地與歲月的美好時光。 縣府農業處表示，今年度新竹縣特色茶展區由北埔鄉農會、峨眉鄉農會、徐耀良茶園、上展茶園將年度最具特色的…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-c513afcfa5db4e47",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358199",
+      "title": "新竹縣地區11月16日至18日辦理加嗅系統維護作業",
+      "published_at": "2026-11-12T17:17:00+08:00",
+      "collected_at": "2026-11-13T00:41:30+08:00",
+      "checked_at": "2026-11-13T00:41:30+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "為維護供氣安全，新竹瓦斯股份有限公司訂於115年11月16日至11月18日上午9時至下午5時辦理「新竹縣加嗅系統維護作業」。如施工期間可能產生較明顯嗅味，請勿驚慌，造成不便，敬請見諒。 詳情請電洽新竹瓦斯股份有限公司：[電話已省略](維修部分機2400-2416或竹北服務中心分機2900至2901)。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-1c2a86181558f2ca",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171183",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-02",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：傅崐萁 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "2b7013676fa8e55b",
+      "data_class": null
+    },
+    {
+      "id": "rec-2547cb62b7096833",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171182",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-02",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：范雲 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "3b24a12da3a0e5fc",
+      "data_class": null
+    },
+    {
+      "id": "rec-aacbe218e05063f5",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171185",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-02",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：許宇甄 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "2e91680a46b53bf4",
+      "data_class": null
+    },
+    {
+      "id": "rec-d422b0752c8febc8",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171184",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-02",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：莊瑞雄 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "72a8bd159041bd95",
+      "data_class": null
+    },
+    {
+      "id": "rec-f0af6b6b0d7f7b83",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171181",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-02",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：陳昭姿 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "ec9ffe7804349696",
+      "data_class": null
+    },
+    {
+      "id": "rec-61edd6b856cc1668",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171192",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-06",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：王世堅 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "3dde609de043a65b",
+      "data_class": null
+    },
+    {
+      "id": "rec-7f1e9a7f1784df4c",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171189",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-06",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：王義川 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "7429c12531279943",
+      "data_class": null
+    },
+    {
+      "id": "rec-8e286ccb6f61cb8b",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171190",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-06",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：馬文君 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "0c8ae375f9b5b62f",
+      "data_class": null
+    },
+    {
+      "id": "rec-a4e9fb9e5812e48a",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171186",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-06",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：吳沛憶 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "2e45d36fdd738f63",
+      "data_class": null
+    },
+    {
+      "id": "rec-ca51bb6dd77e306f",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171191",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-06",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：王安祥 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "ac55c843dcd43b55",
+      "data_class": null
+    },
+    {
+      "id": "rec-d704aee546c4e28b",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171187",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-06",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：洪孟楷 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "8f3accac84bf79f5",
+      "data_class": null
+    },
+    {
+      "id": "rec-f7ff8feadc8752fb",
+      "kind": "legislative_record",
+      "source_id": "ly-meeting-json",
+      "source_url": "https://ivod.ly.gov.tw/Play/Clip/1M/171188",
+      "title": "第11屆第6會期第2次會議",
+      "published_at": "2026-10-06",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ly",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "central"
+      ],
+      "text_excerpt": "資料集所載委員：洪毓祥 對行政院院長施政報告進行質詢。",
+      "claim_origin": "legislative_record",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "9fcc73325c3ad438",
+      "data_class": null
+    },
+    {
+      "id": "rec-1acbcf35b6481e9e",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "五股交流道北入匝道明通車 侯友宜：尖峰時段縮短12分鐘",
+      "published_at": "2026-11-11",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】五股交流道北入匝道明（12）日正式通車，新北市長侯友宜今（11）日出席通車典禮時表示，五股交流道北入匝道通車後，未來從台65線北上可直接銜接國道1號，不必再繞行平面道路，尖峰時段行車時間預估從15分鐘縮短至3分鐘，足足省下12分鐘，大幅減緩尖峰時段塞車問題。侯友宜表示，五股交流道是串聯新莊、五股、泰山與國道系統的重要交通門戶，長期以來，龐大的通勤…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611110045",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-574599f277b66b18",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "北區複合型災害應變暨訓練中心動土 侯友宜：強化北部防災安全網",
+      "published_at": "2026-11-11",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】「北區複合型災害環境事故應變暨訓練中心」今（11）日舉行動土典禮，新北市長侯友宜表示，面對新型態的複合型災害，專業及實戰訓練對救災及消防人員的安全至關重要，期許強化第一線的應變能力，並有效應對毒化災害，攜手打造北部安全的防護網。侯友宜指出，新北市擁有豐富的地形態樣，隨之而來是複雜的災害型態，再加上近年來電動車、太陽光電及儲能設備等逐漸普及，為加強…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611110055",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-71d624f72e66472e",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "115.11.12 (四)新北市政府新聞行程",
+      "published_at": "2026-11-11",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "民國115年11月12日 星期四新 北 市 政 府 新 聞 行 程09:35 「新北環狀線板新站捷運開發案」開工祈福典禮地點：環狀線板新站後方聲寶廣場（請由板橋區中山路1段216巷進入）參加：市長 侯友宜10:50 新北市傑出身心障礙相關人士暨服務評鑑績優單位表揚地點：市府1樓彭園會館參加：市長 侯友宜",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611110051",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-9a169a5989f87593",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "新北八年教育經費達5,360億 侯友宜：全方位優化學習環境",
+      "published_at": "2026-11-11",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】新北市政府今（11）日召開市政會議，教育局以「新北為孩子點燈 教育讓夢想發光」為題進行專題報告。新北市長侯友宜表示，市府八年來累計投入5,360億元教育經費，不僅增加學習資源、優化校園環境，更獲得多項全國性獎項肯定，累積超過300項教育創新及120項中央評比全國第一。侯友宜指出，教育是一條陪伴孩子成長及面對時代挑戰的道路，感謝教育局及第一線教育人…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611110043",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-f9ff9fac02bf3c4f",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "林口東林多功能大樓動土 侯友宜盼打造全齡樂活空間",
+      "published_at": "2026-11-11",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】新北市長侯友宜今（11）出席林口區東林多功能大樓新建工程動土典禮，並至林口贊天宮參拜，祈求地方繁榮、工程順利。侯友宜表示，感謝地方支持重建，未來將結合社區活動與幼兒教育需求，興建全齡友善的多功能空間，提供市民更優質的生活環境。侯友宜指出，原有市民活動中心於民國75年興建啟用，建物老舊亦不符使用需求，為提升服務品質並回應在地居民的期盼，市府積極推動…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611110032",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-1815040dc371495b",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "新北表揚傑出身障人士及服務典範 侯友宜：凝聚力量讓平權再邁進",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】新北市政府今（12）日舉行「新北市傑出身心障礙相關人士暨服務評鑑績優單位表揚」活動。新北市長侯友宜表示，期盼透過表揚勇於突破自我的身心障礙人士與長期耕耘身障服務的典範，凝聚力量成為太陽，照亮身邊每一個人，讓平權再向前邁進。侯友宜指出，今日的獲獎者王柏翔從「被支持者轉換為照顧者」，自幼罹患小兒麻痺，仍克服障礙投入身障服務，以自身經驗鼓舞他人。詹嘉惠…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611120027",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-a9682a76d28c3ffc",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "板橋最大捷運開發案開工！侯友宜：以軌道經濟翻轉城市風貌",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】新北市政府今（12）日舉行環狀線板新站捷運開發案開工典禮，新北市長侯友宜表示，市府秉持「捷運到哪裡、都更做到哪裡」的理念，持續推動大眾運輸導向發展（TOD），透過捷運建設帶動周邊土地開發，提升公益回饋並優化生活空間；今日開工的「新北環狀線板新站」為板橋區規模最大的捷運開發案，期待工程如期如質完工，帶動板新地區發展。侯友宜指出，捷運板新站鄰近新板特…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611120019",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-c8ebd8de97b24fe2",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "115.11.13 (五)新北市政府新聞行程",
+      "published_at": "2026-11-12",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "民國115年11月13日 星期五新 北 市 政 府 新 聞 行 程10:30 三鶯延伸八德線地下段土建暨全線機電統包工程開工動土典禮地點：大湳森林公園停車場（桃園市八德區介壽路2段247號，請由介壽路2段246號旁巷口進入）參加：市長 侯友宜10:30 「米米帶路！食農繪本新書發表記者會」地點：新北市立圖書館總館1樓推廣區（板橋區貴興路139號）參加：農業局…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611120052",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-c8eae77e29b121ce",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794318789.A.090.html",
+      "title": "[食記] [新竹‧東門市場] 東門豆漿 1067",
+      "published_at": "2026-11-10T21:53:09+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[食記] [新竹‧東門市場] 東門豆漿 1067",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-3a0fa7699df31984",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794323159.A.DA6.html",
+      "title": "[徵求] 5.1聲道擴大機",
+      "published_at": "2026-11-10T23:05:59+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[徵求] 5.1聲道擴大機",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-8cfe5813b8b325ce",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794366367.A.22A.html",
+      "title": "[問題] 單車從竹東往大崎崠頂峰涼亭路況詢問",
+      "published_at": "2026-11-11T11:06:07+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[問題] 單車從竹東往大崎崠頂峰涼亭路況詢問",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-af60ce8b6b7474b1",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794396585.A.B8E.html",
+      "title": "[閒聊] 竹北大遠百失火了？",
+      "published_at": "2026-11-11T19:29:45+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[閒聊] 竹北大遠百失火了？",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-665b29d478b65f9b",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794398493.A.A5E.html",
+      "title": "[贈送] 送出 感謝來信",
+      "published_at": "2026-11-11T20:01:33+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] 送出 感謝來信",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-2df599cf428c9bd2",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794405242.A.1BC.html",
+      "title": "[贈送] 費雪健力架",
+      "published_at": "2026-11-11T21:54:02+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] 費雪健力架",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-203bb75c09f47205",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794409145.A.04E.html",
+      "title": "[贈送] 搬家出清一堆用品",
+      "published_at": "2026-11-11T22:59:05+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] 搬家出清一堆用品",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-cc1059f2b62a24ce",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794477935.A.F2C.html",
+      "title": "[徵求] 淑女車一台",
+      "published_at": "2026-11-12T18:05:35+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[徵求] 淑女車一台",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-c3bf35d70682aa8f",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794480063.A.C5B.html",
+      "title": "[問卷] 科技金融接受度之研究",
+      "published_at": "2026-11-12T18:41:03+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[問卷] 科技金融接受度之研究",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-eb83899b101f551d",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794485134.A.26E.html",
+      "title": "[閒聊] 261102-尚武鳳凰 vs 金色勇士 @新竹棒球",
+      "published_at": "2026-11-12T20:05:34+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[閒聊] 261102-尚武鳳凰 vs 金色勇士 @新竹棒球",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-e3eebce2e00f93cb",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794487471.A.B12.html",
+      "title": "[問題] 尋找萬聖節市集中的[3D手作世界]店家",
+      "published_at": "2026-11-12T20:44:31+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[問題] 尋找萬聖節市集中的[3D手作世界]店家",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-1315f0194a536a44",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794495572.A.464.html",
+      "title": "[新聞] 竹縣「逐風趣」串聯3大路線 探索客庄與原鄉魅力",
+      "published_at": "2026-11-12T22:59:32+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[新聞] 竹縣「逐風趣」串聯3大路線 探索客庄與原鄉魅力",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-a5c8e8ed6f6d18a8",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=51F3A506B1CC3E3F",
+      "title": "平等國小-走進平等，於樂正好！海拔413公尺依傍水圳綠意，長者牽小手點亮樂齡新聚落",
+      "published_at": "2026-11-12T11:45:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市士林區平等國民小學新聞稿 請轉交文教記者 單位：臺北市士林區平等國民小學 地址：臺北市士林區平菁街101號 業務暨",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-56692f420adcbf59",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=DEAFE5D5000862AC",
+      "title": "私立育達高中-臺北育達高中協助國立臺灣圖書館「用手去看見世界」開幕式影音紀錄",
+      "published_at": "2026-11-12T11:51:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市私立育達高級中等學校新聞稿 請轉交文教記者 單位：臺北市私立育達高級中等學校 地址：臺北市松山區寧安街12號 業務暨",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-c744c9bafc133a00",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=589EB8F6A2D6B8A3",
+      "title": "內湖幼兒園-歡慶39，爸爸和我愛在內湖",
+      "published_at": "2026-11-12T11:55:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市立內湖幼兒園新聞稿 請轉交文教記者 單位：臺北市立內湖幼兒園 地址：臺北市內湖區陽光街265巷9號 業務及",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-cae665797554cc48",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=6ED629DF8AD20C7E",
+      "title": "延平南路、廣州街巷弄路面更新 機車停車格同步升級 日常通行更舒適",
+      "published_at": "2026-11-12T14:06:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "發稿單位：新工處 發稿日期：115年11月12日",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-6d99b7065dd2932b",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=89A772AF7767325F",
+      "title": "「看見他們的生命故事」 11本StoryBook記錄陪伴與生命的轉變",
+      "published_at": "2026-11-12T14:55:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "發稿日期：115年11月12日 發稿單位：社會工作科 聯 絡 人：邱慶雄科長 聯絡電話：1999轉分機1633 為讓更多市民理解無家者的生命歷程，看見街頭生活背後不同的人生故事，臺北市士林社會福利服務中心辦理「看見他們的生命故事」系列活動，結合街頭關懷、專業講座及生命故事分享，串聯社政、醫療與民間志工力量，共同陪伴無家者走過生命中的困難時刻。 跨域攜手陪伴…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-39fde8988a89a30d",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=EFDDC229A23D66C1",
+      "title": "因應北投區泉源路邊坡搶修工程交通管制，公車配合改道並取消停靠站位",
+      "published_at": "2026-11-12T15:30:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市公共運輸處表示，因應臺北市政府工務局新建工程處邊坡搶修工程，本市北投區泉源路1206143燈桿前（惇敘工商旁）將實施交通管制，管制時段如下： 115年11月12日9時起至17時及22時起至11月13日5時止。 115年11月13日至115年11月30日，每日9時至17時及每日23時至翌日5時。 上述管制時間，交管人員得視現場狀況提前或延後解除管制。管制…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-ec4238225622f226",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=3023BE7F4C967C7C",
+      "title": "私立稻江護家-稻江護家技藝競賽4金8優勝 獲獎數北臺灣第一展現技職培育實力",
+      "published_at": "2026-11-12T16:57:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市 私立 稻江高級護理家事職業學校新聞稿 請轉交文教記者 地址：臺北市中山區新生北路3段55號 活動連絡人：實習輔導主任 許嘉玲([電話已省略]分機406",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-f99d1305695d507b",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=FE4C2FBEA1F4D5F1",
+      "title": "福林國小-以樂迎賓、以球傳誼 福林國小與日本大崎小學校簽署MOU 共續臺日教育情誼",
+      "published_at": "2026-11-12T16:59:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市福林國小新聞稿 請轉交文教記者 單位：臺北市士林區福林國民小學 地址：臺北市士林區福志路75號 業務暨",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-99d0c9862c066e54",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=5F7180A50CAB2ED6",
+      "title": "萬芳國小-萬芳國小「淨零排放新生活」主題書展",
+      "published_at": "2026-11-12T17:06:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市萬芳國小新聞稿 請轉交文教記者 單位：臺北市文山區萬芳國民小學 地址：臺北市文山區116萬和街1號 業務暨",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-7dbcec141cd3e8b3",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=926E6FDA10E57BE6",
+      "title": "寶林茶室案刑事一審宣判 北市府：重大食安事件應加重刑責 持續協助受害者求償",
+      "published_at": "2026-11-12T17:08:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "針對寶林茶室重大食品中毒事件，臺灣臺北地方法院今（12）日宣示刑事一審判決結果。臺北市政府表示，寶林茶室事件造成多人傷亡，對受害者及家屬帶來難以彌補的傷痛，市府深感痛心，並認為現行《食品安全衛生管理法》相關刑責仍有提高必要，以強化法律嚇阻效果。市府強調，事件發生以來，持續積極協助受害者及家屬求償，目前已有22人達成和解獲償，6件行政裁罰也均依法移送強制執行。…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-35760a03111cadcc",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=D4331613557C54FF",
+      "title": "針對外界質疑市府未處理基泰大直一案，市府嚴正聲明一直以來積極協助，並二次提出公辦都更方案爭取塌陷戶支持，期盼協助早日恢復生活",
+      "published_at": "2026-11-12T17:11:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "針對基泰大直塌陷事件後續安置及重建事宜，市府自事件發生以來積極協助受影響塌陷戶安置、督促基泰公司應履行責任，以保障塌陷戶權益為優先。 基泰大直坍塌事件發生後14日內完成緊急安置、撥付安置費用，並於1個月內調查塌陷戶參與市府公辦都更意願 (一) 市府於112年9月7日事件發生後，要求基泰公司於5日內開立「基泰大直工安意外救災修復安置專戶」並匯入新臺幣1億元，7…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-9a3cd4523f569d95",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=2F4E97532137F314",
+      "title": "在《花樣年華》裡與你相遇 北市圖東湖分館推BTS書展，邀阿米重溫青春",
+      "published_at": "2026-11-13T00:00:00+08:00",
+      "collected_at": "2026-11-13T00:39:35+08:00",
+      "checked_at": "2026-11-13T00:39:35+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "你的 BTS入坑曲是哪一首？是每次聽見前奏就想跟著唱的〈Spring Day〉，還是至今仍在歌單裡的〈Yet To Come〉？臺北市立圖書館東湖分館推出《BTS書展：在花樣年華裡與你相遇》，以兩大主題回顧七位成員從出道到走上國際舞臺的歷程，並展出成員曾推薦、或為音樂創作帶來靈感的書籍。書展期間到館填寫問卷，還有機會把 BT21 SuperCard 悠遊卡帶…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "corrections": [
+    {
+      "id": "cor-5fea88a24ac2b754",
+      "record_id": "rec-00a0ab02d696d09d",
+      "source_id": "hsinchu-city-news-html",
+      "changed_at": "2026-11-13T00:41:30+08:00",
+      "fields": {
+        "title": {
+          "previous": "新竹通",
+          "current": "關新路人行道工程強化督導 受損地坪18日起全面修復 樹穴植栽同步改善"
+        },
+        "text_excerpt": {
+          "previous": "新竹通",
+          "current": "關新路人行道工程強化督導 受損地坪18日起全面修復 樹穴植栽同步改善"
+        },
+        "published_at": {
+          "previous": "2025-08-14",
+          "current": "2026-11-12"
+        }
+      },
+      "note": "同一來源識別的文字有變。舊值留在更正紀錄，不把新文字升成已查核。"
+    }
+  ]
+}
