@@ -5,8 +5,11 @@ import hashlib
 import html
 import json
 import re
+import urllib.request
 from urllib.parse import urljoin, urlsplit, urlunsplit
 from xml.etree import ElementTree
+
+from collectors.civic.catalog import UA
 
 from collectors.civic.textutil import public_excerpt, parse_published, strip_html
 
@@ -294,6 +297,84 @@ def parse_ly_json(spec: dict, body: bytes) -> list[dict]:
     return found
 
 
+def _pcc_region(org: str) -> str | None:
+    if org.startswith(("臺北市", "台北市")):
+        return "taipei"
+    if org.startswith("新北市"):
+        return "new-taipei"
+    if org.startswith("新竹縣"):
+        return "hsinchu-county"
+    if org.startswith("新竹市"):
+        return "hsinchu-city"
+    return None
+
+
+def _pcc_date(value: str) -> tuple[str | None, str | None]:
+    match = re.fullmatch(r"(\d{4})/(\d{2})/(\d{2})", (value or "").strip())
+    if not match:
+        return None, None
+    return f"{match.group(1)}-{match.group(2)}-{match.group(3)}", "day"
+
+
+def _bounded_get(url: str, limit: int = 1_500_000) -> bytes:
+    request = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        body = response.read(limit + 1)
+    if len(body) > limit:
+        raise RuntimeError(f"response_truncated>{limit}")
+    return body
+
+
+def _rows_from_tender_xml(spec: dict, text: str, file_url: str) -> list[dict]:
+    root = xml_root(text.encode("utf-8"))
+    counts = {"taipei": 0, "new-taipei": 0, "hsinchu-county": 0, "hsinchu-city": 0}
+    found = []
+    for tender in root.iter():
+        if local(tender.tag) != "TENDER":
+            continue
+        fields = {local(child.tag): "".join(child.itertext()).strip() for child in list(tender)}
+        org = fields.get("TENDER_ORG_NAME") or ""
+        region = _pcc_region(org)
+        if region is None or counts[region] >= 3:
+            continue
+        title = fields.get("TENDER_NAME") or ""
+        case_no = fields.get("TENDER_CASE_NO") or ""
+        published, precision = _pcc_date(fields.get("AWARD_DATE") or fields.get("TENDER_SPDT") or "")
+        price = fields.get("TENDER_AWARD_PRICE") or ""
+        price_note = f"資料檔所載決標金額 {price} 元，不是支用或驗收。" if price else "這份列沒有金額，不補 0。"
+        excerpt = "。".join(part for part in (org, fields.get("PROCUREMENT_TYPE"), fields.get("PROCUREMENT_ATTR"), f"案號 {case_no}" if case_no else "") if part)
+        excerpt = f"{excerpt}。{price_note}"
+        row = _item_from(
+            spec,
+            title=title,
+            url=file_url,
+            excerpt=excerpt,
+            published=published,
+            precision=precision,
+            native_id=case_no or title,
+        )
+        if not row:
+            continue
+        row["region_refs"] = [region]
+        counts[region] += 1
+        found.append(row)
+        if len(found) >= MAX_ITEMS:
+            break
+    return found
+
+
+def parse_pcc_tenders(spec: dict, body: bytes) -> list[dict]:
+    text = body.decode("utf-8-sig", "replace")
+    if "<TENDER" in text:
+        return _rows_from_tender_xml(spec, text, spec.get("list_url") or spec["url"])
+    names = re.findall(r"fileName=(award_\d+\.xml)", text)
+    if not names:
+        raise RuntimeError("pcc_index_missing_file")
+    file_url = "https://web.pcc.gov.tw/tps/tp/OpenData/downloadFile?fileName=" + names[0]
+    payload = _bounded_get(file_url).decode("utf-8-sig", "replace")
+    return _rows_from_tender_xml(spec, payload, file_url)
+
+
 PARSERS = {
     "rss": parse_rss,
     "atom_title": parse_atom_title,
@@ -302,4 +383,6 @@ PARSERS = {
     "hccg_html": parse_hccg_html,
     "ntpc_json": parse_ntpc_json,
     "ly_json": parse_ly_json,
+    "pcc_tender_xml": parse_pcc_tenders,
 }
+

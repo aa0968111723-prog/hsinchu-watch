@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from collectors.civic.catalog import GAPS, SOURCES
 from collectors.civic.cycle import content_hash, run_cycle
-from collectors.civic.parsers import parse_rss
+from collectors.civic.parsers import parse_pcc_tenders, parse_rss
 from collectors.civic.textutil import public_excerpt
 
 NOW = datetime(2026, 11, 13, 1, 0, tzinfo=timezone(timedelta(hours=8)))
@@ -214,6 +214,41 @@ class CycleTests(unittest.TestCase):
         rows = parse_rss(spec, body)
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["title"], "縣府新聞")
+
+    def test_pcc_tender_filters_governments_and_leaves_amount_absent(self):
+        spec = next(row for row in SOURCES if row["id"] == "pcc-award-xml")
+        body = """<?xml version="1.0"?><TENDER_LIST>
+          <TENDER>
+            <AWARD_DATE>2026/11/03</AWARD_DATE>
+            <TENDER_ORG_NAME>臺北市政府工務局</TENDER_ORG_NAME>
+            <TENDER_CASE_NO>A1</TENDER_CASE_NO>
+            <TENDER_NAME>道路工程</TENDER_NAME>
+            <TENDER_AWARD_PRICE>27500000</TENDER_AWARD_PRICE>
+            <CONTACT_PERSON>王先生</CONTACT_PERSON>
+            <TENDER_TEL>02-27208888</TENDER_TEL>
+          </TENDER>
+          <TENDER>
+            <AWARD_DATE>2026/11/02</AWARD_DATE>
+            <TENDER_ORG_NAME>臺北榮民總醫院</TENDER_ORG_NAME>
+            <TENDER_CASE_NO>B1</TENDER_CASE_NO>
+            <TENDER_NAME>敷料</TENDER_NAME>
+          </TENDER>
+          <TENDER>
+            <AWARD_DATE>2026/11/01</AWARD_DATE>
+            <TENDER_ORG_NAME>新竹縣政府</TENDER_ORG_NAME>
+            <TENDER_CASE_NO>C1</TENDER_CASE_NO>
+            <TENDER_NAME>道路拓寬</TENDER_NAME>
+          </TENDER>
+        </TENDER_LIST>""".encode()
+        rows = parse_pcc_tenders(spec, body)
+        self.assertEqual([row["region_refs"] for row in rows], [["taipei"], ["hsinchu-county"]])
+        self.assertEqual(rows[0]["published_at"], "2026-11-03")
+        blob = json.dumps(rows, ensure_ascii=False)
+        self.assertIn("27500000", blob)
+        self.assertNotIn("王先生", blob)
+        self.assertNotIn("02-27208888", blob)
+        self.assertNotIn("敷料", blob)
+        self.assertIn("不是支用或驗收", rows[0]["text_excerpt"])
 
 
 if __name__ == "__main__":

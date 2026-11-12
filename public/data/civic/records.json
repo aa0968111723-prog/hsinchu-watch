@@ -1604,6 +1604,84 @@
       "data_class": "焦點新聞"
     },
     {
+      "id": "rec-0a24d0cd70b79b0c",
+      "kind": "procurement_award",
+      "source_id": "pcc-award-xml",
+      "source_url": "https://web.pcc.gov.tw/tps/tp/OpenData/downloadFile?fileName=award_20260902.xml",
+      "title": "115年微型攝影機採購案",
+      "published_at": "2026-09-21",
+      "collected_at": "2026-11-13T07:58:09+08:00",
+      "checked_at": "2026-11-13T07:58:09+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:pcc",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府工務局。公開招標。財物類。案號 1150612P0027。資料檔所載決標金額 27500000 元，不是支用或驗收。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "1150612P0027",
+      "data_class": null
+    },
+    {
+      "id": "rec-7036276fa1a41509",
+      "kind": "procurement_award",
+      "source_id": "pcc-award-xml",
+      "source_url": "https://web.pcc.gov.tw/tps/tp/OpenData/downloadFile?fileName=award_20260902.xml",
+      "title": "臺北市北投區福國社會住宅暨文山區景豐社會住宅1區空調設備財物採購案",
+      "published_at": "2026-09-23",
+      "collected_at": "2026-11-13T07:58:09+08:00",
+      "checked_at": "2026-11-13T07:58:09+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:pcc",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府都市發展局。公開招標。財物類。案號 11521003。資料檔所載決標金額 57339958 元，不是支用或驗收。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "11521003",
+      "data_class": null
+    },
+    {
+      "id": "rec-386740e644198da3",
+      "kind": "procurement_award",
+      "source_id": "pcc-award-xml",
+      "source_url": "https://web.pcc.gov.tw/tps/tp/OpenData/downloadFile?fileName=award_20260902.xml",
+      "title": "115年臺北市教育網路中心資訊設備採購案",
+      "published_at": "2026-09-29",
+      "collected_at": "2026-11-13T07:58:09+08:00",
+      "checked_at": "2026-11-13T07:58:09+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:pcc",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府工務局。公開招標。財物類。案號 1150813P0037。資料檔所載決標金額 20000000 元，不是支用或驗收。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "1150813P0037",
+      "data_class": null
+    },
+    {
       "id": "rec-c8eae77e29b121ce",
       "kind": "public_post",
       "source_id": "ptt-hsinchu-atom",

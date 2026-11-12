@@ -1,13 +1,32 @@
 {
   "schema_version": 1,
-  "etag": "\"5f7f18b78f664403aa6e6b2c56ce02220d2ed12fbecefd0e247af29de17d8798\"",
-  "content_hash": "5f7f18b78f664403aa6e6b2c56ce02220d2ed12fbecefd0e247af29de17d8798",
-  "generated_at": "2026-11-13T07:45:02+08:00",
-  "last_attempt_at": "2026-11-13T07:45:02+08:00",
-  "last_success_at": "2026-11-13T07:45:02+08:00",
+  "etag": "\"6326b9dba51e7df331b9233801134bc6d4c92aa6412f55940e1dc5dc01a89da4\"",
+  "content_hash": "6326b9dba51e7df331b9233801134bc6d4c92aa6412f55940e1dc5dc01a89da4",
+  "generated_at": "2026-11-13T07:58:09+08:00",
+  "last_attempt_at": "2026-11-13T07:58:09+08:00",
+  "last_success_at": "2026-11-13T07:58:09+08:00",
   "status": "ok",
   "stale_after_minutes": 90,
-  "changes": [],
+  "changes": [
+    {
+      "op": "add",
+      "id": "rec-0a24d0cd70b79b0c",
+      "source_id": "pcc-award-xml",
+      "at": "2026-11-13T07:58:09+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-7036276fa1a41509",
+      "source_id": "pcc-award-xml",
+      "at": "2026-11-13T07:58:09+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-386740e644198da3",
+      "source_id": "pcc-award-xml",
+      "at": "2026-11-13T07:58:09+08:00"
+    }
+  ],
   "changes_truncated": false,
   "source_health": {
     "taipei-news-rss": "ok",
@@ -19,6 +38,7 @@
     "ly-meeting-json": "ok",
     "cna-atom": "ok",
     "ptt-hsinchu-atom": "ok",
+    "pcc-award-xml": "ok",
     "threads": "gap",
     "facebook": "gap",
     "instagram": "gap",
