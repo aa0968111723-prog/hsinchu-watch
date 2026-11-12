@@ -1,6 +1,12 @@
 name: Hsinchu news — every 30 minutes
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/hsinchu-news-30min.yml'
+      - 'scripts/collect_hsinchu_news.py'
+      - 'tests/test_collect_hsinchu_news.py'
   schedule:
     # UTC; :11/:41 is also :11/:41 in Taiwan. Avoid top-of-hour contention.
     - cron: '11,41 * * * *'
