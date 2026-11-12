@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>公共事務｜地方治理與選情觀察</title>
+  <meta name="description" content="從同一份快照閱讀地方治理、中央目錄、地圖、人物、網路聲音、候選人比較與完整資料。" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+  <link rel="stylesheet" href="/civic-nav.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div>
+        <h1>公共事務</h1>
+        <p class="sub">同一份快照・地方、中央與選舉觀察</p>
+      </div>
+      <div class="status" id="civicStatus">讀取快照中</div>
+    </div>
+    <nav class="wrap nav" aria-label="主選單">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+    <nav class="wrap civic-nav" aria-label="公共事務">
+      <a href="/governance.html">地方治理</a>
+      <a href="/civic.html#central">中央與法案</a>
+      <a href="/maps.html">政策與工程地圖</a>
+      <a href="/person.html">人物與任期</a>
+      <a href="/commentary.html">網路聲音</a>
+      <a href="/compare.html">候選人比較</a>
+      <a href="/archive.html">完整資料</a>
+      <a href="/civic.html#method">方法與來源</a>
+    </nav>
+  </header>
+  <main class="wrap civic-desk" id="main-content">
+    <div id="civicBoard" aria-busy="true"><p>正在讀取同一份資料快照。</p></div>
+    <noscript><p>啟用 JavaScript 後可看來源狀態。原始案卷在 <a href="/data/governance.json">governance.json</a>，統計在 <a href="/data/manifest.json">manifest.json</a>。</p></noscript>
+  </main>
+  <footer class="wrap foot"><a href="/index.html">選舉觀察</a> · <a href="/archive.html">完整資料</a></footer>
+  <script type="module" src="/src/civic.js"></script>
+  <script defer src="/civic-nav.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>

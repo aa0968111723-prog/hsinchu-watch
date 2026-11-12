@@ -1,0 +1,118 @@
+{
+  "measured_at": "2026-11-13T01:03:47.903852+08:00",
+  "branch": "cursor/20261113-integrate",
+  "head": "e8366f2401e4ca0dc58ec9564199258162540802",
+  "floors": {
+    "items_rows": 9164,
+    "source_index_entries": 7205,
+    "policies": 1879,
+    "archive_rows": 18422
+  },
+  "measured": {
+    "payload_files": 20,
+    "items_rows": 9164,
+    "items_unique_url": 6958,
+    "policies": 1879,
+    "source_index_entries": 7205,
+    "comment_entries": 23,
+    "archive_rows": 18422,
+    "archive_by_kind": {
+      "governance": 4,
+      "monitor": 20,
+      "news": 9164,
+      "source": 7205,
+      "policy": 1879,
+      "comment": 23,
+      "stance": 23,
+      "poll": 83,
+      "official": 21
+    },
+    "polls_held_in_sample": 0
+  },
+  "checksum_mismatches": [],
+  "payload_files": [
+    "candidate-review.json",
+    "candidate_photos.json",
+    "governance-registry.json",
+    "governance.json",
+    "issue_stances.json",
+    "items.json",
+    "items_chen.json",
+    "items_chiu.json",
+    "items_wu.json",
+    "items_wu_zijia.json",
+    "items_xu.json",
+    "items_zheng.json",
+    "keywords.json",
+    "latest.json",
+    "latest_24h.json",
+    "news-monitor/manual.json",
+    "official.json",
+    "policies.json",
+    "polls.json",
+    "stats.json"
+  ],
+  "unmanifested_data": [],
+  "missing_manifest_files": [],
+  "observations": {
+    "comments.json": {
+      "bytes": 8952,
+      "sha256": "9801f999849d2534"
+    },
+    "sources.json": {
+      "bytes": 1970373,
+      "sha256": "124cd9aaa4e6d0c2"
+    }
+  },
+  "pages": {
+    "root": [
+      "archive.html",
+      "civic.html",
+      "commentary.html",
+      "compare.html",
+      "governance.html",
+      "index.html",
+      "manual.html",
+      "person.html",
+      "polls.html",
+      "topics.html"
+    ],
+    "public": [
+      "compare-panels.html",
+      "maps.html",
+      "records.html",
+      "reference/commentary.html",
+      "reference/compare.html",
+      "reference/index.html",
+      "reference/manual.html",
+      "reference/person.html",
+      "reference/polls.html",
+      "reference/topics.html"
+    ]
+  },
+  "navigation_gaps": [],
+  "lanes": {
+    "01-ui": {
+      "state": "prepared",
+      "head": "e8366f2401e4ca0dc58ec9564199258162540802",
+      "current_action": "目標、技能與獨立工作區已備妥，尚未確認Cursor Agent開始執行"
+    },
+    "02-data": {
+      "state": "milestone-ready",
+      "head": "f78d2d2f2eb629533306744bc8d9fd982c983f22",
+      "current_action": "本線驗收切片與資料庫已提交，等待第四線整合"
+    },
+    "03-map": {
+      "state": "prepared",
+      "head": "e8366f2401e4ca0dc58ec9564199258162540802",
+      "current_action": "目標、技能與獨立工作區已備妥，尚未確認Cursor Agent開始執行"
+    },
+    "04-integrate": {
+      "state": "prepared",
+      "head": "e8366f2401e4ca0dc58ec9564199258162540802",
+      "current_action": "目標、技能與獨立工作區已備妥，尚未確認Cursor Agent開始執行"
+    }
+  },
+  "integration_order": "tools/integrate/integration_order.json",
+  "problems": []
+}

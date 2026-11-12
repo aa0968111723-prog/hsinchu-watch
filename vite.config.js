@@ -18,6 +18,7 @@ export default defineConfig({
         commentary: resolve(__dirname, 'commentary.html'),
         manual: resolve(__dirname, 'manual.html'),
         compare: resolve(__dirname, 'compare.html'),
+        civic: resolve(__dirname, 'civic.html'),
       },
     },
   },

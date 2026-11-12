@@ -1,0 +1,66 @@
+.civic-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .15rem .35rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: .15rem .75rem .7rem;
+}
+.civic-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: .3rem .7rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: inherit;
+  font-size: .84rem;
+  line-height: 1.25;
+  text-decoration: none;
+}
+.civic-nav a:hover { background: var(--edition-tint, rgba(0, 0, 0, .05)); }
+.civic-nav a.is-here {
+  border-color: currentColor;
+  font-weight: 750;
+}
+.civic-nav a:focus-visible {
+  outline: 2px solid var(--link, #5a4632);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .civic-nav a { transition: none; }
+}
+
+.civic-desk { display: grid; gap: 1rem; }
+.civic-desk > * { min-width: 0; }
+.civic-desk h2 { margin: 0 0 .35rem; font-size: 1.35rem; line-height: 1.35; }
+.civic-lead { margin: 0; max-width: 42rem; }
+.civic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; }
+.civic-card, .civic-table, .civic-list { border: 1px solid var(--line, #e8e2d9); background: var(--card, #fffcf7); border-radius: .4rem; padding: .9rem 1rem; }
+.civic-card h3 { margin: 0 0 .35rem; font-size: 1.02rem; }
+.civic-card p, .civic-note { margin: .35rem 0 0; color: var(--muted, #5c564f); }
+.civic-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .6rem; margin: 0; }
+.civic-facts div { border: 1px solid var(--line, #e8e2d9); border-radius: .4rem; padding: .7rem .8rem; background: var(--card, #fffcf7); }
+.civic-facts dt { color: var(--muted, #5c564f); font-size: .78rem; }
+.civic-facts dd { margin: .2rem 0 0; font-size: 1.05rem; }
+.civic-scroll { width: 100%; max-width: 100%; overflow-x: auto; }
+.civic-table { width: 100%; border-collapse: collapse; }
+.civic-table th, .civic-table td { text-align: left; vertical-align: top; padding: .55rem .4rem; border-bottom: 1px solid var(--line, #e8e2d9); font-size: .9rem; }
+.civic-alert { border: 1px solid #9a3412; background: #ffedd5; color: #7c2d12; border-radius: .4rem; padding: .75rem .9rem; }
+.civic-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.civic-actions button, .civic-card a { min-height: 44px; }
+.civic-actions button {
+  padding: .45rem .8rem;
+  border: 1px solid var(--line, #e8e2d9);
+  border-radius: 999px;
+  background: var(--card, #fffcf7);
+  color: inherit;
+}
+@media (max-width: 720px) {
+  .civic-nav { padding-inline: .5rem; }
+  .civic-table th, .civic-table td { min-width: 7rem; }
+}

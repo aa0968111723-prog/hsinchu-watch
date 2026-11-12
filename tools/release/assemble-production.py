@@ -4,10 +4,14 @@ from __future__ import annotations
 import argparse
 import json
 import shutil
+import sys
 import runpy
 from datetime import datetime, timedelta, timezone
 from hashlib import sha256
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "integrate"))
+from civic_contract import civic_sections
 
 from bs4 import BeautifulSoup
 
@@ -15,7 +19,7 @@ from bs4 import BeautifulSoup
 CORE = ("index", "compare", "topics", "polls", "commentary", "manual", "person")
 PRIMARY = (("總覽", "index"), ("比較", "compare"), ("議題", "topics"),
            ("民調", "polls"), ("評論", "commentary"), ("手動收錄", "manual"))
-MORE = (("完整收錄資料", "/archive.html"), ("候選人多面向", "/compare.html#candidateReview"), ("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
+MORE = (("公共事務", "/civic.html"), ("完整收錄資料", "/archive.html"), ("候選人多面向", "/compare.html#candidateReview"), ("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
         ("指標對照", "/compare-panels.html"), ("逐筆比較", "/reference/compare.html"),
         ("議題立場", "/reference/topics.html"), ("即時與社群", "/reference/index.html"),
         ("陳見賢", "/person.html?id=chen"))
@@ -114,6 +118,22 @@ def copy_observations(source, dest):
         target.write_text(json.dumps(current, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
+def ensure_civic_nav(doc):
+    for node in doc.select("nav.civic-nav"):
+        node.decompose()
+    primary = doc.select_one("header.top nav.nav") or doc.select_one(".top nav.nav")
+    if not primary:
+        return
+    nav = doc.new_tag("nav", attrs={"class": "wrap civic-nav", "aria-label": civic_sections()["label"]})
+    for section in civic_sections()["sections"]:
+        add_tag(doc, nav, "a", href=section["href"]).string = section["title"]
+    primary.insert_after(nav)
+    if not doc.select_one('link[href="/civic-nav.css"]'):
+        add_tag(doc, doc.head, "link", rel="stylesheet", href="/civic-nav.css")
+    if not doc.select_one('script[src="/civic-nav.js"]'):
+        add_tag(doc, doc.body, "script", defer="", src="/civic-nav.js")
+
+
 def edit_page(path, common_css, script_url, style_url, depth_url, tools_url, *, reference=False):
     route = path.stem
     doc = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
@@ -133,6 +153,7 @@ def edit_page(path, common_css, script_url, style_url, depth_url, tools_url, *, 
     doc.html["data-ui-depth"] = "v3"
     add_tag(doc, doc.body, "script", type="module", src=script_url)
     if route in ("governance", "archive"):
+        ensure_civic_nav(doc)
         path.write_text(str(doc), encoding="utf-8", newline="\n")
         return
     note = doc.new_tag("p", attrs={"class": "candidate-review-note"})
@@ -164,6 +185,7 @@ def edit_page(path, common_css, script_url, style_url, depth_url, tools_url, *, 
                 attrs["data-profile-reference"] = ""
             add_tag(doc, extras, "a", **attrs).string = title
         directory.insert_after(extras)
+    ensure_civic_nav(doc)
     path.write_text(str(doc), encoding="utf-8", newline="\n")
 
 
@@ -209,6 +231,8 @@ def main():
         shutil.copyfile(editorial / f"{page}.html", output / f"{page}.html")
     shutil.copyfile(editorial / "governance.html", output / "governance.html")
     shutil.copyfile(editorial / "archive.html", output / "archive.html")
+    if (editorial / "civic.html").exists():
+        shutil.copyfile(editorial / "civic.html", output / "civic.html")
     # Governance records belong to the checked editorial release, not the legacy election feed.
     for name in ("governance.json", "governance-registry.json", "candidate-review.json"):
         shutil.copyfile(editorial / "data" / name, output / "data" / name)
@@ -236,9 +260,13 @@ def main():
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(path, target)
     entry = BeautifulSoup((editorial / "index.html").read_bytes(), "html.parser")
-    common = [editorial / node["href"].lstrip("/") for node in entry.select('link[rel="stylesheet"][href^="/assets/mobile-nav-"]')]
-    if len(common) != 1:
+    styles = [node["href"] for node in entry.select('link[rel="stylesheet"][href^="/assets/mobile"]')]
+    nav_styles = [href for href in styles if "/assets/mobile-nav-" in href]
+    mobile_styles = [href for href in styles if href not in nav_styles]
+    chosen = nav_styles if len(nav_styles) == 1 else mobile_styles
+    if len(chosen) != 1:
         raise ValueError("Expected one editorial common stylesheet")
+    common = [editorial / chosen[0].lstrip("/")]
     script = f"release-nav-{sha256(COMPAT.encode()).hexdigest()[:10]}.js"
     style = f"release-nav-{sha256(STYLE.encode()).hexdigest()[:10]}.css"
     (output / "assets" / script).write_text(COMPAT, encoding="utf-8", newline="\n")

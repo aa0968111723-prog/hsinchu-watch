@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "label": "公共事務",
+  "sections": [
+    {
+      "id": "governance",
+      "title": "地方治理",
+      "href": "/governance.html",
+      "summary": "台北、新北、新竹縣市的政策與工程案卷。進度、經費與證據分開，未知維持空白。"
+    },
+    {
+      "id": "central",
+      "title": "中央與法案",
+      "href": "/civic.html#central",
+      "summary": "中央機關與立法院目錄。法案逐筆尚未寫入這份快照時，不把筆數寫成 0。"
+    },
+    {
+      "id": "map",
+      "title": "政策與工程地圖",
+      "href": "/maps.html",
+      "summary": "既有議題地圖仍可使用。沒有座標證據的案卷留在待定位清單。"
+    },
+    {
+      "id": "people",
+      "title": "人物與任期",
+      "href": "/person.html",
+      "summary": "人物頁保留既有觀察。正式候選人、歷史參選紀錄與評論者分開。"
+    },
+    {
+      "id": "voices",
+      "title": "網路聲音",
+      "href": "/commentary.html",
+      "summary": "公開留言與評論。頁面不顯示帳號，聲量不是民調，也不是施政評分。"
+    },
+    {
+      "id": "compare",
+      "title": "候選人比較",
+      "href": "/compare.html",
+      "summary": "目前正式名單是新竹縣長與竹北市長六人，用同一閱讀標準，不做政治偏好總分。"
+    },
+    {
+      "id": "archive",
+      "title": "完整資料",
+      "href": "/archive.html",
+      "summary": "搜尋、翻頁並匯出全部符合紀錄。待審來源與已收錄紀錄分開。"
+    },
+    {
+      "id": "method",
+      "title": "方法與來源",
+      "href": "/civic.html#method",
+      "summary": "主張、機關發布、報導、意見、質疑、回應、查核與司法程序分開。資料日期與介面日期分開。"
+    }
+  ]
+}

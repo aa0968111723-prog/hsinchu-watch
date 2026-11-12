@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "decided_at": "2026-11-13T00:45:00+08:00",
+  "base": "e8366f2401e4ca0dc58ec9564199258162540802",
+  "rule": "先看對方 commit 與檔案範圍，再用 merge 或 cherry-pick。不 reset、不強制推送、不用舊 dist 覆蓋來源快照。",
+  "steps": [
+    {
+      "id": "baseline",
+      "lane": "04-integrate",
+      "branch": "cursor/20261113-integrate",
+      "when": "現在，不需等待其他線",
+      "paths": ["tools/integrate/", "src/lib/civic-adapter.js", "src/lib/civic-sections.json", "src/civic.js", "civic.html", "public/civic-nav.css", "public/civic-nav.js", "vite.config.js", "tools/release/assemble-production.py"]
+    },
+    {
+      "id": "data",
+      "lane": "02-data",
+      "branch": "cursor/20261113-data",
+      "when": "出現 collectors/civic、tests/civic 或 public/data/civic 的 commit，且既有 payload 列數沒有少",
+      "paths": ["collectors/civic/", "scripts/civic/", "public/data/civic/", "docs/sources/", "tests/civic/"],
+      "merge": "保留較新修正。刷新日誌的 last_success_at 只能來自實際成功，不能把 20 分鐘設定寫成已更新。"
+    },
+    {
+      "id": "map",
+      "lane": "03-map",
+      "branch": "cursor/20261113-map",
+      "when": "atlas.html 與 public/data/geo 有可讀的第一個切片",
+      "paths": ["atlas.html", "src/atlas/", "public/data/geo/", "public/img/atlas/", "docs/map/", "tests/map/"],
+      "merge": "保留 maps.html。沒有 coordinate_source 的案卷維持待定位。"
+    },
+    {
+      "id": "ui",
+      "lane": "01-ui",
+      "branch": "cursor/20261113-ui",
+      "when": "public/bright-civic.css 與 src/civic-ui 可預覽",
+      "paths": ["public/bright-civic.css", "src/civic-ui/", "ui-lab.html", "docs/design/"],
+      "merge": "接到既有頁面，數字仍讀同一份 manifest 與 archive model。"
+    }
+  ]
+}
