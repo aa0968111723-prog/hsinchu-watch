@@ -80,6 +80,14 @@ def copy_assets(source, dest):
         target = dest / path.relative_to(source)
         target.parent.mkdir(parents=True, exist_ok=True)
         if target.exists() and target.read_bytes() != path.read_bytes():
+            # Earlier Windows releases wrote generated navigation with CRLF even
+            # though the filename was hashed from LF. Accept only that known
+            # byte-equivalent legacy case; retain all other collision checks.
+            normalized = path.read_bytes().replace(b"\r\n", b"\n")
+            legacy_nav = path.name.startswith("release-nav-") and path.suffix in (".css", ".js")
+            if (legacy_nav and target.read_bytes().replace(b"\r\n", b"\n") == normalized
+                    and path.stem.rsplit("-", 1)[-1] == sha256(normalized).hexdigest()[:10]):
+                continue
             raise ValueError(f"Conflicting asset {target}")
         if not target.exists():
             shutil.copyfile(path, target)
