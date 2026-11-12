@@ -1,0 +1,103 @@
+{
+  "content_sha": "6eea991d0c315b21e1f62738004a165dd491b3d8ee6135a66f1ff5ca92457a5d",
+  "counts": {
+    "counts_note": "excluded=excluded_collect+excluded_publish；not_shown_total=excluded+pending_review（待審未上站，非排除）",
+    "excluded": 144,
+    "excluded_collect": 114,
+    "excluded_publish": 30,
+    "items_rows": 9164,
+    "items_unique_url": 6958,
+    "not_shown_total": 225,
+    "pending_review": 81,
+    "pending_review_publish": 18,
+    "polls": 83
+  },
+  "files": {
+    "candidate_photos.json": {
+      "bytes": 2602,
+      "sha256": "9308016d7e837e65"
+    },
+    "issue_stances.json": {
+      "bytes": 19369,
+      "sha256": "f2e74c6d833429a3"
+    },
+    "items.json": {
+      "bytes": 7454494,
+      "sha256": "0f8944ff8dc6d7cb"
+    },
+    "items_chen.json": {
+      "bytes": 715998,
+      "sha256": "92a2e6110980038d"
+    },
+    "items_chiu.json": {
+      "bytes": 1459372,
+      "sha256": "2c0760e78e12761a"
+    },
+    "items_wu.json": {
+      "bytes": 1100870,
+      "sha256": "b01bd01199ca3494"
+    },
+    "items_wu_zijia.json": {
+      "bytes": 46660,
+      "sha256": "edb88b3f07f88f39"
+    },
+    "items_xu.json": {
+      "bytes": 2144860,
+      "sha256": "fd0f05b336530c79"
+    },
+    "items_zheng.json": {
+      "bytes": 1986749,
+      "sha256": "93c15783c8d797a6"
+    },
+    "keywords.json": {
+      "bytes": 13885,
+      "sha256": "f5f438cd38f1860b"
+    },
+    "latest.json": {
+      "bytes": 92281,
+      "sha256": "43316552a9187961"
+    },
+    "latest_24h.json": {
+      "bytes": 285568,
+      "sha256": "a891f173f5a906a1"
+    },
+    "official.json": {
+      "bytes": 26703,
+      "sha256": "23fc2cfccf29cacf"
+    },
+    "policies.json": {
+      "bytes": 1315699,
+      "sha256": "f0a3621715763a2c"
+    },
+    "polls.json": {
+      "bytes": 106545,
+      "sha256": "191caccb99aec683"
+    },
+    "stats.json": {
+      "bytes": 129728,
+      "sha256": "b6e326d472c91283"
+    }
+  },
+  "finalized_at": "2026-11-12T18:08:36.370939+08:00",
+  "generated_at": "2026-11-12T06:31:54.830322+08:00",
+  "persons_order": [
+    "wu",
+    "xu",
+    "zheng",
+    "chiu",
+    "chen",
+    "wuzijia"
+  ],
+  "poll_blackout_active": false,
+  "timezone": "Asia/Taipei",
+  "ui_updated_at": "2026-11-12T18:08:56+08:00",
+  "release": {
+    "id": "hsinchu-56ef7ce2daf38daf",
+    "ui_sha256": "cd2f7ca00d7aca790266803e148c2fde55be4f98ec9bf3edd6d4d377a362ca96",
+    "data_sha256": "6eea991d0c315b21e1f62738004a165dd491b3d8ee6135a66f1ff5ca92457a5d"
+  },
+  "ui_version": "editorial-v3",
+  "ui_revisions": {
+    "maps": "995b79cb85faaeb1"
+  }
+}

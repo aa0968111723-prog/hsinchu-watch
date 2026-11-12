@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>評論與留言｜新竹選情觀察</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/visual.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/src/observations.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+</head>
+<body>
+  <div id="live-banner" class="live-banner hidden"></div>
+  <header class="top">
+    <div class="wrap">
+      <div><h1>評論與留言</h1><p class="sub">公開留言、社論與政論</p></div>
+      <div class="status" id="statusBox"></div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html" class="active">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <div id="delayWarn" class="warn hidden">資料更新延遲（超過 1 小時未更新）</div>
+    <nav class="section-links" aria-label="評論頁章節">
+      <a href="#watch-comments">網路留言</a>
+      <a href="#media-opinion">媒體評論</a>
+    </nav>
+    <section id="watch-comments" class="panel observations" aria-labelledby="comments-heading">
+      <h2 id="comments-heading">網路留言觀察</h2>
+      <p class="muted">依人物摘述可回查的公開留言，省略留言帳號。件數反映選錄範圍，與媒體評論和民調分開。</p>
+      <div class="filters" hidden></div>
+      <p class="muted" role="status">正在載入留言。</p>
+      <ul class="timeline"></ul>
+      <button class="load-more" type="button" hidden>顯示更多留言</button>
+    </section>
+    <section id="media-opinion" class="panel edition-section" aria-labelledby="media-heading">
+      <header class="edition-heading">
+        <h2 id="media-heading">媒體評論</h2>
+        <p class="muted">社論、專欄與政論報導</p>
+      </header>
+      <div class="filters edition-filter">
+        <label>人物
+        <select id="personFilter">
+          <option value="">全部人物</option>
+          <option value="wu">吳旭智</option>
+          <option value="xu">徐欣瑩</option>
+          <option value="zheng">鄭朝方</option>
+          <option value="chiu">邱臣遠</option>
+        </select>
+        </label>
+      </div>
+      <p id="opinionCount" class="muted" role="status">讀取媒體評論中。</p>
+      <ul class="timeline" id="list"></ul>
+      <button class="load-more" id="opinionMore" type="button" hidden>顯示更多評論</button>
+      <div id="kwCloud"></div>
+    </section>
+  </main>
+  <footer class="wrap foot" id="footer"></footer>
+  <script type="module" src="/src/commentary.js"></script>
+  <script type="module" src="/src/public-comments.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>

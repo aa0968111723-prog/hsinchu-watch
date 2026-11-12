@@ -1,0 +1,212 @@
+:root {
+  --bg:#f5f7fa; --card:#fff; --text:#1e293b; --muted:#64748b; --line:#e2e8f0;
+  --accent:#334155; --pos:#15803d; --neg:#b91c1c; --neu:#64748b; --new:#c2410c;
+  --max:1100px; --radius:12px;
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);line-height:1.55}
+a{color:#1d4ed8;text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:var(--max);margin:0 auto;padding:1rem}
+.top{background:#0f172a;color:#fff}
+.top h1{margin:0;font-size:1.25rem}
+.sub{margin:.25rem 0 0;color:#cbd5e1;font-size:.9rem}
+.status{font-size:.85rem;color:#cbd5e1;text-align:right}
+.nav{display:flex;flex-wrap:wrap;gap:.75rem;padding-top:0}
+.nav a{color:#e2e8f0;padding:.35rem 0;border-bottom:2px solid transparent}
+.nav a.active,.nav a:hover{border-color:#94a3b8;text-decoration:none}
+.live-banner{background:#fef3c7;color:#92400e;padding:.55rem 1rem;text-align:center;font-size:.9rem}
+.live-banner.hidden,.hidden{display:none}
+.warn{background:#fee2e2;color:#991b1b;padding:.6rem .8rem;border-radius:8px;margin-bottom:1rem}
+.cards{display:grid;gap:.85rem;grid-template-columns:1fr}
+@media(min-width:800px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:0 1px 2px rgba(0,0,0,.05);color:inherit;display:block}
+.card:hover{border-color:#94a3b8;text-decoration:none}
+.card h2{margin:0 0 .35rem;font-size:1.1rem}
+.muted{color:var(--muted);font-size:.85rem}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:999px;background:#e2e8f0;font-size:.72rem;margin-right:.25rem}
+.badge.pos{background:#dcfce7;color:var(--pos)} .badge.neg{background:#fee2e2;color:var(--neg)}
+.badge.neu{background:#e2e8f0;color:var(--neu)} .badge.new{background:#ffedd5;color:var(--new)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem;margin-bottom:1rem}
+.panel h3{margin:0 0 .6rem;font-size:1rem}
+.charts{display:grid;gap:1rem}
+@media(min-width:700px){.charts{grid-template-columns:1fr 1fr 1fr}}
+.bar-row{display:grid;grid-template-columns:4.2rem 1fr 2rem;gap:.35rem;align-items:center;font-size:.8rem;margin:.2rem 0}
+.bar-track{background:#e2e8f0;height:10px;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:#475569} .bar-fill.pos{background:var(--pos)} .bar-fill.neg{background:var(--neg)} .bar-fill.neu{background:var(--neu)}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.filters input,.filters select{padding:.4rem .55rem;border:1px solid var(--line);border-radius:8px;font:inherit}
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{border-bottom:1px solid var(--line);padding:.8rem 0}
+.timeline .when{font-size:.8rem;color:var(--muted)}
+.timeline .title{font-weight:600;margin:.2rem 0}
+.tabs{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.35rem .8rem;font:inherit;cursor:pointer}
+.tabs button.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.foot{font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);margin:1.5rem auto}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{border-bottom:1px solid var(--line);padding:.45rem;text-align:left}
+.code{background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:8px;overflow:auto;font-size:.85rem}
+/* 人物頁「載入更多」— 併入 styles.css 或於 HTML 另引 */
+.load-more-wrap{
+  display:flex;
+  justify-content:center;
+  padding:1rem 0 .25rem;
+}
+.load-more-wrap.hidden{ display:none; }
+.load-more{
+  min-height:44px;
+  min-width:44px;
+  padding:.65rem 1.25rem;
+  border:1px solid #cbd5e1;
+  border-radius:999px;
+  background:#fff;
+  font:inherit;
+  font-weight:600;
+  cursor:pointer;
+}
+.load-more:focus-visible{
+  outline:3px solid #93c5fd;
+  outline-offset:2px;
+}
+.load-more:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* === live-update 模組樣式（全端工程師 v2）=== */
+/* 可選樣式：掛上 live-update 模組時一併引入 */
+
+.live-banner {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: #1f2937;
+  color: #fff;
+}
+
+.live-banner.hidden {
+  display: none;
+}
+
+.live-banner-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  background: #fbbf24;
+  color: #111827;
+}
+
+.live-banner-btn:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.warn {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #f59e0b;
+}
+
+.warn[data-state="offline"] {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #ef4444;
+}
+
+.warn.hidden {
+  display: none;
+}
+
+.live-item {
+  position: relative;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.live-item.is-new {
+  background: #fffbeb;
+}
+
+.badge-new {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: #dc2626;
+  color: #fff;
+  vertical-align: middle;
+  transition: opacity 0.6s ease;
+}
+
+.badge-new.fade-out {
+  opacity: 0;
+}
+
+.live-item-meta {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* === 中性 AA 色票（視覺總監 CONTRAST_AUDIT；三人同色系、不對應政黨色）=== */
+:root{
+  --bg:#F7F4EF; --card:#FFFCF7; --text:#2C2A28; --line:#E8E2D9; --muted:#5C564F;
+  --link:#5A4632; --accent:#2C2A28; --neu:#5C564F;
+  --bar-wu:#4A453F; --bar-xu:#5C564F; --bar-zheng:#3F3A35;
+}
+body{background:var(--bg);color:var(--text)}
+a{color:var(--link);text-decoration:underline;text-underline-offset:2px}
+.top{background:var(--text);color:var(--bg)}
+.sub,.status{color:#E8E2D9}
+.nav a{color:#F7F4EF}
+.nav a.active,.nav a:hover{border-color:#E8E2D9}
+.card,.panel{background:var(--card);border-color:var(--line)}
+.card:hover{border-color:var(--muted)}
+.badge{background:var(--line);color:var(--text)}
+.badge.neu{background:var(--line);color:var(--muted)}
+.bar-track{background:var(--line)}
+.bar-fill{background:var(--muted)}
+.bar-fill.bar-wu{background:var(--bar-wu)} .bar-fill.bar-xu{background:var(--bar-xu)} .bar-fill.bar-zheng{background:var(--bar-zheng)}
+.tabs button{background:var(--card);border-color:var(--line);color:var(--text)}
+.tabs button.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.filters input,.filters select{background:var(--card);border-color:var(--line);color:var(--text)}
+.load-more{background:var(--card);border-color:var(--line);color:var(--text)}
+.load-more:focus-visible{outline-color:var(--link)}
+.code{background:var(--text);color:var(--bg)}
+.live-banner{background:var(--text);color:var(--bg)}
+@media(max-width:480px){
+  .wrap{padding:.75rem}
+  .top .wrap{display:block}
+  .status{text-align:left;margin-top:.4rem}
+  .bar-row{grid-template-columns:4.2rem 1fr 2.4rem}
+}
+
+/* === 010-footer source status (contrast AA; text+icon) === */
+.source-status-block{margin:.75rem 0;font-size:.85rem}
+.source-status-heading{margin:.65rem 0 .35rem;color:var(--text);font-weight:600;font-size:.9rem}
+.source-status-list{list-style:none;margin:0;padding:0}
+.source-status-item{border-bottom:1px solid var(--line);padding:.55rem 0}
+.source-status-name{font-weight:600;color:var(--text);margin-right:.35rem}
+.source-status-pill{display:inline-flex;align-items:center;gap:.3rem;padding:.15rem .5rem;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid transparent}
+.source-status-icon{font-style:normal}
+.source-status-active{background:#dcfce7;color:#166534;border-color:#86efac}
+.source-status-empty{background:#ffedd5;color:#9a3412;border-color:#fdba74}
+.source-status-error{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
+.source-status-disabled,.source-status-disabled_carry,.source-status-skipped{background:#e2e8f0;color:#334155;border-color:#cbd5e1}
+.source-status-pending{background:#fef9c3;color:#854d0e;border-color:#fde047}
+.source-status-reason{font-size:.75rem;color:#475569;margin-top:.2rem}
+.source-status-note{font-size:.75rem;color:#475569;margin-top:.5rem}
+.source-status-pending{color:#475569}

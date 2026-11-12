@@ -1,0 +1,101 @@
+:root {
+  --bg: #f5f1e9;
+  --card: #fcf9f2;
+  --text: #29231e;
+  --muted: #5d5247;
+  --line: #d8ccbb;
+  --link: #743e2c;
+  --edition-rule: #874936;
+  --edition-tint: #eee4d5;
+}
+
+.top {
+  background: var(--card);
+  color: var(--text);
+  border-block-start: 3px solid var(--edition-rule);
+  border-block-end: 1px solid var(--line);
+}
+.top > .wrap:first-of-type { display: flex; justify-content: space-between; align-items: start; gap: .65rem; }
+.top h1 { color: var(--text); letter-spacing: .02em; }
+.top :is(.sub, .status) { color: var(--muted); }
+.top .status { font-variant-numeric: tabular-nums; }
+.top nav.nav { padding-block-start: .05rem; }
+.top nav.nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-block-end: 2px solid transparent;
+  border-radius: 0;
+  color: var(--text);
+  text-decoration: none;
+}
+.top nav.nav a:hover { color: var(--link); background: var(--edition-tint); }
+.top nav.nav a.active,
+.top nav.nav a[aria-current="page"] {
+  color: var(--link);
+  background: transparent;
+  border-color: transparent;
+  border-block-end-color: var(--edition-rule);
+  font-weight: 750;
+}
+
+main.wrap .panel, main.wrap .card { box-shadow: none; border-radius: .38rem; }
+main.wrap .panel { padding: clamp(.75rem, 2.4vw, 1.35rem); }
+main.wrap .panel > h2 { margin-block-start: 0; }
+main.wrap .load-more { border-radius: .32rem; }
+#delayWarn {
+  margin: 0 0 .7rem;
+  padding: .28rem .58rem;
+  border: 0;
+  border-inline-start: 2px solid #96552b;
+  border-radius: 0;
+  background: var(--edition-tint);
+  color: #743c22;
+  font-size: .78rem;
+}
+:where(a, button, select, input, textarea, summary):focus-visible { outline: 2px solid var(--edition-rule); outline-offset: 3px; }
+.skip-link {
+  position: fixed;
+  inset: .35rem auto auto .5rem;
+  z-index: 90;
+  transform: translateY(calc(-100% - 1rem));
+  padding: .55rem .85rem;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--edition-rule);
+}
+.skip-link:focus { transform: none; }
+#main-content:focus { outline: none; }
+
+.section-links { display: flex; flex-wrap: wrap; gap: .2rem .8rem; padding: 0 0 .55rem; margin: 0 0 .8rem; border-bottom: 1px solid var(--line); }
+.section-links a { display: inline-flex; min-height: 44px; align-items: center; font-size: .86rem; font-weight: 650; }
+.edition-heading { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: baseline; gap: .2rem .7rem; padding-block: .55rem; margin: 0 0 .5rem; border-block-start: 2px solid var(--edition-rule); }
+.edition-heading h2 { margin: 0; font-size: clamp(1.16rem, 4vw, 1.42rem); }
+.edition-heading p { margin: 0; }
+.edition-filter label { display: grid; gap: .22rem; font-size: .85rem; font-weight: 650; }
+.edition-filter :is(select, input) { min-height: 44px; border-radius: .3rem; }
+.edition-section { scroll-margin-top: 8rem; }
+
+.foot { border-block-start: 2px solid var(--line); }
+.footer-nav { display: flex; gap: .2rem 1rem; flex-wrap: wrap; align-items: baseline; }
+.footer-nav :is(a, span) { display: inline-flex; min-height: 44px; align-items: center; }
+.footer-nav a { color: var(--link); }
+.footer-method { border-block-start: 1px solid var(--line); }
+.footer-method summary { cursor: pointer; min-height: 44px; padding-block: .6rem; color: var(--text); font-weight: 650; }
+.footer-method p { overflow-wrap: anywhere; }
+
+.submission { max-width: 46rem; }
+.submission ol { padding-inline-start: 1.35rem; }
+.submission li + li { margin-top: .45rem; }
+.submission textarea { display: block; width: 100%; resize: vertical; padding: .7rem; border: 1px solid var(--line); border-radius: .35rem; font: inherit; line-height: 1.65; color: var(--text); background: var(--bg); }
+.submission-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; margin-top: .55rem; }
+.submission-actions p { margin: 0; }
+
+@media (max-width: 720px) {
+  .top nav.nav { padding-block-start: .12rem; }
+  .top nav.nav a { font-size: .81rem; }
+  main.wrap :is(select, input, textarea) { font-size: 1rem; }
+  .edition-filter label { width: 100%; }
+}

@@ -1,0 +1,1 @@
+import"./mobile-nav-BjObXY1A.js";const t=document.getElementById("source-template"),e=document.getElementById("copy-source-status");document.getElementById("copy-source-template").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(t.value),e.textContent="已複製格式。"}catch{t.focus(),t.select(),e.textContent="已選取格式，可用裝置的複製功能。"}});

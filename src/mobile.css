@@ -1,0 +1,245 @@
+@import "./editorial.css";
+
+/* === 手機介面層 === */
+body{-webkit-text-size-adjust:100%;overflow-x:hidden}
+
+/* viewport-fit / safe-area */
+.top{
+  padding-left:env(safe-area-inset-left,0);
+  padding-right:env(safe-area-inset-right,0);
+}
+.live-banner{padding-left:max(1rem,env(safe-area-inset-left));padding-right:max(1rem,env(safe-area-inset-right))}
+main.wrap,footer.wrap{padding-bottom:max(1rem,env(safe-area-inset-bottom))}
+
+@media (max-width:720px){
+  body{font-size:15px;line-height:1.5}
+
+  /* 緊湊 sticky 頂欄 */
+  .top{
+    position:sticky;top:0;z-index:45;
+    padding-top:env(safe-area-inset-top,0);
+  }
+  .live-banner:not(.hidden)~.top{top:0}
+  .top>.wrap:first-of-type{
+    display:flex !important;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:.5rem;
+    padding:.55rem .75rem .15rem;
+  }
+  .top h1{
+    margin:0;font-size:1.02rem;line-height:1.25;
+    display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .top .sub{
+    margin:.1rem 0 0;font-size:.72rem;line-height:1.25;
+    display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+    opacity:.9;
+  }
+  .top .status{
+    flex:none;max-width:42%;text-align:right;margin:0;font-size:.7rem;line-height:1.3;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+
+  /* 320px 以上同時顯示六個入口 */
+  .top nav.nav,
+  .top nav.wrap.nav,
+  header.top .nav{
+    display:grid !important;
+    grid-template-columns:repeat(5,minmax(44px,1fr)) minmax(66px,1.35fr);
+    align-items:center;
+    gap:2px;
+    overflow-x:auto !important;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+    padding:.25rem .48rem .45rem;
+    margin:0;
+    max-width:100%;
+  }
+  .top nav.nav::-webkit-scrollbar{display:none}
+  .top .nav a{
+    white-space:nowrap;
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:.36rem .1rem;
+    font-size:.81rem;
+    border:1px solid transparent;
+    border-radius:.65rem;
+    border-bottom-width:1px;
+    text-decoration:none;
+  }
+  .top .nav a:focus-visible{outline:2px solid var(--edition-rule);outline-offset:-3px}
+
+  /* 內容區 */
+  .wrap{padding:.7rem .75rem;max-width:100%}
+  main.wrap{padding-top:.65rem;padding-inline:max(.75rem,env(safe-area-inset-left)) max(.75rem,env(safe-area-inset-right))}
+  .panel{padding:.75rem;margin-bottom:.75rem;overflow:hidden}
+  .compare-note{font-size:.8rem;margin:.2rem 0 .7rem}
+
+  /* KPI 更緊 */
+  .kpis{gap:.5rem;margin-bottom:.75rem}
+  .kpi{padding:.55rem .65rem;gap:.4rem;min-width:0}
+  .kpi b{font-size:1.2rem}
+  .kpi span{font-size:.72rem}
+
+  /* 最新置頂卡：左縮圖右文 */
+  .lt-card{min-height:0;padding:.65rem;gap:.65rem}
+  .lt-thumb{width:88px;height:72px;border-radius:10px}
+  .lt-thumb-ph .lt-ph-mark,.lt-ph-portrait{width:40px;height:40px;font-size:1rem}
+  .lt-title{font-size:.95rem;-webkit-line-clamp:2}
+  .lt-excerpt{font-size:.8rem;-webkit-line-clamp:2}
+  .lt-meta{font-size:.72rem;flex-wrap:nowrap;overflow:hidden}
+  .lt-meta>*{white-space:nowrap}
+
+  /* 時間軸／評論卡：左縮圖（覆寫 visual 16:9 直排） */
+  .timeline li.item{
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:flex-start;
+    gap:.65rem;
+    padding:.7rem 0;
+    padding-left:0 !important;
+    border-left:0 !important;
+    border-top:0 !important;
+    border-bottom:1px solid var(--line);
+  }
+  .timeline li.item[data-p]{
+    border-left:3px solid var(--stripe,transparent) !important;
+    padding-left:.5rem !important;
+  }
+  .timeline li.item .thumb,
+  .timeline li.item .thumb.thumb-ph,
+  .timeline li.item .thumb.thumb-visual{
+    width:88px !important;
+    height:72px !important;
+    max-height:72px !important;
+    aspect-ratio:auto !important;
+    flex:none;
+    border-radius:10px;
+  }
+  /* 有原文圖可稍大 */
+  .timeline li.item .thumb.has-img{
+    width:104px !important;
+    height:78px !important;
+    max-height:78px !important;
+  }
+  .timeline li.item .thumb-portrait,
+  .timeline li.item .thumb-initial{
+    width:36px !important;height:36px !important;font-size:1rem !important;
+  }
+  .timeline li.item .thumb-topic{font-size:.58rem;max-width:78px}
+  .timeline li.item .thumb figcaption{font-size:.55rem;padding:.05rem .25rem}
+  .item-main{min-width:0;flex:1}
+  .item-main .title,
+  .timeline .title{
+    font-size:.95rem;line-height:1.35;margin:.15rem 0;
+    overflow-wrap:anywhere;
+  }
+  .item-main .when,
+  .timeline .when{
+    font-size:.72rem;line-height:1.3;
+    display:flex;flex-wrap:wrap;gap:.25rem .4rem;align-items:center;
+  }
+  .item-main .muted,
+  .item-main p.muted,
+  .timeline li.item .excerpt,
+  .timeline li.item p:not(.when):not(.item-tags){
+    font-size:.8rem;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .item-tags{margin-top:.25rem;gap:.2rem}
+  .item-tags .badge,.chip-stance,.chip-topic,.who-chip{font-size:.68rem;padding:.05rem .4rem}
+
+  /* 首頁 feed 與 mini */
+  .feed li.item .thumb{width:88px !important;height:72px !important;max-height:72px !important;aspect-ratio:auto !important}
+  .mini .thumb{width:72px;height:56px}
+  .mini-title{-webkit-line-clamp:2;font-size:.86rem}
+
+  /* 人物卡 */
+  .pc-stats b{font-size:1.15rem}
+  .pc-head h2{font-size:1.1rem}
+  .avatar-lg{width:48px;height:48px;font-size:1.3rem}
+  .pbanner{padding:.75rem;gap:.7rem}
+  .pbanner h2{font-size:1.25rem}
+  .kpis-in{grid-template-columns:repeat(3,1fr);gap:.35rem}
+  .kpis-in .kpi{padding:.45rem .4rem}
+
+  /* 篩選／分頁點擊區 */
+  .filters select,.filters input,.tabs button,.cmp-window-tabs button,.seg-tabs button,.load-more,.plat-more-btn{
+    min-height:44px;
+  }
+  .tabs{gap:.35rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:.2rem}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{flex:none;padding:.4rem .85rem}
+
+  /* 比較頁：長條＋色芯片，避免右側數字直排 */
+  .cmp-row{
+    display:grid;
+    grid-template-columns:4.2rem 1fr;
+    gap:.35rem .5rem;
+    align-items:start;
+    font-size:.84rem;
+  }
+  .cmp-row .lab{padding-top:.15rem;font-size:.78rem}
+  .cmp-row .num{display:none} /* 舊版斜線數字隱藏；改用芯片 */
+  .cmp-track-wrap{min-width:0;display:flex;flex-direction:column;gap:.35rem}
+  .cmp-track{width:100%;height:12px}
+  .cmp-num-chips{display:flex;flex-wrap:wrap;gap:.3rem}
+  .cmp-num-chip{
+    display:inline-flex;align-items:center;gap:.25rem;
+    padding:.15rem .45rem;border-radius:999px;
+    background:var(--ps,#EFE9DF);color:var(--pc,#5C564F);
+    border:1px solid color-mix(in srgb,var(--pc,#5C564F) 35%,transparent);
+    font-size:.72rem;font-weight:700;font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .cmp-num-chip .cmp-ch{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:1.1rem;height:1.1rem;border-radius:50%;
+    background:var(--pc);color:#fff;font-size:.65rem;
+  }
+  .cmp-window-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .cmp-window-tabs::-webkit-scrollbar{display:none}
+  .cmp-window-tabs button{flex:none}
+  .cmp-metrics{grid-template-columns:repeat(2,1fr);gap:.4rem}
+  .cmp-metric b{font-size:1.1rem}
+  .cmp-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;font-size:.8rem}
+  .cmp-support{gap:.3rem}
+  .cmp-stance{grid-template-columns:1fr}
+  .panel.viz,svg.chart{max-width:100%}
+  svg.chart{max-height:260px}
+  .hb{grid-template-columns:minmax(4rem,36%) 1fr 1.6rem;gap:.35rem;font-size:.78rem}
+  .bar-row{grid-template-columns:3.6rem 1fr 2rem;font-size:.78rem}
+
+  /* 政績政見／關鍵字 */
+  .plat-col{padding:.75rem}
+  .plat-slot{padding:.55rem}
+  .plat-slot-title{font-size:.9rem;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+  .kw-cloud .kw,.kw-chip{font-size:.74rem;padding:.25rem .55rem;min-height:32px}
+
+  /* 圖表雙欄改單欄 */
+  .grid2{grid-template-columns:1fr !important;gap:.75rem}
+
+  /* 防橫向溢出 */
+  img,svg,video,iframe,table,.panel,.card,.lt-card{max-width:100%}
+  pre.code{font-size:.78rem;overflow-x:auto}
+}
+
+@media (max-width:380px){
+  .top h1{font-size:.95rem}
+  .timeline li.item .thumb,
+  .timeline li.item .thumb.thumb-ph{width:76px !important;height:64px !important;max-height:64px !important}
+  .timeline li.item .thumb.has-img{width:92px !important;height:70px !important;max-height:70px !important}
+  .lt-thumb{width:76px;height:64px}
+  .cmp-row{grid-template-columns:3.6rem 1fr}
+}
+
+/* 有 sticky 頂欄時，錨點不被擋住 */
+@media (max-width:720px){
+  :target,h2,h3{scroll-margin-top:calc(6.5rem + env(safe-area-inset-top,0px))}
+}

@@ -1,0 +1,660 @@
+{
+  "order": [
+    "wu",
+    "xu",
+    "zheng"
+  ],
+  "persons": [
+    {
+      "chips": [
+        {
+          "group": "aliases",
+          "term": "吳旭智",
+          "weight": 3
+        },
+        {
+          "group": "role_hints",
+          "term": "吳議員",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "竹北市長候選人",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "新竹縣議員",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "縣議員吳旭智",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "吳市長",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "吳旭智市長候選人",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "吳旭智競總",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "吳旭智竹北",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "吳旭智政見",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹北",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹北市",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "新竹縣",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "縣議會",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹東",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "湖口",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "新豐",
+          "weight": 2
+        },
+        {
+          "group": "topics",
+          "term": "交通改善",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "青年住房",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "在地經濟",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "市政透明",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "親子友善",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "地方創生",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "通學安全",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "就學支持",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "縣長",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "市長",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "選舉",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "民調",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "競總",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "政見",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "政績",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "交通",
+          "weight": 1
+        },
+        {
+          "group": "search_terms",
+          "term": "吳旭智 竹北市長",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "吳旭智 縣議員",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "吳旭智 竹北市政",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "吳旭智 竹北",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "吳旭智 竹北市",
+          "weight": 2
+        },
+        {
+          "group": "party",
+          "term": "國民黨",
+          "weight": 2
+        },
+        {
+          "group": "race",
+          "term": "竹北市長",
+          "weight": 3
+        }
+      ],
+      "counts": {
+        "aliases": 1,
+        "chips": 40,
+        "places": 4,
+        "role_hints": 6,
+        "search_terms": 6,
+        "terms_all": 28,
+        "topics": 8
+      },
+      "id": "wu",
+      "name": "吳旭智",
+      "party": "中國國民黨",
+      "party_short": "國民黨",
+      "race": "竹北市長"
+    },
+    {
+      "chips": [
+        {
+          "group": "aliases",
+          "term": "徐欣瑩",
+          "weight": 3
+        },
+        {
+          "group": "role_hints",
+          "term": "徐委員",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "徐立委",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "立法委員徐欣瑩",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "新竹縣長候選人",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "徐縣長",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "徐欣瑩立委",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "徐欣瑩競總",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "徐欣瑩縣長",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "徐欣瑩政見",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "新竹縣",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "湖口",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "新豐",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹北",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹東",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "立法院",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹北市",
+          "weight": 2
+        },
+        {
+          "group": "topics",
+          "term": "科技產業",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "交通建設",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "長照",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "教育",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "客家",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "農業",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "黃金科技",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "敬老",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "縣長",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "市長",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "選舉",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "民調",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "競總",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "政見",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "政績",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "交通",
+          "weight": 1
+        },
+        {
+          "group": "search_terms",
+          "term": "徐欣瑩 新竹縣長",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "徐欣瑩 立委",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "徐欣瑩 科技10年",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "徐欣瑩 新竹縣",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "徐欣瑩 湖口",
+          "weight": 2
+        },
+        {
+          "group": "party",
+          "term": "國民黨",
+          "weight": 2
+        },
+        {
+          "group": "race",
+          "term": "新竹縣長",
+          "weight": 3
+        }
+      ],
+      "counts": {
+        "aliases": 1,
+        "chips": 40,
+        "places": 6,
+        "role_hints": 6,
+        "search_terms": 6,
+        "terms_all": 30,
+        "topics": 8
+      },
+      "id": "xu",
+      "name": "徐欣瑩",
+      "party": "中國國民黨",
+      "party_short": "國民黨",
+      "race": "新竹縣長"
+    },
+    {
+      "chips": [
+        {
+          "group": "aliases",
+          "term": "鄭朝方",
+          "weight": 3
+        },
+        {
+          "group": "role_hints",
+          "term": "鄭市長",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "竹北市長",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "民進黨新竹縣長候選人",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "鄭縣長",
+          "weight": 2
+        },
+        {
+          "group": "role_hints",
+          "term": "鄭朝方市長",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "鄭朝方競總",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "鄭朝方縣長",
+          "weight": 2
+        },
+        {
+          "group": "campaign",
+          "term": "鄭朝方政見",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹北",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹北市",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "新竹縣",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "竹東",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "二重埔",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "湖口",
+          "weight": 2
+        },
+        {
+          "group": "places",
+          "term": "新豐",
+          "weight": 2
+        },
+        {
+          "group": "topics",
+          "term": "城市治理",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "托育",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "交通",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "文化",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "青年",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "公共空間",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "童趣城市",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "圖書館",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "活動中心",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "縣長",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "市長",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "選舉",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "民調",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "競總",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "政見",
+          "weight": 1
+        },
+        {
+          "group": "topics",
+          "term": "政績",
+          "weight": 1
+        },
+        {
+          "group": "search_terms",
+          "term": "鄭朝方 新竹縣長",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "鄭朝方 竹北市長",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "鄭朝方 市政",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "鄭朝方 竹北",
+          "weight": 2
+        },
+        {
+          "group": "search_terms",
+          "term": "鄭朝方 竹北市",
+          "weight": 2
+        },
+        {
+          "group": "party",
+          "term": "民進黨",
+          "weight": 2
+        },
+        {
+          "group": "race",
+          "term": "新竹縣長",
+          "weight": 3
+        }
+      ],
+      "counts": {
+        "aliases": 1,
+        "chips": 39,
+        "places": 5,
+        "role_hints": 5,
+        "search_terms": 6,
+        "terms_all": 28,
+        "topics": 9
+      },
+      "id": "zheng",
+      "name": "鄭朝方",
+      "party": "民主進步黨",
+      "party_short": "民進黨",
+      "race": "新竹縣長"
+    }
+  ],
+  "source": "data/keywords.json",
+  "version": 1
+}

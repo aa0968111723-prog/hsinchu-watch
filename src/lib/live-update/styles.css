@@ -1,0 +1,86 @@
+/* 可選樣式：掛上 live-update 模組時一併引入 */
+
+.live-banner {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: #1f2937;
+  color: #fff;
+}
+
+.live-banner.hidden {
+  display: none;
+}
+
+.live-banner-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  background: #fbbf24;
+  color: #111827;
+}
+
+.live-banner-btn:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.warn {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #f59e0b;
+}
+
+.warn[data-state="offline"] {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #ef4444;
+}
+
+.warn.hidden {
+  display: none;
+}
+
+.live-item {
+  position: relative;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.live-item.is-new {
+  background: #fffbeb;
+}
+
+.badge-new {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: #dc2626;
+  color: #fff;
+  vertical-align: middle;
+  transition: opacity 0.6s ease;
+}
+
+.badge-new.fade-out {
+  opacity: 0;
+}
+
+.live-item-meta {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}

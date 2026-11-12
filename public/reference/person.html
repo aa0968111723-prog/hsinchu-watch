@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html data-ui-depth="v3" lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>人物｜新竹三人政治輿情站</title>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<script crossorigin="" src="/assets/person-open-s3.js" type="module"></script>
+<link crossorigin="" href="/assets/mobile-nav-D0ukQkk_.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/latest-top-CFMKF4sl.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/platform-section-Mi-krk0B.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/records-ui-DV_A47sB.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/data-BhtQD82b.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/charts-7gzzYDaY.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/item-drilldown-DPfl7T9Z.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/social-section-GmnN1qM2.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/keywords-ui-YUYn105x.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/panels-hKVOp72C.js" rel="modulepreload"/>
+<link crossorigin="" href="/assets/mobile-nav-BacuR8-v.css" rel="stylesheet"/>
+<link crossorigin="" href="/assets/platform-section-Cy6r4Xuh.css" rel="stylesheet"/>
+<link crossorigin="" href="/assets/records-ui-CgC2_bsU.css" rel="stylesheet"/>
+<link crossorigin="" href="/assets/item-drilldown-DWZDE_fs.css" rel="stylesheet"/>
+<link href="/assets/extra-people.css" rel="stylesheet"/>
+<link href="/assets/mobile-nav-CPaz1PvL.css" rel="stylesheet"/><link href="/assets/release-nav-ae6eb3997a.css" rel="stylesheet"/><link href="/assets/editorial-depth-22f36c5523f1.css" rel="stylesheet"/></head>
+<body>
+<div class="live-banner hidden" id="live-banner"></div>
+<header class="top">
+<div class="wrap">
+<div>
+<h1 id="personName">人物</h1>
+<p class="sub" id="personRole"></p>
+</div>
+<div class="status" id="statusBox"></div>
+</div>
+<nav aria-label="人物清單" class="wrap person-switch" id="personSwitch"></nav>
+<nav aria-label="主選單" class="wrap nav"><a href="/index.html">總覽</a><a href="/compare.html">比較</a><a href="/topics.html">議題</a><a href="/polls.html">民調</a><a href="/commentary.html">評論</a><a href="/manual.html">手動收錄</a></nav>
+</header>
+<main class="wrap">
+<div class="warn hidden" id="delayWarn">資料更新延遲（超過 1 小時未更新）</div><details class="release-directory"><summary>更多資料</summary><nav aria-label="其他資料頁"><a href="/records.html">政績與政見</a><a href="/maps.html">議題地圖</a><a href="/compare-panels.html">指標對照</a><a href="/reference/compare.html">逐筆比較</a><a href="/reference/topics.html">議題立場</a><a href="/reference/index.html">即時與社群</a><a href="/person.html?id=chen">陳見賢</a></nav></details>
+<div class="tabs" id="tabs" role="tablist">
+<button class="active" data-tab="timeline">時間軸</button>
+<button data-tab="youtube">YouTube</button>
+<button data-tab="comments">網友留言</button>
+</div>
+<section aria-label="人物摘要" class="pbanner" id="pBanner"></section>
+<section class="panel viz" id="pVolume"></section>
+<div class="grid2">
+<section class="panel viz" id="pSent"></section>
+<section class="panel viz" id="pMix"></section>
+</div>
+<div class="grid2">
+<section class="panel viz" id="pOutlet"></section>
+<section class="panel viz" id="pTopic"></section>
+</div>
+<section class="panel viz" id="pComment"></section>
+<section class="panel" id="filtersPanel">
+<div class="filters">
+<input id="q" placeholder="搜尋…" type="search"/>
+<select id="platform"></select>
+<select id="topic"></select>
+<select id="own">
+<option value="">全部</option>
+<option value="1">本人／陣營</option>
+<option value="0">他人提及</option>
+</select>
+<span class="muted" id="count"></span>
+</div>
+</section>
+<div id="kwCloud"></div>
+<section class="panel"><ul class="timeline" id="list"></ul>
+<div class="load-more-wrap hidden" id="loadMoreWrap">
+<button class="load-more" id="loadMore" type="button">載入更多</button>
+</div>
+</section>
+<section aria-label="社群貼文" id="socialSection"></section>
+<section aria-label="政績與政見" class="panel" id="personPlatform">
+<h3>政績與政見</h3>
+<p class="muted">只列出已核可、且附來源的條目。完整三人對照見 <a href="/records.html">政績</a>與 <a href="/topics.html#stances">議題政見對照</a>。</p>
+<div id="personPlatformBody"><p class="muted">載入中…</p></div>
+</section>
+<section aria-labelledby="officialTitle" class="panel" id="officialPanel">
+<h3 id="officialTitle">本人發言（官網）</h3>
+<p class="muted" id="officialNote">候選人官網文章，屬本人／競選團隊自述；不計入聲量、情緒與全站總數，也不放首頁時間軸。</p>
+<ul class="timeline" id="officialList"><li class="muted">載入中…</li></ul>
+</section>
+</main>
+<script defer="" src="/assets/extra-people-b.js"></script>
+<footer class="wrap foot" id="footer"></footer>
+<script src="/assets/release-nav-c3a8004f2f.js" type="module"></script></body>
+</html>

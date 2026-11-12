@@ -1,0 +1,79 @@
+.frontdesk {
+  display: grid;
+  align-items: start;
+  gap: 1rem;
+  margin-block: .1rem .85rem;
+}
+.frontdesk > * { min-width: 0; }
+.frontdesk .lt-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .2rem .55rem;
+  margin-bottom: .45rem;
+  padding-block: .45rem .25rem;
+  border-top: 2px solid #774a36;
+}
+.frontdesk .lt-head h2 { font-size: 1.16rem; letter-spacing: .02em; }
+.frontdesk .lt-sub { margin: 0; font-size: .75rem; color: #61564c; }
+.lt-edition > .lt-card {
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid #cfc2b2;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: .35rem 0 .65rem;
+  min-height: 0;
+}
+.lt-edition > .lt-card:hover { box-shadow: none; border-color: #7b4c36; }
+.lt-edition > .lt-card .lt-title { font-size: clamp(1.08rem, 2.3vw, 1.52rem); line-height: 1.33; -webkit-line-clamp: 3; }
+.lt-edition > .lt-card .lt-excerpt { display: none; }
+.lt-edition > .lt-card .lt-thumb { width: clamp(77px, 24vw, 116px); height: 84px; border-radius: .25rem; }
+.lt-edition .lt-thumb-ph { background: #ebe1d2; border-color: #d2c1ae; }
+.lt-edition .lt-ph-portrait { width: 41px; height: 41px; object-fit: cover; }
+.lt-edition .lt-meta { white-space: normal; overflow: visible; flex-wrap: wrap; }
+.lt-edition .lt-foot { margin-top: .18rem; }
+.lt-more { margin-top: .25rem; }
+.lt-more > summary, .edition-totals > summary { min-height: 44px; padding-block: .65rem; cursor: pointer; color: #4b4037; font-size: .85rem; font-weight: 650; }
+.lt-more > summary { color: #733c2b; }
+.lt-edition .lt-grid { grid-template-columns: 1fr; gap: .55rem; }
+.pulse {
+  margin: 0;
+  padding: .6rem .7rem .45rem;
+  background: #fcf8ef;
+  color: #2f271e;
+  border: 1px solid #cfc2ae;
+  border-radius: .32rem;
+}
+.pulse-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .65rem; }
+.pulse-kicker { margin: 0; color: #744634; font-size: .7rem; font-weight: 700; letter-spacing: .06em; }
+.pulse h2 { margin: .1rem 0 0; font-size: clamp(1.07rem, 4vw, 1.5rem); line-height: 1.2; }
+.pulse-period { display: flex; border-bottom: 1px solid #c6b7a6; }
+.pulse-period button { border: 0; border-bottom: 2px solid transparent; padding: .35rem .58rem; min-height: 44px; background: transparent; color: #5e5347; font: inherit; font-size: .82rem; cursor: pointer; white-space: nowrap; }
+.pulse-period button[aria-pressed="true"] { border-color: #914c3b; color: #713728; font-weight: 750; }
+.pulse-period button:focus-visible, .dash-people a:focus-visible { outline: 2px solid #824737; outline-offset: 2px; }
+.pulse-plot { min-height: 5.5rem; max-width: 36rem; margin-inline: auto; }
+.pulse-chart { display: block; width: 100%; max-height: 14rem; margin: .1rem auto 0; overflow: visible; }
+.pulse-chart text { font-family: inherit; font-variant-numeric: tabular-nums; }
+.pulse-grid line { stroke: #a89988; stroke-opacity: .5; stroke-width: .65; }
+.pulse-grid path { fill: none; stroke: #81705e; stroke-width: .75; }
+.pulse-scale { fill: #554b40; font-size: 10px; }
+.pulse-value { fill: #362a20; font-size: 15px; font-weight: 750; }
+.pulse-name { fill: #45392d; font-size: 12px; font-weight: 650; }
+.pulse-note { display: flex; flex-wrap: wrap; gap: .2rem .6rem; justify-content: space-between; margin: .05rem 0 0; color: #554b40; font-size: .73rem; }
+.pulse-note a { color: #713728; text-decoration: underline; text-underline-offset: .18em; }
+.dash-people { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .4rem; border-bottom: 1px solid #cfc2b2; }
+.dash-people[hidden] { display: none; }
+.dash-people a { display: flex; flex: 1; align-items: center; justify-content: center; gap: .4rem; min-width: 0; min-height: 55px; padding: .2rem; color: var(--text); font-size: .8rem; font-weight: 650; white-space: nowrap; }
+.dash-people .avatar { width: 29px; height: 29px; }
+.edition-totals { border-bottom: 1px solid #cfc2b2; margin-bottom: .65rem; }
+@media (min-width: 760px) {
+  .frontdesk { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.15rem; }
+}
+@media (max-width: 420px) {
+  .frontdesk { gap: .65rem; }
+  .dash-people a { flex-direction: column; gap: .15rem; }
+  .pulse-period button { padding-inline: .43rem; }
+}

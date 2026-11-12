@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>民調｜新竹選情觀察</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/visual.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/src/polls.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+</head>
+<body>
+  <div id="live-banner" class="live-banner hidden"></div>
+  <header class="top">
+    <div class="wrap">
+      <div><h1>民調彙整</h1><p class="sub">新竹縣長與竹北市長的公開民調</p></div>
+      <div class="status" id="statusBox"></div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html" class="active">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap poll-page">
+    <div id="delayWarn" class="warn hidden">資料更新延遲（超過 1 小時未更新）</div>
+    <nav class="section-links" aria-label="民調頁導覽">
+      <a href="#pollLatest">最新民調</a>
+      <a href="#pollChart">時間趨勢</a>
+      <a href="#pollArchive">報導列表</a>
+    </nav>
+    <section class="panel poll-panel" id="pollLatest" aria-labelledby="pollLatestTitle">
+      <header class="edition-heading">
+        <h2 id="pollLatestTitle">各選區最新民調</h2>
+        <p class="muted">依調查結束日排列</p>
+      </header>
+      <div id="pollTrend" aria-busy="true"><p class="muted">載入中…</p></div>
+    </section>
+    <section class="panel viz poll-panel" id="pollChart" aria-label="已核對民調時間趨勢"></section>
+    <section class="panel poll-panel" id="pollArchive" aria-labelledby="pollArchiveTitle">
+      <h2 id="pollArchiveTitle">民調報導列表</h2>
+      <div class="poll-filters" id="pollFilters" hidden>
+        <label>選區 <select id="pollRace">
+          <option value="">全部選區</option>
+          <option value="county_magistrate">新竹縣長</option>
+          <option value="zhubei_mayor">竹北市長</option>
+        </select></label>
+        <label>資料狀態 <select id="pollVerification">
+          <option value="">全部報導</option>
+          <option value="verified">已核對民調</option>
+          <option value="report">僅列報導</option>
+        </select></label>
+      </div>
+      <p class="muted poll-results" id="pollResults" role="status"></p>
+      <ul class="timeline poll-list" id="pollList"></ul>
+      <button class="load-more" type="button" id="pollMore" hidden>顯示更多報導</button>
+    </section>
+  </main>
+  <footer class="wrap foot" id="footer"></footer>
+  <script type="module" src="/src/polls.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>

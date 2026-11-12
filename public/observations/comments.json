@@ -1,0 +1,292 @@
+{
+  "people": {
+    "zheng": {
+      "name": "鄭朝方"
+    },
+    "xu": {
+      "name": "徐欣瑩"
+    },
+    "zhu": {
+      "name": "朱定瑀"
+    },
+    "wu": {
+      "name": "吳旭智"
+    },
+    "tseng": {
+      "name": "曾聖凱"
+    },
+    "chiu": {
+      "name": "邱臣遠"
+    },
+    "chen": {
+      "name": "陳見賢",
+      "status": "曾參與縣長黨內初選"
+    },
+    "lee": {
+      "name": "李貞秀",
+      "status": "選委會審定資格不符"
+    }
+  },
+  "threads": {
+    "z1": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794182977.A.690.html",
+      "platform": "PTT 政黑板"
+    },
+    "z6": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1793551968.A.EB1.html",
+      "platform": "PTT 政黑板"
+    },
+    "xt": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794100914.A.16A.html",
+      "platform": "PTT 政黑板"
+    },
+    "z4": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1792913910.A.7B9.html",
+      "platform": "PTT 政黑板"
+    },
+    "zz": {
+      "url": "https://www.ptt.cc/bbs/Hsinchu/M.1737562543.A.43A.html",
+      "platform": "PTT 新竹板"
+    },
+    "x1": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794163386.A.10E.html",
+      "platform": "PTT 政黑板"
+    },
+    "xa": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1788062081.A.A2D.html",
+      "platform": "PTT 政黑板"
+    },
+    "wt": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794205797.A.DCE.html",
+      "platform": "PTT 政黑板"
+    },
+    "q2": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794203749.A.B12.html",
+      "platform": "PTT 政黑板"
+    },
+    "q3": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794160748.A.B58.html",
+      "platform": "PTT 政黑板"
+    },
+    "t4": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1786800116.A.65A.html",
+      "platform": "PTT 政黑板"
+    },
+    "w1": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794237966.A.2A5.html",
+      "platform": "PTT 政黑板"
+    },
+    "cz": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1788415578.A.6B4.html",
+      "platform": "PTT 政黑板"
+    },
+    "c2": {
+      "url": "https://www.ptt.cc/bbs/HatePolitics/M.1794021833.A.DDD.html",
+      "platform": "PTT 政黑板"
+    },
+    "dcard-262423695-b5": {
+      "url": "https://www.dcard.tw/%40katzenkopf/post/262423695/b/5",
+      "platform": "Dcard"
+    },
+    "dcard-262423695-b2": {
+      "url": "https://www.dcard.tw/%40katzenkopf/post/262423695/b/2",
+      "platform": "Dcard"
+    },
+    "dcard-262423695-b9": {
+      "url": "https://www.dcard.tw/%40katzenkopf/post/262423695/b/9",
+      "platform": "Dcard"
+    }
+  },
+  "entries": [
+    {
+      "commentId": "ptt-c5c785170207ad8e",
+      "thread": "w1",
+      "personId": "wu",
+      "kind": "pos",
+      "at": "2026-11-10T00:04:00+08:00",
+      "summary": "肯定吳旭智是人才，並建議他重新考量與不同陣營的合作。"
+    },
+    {
+      "commentId": "ptt-8506b0233a2adad4",
+      "thread": "wt",
+      "personId": "wu",
+      "kind": "neg",
+      "at": "2026-11-09T14:39:00+08:00",
+      "summary": "對吳旭智的選戰立場表達不滿，主張黨方處理其黨籍。"
+    },
+    {
+      "commentId": "ptt-caa8b8f5368d6421",
+      "thread": "wt",
+      "personId": "wu",
+      "kind": "pos",
+      "at": "2026-11-09T14:31:00+08:00",
+      "summary": "在吳旭智回應黨主席的討論中，明確表態支持吳旭智。"
+    },
+    {
+      "commentId": "ptt-0df1f31214902674",
+      "thread": "q2",
+      "personId": "wu",
+      "kind": "pos",
+      "at": "2026-11-09T14:04:00+08:00",
+      "summary": "比較竹北人選時，肯定吳旭智的學經歷和地方資源。"
+    },
+    {
+      "commentId": "ptt-0df1f31214902674",
+      "thread": "q2",
+      "personId": "chiu",
+      "kind": "neg",
+      "at": "2026-11-09T14:04:00+08:00",
+      "summary": "比較竹北人選時，認為邱臣遠的學經歷和地方資源居於劣勢。"
+    },
+    {
+      "commentId": "dcard-262423695-b9",
+      "thread": "dcard-262423695-b9",
+      "personId": "wu",
+      "kind": "pos",
+      "at": "2026-11-09T12:51:00+08:00",
+      "locator": "B9",
+      "summary": "肯定吳旭智擔任議員期間累積的地方基礎。"
+    },
+    {
+      "commentId": "dcard-262423695-b5",
+      "thread": "dcard-262423695-b5",
+      "personId": "chiu",
+      "kind": "pos",
+      "at": "2026-11-09T12:04:00+08:00",
+      "locator": "B5",
+      "summary": "表明竹北市長選舉傾向投給邱臣遠。"
+    },
+    {
+      "commentId": "dcard-262423695-b5",
+      "thread": "dcard-262423695-b5",
+      "personId": "tseng",
+      "kind": "mixed",
+      "at": "2026-11-09T12:04:00+08:00",
+      "locator": "B5",
+      "summary": "肯定曾聖凱的能力，同時對他的選舉宣傳方式不滿。"
+    },
+    {
+      "commentId": "dcard-262423695-b5",
+      "thread": "dcard-262423695-b5",
+      "personId": "zheng",
+      "kind": "mixed",
+      "at": "2026-11-09T12:04:00+08:00",
+      "locator": "B5",
+      "summary": "肯定鄭朝方在竹北做了不少工作，同時批評市政標示出現他的姓名。"
+    },
+    {
+      "commentId": "dcard-262423695-b5",
+      "thread": "dcard-262423695-b5",
+      "personId": "wu",
+      "kind": "neg",
+      "at": "2026-11-09T12:04:00+08:00",
+      "locator": "B5",
+      "summary": "明確表達反對吳旭智當選。"
+    },
+    {
+      "commentId": "dcard-262423695-b2",
+      "thread": "dcard-262423695-b2",
+      "personId": "xu",
+      "kind": "neg",
+      "at": "2026-11-09T11:58:00+08:00",
+      "locator": "B2",
+      "summary": "認為徐欣瑩在選戰協調上的做法缺乏誠意。"
+    },
+    {
+      "commentId": "ptt-3ea03fe9e71efe65",
+      "thread": "z1",
+      "personId": "zheng",
+      "kind": "pos",
+      "at": "2026-11-09T09:48:00+08:00",
+      "summary": "認同鄭朝方具世代更新的潛力，表明支持他。"
+    },
+    {
+      "commentId": "ptt-a0b8c574147158a7",
+      "thread": "x1",
+      "personId": "xu",
+      "kind": "neg",
+      "at": "2026-11-09T02:44:00+08:00",
+      "summary": "表達想用選票反對徐欣瑩。"
+    },
+    {
+      "commentId": "ptt-0ca895cdad8ad6fc",
+      "thread": "q3",
+      "personId": "chiu",
+      "kind": "neg",
+      "at": "2026-11-09T02:00:00+08:00",
+      "summary": "以反問質疑邱臣遠在不同選區參選。"
+    },
+    {
+      "commentId": "ptt-39d4d391880ab82c",
+      "thread": "xt",
+      "personId": "zheng",
+      "kind": "pos",
+      "at": "2026-11-08T09:39:00+08:00",
+      "summary": "認為鄭朝方在竹北任內的表現值得肯定。"
+    },
+    {
+      "commentId": "ptt-e80aea5c4f991169",
+      "thread": "xt",
+      "personId": "xu",
+      "kind": "neg",
+      "at": "2026-11-08T09:27:00+08:00",
+      "summary": "對徐欣瑩在選戰中處理立委接棒的方式有意見。"
+    },
+    {
+      "commentId": "ptt-5aaca78dbd5a3223",
+      "thread": "c2",
+      "personId": "chen",
+      "kind": "neg",
+      "at": "2026-11-07T11:58:00+08:00",
+      "summary": "在陳見賢跨黨同台的討論中，主張國民黨應開除陳見賢的黨籍。"
+    },
+    {
+      "commentId": "ptt-eb11fb924f336ad8",
+      "thread": "z6",
+      "personId": "zheng",
+      "kind": "pos",
+      "at": "2026-11-02T01:01:00+08:00",
+      "summary": "肯定鄭朝方對不同政黨政治人物的待人態度。"
+    },
+    {
+      "commentId": "ptt-c89430af0894aefe",
+      "thread": "z4",
+      "personId": "zheng",
+      "kind": "pos",
+      "at": "2026-10-25T15:50:00+08:00",
+      "summary": "欣賞鄭朝方的談吐與個人風格。"
+    },
+    {
+      "commentId": "ptt-1aeb700a39cc3a7f",
+      "thread": "cz",
+      "personId": "chen",
+      "kind": "pos",
+      "at": "2026-09-03T14:26:00+08:00",
+      "summary": "回顧縣長初選時，認為由陳見賢代表國民黨出線更符合自己期待的選戰布局。"
+    },
+    {
+      "commentId": "ptt-ff08dcb659c0bd7c",
+      "thread": "xa",
+      "personId": "xu",
+      "kind": "pos",
+      "at": "2026-08-30T11:57:00+08:00",
+      "summary": "認同地方候選人公開支持徐欣瑩的選擇。"
+    },
+    {
+      "commentId": "ptt-330702878e5fd98d",
+      "thread": "t4",
+      "personId": "tseng",
+      "kind": "pos",
+      "at": "2026-08-15T21:22:00+08:00",
+      "summary": "認為曾聖凱是值得肯定的人選，欣賞其有禮的風格。"
+    },
+    {
+      "commentId": "ptt-59027076a659055b",
+      "thread": "zz",
+      "personId": "zheng",
+      "kind": "neg",
+      "at": "2025-01-23T00:37:00+08:00",
+      "summary": "反感鄭朝方頻繁出現在市政宣傳中。"
+    }
+  ]
+}

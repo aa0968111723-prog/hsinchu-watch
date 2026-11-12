@@ -1,0 +1,118 @@
+.person-page { --person-radius: .8rem; }
+.person-page [hidden] { display: none !important; }
+.person-page :is(a, button, input, select):focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+.person-page .person-switch, .person-jump, .person-updates .tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .38rem;
+  margin: 0 0 .8rem;
+}
+.person-page .person-switch { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-top: 0; }
+.person-page :is(.person-switch, .person-jump, .tabs) :is(a, button) {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  min-width: 0;
+  padding: .3rem .15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--person-radius);
+  background: var(--card);
+  color: var(--text);
+  text-align: center;
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 650;
+}
+.person-page :is(.person-switch, .tabs) .active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--card);
+}
+.person-page :is(.person-switch, .person-jump, .tabs) :is(a, button):hover { border-color: var(--muted); }
+.person-page .pbanner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: .65rem 1.2rem;
+  border-top-width: 1px;
+  border-inline-start: 4px solid var(--pc);
+  background: linear-gradient(140deg, var(--card) 53%, color-mix(in srgb, var(--ps) 33%, var(--card)));
+}
+.person-identity { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .2rem .9rem; }
+.person-identity .avatar-xl {
+  width: clamp(66px, 20vw, 92px);
+  height: clamp(66px, 20vw, 92px);
+  border-radius: .8rem;
+  box-shadow: 0 2px 6px #241c231c;
+}
+.person-identity .avatar-xl img { border-radius: inherit; }
+.person-identity .photo-credit { grid-column: 1 / -1; margin: .2rem 0 0; line-height: 1.4; }
+.person-label { margin: 0; color: var(--muted); font-size: .75rem; font-weight: 650; }
+.person-page .pbanner h2 { font-size: clamp(1.45rem, 6vw, 2rem); line-height: 1.2; overflow-wrap: anywhere; }
+.person-role { margin: .22rem 0; color: var(--text); font-size: .9rem; }
+.person-updated {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: .45rem;
+  border-top: 1px solid var(--line);
+  font-size: .77rem;
+  font-variant-numeric: tabular-nums;
+}
+.person-page .kpis-in { grid-template-columns: repeat(3, minmax(0, 1fr)); min-width: 0; }
+.person-page .kpis-in .kpi { padding: .6rem .45rem; min-width: 0; }
+.person-page .kpis-in .kpi b { font-size: 1.2rem; }
+.person-page .kpis-in .kpi span { font-size: .7rem; }
+.person-page :is(#personUpdates, #personData, #officialPanel) { scroll-margin-top: 8rem; }
+.person-page :is(#personUpdatesTitle, #personDataTitle, #officialTitle) {
+  margin: 0 0 .65rem;
+  font-size: clamp(1.08rem, 4.5vw, 1.35rem);
+}
+.person-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+  padding: .6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--person-radius);
+  background: var(--bg);
+}
+.person-filters label { display: grid; gap: .2rem; min-width: 0; color: var(--text); font-size: .8rem; font-weight: 650; }
+.person-filters :is(input, select) {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: .55rem;
+  padding: .35rem;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+.person-result-row { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-block: .35rem; }
+#clearPersonFilters {
+  min-height: 44px;
+  padding: .3rem .55rem;
+  border: 1px solid var(--line);
+  border-radius: .55rem;
+  background: var(--card);
+  color: var(--link);
+  cursor: pointer;
+}
+.person-page .timeline .item-main { min-width: 0; }
+.person-page .timeline .when { color: var(--muted); line-height: 1.45; overflow-wrap: anywhere; }
+.person-page .timeline .when .source { font-weight: 650; }
+.person-page .timeline .title { overflow-wrap: anywhere; }
+.person-page #loadMore { width: 100%; }
+.person-page #kwCloud:not(:empty) { margin-top: .65rem; }
+.person-page .seg-tabs button { min-width: 44px; min-height: 44px; padding-inline: .4rem; }
+.person-page #pVolume .panel-head { flex-wrap: wrap; }
+@media (max-width: 680px) {
+  .person-page .pbanner { grid-template-columns: minmax(0, 1fr); }
+  .person-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .person-search { grid-column: 1 / -1; }
+  .person-page .kpis-in .kpi svg { display: none; }
+  .person-page .kpis-in .kpi { align-items: center; text-align: center; }
+}

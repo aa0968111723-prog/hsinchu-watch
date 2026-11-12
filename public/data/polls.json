@@ -1,0 +1,2379 @@
+[
+  {
+    "field_end": "2026-10-26",
+    "field_start": "2026-10-25",
+    "group_key": "關鍵調查|2026-10-25|1070|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE8tY1BfWjlhbDVUcG9KYWRNRWRmMkhnT25tQ01EUFlrNDFGYlVLNjBhWkQ4SFhXSkJ0cHNqWUVYVUxvYXMwVjVJN3dPSnY5dXJWMWRz0gFYQVVfeXFMUFAwWE81Qlh5NjlzWjFoNmRYTmc3dDlWdG9MSEkwa243TGMwTUdnZG5pdHQ4SlRrNllEQzF6RmRPZ1NReW1aRk92LVluZkpqY3Y4azYwME1LVQ?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "關鍵調查",
+    "period": "2026-10-25～2026-10-26",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-10-29T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 2,
+    "reports": [
+      {
+        "published_at": "2026-10-29T15:00:00+08:00",
+        "source_name": "UDN",
+        "title": "新竹縣長民調出爐！徐欣瑩47.8%領先鄭朝方38.7％ 徐競辦：真金不怕火煉 - UDN",
+        "url": "https://udn.com/news/story/124652/9845183"
+      },
+      {
+        "published_at": "2026-10-29T15:00:00+08:00",
+        "source_name": "PChome Online 新聞",
+        "title": "新竹縣長選舉民調 徐欣瑩支持度44.1%領先鄭朝方的37.7% - PChome Online 新聞",
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOY2F1dHQ2ZFhVVjYwazJMcTJfY0ZNRnNVZjRPSDQwT2pUOEZZOWhoUTVEN0JCZzNsLTJyendIZXp6MkZoQTNOeS1IMVYyXzVQVUtuVFdSbE5GUkoxYXVzVlZqWjRTMzdYUTdPUHFRVXgydG0yaXpTZmtXeFlOMy10OUl1NUgtNGpT?oc=5"
+      }
+    ],
+    "sample_size": 1070,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "UDN",
+    "support": {
+      "xu": 44.1,
+      "zheng": 37.7
+    },
+    "title": "新竹縣長民調出爐！徐欣瑩47.8%領先鄭朝方38.7％ 徐競辦：真金不怕火煉 - UDN",
+    "url": "https://udn.com/news/story/124652/9845183",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "link_resolved": true,
+    "news_url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBQSkFqaTRtVFVIRkpHOWxVRWh3OE1ZRk9iMU10U3BxWUNHOEVXZzg3OTJ2aWswMGVvVXpLNlVGRHJEaUI4eFRrbFdpdDZFX29LVXFNT0hOSnF5dw?oc=5",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "zheng"
+    ],
+    "published_at": "2026-10-29T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "信傳媒",
+    "title": "民調》僅5.9%新竹縣民知道鄭朝方參選縣長 學者：他爸努力幫他綁樁也難勝選 - 信傳媒",
+    "url": "https://www.cmmedia.com.tw/home/articles/63566",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-10-29T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "新竹縣民調大逆轉！徐欣瑩領先6.4個百分點 黃光芹質疑鄭朝方內參民調有貓膩 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi2gNBVV95cUxPUkhrVnh5ZkdxUktlT21ySWphcVVUZV9pTmRhQlRNTndZRjFubEY0U05GLUNZSDY3WENjcWpEd1NXUXpfTXBVNFJfNEgwTHZCbzVzNnNsTUdzREZESXFtWTZPckxMZEZWakhDMWpMT2E3TGFraGhJUEM0X2xMZWtkQm5oVjVxVHhpTWRXaGdsR1hNU2dGekZmTVBSNDhFSmhJQWtyQy1RdGs2TnI5d2xuUWlQYnNKeGkwLWo1cldIM3N1d0tuOHBHMkI0cWtpZHBMQ3JBcDB5dFppcGxLc29ZYVNTN3NFT2w3R0ZMRUtUYndMblMycWxTSFVjakQ3Ym1RNTEya2NtTG5PanRVQkJYSGNYZ0pWTF8yXzhyQmU2WEFJdk1yRUZtVnktcmRrbWR1cjhQRFBlTFRXbmpJY2MwemZpeVlaTmVKbi1uVHBfWHdFdUlDelBDZGpmVlJoajJuVE01ZWZITWJfZ20wVENZc2JUQm1DZlJQQ3dTYTdzSVRHQjhzbXN6dTVCQkJZdUVVb2sweHZ1YWprTV9ydktKX0N3RXd3bWZXQzRSR21HbFREZzVJZmZybHk2bDVSU084eFBKRUgwbDNjb2RFVlBHWUdFUjZtTWJFVGc?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu"
+    ],
+    "published_at": "2026-10-29T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "徐欣瑩競辦「代轉」新竹縣長最新民調 宣傳78％藍營支持者已歸隊 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1leDZMRmNjbWpEb0lMMmJQaFJ4VEdwbTN0aEwxWmRXWGUtYlNwbXZ4TVJiaVhJaXZqSmRvY3UwWUVNSGNKWGZpVUtkNjlvS2JTZXF2M1g0WFNfcTFlVU1tdEVMc2J4aEpzc1HSAW9BVV95cUxQSGNjNXdvaXVONHJxdVBhRXNQNk4wbmh6bFUwczFYNVZZd0lWclVDcEd3Ti1Ec1RnczRnREgwbjdPa1dhYldXLWVZUVlBUGp4ZHVVTVZ2OFFhVFdPVVY2MlJxYjUyVGx5NXRUT1Q4clk?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-10-29T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "民視新聞網",
+    "title": "新竹縣長民調！徐欣瑩看好度領先 學者：鄭朝方認知度偏低 - 民視新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9WYnhVd08tMG9Sa2NMMGtoUUxzT21rQVdHQXE4OFByX2lwbmp3SzBwSE53OG1pTW4tbTB6bjBZQlRDamdveW1scXRTWU9ubndCTFVZVjBmUUhwNmx3bUxNVA?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "zheng"
+    ],
+    "published_at": "2026-10-27T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Newtalk新聞",
+    "title": "皮爾森民調》新竹縣藍天變綠地？鄭朝方擴大領先 支持度首破50% - Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBPN1VrRmREV2lQbHdMek9WcFFJSXFUdHVsRXpPRTVWNk8zR21hMnhadTQ5Rk5HV0JSN3JVSXlaemhVblhrM3RiSXN1MGJiSlM5aEdxOFI0ODN3M3c?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "zheng"
+    ],
+    "published_at": "2026-10-18T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "中時新聞網",
+    "title": "竹北市長會投誰？「鄭朝方本命區」街頭民調結果出乎意料- 政治 - 中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9jMFJXajFPWXRUWGFVZE41NklQQlExMWxWaGJNYUZzMjI5OHgwV0pyYjB4ejkzU1doQUF3VTkwU3NlZEFKRnFYSmJwc01FanRZRThYYnhkbG5iOW9mcl9GU0tuR0VLOUJNbnRBMS1B?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "zheng"
+    ],
+    "published_at": "2026-10-11T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "中時新聞網",
+    "title": "竹北市長之戰支持誰？「鄭朝方本命區」街頭民調結果太驚人- 政治 - 中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBYbTRVVkFJeHBseURMR2JPRmpRZEdGYTc3b3IwRGotd2QxT1pFSXU2MHZfd2xwYVh0M25zNW1DUElFZHVqVS1YeEVpNkdkbWdVcGdaVEtDRExGYlgyOThkV3ViWHJKR1M3UGRlczRB?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-10-03T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "中時新聞網",
+    "title": "新竹縣長之戰徐欣瑩挑戰「鄭朝方故鄉」 街頭民調結果曝 - 中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE45N0NhTHBSUlhraTFlb3RWWE04OVJkY29WZzQ3WGlUbnpjWWdXbnRKaXpyV0lvUUE5MXJoanZwTEVNOW1QY2VyTWY5TGh2WDcwWFQzcXdGZ2VMSXdmRFRzVjlqb2ZnVWVIMDhtTWxB?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-09-22",
+    "field_start": "2026-09-20",
+    "group_key": "風傳媒民調|2026-09-20|1068|zhubei_mayor|吳旭智、曾聖凱對決",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFB5T0FEYXFiM3ZDeDl0a2xERGxRaUVULWMwTkxGSmJfNkRhZnVUa0dtZjI2QWtHODBXcG1lZEdQb2hxX0J5YW96cEpDMUhCZw?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "風傳媒民調",
+    "period": "2026-09-20～2026-09-22",
+    "person_ids": [
+      "wu",
+      "chiu"
+    ],
+    "population": "竹北市",
+    "published_at": "2026-09-23T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "raw_percents": null,
+    "report_count": 2,
+    "reports": [
+      {
+        "published_at": "2026-09-23T15:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "竹北市長《風傳媒民調》出爐 吳旭智支持度領先群雄、看好度雙料奪冠！ | 楊艾喬 | 地方新聞 - 風傳媒",
+        "url": "https://www.storm.mg/article/11167314"
+      },
+      {
+        "published_at": "2026-09-24T15:00:00+08:00",
+        "source_name": "鏡週刊Mirror Media",
+        "title": "竹北市長4方混戰！風傳媒民調出爐 吳旭智27.8%暫居第一 - 鏡週刊Mirror Media",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1hbVZsNWo3eHBhX1FudE5VSDlOanRQRXRTWEFlcWZIdjVYb0tNQ1Q2SFByUWZyelJnODNfQ3hMeXl2eDRMUE5sX190Q3Z2UDRQaFdVaUxaOHJvTG_SAWBBVV95cUxQTWRIU0EtbDVqU3hQMzR6TkVibnVqa21NcktldnBlU0xRXzh5U1BjTXJUWW52dGlYRlV5YlV6OFM3N0VfM1p0LW1XbVlUV2k1bWxBWTB6cUdTdE10NnRIcms?oc=5"
+      }
+    ],
+    "sample_size": 1068,
+    "scenario": "吳旭智、曾聖凱對決",
+    "source_name": "風傳媒",
+    "support": {
+      "wu": 38.9
+    },
+    "title": "竹北市長《風傳媒民調》出爐 吳旭智支持度領先群雄、看好度雙料奪冠！ | 楊艾喬 | 地方新聞 - 風傳媒",
+    "url": "https://www.storm.mg/article/11167314",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-09-22T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "竹縣民調鄭朝方領先6％ 黃國昌：徐欣瑩GAME OVER了 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4yaFNPaWpoY1FrWVI4YmViQmNrTlBVOGVtT2ZxSkk1bFQwdElVSUFxYlZkSW00MnBmN0d1MERWSEJ5dEJhYTlPZ1dzRmtueWpBN1FMQUtlQmRFUkZNdWxtQWxVVm1SQV83RnfSAW9BVV95cUxNaXNtMFFJajlYaGc0cnM3aDNzbHBpalZOZ3JCT2FKRVlKZFpFNjllamRDTXhTYXlQVlM3UkVwLXVNRVBFTVFna1JxVlhvR2t4a2NVRVZhZ2RCTE5scG5fdkpvcFJhR0RnanVfWGVxa0U?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-09-22T13:24:47+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "震傳媒",
+    "title": "竹縣民調鄭朝方領先6%！黃國昌直言：徐欣瑩GAME OVER了 - 震傳媒",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE52OHV6RHhsdHdKTldUZy1qb1FLa0xSWkJIOHRObWNmdFNPVEJ2cTd1WmNETmxJZTlFbUhhd29hWEV1WlBtX09tOWxfTHZfaXExVkc5MWl2MVZNNXc?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-09-18",
+    "field_start": "2026-09-16",
+    "group_key": "年代民調中心|2026-09-16|1069|county_magistrate|三人對決（另含非追蹤人選）",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5iVGtMNzdocFdONkdST01pUHJUeUdlMGZzV21DaHREUWhoeERjZjg2aUFtN2ZHQWpSTDlSZ1FpZmtnNjh4NEc4bdIBTEFVX3lxTE1GYXoteWNiY0tiblRhaUlkdkFtamhtWHVTSnlwdWNJTHVjcFNKQ2lNMFhIRDIzcnBWQ0VNRFFFaDB6VTRQUWZwZEJXMEU?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "年代民調中心",
+    "period": "2026-09-16～2026-09-18",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-09-21T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 11,
+    "reports": [
+      {
+        "published_at": "2026-09-21T15:00:00+08:00",
+        "source_name": "三立新聞網SETN.com",
+        "title": "年代民調／新竹縣選情大逆轉！鄭朝方支持度飆升至35.1%超車徐欣瑩 - 三立新聞網SETN.com",
+        "url": "https://www.setn.com/news/1910571"
+      },
+      {
+        "published_at": "2026-09-21T15:00:00+08:00",
+        "source_name": "中天新聞網",
+        "title": "最新民調震撼彈！新竹縣長之爭逆勢洗牌 鄭朝方領先徐欣瑩6.4% - 中天新聞網",
+        "url": "https://ctinews.com/news/items/D0xdQyMBnY"
+      },
+      {
+        "published_at": "2026-09-22T15:00:00+08:00",
+        "source_name": "放言Fount Media",
+        "title": "新竹縣長選戰出現公開民調交叉！鄭朝方35.1％、徐欣瑩28.7％ 未決定仍高達29.2％ - 放言Fount Media",
+        "url": "https://www.fountmedia.io/article/426827"
+      },
+      {
+        "published_at": "2026-09-22T15:00:00+08:00",
+        "source_name": "NOWnews今日新聞",
+        "title": "新竹縣長民調大翻盤！鄭朝方反超徐欣瑩6.4% 看好度更拉開17.5% - NOWnews今日新聞",
+        "url": "https://www.nownews.com/news/6877030"
+      },
+      {
+        "published_at": "2026-09-22T15:00:00+08:00",
+        "source_name": "東森新聞",
+        "title": "新竹縣長最新民調 鄭朝方支持度35.1%翻轉超車徐欣瑩 - 東森新聞",
+        "url": "https://news.ebc.net.tw/news/living/572375"
+      },
+      {
+        "published_at": "2026-09-26T15:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "徐欣瑩真玩完了？柯文哲親向鄭朝方說了「這句話」 新竹民調驚人變化曝光 | 李瑋萱 | 新聞 - 風傳媒",
+        "url": "https://www.storm.mg/article/11167790"
+      },
+      {
+        "published_at": "2026-10-15T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "新竹縣藍天變綠地？！鄭朝方9月民調領先徐欣瑩6.4個百分點 竹北政績與藍營組織正面交鋒 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E6%96%B0%E7%AB%B9%E7%B8%A3%E8%97%8D%E5%A4%A9%E8%AE%8A%E7%B6%A0%E5%9C%B0-%E9%84%AD%E6%9C%9D%E6%96%B99%E6%9C%88%E6%B0%91%E8%AA%BF%E9%A0%98%E5%85%88%E5%BE%90%E6%AC%A3%E7%91%A96-4%E5%80%8B%E7%99%BE%E5%88%86%E9%BB%9E-%E7%AB%B9%E5%8C%97%E6%94%BF%E7%B8%BE%E8%88%87%E8%97%8D%E7%87%9F%E7%B5%84%E7%B9%94%E6%AD%A3%E9%9D%A2%E4%BA%A4%E9%8B%92-083636915.html"
+      },
+      {
+        "published_at": "2026-09-21T15:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "年代民調》徐欣瑩崩了！鄭朝方35.1%支持度超車甚至有5成小草、15%藍營也挺他| 張大任| 新聞 - 風傳媒",
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE41aW1OSDF6U0tTQzVEd3FuVU5EaGlONmhpNW41S1R4by1SNEoxNTJ5Nm9UY015eU1rZFRncXFBbURRdjV3MTZUTHJrNWlQdw?oc=5"
+      },
+      {
+        "published_at": "2026-09-21T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "年代民調／新竹縣選情大逆轉！鄭朝方支持度飆升至35.1%超車徐欣瑩 - Yahoo新聞",
+        "url": "https://news.google.com/rss/articles/CBMilANBVV95cUxPYWJnbUpBaGhmaEhLdzh2cklvV2NtQVZGRHQyT1pITUpYRkRNS2JNRkxaZlFhM0N5NW1HV21UWV82RkZQMkRZU091TzBlbGdWUWVsanZHb0xHSTV0RHpmeV9kQkM4ZlNnV09SUW1qYkhGM213dGpwQ1lPZkJMaXdvSTgta09Cci1JU3NTM0cyUjFfelBuaml2dFJGWjUzcFdxU0JOZE9xTUpMY01md096WHZyMWhQZndQWl9CUERKZkc4a29tSmlxMWs3RTdfLWNTZTZOajJqVU1ldDk5M1dIdzJJS3h1c0plYU9IV1J6RjIwTzg5R2RuRzBtTzdmRENLd0lIOUxpbC10NDlHU3FtZTBRMVRHcDBPR3E4cEZ0eHlhUWJlZXhHVGpmNkY4YzhDakQ3OHo5dGx5MlVWY1Jhel92ZlR0anNjSW9lYWJfalVjeE9GZUNKOGRCX2hGTGwzRVlhcExTLXEzSnVKa1BrWl9JU3R1aUR5bG5XMGp6MXMzNzctMEh2ZVZfRHZTWmRvWWF6bg?oc=5"
+      },
+      {
+        "published_at": "2026-09-21T15:00:00+08:00",
+        "source_name": "TVBS新聞網",
+        "title": "年代民調／竹縣變天？鄭朝方支持度35.1%「超車」徐欣瑩6% - TVBS新聞網",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBGQWZzY0xPNXhXZ00yRWlWdWJDaTJSSjVmSWVDRnBTcl9RVF96Zm5vMEFLaDVYU1hhVy1fcjFla3JmVWhkczduMEdlV0FYMFdjVjJN?oc=5"
+      },
+      {
+        "published_at": "2026-09-23T15:00:00+08:00",
+        "source_name": "TVBS新聞網",
+        "title": "幕後／鄭朝方民調有起色 為何綠營卻怕被說「新竹縣贏定了」？ - TVBS新聞網",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9qaklaZWFJWnRETndRMjVUVFJ2Zmpsai1ORUhXUkVHeHhGbWFUaE00d1JuclN6RVdSN0RLNFVHanBrTG1URW4xM3VmcmhTVVRjV1dJ?oc=5"
+      }
+    ],
+    "sample_size": 1069,
+    "scenario": "三人對決（另含非追蹤人選）",
+    "source_name": "三立新聞網SETN.com",
+    "support": {
+      "xu": 28.7,
+      "zheng": 35.1
+    },
+    "title": "年代民調／新竹縣選情大逆轉！鄭朝方支持度飆升至35.1%超車徐欣瑩 - 三立新聞網SETN.com",
+    "url": "https://www.setn.com/news/1910571",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu"
+    ],
+    "published_at": "2026-09-21T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Newtalk新聞",
+    "title": "新竹縣長民調大翻盤徐欣瑩出面給回應| 政治 - Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBYVmFDMmFBTTdsLU5hYmZ1U1hoLUZEU2dNaWFUNmZ0bkNZOThqZ28wSlBzckFfTWZ3c1YwNkxLUWxCYnROMWZ6ajZmeGNlcE95TW56TzRZcWh3S0k?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-09-21T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Newtalk新聞",
+    "title": "竹縣長民調翻盤！鄭朝方支持度超車徐欣瑩 「看好度」更狂勝17.5％ - Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Icm9LTUFtUGs1aklzcVhkMXRxWXJvNnFSN1BCamZfVlIyQUxzYzdsdjNoTGg1LUtKU1d6S1VYam11TkdEZlNUUUtvM1VMTnFkNEw3dHlXZllhXzg?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-09-21T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "新竹縣長民調鄭朝方大幅領先！黃國昌嗆徐欣瑩「GAME OVER」 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxQbWlUdlI1RVhGdndlZ0huaElxckoyOHBhbW1JQzBBM3g0VXRiN2xCLXZJam1FMnZyRmFKWFhJMUFfcmJmWGE1VEtaYVFNREEtX1cyeUszUXpDdFkydEtBNWpGQ0JMRDFXdXBpeGhhd0x1T0kxWmh3ejJHV2hyZGV0LU9ISmMtRWN5dV9MODRLZEp2cjVfNHVYVkU0OGtZX2ZZSm9mZTk5QXJzaU9SSkVUYUdYYVZiZG9EVDNfM1k4UHJOanZjTk1XcDN6XzBHelJWREd2YkxkWlRRSFY2WVF2RXg1cTNvYUM4Z0RQSVMwdC02STh3TEtxbmV6WkJtX184NFlBNGsxdVVnaUV3Q2Fjb3pWR0NLdWJLZGhvU0UzbGdDY0dsb3Z0U1lFVkYyWUhTaG9OcV9sd0xBYnVGbEd0ZkdRTWF6VFZhWU5ENnRkWHFUZw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-09-21T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Newtalk新聞",
+    "title": "新竹縣長選戰民調超車徐欣瑩 鄭朝方有最新回應！ - Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9TcWhYaGExOVRLLTRtM294Nk5MZmlNcXE4VU9COHpjSnZLUU1YZDJ1QmJHNHFoUmNCSFBJLURxZmF0bDNRTGsxeGtNYjJKN0xmRjFWemFSTm9fWjg?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "zheng"
+    ],
+    "published_at": "2026-09-21T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "新竹縣長民調領先 鄭朝方：縣民對會做事有感 對抹黑選舉無感 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5jQWE5X0ZMZDVQemFwcU1hX3lDN2JEMVZnWVVocXMxOXl3NmtMN2VtMFNORzFmcEhmX2RMY2l5a2J1RHZaYklUNUVkbjNlRUZ4Y1hwZzBwcFdWMGxNSmZ5ck1vUlA5eld2UkHSAW9BVV95cUxOb0stR1ZsTzJwdGhkQWI5bW1RNUNyWUdpbWI4WkFJTXkyRWp0Z09xQ3I3cnRlSzF2YlJ0eF9INlNpRHVka0QxLWhJMVJvUC15LWFZT0xHRHpiVzh6bC1QLVF2QmNUYzMxN2hqdDRRVDg?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "link_resolved": true,
+    "news_url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxNVDhKTzZXYlQzX0huV1hrQ1NLM0ZjMW1la2RaeWRvYk1RUXlpNzh0cU9RbVY0ZlVTeHNaUGtQQUNYNEJ4U0tOLTNhUWFDUVR2aFJndjRwRnI4VFU0a09QZzNhR0NxaUxVZUpmeWVaQ29VX1hHSGlCWTN4WjZXQUZXOXhSeFlIZ3V5WDFWVnZjdFZmOWx2N24yejVzRHZSZXFacm1QeU45T09sTWl6Yy00UmpoWUhMeTgxZWhTbHJBRGFRRWJOTE9LdDhiaFFvX1pBQTVReXI1ZV9DS1dFV3VpY3pkNDlqT0ZKVEM2MHNJY04weEdpTnlHaEp5ZkVDekhQbUZTTmxjZFA1dF9QT3A1SXF2dTlQX1hndUMtS0x1MXg?oc=5",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu"
+    ],
+    "published_at": "2026-09-20T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "新竹縣長民調大翻盤 徐欣瑩出面給回應 - Yahoo新聞",
+    "url": "https://tw.news.yahoo.com/%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E6%B0%91%E8%AA%BF%E5%A4%A7%E7%BF%BB%E7%9B%A4-%E5%BE%90%E6%AC%A3%E7%91%A9%E5%87%BA%E9%9D%A2%E7%B5%A6%E5%9B%9E%E6%87%89-044216327.html",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-09-13T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "藍白分手竹北民調領先 吳旭智：堅持把事情做好 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBBdkFZOENhd3UyTDY5NTdSb251OU1uRDdYV3ZsbFdvbzlDR05PX0tBdFprSmZBUlhLeXRuUmJGNlJNSzZQcXBGQU9nMGUwSzlSSGJWbTNXRDMwN2RaQVFJdWRfZVh5TU0zcGfSAW9BVV95cUxNdVpSeGdXZXNYbk9OQklsR1NENVZNcERSRzdqNDRJTkp1SHE3Yi1Pb09NU2RheUEyZDVaelVNQmdKYk1NaFhoYllaX3JZcVJDTl9VWXRoT2xvYjV3QklQYkVhMTBRbldRdjZFcW5paUE?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu",
+      "chiu"
+    ],
+    "published_at": "2026-09-13T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "華視新聞網",
+    "title": "吳旭智民調贏邱臣遠11.6% 吳：參考邱：與民意有落差- 政治 - 華視新聞網",
+    "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5NMDJfdTZYU19QUXZodUUyR01PWnpoUk5ldWJ4U2hCeUNDSTVxYVVnZ1BqbnVSWGdHYVM5eFNOWlR1a05vZ21lUnFRSFdxa2dmaHlsMjlyQnI2NlhqTUFYV0VmbFFRdXcyLUR3aVRiVWExdw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-09-13T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "UDN",
+    "title": "藍白分裂民調仍居首 吳旭智：爭取的不只選票 更盼市民信任 - UDN",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBfR3dqMVVkREtTSEdUZ1ZmZkl0MlZJRExrbjM0Um5YUzBzQ3hqMFYwU1pQajhRS1UwTDlnRmhvWmdiV3RGcHBhX2oxOFhBc1dWUU5Z0gFYQVVfeXFMTTg3cUh0UHBpRlpKYUVrT2R0RlptYzdZVFkyOEUxVGpEaTl5ZmhETDZoVXJTQlB0R1dhX1F0Wk54ZWlGSm1jcm1ueTNxbXo5WDIzZERZVHJ2RA?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "美麗島",
+    "period": null,
+    "person_ids": [
+      "wu",
+      "zheng"
+    ],
+    "published_at": "2026-09-13T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "美麗島民調緊追吳旭智獲年輕人支持 曾聖凱：延續鄭朝方好施政 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBjVnJnV3pyOEVKRUhOSG9hS0RKSUlNaXVyZmdTbVMzeGJrcDRuMno5ekF3cHdkZlVrSmJtd2p5WDZrTVV1UmdmekRJYzQ2d0ROT0RpeUZqSllTYTFGXzBxdWVIcXdNU2ttWnfSAW9BVV95cUxQbTRGM2xBbDVnbUNRWmI2SDhNNzdJeS1RWUlQNFJ5aUx6WEdLV1h0ZnVqdmZaem84ZUZlblJidnlTODJIQ0FOTi01aGh1MGxOb25PcmpTb0pyVlhLQS12YUp3dlBfVzJBbXMwRUJZTU0?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-09-13T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "LINE TODAY",
+    "title": "藍白分手竹北民調領先 吳旭智：堅持把事情做好 | 自由電子報 - LINE TODAY",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9EZDhNNDRGdk5hdkt5V2xUcllIcTQ1bThHMzhtYjBYWTJ0UUZncE02Q3ZjR2VzY3BYUVQ1NWdkM2JaaGc2ZWE2N3diMkRmeUF3Qm13Rm5n?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-09-11",
+    "field_start": "2026-09-09",
+    "group_key": "美麗島電子報|2026-09-09|1071|zhubei_mayor|四人對決（另含非追蹤人選）",
+    "label": "民調",
+    "matchups": [
+      {
+        "other_candidates": [
+          "曾聖凱",
+          "邱臣遠",
+          "李貞秀"
+        ],
+        "scenario": "四人對決（另含非追蹤人選）",
+        "support": {
+          "wu": 29.0
+        }
+      }
+    ],
+    "moe": 2.99,
+    "notes": [
+      "執行單位不列「趨勢民調」（原報告未確認該完整字樣）。"
+    ],
+    "numbers_hidden": false,
+    "org": "美麗島電子報",
+    "period": "2026-09-09～2026-09-11",
+    "person_ids": [
+      "wu",
+      "chiu"
+    ],
+    "population": "竹北市",
+    "published_at": "2026-09-11",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "report_count": 11,
+    "reports": [
+      {
+        "published_at": "2026-09-11",
+        "source_name": "美麗島電子報",
+        "title": "美麗島民調：2026年9月竹北市長民調報告（吳旭智；DOC_229143）",
+        "url": "https://www.my-formosa.com.tw/DOC_229143.htm"
+      },
+      {
+        "published_at": "2026-09-12T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "難怪國民黨不想禮讓！竹北市長民調震撼登場 「這人」支持率慘淪老三 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E9%9B%A3%E6%80%AA%E5%9C%8B%E6%B0%91%E9%BB%A8%E4%B8%8D%E6%83%B3%E7%A6%AE%E8%AE%93-%E7%AB%B9%E5%8C%97%E5%B8%82%E9%95%B7%E6%B0%91%E8%AA%BF%E9%9C%87%E6%92%BC%E7%99%BB%E5%A0%B4-%E9%80%99%E4%BA%BA-%E6%94%AF%E6%8C%81%E7%8E%87%E6%85%98%E6%B7%AA%E8%80%81%E4%B8%89-103232227.html"
+      },
+      {
+        "published_at": "2026-09-12T15:00:00+08:00",
+        "source_name": "中時新聞網",
+        "title": "藍白分裂竹北市長選戰最新民調曝！他微幅領先- 政治 - 中時新聞網",
+        "url": "https://www.chinatimes.com/realtimenews/20260912002567-260407"
+      },
+      {
+        "published_at": "2026-09-12T15:00:00+08:00",
+        "source_name": "中天新聞網",
+        "title": "竹北市長民調／藍白若分裂吳旭智險勝 曾聖凱緊追現逆轉危機 - 中天新聞網",
+        "url": "https://ctinews.com/news/items/vNWOQ0KXxw"
+      },
+      {
+        "published_at": "2026-09-12T15:00:00+08:00",
+        "source_name": "上報Up Media",
+        "title": "【美麗島民調】竹北藍白分裂最新民調曝光 吳旭智29%微幅領先曾聖凱25.2% - 上報Up Media",
+        "url": "https://www.upmedia.mg/tw/focus/politics/268717"
+      },
+      {
+        "published_at": "2026-09-13T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "竹北市長最新民調出爐！吳旭智：持續努力 邱臣遠：意料中的產品 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E7%AB%B9%E5%8C%97%E5%B8%82%E9%95%B7%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF%E5%87%BA%E7%88%90-%E5%90%B3%E6%97%AD%E6%99%BA-%E6%8C%81%E7%BA%8C%E5%8A%AA%E5%8A%9B-%E9%82%B1%E8%87%A3%E9%81%A0-%E6%84%8F%E6%96%99%E4%B8%AD%E7%9A%84%E7%94%A2%E5%93%81-083826728.html"
+      },
+      {
+        "published_at": "2026-09-13T15:00:00+08:00",
+        "source_name": "中天新聞網",
+        "title": "竹北市長最新民調出爐！吳旭智：持續努力 邱臣遠：意料中的產品 - 中天新聞網",
+        "url": "https://ctinews.com/news/items/pRnYgw89aY"
+      },
+      {
+        "published_at": "2026-09-21T15:00:00+08:00",
+        "source_name": "中時新聞網",
+        "title": "竹北市長民調藏玄機!吳旭智領先但吳子嘉驚人預言他當選機率高- 政治 - 中時新聞網",
+        "url": "https://www.chinatimes.com/realtimenews/20260921000119-260407"
+      },
+      {
+        "published_at": "2026-09-12T15:00:00+08:00",
+        "source_name": "中國評論新聞",
+        "title": "竹北民調 吳旭智領先曾聖凱、邱臣遠 - 中國評論新聞",
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE04MF9DdzlkVVpHbTdPZjVJb0o0dEtSTXppdVBNTGJPQUJBWDZIU0wycHpFNXRSektDd3FXcWs3QTNKRGxHOXNrZXd4Ym1MTXVqSWZtVkxLdEY?oc=5"
+      },
+      {
+        "published_at": "2026-09-12T15:00:00+08:00",
+        "source_name": "上報Up Media",
+        "title": "【美麗島民調】竹北調查9大政治人物好感度 鄭朝方64%稱冠藍白全數落後 - 上報Up Media",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE51cGdHb180Zko5TEtxSm9SMEtHX1ZVdHZhYlhrVy1ZMzF2cHdaaVBqQnVqUE1qQWRTdHJMazJ0cTZFQ1ZvSEpCbk9lbjdxMkVWVG1aUUpiOGxNN28?oc=5"
+      },
+      {
+        "published_at": "2026-09-12T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "【美麗島民調】竹北藍白分裂最新民調曝光 吳旭智29%微幅領先曾聖凱25.2% - Yahoo新聞",
+        "url": "https://news.google.com/rss/articles/CBMiowNBVV95cUxPM29nREZENEdneFA3b19XRG9VcGo1UzU0NmFlc2gxdWVlUlN3ekhtejFWNHM3b2h0V19PNDR1NllUV1RpVXpDQ0FlS3JyeC1rYmpEQTVFLThzMWJUWUFSUGtsYWdrb1RhQnNGUjhMTHo1RG5tMUdSaUZwYmFiS0hkalcxN1Z4LWhiZnJSeFZRWXZZQkNHanVxMWJVSkZLS1o1S2dyd3JqMXJ2ZXhoMXBPU2hPdk9IN24tV21VU3pNRFZseVFubDBGcUEydWJXT1ZteGtKM1h6ZV9FcXdyZ0NETDhJQmtBc0dpZHRPRmZUdEE0MTEyOFU4TEdKQldsVFJKZG5FZ2l2Tms1RDZ4dXNyV2xRZHRRTUtVa0k5ZmtlR19Ldkc3QXhZUzFGc2w0blY4ektMQUV4X1NyUVhaQnMwRXJ1X1M2cG45UENSUmJUckx2Y2xGanVJVDRiWThHZDNKMXpwd2RHRDRHQTZINTlBZmFVc0tTU1RrYl9GUHVuS2d1NWFrZnJkMXl3TG9XT3ptYWhnM0pQaEFBTDRhY1hnRjltRQ?oc=5"
+      }
+    ],
+    "sample_size": 1071,
+    "scenario": "四人對決（另含非追蹤人選）",
+    "source_name": "美麗島電子報",
+    "source_title": "美麗島民調：2026年9月竹北市長民調報告（DOC_229143）",
+    "support": {
+      "wu": 29.0
+    },
+    "title": "美麗島民調：2026年9月竹北市長民調報告（吳旭智；DOC_229143）",
+    "url": "https://www.my-formosa.com.tw/DOC_229143.htm",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "chiu",
+      "wuzijia"
+    ],
+    "published_at": "2026-09-10T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "UDN",
+    "title": "吳子嘉明公布竹北民調邱臣遠：削弱白營參選正當性、操作棄保| 2026九合一選舉 - UDN",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5YWWswcEJpSEZsRTFuUVhoUFNRU3E4b3JaYUtuQlJYc3NtcFE5eFFzYzJwVG54U0E0bEJhdFE0UjRMMXdlWlFCdmx1X2lDM0xEMU5WbkVn?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "chiu",
+      "wuzijia"
+    ],
+    "published_at": "2026-09-10T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "吳子嘉明公布竹北市長民調 邱臣遠：削弱白營參選正當性、操作棄保 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5tNHdyV3ZRYUktYUNnRFhwdVp0WVYydDRnbzhEQUEwTlZsSTByRndGZ2dLOXBvVTJjd0JrSE9HXzh2dGpDRk9kNUVCWGlaODVyeWtOS1NRa3c3X184VzhaempHODVmWjhjRkHSAW9BVV95cUxQSU1zWTZpUzB5cVpTVUNSV2MzRm5faW4yQWVEcjRDRlpzVENXdXNYb0NzR1RBazhobEFlV0NNOVUydXBLNFZzVFA5UENRdFdxZkh6Q0ZVc0I5Rko1dWI5bTNtYmZxMG9TWWhTaUE4blE?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "chiu"
+    ],
+    "published_at": "2026-09-09T15:57:27+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "震傳媒",
+    "title": "評論／緊咬失信！黃國昌爆徐欣瑩民調崩盤 尚毅夫：藍曾拿籌碼交換邱臣遠退選竹北 - 震傳媒",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5pOHJReE1wQ2ZzXzBtWlREZ2FkVFlSWGswYUp3Y1ZZRVZaV1RrZE5uRHhuUnZ5MDhzQkptWXpmT3ZWRW5PSkxpSGVYOXB6OWpjRHhnejV1Y091Qmc?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "TVBS",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-09-09T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "TVBS新聞網",
+    "title": "曝新竹縣長民調「徐欣瑩慘輸鄭朝方」 黃國昌認竹北藍白合無望 - TVBS新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1sZlkyTjVEcVBBMmladnZ5UGVPREV6cXpYRVJNeFRoa2h0NHRaMWZsT3FnWER5TVlyRmIzT1FfMDFnN092Wmc3T21IRG1xXzRNNlNn?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "wuzijia"
+    ],
+    "published_at": "2026-09-09T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "「徐欣瑩的民調已幾乎崩盤！」黃國昌轟她找吳子嘉當打手：沒想到還有這麼蠢的招 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi4gNBVV95cUxNU3FYSWxwajZBVW8yOXVLakxoX210UFNHQ0o4dl9UQjdFUE96dW5GdTNxd2pZNHhWcEk3NTB6VG9lMmUtTlNIWnVvVXAtdDRxcDMtUVExbUdWXzZLSENleWl0TzNBdF9Kbk5PTEpoYUhqUjB2aEJiSjVOYW9ScV91RElLc1FfMjlZTVYtUUpmY0dQMzBJYXJNY05qYlpvVlRTUWx1R2JhZmxNR1VQQWszNVNGWkdrUHZJLXJ5RzJiUTk2RWxlOF9qZV9aeDVNaGJlejJqM242dXNZYzk0R1dvZ05RYUFNT0VKSG85LU5EbWxWR0RkU01COVZGNF9IMkE0akNCSlQwTmdncFpFY1JDUzlfV3QxdWVxTlNkamg3RnBZcERIc1hiOVQ4VG45RTUwdjd2U0h1dUFWWkZOT29VMUFDN05RbWVzdkpaU2JtdUJqRlVhT2NGeFpTQzhXTzdJTlhxdVhRQ0xkRG5LbENJV1YzZ2hTeTgxTVZ4SVRGaFR6b1lBRkw4RGZwN3dtT1IwUlkwMk1vd3hlWGFMV0YtNHU1eWtOdG0wTzM1dE9SdGJKMDF6MkpkQUk3TE9EcUZXcTZuSDEwS2pZNERsWEpJM2V3SEZfZUxURjhqNGpURnlWQQ?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-09-03T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "上報Up Media",
+    "title": "吳旭智完成竹北市長登記 喊藍白合未破局：民調方式都可談 - 上報Up Media",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1mZE5wTTkzVWRvYVF5UDdvNHBGb0FrT25Mc3o3cEExR0QzVTUtU2VQTlFLaTE0OVloZUhpLVE4bV9aR1NiM3lKLW1EeEJhOTR6TW83SHV3YU8zQ3M?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-09-02T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "上報Up Media",
+    "title": "談竹北藍白合 國民黨吳旭智表態：民調或協調 保持開放態度 - 上報Up Media",
+    "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1zenlBZ0Y2bGo5Wkp2eU1rVy1icTE5T2hnMHBydHRZbTAzakI3aXR3a1M5UzB2elVfSTFuVjFyZi1ieVVZaDN1Y1pVeTY5WVNLV0VSSm0tRUVFMUczd3c?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu"
+    ],
+    "published_at": "2026-08-30T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "風傳媒",
+    "title": "民眾黨禮讓縣長換竹北承諾一場空？他曝藍曾做過1次內參民調：徐欣瑩轉頭反悔 | 張庭維 | 新聞 - 風傳媒",
+    "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1CSkNzUUZyS0JLTzE0SkxDQW9MaGVNdlFFQ1hxSHU0R3VZa3JQMHNGNGFjSkRFREtfc2d2SjlkSDdEa0ZDRk9haEVvNmlnUQ?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-08-27T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "《選戰專題》竹縣翻轉機會大？鄭朝方多份民調領先徐欣瑩至少5%！竹北曾聖凱有兩劣勢需回防「老家被掀」 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMixgRBVV95cUxQdEdJdU5EQ2J4UnpocEpaMnNROVhPd1R6bDR6aFIyeHVseG8wdjBLSjYwdDZsRUZWeHBEU2NsSFZFZTJma0MzdEdaVEloTXF5clpzNk8yX1FVaDF2VUxVRms4RDJxYWljS0R0ejNWcnhSODhTalk3MDRRdjRIQUxiSklVOEpMLXBmTUh3aU1VVWV4N0FRNl9yb3FHVkx6ak11aTFSVXZmTnZhcGxlb1lZUllGcE9FY1NlMnNhOXpKWTJ0RDU1V1g0V1lsQzRoX29NbW00d3RfbXBPdE90RHhlb0ZFZGc1S3RoVUkwVnl4UVQ0VFF3blJCbm1EbXhVYzYyZEVSYklfY2kwYzh0VThOQ1RrZmloSVc3V2p2UUlpbXZlWHgtcTRGR1Qza1ltTVN6ZmJHVTROaGJxZG9NN3JDOHJyM01rTGltOTlqcW1DbnoxUWNpazZOdTNSOG9vMEVNZHdtd2M3MVh1eWpwRU5wR0s5MGFPVW9XdUozcmRLMzNJX1o0Wmx6cUlZVm42OWpKQlBGbkllc0xpUUdHMktKMTJDbnFXWkx2Wk5fZnYzR1JuZ0hFSFFNdmY3d1lRUmZBemJzMkxDSjl1UnNlSFpKU2tQVk5IR0k4ZUhfUmVTZlJnQkhmMjEtQ0RQOXhBeWJQRTFzTzZzenNueDFVWEFwR3FmZ242UndwV1ZaOHJiaUdibm5MRUxkXzFPWmdGT1dmUmd1N2NWbWdDNy1XNnlFTnhSbWJhOXRhZ1dOb082YkhpdDJ1Q0E?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-08-20",
+    "field_start": "2026-08-18",
+    "group_key": "精確市場研究|2026-08-18|1070|county_magistrate|徐欣瑩、鄭朝方對決",
+    "hold_released": {
+      "at": "2026-11-10T14:57:09+08:00",
+      "evidence": [
+        "https://www.chinatimes.com/realtimenews/20260821004413-260407",
+        "https://cnews.com.tw/247260821a05/",
+        "https://news.pchome.com.tw/living/imedia/20260822/index-78739340063852287009.html",
+        "https://news.tvbs.com.tw/politics/4010909",
+        "https://www.my-formosa.com.tw/DOC_228684.htm"
+      ],
+      "reason": "機構已釐清：精確市場研究股份有限公司於 2026-08-21 公布「2026新竹縣長選情評估」，中時×2、匯流、PChome i-media、Yam、梅花、TVBS、Yahoo 等多家轉載同一份調查說明（辦理單位、期間 115/8/18–20、有效樣本 1,070、±3.00）；美麗島電子報 DOC_228684 僅依「2608137」原始交叉表整理、未自稱執行單位，其期間／樣本／誤差／全部數字（41.4/38.1、38.7/33.6/12.6…）與新聞稿逐項吻合，兩者不衝突。委託單位各報均未載明（PollTrack 亦標未知委託）；精確本身的官網原始發布仍查無。",
+      "verdict": "CONFIRMED",
+      "was": "機構待釐清：新聞稿寫「精確市場研究」，但美麗島電子報 DOC_228684 只稱依「2608137」原始交叉表整理、未提精確；找不到精確本身的原始發布 → 暫列民調報導、不顯示數字"
+    },
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMiggNBVV95cUxOYm4yVXU1Y0VfVmRVRGRiZjhsa3pZV2ZhWWRVcGFGZDN3YkpWaGtBaHdpdnNMMkpLaDZ1T05YMFlLSHZORUdTMFpUN25FTHlOd2xlWFpuVUtwS2lSdWdYSGxxN1JuYVk2aC1EUmw5alU0MlBzRkZWY3RxaWZPal9SNHVZZWt0V2NWb3ZNekRvTEVubWE1bFJnZkpNc04xdExnN21YcWVnVUh0VHhsdzVwdkl2elg5TXBUNV9aQWI5Q0UwM21TeGtPcXU5Ty15WEVUUnpWZWpTVlQ5VmQ1QzdWQW9KeU5nV19wMmpuQnNzSjNOd0JPUmZhczdPT1NUNHYwa1N0dkpCWERsVjZGSXlWR2g3eEVZRWVUM2hoZnotMDJSLVFqT093ejZjZTFiUUxvWVRCQjVKVFltU3pBWUdLXzZIT3VGSExqZVczOWE1Xzhfc3FzRlBZZFJadWRSR1lmWE1ON0VWaFBxeG9mQlc0UFRkYzdXekpOdEt5WVdZVXFSZw?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "精確市場研究",
+    "org_note": "美麗島電子報報告編號 2608137 未點名執行單位",
+    "period": "2026-08-18～2026-08-20",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-08-21T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 5,
+    "reports": [
+      {
+        "published_at": "2026-08-21T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "新竹縣長最新民調曝光 徐欣瑩藍綠對決、三腳督皆贏鄭朝方 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF%E6%9B%9D%E5%85%89-%E5%BE%90%E6%AC%A3%E7%91%A9%E8%97%8D%E7%B6%A0%E5%B0%8D%E6%B1%BA-%E4%B8%89%E8%85%B3%E7%9D%A3%E7%9A%86%E8%B4%8F%E9%84%AD%E6%9C%9D%E6%96%B9-102528632.html"
+      },
+      {
+        "published_at": "2026-08-21T15:00:00+08:00",
+        "source_name": "中時新聞網",
+        "title": "新竹縣長選戰最新民調徐欣瑩PK鄭朝方差距驚人- 政治 - 中時新聞網",
+        "url": "https://www.chinatimes.com/realtimenews/20260821004413-260407"
+      },
+      {
+        "published_at": "2026-08-21T15:00:00+08:00",
+        "source_name": "中時新聞網",
+        "title": "新竹縣長選戰民調 藍軍翻轉？ 吳子嘉驚：非常可怕的數據 - 中時新聞網",
+        "url": "https://www.chinatimes.com/realtimenews/20260821004548-260407"
+      },
+      {
+        "published_at": "2026-08-22T15:00:00+08:00",
+        "source_name": "PChome Online 新聞",
+        "title": "新竹縣長選戰最新民調徐欣瑩支持度41.4%領先鄭朝方- 生活新聞 - PChome Online 新聞",
+        "url": "https://news.pchome.com.tw/living/imedia/20260822/index-78739340063852287009.html"
+      },
+      {
+        "published_at": "2026-08-28",
+        "source_name": "美麗島電子報",
+        "title": "2026年新竹縣長選情評估調查（徐欣瑩、鄭朝方；美麗島電子報交叉分析 DOC_228684）",
+        "url": "https://www.my-formosa.com.tw/DOC_228684.htm"
+      }
+    ],
+    "sample_size": 1070,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "Yahoo新聞",
+    "support": {
+      "xu": 41.4,
+      "zheng": 38.1
+    },
+    "title": "新竹縣長最新民調曝光 徐欣瑩藍綠對決、三腳督皆贏鄭朝方 - Yahoo新聞",
+    "url": "https://tw.news.yahoo.com/%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF%E6%9B%9D%E5%85%89-%E5%BE%90%E6%AC%A3%E7%91%A9%E8%97%8D%E7%B6%A0%E5%B0%8D%E6%B1%BA-%E4%B8%89%E8%85%B3%E7%9D%A3%E7%9A%86%E8%B4%8F%E9%84%AD%E6%9C%9D%E6%96%B9-102528632.html",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-07-28T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "上報Up Media",
+    "title": "綠營內參民調鄭朝方領先雙位數 徐欣瑩辦公室：與地方實際支持度落差很大 - 上報Up Media",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFA1QWtfSEl3ZWpQTWJXck1WVXN0LWM3RmtUYnVaNXJmZ2VRODgxN3BzRGFTSmhybnF5RFp0TjFMQW5jbVJkR1VOUlNKcXd5cGw3QVdvbnZYdy13S3M?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "TVBS",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-07-28T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "TVBS新聞網",
+    "title": "只差1%！綠竹縣內參民調曝 鄭朝方狂追徐欣瑩呈「五五波」 - TVBS新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBVc3FRS0NJeXQtU1hBa0UzSHJuTUxCbzl5NS0tcFQ4NkpwVzhTMFd4Yml5clVwS3NHMlo1STRyQUVIMG82SWVYRzNmSmRoM2g3eGdz?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-07-26T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "上報Up Media",
+    "title": "【獨家】鄭朝方竹北政績帶動選情 綠內參民調「超車」徐欣瑩雙位數 - 上報Up Media",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5iY0ZmQmFNRXlmSUVBSXM1M0FwbTdNajU2NnZsdi13UEFuYTduSWNaS1FnM1BaVW00UllDd3Jsa1hrTTBfLWFuM2tua0pJcHVwWU53cldKX0JESFY0QUtnWGVTUHNTZw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu",
+      "chiu"
+    ],
+    "published_at": "2026-07-17T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "上報Up Media",
+    "title": "【內幕】竹北市藍白合卡關 國民黨內參民調吳旭智「兩位數」輾壓邱臣遠 - 上報Up Media",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE03SHhRT1ZhUkx0cUhBWkQ2ckpWTmxmTEtrSVhrbjlQTFdRMTZEVHdnVk11ZVl6c3dTWmpXSzMxNlFwMVd1UU45Q0luQkp2TW80NlM5OFhKZ0VuQldyZjlrejdfRVA0Zw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-06-29T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "鄭朝方出戰新竹縣不是亂棋！民調逼近徐欣瑩 黃益中揭2026新竹勝利密碼 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMitwNBVV95cUxQUW0zWHBJUExBRlp2WjhFSVVOZ0tBdFZKWU9FQzM0WEE4MWpyaUxyLTVPRXVDSGhWN0REX0FuWS1saW9TNi1mb2JwN0llTzhGTHR6TXMwMVhiQzY1RHlyajBFVDRyYlBBeGc3SXFCZTBTNkx4b3lzby1KRXFLLWl4eVpJMzlyMExweE13QThqQVJkSmFFVFNTbUN4ZVpJaGozd3d3QW1rU1N3RDE0OGdsWjJKVU1FcFRDWW1GeGw1blNNTVJYME9IbGEtdk1EN3F5T2d4cU5xRGthLVdOaHFJbFM4ajNMdFlFaDZCSUM3VkJMelE5QVRiY2dtSE5OT0lmbVR5RjBLd29qTkVfZHRLa1JFcDFPLW01UmM1NUhIRHZMRlV0Q2FDcVh1WWF5YXJkUGZzbnRVUWtsWWpHb2VHc1BuREVVeWVCRTd6ejY5VmE4S3g5d3BsV0g4bG5xQ0Yzek9ZSVdqNWZ6ZFVna2ZEN240R2VfWnA1Z3Y2TmtLT3h3UE1WNHlLQzFxMTk4czUwZGRjOGlFdnpocG8xNl9qVklRRGViTzAzZWxUSHZOZ0RhOFRFM2dV?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "TVBS",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-06-18T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "TVBS新聞網",
+    "title": "新竹縣起風了！鄭朝方親曝內參民調：與徐欣瑩在誤差範圍內 - TVBS新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5ycy1vZHBReTY5WkZLZ3hkeURDa3k3TlRYeTB0V05lSjlMcm5UblVRYzFRSnR3dHJPeFBLOTJyNTB0V0t3ang0c2JfLXNVSzNOazdF?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-06-16",
+    "field_start": "2026-06-14",
+    "group_key": "年代民調中心|2026-06-14|1068|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMinwNBVV95cUxPVE5taFRLbHNNdUNTaE5TTDNhdjNBOVc0Z2I4eHRtRndMOFhjWXg0aHktMW4wOFhWNm43bDhLcTN0bkxaSDNPek5SZXY5eENJaHMtbVdmOExibGRhNEZfU1dUYmM0TjJLUG5fM0p3NTRSX0ZyQk5scVN2bHRzQXh0TEIyUlpqb0hDS00wTGhmVzlsUE9zVEs4cG9mT1Q3a0pibmpwNVd3ekxGeTVmQnRPRDBReS0wV3JaWjlNODhWUEpGdGpDclRUcGNDWF9NWWJzNm5MRUFRNzQ3M3pEd0s2NnBOSlhsUmhRVlY1OU00YjRGd0xJN1ZGb0gxQWpDQTBkaUV5cEp0N2hhdTBqSjZHQzVTcGl0V2EyeFNjN0xlQmV6NFJVM3BKQlNza3V2WHJiTkFQTDhKOW5lUmJCNWFOTk1XcTNtc1dTX0lMTU1qYU84SWRuRlAxVXY3VjdpZTl0UFR4dldrUUF5WFBJbmNjck5WVzB4V041YlZUcWVSMVlKUUN5MVUxVUw1WXA1QmtCTU5sWFZIVFlOU2h1Ukxz?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "年代民調中心",
+    "period": "2026-06-14～2026-06-16",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-06-17T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 3,
+    "reports": [
+      {
+        "published_at": "2026-06-17T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "新竹縣長選戰最新民調出爐！徐欣瑩、鄭朝方僅差1.8% 這族群全面領先 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E9%81%B8%E6%88%B0%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF%E5%87%BA%E7%88%90-%E5%BE%90%E6%AC%A3%E7%91%A9-%E9%84%AD%E6%9C%9D%E6%96%B9%E5%83%85%E5%B7%AE1-8-%E9%80%99%E6%97%8F%E7%BE%A4%E5%85%A8%E9%9D%A2%E9%A0%98%E5%85%88-034800969.html"
+      },
+      {
+        "published_at": "2026-06-17T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "鄭朝方民調緊咬！竹北盡佔優勢卻藏1大隱憂 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E9%84%AD%E6%9C%9D%E6%96%B9%E6%B0%91%E8%AA%BF%E7%B7%8A%E5%92%AC-%E7%AB%B9%E5%8C%97%E7%9B%A1%E4%BD%94%E5%84%AA%E5%8B%A2%E5%8D%BB%E8%97%8F1%E5%A4%A7%E9%9A%B1%E6%86%82-042856829.html"
+      },
+      {
+        "published_at": "2026-06-18T15:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "新竹縣長選戰變天？黃揚明揪最新民調疑點：徐欣瑩可能「一步輾壓」鄭朝方 | 李瑋萱 | 新聞 - 風傳媒",
+        "url": "https://www.storm.mg/article/11142524"
+      }
+    ],
+    "sample_size": 1068,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "Yahoo新聞",
+    "support": {
+      "xu": 32.3,
+      "zheng": 30.5
+    },
+    "title": "新竹縣長選戰最新民調出爐！徐欣瑩、鄭朝方僅差1.8% 這族群全面領先 - Yahoo新聞",
+    "url": "https://tw.news.yahoo.com/%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E9%81%B8%E6%88%B0%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF%E5%87%BA%E7%88%90-%E5%BE%90%E6%AC%A3%E7%91%A9-%E9%84%AD%E6%9C%9D%E6%96%B9%E5%83%85%E5%B7%AE1-8-%E9%80%99%E6%97%8F%E7%BE%A4%E5%85%A8%E9%9D%A2%E9%A0%98%E5%85%88-034800969.html",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "TVBS",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-06-17T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "TVBS新聞網",
+    "title": "民調／竹縣最新戰況！徐欣瑩32.3%險勝鄭朝方 差距不到2% - TVBS新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFAyT213d05NLUM5b2JuSGlEZ1YzcEI5bDVTbm9hbGI0VkVoLUxabER2cDd3ZVpwdFFCM2Y5OTVBT1M1bGpXVXE4V01QNkREY1ZtT3JN?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-16T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "藍營竹北市長民調出爐 吳旭智勝出 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5yUUw1U3NKZXI1MlhZTVJWdXV3cEFpLTZyejByN0tIbjlHdDJOM01qWEVNLUxmTXp0QmItU2ZMeU5vSllMaFpzYW50MEpqMlp5ZjVDUFotMExWVlNJcjJaZdIBZkFVX3lxTE5OM1V1WjhzTnM5dER1MkNWUnFVajYxTVFaUUNaZmthMENybFNrek53NUVSQzBOSndVbjhXdEMtVDBnVm5iZlVoWWo0NVRKUjRnTVNIWDhqNTNIY09GXzR5X2lxZWF5Zw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu",
+      "chiu"
+    ],
+    "published_at": "2026-06-16T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "梅花新聞網",
+    "title": "竹北市長藍營人選出爐！吳旭智民調勝出 下一關藍白整合對決邱臣遠 - 梅花新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBzRU1WZUo1MTFHSWZXcllPX0o3RU5CMTNvZ0pWNjVYSWhKOHhWeURsMFMwRDl4b3lzRXplaXF5QlU4dVNDeDVuTDRTY09JZE9JN2dGZl81Ylk?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "UDN",
+    "title": "國民黨竹北市長內參民調出爐 吳旭智勝出拚藍白整合 - UDN",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBrekpLSE45MnBWTHpUM215cnFaRTNvWTZfVnlCbkJ5ZEVRZF9tMm5LRGxNSXFfVm1uSE5VWjdDMGo4UzdtS0lMNmhJeXMtUjdsaDFB0gFYQVVfeXFMTTBJUXdwbHNXRWJMcWRtNmQxYm5mZVNRZ19OSjFDeFVYaDlpRWpKR3FmOWZPaC01SldKdzhWVjVub2UyRWJxWWo4aWtNVjRvTHVxU2NsN2gtSQ?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "藍營竹北市長民調吳旭智勝出 楊文科、張鎮榮籲：竹縣、竹北連線全力拚勝選 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMizANBVV95cUxObDcxS3FUeDd2SlFtSmIzMllhOU5PbW12MnVCN01xZ1ZIdDBOOUo3RTJqLWQ4T2p0c2NqdEZuZUVDb1FPai1rNmg2Mnd1SjBvaUV2YUVoMk9ibnZHaVE5d2xCMGgxNG1vcTZlaFBNZ2g2aS13cXFoRm95b0hDaWU2ZHg3ZE1nVG1sWkJJS21scENHRUhhZ0NsWlZvdVpEN2tCVV82SHF3TlRDSXpqTkVMNjVCRXBHVDdtNTg4aFllaHp5MFlaRlRrVDhUTkx1MUR4U1FQQUdTeUZYZW9VMXg1cTNDVUZBMHZUY2V6MjNHTnVYNlRRQmVkM3gxc2VJa2xjdDVDZm96aXhNVmNVV1BNbUc2d2Y0dGpzcVplbmVQaE1TVFlndXd5dVZCeUt2NXBqMWV4elVLMGRZX1J2V0t6azgwQ0ZtSDU3SFVPMDRIQmpaRVJNQWlsUlFpSEpENF83bkxzdmR2YUtwTVFPX2tmUzRIMHVFa0xFODFGNG5RQWpORlJ4Z3NpV3JJSVI0M20xRm51OEpudW9WNS1yV1ZyZU5SYWxHa2dtNjB2OHl5NFdENEJlb1F0ZlAyX0NncGpyWVN0UmtRX2dtZDlt?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "link_resolved": true,
+    "news_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBHUFBUaGVPdHVRODZpVElGaWY1cy1RZjAzWWNnM0hiTXlsX1JSd0ZiaUxpQzVtSXR6elBHTmowbjVmYzZuVHprallUd1V0WjBqd3B3bmc2V3FIZXR2MUZV?oc=5",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "中央社 CNA",
+    "title": "國民黨竹北市長初選民調結果出爐吳旭智勝出| 政治 - 中央社 CNA",
+    "url": "https://www.cna.com.tw/news/aipl/202606150276.aspx",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "民調勝出 吳旭智代表藍營拚竹北市長 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBwOFhST3lqS01JbUlpSnpzNnFRa052Z01NUDFLWHIyUmFZNWFTUktIdUZXRUtsWmFnYWJBM2tibjB4cGQ0WUFxQV8ydC1mWC1fYy10LUpSd3Atb18xdUIxWFFVZjJjd0V4WFHSAW9BVV95cUxObHVibmp4NDFlblRJN28xTTQ0aGlDNEktZ1YzTXVUYlFsSThqVFllVFc2VmctVzlUc2Rzb2RucVA0M3BDNDljblJodnBFWS1GT0E0by1NTDZ2R3VzWVhYQk1BWVZ2d3hTdk56OXUtWVE?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu",
+      "chiu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "國民黨吳旭智竹北市長初選民調勝出 邱臣遠恭喜：我有信心和決心 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMipgNBVV95cUxOejRUejJWYzJBcl8yOGdPOUNCd3VHZzNrMUdqUjd3YUI1WXUyYnB3TXdEOW0xRDZlZkpyUERmNlpxdDlYZmRGTElGcGNXbmpFd01PVnhSc3JNMlBqdzFvMmJNWFd3bU1vdTZuYzZTZjRaZUQxT3g0VkRVOVVjc0M3OERfbWRRUnpZWV9lbHJkV2dHenNDRG9GN2ZZMlBfUXkyanVDQ3dUdE1JX3lwd09pSVFzd082Sl9qUUotT1MxNUtzTmFkZFZnalNWVEpnS0hHdGh5eUdmdXd0WF91TnBSNzIzWVFNLXhVcVJoN1lDRUFvU3htbTdVNTFRX05BeUtYeGZaM3JHaDNUV0FMZmV2QjNtcTNQZVRWWlNUcUdxOHFFLVVGVHZNNUg5eDJEbjZWeXYydnc1RlZTSlA2RTlhbnR3WFd5QV9MLVo3MldkSDR3QTlQeXk2OUdXNDBVb1hvR2ZLNDIyT3FQbDdPa2dWWGJOYmtyZjN5cWhMVVJ6alk5cUVCR3ozYWltcmYtZjdNaFRIa2hTdTQ2V0w1alk1dnI5MTJqZw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "藍營竹北市長黨內初選民調 吳旭智勝出 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxNeW9FN1dFQjBRdThIRjFvLUc2R0s0aWVpUHBYbWRVVFkxTmlTbHhfNE1lbktYSUV1YmdLekx6S2lDekp1YVUxcnRVNVVFeVFQRUNHVEVMeDdKNEVJRUpqQlREcmlSUFZVZEx6ZnYzXzM5Nk00WWZnQWdndWVtQzduYjFjVEVLMU5sdC1mNjRXdEFFRjU2eHVhRTF4STdRaVpwSHB0UTI1SGUyT3lLclFSbUVkRHBocTlXcVNrLUZla1k3cHllOUljWGltd3dySzJOQUpwc0lqNWFoeVBTQnNzVVdKaGQ1azVaWC1jWm5iMW5fQjZTMnNoeUlxR3lhWmpEYmVuc3lkRktrb0lkcjE2bDVaVWpQOXpSaGZxQWVfVzg?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "民調勝出 吳旭智代表藍營拚竹北市長 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNa0hfLUFIcXBvRkMzTDRpMzVLRmhxcVVLY24wTm56SUx0dHJDYzBJVXVoMndaT2ZJaDBRRlVDUDIxbGxnOTFZSkdVNUNsbFZXbkpxSzYxUmo0Z01fcjZCeVVtRkdhdjFVMHFaWXRETnZES2h1MjNYenVZZjJiQ0xlMUpYb1VoZw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "chiu"
+    ],
+    "published_at": "2026-06-15T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "竹北市長藍白合不合？藍遞民調橄欖枝 邱臣遠：尚未進入協調程序 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMimwNBVV95cUxQeVBUQmNlMGpYTVlfQUlqMjdYOWJBZXNQTzc4OVZLYURxYTBzNGFKTDQtbFRmQVhCSUdQYzRsUVJMaUpwQi1ZRWdwVjJpdjBhZ1hMSXlVeUNjSzBsS01UY2FiQnhIbFBoTUdwYVY2YU5nWlRsSFV2dDlQUHIybkpzd0dEOElNMDFreVFUU3U1NW5aS3pvV0pGN2gwclkyR0F5NW1aTVRvZTJjTTVsc1JLNFBaWVJ2dXhiUDZaMTBOTXhiNjR3YWx4ODhadXk2ZVdSWERhbjRtYTFaSzNUSGhYSGRuNXJic25lQTlrc1Ewck5KRW9tdElPcmJpaTFiczJrc3hvRENUTTVwWGM5eGd0Ukp6VDY2alN3Q1BtRXpkdUk5OVZNR2EtMFBlZTRJYW5jb01fZ21SYW9DSTh0dG4xYVBOVDZvaVhMOHQ0cTZRdjlTcHpfcWEwLVlxb2c2anVoZXhwaHlaQnFfRTR3NFh2YXVUT2owZVJrWWRobXRTSlhURkxOOU1TZjlIQjBsV2xkQ2JVSG9MVzZaaU0?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-13T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "中時新聞網",
+    "title": "藍營竹北市長初選民調進行中 耳語傳退出吳旭智批太惡毒 - 中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE0tS2Y1akFZNlh6enNFUnVNc1dOMHVYQlRTTnpLajcycXVneVV2WXNJRlRnYktvLWJmdjluYnNfYTRIUGVHUkJidTlzMnZURzkwVUROYlV3cTB3M2x3NmFqUFBsaG4wTzdfeXc1RWpn?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-12T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "UDN",
+    "title": "競爭激烈…藍營竹北市長初選民調今登場 吳旭智喊拚第一 - UDN",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9iRldYTmROdExLTlVKUWRqaHZzV3BocGJEdjhhMC10SGhVck91T2tvYnZ1MkM4MzVCYThtSTBDNXR1X3ctcklsclhhdHlZVnVQbDhn0gFYQVVfeXFMUG45aGFteW1Kd1VvUGJqVW5Dd3RNOTdaeHFMTDR2NXVUYlRGaUxIblR0TFZrM0RSS29iUy1INXhoZzcyQkNKamRXRVJfZzd4TVBDaEpHZXZIaw?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "wu"
+    ],
+    "published_at": "2026-06-12T15:00:00+08:00",
+    "race": "zhubei_mayor",
+    "race_label": "竹北市長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "藍營竹北市長初選民調今登場 耳語不斷吳旭智大喊全力爭取拼第一 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB0RVV0d1dUeVAwYVBJZjI2NFpLN2xacF9wdEJWNlJVdTBpaEE0MEsteDNPTG95REdXQ0hRZkVLWXlNQk8wTUkyeXd5WU5SWWFHM3ZXUDRMX3RrNzRfR21Oa0lSVTlqRkJTLVHSAW9BVV95cUxOMFhaSTRWTUpzRjdKYVRKQlpZdFE1Yy1aV1lWcHZaWnpDZGo1Z3dnaURvOWZWUGpHLTdpcWNwX3VqUW52b3FvTlFzXzhOanNZWXpUSjRoU0lHSW5rY20zLTVNODZTaGxFWFZ2aENYYzA?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-04-18",
+    "field_start": "2026-04-16",
+    "group_key": "全國公信力民調公司|2026-04-16|1072|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 2.99,
+    "news_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBZUzUzUGVUZUFKTDd4N2Q5WlZGU25sZDlwaHY5OUpuT3ZTQWRQN3AwSXB6dFZFVEpfaE1GZ1NlOVZsQmhhSWg1X0F4cFpaMUQ0dG9B0gFYQVVfeXFMTkZWV1JMUTdxMFhucmV4aDhBbVFNQ05GekFVNDJhN1FwRE1ZRktXdjQ1cHc3YTBOcnlOeUVIM0syR0lZLUJfREZHVVQ2UkNnUWttMXNPcjNlSA?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "全國公信力民調公司",
+    "period": "2026-04-16～2026-04-18",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-04-24T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 3,
+    "reports": [
+      {
+        "published_at": "2026-04-24T15:00:00+08:00",
+        "source_name": "UDN",
+        "title": "藍整合效應...新竹縣長民調徐欣瑩領先鄭朝方擴大 竹北市也勝出 - UDN",
+        "url": "https://udn.com/news/story/124652/9462779"
+      },
+      {
+        "published_at": "2026-04-24T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "新竹縣長最新民調！徐欣瑩「擴大領先」鄭朝方 連竹北也翻盤了 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF-%E5%BE%90%E6%AC%A3%E7%91%A9-%E6%93%B4%E5%A4%A7%E9%A0%98%E5%85%88-%E9%84%AD%E6%9C%9D%E6%96%B9-%E9%80%A3%E7%AB%B9%E5%8C%97%E4%B9%9F%E7%BF%BB%E7%9B%A4%E4%BA%86-131225828.html"
+      },
+      {
+        "published_at": "2026-04-23T15:00:00+08:00",
+        "source_name": "鉅亨號",
+        "title": "藍營整合效應浮現新竹縣長民調徐欣瑩領先鄭朝方擴大11.4％ 竹北市也勝出| 品觀點的貼文| 鉅亨號| Anue鉅亨 - 鉅亨號",
+        "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE53NWNuN2p3N3YzTkpEbHNNM2pISmFuVFJvYjNaZUgyQWV1WXVGQU5EZHl0bHhtSTNIRDB6SFJjX0NWWU0tek9YOA?oc=5"
+      }
+    ],
+    "sample_size": 1072,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "UDN",
+    "support": {
+      "xu": 38.7,
+      "zheng": 27.3
+    },
+    "title": "藍整合效應...新竹縣長民調徐欣瑩領先鄭朝方擴大 竹北市也勝出 - UDN",
+    "url": "https://udn.com/news/story/124652/9462779",
+    "verified": true
+  },
+  {
+    "field_end": "2026-04-07",
+    "field_start": "2026-04-06",
+    "group_key": "年代民調中心|2026-04-06|1072|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE92RlBDNzhQY3M2VGM1X2xZTlpuSk9nbnJBbmNLSlIyVVBUWURzNXRSSThJN0p1RUZ3UmpWM3EwMEpwQjJ5S2JKVmpJRHJwUQ?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "年代民調中心",
+    "period": "2026-04-06～2026-04-07",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-04-09T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 5,
+    "reports": [
+      {
+        "published_at": "2026-04-09T15:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "鄭朝方不想選了？新竹縣長民調「藍綠差距曝光」 徐欣瑩竹北差了10個百分點 | 李瑋萱 | 新聞 - 風傳媒",
+        "url": "https://www.storm.mg/article/11119228"
+      },
+      {
+        "published_at": "2026-04-09T15:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "鄭朝方輸了！新竹縣長選舉誰支持度最高？「36%民眾都選他」 年輕人卻不挺 - 風傳媒",
+        "url": "https://www.storm.mg/lifestyle/11119275"
+      },
+      {
+        "published_at": "2026-04-08T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "新竹縣長最新民調／徐欣瑩領先鄭朝方5.8% 竹北本命區「他」大幅領先 - Yahoo新聞",
+        "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxPUExjRWY1OVpoVUljWEs2MzdlaFFiQ0d4eHYzWUJlNFNvaWFEbVBXM1ZMX3RzWHN5dEMzWEsxYnVReHUtM2VLcTlxN1BiQk03VmZKRkVhX0NNOVhnc3BjaHowM05hUEFvajNTZlRxZGNDb1phc0dpREhWX0EyUGRGYmNyS1JIRXNRZk1HaHdVZ3NqMkFLbjhTY0tob2QxakstaUp2aWVEVUJONjN2YUlkWnRkZzN4WFNMQTB1WWQyLVg0RmNvdmNKa04zUTl0SHhvQXN5ZUp5UGlTX3hDdWxGdzFMd2xTUVFscTBpZWgtZ0hkelRSdXBpYmszamVXRDNrbnljNUlyQmFqODlsNno0UWRUUEFMZ3F5THdaelRNVWtUZ294aHBkdVNZRzRrczVRR3Z3b2drTktTakh1dlFtd0F3UVJOQ1RjOVdxV28zVkdQSlo3NUYxaU5fMVVoTExxRlBr?oc=5"
+      },
+      {
+        "published_at": "2026-04-09T15:00:00+08:00",
+        "source_name": "TVBS新聞網",
+        "title": "新竹縣長最新民調曝！徐欣瑩36.6％領先 鄭朝方30.8％ - TVBS新聞網",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBLaG5qd2ZTSnIybTRUbEc4QUdlZG1KaFRDdzdrOTY3UW9XbTNsWlRlbHJwbVFLWWc4bzlSVTJZME5nVW4zZW5jQldMOG1LYnNMczhF?oc=5"
+      },
+      {
+        "published_at": "2026-04-09T15:00:00+08:00",
+        "source_name": "UDN",
+        "title": "新竹縣長最新民調 徐欣瑩36.6％領先鄭朝方30.8％ - UDN",
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5ERzlpT19xTWZWajk2NlFybDdLSVFyN21YbDVIcUc3OTBFNnlwbk5JeVpQMzdzeS14dGszbC00ZHdJSGVfc1hUaHRLQ2NHT1N4bUhJ0gFYQVVfeXFMT29pR0xhaE1QN3Y3TTV0RWRBWVlpWWNWbmVMWHEyVXZYTV9hZlltQnlXWGY5N00teUtDSHZIMmpBMlZ3UG9Sc3Btd2pxQ0NXY1J2MVBrMXZQSA?oc=5"
+      }
+    ],
+    "sample_size": 1072,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "風傳媒",
+    "support": {
+      "xu": 36.6,
+      "zheng": 30.8
+    },
+    "title": "鄭朝方不想選了？新竹縣長民調「藍綠差距曝光」 徐欣瑩竹北差了10個百分點 | 李瑋萱 | 新聞 - 風傳媒",
+    "url": "https://www.storm.mg/article/11119228",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-04-09T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Newtalk新聞",
+    "title": "民調》新竹縣長選戰徐欣瑩以5.8個百分點領先鄭朝方在本命區大勝| 政治 - Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5Rcl8tS0x0c2R3NkE4RnM4VjZjS0xEUkdpNUJYNTR6Q3J5eDlfNS1BMG1aU1FodFFVc1NjZXptaE1LOXo0OENCM1FjekhTSlhPRnVCOEVWVWY0bmM?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-04-09T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "新竹縣長最新民調徐欣瑩領先 媒體人看「這細節」：鄭朝方可贏 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMigwNBVV95cUxPWW4teEttNzg2Y3pPOFZLaWwwVmk4ckhRRUdsWWY2ZWVkNmRxUmpDcWNKWV9nYXdYRjNhQmk5RmtCMGMzYndvNUJwaEQ1X3lUV1ptTjkyODRQRzZxM2dYaDBITzdZc1ZXeFFVRjEzYnNBTXNLaFN6SWh5OE4tRGdJc1M0TnA3M2FTRWpabHcwRGg0eEU4YXhkT0RtUmtLTUZjTkM3U2d2WmIteGwxSHdtUF9YVlp0NXIzLWRjUGE5endyV09vSThyQjh5bTRFbXM5d2RXRWdZTU1GTm41QzM1MHVQMzkyTEQyR0JqWDM2d3Q4ZUE0SWZFZnlCRlliNWZrbWF0MmUxRmpFaGRCTzhLekc0dWVUdGJUWVc2V3lnTnUydWJjRGJTVVhnNkp2SjNNMzJzSk1uYk9Db25oeFJqS1VQcFRjbFRCVWNpNEVZVUJ0dl9zejFTZ2dnZGhxNkNqRHQ1ZmFwVlk1bUNLVGhVWEZEcEtZTmppc0hudmVkRGZoR1E?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-04-08T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "鄭朝方真能扳倒徐欣瑩？新竹縣長民調來了 「這兩類選民」最挺鄭 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMijwNBVV95cUxPdXZhU2RaZFJBaUlpQ3pfUGhSdzB2VWxTMWI4UEl3d21yWE5SaXpqYTltMklFZ2RSbVB5MzUxOEd2bThYZ2hXdWo1VXVPT09OdWI4ZjFRREZXQW1mU1ZOR29KdDVOd3RqN3lUdm4zLXgwV3lPSWxDUndXUnNQTFY1MVN4RnBiTS00cTJFOW9uUmZCV0p6dDZ4ZC0tb0FlMUlTWmt6S1R0TnI1Z01ZQk9PdW96bVNVejJCcW9fWG5OY2xZQzlkYS1USXJkSU5SNFZLeGJKQkc4ejVBaGhteWxpcjNfMTRJRDh2clM3UGw3Wldya1o0eXhoWnB4T1NtTHRwc05TOEwxSTFQYzUzNnFKbVM5NlFkeGdGUk5YWDA2SmxTSG91c0RleTVVVVNvekMyTk9sazRVblVwRnpGZ29sVUMyWE9hV1pzTy02bXNJZjBESi1KT3NhRlpic2dqY2JDNEkzSjZneGlnS1MxTlZqdDNFQWl4LWRuUklOOXRiT01qUGVHX1NfdkZuRzl0UVE?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-04-08T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "新竹縣長最新民調！ 徐欣瑩、鄭朝方「差距曝光」 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMirwJBVV95cUxPazVZQmliVnBOLXFkdXZPQWpkOURkdUUyVmthOGkwSm5XdWZXN0ZoLW9BSU8xS2tUUGp0V0pUbV9vVmJEVFB2RTg4OGtuOVRZQWx4bUNXS2V1RnBLNlQxZmZrZUp2VnpWNHhMR0F6dlVWLTA0OUQwVVl1ZmpKTlJ1ZjZYMHVDV00xcmVDM3lrRVZYQjRtbDZoaXJIV05NaS1nSFBDWm1kcDdQYU9zaGlhNUtzWnJrcDkyN1BKSnk0RmFpcHFJZy1HTmFqWTdReHVZRFlmUWcyeHRrQU5HZEtRc0VDQ2hOUWhhY1N1YTNJbUdHTFNpcUpjZktXLWVkbEVfUEV2VHlXNVM3cHEzRVVzV0lZRjY2eWtpSHplLVEtZWlzNTN0SU9qbGJTS2NqNmc?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu"
+    ],
+    "published_at": "2026-03-29T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "UDN",
+    "title": "國民黨新竹縣長初選 徐欣瑩民調逆轉險勝落淚 - UDN",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1WSWJSZG5ZcVZ0WHBmb0lOSmJoWTl4N1gxOVdLQVZRazdDSFJSREV0YjB6ZVlZU2ZSM1FfSWI2dmVRNXBxa0xTcnplNHhocUZJaVlj0gFYQVVfeXFMUFhMNjMzR2lUZXBLTmtMWEFEaUxXVmozemFDUTFGSEt2SkJFcWczLUhqT3BBNlJJb2tZMUZueURaZmJWcW1VRnBTUWVndnFjVXJOWnFQLTFjVg?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu"
+    ],
+    "published_at": "2026-03-28T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "UDN",
+    "title": "國民黨新竹縣長初選揭曉！民調領先、黨員投票落後徐欣瑩勝出當場落淚| 縣市長議員選戰| 要聞 - UDN",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9OSDZTNG5jeHNKeTNaMkpXLW1SakgxVE94VmR5ZGE3aUpJZ0dhc3R5Ulk2TUg0SzBhODZPWE9OY3lpZWw0WEwyWUs3bW5IY0ZFbDQ0?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu"
+    ],
+    "published_at": "2026-03-28T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "快訊／藍營新竹縣長初選結果曝！「民調＋黨員票」50.634％ 徐欣瑩勝出 - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMiswJBVV95cUxQU2g1NFRHVGw5b0NQVFBMdzBOcmRDTThTUE03SmFiOE1HNlpLQmdJNk0zYU02UTBSMDBuSUdlZmREbGVham1LQ0o0emRLZGFXYkk1U3lNeC1DYTI1SnE5VmtYOFB0eTNHQ1JDVlJ1R0FuSVJBSnJPRXRoSi1JTmUtaG9NcFVoSFJ6NkRHenVyWTZPdVpDM2k3S2g4dmhVajZ1NXFuNjBsOWRwVkVXVVBjcVZrb0RlRWh0UWNCWE9MbS1MeEkxWV8tS2RpczJ0T25XaTZpYWh0NUNrc0w0Q0s0YmdRVkdTTnBEYm4yb2FzZUlpU2l0VjhfamRENlJzaTRVekpqUWNyVUZlVGZHMUhoR3RVZzlrTmNmdGxoZ1JBM2R0NE5HWW42RXItSU1DbTNTcHM4?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-03-27T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Yahoo新聞",
+    "title": "新竹縣長最新民調：徐欣瑩成藍白「最強共主」 領先鄭朝方近18% - Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi-gJBVV95cUxOM24td3lfZjVoOWZaYVQ4RHgxTWRGUjNuNDZQMzBZalJFTUVrVERQNUtmZG14WE14bU5LYXByalRfY3VXZnN0LTZqT1ExRHh0MEJySko3SVV0QlZxNlhjc1g0RUoyMUY4aXF2YklMVEp1NFdJbi1DTHJlWjViTFlFcURYVDdpbGpvdnViWWZieWxaR1V0VkRlLVBZNmNSSl9VdEFDZ1dtOFk1NXNhcmpkNWk4NHVJSlV5d1JINGljNDJHYmhQNmt4bjhJWTNjS3UzNDg0dzdQc2QtQTBwM2toNG44V0ZpN29sbzdpQl9Da2ZQUWVpX2tNa3hmUG9tUjIwMnpmel9hSmRMMDVnUVFZQ2tuZWJsTDg4RnpwbHYtNm1QV25SYVR0d3I1VkYycmVvRlp3ckEzUUh5WUYwNFVIdlN6NmpabWNNN1V5aXd4c0J2UklSbW13Q0JYOWpRNFFXNkctSDIwRGdoT3BWYXlaT1BINi1RTWJKQnc?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-03-25",
+    "field_start": "2026-03-23",
+    "group_key": "美麗島電子報|2026-03-23|1072|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 3.0,
+    "numbers_hidden": false,
+    "org": "美麗島電子報",
+    "period": "2026-03-23～2026-03-25",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-03-25",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "report_count": 2,
+    "reports": [
+      {
+        "published_at": "2026-03-25",
+        "source_name": "美麗島電子報",
+        "title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調（徐欣瑩、鄭朝方；DOC_224580）",
+        "url": "https://www.my-formosa.com.tw/DOC_224580.htm"
+      },
+      {
+        "published_at": "2026-03-26T15:00:00+08:00",
+        "source_name": "TVBS新聞網",
+        "title": "民調／誰選新竹縣長？徐欣瑩44.7%大勝鄭朝方 藍2將差距曝 - TVBS新聞網",
+        "url": "https://news.tvbs.com.tw/politics/3161657"
+      }
+    ],
+    "sample_size": 1072,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "美麗島電子報",
+    "source_title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調（DOC_224580）",
+    "support": {
+      "xu": 44.7,
+      "zheng": 27.0
+    },
+    "title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調（徐欣瑩、鄭朝方；DOC_224580）",
+    "url": "https://www.my-formosa.com.tw/DOC_224580.htm",
+    "verified": true
+  },
+  {
+    "field_end": "2026-03-19",
+    "field_start": "2026-03-18",
+    "group_key": "循證民調|2026-03-18|1082|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "matchups": [
+      {
+        "other_candidates": [],
+        "scenario": "徐欣瑩、鄭朝方對決",
+        "support": {
+          "xu": 46.6,
+          "zheng": 30.9
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "陳見賢、鄭朝方對決",
+        "support": {
+          "zheng": 32.8
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "徐欣瑩、陳見賢對決",
+        "support": {
+          "xu": 34.7
+        }
+      }
+    ],
+    "moe": 2.98,
+    "news_url": "https://news.google.com/rss/articles/CBMikgNBVV95cUxNZkxIZ2ZIX3U0S2FMNWlKZE14NFVPQW94eDVsT1R4OFQwMUh3cklZZWhmMUFIaUNINnlFV01xTXg3bDZHd2tRWGVSV0x3aTV6TWtXa1IyYzVpQjlady1oX0x1REpMRkxuTnBoNHZNRVZqMUMzQk5QMVdzQUxaZS1yYXFmS0FmTFpVaTVzRFk1b1Y0enNScDM2ZllOemJnYzFkMkR1TW1Dc1dYZjAzVWJwS3hMdHdQV3FHT2FtSFhPWHNLNDhzd0FraGpiU0hxeElCZ2d3MjRnTC1iMWh1UjQxUVFNWGx5NjNSZDg3ZWhWRjZUWmdRb2RQelhYblJzcWNVMjNGejQyLXpSejdjdWNybjFaaVJEbG1Nc3cwazZDeTIzam9fdkhla1FfNFFVcHl4MkxkVjZTcnV3TGp3WG5MVzNCdVAtdmVZRllhLUV5aEJRbkp6eFNfZ1FBQ2RUM0NoU1MyOUE0NXRySGhBSDVBZjhUZmV6WDVjM0h2bTU1LXNzVWlIcDk1bC1WQzFKMmdTSkE?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "notes": [
+      "加權「總支持率」陳45.7／徐44.8 不列入任何對決。",
+      "委託／發布：鋒燦傳媒；來源為媒體報導，未找到機構原報告。"
+    ],
+    "numbers_hidden": false,
+    "org": "循證民調",
+    "period": "2026-03-18～2026-03-19",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "戶籍設在新竹縣且年滿20歲的選民",
+    "published_at": "2026-03-23T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 1,
+    "reports": [
+      {
+        "published_at": "2026-03-23T15:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "鋒燦民調／藍新竹縣長初選在即 陳見賢總支持率以「近1%」勝徐欣瑩 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E9%8B%92%E7%87%A6%E6%B0%91%E8%AA%BF-%E8%97%8D%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E5%88%9D%E9%81%B8%E5%9C%A8%E5%8D%B3-%E9%99%B3%E8%A6%8B%E8%B3%A2%E7%B8%BD%E6%94%AF%E6%8C%81%E7%8E%87%E4%BB%A5-%E8%BF%911-%E5%8B%9D%E5%BE%90%E6%AC%A3%E7%91%A9-000000520.html"
+      }
+    ],
+    "sample_size": 1082,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "Yahoo新聞",
+    "support": {
+      "xu": 46.6,
+      "zheng": 30.9
+    },
+    "title": "鋒燦民調／藍新竹縣長初選在即 陳見賢總支持率以「近1%」勝徐欣瑩 - Yahoo新聞",
+    "url": "https://tw.news.yahoo.com/%E9%8B%92%E7%87%A6%E6%B0%91%E8%AA%BF-%E8%97%8D%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E5%88%9D%E9%81%B8%E5%9C%A8%E5%8D%B3-%E9%99%B3%E8%A6%8B%E8%B3%A2%E7%B8%BD%E6%94%AF%E6%8C%81%E7%8E%87%E4%BB%A5-%E8%BF%911-%E5%8B%9D%E5%BE%90%E6%AC%A3%E7%91%A9-000000520.html",
+    "verified": true
+  },
+  {
+    "field_end": "2026-03-13",
+    "field_start": "2026-03-12",
+    "group_key": "全方位市場調查有限公司|2026-03-12|1093|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 2.96,
+    "news_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE42eHVyLTdlZ3dYdEY4b3pNODdpLW1RXzhhZ0FlOVV4TFZoVnhFLU5UcGhWb1R6cWs5ejBHYUpWQ2g1cGI4YWhOV3dKT01vLTd1?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "全方位市場調查有限公司",
+    "period": "2026-03-12～2026-03-13",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-03-19T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 1,
+    "reports": [
+      {
+        "published_at": "2026-03-19T15:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "鄭朝方、陳見賢輸了！新竹縣長選舉誰支持度最高？民調驚人差距曝光： 年輕人超挺他 - 風傳媒",
+        "url": "https://www.storm.mg/lifestyle/11112580"
+      }
+    ],
+    "sample_size": 1093,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "風傳媒",
+    "support": {
+      "xu": 36.7,
+      "zheng": 24.5
+    },
+    "title": "鄭朝方、陳見賢輸了！新竹縣長選舉誰支持度最高？民調驚人差距曝光： 年輕人超挺他 - 風傳媒",
+    "url": "https://www.storm.mg/lifestyle/11112580",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "TVBS",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-03-10T15:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "TVBS新聞網",
+    "title": "民調／新竹縣長激戰！徐欣瑩勝鄭朝方6.3％ 陳見賢微幅落後 - TVBS新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBBcEp1MXZCN1h5elhxdWw4UHlnLUl4SkU1ZENPbzBHYVVGV2ltODM3cjMzRlpNZUtZdVJJekk0cEg2RVNndVQ1QTFQUmFMeEVLejk0?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-03-06",
+    "field_start": "2026-03-04",
+    "group_key": "美麗島電子報|2026-03-04|1072|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 3.0,
+    "numbers_hidden": false,
+    "org": "美麗島電子報",
+    "period": "2026-03-04～2026-03-06",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-03-06",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "report_count": 1,
+    "reports": [
+      {
+        "published_at": "2026-03-06",
+        "source_name": "美麗島電子報",
+        "title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調（徐欣瑩、鄭朝方；DOC_224158）",
+        "url": "https://www.my-formosa.com.tw/DOC_224158.htm"
+      }
+    ],
+    "sample_size": 1072,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "美麗島電子報",
+    "source_title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調（DOC_224158）",
+    "support": {
+      "xu": 38.5,
+      "zheng": 32.2
+    },
+    "title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調（徐欣瑩、鄭朝方；DOC_224158）",
+    "url": "https://www.my-formosa.com.tw/DOC_224158.htm",
+    "verified": true
+  },
+  {
+    "field_end": "2026-02-27",
+    "field_start": "2026-02-25",
+    "group_key": "TVBS民調中心|2026-02-25|1076|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE00bVJsRDZYMk5mYUdEa2ZRaFg1bHNRUlJ0bjRIUkJrcjNWbldCMVVjWEdIbDY4X1Y2VjBab0pTTk11X0o1N01QWnhPclYwc01J?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "TVBS民調中心",
+    "period": "2026-02-25～2026-02-27",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-03-03T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 1,
+    "reports": [
+      {
+        "published_at": "2026-03-03T16:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "徐欣瑩、鄭朝方輸了！新竹縣長選舉大變局？「破3成力挺他」 最新民調支持度驚人 - 風傳媒",
+        "url": "https://www.storm.mg/lifestyle/11107339"
+      }
+    ],
+    "sample_size": 1076,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "風傳媒",
+    "support": {
+      "xu": 43.1,
+      "zheng": 31.8
+    },
+    "title": "徐欣瑩、鄭朝方輸了！新竹縣長選舉大變局？「破3成力挺他」 最新民調支持度驚人 - 風傳媒",
+    "url": "https://www.storm.mg/lifestyle/11107339",
+    "verified": true
+  },
+  {
+    "field_end": "2026-02-26",
+    "field_start": "2026-02-25",
+    "group_key": "TVBS民調中心|2026-02-25|1076|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "matchups": [
+      {
+        "other_candidates": [],
+        "scenario": "徐欣瑩、鄭朝方對決",
+        "support": {
+          "xu": 43.1,
+          "zheng": 31.8
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "陳見賢、鄭朝方對決",
+        "support": {
+          "zheng": 36.4
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "徐欣瑩、陳見賢對決",
+        "support": {
+          "xu": 40.6
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "三腳督（徐獨立參選）",
+        "support": {
+          "xu": 22.1,
+          "zheng": 28.8
+        }
+      }
+    ],
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxON3IyTm5hU2NSVHd3eTVSV245NS14NkVYWDVEa2ZxRkJJQUdQbzBTQnlVUVJEUU1mS21jVUVUWXlOYkRLaTZjLWk0ZGh3ZFl1OG1NdDMzQ1Nnd2VENmVIai1VaDMxa3ZqZGpjRFpHZDFGb1JCR0tDMmw1V0ZqcnBib0QtZTNtUVBEOWxZOXY4WmJjeDBOb0NDaGxIZkxabGZWbDNXSFA1SjFyRjU3WFZnYklkSElMWW1vT05wV2RjcjJ2eW5BdnJjRkpnWmRONGRGRTFNOUhYSVhaWEpfbW9reE83bDZlNklSQlNDVl85MEtZNW1RZkJjbkI0NEV6R25naHFfd0JJdlI2cUFqUEtUT19qQ3ZiQ2l2c0F0M19aeDdJMVFZNmhWR1U0aUQ1al9rVzZrcE5oU2ZGbHFyTHRnelhkUVVNLTJnRUJyS1V4X0IzeEFDeE90YkVWYUpldk04S0lQRENjQnViZ0tVdEQ2WA?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "TVBS民調中心",
+    "period": "2026-02-25～2026-02-26",
+    "period_note": "各報導所載調查期間不一：2026-02-25～2026-02-26、2026-02-25～2026-02-27",
+    "period_source": [
+      "https://www.storm.mg/lifestyle/11107339"
+    ],
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-03-02T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 3,
+    "reports": [
+      {
+        "published_at": "2026-03-02T16:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "TVBS民調／新竹縣長藍營初選 徐欣瑩、陳見賢支持度勢均力敵 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/tvbs%E6%B0%91%E8%AA%BF-%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E8%97%8D%E7%87%9F%E5%88%9D%E9%81%B8-%E5%BE%90%E6%AC%A3%E7%91%A9-%E9%99%B3%E8%A6%8B%E8%B3%A2%E6%94%AF%E6%8C%81%E5%BA%A6%E5%8B%A2%E5%9D%87%E5%8A%9B%E6%95%B5-013700615.html"
+      },
+      {
+        "published_at": "2026-03-03T16:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "徐欣瑩、鄭朝方輸了！新竹縣長選舉大變局？「破3成力挺他」 最新民調支持度驚人 - 風傳媒",
+        "url": "https://www.storm.mg/lifestyle/11107339"
+      },
+      {
+        "published_at": "2026-03-03T16:00:00+08:00",
+        "source_name": "上報Up Media",
+        "title": "【TVBS民調】新竹縣長選戰陳見賢、徐欣瑩皆勝鄭朝方 若三腳督換這人墊底 - 上報Up Media",
+        "url": "https://www.upmedia.mg/tw/focus/politics/252892"
+      }
+    ],
+    "sample_size": 1076,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "Yahoo新聞",
+    "support": {
+      "xu": 43.1,
+      "zheng": 31.8
+    },
+    "title": "TVBS民調／新竹縣長藍營初選 徐欣瑩、陳見賢支持度勢均力敵 - Yahoo新聞",
+    "url": "https://tw.news.yahoo.com/tvbs%E6%B0%91%E8%AA%BF-%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E8%97%8D%E7%87%9F%E5%88%9D%E9%81%B8-%E5%BE%90%E6%AC%A3%E7%91%A9-%E9%99%B3%E8%A6%8B%E8%B3%A2%E6%94%AF%E6%8C%81%E5%BA%A6%E5%8B%A2%E5%9D%87%E5%8A%9B%E6%95%B5-013700615.html",
+    "verified": true
+  },
+  {
+    "field_end": "2026-02-24",
+    "field_start": "2026-02-23",
+    "group_key": "循證民調|2026-02-23|1070|county_magistrate|徐欣瑩、鄭朝方對決（政黨對比題）",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMihANBVV95cUxNMmhwVXdzZzBaalFDMDc1ZUlWT016TVJ4V0wwdEJ3c1RxS01CWk9jSTA0M1duanE0dDVqQk1ya3ByZG15eW5oMmVxTkFUc2kyMUFFUkpsbnp1ZHVOT0Y4WFV2VTdVVUdsR3JEZW5yTklqN3lIbndiZ2w0VlVqLWdLUE5qYk1NSk1wNi1YRlhQUUU4VldLSElNTnFBRFFuSUdWdTkxeW9qWHNEVE1YVGpGY01tVE9SZk5mTVpjb1VXT0xDcVRkQnphTGRFdE04YlhYWGI0QTJpazdMcExBNy1qTUV6aVQ2QXZhanotd3pnSnNvMFkwdkNQUjYzMEdtcWhpMjYyVHJwX0g0b2VTWXJoRVlPWFNpejMwZzkxVlVhV1NTXy1teWhGU2NZcWZnbVJsSVNZUlc2WnRmbExPbExrNGw2d3hyRXFCd1JfX2ZObm5OOW83S0pfb2Q1RDRoNUJXUHFPN1ZscWcxRHlXS05mWVFVZ0sycWVfODVCT0N4TEdadzJr?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "循證民調",
+    "period": "2026-02-23～2026-02-24",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-03-02T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 1,
+    "reports": [
+      {
+        "published_at": "2026-03-02T16:00:00+08:00",
+        "source_name": "Yahoo新聞",
+        "title": "鋒燦民調／新竹縣長爭霸！徐欣瑩若脫黨參選 小草轉向支持「他」 - Yahoo新聞",
+        "url": "https://tw.news.yahoo.com/%E9%8B%92%E7%87%A6%E6%B0%91%E8%AA%BF-%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E7%88%AD%E9%9C%B8-%E5%BE%90%E6%AC%A3%E7%91%A9%E8%8B%A5%E8%84%AB%E9%BB%A8%E5%8F%83%E9%81%B8-%E5%B0%8F%E8%8D%89%E8%BD%89%E5%90%91%E6%94%AF%E6%8C%81-%E4%BB%96-000500199.html"
+      }
+    ],
+    "sample_size": 1070,
+    "scenario": "徐欣瑩、鄭朝方對決（政黨對比題）",
+    "source_name": "Yahoo新聞",
+    "support": {
+      "xu": 35.9,
+      "zheng": 42.7
+    },
+    "title": "鋒燦民調／新竹縣長爭霸！徐欣瑩若脫黨參選 小草轉向支持「他」 - Yahoo新聞",
+    "url": "https://tw.news.yahoo.com/%E9%8B%92%E7%87%A6%E6%B0%91%E8%AA%BF-%E6%96%B0%E7%AB%B9%E7%B8%A3%E9%95%B7%E7%88%AD%E9%9C%B8-%E5%BE%90%E6%AC%A3%E7%91%A9%E8%8B%A5%E8%84%AB%E9%BB%A8%E5%8F%83%E9%81%B8-%E5%B0%8F%E8%8D%89%E8%BD%89%E5%90%91%E6%94%AF%E6%8C%81-%E4%BB%96-000500199.html",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-02-06T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Newtalk新聞",
+    "title": "最新新竹縣長民調陳見賢領先黨外大勝鄭朝方、黨內比下徐欣瑩| 政治 - Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE81MzdQM2pTQ0RSNF9OM2NJNFhHV2VyUlRXZ1FhTW1ia09fcTNqdEh5amxVVkRHb3FvRjVVMFZVdllxYklKd3c5LXJVRzVodnZoUnU4TTVrZ2VpY3c?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-02-05",
+    "field_start": "2026-02-04",
+    "group_key": "美麗島電子報|2026-02-04|1073|county_magistrate|三人對決（另含非追蹤人選）",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBmdnZiTU1VREt2LUROTThuTUhRTUhISl9FZktxckhtT1dkbjJYbFZfTXVJSVgwT3JmekR3SFd5dWtGV2FMcTJWdmpjQzI1cmlkWUQwOC1iaWdxX2ktUWNoYVJSN3JQbHRibFlucTJR?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "美麗島電子報",
+    "period": "2026-02-04～2026-02-05",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-02-06T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 1,
+    "reports": [
+      {
+        "published_at": "2026-02-06T16:00:00+08:00",
+        "source_name": "中時新聞網",
+        "title": "新竹縣長選戰「泛藍」民調太驚人吳子嘉：他根本不用選了- 政治 - 中時新聞網",
+        "url": "https://www.chinatimes.com/realtimenews/20260206004533-260407"
+      }
+    ],
+    "sample_size": 1073,
+    "scenario": "三人對決（另含非追蹤人選）",
+    "source_name": "中時新聞網",
+    "support": {
+      "xu": 32.3,
+      "zheng": 27.3
+    },
+    "title": "新竹縣長選戰「泛藍」民調太驚人吳子嘉：他根本不用選了- 政治 - 中時新聞網",
+    "url": "https://www.chinatimes.com/realtimenews/20260206004533-260407",
+    "verified": true
+  },
+  {
+    "field_end": "2026-01-02",
+    "field_start": "2025-12-30",
+    "group_key": "美麗島電子報|2025-12-30|1068|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "moe": 3.0,
+    "news_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB3MGhrcFFPdzRiMVQ4akVpb2ZpNEk0QUwybjhneVRodzNZU3p1QnU1bjFBVTBMRlFfWmJjODQxX2ZrTkRlMDRnU0lUY2dpSEpCWjlwcnU3dFFQS1RvbE9YYkt5cnNxaVhxUU1sXzJR?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "美麗島電子報",
+    "period": "2025-12-30～2026-01-02",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-02-01T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 1,
+    "reports": [
+      {
+        "published_at": "2026-02-01T16:00:00+08:00",
+        "source_name": "中時新聞網",
+        "title": "新竹縣長選戰若三腳督吳子嘉：她民調都是第一名- 政治 - 中時新聞網",
+        "url": "https://www.chinatimes.com/realtimenews/20260201003130-260407"
+      }
+    ],
+    "sample_size": 1068,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "中時新聞網",
+    "support": {
+      "xu": 37.2,
+      "zheng": 35.1
+    },
+    "title": "新竹縣長選戰若三腳督吳子嘉：她民調都是第一名- 政治 - 中時新聞網",
+    "url": "https://www.chinatimes.com/realtimenews/20260201003130-260407",
+    "verified": true
+  },
+  {
+    "field_end": "2026-01-26",
+    "field_start": "2026-01-24",
+    "group_key": "全國公信力民調公司|2026-01-24|1074|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "matchups": [
+      {
+        "other_candidates": [],
+        "scenario": "徐欣瑩、鄭朝方對決",
+        "support": {
+          "xu": 39.3,
+          "zheng": 33.8
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "陳見賢、鄭朝方對決",
+        "support": {
+          "zheng": 36.1
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "三人對決（徐欣瑩、陳見賢、鄭朝方）",
+        "support": {
+          "xu": 32.0,
+          "zheng": 30.7
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "徐欣瑩、陳見賢對決",
+        "support": {
+          "xu": 43.6
+        }
+      }
+    ],
+    "moe": null,
+    "news_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE44eXl4dzdHS2NIRll1WHZlbVVQTThxTU9JYXI0Z0diSG10Z2hTTmFOeXpCMGs4NWN5QlVfMWNUazhfNlVLOWpnTVZxWXdxRzBuSHVv0gFYQVVfeXFMTVJ1aFA3Z0pSakFOWkI3NG9UckM2ZEVBM2dwSkItS3dING5TVUYyZ1BzOER5bUtPRUxzMkViWi10YktzenJUeHc2VzBEOGFYalg3T09ZbU0wTA?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "全國公信力民調公司",
+    "period": "2026-01-24～2026-01-26",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-01-28T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 4,
+    "reports": [
+      {
+        "published_at": "2026-01-28T16:00:00+08:00",
+        "source_name": "UDN",
+        "title": "新竹縣長選戰最新民調出爐 徐欣瑩領先鄭朝方、陳見賢呈成長趨勢 - UDN",
+        "url": "https://udn.com/news/story/124652/9294742"
+      },
+      {
+        "published_at": "2026-01-28T16:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "新竹縣長民調出爐！三方混戰徐欣瑩仍居第一 政壇人士：顯示泛藍選民有共識 | 戴祺修 | 新聞 - 風傳媒",
+        "url": "https://www.storm.mg/article/11098736"
+      },
+      {
+        "published_at": "2026-01-28T16:00:00+08:00",
+        "source_name": "UDN",
+        "title": "新竹縣最新民調！徐欣瑩藍綠對決、黨內支持度雙領先 - UDN",
+        "url": "https://udn.com/news/story/124652/9294074"
+      },
+      {
+        "published_at": "2026-01-31T16:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "藍新竹縣長內鬥恐釀一屍五命？徐欣瑩大秀民調質疑初選黑箱：會參選到底 | 李瑋萱 | 新聞 - 風傳媒",
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBkZ0x2ZWN6RWxNYUhkUnI2MzNGbmd2SVlWQUJqZnNEZHBCeEk5N3hza1doX3FwdF91WkliOEQyQ05CM05pbGdoYy1yWHhmQQ?oc=5"
+      }
+    ],
+    "sample_size": 1074,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "UDN",
+    "support": {
+      "xu": 39.3,
+      "zheng": 33.8
+    },
+    "title": "新竹縣長選戰最新民調出爐 徐欣瑩領先鄭朝方、陳見賢呈成長趨勢 - UDN",
+    "url": "https://udn.com/news/story/124652/9294742",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2026-01-28T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "風傳媒",
+    "title": "新竹縣長最新民調：徐欣瑩暫時領先鄭朝方、陳見賢數據顯示：58%民眾黨支持「她」 | 方詠騰 | 地方新聞 - 風傳媒",
+    "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5hU3E0LWk0U3luSVpaTS1SYXVOSkw3Rm9YdGd3NlVBdXRpdWV6WWhrOGVTS1BobHlGVktXOG5GRzhIbW5iczMxUXBWYXJOdw?oc=5",
+    "verified": false
+  },
+  {
+    "field_end": "2026-01-26",
+    "field_start": "2026-01-24",
+    "group_key": "全國公信力民調公司|2026-01-24|1074|county_magistrate|徐欣瑩、鄭朝方對決",
+    "label": "民調",
+    "matchups": [
+      {
+        "other_candidates": [],
+        "scenario": "徐欣瑩、鄭朝方對決",
+        "support": {
+          "xu": 39.3,
+          "zheng": 33.8
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "陳見賢、鄭朝方對決",
+        "support": {
+          "zheng": 36.1
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "三人對決（徐欣瑩、陳見賢、鄭朝方）",
+        "support": {
+          "xu": 32.0,
+          "zheng": 30.7
+        }
+      },
+      {
+        "other_candidates": [
+          "陳見賢"
+        ],
+        "scenario": "徐欣瑩、陳見賢對決",
+        "support": {
+          "xu": 43.6
+        }
+      }
+    ],
+    "moe": null,
+    "news_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE01YUpjcmpVVmpBc2JuUEhtcHBENy1XOGRORWtGQUJ1bGsxQzFJeG9TLWdlSHdnWkx0REJNZ3VNU2JNb3A0QmNSajhHUDJrUQ?oc=5",
+    "note": "數字為新聞摘錄粗解析，請以原文為準",
+    "numbers_hidden": false,
+    "org": "全國公信力民調公司",
+    "period": "2026-01-24～2026-01-26",
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "population": "新竹縣",
+    "published_at": "2026-01-28T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "raw_percents": null,
+    "report_count": 3,
+    "reports": [
+      {
+        "published_at": "2026-01-28T16:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "新竹縣長民調出爐！三方混戰徐欣瑩仍居第一 政壇人士：顯示泛藍選民有共識 | 戴祺修 | 新聞 - 風傳媒",
+        "url": "https://www.storm.mg/article/11098736"
+      },
+      {
+        "published_at": "2026-01-28T16:00:00+08:00",
+        "source_name": "UDN",
+        "title": "新竹縣最新民調！徐欣瑩藍綠對決、黨內支持度雙領先 - UDN",
+        "url": "https://udn.com/news/story/124652/9294074"
+      },
+      {
+        "published_at": "2026-01-31T16:00:00+08:00",
+        "source_name": "風傳媒",
+        "title": "藍新竹縣長內鬥恐釀一屍五命？徐欣瑩大秀民調質疑初選黑箱：會參選到底 | 李瑋萱 | 新聞 - 風傳媒",
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBkZ0x2ZWN6RWxNYUhkUnI2MzNGbmd2SVlWQUJqZnNEZHBCeEk5N3hza1doX3FwdF91WkliOEQyQ05CM05pbGdoYy1yWHhmQQ?oc=5"
+      }
+    ],
+    "sample_size": 1074,
+    "scenario": "徐欣瑩、鄭朝方對決",
+    "source_name": "風傳媒",
+    "support": {
+      "xu": 39.3,
+      "zheng": 33.8
+    },
+    "title": "新竹縣長民調出爐！三方混戰徐欣瑩仍居第一 政壇人士：顯示泛藍選民有共識 | 戴祺修 | 新聞 - 風傳媒",
+    "url": "https://www.storm.mg/article/11098736",
+    "verified": true
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "zheng"
+    ],
+    "published_at": "2025-11-28T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "自由時報",
+    "title": "新竹縣長選舉民調藍營3選將都輸鄭朝方 小笠原欣幸這樣解讀 - 自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1IZ2ZxdGE4U01YYjU4RU1XY3NKeHJSN2tYWHAwSkR1R1NMUlRWeVJNQnNPT0ppWERtdkMzNFEwZklmUm5taUZYMWU1VGZZdTR0aDg2ZU1lVnI3U244WFdOTmdQRF9HdFN0RGfSAW9BVV95cUxOVTZpR0tJUzdDOElWeTVkc3JjcFdZaFNWTGs4a3k3OWpUa0JXczNMeFp4blB4cFBpXzFUeWt1R21aa0lqUXpFVnJqNE8ybG9SSlA5R2ZkMjZ0cjFTS1hSX1h2Unl1VG5XdHFJaVlGV00?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2025-11-27T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "上報Up Media",
+    "title": "深藍可能變天？新竹縣2026民調鄭朝方領先藍營3選將 徐欣瑩回應了 - 上報Up Media",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1MNk10RFhEelduc0FVRG1HQjlSTGxEM2YtOVNnVFlucjZkeUNYcDhrN0xoSzRiRTgzWXdoVXJyMnhuREY4Qlc5UVpwQTk4NDYzbTFLR3pXNk9ETWc?oc=5",
+    "verified": false
+  },
+  {
+    "label": "民調報導",
+    "note": "",
+    "numbers_hidden": true,
+    "org": "民調",
+    "period": null,
+    "person_ids": [
+      "xu",
+      "zheng"
+    ],
+    "published_at": "2025-11-26T16:00:00+08:00",
+    "race": "county_magistrate",
+    "race_label": "新竹縣長",
+    "sample_size": null,
+    "source_name": "Newtalk新聞",
+    "title": "新竹縣長選舉民調》綠將鄭朝方輾壓藍營林思銘、陳見賢與徐欣瑩勢均力敵| 政治 - Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFAtdUhDbXZFdWhqb0QyX181RDZ4LUZKTzVVdEw0d3ZqRmg0emkzY0Z2QU1PZFVRQ0tKNnRXOFlNbERmaFl4d1FxaGNTSDU2RmR0OTZnWkhxMjRUejg?oc=5",
+    "verified": false
+  }
+]

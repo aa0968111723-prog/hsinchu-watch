@@ -1,0 +1,7 @@
+* text=auto eol=lf
+public/data/** -text
+public/observations/** -text
+public/assets/** -text
+*.jpg binary
+*.png binary
+*.webp binary

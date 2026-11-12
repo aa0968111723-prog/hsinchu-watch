@@ -1,0 +1,35 @@
+.observations { scroll-margin-top: 9rem; }
+.observations h2 { font-size: 1.25rem; margin: 0; }
+.observations summary { cursor: pointer; font-weight: 700; min-height: 44px; padding-block: .5rem; }
+.observations [hidden] { display: none !important; }
+.observations .filters { align-items: end; padding: .55rem 0; border-block: 1px solid var(--line); }
+.observations .filters label { display: grid; gap: .25rem; flex: 1 1 5rem; max-width: 18rem; min-width: 0; font-size: .85rem; font-weight: 650; }
+.observations .filters :is(input, select) { min-height: 44px; width: 100%; color: var(--text); background: var(--card); font-size: 1rem; }
+.observations :is(button, input, select, summary, a):focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.observations .timeline li { overflow-wrap: anywhere; }
+.observations .timeline li:last-child { border-bottom: 0; }
+.observations :is(.observation-text, .when) { margin: .24rem 0; }
+.observation-text { line-height: 1.62; }
+.observation-meta { display: flex; align-items: center; flex-wrap: wrap; gap: .12rem .5rem; }
+.observation-meta time { font-variant-numeric: tabular-nums; }
+.observation-meta a { display: inline-flex; align-items: center; min-height: 36px; font-weight: 650; }
+.observation-byline { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem; }
+.observations .badge.mixed { background: #efe7f5; color: #5a3c72; }
+.observations .load-more { margin-top: .6rem; width: 100%; }
+.observation-reset {
+  min-height: 44px;
+  padding: .2rem .65rem;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  background: var(--card);
+  color: var(--link);
+  font: inherit;
+  cursor: pointer;
+}
+.observations [role="status"] { margin: .65rem 0 .3rem; }
+.observations a { text-decoration: underline; text-underline-offset: .15em; }
+#watch-sources .timeline li > a { font-size: 1rem; line-height: 1.5; font-weight: 650; }
+@media (max-width: 400px) {
+  .observations .filters label { max-width: none; }
+  #watch-comments .filters label:first-child { flex-basis: 100%; }
+}

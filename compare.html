@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>候選人比較｜新竹選情觀察</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/visual.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/src/observations.css" />
+  <link rel="stylesheet" href="/src/compare.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+</head>
+<body>
+  <div id="live-banner" class="live-banner hidden"></div>
+  <header class="top">
+    <div class="wrap">
+      <div>
+        <h1>候選人比較</h1>
+        <p class="sub">新竹縣長與竹北市長選情</p>
+      </div>
+      <div class="status" id="statusBox">載入中…</div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html" class="active">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap compare-main">
+    <div id="delayWarn" class="warn hidden">資料更新延遲（超過 1 小時未更新）</div>
+    <div class="cmp-race" role="group" aria-label="選區">
+      <button type="button" data-race="county_magistrate" aria-pressed="true">新竹縣長</button>
+      <button type="button" data-race="zhubei_mayor" aria-pressed="false">竹北市長</button>
+    </div>
+    <nav class="cmp-jump" aria-label="比較頁章節">
+      <a href="#metricCards">人物與數據</a>
+      <a href="#windowBars">來源分類</a>
+      <a href="#pollCompare">已核對民調</a>
+      <a href="#topicStance">政見主題</a>
+      <a href="#watch-sources">公開來源</a>
+      <a href="/commentary.html#watch-comments">逐人網路留言</a>
+    </nav>
+    <p id="cmpEdition" class="compare-note muted">人物收錄量與總覽採用同一份統計快照。</p>
+    <section id="metricCards" class="panel" aria-label="人物與數據"></section>
+    <section id="windowBars" class="panel viz" aria-label="時段聲量比較"></section>
+    <section id="pollCompare" class="panel" aria-label="已核對民調"></section>
+    <section id="topicStance" class="panel" aria-label="政見主題對照"></section>
+    <section id="policyCompare" class="panel" aria-label="政績政見比較"></section>
+    <details id="watch-sources" class="panel observations">
+      <summary>Grok Bot 與 Codex 公開來源索引</summary>
+      <p class="muted">依人物查閱來源的原文連結。索引與民調、留言和媒體表態分開統計。</p>
+      <div class="filters" hidden></div>
+      <p class="muted" role="status">正在讀取公開來源。</p>
+      <ul class="timeline"></ul>
+      <button class="load-more" type="button" hidden>顯示更多來源</button>
+    </details>
+  </main>
+  <footer class="wrap foot" id="footer"></footer>
+  <script type="module" src="/src/compare.js"></script>
+  <script type="module" src="/src/public-sources.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>

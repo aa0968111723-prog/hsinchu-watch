@@ -1,0 +1,530 @@
+{
+  "coverage": {
+    "agriculture": {
+      "wu": true,
+      "xu": true,
+      "zheng": true
+    },
+    "education": {
+      "wu": true,
+      "xu": true,
+      "zheng": true
+    },
+    "environment": {
+      "wu": true,
+      "xu": true,
+      "zheng": true
+    },
+    "fiscal": {
+      "wu": false,
+      "xu": true,
+      "zheng": true
+    },
+    "hakka_indigenous": {
+      "wu": false,
+      "xu": true,
+      "zheng": true
+    },
+    "housing": {
+      "wu": false,
+      "xu": true,
+      "zheng": true
+    },
+    "industry": {
+      "wu": true,
+      "xu": true,
+      "zheng": false
+    },
+    "safety": {
+      "wu": false,
+      "xu": false,
+      "zheng": false
+    },
+    "transport": {
+      "wu": true,
+      "xu": true,
+      "zheng": true
+    },
+    "welfare": {
+      "wu": true,
+      "xu": true,
+      "zheng": true
+    }
+  },
+  "issues": [
+    {
+      "blurb": "道路、公共運輸、通學通勤與跨縣市接駁。",
+      "id": "transport",
+      "name": "交通",
+      "order": 1,
+      "stances": {
+        "wu": {
+          "found": true,
+          "person_id": "wu",
+          "published_at": "2026-11-09",
+          "quote": "一次規劃、整體施工",
+          "related_ids": [
+            "w009",
+            "w039",
+            "w017",
+            "w014"
+          ],
+          "role_at_time": "竹北市長候選人",
+          "source_name": "風傳媒",
+          "source_url": "https://www.storm.mg/article/11179594",
+          "summary": "主張通學安全與公共運輸並進，關注快捷9號班次、智慧站牌與校園號誌，並分期改善人行道障礙與高風險自行車路段，道路整建應一次規劃、減少反覆施工。"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-11-05",
+          "quote": "把時間還給家人",
+          "related_ids": [
+            "x030",
+            "x031",
+            "x036",
+            "x027"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "聯合新聞網",
+          "source_url": "https://udn.com/news/story/124652/9859146",
+          "summary": "主張十六大交通工程、成立AI智慧交通治理中心與全動態流控（目標縮短尖峰通勤約一至兩成），推動竹竹安欣連線、竹竹苗輕軌，以及YouBike前30分鐘免費。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-09-02",
+          "quote": "YouBike前30分鐘免費",
+          "related_ids": [
+            "z043",
+            "z048",
+            "z047",
+            "z106"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "中央社",
+          "source_url": "https://www.cna.com.tw/news/aloc/202609020331.aspx",
+          "summary": "主張把竹北綠色運具經驗擴及13鄉鎮市，推動縣級黃金通勤與通學線，YouBike前30分鐘免費，並爭取湖口第二交流道與二重交流道，同時改善人行空間。"
+        }
+      }
+    },
+    {
+      "blurb": "科學園區、產業轉型與科技治理。",
+      "id": "industry",
+      "name": "科學園區／產業",
+      "order": 2,
+      "stances": {
+        "wu": {
+          "found": true,
+          "person_id": "wu",
+          "published_at": "2026-11-07",
+          "quote": "AI市民小秘書",
+          "related_ids": [
+            "w103",
+            "w024",
+            "w019"
+          ],
+          "role_at_time": "竹北市長候選人",
+          "source_name": "風傳媒",
+          "source_url": "https://www.storm.mg/article/11179362",
+          "summary": "主張以資訊專業推動AI人才培育、企業數位轉型，並規劃「AI市民小秘書」等數位入口，把科技應用延伸到查詢與申辦；報導註明方案仍屬構想，執行計畫尚待具體化。"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-08-26",
+          "quote": "讓AI真正走出園區",
+          "related_ids": [
+            "x106",
+            "x033",
+            "x025"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "鏡週刊",
+          "source_url": "https://www.mirrormedia.mg/story/20260821-145cnt-150159",
+          "summary": "主張加速科學園區三期與桃竹竹苗大矽谷合作，成立新竹AI智慧產業學院，整合竹科、工研院、大學與企業，協助中小企業、傳統產業與農業應用AI。"
+        },
+        "zheng": {
+          "found": false,
+          "label": "尚未找到公開表態",
+          "person_id": "zheng"
+        }
+      }
+    },
+    {
+      "blurb": "長者照顧、福利給付與家庭支持。",
+      "id": "welfare",
+      "name": "長照／社福",
+      "order": 3,
+      "stances": {
+        "wu": {
+          "found": true,
+          "person_id": "wu",
+          "published_at": "2026-10-20",
+          "quote": "走得出去、找得到服務",
+          "related_ids": [
+            "w101",
+            "w004",
+            "w005",
+            "w002"
+          ],
+          "role_at_time": "竹北市長候選人",
+          "source_name": "風傳媒",
+          "source_url": "https://www.storm.mg/article/11174164",
+          "summary": "提出「高齡生活支持網」，主張擴充敬老卡使用體驗，整合就醫交通、長照、社區據點與福利資訊，並為不熟悉數位工具的長輩保留人工窗口，減輕家庭照顧壓力。"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-11-03",
+          "quote": "65歲以上免繳健保費",
+          "related_ids": [
+            "x032",
+            "x029",
+            "x028"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "聯合新聞網",
+          "source_url": "https://udn.com/news/story/124652/9854009",
+          "summary": "主張65歲以上長者健保費全額補助、敬老卡加碼並擴大用途，發放AI智慧健康手環，建置長照資源查詢平台與一里一照護聯絡點，並補齊日照與社區照顧缺口。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-10-03",
+          "quote": "敬老卡調高為1200點",
+          "related_ids": [
+            "z042",
+            "z018",
+            "z105"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "新唐人亞太台",
+          "source_url": "https://www.ntdtv.com.tw/b5/20261003/video/411518.html",
+          "summary": "主張65歲以上健保費全額補助不排富，敬老卡點數調高為1200點並擴大交通、醫療、運動與藝文用途；同時延續育兒與孕程補助，增加公托、臨托與夜間、假日托育。"
+        }
+      }
+    },
+    {
+      "blurb": "就學量能、通學、托育與特殊教育。",
+      "id": "education",
+      "name": "教育／托育",
+      "order": 4,
+      "stances": {
+        "wu": {
+          "found": true,
+          "person_id": "wu",
+          "published_at": "2026-10-31",
+          "quote": "全齡教育支持網",
+          "related_ids": [
+            "w006",
+            "w038",
+            "w007",
+            "w008"
+          ],
+          "role_at_time": "竹北市長候選人",
+          "source_name": "風傳媒",
+          "source_url": "https://www.storm.mg/article/11179594",
+          "summary": "提出全齡教育支持網，主張串聯親職、特教、AI與STEAM教育、營養午餐與在地就學；並加碼早療訓練、檢討私幼特教助理員門檻，以及設立竹北未來學院分齡課程。"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-11-03",
+          "quote": "中小學生人人有平板",
+          "related_ids": [
+            "x033",
+            "x107",
+            "x023"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "聯合新聞網",
+          "source_url": "https://udn.com/news/story/124652/9854009",
+          "summary": "主張在中央計畫基礎上落實中小學生人人有平板，推動AI、雙語與國際教育，並提出生育補助10萬元、增設臨時托育與2歲專班，擴大托嬰與幼兒園名額。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-09-02",
+          "quote": "竹北的孩子朝方養",
+          "related_ids": [
+            "z046",
+            "z042",
+            "z031",
+            "z032",
+            "z106"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "中央社",
+          "source_url": "https://www.cna.com.tw/news/aloc/202609020331.aspx",
+          "summary": "主張把竹北育兒經驗擴及全縣，包括3至6歲育兒津貼、整合早療窗口、增加幼兒園特教助理，並評估新增兩所完全中學；另提出「逐夢計畫」支持學生競賽。"
+        }
+      }
+    },
+    {
+      "blurb": "社會住宅、青年居住與租金負擔。",
+      "id": "housing",
+      "name": "住宅／房價",
+      "order": 5,
+      "stances": {
+        "wu": {
+          "found": false,
+          "label": "尚未找到公開表態",
+          "person_id": "wu"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-11-03",
+          "quote": "加速推動青年社會住宅",
+          "related_ids": [
+            "x101",
+            "x028"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "徐欣瑩官方網站",
+          "source_url": "https://www.shesinging.tw/politics/care/",
+          "summary": "官網主張建立青年安心租屋單一窗口，並全面盤點適合興建青年及社會住宅的公有土地，優先靠近就業、大眾運輸、學校與醫療，銜接中央資源加快供給。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-10-03",
+          "quote": "全力推動社會住宅",
+          "related_ids": [
+            "z105",
+            "z038"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "新唐人亞太台",
+          "source_url": "https://www.ntdtv.com.tw/b5/20261003/video/411518.html",
+          "summary": "竹北競總成立時提出的社福政見，載明將全力推動社會住宅，並搭配青年創業支持。2022年竹北市長政見公報也曾主張協調縣府推動社會宅。"
+        }
+      }
+    },
+    {
+      "blurb": "公共安全、犯罪預防與執法相關主張。",
+      "id": "safety",
+      "name": "治安",
+      "order": 6,
+      "stances": {
+        "wu": {
+          "found": false,
+          "label": "尚未找到公開表態",
+          "person_id": "wu"
+        },
+        "xu": {
+          "found": false,
+          "label": "尚未找到公開表態",
+          "person_id": "xu"
+        },
+        "zheng": {
+          "found": false,
+          "label": "尚未找到公開表態",
+          "person_id": "zheng"
+        }
+      }
+    },
+    {
+      "blurb": "河川、治水、綠地、海岸與污染治理。",
+      "id": "environment",
+      "name": "環境／水資源",
+      "order": 7,
+      "stances": {
+        "wu": {
+          "found": true,
+          "person_id": "wu",
+          "published_at": "2026-10-13",
+          "quote": "竹北ESG永續媒合平台",
+          "related_ids": [
+            "w104",
+            "w003"
+          ],
+          "role_at_time": "新竹縣議員／竹北市長候選人",
+          "source_name": "風傳媒",
+          "source_url": "https://www.storm.mg/article/11172023",
+          "summary": "在縣政總質詢中追問豆子埔溪整治期程，主張成立ESG永續媒合平台，推動沿岸分區認養、水質監測與永續基金，讓工程改善延伸為長期維護與居民參與。"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-10-21",
+          "quote": "頭前溪親水廊道",
+          "related_ids": [
+            "x105",
+            "x024"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "中國國民黨知識庫",
+          "source_url": "https://knowledge.kmt.org.tw/articles/157f096c-62f8-4cc8-ab14-a35f1d02369a/",
+          "summary": "主張打造頭前溪親水廊道並逐步串聯竹東、芎林、竹北到新竹市，成立智慧污染監控中心，推動全流域治水，並於竹北、湖口規劃智慧海綿城市示範區。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-10-03",
+          "quote": "讓城市自由森呼吸",
+          "related_ids": [
+            "z103",
+            "z044",
+            "z033"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "中時新聞網",
+          "source_url": "https://www.chinatimes.com/newspapers/20261003000542-260107",
+          "summary": "主張把竹北以樹為本的綠地經驗擴及全縣，推動都市林、生活樹蔭路線與樹木養護；並延伸豆子埔溪、關西牛欄河及竹東頭前溪等水岸治理。"
+        }
+      }
+    },
+    {
+      "blurb": "農漁產業、產銷與食農教育。",
+      "id": "agriculture",
+      "name": "農業",
+      "order": 8,
+      "stances": {
+        "wu": {
+          "found": true,
+          "person_id": "wu",
+          "published_at": "2026-11-06",
+          "quote": "西區農漁四箭",
+          "related_ids": [
+            "w102",
+            "w105",
+            "w020",
+            "w037"
+          ],
+          "role_at_time": "竹北市長候選人",
+          "source_name": "聯合新聞網",
+          "source_url": "https://udn.com/news/story/7324/9862021",
+          "summary": "主張輔導農漁加工與餐飲合法登記，串聯拔仔窟、水月休閒農業區、新月沙灣的農漁旅遊，設立青年返鄉輔導基金與品牌認證，並爭取智慧養殖與冷鏈；若當選將推動烏魚故事館。"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-11-03",
+          "quote": "四季主題農遊",
+          "related_ids": [
+            "x104",
+            "x026"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "徐欣瑩官方網站",
+          "source_url": "https://www.shesinging.tw/politics/tourism/",
+          "summary": "主張依季節推動春賞花、夏採果、秋品茶、冬曬柿等農遊，結合食農教育與客庄農產，並以青年創業貸款與通路協助留住農村人口。官網另列其曾主張調整公糧收購價格，該項屬自述政績、另行標示。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-10-21",
+          "quote": "一份午餐，可以照顧孩子",
+          "related_ids": [
+            "z045",
+            "z040"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "聯合新聞網",
+          "source_url": "https://udn.com/news/story/124652/9827997",
+          "summary": "主張以竹北經驗結合13鄉鎮特色，推動智慧農事、農產運銷與品牌行銷，並以學童營養午餐地產地銷建立穩定採購，讓農民有通路、孩子吃到在地食材。"
+        }
+      }
+    },
+    {
+      "blurb": "財政規劃、採購透明與公共建設管理。",
+      "id": "fiscal",
+      "name": "財政",
+      "order": 9,
+      "stances": {
+        "wu": {
+          "found": false,
+          "label": "尚未找到公開表態",
+          "person_id": "wu"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-11-03",
+          "quote": "公共建設絕不個人署名",
+          "related_ids": [
+            "x034"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "聯合新聞網",
+          "source_url": "https://udn.com/news/story/124652/9854009",
+          "summary": "提出陽光縣政三大承諾：公共建設不個人署名、不落款；家人不干涉縣政、不參與採購；成立城市夢想家縣政顧問團，強調公開透明與全民共治。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-08-22",
+          "quote": "財政合理規劃",
+          "related_ids": [
+            "z104",
+            "z041"
+          ],
+          "role_at_time": "竹北市長／新竹縣長候選人",
+          "source_name": "匯流新聞網",
+          "source_url": "https://cnews.com.tw/247260822a02/",
+          "summary": "專訪中表示「財政合理規劃，讓長輩與孩子都獲得照顧，一直是我的施政理念」，並以其任內在財政允許下推動津貼與疫苗補助，說明福利應量入為出。"
+        }
+      }
+    },
+    {
+      "blurb": "客家文化、客庄產業與原鄉生活服務。",
+      "id": "hakka_indigenous",
+      "name": "原鄉／客家",
+      "order": 10,
+      "stances": {
+        "wu": {
+          "found": false,
+          "label": "尚未找到公開表態",
+          "person_id": "wu"
+        },
+        "xu": {
+          "found": true,
+          "person_id": "xu",
+          "published_at": "2026-10-28",
+          "quote": "講客新竹",
+          "related_ids": [
+            "x102",
+            "x103",
+            "x026"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "客新聞 HakkaNews",
+          "source_url": "https://hakkanews.tw/2026/10/28/309055/",
+          "summary": "主張客語要回到生活，推動屋下講客、青春講客、AI講客與公共服務講客無障礙，籌設客庄國際行銷中心，並發展小而精緻的部落旅遊，讓觀光收益留在原鄉。"
+        },
+        "zheng": {
+          "found": true,
+          "person_id": "zheng",
+          "published_at": "2026-10-28",
+          "quote": "客語陪伴、客庄新生",
+          "related_ids": [
+            "z101",
+            "z102",
+            "z009"
+          ],
+          "role_at_time": "新竹縣長候選人",
+          "source_name": "客新聞 HakkaNews",
+          "source_url": "https://hakkanews.tw/2026/10/28/309226/",
+          "summary": "提出客家九大治理藍圖，涵蓋客語陪伴、客庄教育、伯公照護、青年築庄與世界客家；並在尖石提出改善山區道路與照明、教育資源及山林系圖書館等原鄉主張。"
+        }
+      }
+    }
+  ],
+  "missing_label": "尚未找到公開表態",
+  "note": "僅列有公開來源的表態；沒有找到的格子寫「尚未找到公開表態」，不推測、不評比優劣。摘錄不超過30字。",
+  "person_names": {
+    "wu": "吳旭智",
+    "xu": "徐欣瑩",
+    "zheng": "鄭朝方"
+  },
+  "person_order": [
+    "wu",
+    "xu",
+    "zheng"
+  ],
+  "timezone": "Asia/Taipei",
+  "updated_at": "2026-11-10",
+  "version": 1
+}

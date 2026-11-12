@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>議題索引｜新竹選情觀察</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/visual.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/src/topics.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+</head>
+<body>
+  <div id="live-banner" class="live-banner hidden"></div>
+  <header class="top">
+    <div class="wrap">
+      <div><h1>議題索引</h1><p class="sub">從議題查閱收錄數字與相關原文</p></div>
+      <div class="status" id="statusBox"></div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html" class="active">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap topic-page">
+    <div id="delayWarn" class="warn hidden">資料更新延遲（超過 1 小時未更新）</div>
+    <section class="panel topic-index" aria-labelledby="topicIndexTitle">
+      <p class="topic-eyebrow">新竹選情觀察</p>
+      <h2 id="topicIndexTitle">按議題瀏覽</h2>
+      <p class="topic-intro">選擇議題，比對本站收錄篇數，並查看最新索引中的相關來源。</p>
+      <div class="topic-picker" id="topicPicker" role="group" aria-label="選擇議題"></div>
+      <p class="topic-state" id="topicState" role="status">議題統計載入中</p>
+    </section>
+    <section class="panel topic-detail" id="topicChart" aria-labelledby="topicDetailTitle" hidden>
+      <div id="topicDetail"></div>
+      <div class="topic-source-box" id="topicSources"></div>
+    </section>
+    <details class="panel topic-totals">
+      <summary>完整議題數字表</summary>
+      <div id="topicTable"><p class="topic-state">議題統計載入中</p></div>
+    </details>
+  </main>
+  <footer class="wrap foot" id="footer"></footer>
+  <script type="module" src="/src/topics.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>

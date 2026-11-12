@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192" role="img" aria-label="徐欣瑩">
+  <title>person_xu — 徐</title>
+  <desc>Neutral person badge: identical shape/size/color; differentiated only by surname 徐. No face, no party colors.</desc>
+  <rect width="192" height="192" rx="40" fill="#F7F4EF"/>
+  <circle cx="96" cy="96" r="72" fill="#E8E2D9" stroke="#2C2A28" stroke-width="6"/>
+  <!-- thin wind arc accent (same for all three) -->
+  <path d="M48 78 C72 52, 120 52, 144 78" fill="none" stroke="#C4893A" stroke-width="5" stroke-linecap="round"/>
+  <text x="96" y="118" text-anchor="middle"
+        font-family="Noto Sans CJK TC, Noto Sans CJK, 'Noto Sans TC', sans-serif"
+        font-size="72" font-weight="700" fill="#2C2A28">徐</text>
+</svg>

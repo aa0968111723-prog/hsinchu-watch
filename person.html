@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>人物｜新竹選情觀察</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/visual.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/src/person.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+</head>
+<body>
+  <div id="live-banner" class="live-banner hidden"></div>
+  <header class="top">
+    <div class="wrap">
+      <div>
+        <h1 id="personName">人物</h1>
+        <p class="sub" id="personRole"></p>
+      </div>
+      <div class="status" id="statusBox"></div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap person-page">
+    <div id="delayWarn" class="warn hidden">資料更新延遲（超過 1 小時未更新）</div>
+    <nav class="person-switch" id="personSwitch" aria-label="切換人物"></nav>
+    <section class="pbanner" id="pBanner" aria-label="人物摘要"></section>
+    <nav class="person-jump" aria-label="人物頁段落">
+      <a href="#personUpdates">動態與來源</a>
+      <a href="#personData">資料圖表</a>
+      <a href="#officialPanel">官網發言</a>
+    </nav>
+    <section class="panel person-updates" id="personUpdates" aria-labelledby="personUpdatesTitle">
+      <h2 id="personUpdatesTitle">動態與來源</h2>
+      <div class="tabs" id="tabs" role="group" aria-label="動態類型">
+        <button type="button" data-tab="timeline" class="active" aria-pressed="true" aria-controls="personFeed">時間軸</button>
+        <button type="button" data-tab="youtube" aria-pressed="false" aria-controls="personFeed">YouTube</button>
+        <button type="button" data-tab="comments" aria-pressed="false" aria-controls="personFeed">網友留言</button>
+      </div>
+      <div id="filtersPanel">
+        <div class="person-filters">
+          <label class="person-search">關鍵字 <input id="q" type="search" enterkeyhint="search" placeholder="搜尋標題或摘要" /></label>
+          <label id="personPlatform">平台 <select id="platform"><option value="">全部平台</option></select></label>
+          <label>議題 <select id="topic"><option value="">全部議題</option></select></label>
+          <label>發言來源 <select id="own">
+            <option value="">全部來源</option>
+            <option value="1">本人／陣營</option>
+            <option value="0">他人提及</option>
+          </select></label>
+        </div>
+        <div class="person-result-row">
+          <span id="count" class="muted" role="status"></span>
+          <button type="button" id="clearPersonFilters" hidden>清除篩選</button>
+        </div>
+      </div>
+      <div id="personFeed">
+        <ul class="timeline" id="list"><li class="muted">載入中…</li></ul>
+        <div id="loadMoreWrap" class="load-more-wrap hidden">
+          <button type="button" id="loadMore" class="load-more">載入更多</button>
+        </div>
+      </div>
+      <div id="kwCloud"></div>
+    </section>
+    <section id="personData" aria-labelledby="personDataTitle">
+      <h2 id="personDataTitle">資料圖表</h2>
+      <section class="panel viz" id="pVolume"></section>
+      <div class="grid2">
+        <section class="panel viz" id="pSent"></section>
+        <section class="panel viz" id="pMix"></section>
+      </div>
+      <div class="grid2">
+        <section class="panel viz" id="pOutlet"></section>
+        <section class="panel viz" id="pTopic"></section>
+      </div>
+      <section class="panel viz" id="pComment"></section>
+    </section>
+    <section class="panel" id="officialPanel" aria-labelledby="officialTitle">
+      <h2 id="officialTitle">本人發言（官網）</h2>
+      <p class="muted" id="officialNote">候選人官網文章，屬本人／競選團隊自述；不計入聲量、情緒與全站總數，也不放首頁時間軸。</p>
+      <ul class="timeline" id="officialList"><li class="muted">載入中…</li></ul>
+    </section>
+  </main>
+  <footer class="wrap foot" id="footer"></footer>
+  <script type="module" src="/src/person.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>

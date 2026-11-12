@@ -1,0 +1,6 @@
+
+.release-directory { margin: 0 0 .65rem; border-block-end: 1px solid var(--line); }
+.release-directory summary { min-height: 44px; padding-block: .62rem; color: var(--link); cursor: pointer; font-weight: 650; }
+.release-directory nav { display: flex; flex-wrap: wrap; gap: .18rem .85rem; padding-block-end: .3rem; }
+.release-directory a, .release-extra a { display: inline-flex; align-items: center; min-height: 44px; font-size: .84rem; }
+.release-extra { margin: .15rem 0 .55rem; }

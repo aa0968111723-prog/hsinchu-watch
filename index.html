@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>新竹選情觀察</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/visual.css" />
+  <link rel="stylesheet" href="/src/latest-platform.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/src/dashboard.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+</head>
+<body>
+  <div id="live-banner" class="live-banner hidden"></div>
+  <header class="top">
+    <div class="wrap">
+      <div>
+        <h1>新竹選情觀察</h1>
+        <p class="sub">新竹縣長與竹北市長</p>
+      </div>
+      <div class="status" id="statusBox">載入中…</div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html" class="active">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <p id="delayWarn" class="hidden">資料更新延遲</p>
+    <div class="frontdesk">
+    <section id="latestTop" aria-label="最新消息"></section>
+    <figure class="pulse" aria-labelledby="pulse-title">
+      <div class="pulse-top">
+        <div>
+          <p class="pulse-kicker">收錄觀測</p>
+          <h2 id="pulse-title">近期收錄量</h2>
+        </div>
+        <div class="pulse-period" role="group" aria-label="統計時段">
+          <button type="button" data-period="last_24h" aria-pressed="false">24 小時</button>
+          <button type="button" data-period="last_7d" aria-pressed="true">近 7 日</button>
+        </div>
+      </div>
+      <div id="pulsePlot" class="pulse-plot" aria-live="polite"><p>正在讀取收錄統計。</p></div>
+      <div class="pulse-tools"><span>兩時段共用刻度</span><button id="pulseView" type="button" aria-controls="pulseNumbers" aria-expanded="false">查看數字表</button></div>
+      <figcaption class="pulse-note"><span id="pulseEdition">兩時段共用刻度</span><a href="/compare.html#metricCards">按選區比較</a></figcaption>
+    </figure>
+    </div>
+    <nav id="dashPeople" class="dash-people" aria-label="人物時間軸" hidden></nav>
+    <details class="edition-totals"><summary>全站收錄概況</summary>
+      <section id="kpis" class="kpis" aria-label="全站概況"></section>
+    </details>
+    <div id="kwCloud"></div>
+    <section id="cards" class="cards" aria-label="主要人物摘要"></section>
+    <section id="platformSection" aria-label="政績政見"></section>
+    <section class="panel viz" id="pVolume" aria-live="polite"></section>
+    <div class="grid2">
+      <section class="panel viz" id="pSent"></section>
+      <section class="panel viz" id="pMix"></section>
+    </div>
+    <section class="panel viz" id="pPoll"></section>
+    <div class="grid2">
+      <section class="panel viz" id="pOutlet"></section>
+      <section class="panel viz" id="pTopic"></section>
+    </div>
+    <section class="panel viz" id="pOutletBy"></section>
+    <section class="panel viz" id="pComment"></section>
+    <section class="panel">
+      <h3>最新動態</h3>
+      <ul class="timeline feed" id="feed"><li class="muted">載入中…</li></ul>
+    </section>
+    <p id="pendingNote" class="muted" style="margin-top:.6rem"></p>
+  </main>
+  <footer class="wrap foot" id="footer"></footer>
+  <script type="module" src="/src/main.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>

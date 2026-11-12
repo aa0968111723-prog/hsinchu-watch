@@ -1,0 +1,49 @@
+# Cloudflare Pages _headers（Vite publicDir 會複製到 dist/）
+# 安全標頭 + 快取規則；蒐集每 20 分鐘，JSON 短快取、hashed assets 長快取。
+# 語法：https://developers.cloudflare.com/pages/configuration/headers/
+# 後寫同名標頭覆寫前寫；較具體路徑放後面。
+# 004 修訂：併入 SSL憑證監控員 HSTS／CSP／COOP／CORP（max-age=86400 先觀察）。
+
+# --- 安全標頭（全站）---
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=86400; includeSubDomains
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; object-src 'none'; upgrade-insecure-requests
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# --- 資料 JSON（短快取；對齊每 20 分鐘蒐集）---
+/data/manifest.json
+  Cache-Control: public, max-age=60, stale-while-revalidate=120
+
+/data/stats.json
+  Cache-Control: public, max-age=60, stale-while-revalidate=300
+
+/data/latest.json
+  Cache-Control: public, max-age=60, stale-while-revalidate=300
+
+/data/items.json
+  Cache-Control: public, max-age=120, stale-while-revalidate=600
+
+/data/items_*.json
+  Cache-Control: public, max-age=120, stale-while-revalidate=600
+
+/data/polls.json
+  Cache-Control: public, max-age=120, stale-while-revalidate=600
+
+/data/by_day/*
+  Cache-Control: public, max-age=86400, immutable
+
+# --- 靜態資產（Vite hashed → 一年 immutable）---
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# --- HTML 入口短快取，才能指到新 assets／data ---
+/*.html
+  Cache-Control: public, max-age=60, must-revalidate
+
+/
+  Cache-Control: public, max-age=60, must-revalidate

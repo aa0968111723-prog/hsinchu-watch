@@ -1,0 +1,51 @@
+{
+  "updated_at": "2026-11-10T08:33:00+08:00",
+  "note": "三人同尺寸（256×256 中心裁切 JPEG）。來源皆為 Wikimedia Commons 上標示可重用之政府網站資料開放宣告（GWOIA）官方肖像；頁面顯示小字出處。",
+  "treatment": {
+    "width": 256,
+    "height": 256,
+    "format": "JPEG",
+    "crop": "center-square"
+  },
+  "persons": {
+    "wu": {
+      "name": "吳旭智",
+      "local_path": "public/img/persons/wu.jpg",
+      "public_url": "/img/persons/wu.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:%E5%90%B3%E6%97%AD%E6%99%BA%E8%AD%B0%E5%93%A1.png",
+      "source_file": "File:吳旭智議員.png",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/%E5%90%B3%E6%97%AD%E6%99%BA%E8%AD%B0%E5%93%A1.png",
+      "license": "GWOIA（政府網站資料開放宣告）",
+      "license_url": "https://cand.moi.gov.tw/of/home.jsp?mserno=201011010017&serno=201011010017&menudata=OfMenu&contlink=content/copyright.jsp",
+      "credit_zh": "照片：內政部民政司（GWOIA）",
+      "kind": "photo",
+      "attribution": "內政部民政司"
+    },
+    "xu": {
+      "name": "徐欣瑩",
+      "local_path": "public/img/persons/xu.jpg",
+      "public_url": "/img/persons/xu.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:%E5%BE%90%E6%AC%A3%E7%91%A9%E8%82%96%E5%83%8F.jpg",
+      "source_file": "File:徐欣瑩肖像.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/%E5%BE%90%E6%AC%A3%E7%91%A9%E8%82%96%E5%83%8F.jpg",
+      "license": "LY-GWOIA（立法院政府網站資料開放宣告）",
+      "license_url": "https://www.ly.gov.tw/",
+      "credit_zh": "照片：立法院（GWOIA）",
+      "kind": "photo",
+      "attribution": "立法院"
+    },
+    "zheng": {
+      "name": "鄭朝方",
+      "local_path": "public/img/persons/zheng.jpg",
+      "public_url": "/img/persons/zheng.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82%E5%85%AC%E6%89%80_%E9%84%AD%E6%9C%9D%E6%96%B9.jpg",
+      "source_file": "File:新竹縣竹北市公所 鄭朝方.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82%E5%85%AC%E6%89%80_%E9%84%AD%E6%9C%9D%E6%96%B9.jpg",
+      "license": "GWOIA（政府網站資料開放宣告）",
+      "license_url": "https://www.moi.gov.tw/cp.aspx?n=10954",
+      "credit_zh": "照片：內政部（GWOIA）",
+      "kind": "photo",
+      "attribution": "中華民國內政部"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html data-ui-depth="v3" lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>社群匯入｜新竹三人政治輿情站</title>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<script crossorigin="" src="/assets/mobile-nav-D0ukQkk_.js" type="module"></script>
+<link crossorigin="" href="/assets/mobile-nav-BacuR8-v.css" rel="stylesheet"/>
+<link href="/assets/mobile-nav-CPaz1PvL.css" rel="stylesheet"/><link href="/assets/release-nav-ae6eb3997a.css" rel="stylesheet"/><link href="/assets/editorial-depth-22f36c5523f1.css" rel="stylesheet"/></head>
+<body>
+<header class="top">
+<div class="wrap">
+<div><h1>社群貼文快速匯入</h1><p class="sub">FB／IG／Threads／YouTube｜本頁不寫入伺服器，請用匯入匣或指令</p></div>
+</div>
+<nav aria-label="主選單" class="wrap nav"><a href="/index.html">總覽</a><a href="/compare.html">比較</a><a href="/topics.html">議題</a><a href="/polls.html">民調</a><a href="/commentary.html">評論</a><a aria-current="page" class="active" href="/manual.html">手動收錄</a></nav>
+</header>
+<main class="wrap"><details class="release-directory"><summary>更多資料</summary><nav aria-label="其他資料頁"><a href="/records.html">政績與政見</a><a href="/maps.html">議題地圖</a><a href="/compare-panels.html">指標對照</a><a href="/reference/compare.html">逐筆比較</a><a href="/reference/topics.html">議題立場</a><a href="/reference/index.html">即時與社群</a><a href="/person.html?id=chen">陳見賢</a></nav></details>
+<section class="panel">
+<h2>怎麼匯入</h2>
+<p>公開站<strong>沒有</strong>上傳送出表單。請把貼文連結寫進匯入匣，下一輪蒐集就會出現在「社群貼文」。</p>
+<ul>
+<li>Box 正式匣：<code>/workspace/hsinchu-watch-backups/inbox/social_links.txt</code></li>
+<li>筆電可放：<code>D:\GitHub\hsinchu-watch\inbox\</code>（請自行同步到 box）</li>
+<li>選填截圖：<code>inbox/images/</code></li>
+</ul>
+<pre class="code">https://www.youtube.com/watch?v=XXXXXXXXXXX|xu|備註
+https://www.facebook.com/…/posts/…|徐欣瑩|臉書貼文
+https://www.instagram.com/p/…|zheng
+https://www.threads.net/@…/post/…|鄭朝方</pre>
+<p>指令（本機／box）：</p>
+<pre class="code">python3 scripts/add_social_link.py 'URL' xu '備註'</pre>
+<p class="muted">詳見 repo 根目錄 <code>README_inbox.md</code>。FB／IG／Threads 不自動抓正文；YouTube 用公開 oEmbed 取標題與縮圖。</p>
+</section>
+</main>
+<footer class="wrap foot">
+<p>本站自動彙整公開資料，不代表立場；以原文為準。</p>
+</footer>
+<script src="/assets/release-nav-c3a8004f2f.js" type="module"></script></body>
+</html>

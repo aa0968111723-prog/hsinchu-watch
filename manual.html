@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>提供公開來源｜新竹選情觀察</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/visual.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div><h1>提供公開來源</h1><p class="sub">供編輯核對的資料格式</p></div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html" class="active">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <section class="panel submission" aria-labelledby="submission-heading">
+      <header class="edition-heading">
+        <h2 id="submission-heading">整理一則公開連結</h2>
+        <p class="muted">交由維護者核對</p>
+      </header>
+      <ol>
+        <li>找可公開閱讀的原始報導、影片或貼文連結。</li>
+        <li>複製下方格式，填入人物、來源名稱和網址。有發布時間也可以附上。</li>
+        <li>將整理好的內容交給維護者。</li>
+      </ol>
+      <label for="source-template"><strong>來源格式</strong></label>
+      <textarea id="source-template" rows="5" readonly>人物
+媒體或平台
+原文網址
+發布時間（選填）
+補充說明（選填）</textarea>
+      <div class="submission-actions">
+        <button class="load-more" type="button" id="copy-source-template">複製格式</button>
+        <p id="copy-source-status" class="muted" role="status"></p>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap foot">
+    <nav class="footer-nav" aria-label="網站資訊">
+      <a href="/index.html">新竹選情觀察</a>
+      <a href="/compare.html#watch-sources">公開來源索引</a>
+    </nav>
+  </footer>
+  <script type="module" src="/src/manual.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>
