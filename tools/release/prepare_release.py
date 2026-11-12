@@ -91,7 +91,7 @@ def source_index(current, items, policies):
 def prepare(root=ROOT):
     root = Path(root)
     required = {"index.html": 'id="pulseView"', "compare.html": 'id="metricCards"',
-                "governance.html": 'id="governanceBoard"', "maps.html": "maps-mobile-", "commentary.html": "watch-comments"}
+                "archive.html": 'id="archiveBoard"', "governance.html": 'id="governanceBoard"', "maps.html": "maps-mobile-", "commentary.html": "watch-comments"}
     for page, marker in required.items():
         if marker not in (root / page).read_text(encoding="utf-8"):
             raise ValueError("Refusing superseded UI: " + page)
@@ -150,7 +150,7 @@ def prepare(root=ROOT):
     if ui_changed:
         manifest["ui_updated_at"] = now
     manifest["release"] = {"id": revision, "ui_sha256": ui_sha, "data_sha256": data_sha}
-    manifest["ui_version"] = "editorial-v5"
+    manifest["ui_version"] = "editorial-v6"
     # Abort if an importer advanced any input while the release was assembled.
     if any(path.read_bytes() != raw for path, raw in before.items()) or source_path.read_bytes() != existing_sources:
         raise RuntimeError("Public files changed during release preparation; retry after import")

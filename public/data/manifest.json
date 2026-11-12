@@ -90,7 +90,7 @@
       "sha256": "b6e326d472c91283"
     }
   },
-  "finalized_at": "2026-11-12T23:13:59.772546+08:00",
+  "finalized_at": "2026-11-12T23:34:25.964724+08:00",
   "generated_at": "2026-11-12T06:31:54.830322+08:00",
   "persons_order": [
     "wu",
@@ -102,13 +102,13 @@
   ],
   "poll_blackout_active": false,
   "timezone": "Asia/Taipei",
-  "ui_updated_at": "2026-11-12T23:14:00+08:00",
+  "ui_updated_at": "2026-11-12T23:34:26+08:00",
   "release": {
-    "id": "hsinchu-5fafa4108db6ea20",
-    "ui_sha256": "a10cb6e072ae5c88137fb04abd3119a29fbdbc61ae7a81059a4a7a0485d3ee94",
+    "id": "hsinchu-bf38c4a49f94e213",
+    "ui_sha256": "5764cbda93edbda9496fde72f94a9839f0f0bc86a25224b82361bf8296e2d146",
     "data_sha256": "3b4947939ae004236231f6d6f9470d3feccc07427373f8b5c217bdc9e69385b9"
   },
-  "ui_version": "editorial-v5",
+  "ui_version": "editorial-v6",
   "ui_revisions": {
     "maps": "e45d7305f5ef3665"
   }

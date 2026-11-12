@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 CORE = ("index", "compare", "topics", "polls", "commentary", "manual", "person")
 PRIMARY = (("總覽", "index"), ("比較", "compare"), ("議題", "topics"),
            ("民調", "polls"), ("評論", "commentary"), ("手動收錄", "manual"))
-MORE = (("候選人多面向", "/compare.html#candidateReview"), ("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
+MORE = (("完整收錄資料", "/archive.html"), ("候選人多面向", "/compare.html#candidateReview"), ("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
         ("指標對照", "/compare-panels.html"), ("逐筆比較", "/reference/compare.html"),
         ("議題立場", "/reference/topics.html"), ("即時與社群", "/reference/index.html"),
         ("陳見賢", "/person.html?id=chen"))
@@ -132,7 +132,7 @@ def edit_page(path, common_css, script_url, style_url, depth_url, tools_url, *, 
     add_tag(doc, doc.body, "script", defer="", src=tools_url)
     doc.html["data-ui-depth"] = "v3"
     add_tag(doc, doc.body, "script", type="module", src=script_url)
-    if route == "governance":
+    if route in ("governance", "archive"):
         path.write_text(str(doc), encoding="utf-8", newline="\n")
         return
     note = doc.new_tag("p", attrs={"class": "candidate-review-note"})
@@ -208,6 +208,7 @@ def main():
             shutil.copyfile(output / f"{page}.html", reference / f"{page}.html")
         shutil.copyfile(editorial / f"{page}.html", output / f"{page}.html")
     shutil.copyfile(editorial / "governance.html", output / "governance.html")
+    shutil.copyfile(editorial / "archive.html", output / "archive.html")
     # Governance records belong to the checked editorial release, not the legacy election feed.
     for name in ("governance.json", "governance-registry.json", "candidate-review.json"):
         shutil.copyfile(editorial / "data" / name, output / "data" / name)

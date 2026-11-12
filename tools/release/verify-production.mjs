@@ -24,6 +24,7 @@ try {
   const entries = {
     '/index.html': '#pulsePlot svg',
     '/governance.html': '.gov-project',
+    '/archive.html': '.archive-row',
     '/compare.html': '#metricCards .cmp-card',
     '/topics.html': '#topicPicker button',
     '/polls.html': '#pollTrend:not([aria-busy="true"])',

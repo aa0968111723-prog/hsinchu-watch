@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>完整收錄資料｜地方治理與選情觀察</title><meta name="description" content="查閱本站已保存的新聞、政策、民調、匿名留言、來源索引、官方發言、議題摘錄及治理案卷。">
+<link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/src/styles.css"><link rel="stylesheet" href="/src/mobile.css"><link rel="stylesheet" href="/editorial-depth.css"><link rel="stylesheet" href="/src/archive.css">
+</head><body class="archive-page">
+<header class="top"><div class="wrap"><div><h1>完整收錄資料</h1><p class="sub">每筆紀錄・原文連結・資料狀態</p></div><p id="archiveEdition" class="status">讀取快照中</p></div><nav class="wrap nav"><a href="/archive.html" class="active">資料</a><a href="/compare.html#candidateReview">候選人</a><a href="/governance.html">治理</a><a href="#archiveFiles">檔案</a><a href="/index.html">總覽</a></nav></header>
+<main class="wrap" id="archiveBoard">
+<section class="archive-intro"><p class="archive-kicker">完整收錄 / ARCHIVE</p><h2>把分散的資料，放在一起查。</h2><p>查閱本站全部已保存的紀錄、摘要與原文連結，可翻頁查到底或完整匯出。尚未保存的網路資訊不在此範圍。</p><p>同篇原文可能有不同整理紀錄，筆數不代表支持度或候選人評分；封存與待核對內容保留標示。</p></section>
+<p id="archiveLoad" role="status" aria-live="polite">正在合併各類資料。</p><div id="archiveWarning" class="archive-warning" role="alert" hidden></div><button id="archiveRetry" type="button" hidden>重試未載入的檔案</button>
+<form id="archiveFilters" class="archive-filters" aria-label="完整資料篩選">
+<label>人物與身分<select id="archivePerson"><option value="">全部人物與治理案卷</option></select></label><label>資料類型<select id="archiveKind"><option value="">全部類型</option></select></label>
+<label class="archive-search">搜尋標題、摘要、來源或紀錄欄位<input id="archiveQuery" type="search" placeholder="輸入人物、政策、議題或關鍵字" autocomplete="off"></label>
+<details class="archive-advanced"><summary>平台、日期與資料狀態篩選</summary><div class="archive-advanced-fields"><label>平台或來源類型<select id="archivePlatform"><option value="">全部平台</option></select></label><label>資料日期從<input id="archiveFrom" type="date"></label><label>資料日期至<input id="archiveTo" type="date"></label>
+<label>資料狀態<select id="archiveStatus"><option value="">全部狀態（含封存參考）</option><option value="archive">封存參考／不計統計</option><option value="pending">待核對／排除分析</option><option value="recorded">其餘既有紀錄（非查核認證）</option></select></label></div></details><button type="reset">清除篩選</button>
+</form>
+<p class="archive-note">日期篩選使用來源發布日、留言時間或治理事件日期，不以查閱日替代；僅標月份或未標日期的紀錄，在指定日範圍時暫不列入。來源與自動分類等既有欄位可展開查看，均非本輪重新查證。</p>
+<div id="archiveCounts" class="archive-counts" aria-label="各類資料筆數"></div>
+<div class="archive-tools"><p id="archiveResult" role="status" aria-live="polite"></p><label>每頁<select id="archiveSize"><option>25</option><option selected>50</option><option>100</option></select></label><button id="archiveCSV" type="button" disabled>匯出全部 CSV</button><button id="archiveJSON" type="button" disabled>匯出全部 JSON</button><button id="archiveCopy" type="button">複製篩選連結</button></div><p id="archiveExportNote" role="status" class="archive-note"></p>
+<ol id="archiveList" class="archive-list" aria-busy="true"><li>正在讀取紀錄。</li></ol><noscript><p>啟用 JavaScript 後可整合搜尋；也可查閱<a href="/compare.html#watch-sources">公開來源索引</a>。</p></noscript>
+<nav class="archive-pagination" aria-label="資料分頁"><button id="archivePrev" type="button" disabled>上一頁</button><span id="archivePage">第 0 / 0 頁</span><button id="archiveNext" type="button" disabled>下一頁</button></nav>
+<section class="panel" id="archiveFiles"><h2>資料檔案與其他閱讀入口</h2><p>完整快照也保留人物分片、摘要快取、統計、詞頻、名單及照片來源。這些可能與上方資料重複，不再加總為新內容。</p><ul id="archiveFileList" class="archive-file-list"></ul><p><a href="/maps.html">議題地圖</a> · <a href="/records.html">政策紀錄</a> · <a href="/polls.html">民調查閱</a> · <a href="/commentary.html#watch-comments">匿名留言</a> · <a href="/compare.html#reviewMethod">閱讀標準與限制</a></p></section>
+</main><footer class="wrap foot">已收錄資料不等於網路全部資訊。原文內容以來源網站為準。</footer><script type="module" src="/src/archive.js"></script><script defer src="/page-tools.js"></script>
+</body></html>

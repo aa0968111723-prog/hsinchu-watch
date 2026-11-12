@@ -2,7 +2,7 @@
 
 This repository is the editable source for https://hsinchu-watch.pages.dev/.
 
-Use `npm run build` to assemble all 18 HTML pages. `build:ui` and `.build-ui/`
+Use `npm run build` to assemble all 19 HTML pages. `build:ui` and `.build-ui/`
 contain only an intermediate frontend build. Release the complete `dist/`.
 
 The full published snapshot lives in `public/data/` and `public/observations/`.
@@ -35,3 +35,9 @@ the roster. Apply shared facets, filters, ordering and preview limits. Unknown
 evidence is not zero performance. responded=false means this archive record
 does not contain a response, never that the person did not respond. Reported
 claims are not independently checked facts. See docs/candidate-review-standard.md.
+
+Archive includes all published record rows, including archive-only rows, with
+clear status. Never count them as analytical eligibility. Preserve anonymous
+comment protections and poll visibility rules in rows, details and exports.
+Exports cover every matching page. Failed input files must remain visible as
+a coverage gap; never label a partial load complete.
