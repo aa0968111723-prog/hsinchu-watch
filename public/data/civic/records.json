@@ -1856,6 +1856,27 @@
       "data_class": null
     },
     {
+      "id": "rec-1c4dbc39f7c8a0d5",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794522273.A.484.html",
+      "title": "[贈送] 竹北 絨毛玩具/食品",
+      "published_at": "2026-11-13T06:24:33+08:00",
+      "collected_at": "2026-11-13T06:25:01+08:00",
+      "checked_at": "2026-11-13T06:25:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] 竹北 絨毛玩具/食品",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
       "id": "rec-a5c8e8ed6f6d18a8",
       "kind": "agency_release",
       "source_id": "taipei-news-rss",
@@ -2161,6 +2182,32 @@
         "taipei"
       ],
       "text_excerpt": "你的 BTS入坑曲是哪一首？是每次聽見前奏就想跟著唱的〈Spring Day〉，還是至今仍在歌單裡的〈Yet To Come〉？臺北市立圖書館東湖分館推出《BTS書展：在花樣年華裡與你相遇》，以兩大主題回顧七位成員從出道到走上國際舞臺的歷程，並展出成員曾推薦、或為音樂創作帶來靈感的書籍。書展期間到館填寫問卷，還有機會把 BT21 SuperCard 悠遊卡帶…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-659bd05d030c5d8c",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=E63D22E14F65CD1C",
+      "title": "跨年首選！碧山與貴子坑露營場邀您共迎新年",
+      "published_at": "2026-11-13T05:00:00+08:00",
+      "collected_at": "2026-11-13T05:25:01+08:00",
+      "checked_at": "2026-11-13T05:25:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "迎接新年不必人擠人！備受市民喜愛的內湖碧山露營場與北投貴子坑露營場，擁有豐富自然的森林生態與開闊視野，是遠離都市喧囂、親近自然的最佳首選。大地處邀請市民朋友一同走進大自然，在璀璨夜景與滿天星斗下共度歲末美好時光。 碧山露營場位於內湖的大崙頭山與大崙尾山之間，周圍生態資源豐富，是爬山、露營放鬆的理想場所，營區北側設有特色造型營位，彷彿走進森林懷抱；南側的開放式…",
       "claim_origin": "agency_release",
       "verification_status": "unreviewed",
       "stats_eligible": false,
