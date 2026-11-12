@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-11-13T00:42:18+08:00",
+  "retained": true,
+  "status": "failed",
+  "records": 86,
+  "content_hash": "40d759b68f81bf61d50d20b6fb2c0b5b397e525a292ed456f0a6d536ca85a886",
+  "last_success_at": "2026-11-13T00:41:52+08:00",
+  "note": "2026-11-13T00:42:18+08:00 的模擬連線失敗沒有改紀錄雜湊，上次成功時間維持 2026-11-13T00:41:52+08:00。同一分鐘的下一輪真實搜集把健康狀態恢復為 ok，雜湊仍是 40d759b68f81bf61d50d20b6fb2c0b5b397e525a292ed456f0a6d536ca85a886。",
+  "restored_at": "2026-11-13T00:42:18+08:00",
+  "restored_status": "ok",
+  "restored_same_hash": true
+}

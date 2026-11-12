@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "note": "機關、任期與地區分開。現任人名不在此圖寫死。缺座標不是 0，地理點位由地圖線處理。",
+  "regions": [
+    {
+      "id": "taiwan",
+      "name": "臺灣",
+      "parent_id": null
+    },
+    {
+      "id": "central",
+      "name": "中央",
+      "parent_id": "taiwan"
+    },
+    {
+      "id": "taipei",
+      "name": "臺北市",
+      "parent_id": "taiwan"
+    },
+    {
+      "id": "new-taipei",
+      "name": "新北市",
+      "parent_id": "taiwan"
+    },
+    {
+      "id": "hsinchu-county",
+      "name": "新竹縣",
+      "parent_id": "taiwan"
+    },
+    {
+      "id": "hsinchu-city",
+      "name": "新竹市",
+      "parent_id": "taiwan"
+    },
+    {
+      "id": "hsinchu",
+      "name": "新竹地區（縣市未拆）",
+      "parent_id": "taiwan",
+      "precision": "mixed"
+    }
+  ],
+  "offices": [
+    {
+      "id": "office:ey",
+      "name": "行政院",
+      "region_id": "central",
+      "kind": "cabinet"
+    },
+    {
+      "id": "office:ly",
+      "name": "立法院",
+      "region_id": "central",
+      "kind": "legislature"
+    },
+    {
+      "id": "office:dgbas",
+      "name": "行政院主計總處",
+      "region_id": "central",
+      "kind": "statistics"
+    },
+    {
+      "id": "office:tpe-city",
+      "name": "臺北市政府",
+      "region_id": "taipei",
+      "kind": "local-government"
+    },
+    {
+      "id": "office:ntpc-city",
+      "name": "新北市政府",
+      "region_id": "new-taipei",
+      "kind": "local-government"
+    },
+    {
+      "id": "office:hsinchu-county",
+      "name": "新竹縣政府",
+      "region_id": "hsinchu-county",
+      "kind": "local-government"
+    },
+    {
+      "id": "office:hsinchu-city",
+      "name": "新竹市政府",
+      "region_id": "hsinchu-city",
+      "kind": "local-government"
+    }
+  ],
+  "terms": [
+    {
+      "id": "term:local-2022",
+      "office_kind": "local-government",
+      "starts_on": "2022-12-25",
+      "ends_on": "2026-12-25",
+      "holder_actor_id": null,
+      "basis": "地方公職人員任期屆滿日。現任姓名以各機關發布為準，此處不填。",
+      "basis_url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0040003"
+    }
+  ],
+  "actors": []
+}

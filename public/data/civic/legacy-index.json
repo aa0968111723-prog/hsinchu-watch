@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-13T00:42:31+08:00",
+  "task_baseline": {
+    "items_rows": 9164,
+    "source_index_rows": 7205,
+    "policy_rows": 1879,
+    "archive_page_rows": 18422,
+    "note": "任務書記載的已發布基準。本腳本另計目前工作區看得到的檔案，兩者不相符時以檔案為準並標成缺口，不用基準數字覆蓋。"
+  },
+  "observed_file_count": 23,
+  "files": [
+    {
+      "path": "public/data/candidate-review.json",
+      "bytes": 2077,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "sources_count": 2
+      }
+    },
+    {
+      "path": "public/data/candidate_photos.json",
+      "bytes": 2602,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/governance-registry.json",
+      "bytes": 3629,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "sources_count": 9
+      }
+    },
+    {
+      "path": "public/data/governance.json",
+      "bytes": 4839,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "projects_count": 4
+      }
+    },
+    {
+      "path": "public/data/issue_stances.json",
+      "bytes": 19369,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/items.json",
+      "bytes": 7454494,
+      "shape": "list",
+      "count": 9164,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/items_chen.json",
+      "bytes": 715998,
+      "shape": "list",
+      "count": 1025,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/items_chiu.json",
+      "bytes": 1459372,
+      "shape": "list",
+      "count": 1832,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/items_wu.json",
+      "bytes": 1100870,
+      "shape": "list",
+      "count": 1275,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/items_wu_zijia.json",
+      "bytes": 46660,
+      "shape": "list",
+      "count": 42,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/items_xu.json",
+      "bytes": 2144860,
+      "shape": "list",
+      "count": 2545,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/items_zheng.json",
+      "bytes": 1986749,
+      "shape": "list",
+      "count": 2445,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/keywords.json",
+      "bytes": 13885,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/latest.json",
+      "bytes": 92281,
+      "shape": "list",
+      "count": 100,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/latest_24h.json",
+      "bytes": 285568,
+      "shape": "list",
+      "count": 359,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/manifest.json",
+      "bytes": 2933,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/news-monitor/manual.json",
+      "bytes": 17007,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "articles_count": 20
+      }
+    },
+    {
+      "path": "public/data/official.json",
+      "bytes": 26703,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "by_person_item_count": 21
+      }
+    },
+    {
+      "path": "public/data/policies.json",
+      "bytes": 1315699,
+      "shape": "list",
+      "count": 1879,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/polls.json",
+      "bytes": 106545,
+      "shape": "list",
+      "count": 83,
+      "count_note": null,
+      "list_counts": {}
+    },
+    {
+      "path": "public/data/stats.json",
+      "bytes": 129728,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "by_person_item_count": 0
+      }
+    },
+    {
+      "path": "public/observations/comments.json",
+      "bytes": 8952,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "entries_count": 23
+      }
+    },
+    {
+      "path": "public/observations/sources.json",
+      "bytes": 1970373,
+      "shape": "object",
+      "count": null,
+      "count_note": null,
+      "list_counts": {
+        "entries_count": 7205
+      }
+    }
+  ],
+  "projects": [
+    {
+      "id": "hsinchu-county-baozhong-road",
+      "region_id": "hsinchu-county",
+      "legacy_file": "public/data/governance.json",
+      "evidence_source_ids": [
+        "hsc-baozhong"
+      ],
+      "spent_twd": null,
+      "progress_value": null,
+      "geometry": null,
+      "location_precision": "unknown",
+      "note": "參照既有案卷。spent 為 null 時保持 null。這裡不產生座標。"
+    },
+    {
+      "id": "hsinchu-city-xiangshan-four",
+      "region_id": "hsinchu-city",
+      "legacy_file": "public/data/governance.json",
+      "evidence_source_ids": [
+        "hcc-xiangshan"
+      ],
+      "spent_twd": null,
+      "progress_value": null,
+      "geometry": null,
+      "location_precision": "unknown",
+      "note": "參照既有案卷。spent 為 null 時保持 null。這裡不產生座標。"
+    },
+    {
+      "id": "new-taipei-siyuan-footbridge",
+      "region_id": "new-taipei",
+      "legacy_file": "public/data/governance.json",
+      "evidence_source_ids": [
+        "ntp-works"
+      ],
+      "spent_twd": null,
+      "progress_value": 77.25,
+      "geometry": null,
+      "location_precision": "unknown",
+      "note": "參照既有案卷。spent 為 null 時保持 null。這裡不產生座標。"
+    },
+    {
+      "id": "taipei-peiying-housing",
+      "region_id": "taipei",
+      "legacy_file": "public/data/governance.json",
+      "evidence_source_ids": [
+        "taipei-peiying"
+      ],
+      "spent_twd": null,
+      "progress_value": 100,
+      "geometry": null,
+      "location_precision": "unknown",
+      "note": "參照既有案卷。spent 為 null 時保持 null。這裡不產生座標。"
+    }
+  ],
+  "preserved_note": "此盤點不寫入 public/data 既有 JSON，也不寫入 observations。"
+}

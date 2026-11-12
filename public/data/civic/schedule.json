@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task_name": "HsinchuWatch-02-data-civic",
+  "code_ready": true,
+  "interval_minutes": 20,
+  "schedule_defined": true,
+  "os_task_found": true,
+  "os_task_enabled": true,
+  "queried_at": "2026-11-13T00:45:59+08:00",
+  "query_exit_code": 0,
+  "query_excerpt": "TaskName: \\HsinchuWatch-02-data-civic\nNext Run Time: 2026/11/13 上午 01:05:00\nStatus: Ready\nLogon Mode: Interactive only",
+  "production_published": false,
+  "production_note": "本線只準備資料與本機排程。正式站發布由第四線整合，排程存在不等於已經發布。"
+}

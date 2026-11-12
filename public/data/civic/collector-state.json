@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "taipei-news-rss": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:02:18+08:00",
+      "records_kept": 12
+    },
+    "ntpc-news-json": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:42:18+08:00",
+      "records_kept": 8
+    },
+    "hsinchu-county-news-rss": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:02:18+08:00",
+      "records_kept": 12
+    },
+    "hsinchu-city-news-html": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 304,
+      "last_modified": "Thu, 12 Nov 2026 16:40:13 GMT",
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:02:18+08:00",
+      "records_kept": 12
+    },
+    "ey-news-html": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:02:18+08:00",
+      "records_kept": 4
+    },
+    "dgbas-news-rss": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:42:18+08:00",
+      "records_kept": 12
+    },
+    "ly-meeting-json": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T03:42:18+08:00",
+      "records_kept": 12
+    },
+    "cna-atom": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 304,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:02:18+08:00",
+      "records_kept": 2,
+      "etag": "\"0bbd490c472dd1:0\"",
+      "last_modified": "Thu, 12 Nov 2026 16:40:46 GMT"
+    },
+    "ptt-hsinchu-atom": {
+      "last_attempt_at": "2026-11-13T00:42:18+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T00:42:18+08:00",
+      "next_due_at": "2026-11-13T01:02:18+08:00",
+      "records_kept": 12
+    },
+    "threads": {
+      "health": "gap",
+      "error": "沒有免登入的官方讀取 API。既有 observations 是人工索引，本蒐集器不新增。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "facebook": {
+      "health": "gap",
+      "error": "沒有可用權杖。不抓網頁。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "instagram": {
+      "health": "gap",
+      "error": "未接通。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "x": {
+      "health": "gap",
+      "error": "本環境沒有可用的 X API 權限。不使用網頁抓取。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "youtube": {
+      "health": "gap",
+      "error": "Atom feeds/videos.xml 在既有蒐集政策因 robots 停用。本線不新增金鑰，也不改走 Atom。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "dcard": {
+      "health": "gap",
+      "error": "不模擬行動 App 客戶端。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "ptt-gossiping": {
+      "health": "gap",
+      "error": "進入看板需要年齡確認 cookie。本線不送該 cookie。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "google-news-rss": {
+      "health": "gap",
+      "error": "既有新聞觀察腳本有使用，但 robots 不允許 /rss。本線 20 分鐘蒐集器不呼叫。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "data-gov-ckan": {
+      "health": "gap",
+      "error": "2026-11-13 對 /api/3/action/package_search 得到 HTTP 404。首頁可開，但沒有接到可用 API。",
+      "last_success_at": null,
+      "next_due_at": null
+    },
+    "hccg-rss-path": {
+      "health": "gap",
+      "error": "2026-11-13 以一般瀏覽器標頭與蒐集器標頭都得到 HTTP 403。不重試規避。市政新聞改走首頁列表。",
+      "last_success_at": null,
+      "next_due_at": null
+    }
+  }
+}
