@@ -7,8 +7,8 @@ import { escapeHtml, safeHref, labels } from './data.js'
 import { icon, platIcon, thumbHTML, itemImageUrl, installImageFallback, designedThumbHTML, keywordChipsHTML, keywordCloudHTML, keywordCloudByPersonHTML, aggregateKeywords } from './thumb.js'
 export { icon, platIcon, thumbHTML, itemImageUrl, installImageFallback, designedThumbHTML, keywordChipsHTML, keywordCloudHTML, keywordCloudByPersonHTML, aggregateKeywords }
 
-/** 首頁主卡只這三人。邱臣遠在人物清單、人物頁與比較頁。 */
-export const HOME_CARD_ORDER = Object.freeze(['wu', 'xu', 'zheng'])
+/** 首頁統計摘要涵蓋現有四份快照；正式六人名單另由candidate-review呈現。 */
+export const HOME_CARD_ORDER = Object.freeze(['wu', 'xu', 'zheng', 'chiu'])
 export const PERSON_ORDER = ['wu', 'xu', 'zheng', 'chiu']
 export const PERSON_META = Object.freeze({
   wu: { id: 'wu', name: '吳旭智', role: '竹北市長候選人', party: '中國國民黨' },

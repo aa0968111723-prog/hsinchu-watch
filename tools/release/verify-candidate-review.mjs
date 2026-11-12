@@ -38,6 +38,8 @@ try{
     assert.deepEqual(await page.locator('#platformSection .plat-col').evaluateAll(nodes=>nodes.map(n=>n.dataset.person)),['zheng','xu','zhu','wu','tseng','chiu']);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${width} home overflow`);
     assert.equal(await page.locator('#pSent details').getAttribute('open'),null);
+    assert.equal(await page.locator('#cards .pcard').count(),4);
+    assert((await page.locator('#cards').innerText()).includes('邱臣遠'));
     await page.locator('#pSent summary').focus();await page.keyboard.press('Enter');assert(await page.locator('#pSent details').evaluate(n=>n.open));
     await page.close();
   }

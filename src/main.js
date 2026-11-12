@@ -108,7 +108,7 @@ function renderCards(stats, persons, items){
     return `<article class="card pcard" style="--pc:${st.color};--ps:${st.soft}">
       <header class="pc-head">${avatarHTML(p, 'lg')}<div><h2><a href="/person.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.name)}</a></h2><div class="muted">${escapeHtml(p.role)}</div><span class="badge party">${escapeHtml(p.party)}</span>${photoCreditHTML(p.id)}</div></header>
       <div class="pc-stats"><div><b>${ps.total||0}</b><span>總則數</span></div><div><b>${ps.last_7d||0}</b><span>近 7 日</span></div><div><b>${ps.last_24h||0}</b><span>近 24h</span></div></div>
-      <div class="pc-spark">${sparkSVG(sp ? sp.values : [], maxV, st.color)}<span class="muted fine">近 30 日聲量（三人同一尺度）</span></div>
+      <div class="pc-spark">${sparkSVG(sp ? sp.values : [], maxV, st.color)}<span class="muted fine">近 30 日收錄量（各人同一尺度）</span></div>
       ${stackHTML(parts)}${keyHTML(parts)}
       <ul class="mini-list">${base.map(miniItem).join('') || '<li class="muted">尚無</li>'}</ul>
       <p class="pc-more"><a href="/person.html?id=${encodeURIComponent(p.id)}">看 ${escapeHtml(p.name)} 完整時間軸 ${icon('arrow')}</a></p>
