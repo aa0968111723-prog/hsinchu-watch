@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美術庫 Asset Lab</title>
+  <link rel="stylesheet" href="/art-library/lab.css">
+</head>
+<body>
+  <a class="skip" href="#library">跳到圖庫</a>
+  <header class="top">
+    <div class="wrap">
+      <h1>美術庫</h1>
+      <p>給新竹觀察挑圖、看來源、複製素材 ID。真實照片和原創示意分開放。</p>
+    </div>
+  </header>
+  <main class="wrap" id="main-content">
+    <p class="notice">這是第五線的獨立預覽。第一線與第三線先用素材 ID；第四線再把 <code>public/asset-lab.html</code>、<code>public/data/art-library.json</code> 與 <code>public/art-library/</code> 接到正式導覽。本頁沒有待審圖片。</p>
+    <section class="panel" id="library" aria-labelledby="library-title">
+      <h2 id="library-title">可公開索引</h2>
+      <form id="filters" class="filters">
+        <label>搜尋
+          <input name="q" type="search" placeholder="名稱、ID、署名" autocomplete="off">
+        </label>
+        <label>地區
+          <select name="region"><option value="">全部</option></select>
+        </label>
+        <label>種類
+          <select name="kind"><option value="">全部</option></select>
+        </label>
+        <label>用途
+          <select name="use"><option value="">全部</option></select>
+        </label>
+        <label>授權
+          <select name="license"><option value="">全部</option></select>
+        </label>
+      </form>
+      <p class="count" id="count">讀取索引…</p>
+      <div class="grid" id="grid"></div>
+    </section>
+    <section class="panel" aria-labelledby="gap-title">
+      <h2 id="gap-title">目前缺口</h2>
+      <ul class="gaps" id="gaps"></ul>
+      <p class="meta">授權或身份未核對的候選只寫在工作線文件，不進這個公開索引。</p>
+    </section>
+    <section class="featured" aria-labelledby="bench-title">
+      <h2 id="bench-title">證據壓印台</h2>
+      <p>原創立體元件。夾厚不是政策數字。篩選裡的「3D元件」也能打開同一台儀器。</p>
+      <p><a class="text-button" href="/art-library/figures/evidence-bench/index.html">操作證據壓印台</a></p>
+    </section>
+  </main>
+  <footer class="wrap foot">時間帶 Asia/Taipei。未知欄位保持空白，不補攝影者或授權。</footer>
+  <dialog id="detail" aria-labelledby="detail-title">
+    <h2 id="detail-title" data-title></h2>
+    <div data-preview></div>
+    <div class="dialog-actions">
+      <button type="button" class="primary" data-copy>複製素材 ID</button>
+      <button type="button" data-close>關閉</button>
+    </div>
+    <dl data-facts></dl>
+    <p data-formats></p>
+    <ul class="swatches" data-swatches></ul>
+  </dialog>
+  <script type="module" src="/art-library/lab.js"></script>
+</body>
+</html>

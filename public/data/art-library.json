@@ -1,0 +1,678 @@
+{
+  "schema_version": 1,
+  "timezone": "Asia/Taipei",
+  "generated_at": "2026-11-13T00:53:34+08:00",
+  "publication": "publication-ready",
+  "regions": [
+    {
+      "id": "tw-taipei",
+      "label": "臺北市"
+    },
+    {
+      "id": "tw-new-taipei",
+      "label": "新北市"
+    },
+    {
+      "id": "tw-hsinchu-county",
+      "label": "新竹縣"
+    },
+    {
+      "id": "tw-hsinchu-city",
+      "label": "新竹市"
+    },
+    {
+      "id": "tw-central",
+      "label": "中央"
+    }
+  ],
+  "kinds": [
+    {
+      "id": "portrait",
+      "label": "人物"
+    },
+    {
+      "id": "scene",
+      "label": "場景"
+    },
+    {
+      "id": "illustration",
+      "label": "插畫"
+    },
+    {
+      "id": "component",
+      "label": "3D元件"
+    }
+  ],
+  "coverage_gaps": [
+    "新竹縣尚無已核對城市實景。",
+    "中央機關尚無已核對實景。",
+    "插畫尚無已核對素材。",
+    "朱定瑀、曾聖凱尚無已核對肖像。",
+    "邱臣遠的既有影像未進入本索引：授權與身份未在本線核對。",
+    "議會、預算、政策階段與空狀態仍待後續原創元件；目前只有證據壓印台。",
+    "地圖底圖未入庫。"
+  ],
+  "assets": [
+    {
+      "id": "portrait-wu-moi",
+      "kind": "portrait",
+      "title": "吳旭智官方肖像",
+      "region_ids": [
+        "tw-hsinchu-county"
+      ],
+      "actor_refs": [
+        "wu"
+      ],
+      "project_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E5%90%B3%E6%97%AD%E6%99%BA%E8%AD%B0%E5%93%A1.png",
+      "creator": "內政部民政司",
+      "license_name": "GWOIA（政府網站資料開放宣告）",
+      "license_url": "https://cand.moi.gov.tw/of/home.jsp?mserno=201011010017&serno=201011010017&menudata=OfMenu&contlink=content/copyright.jsp",
+      "attribution": "照片：內政部民政司（GWOIA）",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "img/persons/wu.jpg",
+          "mime": "image/jpeg",
+          "role": "original",
+          "width": 256,
+          "height": 256,
+          "bytes": 9981,
+          "checksum": "5f8c855fc2153367b4cfe0583c8d8318dfe4e1f3bb2e9c51e884569c86ce3d75",
+          "note": "既有網站檔，本線未改像素"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi.jpg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 256,
+          "height": 256,
+          "bytes": 9640,
+          "checksum": "cc43446b4f7aa027c5967f4c3dc9ec6fb9cb142315fe8a3586393b2bb6f0b7d4"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi.webp",
+          "mime": "image/webp",
+          "role": "web",
+          "width": 256,
+          "height": 256,
+          "bytes": 5004,
+          "checksum": "de3eaab2fbf89432ef461fda71f9bfde521848a7064d565b92d9a2a1273b0d25"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi.avif",
+          "mime": "image/avif",
+          "role": "web",
+          "width": 256,
+          "height": 256,
+          "bytes": 3199,
+          "checksum": "bf8cae840607c79db6b90098e4d0909c4ddc3ba03e9f9472a3198be49b629b33"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-thumb.webp",
+          "mime": "image/webp",
+          "role": "thumb",
+          "width": 128,
+          "height": 128,
+          "bytes": 1928,
+          "checksum": "a44252fb9dfdaf9f2db71861c79d4273e56e4c84f8e5649bfd66beb64b0ab55e"
+        }
+      ],
+      "dimensions": {
+        "width": 256,
+        "height": 256,
+        "unit": "px"
+      },
+      "alt": "吳旭智官方肖像，正方形裁切，供候選人卡片使用",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "checksum": "5f8c855fc2153367b4cfe0583c8d8318dfe4e1f3bb2e9c51e884569c86ce3d75",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "palette": null,
+      "reproduction": "Commons 檔案頁模板 {{GWOIA}}，與既有 candidate_photos.json 一致。身份依據檔名與選舉人名冊相同，本線未改圖。",
+      "suggested_use": "人物卡與候選人閱讀。與其他官方肖像同一正方形比例，勿再裁成不同臉部比例。"
+    },
+    {
+      "id": "portrait-xu-ly",
+      "kind": "portrait",
+      "title": "徐欣瑩官方肖像",
+      "region_ids": [
+        "tw-hsinchu-county"
+      ],
+      "actor_refs": [
+        "xu"
+      ],
+      "project_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E5%BE%90%E6%AC%A3%E7%91%A9%E8%82%96%E5%83%8F.jpg",
+      "creator": "立法院",
+      "license_name": "LY-GWOIA（立法院政府網站資料開放宣告）",
+      "license_url": null,
+      "attribution": "照片：立法院（LY-GWOIA）",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "img/persons/xu.jpg",
+          "mime": "image/jpeg",
+          "role": "original",
+          "width": 256,
+          "height": 256,
+          "bytes": 10433,
+          "checksum": "80c40cb6a75d95ae56546fa1aad90cb62c4bf613c34a3b2fa188e5805905773b",
+          "note": "既有網站檔，本線未改像素"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly.jpg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 256,
+          "height": 256,
+          "bytes": 10156,
+          "checksum": "0121368ab7679b4e8869e520668f1f393bd891a1c98b6d9f889007e089f58fc4"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly.webp",
+          "mime": "image/webp",
+          "role": "web",
+          "width": 256,
+          "height": 256,
+          "bytes": 4224,
+          "checksum": "33b884960deeb8f7d3d869ae6c755f644ada2cbc22a9ae5e76ddf1a64ce39210"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly.avif",
+          "mime": "image/avif",
+          "role": "web",
+          "width": 256,
+          "height": 256,
+          "bytes": 3004,
+          "checksum": "6a6131bcae3a01e533684cf2878ebb0a26d3610af384f17f33e94e91242b1841"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-thumb.webp",
+          "mime": "image/webp",
+          "role": "thumb",
+          "width": 128,
+          "height": 128,
+          "bytes": 1974,
+          "checksum": "ba62f50a9374b6f57fb90014eaa6d66c0d47ad8985d7205a2c2f536d38f6ce6e"
+        }
+      ],
+      "dimensions": {
+        "width": 256,
+        "height": 256,
+        "unit": "px"
+      },
+      "alt": "徐欣瑩官方肖像，正方形裁切，供候選人卡片使用",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "checksum": "80c40cb6a75d95ae56546fa1aad90cb62c4bf613c34a3b2fa188e5805905773b",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "palette": null,
+      "reproduction": "Commons 檔案頁為 {{LY-GWOIA}}，模板未附獨立授權條款網址，license_url 保持 null。",
+      "suggested_use": "人物卡與候選人閱讀。與其他官方肖像同一正方形比例，勿再裁成不同臉部比例。"
+    },
+    {
+      "id": "portrait-zheng-moi",
+      "kind": "portrait",
+      "title": "鄭朝方官方肖像",
+      "region_ids": [
+        "tw-hsinchu-county"
+      ],
+      "actor_refs": [
+        "zheng"
+      ],
+      "project_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82%E5%85%AC%E6%89%80_%E9%84%AD%E6%9C%9D%E6%96%B9.jpg",
+      "creator": "中華民國內政部",
+      "license_name": "GWOIA（政府網站資料開放宣告）",
+      "license_url": "https://www.moi.gov.tw/cp.aspx?n=10954",
+      "attribution": "照片：中華民國內政部（GWOIA）",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "img/persons/zheng.jpg",
+          "mime": "image/jpeg",
+          "role": "original",
+          "width": 256,
+          "height": 256,
+          "bytes": 10409,
+          "checksum": "5b647709c3de9409d211b28215236bc663a258e0c06399f17e104205c61046db",
+          "note": "既有網站檔，本線未改像素"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi.jpg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 256,
+          "height": 256,
+          "bytes": 10097,
+          "checksum": "e64e0fa0e87a6c3ea545bfd84108794b1718aef5b11f141c44c7fbbad41b3dda"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi.webp",
+          "mime": "image/webp",
+          "role": "web",
+          "width": 256,
+          "height": 256,
+          "bytes": 4816,
+          "checksum": "f2ee68d21364026c23aa7058da46900be088526d58d9bb96b22a3297e733c526"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi.avif",
+          "mime": "image/avif",
+          "role": "web",
+          "width": 256,
+          "height": 256,
+          "bytes": 3398,
+          "checksum": "c25cc110863f2991aa883c8e00c2253d0b9da71715a6b3d04ea099571d171a4e"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-thumb.webp",
+          "mime": "image/webp",
+          "role": "thumb",
+          "width": 128,
+          "height": 128,
+          "bytes": 1878,
+          "checksum": "b2747a02b1a129218bf3678834aaccc4b65ec7004266d220113bf21cc3860784"
+        }
+      ],
+      "dimensions": {
+        "width": 256,
+        "height": 256,
+        "unit": "px"
+      },
+      "alt": "鄭朝方官方肖像，正方形裁切，供候選人卡片使用",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "checksum": "5b647709c3de9409d211b28215236bc663a258e0c06399f17e104205c61046db",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "palette": null,
+      "reproduction": "Commons 檔案頁模板 {{GWOIA}}，zhurl 為內政部開放宣告頁。",
+      "suggested_use": "人物卡與候選人閱讀。與其他官方肖像同一正方形比例，勿再裁成不同臉部比例。"
+    },
+    {
+      "id": "scene-hsinchu-city-hall-2015",
+      "kind": "scene",
+      "title": "新竹市政府（市役所）",
+      "region_ids": [
+        "tw-hsinchu-city"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File%3AHsinchu_City_Hall_20150403.jpg",
+      "creator": "Suicasmo",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Suicasmo／CC BY-SA 4.0",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015.jpg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 857,
+          "bytes": 287939,
+          "checksum": "a097b27fd67228c7935535a9ffabbbe925312c9c3522b11ec098df71d3e9d132"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015.webp",
+          "mime": "image/webp",
+          "role": "web",
+          "width": 1280,
+          "height": 857,
+          "bytes": 186604,
+          "checksum": "73eb2842b62f893ea86fba5eb374efe39a9a528ec3790d0d34a7c02353a40df1"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015.avif",
+          "mime": "image/avif",
+          "role": "web",
+          "width": 1280,
+          "height": 857,
+          "bytes": 78874,
+          "checksum": "a4f531203f0702a352a38d13e1a8c86b63f8d4e52b508b5ed4f4a7defac3bdd7"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-thumb.webp",
+          "mime": "image/webp",
+          "role": "thumb",
+          "width": 480,
+          "height": 321,
+          "bytes": 25866,
+          "checksum": "4f316747bec673492356d6c7b9dabbcccaae9ec3ed959e9fff2247dfb601359f"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 857,
+        "unit": "px"
+      },
+      "alt": "新竹市政府正門，門額為新竹市政府，2015年4月3日",
+      "focal_point": null,
+      "checksum": "a097b27fd67228c7935535a9ffabbbe925312c9c3522b11ec098df71d3e9d132",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "palette": null,
+      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
+      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+    },
+    {
+      "id": "scene-hsinchu-tra-station-2024",
+      "kind": "scene",
+      "title": "新竹車站周邊鐵道",
+      "region_ids": [
+        "tw-hsinchu-city"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File%3AHsinchu_TRA_Station_Railway%2C_Nov_2024.jpg",
+      "creator": "Ralff Nestor Nacor",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Ralff Nestor Nacor／CC BY-SA 4.0",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024.jpg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 964,
+          "bytes": 352039,
+          "checksum": "239be9488128b1a58e390043d1b6214a637c2502201dc1af23c0ae681ebe3849"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024.webp",
+          "mime": "image/webp",
+          "role": "web",
+          "width": 1280,
+          "height": 964,
+          "bytes": 257568,
+          "checksum": "9fd3ea5e00d08dbba0a493f9608eb85b218ba909e237a8300e1bd98715ab18d2"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024.avif",
+          "mime": "image/avif",
+          "role": "web",
+          "width": 1280,
+          "height": 964,
+          "bytes": 119406,
+          "checksum": "716922161dbaba2220d03d6cd16ce201c005191ae2a5678643671c85b74db3e3"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-thumb.webp",
+          "mime": "image/webp",
+          "role": "thumb",
+          "width": 480,
+          "height": 362,
+          "bytes": 29272,
+          "checksum": "2603c80d5abfa108659ea6079b2f00d417121bd43ba3dae6959802cf296ef724"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 964,
+        "unit": "px"
+      },
+      "alt": "新竹火車站周邊的軌道、電車線與市區天際線，2024年11月。畫面沒有月台或列車",
+      "focal_point": null,
+      "checksum": "239be9488128b1a58e390043d1b6214a637c2502201dc1af23c0ae681ebe3849",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "palette": null,
+      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
+      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+    },
+    {
+      "id": "scene-taipei-city-hall",
+      "kind": "scene",
+      "title": "臺北市市政大樓",
+      "region_ids": [
+        "tw-taipei"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File%3ATaipei_Taiwan_Taipei-City-Hall-01.jpg",
+      "creator": "CEphoto, Uwe Aranas",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "attribution": "CEphoto, Uwe Aranas／CC BY-SA 3.0",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall.jpg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 914,
+          "bytes": 296575,
+          "checksum": "2b8a88b8afa6217e65ecba04d89610a568e8c1db4d79f4758550b68d9ff25442"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall.webp",
+          "mime": "image/webp",
+          "role": "web",
+          "width": 1280,
+          "height": 914,
+          "bytes": 211236,
+          "checksum": "453f914131f9f0bed789f2afad33adb31d190a8059a7b0da3516f9c0cbb627e1"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall.avif",
+          "mime": "image/avif",
+          "role": "web",
+          "width": 1280,
+          "height": 914,
+          "bytes": 99658,
+          "checksum": "e7539877c69e91bb5a2cfa48c54457f9b73baa91f1ba9d7ae98a6e28d04b6d43"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-thumb.webp",
+          "mime": "image/webp",
+          "role": "thumb",
+          "width": 480,
+          "height": 343,
+          "bytes": 29874,
+          "checksum": "8e8518199f067e18c2c0f6f25288fc69088355c2f7b2f72b98a0087ff31364c0"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 914,
+        "unit": "px"
+      },
+      "alt": "臺北市市政大樓與左側的臺北101",
+      "focal_point": null,
+      "checksum": "2b8a88b8afa6217e65ecba04d89610a568e8c1db4d79f4758550b68d9ff25442",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "palette": null,
+      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
+      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+    },
+    {
+      "id": "scene-new-taipei-fire-hq-2016",
+      "kind": "scene",
+      "title": "新北市政府消防局總隊部",
+      "region_ids": [
+        "tw-new-taipei"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File%3AHeadquarters_of_Fire_Department%2C_New_Taipei_City_Government_face_to_Golf_Road_2016.jpg",
+      "creator": "Wpcpey",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Wpcpey／CC BY-SA 4.0",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016.jpg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 853,
+          "bytes": 284118,
+          "checksum": "3ea21e907139718dd2a16eed644f2265b1dd9f6ea8276f0686f381b4785851a2"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016.webp",
+          "mime": "image/webp",
+          "role": "web",
+          "width": 1280,
+          "height": 853,
+          "bytes": 200410,
+          "checksum": "bb525e611431629cd8eb2e16f86279f5d4376e14a7c5da594efd0b0b825236d1"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016.avif",
+          "mime": "image/avif",
+          "role": "web",
+          "width": 1280,
+          "height": 853,
+          "bytes": 93622,
+          "checksum": "da5a683155603855d79aff5a276d44093dc7cff932a0dd32c6a936f9da29dfa8"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-thumb.webp",
+          "mime": "image/webp",
+          "role": "thumb",
+          "width": 480,
+          "height": 320,
+          "bytes": 25842,
+          "checksum": "a1ce11b6d2f9c746c8085fdcee87198b047dc275e345a5b33719ae78ad973c9c"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 853,
+        "unit": "px"
+      },
+      "alt": "新北市政府消防局總隊部臨高爾富路側，2016年",
+      "focal_point": null,
+      "checksum": "3ea21e907139718dd2a16eed644f2265b1dd9f6ea8276f0686f381b4785851a2",
+      "uses": [
+        "place-context",
+        "public-building"
+      ],
+      "palette": null,
+      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
+      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+    },
+    {
+      "id": "component-evidence-bench",
+      "kind": "component",
+      "title": "證據壓印台",
+      "region_ids": [
+        "tw-taipei",
+        "tw-new-taipei",
+        "tw-hsinchu-county",
+        "tw-hsinchu-city",
+        "tw-central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "original_source_url": null,
+      "creator": "新竹觀察美術庫",
+      "license_name": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "原創示意儀器，新竹觀察美術庫",
+      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "files": [
+        {
+          "path": "art-library/figures/evidence-bench/preview.svg",
+          "mime": "image/svg+xml",
+          "role": "preview",
+          "width": 680,
+          "height": 440,
+          "bytes": 84650,
+          "checksum": "c421d0c82ce198be99f0df3a5e6cc85dc7e5238a9c9ede58f3321b0ea64b3a4f"
+        },
+        {
+          "path": "art-library/figures/evidence-bench/index.html",
+          "mime": "text/html",
+          "role": "interactive",
+          "width": null,
+          "height": null,
+          "bytes": 126792,
+          "checksum": "c2c0f8713afcb686a86ccf70b5695de359e84fee2859dd69023e5c2af493ad27"
+        }
+      ],
+      "dimensions": {
+        "width": 680,
+        "height": 440,
+        "unit": "px"
+      },
+      "alt": "立體證據壓印台，用來說明尚未核對、機關報告與獨立查核，不是特定工程，也不是政策百分比",
+      "focal_point": null,
+      "checksum": "c421d0c82ce198be99f0df3a5e6cc85dc7e5238a9c9ede58f3321b0ea64b3a4f",
+      "uses": [
+        "source-credibility",
+        "explainer",
+        "empty-state"
+      ],
+      "palette": [
+        {
+          "name": "paper",
+          "hex": "#f4efe6"
+        },
+        {
+          "name": "sheet",
+          "hex": "#fffaf4"
+        },
+        {
+          "name": "ink",
+          "hex": "#2b261f"
+        },
+        {
+          "name": "sage",
+          "hex": "#2f6a56"
+        },
+        {
+          "name": "clay",
+          "hex": "#9a5340"
+        }
+      ],
+      "reproduction": "original-anatomy-figure",
+      "suggested_use": "第一線在來源說明、空狀態或可信度圖例使用；不可把夾厚當成施政數據。"
+    }
+  ]
+}
