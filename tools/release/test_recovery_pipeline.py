@@ -7,6 +7,22 @@ from recover_public_data import merge, rebuild_statistics, read, write, TPE
 
 
 class RecoveryTests(unittest.TestCase):
+    def test_monitor_history_preserves_published_rows_and_corrections(self):
+        with tempfile.TemporaryDirectory() as directory:
+            incoming, current = Path(directory)/"incoming", Path(directory)/"current"
+            self.snapshot(incoming, "2026-11-10T12:00:00+08:00", [])
+            self.snapshot(current, "2026-11-12T12:00:00+08:00", [])
+            for root in (incoming, current):
+                (root/"data/news-monitor").mkdir()
+            write(incoming/"data/news-monitor/history.json", {"articles": [{"id": "a", "title": "old"}]})
+            write(current/"data/news-monitor/history.json", {"articles": [{"id": "a", "title": "corrected"}, {"id": "b", "title": "retained"}]})
+            write(current/"data/news-monitor/manual.json", {"articles": [{"id": "c", "title": "manual"}]})
+            merge(incoming, current)
+            rows = {r["id"]: r for r in read(incoming/"data/news-monitor/history.json")["articles"]}
+            self.assertEqual(rows["a"]["title"], "corrected")
+            self.assertIn("b", rows)
+            self.assertEqual(read(incoming/"data/news-monitor/manual.json")["articles"][0]["id"], "c")
+
     def test_publication_rejects_legacy_ui(self):
         from prepare_release import prepare
         with tempfile.TemporaryDirectory() as directory:

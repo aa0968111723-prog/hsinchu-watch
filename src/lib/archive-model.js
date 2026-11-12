@@ -1,6 +1,6 @@
 import {sanitizeItem} from './live-update/sanitize.js';
-export const ARCHIVE_KINDS=Object.freeze({news:'新聞與討論',policy:'政策與施政紀錄',poll:'民調紀錄',comment:'匿名留言觀點',source:'公開來源索引',official:'本人／機關發言',stance:'議題立場摘錄',governance:'地方治理案卷'});
-export const ARCHIVE_FILES=Object.freeze({items:'/data/items.json',policies:'/data/policies.json',polls:'/data/polls.json',comments:'/observations/comments.json',sources:'/observations/sources.json',official:'/data/official.json',stances:'/data/issue_stances.json',governance:'/data/governance.json',governanceRegistry:'/data/governance-registry.json',candidates:'/data/candidate-review.json',stats:'/data/stats.json'});
+export const ARCHIVE_KINDS=Object.freeze({monitor:'新增來源待複核',news:'新聞與討論',policy:'政策與施政紀錄',poll:'民調紀錄',comment:'匿名留言觀點',source:'公開來源索引',official:'本人／機關發言',stance:'議題立場摘錄',governance:'地方治理案卷'});
+export const ARCHIVE_FILES=Object.freeze({monitor:'/data/news-monitor/manual.json',monitorHistory:'/data/news-monitor/history.json',monitorLatest:'/data/news-monitor/latest.json',items:'/data/items.json',policies:'/data/policies.json',polls:'/data/polls.json',comments:'/observations/comments.json',sources:'/observations/sources.json',official:'/data/official.json',stances:'/data/issue_stances.json',governance:'/data/governance.json',governanceRegistry:'/data/governance-registry.json',candidates:'/data/candidate-review.json',stats:'/data/stats.json'});
 const POLL_TEXT=/民調|支持度|支持率|看好度|街訪|街頭調查|勝選率/;
 export function archiveHref(value){try{const u=new URL(value);return ['http:','https:'].includes(u.protocol)&&!u.username&&!u.password?u.href:null;}catch{return null;}}
 export function archiveStatus(raw){return raw.review_status&&raw.review_status!=='ok'?'pending':raw.counts_in_stats===false?'archive':'recorded';}
@@ -24,8 +24,14 @@ export function buildArchive(docs,{blackout=false}={}){
   const record=sanitizeItem(raw);
   if(blackout&&(kind==='poll'||record.platform==='poll'||record.type==='poll'||record.source_type==='poll'||POLL_TEXT.test(JSON.stringify(record)))){held++;return;}
   const row={kind,file,record,people:extra.people||[record.person_id||record.personId].filter(Boolean),title:extra.title||record.title||record.summary||'未標題紀錄',summary:extra.summary??record.summary??'',date:String(extra.date??record.published_at??record.date??record.at??'').slice(0,10),url:archiveHref(extra.url||record.source_url||record.url),source:extra.source||record.source_name||'',platform:extra.platform||record.platform||record.source_type||'',status:archiveStatus(record)};
-  row.date_basis=kind==='governance'?'治理事件日期':kind==='comment'?'留言時間':kind==='source'?'來源索引日期':'來源發布日';
+  row.date_basis=kind==='monitor'?'待核對的索引日期':kind==='governance'?'治理事件日期':kind==='comment'?'留言時間':kind==='source'?'來源索引日期':'來源發布日';
   row.key=`${kind}:${rows.length}`;row.search=JSON.stringify([row.title,row.summary,row.source,row.people,record]).normalize('NFKC').toLocaleLowerCase();rows.push(row);
+ }
+ const monitorInputs=[['monitor',ARCHIVE_FILES.monitor],docs.monitorHistory?['monitorHistory',ARCHIVE_FILES.monitorHistory]:['monitorLatest',ARCHIVE_FILES.monitorLatest]];
+ for(const [key,file]of monitorInputs)for(const x of docs[key]?.articles||[]){
+  const mentions=x.mentioned_person_ids||(docs.candidates?.candidates||[]).filter(p=>x.title?.includes(p.name)).map(p=>p.id);
+  const raw={...x,review_status:'pending',person_match_basis:x.person_match_basis||'標題文字命中，尚未人工核對人物關聯'};
+  add('monitor',file,raw,{people:mentions,date:String(x.reported_publication_time||x.published_at||'').slice(0,10),source:x.publisher,platform:'人工待審索引／RSS發現',summary:'新增來源尚未逐筆核對原文、發稿時間及說法；人物關聯僅依標題文字命中。'});
  }
  for(const x of docs.items||[])add('news',ARCHIVE_FILES.items,x);
  for(const x of docs.policies||[])add('policy',ARCHIVE_FILES.policies,x);

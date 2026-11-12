@@ -35,7 +35,7 @@ def main():
     floor = json.loads((ROOT / "tools/release/recovery-floor.json").read_bytes())
     assert len(items) == manifest["counts"]["items_rows"] and len(items) >= floor["items_rows"]
     for directory in [public / "data", public / "observations"]:
-        for path in directory.glob("*.json"):
+        for path in directory.rglob("*.json"):
             walk(json.loads(path.read_bytes()))
     for directory in [ROOT / "src", ROOT / "collectors", ROOT / "scripts", ROOT / "tools", ROOT / ".github", public]:
         for path in directory.rglob("*"):

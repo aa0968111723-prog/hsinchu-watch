@@ -4,24 +4,29 @@ import {chromium} from 'playwright';
 import {buildArchive} from '../../src/lib/archive-model.js';
 const [origin='http://127.0.0.1:4173',screens='artifacts/screens']=process.argv.slice(2);
 const browser=await chromium.launch();const errors=[];
+const manifest=await(await fetch(origin+'/data/manifest.json')).json();
+const sourceDoc=await(await fetch(origin+'/observations/sources.json')).json();
+const zhuCount=sourceDoc.entries.filter(r=>r.personIds.includes('zhu')).length;
+const newsDoc=await(await fetch(origin+'/data/items.json')).json();
+const wuNews=newsDoc.filter(r=>r.person_id==='wu').length;
 try{
  for(const width of [320,390,430,768,1280]){
   const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(origin+'/archive.html?person=zhu');await page.locator('#archiveLoad').filter({hasText:'已整合'}).waitFor();
-  assert.equal(await page.locator('#archivePerson').inputValue(),'zhu');assert.equal(await page.locator('.archive-row').count(),4);
-  assert((await page.locator('#archiveResult').innerText()).includes('符合 4 筆'));
-  assert.equal(await page.locator('#archiveFiles a[download]').count(),20); // 19 manifest files minus raw polls, plus two observation files.
+  await page.goto(origin+'/archive.html?person=zhu&kind=source');await page.locator('#archiveLoad').filter({hasText:'已整合'}).waitFor();
+  assert.equal(await page.locator('#archivePerson').inputValue(),'zhu');assert.equal(await page.locator('.archive-row').count(),zhuCount);
+  assert((await page.locator('#archiveResult').innerText()).includes(`符合 ${zhuCount} 筆`));
+  assert.equal(await page.locator('#archiveFiles a[download]').count(),Object.keys(manifest.files).length+1);
   await page.getByRole('button',{name:'清除篩選',exact:true}).click();await page.locator('#archiveNext:not([disabled])').waitFor();
   assert.equal(await page.locator('.archive-row').count(),50);const first=await page.locator('.archive-row').first().getAttribute('data-archive-key');
   await page.locator('#archiveNext').click();assert.notEqual(await page.locator('.archive-row').first().getAttribute('data-archive-key'),first);
   await page.locator('#archiveKind').selectOption('news');await page.locator('#archivePerson').selectOption('wu');
-  assert((await page.locator('#archiveResult').innerText()).includes('1,275'));
+  assert((await page.locator('#archiveResult').innerText()).includes(wuNews.toLocaleString('zh-TW')));
   await page.locator('.archive-advanced summary').click();await page.locator('#archiveStatus').selectOption('archive');assert(await page.locator('.archive-row').count()>0);
   assert((await page.locator('.archive-row').first().innerText()).includes('封存參考'));
   await page.locator('#archiveKind').selectOption('source');await page.locator('#archivePerson').selectOption('zhu');await page.locator('#archiveStatus').selectOption('');
   await page.locator('.archive-row').first().locator('summary').click();assert(await page.locator('.archive-row pre').first().isVisible());
   const pending=page.waitForEvent('download');await page.locator('#archiveJSON').click();const download=await pending;
-  const payload=JSON.parse(await readFile(await download.path(),'utf8'));assert.equal(payload.records.length,4);assert(payload.records.every(r=>r.person_ids.includes('zhu')));
+  const payload=JSON.parse(await readFile(await download.path(),'utf8'));assert.equal(payload.records.length,zhuCount);assert(payload.records.every(r=>r.person_ids.includes('zhu')));
   if(width===390){const pendingCSV=page.waitForEvent('download');await page.locator('#archiveCSV').click();const csvDownload=await pendingCSV;const bytes=await readFile(await csvDownload.path());assert.deepEqual([...bytes.subarray(0,3)],[239,187,191]);assert(bytes.toString('utf8').includes('date_basis'));}
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${width} archive overflow`);
   for(const target of [page.locator('#archivePerson'),page.locator('#archiveJSON')])assert((await target.boundingBox()).height>=44);
@@ -30,7 +35,7 @@ try{
  }
  // Export includes every matching page, not only visible records.
  const all=await browser.newPage();await all.goto(origin+'/archive.html?kind=news&person=wu');await all.locator('#archiveLoad').filter({hasText:'已整合'}).waitFor();
- const next=all.waitForEvent('download');await all.locator('#archiveJSON').click();const download=await next;assert.equal(JSON.parse(await readFile(await download.path(),'utf8')).records.length,1275);await all.close();
+ const next=all.waitForEvent('download');await all.locator('#archiveJSON').click();const download=await next;assert.equal(JSON.parse(await readFile(await download.path(),'utf8')).records.length,wuNews);await all.close();
  // Partial load remains visibly incomplete and is retryable.
  const partial=await browser.newPage();await partial.route('**/data/items.json*',route=>route.fulfill({status:503,body:'offline'}));
  await partial.goto(origin+'/archive.html');await partial.getByText(/部分資料尚未載入/).waitFor();assert(await partial.locator('#archiveJSON').isDisabled());assert(await partial.locator('#archiveRetry').isVisible());

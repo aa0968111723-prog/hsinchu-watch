@@ -172,12 +172,12 @@ def finalize_manifest(root):
     manifest_path = directory / "manifest.json"
     data = json.loads(manifest_path.read_bytes())
     files = {}
-    for path in sorted(directory.glob("*.json")):
+    for path in sorted(directory.rglob("*.json")):
         if path == manifest_path:
             continue
         raw = path.read_bytes()
         json.loads(raw)
-        files[path.name] = {"bytes": len(raw), "sha256": sha256(raw).hexdigest()[:16]}
+        files[path.relative_to(directory).as_posix()] = {"bytes": len(raw), "sha256": sha256(raw).hexdigest()[:16]}
     if not {"items.json", "stats.json", "polls.json"}.issubset(files):
         raise ValueError("Incomplete production data")
     items = json.loads((directory / "items.json").read_bytes())
@@ -212,6 +212,20 @@ def main():
     # Governance records belong to the checked editorial release, not the legacy election feed.
     for name in ("governance.json", "governance-registry.json", "candidate-review.json"):
         shutil.copyfile(editorial / "data" / name, output / "data" / name)
+    if (editorial / "data/news-monitor").is_dir():
+        monitor = output / "data/news-monitor"
+        monitor.mkdir(exist_ok=True)
+        # Curated manual index follows the editorial source; retain incoming RSS history.
+        for path in (editorial / "data/news-monitor").glob("*.json"):
+            dest = monitor / path.name
+            if path.name == "manual.json" and dest.exists() and dest.read_bytes() != path.read_bytes():
+                prior, incoming = json.loads(dest.read_bytes()), json.loads(path.read_bytes())
+                index = {row.get("id") or row["url"]: row for row in prior.get("articles", [])}
+                index.update({row.get("id") or row["url"]: row for row in incoming.get("articles", [])})
+                dest.write_text(json.dumps({**prior, **incoming, "articles": list(index.values())}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+                continue
+            if path.name == "manual.json" or not (monitor / path.name).exists():
+                shutil.copyfile(path, monitor / path.name)
     copy_assets(editorial / "assets", output / "assets")
     copy_observations(editorial / "observations", output / "observations")
     # Keep official images for existing paths, filling only missing image files.

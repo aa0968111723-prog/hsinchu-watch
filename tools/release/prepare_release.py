@@ -109,9 +109,9 @@ def prepare(root=ROOT):
         from recover_public_data import rebuild_statistics
         rebuild_statistics(root, current_items)
     manifest_path = root / "data/manifest.json"
-    before = {path: path.read_bytes() for path in sorted((root / "data").glob("*.json"))}
+    before = {path: path.read_bytes() for path in sorted((root / "data").rglob("*.json"))}
     manifest = json.loads(before[manifest_path])
-    payloads = {path.name: json.loads(raw) for path, raw in before.items()}
+    payloads = {path.relative_to(root / "data").as_posix(): json.loads(raw) for path, raw in before.items()}
     items = payloads["items.json"]
     assert isinstance(items, list) and isinstance(payloads["policies.json"], list)
     floor_path = Path(__file__).with_name("recovery-floor.json")
@@ -129,7 +129,7 @@ def prepare(root=ROOT):
     existing_sources = source_path.read_bytes()
     sources = source_index(json.loads(existing_sources), items, payloads["policies.json"])
     source_bytes = encoded(sources)
-    files = {path.name: {"bytes": len(raw), "sha256": digest(raw)[:16]}
+    files = {path.relative_to(root / "data").as_posix(): {"bytes": len(raw), "sha256": digest(raw)[:16]}
              for path, raw in before.items() if path != manifest_path}
     data_sha = digest(json.dumps(files, sort_keys=True).encode())
     ui_paths = [*root.glob("*.html"), *root.glob("assets/*"), *root.glob("reference/*.html"), *root.glob("observations/*.json")]

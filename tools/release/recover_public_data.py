@@ -140,10 +140,24 @@ def merge(target, previous):
         rows = sorted(index.values(), key=lambda row: row.get("published_at") or "", reverse=True)
         write(target / "data" / filename, rows)
         report[filename] = {"before": len(incoming), "after": len(rows), "restored": restored}
-    # Carry published supporting datasets forward when an incoming snapshot omits them.
-    for path in (previous / "data").glob("*.json"):
-        dest = target / "data" / path.name
+    # Keep published discovery history as well as the main reviewed archive.
+    for name in ("history.json", "manual.json"):
+        prior = previous / "data/news-monitor" / name
+        dest = target / "data/news-monitor" / name
+        if prior.exists() and dest.exists():
+            old_doc, incoming_doc = read(prior), read(dest)
+            base_doc, preferred_doc = ((old_doc, incoming_doc) if incoming_newer
+                                       else (incoming_doc, old_doc))
+            def discovery_key(row):
+                return row.get("id") or row.get("url") or json.dumps(row, sort_keys=True)
+            index = {discovery_key(row): row for row in base_doc.get("articles", [])}
+            index.update({discovery_key(row): row for row in preferred_doc.get("articles", [])})
+            write(dest, {**base_doc, **preferred_doc, "articles": list(index.values())})
+    # Carry nested supporting datasets forward when an incoming snapshot omits them.
+    for path in (previous / "data").rglob("*.json"):
+        dest = target / "data" / path.relative_to(previous / "data")
         if not dest.exists() and not path.name.startswith("items_"):
+            dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, dest)
     for directory in ("observations", "reference", "assets", "img"):
         for path in (previous / directory).rglob("*"):

@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+  "reviewed_date": null,
+  "indexed_date": "2026-11-12",
+  "news_is_verified": false,
+  "articles": [
+    {
+      "id": "manual-01cf7e97b4009bf0",
+      "title": "民眾黨車掃竹北起跑，柯文哲、黃國昌挺邱臣遠",
+      "url": "https://www.ntdtv.com.tw/b5/20261112/video/412234.html",
+      "publisher": "新唐人亞太",
+      "reported_publication_time": "2026-11-12 19:46",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "選舉與民調"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [
+        "chiu"
+      ],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-c1f6970c213b188f",
+      "title": "新竹香山景觀大道車禍，箱型車側翻多人受傷",
+      "url": "https://udn.com/news/story/7320/9875143",
+      "publisher": "聯合新聞網",
+      "reported_publication_time": "2026-11-12 18:59",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "交通與安全"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-7aa518de2311b101",
+      "title": "竹市油庫公辦重劃、科技產業與擴校規劃",
+      "url": "https://www.cna.com.tw/postwrite/chi/449801",
+      "publisher": "中央社訊息服務",
+      "reported_publication_time": "2026-11-12 17:30",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "地方治理（訊息服務／需區分新聞與公告）"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-7be283398f8c54f4",
+      "title": "竹市油庫擬轉型科技聚落，規劃擴校及公園",
+      "url": "https://www.cna.com.tw/news/aloc/202611120257.aspx",
+      "publisher": "中央社",
+      "reported_publication_time": "2026-11-12 16:54",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "地方治理"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-2f7b82411605e655",
+      "title": "新竹縣長民調：年代調查鄭朝方與徐欣瑩支持度",
+      "url": "https://www.taisounds.com/news/content/133/309433",
+      "publisher": "太報",
+      "reported_publication_time": "2026-11-12 16:54",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "民調（需核對調查設計）"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [
+        "zheng",
+        "xu"
+      ],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-533343ae024be715",
+      "title": "竹北遠百火警後部分櫃位停電，持續搶修",
+      "url": "https://www.cna.com.tw/news/aloc/202611120241.aspx",
+      "publisher": "中央社",
+      "reported_publication_time": "2026-11-12 16:25",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "公共安全"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-0ddce4dd391f7071",
+      "title": "新竹縣長民調：關鍵調查公司調查結果",
+      "url": "https://www.i-meihua.com/Article/Detail/59223",
+      "publisher": "梅花新聞網",
+      "reported_publication_time": "2026-11-12 15:20",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "民調（不同委託與調查方法不得混算）"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-c9bf33b3a4fc88d3",
+      "title": "柯文哲談新竹地方選情",
+      "url": "https://www.cna.com.tw/news/aloc/202611120172.aspx",
+      "publisher": "中央社",
+      "reported_publication_time": "2026-11-12 14:10",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "選舉"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-866e2f825c0a5cbf",
+      "title": "新竹市油庫重劃規劃招商與星際公園",
+      "url": "https://udn.com/vote2026/story/7324/9874301",
+      "publisher": "聯合新聞網",
+      "reported_publication_time": "2026-11-12 14:06",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "地方治理"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-4de7a8fe35010411",
+      "title": "檢警搜索竹東鎮民代表會辦公室，案情待查",
+      "url": "https://udn.com/vote2026/story/7320/9874280",
+      "publisher": "聯合新聞網",
+      "reported_publication_time": "2026-11-12 14:03",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "選舉／司法（未定讞）"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-fd1e5d2a12cff1cf",
+      "title": "民眾黨在竹北啟動全國車掃活動",
+      "url": "https://www.ftnn.com.tw/news/595130",
+      "publisher": "FTNN",
+      "reported_publication_time": "2026-11-12 11:15",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "選舉"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-543f84509ac883ea",
+      "title": "新竹市樂器行命案檢方起訴涉案男子",
+      "url": "https://www.cna.com.tw/news/asoc/202611120052.aspx",
+      "publisher": "中央社",
+      "reported_publication_time": "2026-11-12 10:06",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "司法（起訴非定罪）"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-f6ae515377001b4c",
+      "title": "新竹市樂器行命案偵查終結，檢方起訴",
+      "url": "https://udn.com/news/story/7315/9873404",
+      "publisher": "聯合新聞網",
+      "reported_publication_time": "2026-11-12 09:46",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "司法（起訴非定罪）"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-f0bb6c4a47c9532f",
+      "title": "竹北遠百火警疏散約千人，當晚暫停營業",
+      "url": "https://udn.com/news/story/7320/9872642",
+      "publisher": "聯合新聞網",
+      "reported_publication_time": "2026-11-11 19:58",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "公共安全"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-fd64d79046d2d036",
+      "title": "竹北星際圖書館試營運",
+      "url": "https://www.hsinchu-times.com/archives/10292",
+      "publisher": "新竹時報",
+      "reported_publication_time": "2026-11-11 日期",
+      "date_precision": "day",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "公共建設"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-7aa970242c81b36f",
+      "title": "新竹市地政業務與 AI 智慧服務",
+      "url": "https://www.hsinchu-times.com/archives/10290",
+      "publisher": "新竹時報",
+      "reported_publication_time": "2026-11-11 日期",
+      "date_precision": "day",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "地方治理"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-8a80e5f3bb346fde",
+      "title": "新竹縣竹北實驗高中揭牌",
+      "url": "https://www.hsinchu-times.com/archives/10288",
+      "publisher": "新竹時報",
+      "reported_publication_time": "2026-11-11 日期",
+      "date_precision": "day",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "教育"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-e6aa52c2455bd830",
+      "title": "新竹市防災士培訓",
+      "url": "https://www.hsinchu-times.com/archives/10284",
+      "publisher": "新竹時報",
+      "reported_publication_time": "2026-11-11 日期",
+      "date_precision": "day",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "防災"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-a82435acae3eec7d",
+      "title": "工研院 iMOST Lab 衛星通訊測試平台啟用",
+      "url": "https://www.hsinchu-times.com/archives/10282",
+      "publisher": "新竹時報",
+      "reported_publication_time": "2026-11-11 日期",
+      "date_precision": "day",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "科技產業"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    },
+    {
+      "id": "manual-d5f9623269650dd1",
+      "title": "竹市風城第一鍋票選活動結果",
+      "url": "https://udn.com/news/story/7324/9871589",
+      "publisher": "聯合新聞網",
+      "reported_publication_time": "2026-11-11 12:52",
+      "date_precision": "minute",
+      "publication_time_basis": "代理人工索引所載，未逐一核對原站；時分非本站重新查證",
+      "topics": [
+        "地方民生"
+      ],
+      "review_status": "pending",
+      "verification_status": "unreviewed",
+      "discovery_basis": "代理共用清單的標題／議題摘要，並非原文逐字引述",
+      "source_document": "docs/news-watch/first-sources-2026-11-12.md",
+      "mentioned_person_ids": [],
+      "person_match_basis": "標題文字命中，尚未人工核對人物關聯"
+    }
+  ]
+}

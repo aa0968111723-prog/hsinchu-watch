@@ -60,7 +60,7 @@ function render({reset=false,focus=false}={}){
  if(initialized)updateURL();if(focus){const heading=$('archiveList').querySelector('h3');heading?.focus();heading?.scrollIntoView({block:'start'});}
 }
 async function readFile(path){
- const expected=manifest?.files?.[path.split('/').at(-1)],hash=expected?.sha256||manifest?.release?.ui_sha256;
+ const expected=manifest?.files?.[path.replace(/^\/data\//,'')],hash=expected?.sha256||manifest?.release?.ui_sha256;
  const response=await fetch(withVersionQuery(path,hash),{headers:{Accept:'application/json'}});if(!response.ok)throw new Error(`HTTP ${response.status}`);
  const bytes=await response.arrayBuffer();if(expected){
   const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
@@ -71,6 +71,7 @@ async function readFile(path){
 function shape(id,data){
  const arrays=['items','policies','polls'];if(arrays.includes(id)&&!Array.isArray(data))throw new Error('資料格式不符');
  if(['sources','comments'].includes(id)&&(!data.people||!Array.isArray(data.entries)))throw new Error('資料格式不符');
+ if(['monitor','monitorHistory','monitorLatest'].includes(id)&&!Array.isArray(data.articles))throw new Error('資料格式不符');
  if(id==='official'&&!data.by_person||id==='stances'&&!Array.isArray(data.issues)||id==='governance'&&!Array.isArray(data.projects)||id==='governanceRegistry'&&!Array.isArray(data.sources)||id==='candidates'&&!Array.isArray(data.candidates)||id==='stats'&&!data.by_person)throw new Error('資料格式不符');return data;
 }
 async function load(){
@@ -82,6 +83,8 @@ async function load(){
   const response=await fetch('/data/manifest.json',{headers:{Accept:'application/json'}});if(!response.ok)throw new Error('快照目錄無法載入');manifest=await response.json();
   failures.delete('manifest');
   const results=await Promise.allSettled(Object.entries(ARCHIVE_FILES).map(async([id,path])=>{
+   if(id==='monitorLatest'&&(manifest.files?.['news-monitor/history.json']||!manifest.files?.['news-monitor/latest.json'])){delete docs.monitorLatest;failures.delete(id);return;}
+   if(id==='monitorHistory'&&!manifest.files?.['news-monitor/history.json']){delete docs.monitorHistory;failures.delete(id);return;}
    if(id==='polls'&&blackout){delete docs.polls;failures.delete(id);return;}
    try{docs[id]=shape(id,await readFile(path));failures.delete(id);}catch(error){delete docs[id];failures.set(id,`${path}：${error.message}`);}
   }));

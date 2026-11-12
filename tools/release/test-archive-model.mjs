@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {ARCHIVE_FILES,buildArchive,buildPeople,filterArchive,archiveExport,csvValue} from '../../src/lib/archive-model.js';
-const docs={};for(const [id,path]of Object.entries(ARCHIVE_FILES))docs[id]=JSON.parse(await readFile(new URL('../../public'+path,import.meta.url),'utf8'));
+const docs={};for(const [id,path]of Object.entries(ARCHIVE_FILES)){try{docs[id]=JSON.parse(await readFile(new URL('../../public'+path,import.meta.url),'utf8'));}catch(error){if(!['monitorHistory','monitorLatest'].includes(id))throw error;}}
 const {rows}=buildArchive(docs),people=buildPeople(docs);
-for(const [kind,input]of [['news',docs.items],['policy',docs.policies],['poll',docs.polls],['comment',docs.comments.entries],['source',docs.sources.entries],['governance',docs.governance.projects]])assert.equal(rows.filter(r=>r.kind===kind).length,input.length,kind);
+for(const [kind,input]of [['monitor',[...docs.monitor.articles,...(docs.monitorHistory?.articles||docs.monitorLatest?.articles||[])]],['news',docs.items],['policy',docs.policies],['poll',docs.polls],['comment',docs.comments.entries],['source',docs.sources.entries],['governance',docs.governance.projects]])assert.equal(rows.filter(r=>r.kind===kind).length,input.length,kind);
 assert.equal(rows.filter(r=>r.kind==='official').length,Object.values(docs.official.by_person).reduce((n,p)=>n+p.items.length,0));
 assert.equal(rows.filter(r=>r.kind==='stance').length,docs.stances.issues.reduce((n,p)=>n+Object.values(p.stances).filter(s=>s.found).length,0));
 assert.equal(rows.filter(r=>r.kind==='news'&&r.status==='archive').length,docs.items.filter(r=>r.counts_in_stats===false).length);
-assert.equal(filterArchive(rows,{person:'zhu'},people).length,docs.sources.entries.filter(r=>r.personIds.includes('zhu')).length);
+assert.equal(filterArchive(rows,{person:'zhu'},people).filter(r=>r.kind==='source').length,docs.sources.entries.filter(r=>r.personIds.includes('zhu')).length);
 assert(filterArchive(rows,{person:'wu_zijia'},people).length>0);
 const own=rows.filter(r=>r.people.includes('wu'));assert.equal(filterArchive(rows,{person:'wu'},people).length,own.length);
 const fixture={items:[{person_id:'a',title:'民調99.9%',url:'https://example.com/a',counts_in_stats:false,username:'secret',published_at:'2026-11-12'},{person_id:'a',title:'交通資料',url:'https://example.com/b',review_status:'pending',summary:'另一筆',author:'secret'}],polls:[{title:'民調99.9%',url:'https://example.com/p',verified:false,support:{a:99.9},note:'支持率99.9%',person_ids:['a']}]};
