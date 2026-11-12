@@ -2,96 +2,96 @@
   "schema_version": 1,
   "sources": {
     "taipei-news-rss": {
-      "last_attempt_at": "2026-11-13T07:45:02+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:45:02+08:00",
-      "next_due_at": "2026-11-13T08:05:02+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:18:09+08:00",
       "records_kept": 13
     },
     "ntpc-news-json": {
-      "last_attempt_at": "2026-11-13T07:05:01+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:05:01+08:00",
-      "next_due_at": "2026-11-13T08:05:01+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:58:09+08:00",
       "records_kept": 8
     },
     "hsinchu-county-news-rss": {
-      "last_attempt_at": "2026-11-13T07:45:02+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:45:02+08:00",
-      "next_due_at": "2026-11-13T08:05:02+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:18:09+08:00",
       "records_kept": 12
     },
     "hsinchu-city-news-html": {
-      "last_attempt_at": "2026-11-13T07:45:02+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
-      "last_modified": "Thu, 12 Nov 2026 23:23:19 GMT",
+      "last_modified": "Thu, 12 Nov 2026 23:57:42 GMT",
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:45:02+08:00",
-      "next_due_at": "2026-11-13T08:05:02+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:18:09+08:00",
       "records_kept": 12
     },
     "ey-news-html": {
-      "last_attempt_at": "2026-11-13T07:45:02+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:45:02+08:00",
-      "next_due_at": "2026-11-13T08:05:02+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:18:09+08:00",
       "records_kept": 4
     },
     "dgbas-news-rss": {
-      "last_attempt_at": "2026-11-13T07:05:01+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:05:01+08:00",
-      "next_due_at": "2026-11-13T08:05:01+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:58:09+08:00",
       "records_kept": 12
     },
     "ly-meeting-json": {
-      "last_attempt_at": "2026-11-13T07:05:01+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:05:01+08:00",
-      "next_due_at": "2026-11-13T10:05:01+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T10:58:09+08:00",
       "records_kept": 12
     },
     "cna-atom": {
-      "last_attempt_at": "2026-11-13T07:45:02+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:45:02+08:00",
-      "next_due_at": "2026-11-13T08:05:02+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:18:09+08:00",
       "records_kept": 2,
-      "etag": "\"80e776caff72dd1:0\"",
-      "last_modified": "Thu, 12 Nov 2026 23:44:43 GMT"
+      "etag": "\"805ccf78173dd1:0\"",
+      "last_modified": "Thu, 12 Nov 2026 23:56:45 GMT"
     },
     "ptt-hsinchu-atom": {
-      "last_attempt_at": "2026-11-13T07:45:02+08:00",
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:45:02+08:00",
-      "next_due_at": "2026-11-13T08:05:02+08:00",
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-13T08:18:09+08:00",
       "records_kept": 13
     },
     "threads": {
@@ -144,7 +144,7 @@
     },
     "data-gov-ckan": {
       "health": "gap",
-      "error": "2026-11-13 對 /api/3/action/package_search 得到 HTTP 404。首頁可開，但沒有接到可用 API。",
+      "error": "2026-11-13：/api/3/action/package_search 為 HTTP 404；/api/v2/rest/dataset 不帶編號為 HTTP 405。單筆 GET /api/v2/rest/dataset/{id} 可讀詮釋資料，但這還不是採購或決算原文。",
       "last_success_at": null,
       "next_due_at": null
     },
@@ -153,6 +153,16 @@
       "error": "2026-11-13 以一般瀏覽器標頭與蒐集器標頭都得到 HTTP 403。不重試規避。市政新聞改走首頁列表。",
       "last_success_at": null,
       "next_due_at": null
+    },
+    "pcc-award-xml": {
+      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "health": "ok",
+      "error": null,
+      "last_success_at": "2026-11-13T07:58:09+08:00",
+      "next_due_at": "2026-11-14T07:58:09+08:00",
+      "records_kept": 3
     }
   }
 }

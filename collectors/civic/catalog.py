@@ -29,6 +29,7 @@ GRAPH = {
         {"id": "office:ey", "name": "行政院", "region_id": "central", "kind": "cabinet"},
         {"id": "office:ly", "name": "立法院", "region_id": "central", "kind": "legislature"},
         {"id": "office:dgbas", "name": "行政院主計總處", "region_id": "central", "kind": "statistics"},
+        {"id": "office:pcc", "name": "行政院公共工程委員會", "region_id": "central", "kind": "procurement"},
         {"id": "office:tpe-city", "name": "臺北市政府", "region_id": "taipei", "kind": "local-government"},
         {"id": "office:ntpc-city", "name": "新北市政府", "region_id": "new-taipei", "kind": "local-government"},
         {"id": "office:hsinchu-county", "name": "新竹縣政府", "region_id": "hsinchu-county", "kind": "local-government"},
@@ -213,6 +214,23 @@ SOURCES = [
         coverage_note="只存標題與討論串連結。不存作者帳號、推文名單或內文。板名不能拆成新竹縣或新竹市。Gossiping 不抓。",
         list_url="https://www.ptt.cc/bbs/Hsinchu/index.html",
     ),
+    _src(
+        id="pcc-award-xml",
+        name="政府電子採購網決標開放資料",
+        kind="procurement_award",
+        url="https://web.pcc.gov.tw/tps/tp/OpenData/showList",
+        region_ids=["taipei", "new-taipei", "hsinchu-county", "hsinchu-city"],
+        office_id="office:pcc",
+        access_method="open_data_file",
+        parser="pcc_tender_xml",
+        interval_minutes=1440,
+        date_field="AWARD_DATE",
+        claim_origin="agency_release",
+        record_kind="procurement_award",
+        permission="政府資料開放授權條款",
+        coverage_note="讀開放資料列表上最新一份決標 XML。只留機關名稱以臺北市、新北市、新竹縣或新竹市開頭的列。2026-11-13 這份最新檔只有臺北市機關，沒有新北市或新竹縣市列；那是這份檔的範圍，不是那些地方的採購件數為 0。決標金額不是支用或驗收。不保存聯絡人與電話。檔案約半月更新，間隔 24 小時。",
+        list_url="https://web.pcc.gov.tw/tps/tp/OpenData/showList",
+    ),
 ]
 
 GAPS = [
@@ -354,7 +372,7 @@ GAPS = [
         interval_minutes=None,
         claim_origin=None,
         record_kind=None,
-        gap="2026-11-13 對 /api/3/action/package_search 得到 HTTP 404。首頁可開，但沒有接到可用 API。",
+        gap="2026-11-13：/api/3/action/package_search 為 HTTP 404；/api/v2/rest/dataset 不帶編號為 HTTP 405。單筆 GET /api/v2/rest/dataset/{id} 可讀詮釋資料，但這還不是採購或決算原文。",
         coverage_note="未接通。",
     ),
     _src(

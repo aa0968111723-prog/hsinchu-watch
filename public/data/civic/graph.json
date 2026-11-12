@@ -59,6 +59,12 @@
       "kind": "statistics"
     },
     {
+      "id": "office:pcc",
+      "name": "行政院公共工程委員會",
+      "region_id": "central",
+      "kind": "procurement"
+    },
+    {
       "id": "office:tpe-city",
       "name": "臺北市政府",
       "region_id": "taipei",
