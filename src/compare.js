@@ -4,6 +4,7 @@
  */
 import { loadJSON, escapeHtml, safeHref, isPollBlackout, POLL_NUMBERS_ENABLED, startLiveReload, footerHTML } from './lib/data.js';
 import './lib/mobile-nav.js'
+import {updateCandidateReview} from './candidate-review.js';
 import { PERSON_ORDER, PERSON_META, PERSON_STYLE, avatarHTML, installImageFallback } from './lib/charts.js';
 import { coverageCount, coverageTime } from './lib/coverage.js';
 
@@ -112,7 +113,7 @@ function policyStats(policies, pid) {
 function renderMetricCards(stats, policies) {
   const el = $('metricCards');
   if (!el) return;
-  el.innerHTML = `<div class="cmp-section-head"><h2>${raceNames[selectedRace]} · 人物收錄量</h2><a href="#policyCompare">查看政見明細</a></div>
+  el.innerHTML = `<div class="cmp-section-head"><h2>${raceNames[selectedRace]} · 既有統計涵蓋人物</h2><a href="#policyCompare">查看政見明細</a></div>
     <div class="cmp-grid3">${activePeople().map((id) => {
       const st = PERSON_STYLE[id];
       const m = META[id];
@@ -127,7 +128,7 @@ function renderMetricCards(stats, policies) {
         <p class="cmp-records">政績與政見收錄 ${ps.total} 則</p>
       </article>`;
     }).join('')}</div>
-    <p class="fine muted">列出目前有追蹤資料的人物。同篇內容可能涉及多人。</p>`;
+    <p class="fine muted">此區只列既有統計快照涵蓋的人物，並非完整候選人名單；完整六人名單請看上方多面向閱讀。同篇內容可能涉及多人，件數不代表支持度或優劣。</p>`;
 }
 
 function renderPolicyCompare(policies) {
@@ -139,13 +140,13 @@ function renderPolicyCompare(policies) {
     return `<tr>
       <th scope="row"><span class="cmp-swatch" style="background:${st.color}" aria-hidden="true"></span> ${escapeHtml(META[id].name)}</th>
       <td>${ps.record}</td><td>${ps.policy}</td><td>${ps.total}</td>
-      <td>${ps.controversy}（有回應 ${ps.responded}／未 ${ps.noResp}${ps.unk ? `／未標 ${ps.unk}` : ''}）</td>
+      <td>${ps.controversy}（來源欄位有載回應 ${ps.responded}／本筆未載 ${ps.noResp}${ps.unk ? `／未標示 ${ps.unk}` : ''}）</td>
     </tr>`;
   }).join('');
   el.innerHTML = `<h2>收錄明細</h2>
-    <table class="cmp-table"><thead><tr><th scope="col">候選人</th><th scope="col">政績</th><th scope="col">政見</th><th scope="col">合計</th><th scope="col">爭議</th></tr></thead>
+    <table class="cmp-table"><thead><tr><th scope="col">候選人</th><th scope="col">施政紀錄條目</th><th scope="col">政策主張條目</th><th scope="col">合計</th><th scope="col">質疑條目（非案件數）</th></tr></thead>
     <tbody>${rows}</tbody></table>
-    <p class="fine muted">條數依可抓公開來源；各人收錄量未必相同，不代表優劣。</p>`;
+    <p class="fine muted">條數僅描述本站收錄量，不代表施政成效、案件數或優劣。來源未載回應不等於當事人未回應；「施政紀錄」未據此認定為已證實政績。</p>`;
 }
 
 function canShowPollNumbers(p) {
@@ -276,6 +277,7 @@ async function loadOfficial() {
 function renderRace() {
   if (!current) return;
   const { stats, bundle, policies, polls } = current;
+  void updateCandidateReview(policies, selectedRace, stats.generated_at);
   renderMetricCards(stats, policies);
   renderWindowBars(bundle, selectedWindow);
   renderPolicyCompare(policies);

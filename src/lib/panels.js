@@ -47,7 +47,7 @@ export function sentimentPanelHTML(stats, persons) {
     const parts = sentParts(ps.sentiment)
     return `<div class="mix-row"><div class="mix-who">${avatarHTML(p, 'xs')}<span>${escapeHtml(p.name)}</span></div>${stackHTML(parts)}${keyHTML(parts)}</div>`
   }).join('')
-  return `<h3>${icon('layers')} 報導語氣分布</h3>${rows}<p class="muted fine">語氣為標題與摘要的自動分類（偏正／中立／偏負），僅供參考，不代表本站立場；請以原文為準。</p>`
+  return `<details class="tone-review"><summary>自動語氣分類（非候選人評分）</summary><h3>${icon('layers')} 報導語氣分布</h3>${rows}<p class="muted fine">僅依已收錄標題與摘要的既有自動標籤分類，未在本輪逐筆重判。不是民意樣本，也不表示支持、反對、查核結果或本站立場；請閱讀原文與候選人多面向資料。</p></details>`
 }
 
 export function sourceMixPanelHTML(stats, persons) {

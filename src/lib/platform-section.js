@@ -6,8 +6,8 @@
 import { PERSON_ORDER_011, escapeHtml, isSafeHttpUrl, truncateExcerpt, parseTimeMs } from './latest-top.js'
 
 export const POLICY_KINDS = Object.freeze({
-  record: '政績',
-  policy: '政見',
+  record: '施政紀錄',
+  policy: '政策主張',
 })
 
 /** 中性欄位色（三人相同，不暗示偏好） */
@@ -26,7 +26,7 @@ export const PERSON_META = Object.freeze({
 })
 
 /** 每欄預設顯示則數（三人相同，避免一欄視覺主導） */
-export const DEFAULT_SHOW_N = 5
+export const DEFAULT_SHOW_N = 2
 
 const UNCORROB_RE = /未獨立查核|未獨立核對|未獨立查證/
 
@@ -34,12 +34,12 @@ const UNCORROB_RE = /未獨立查核|未獨立核對|未獨立查證/
  * 正規化 policies 陣列。缺 source_name／安全連結／日期 → 不採用（不顯示假內容）。
  * 支援 controversy／raised_by／responded／date_precision／source_type／note／uncorroborated。
  */
-export function normalizePolicies(rawList) {
+export function normalizePolicies(rawList, people = PERSON_ORDER_011) {
   const out = []
   for (const raw of rawList || []) {
     if (!raw || typeof raw !== 'object') continue
     const person_id = String(raw.person_id || '').trim()
-    if (!PERSON_ORDER_011.includes(person_id)) continue
+    if (!people.includes(person_id)) continue
     const href = String(raw.source_url || raw.url || '').trim()
     const source_name = String(raw.source_name || '').trim()
     const when = raw.published_at || raw.date || raw.announced_at
@@ -48,7 +48,8 @@ export function normalizePolicies(rawList) {
     const title = String(raw.title || '').trim()
     if (!title || title.includes('【fixture】')) continue
     const kindRaw = raw.kind || raw.type
-    const kind = kindRaw === 'record' || kindRaw === '政績' ? 'record' : 'policy'
+    const kind = kindRaw === 'record' || kindRaw === '政績' ? 'record' : (kindRaw === 'policy' || kindRaw === '政見' ? 'policy' : null)
+    if (!kind) continue
     const note = String(raw.note || '').trim()
     const uncorroborated = Boolean(raw.uncorroborated) || UNCORROB_RE.test(note) || UNCORROB_RE.test(String(raw.summary || ''))
     out.push({
@@ -63,6 +64,7 @@ export function normalizePolicies(rawList) {
       published_at: when,
       date_precision: raw.date_precision || null,
       source_type: raw.source_type || null,
+      claim_origin: raw.claim_origin || null,
       controversy: Boolean(raw.controversy),
       raised_by: String(raw.raised_by || '').trim(),
       responded: (raw.responded === true || raw.responded === false) ? raw.responded : (raw.responded == null || raw.responded === '' ? null : String(raw.responded).trim()),
@@ -73,24 +75,12 @@ export function normalizePolicies(rawList) {
   return out
 }
 
-export function groupPoliciesByPerson(list) {
-  const g = { wu: [], xu: [], zheng: [] }
+export function groupPoliciesByPerson(list, people = PERSON_ORDER_011) {
+  const g = Object.fromEntries(people.map(id=>[id,[]]))
   for (const p of list) {
     if (g[p.person_id]) g[p.person_id].push(p)
   }
   return g
-}
-
-function placeholderSlots(personId, n = 2) {
-  const slots = []
-  for (let i = 0; i < n; i++) {
-    slots.push(`<li class="plat-slot plat-slot-empty" data-person="${escapeHtml(personId)}" data-placeholder="1">
-  <span class="plat-kind">待補</span>
-  <p class="plat-slot-title">占位：請提供有<strong>來源＋日期</strong>的政績／政見條目</p>
-  <p class="plat-slot-meta">欄位：<code>policies.json</code> → person_id / kind / title / source_name / source_url / published_at</p>
-</li>`)
-  }
-  return slots.join('')
 }
 
 function formatDateTW(when) {
@@ -104,24 +94,25 @@ function formatDateTW(when) {
 }
 
 function entryHTML(p) {
-  const kindLabel = p.controversy ? '爭議' : (POLICY_KINDS[p.kind] || '政見')
+  const kindLabel = p.controversy ? '質疑紀錄' : (POLICY_KINDS[p.kind] || '政見')
   const href = p.source_url || p.url
   const excerpt = truncateExcerpt(p.summary)
   const dateStr = formatDateTW(p.published_at)
   const badges = []
-  if (p.controversy) badges.push('<span class="plat-kind plat-kind-controversy">爭議</span>')
+  if (p.controversy) badges.push('<span class="plat-kind plat-kind-controversy">質疑紀錄</span>')
   else badges.push(`<span class="plat-kind">${escapeHtml(kindLabel)}</span>`)
   if (p.uncorroborated) badges.push('<span class="plat-flag" title="數字或成效為當事人／報導說法">未獨立查核</span>')
+  badges.push(`<span class="plat-flag">${p.claim_origin==='self_claimed'?'人物／機關主張':p.claim_origin==='independently_reported'?'報導整理・非查核結論':'說法來源未標示'}</span>`)
   const controversyBits = []
   if (p.controversy && p.raised_by) {
     controversyBits.push(`<p class="plat-raised">提出：${escapeHtml(p.raised_by)}</p>`)
   }
   if (p.controversy) {
     if (p.responded === true) {
-      const detail = p.note && /回應/.test(p.note) ? truncateExcerpt(p.note, 40) : '有公開回應（見來源）'
+      const detail = p.note && /回應/.test(p.note) ? truncateExcerpt(p.note, 40) : '既有欄位記載有回應，內容請核對原文'
       controversyBits.push(`<p class="plat-responded">回應：${escapeHtml(detail)}</p>`)
     } else if (p.responded === false) {
-      controversyBits.push(`<p class="plat-responded">回應：報導未載／尚無公開回應</p>`)
+      controversyBits.push(`<p class="plat-responded">回應：此條目未記載，不能推論當事人未回應</p>`)
     } else if (p.note && /回應/.test(p.note)) {
       controversyBits.push(`<p class="plat-responded">${escapeHtml(truncateExcerpt(p.note, 40))}</p>`)
     }
@@ -137,13 +128,13 @@ function entryHTML(p) {
 
 export function platformColumnHTML(personId, entries, opts = {}) {
   const showN = Number.isFinite(opts.showN) ? opts.showN : DEFAULT_SHOW_N
-  const meta = PERSON_META[personId] || { id: personId, name: personId, role: '' }
+  const meta = opts.person || PERSON_META[personId] || { id: personId, name: personId, role: '' }
   const total = entries.length
   const visible = entries.slice(0, showN)
   const hidden = entries.slice(showN)
   let body
   if (!total) {
-    body = placeholderSlots(personId, 2)
+    body = '<li class="plat-slot plat-slot-empty"><p>本站尚未收錄此人的政策主張或施政紀錄。資料不足不代表沒有相關內容。</p></li>'
   } else {
     body = visible.map(entryHTML).join('')
     if (hidden.length) {
@@ -168,15 +159,18 @@ export function platformColumnHTML(personId, entries, opts = {}) {
  * @param {object} [opts]
  */
 export function renderPlatformSectionHTML(policiesRaw, opts = {}) {
-  const heading = opts.heading || '政績政見'
+  const heading = opts.heading || '政策主張與施政紀錄'
+  const roster=opts.roster
+  if(!Array.isArray(roster)||!roster.length)return '<p class="muted">完整候選人資料暫時無法載入，請前往<a href="/compare.html#candidateReview">候選人多面向閱讀</a>查閱正式名單。</p>'
+  const people=roster.map(p=>p.id)
   const showN = Number.isFinite(opts.showN) ? opts.showN : DEFAULT_SHOW_N
-  const list = normalizePolicies(policiesRaw)
-  const grouped = groupPoliciesByPerson(list)
-  const counts = PERSON_ORDER_011.map(id => `${PERSON_META[id].name} ${ (grouped[id] || []).length }`)
-  const cols = PERSON_ORDER_011.map(id => platformColumnHTML(id, grouped[id] || [], { showN }))
+  const list = normalizePolicies(policiesRaw,people)
+  const grouped = groupPoliciesByPerson(list,people)
+  const counts = people.map(id => `${roster.find(p=>p.id===id).name} ${ (grouped[id] || []).length }`)
+  const cols = people.map(id => platformColumnHTML(id, grouped[id] || [], { showN,person:roster.find(p=>p.id===id) }))
   const dataNote = list.length
-    ? `<p class="plat-note">資料來自 <code>policies.json</code>（${list.length} 則；${counts.join('、')}）。每人預設顯示 ${showN} 則，可展開。爭議項中性標示提出者與回應；標「未獨立查核」者為自報／報導說法。</p><p class="plat-note plat-coverage">依公開可抓來源整理，部分媒體因網站規則未收錄，可能有遺漏。</p>`
-    : `<p class="plat-note">目前尚無已核可的政績／政見資料檔。以下為<strong>等權重占位</strong>；協調者請提供 <code>/data/policies.json</code>（每則必含來源名稱、http(s) 連結、日期）。本區<strong>不發明</strong>政見內容。</p><p class="plat-note plat-coverage">依公開可抓來源整理，部分媒體因網站規則未收錄，可能有遺漏。</p>`
+    ? `<p class="plat-note">既有來源共 ${list.length} 則；${counts.join('、')}。條數只反映收錄量。依選區與選委會號次列出 ${roster.length} 人，每人先列 ${showN} 則，可展開。摘要尚未在本輪逐筆複核；施政紀錄不等於已證實政績。<a href="/compare.html#candidateReview">用共同面向閱讀</a></p><p class="plat-note plat-coverage">依公開可抓來源整理，部分媒體因網站規則未收錄，可能有遺漏。</p>`
+    : `<p class="plat-note">本站尚未收錄可顯示的政策來源，以下保留候選人資料缺口。</p><p class="plat-note plat-coverage">依公開可抓來源整理，部分媒體因網站規則未收錄，可能有遺漏。</p>`
   return `<section class="plat-block" aria-label="${escapeHtml(heading)}">
   <header class="plat-head"><h2>${escapeHtml(heading)}</h2>${dataNote}</header>
   <div class="plat-grid" data-equal-weight="1" data-show-n="${showN}">${cols.join('')}</div>
@@ -214,11 +208,11 @@ export function bindPlatformMore(root = document) {
 }
 
 /** 測試／稽核：三欄 DOM 結構等權（欄數、class、inline CSS 變數一致） */
-export function equalWeightAudit(html) {
+export function equalWeightAudit(html, expectedCols = 6) {
   const cols = [...html.matchAll(/class="plat-col"/g)].length
   const placeholders = [...html.matchAll(/data-placeholder="1"/g)].length
   const hasEqualAttr = html.includes('data-equal-weight="1"')
   const styles = [...html.matchAll(/style="(--plat-border:[^"]+)"/g)].map(m => m[1])
-  const allSameStyle = styles.length === 3 && styles.every(s => s === styles[0])
-  return { cols, placeholders, hasEqualAttr, allSameStyle, ok: cols === 3 && hasEqualAttr && allSameStyle }
+  const allSameStyle = styles.length === expectedCols && styles.every(s => s === styles[0])
+  return { cols, placeholders, hasEqualAttr, allSameStyle, ok: cols === expectedCols && hasEqualAttr && allSameStyle }
 }

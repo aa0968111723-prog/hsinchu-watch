@@ -6,6 +6,8 @@ const normal = text => text.trim().normalize('NFKC').toLowerCase()
 function loadSources() {
   void observationList(panel, 'sources.json', ({ people, entries }) => {
     const person = filter('人物', '全部人物', personOptions(people))
+    const requested = new URLSearchParams(location.search).get('sourcePerson')
+    if (requested && Object.hasOwn(people, requested)) person.control.value = requested
     const search = filter('找文章或來源')
     return {
       filters: [person, search],

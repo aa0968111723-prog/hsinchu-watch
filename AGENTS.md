@@ -28,3 +28,10 @@ Governance pilot records live in public/data/governance*.json. Preserve unknown
 values and date precision. Distinguish agency reports from independently checked
 outcomes, and project percentages from acceptance or occupancy. Do not infer
 spending, delay, or a progress baseline date from missing data.
+
+Use the checked candidate-review.json roster for candidate reading; do not
+omit candidates because structured data is missing or mix commentators into
+the roster. Apply shared facets, filters, ordering and preview limits. Unknown
+evidence is not zero performance. responded=false means this archive record
+does not contain a response, never that the person did not respond. Reported
+claims are not independently checked facts. See docs/candidate-review-standard.md.

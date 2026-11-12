@@ -180,7 +180,7 @@ function renderIdentity(stats){
   const ps = stats?.by_person?.[id]
   $('personName').textContent = person.name
   $('personRole').textContent = [person.role, person.party].filter(Boolean).join(' · ')
-  document.title = `${person.name}｜新竹三人政治輿情站`
+  document.title = `${person.name}｜新竹選情觀察`
   $('pBanner').style.setProperty('--pc', st.color)
   $('pBanner').style.setProperty('--ps', st.soft)
   const updated = stats?.generated_at
@@ -205,7 +205,7 @@ function renderViz(stats, person){
   renderVolume(stats, person)
   const sp = sentParts(ps.sentiment), pp = platParts(ps.platforms)
   const tot = (o) => Object.values(o || {}).reduce((a, b) => a + (Number(b) || 0), 0)
-  $('pSent').innerHTML = donutBlock('報導語氣分布', 'layers', sp, tot(ps.sentiment)) + '<p class="muted fine">自動分類，僅供參考；請以原文為準。</p>'
+  $('pSent').innerHTML = '<details class="tone-review"><summary>自動語氣分類（非候選人評分）</summary>' + donutBlock('報導語氣分布', 'layers', sp, tot(ps.sentiment)) + '<p class="muted fine">既有自動標籤未在本輪逐筆重判；不是民意樣本、支持度或查核結論。請讀原文並對照多面向資料。</p></details>'
   $('pMix').innerHTML = donutBlock('來源類型組成', 'news', pp, tot(ps.platforms))
   const rows = outletRows(stats.outlet_distribution?.by_person?.[id]?.outlets)
   $('pOutlet').innerHTML = `<h3>${icon('website')} 主要媒體來源</h3>` + (rows.length ? hbarsHTML(rows.slice(0, 8), { color: st.color }) + `<p class="muted fine">共 ${rows.length} 個來源名稱。</p>` : '<p class="muted">尚無</p>')

@@ -4,7 +4,7 @@
 
 Prefer POLICY_wu.v2.json over POLICY_wu.json. Missing person files OK.
 Drop entries lacking source_name + https source_url + parseable date.
-Normalize controversy.responded for all three (bool|null; never invent).
+Normalize controversy.responded as source-record metadata (bool|null; never infer from prose).
 Special-case w030 Yahoo syndication label → 自由時報（Yahoo 轉載）.
 """
 from __future__ import annotations
@@ -19,11 +19,9 @@ from pathlib import Path
 
 TZ = timezone(timedelta(hours=8))
 ROOT = Path(__file__).resolve().parents[1]
-ORDER = ("wu", "xu", "zheng")
+ORDER = ("zheng", "xu", "zhu", "wu", "tseng", "chiu")
 UNCORROB_RE = re.compile(r"未獨立查核|未獨立核對|未獨立查證")
 FIXTURE_RE = re.compile(r"【fixture】")
-NO_RESPONSE_RE = re.compile(r"報導未載.{0,12}回應|未載公所回應|未載回應|未見回應|沒有回應|尚未回應|未回覆")
-HAS_RESPONSE_RE = re.compile(r"回應者為|公所回應見|市長回應|已回應|坦承|否認")
 
 # id → hard-drop after spot-check (empty when all passed)
 SPOTCHECK_DROPS = {
@@ -59,7 +57,7 @@ def _arg(flag: str) -> str | None:
 
 
 def find_policy_file(person_id: str) -> Path | None:
-    for pattern in POLICY_CANDIDATES[person_id]:
+    for pattern in POLICY_CANDIDATES.get(person_id, [f"work/*/POLICY_{person_id}.v2.json", f"work/*/POLICY_{person_id}.json"]):
         if "*" in pattern:
             for m in sorted(ROOT.glob(pattern)):
                 if m.is_file():
@@ -111,7 +109,7 @@ def make_id(person_id: str, raw_id, title: str, url: str) -> str:
 
 
 def derive_responded(raw: dict) -> bool | None:
-    """Normalize responded: keep bool if present; else derive from note/raised_by; else null."""
+    """Keep explicitly supplied source-record status; prose cannot prove a response exists."""
     if "responded" in raw:
         v = raw.get("responded")
         if isinstance(v, bool):
@@ -124,16 +122,8 @@ def derive_responded(raw: dict) -> bool | None:
         if s in ("false", "0", "no", "n"):
             return False
         return None
-    if not raw.get("controversy"):
-        return None
-    note = str(raw.get("note") or "")
-    raised = str(raw.get("raised_by") or "")
-    blob = f"{note} {raised}"
-    if NO_RESPONSE_RE.search(blob):
-        return False
-    if HAS_RESPONSE_RE.search(blob) or ("回應者為" in raised) or ("公所回應" in raised):
-        return True
-    return None  # unknown — never guess
+    return None  # Missing structured status remains unknown; never infer from notes.
+
 
 
 def relabel_source(person_id: str, entry_id: str, source_name: str, source_url: str) -> str:

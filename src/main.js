@@ -14,6 +14,7 @@ import { coverageTime } from './lib/coverage.js'
 installImageFallback();
 
 let policiesCache = null;
+let candidateRoster = null;
 let policiesLoading = false;
 
 function renderLatestAndPlatform(items){
@@ -25,21 +26,21 @@ function renderLatestAndPlatform(items){
   const plat = $('platformSection');
   if (!plat) return;
   if (policiesCache) {
-    plat.innerHTML = renderPlatformSectionHTML(policiesCache);
+    plat.innerHTML = renderPlatformSectionHTML(policiesCache, {roster:candidateRoster});
     bindPlatformMore(plat);
     return;
   }
-  plat.innerHTML = renderPlatformSectionHTML([]);
+  plat.innerHTML = '<p class="muted">正在讀取候選人政策來源。</p>';
   if (policiesLoading) return;
   policiesLoading = true;
-  loadJSON('/data/policies.json')
-    .then(p => { policiesCache = Array.isArray(p) ? p : []; })
+  Promise.all([loadJSON('/data/policies.json'),loadJSON('/data/candidate-review.json')])
+    .then(([p,registry]) => { policiesCache = Array.isArray(p) ? p : []; candidateRoster=registry.candidates.map(person=>({...person,role:`${registry.races.find(r=>r.id===person.race_id).name}候選人・${person.ballot_number}號`})); })
     .catch(() => { policiesCache = []; })
     .finally(() => {
       policiesLoading = false;
       const box = $('platformSection');
       if (box) {
-        box.innerHTML = renderPlatformSectionHTML(policiesCache || []);
+        box.innerHTML = renderPlatformSectionHTML(policiesCache || [], {roster:candidateRoster});
         bindPlatformMore(box);
       }
     });

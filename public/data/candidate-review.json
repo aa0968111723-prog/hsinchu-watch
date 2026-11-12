@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-12",
+  "scope_note": "目前為2026年新竹縣長及竹北市長兩個選區的正式候選人名單，尚非全台名單。",
+  "races": [
+    {
+      "id": "county_magistrate",
+      "name": "新竹縣長"
+    },
+    {
+      "id": "zhubei_mayor",
+      "name": "竹北市長"
+    }
+  ],
+  "sources": [
+    {
+      "id": "county-roster",
+      "name": "115年新竹縣縣長選舉候選人號次抽籤結果",
+      "agency": "新竹縣選舉委員會",
+      "url": "https://web.cec.gov.tw/api/file/d2e6c0e2-4579-4034-ad98-fa2baca90066.pdf",
+      "listing_url": "https://web.cec.gov.tw/hccec/article/65398",
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "township-roster",
+      "name": "115年鄉鎮市長選舉候選人號次抽籤結果（竹北市列）",
+      "agency": "新竹縣選舉委員會",
+      "url": "https://web.cec.gov.tw/api/file/77b4cc63-fcb1-41e9-b0cd-da5493f1dd09.pdf",
+      "listing_url": "https://web.cec.gov.tw/hccec/article/65398",
+      "checked_at": "2026-11-12"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "zheng",
+      "name": "鄭朝方",
+      "race_id": "county_magistrate",
+      "ballot_number": 1,
+      "roster_source_id": "county-roster"
+    },
+    {
+      "id": "xu",
+      "name": "徐欣瑩",
+      "race_id": "county_magistrate",
+      "ballot_number": 2,
+      "roster_source_id": "county-roster"
+    },
+    {
+      "id": "zhu",
+      "name": "朱定瑀",
+      "race_id": "county_magistrate",
+      "ballot_number": 3,
+      "roster_source_id": "county-roster"
+    },
+    {
+      "id": "wu",
+      "name": "吳旭智",
+      "race_id": "zhubei_mayor",
+      "ballot_number": 1,
+      "roster_source_id": "township-roster"
+    },
+    {
+      "id": "tseng",
+      "name": "曾聖凱",
+      "race_id": "zhubei_mayor",
+      "ballot_number": 2,
+      "roster_source_id": "township-roster"
+    },
+    {
+      "id": "chiu",
+      "name": "邱臣遠",
+      "race_id": "zhubei_mayor",
+      "ballot_number": 3,
+      "roster_source_id": "township-roster"
+    }
+  ]
+}

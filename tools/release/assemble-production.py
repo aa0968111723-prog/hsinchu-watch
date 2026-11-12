@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 CORE = ("index", "compare", "topics", "polls", "commentary", "manual", "person")
 PRIMARY = (("總覽", "index"), ("比較", "compare"), ("議題", "topics"),
            ("民調", "polls"), ("評論", "commentary"), ("手動收錄", "manual"))
-MORE = (("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
+MORE = (("候選人多面向", "/compare.html#candidateReview"), ("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
         ("指標對照", "/compare-panels.html"), ("逐筆比較", "/reference/compare.html"),
         ("議題立場", "/reference/topics.html"), ("即時與社群", "/reference/index.html"),
         ("陳見賢", "/person.html?id=chen"))
@@ -121,7 +121,7 @@ def edit_page(path, common_css, script_url, style_url, depth_url, tools_url, *, 
     main = doc.main
     if not nav or not main or not doc.head or not doc.body:
         raise ValueError(f"Page shell missing on {path}")
-    for node in doc.select('.release-directory,.release-extra,script[src^="/assets/release-nav-"],link[href^="/assets/release-nav-"],link[href="/editorial-depth.css"],link[href^="/assets/editorial-depth-"]'):
+    for node in doc.select('.candidate-review-note,.release-directory,.release-extra,script[src^="/assets/release-nav-"],link[href^="/assets/release-nav-"],link[href="/editorial-depth.css"],link[href^="/assets/editorial-depth-"]'):
         node.decompose()
     if not doc.select_one(f'link[href="{common_css}"]'):
         add_tag(doc, doc.head, "link", rel="stylesheet", href=common_css)
@@ -135,6 +135,10 @@ def edit_page(path, common_css, script_url, style_url, depth_url, tools_url, *, 
     if route == "governance":
         path.write_text(str(doc), encoding="utf-8", newline="\n")
         return
+    note = doc.new_tag("p", attrs={"class": "candidate-review-note"})
+    add_tag(doc, note, "a", href="/compare.html#reviewMethod").string = "候選人閱讀標準"
+    note.append("：主張、質疑與回應分開閱讀；各圖只呈現已收錄範圍，完整正式名單見多面向閱讀。")
+    main.insert(0, note)
     nav.clear()
     nav["aria-label"] = "主選單"
     for title, destination in PRIMARY:
@@ -205,7 +209,7 @@ def main():
         shutil.copyfile(editorial / f"{page}.html", output / f"{page}.html")
     shutil.copyfile(editorial / "governance.html", output / "governance.html")
     # Governance records belong to the checked editorial release, not the legacy election feed.
-    for name in ("governance.json", "governance-registry.json"):
+    for name in ("governance.json", "governance-registry.json", "candidate-review.json"):
         shutil.copyfile(editorial / "data" / name, output / "data" / name)
     copy_assets(editorial / "assets", output / "assets")
     copy_observations(editorial / "observations", output / "observations")

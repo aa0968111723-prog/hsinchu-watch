@@ -95,6 +95,8 @@ def prepare(root=ROOT):
     for page, marker in required.items():
         if marker not in (root / page).read_text(encoding="utf-8"):
             raise ValueError("Refusing superseded UI: " + page)
+    if 'id="candidateReview"' not in (root / "compare.html").read_text(encoding="utf-8"):
+        raise ValueError("Missing equal candidate reading framework")
     for page in [*root.glob("*.html"), *root.glob("reference/*.html")]:
         if "/assets/editorial-depth-" not in page.read_text(encoding="utf-8"):
             raise ValueError("Missing shared editorial depth stylesheet: " + page.name)
@@ -121,6 +123,8 @@ def prepare(root=ROOT):
             raise ValueError("Person shard differs from complete dataset: " + str(pid))
     from governance_schema import validate as validate_governance
     validate_governance(payloads["governance.json"], payloads["governance-registry.json"])
+    from candidate_review_schema import validate as validate_candidates
+    validate_candidates(payloads["candidate-review.json"])
     source_path = root / "observations/sources.json"
     existing_sources = source_path.read_bytes()
     sources = source_index(json.loads(existing_sources), items, payloads["policies.json"])
@@ -146,7 +150,7 @@ def prepare(root=ROOT):
     if ui_changed:
         manifest["ui_updated_at"] = now
     manifest["release"] = {"id": revision, "ui_sha256": ui_sha, "data_sha256": data_sha}
-    manifest["ui_version"] = "editorial-v4"
+    manifest["ui_version"] = "editorial-v5"
     # Abort if an importer advanced any input while the release was assembled.
     if any(path.read_bytes() != raw for path, raw in before.items()) or source_path.read_bytes() != existing_sources:
         raise RuntimeError("Public files changed during release preparation; retry after import")
