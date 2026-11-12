@@ -20,7 +20,7 @@ class RecoveryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             for name, marker in {"index.html": 'id="pulseView"', "compare.html": 'id="metricCards"',
-                                 "maps.html": 'maps-mobile-', "commentary.html": 'watch-comments'}.items():
+                                 "governance.html": 'id="governanceBoard"', "maps.html": 'maps-mobile-', "commentary.html": 'watch-comments'}.items():
                 (root / name).write_text(marker + '<link href="/assets/editorial-depth-fixture.css"><script src="/assets/page-tools-fixture.js"></script>')
             self.snapshot(root, "2026-11-12T12:00:00+08:00", [])
             stats = read(root / "data/stats.json")

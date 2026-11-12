@@ -1,5 +1,5 @@
 {
-  "content_sha": "6eea991d0c315b21e1f62738004a165dd491b3d8ee6135a66f1ff5ca92457a5d",
+  "content_sha": "35fdb7f04a3d6579ed54dd1944f07b378b3ef395a040a201d8f9532dc95c7802",
   "counts": {
     "counts_note": "excluded=excluded_collect+excluded_publish；not_shown_total=excluded+pending_review（待審未上站，非排除）",
     "excluded": 144,
@@ -16,6 +16,14 @@
     "candidate_photos.json": {
       "bytes": 2602,
       "sha256": "9308016d7e837e65"
+    },
+    "governance-registry.json": {
+      "bytes": 3629,
+      "sha256": "810b7c712a0c807c"
+    },
+    "governance.json": {
+      "bytes": 4839,
+      "sha256": "7fced219ae303b6a"
     },
     "issue_stances.json": {
       "bytes": 19369,
@@ -78,7 +86,7 @@
       "sha256": "b6e326d472c91283"
     }
   },
-  "finalized_at": "2026-11-12T18:08:36.370939+08:00",
+  "finalized_at": "2026-11-12T19:11:24.048165+08:00",
   "generated_at": "2026-11-12T06:31:54.830322+08:00",
   "persons_order": [
     "wu",
@@ -90,14 +98,14 @@
   ],
   "poll_blackout_active": false,
   "timezone": "Asia/Taipei",
-  "ui_updated_at": "2026-11-12T18:08:56+08:00",
+  "ui_updated_at": "2026-11-12T19:11:24+08:00",
   "release": {
-    "id": "hsinchu-56ef7ce2daf38daf",
-    "ui_sha256": "cd2f7ca00d7aca790266803e148c2fde55be4f98ec9bf3edd6d4d377a362ca96",
-    "data_sha256": "6eea991d0c315b21e1f62738004a165dd491b3d8ee6135a66f1ff5ca92457a5d"
+    "id": "hsinchu-eddb4cfaa5769de5",
+    "ui_sha256": "d055807d6df79df7f6c610f03c86aef3b64bcb73b8eb8f2d30b3299f45221531",
+    "data_sha256": "35fdb7f04a3d6579ed54dd1944f07b378b3ef395a040a201d8f9532dc95c7802"
   },
-  "ui_version": "editorial-v3",
+  "ui_version": "editorial-v4",
   "ui_revisions": {
-    "maps": "995b79cb85faaeb1"
+    "maps": "e45d7305f5ef3665"
   }
 }

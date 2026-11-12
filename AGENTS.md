@@ -2,7 +2,7 @@
 
 This repository is the editable source for https://hsinchu-watch.pages.dev/.
 
-Use `npm run build` to assemble all 17 HTML pages. `build:ui` and `.build-ui/`
+Use `npm run build` to assemble all 18 HTML pages. `build:ui` and `.build-ui/`
 contain only an intermediate frontend build. Release the complete `dist/`.
 
 The full published snapshot lives in `public/data/` and `public/observations/`.
@@ -23,3 +23,8 @@ Validate relevant changes using `python tools/audit_publication.py`,
 `npm run test:release`, `npm run build` and `npm run test:browser`. Never include
 local login stores, environment secrets, raw commenter accounts or agent work
 directories in repository synchronization.
+
+Governance pilot records live in public/data/governance*.json. Preserve unknown
+values and date precision. Distinguish agency reports from independently checked
+outcomes, and project percentages from acceptance or occupancy. Do not infer
+spending, delay, or a progress baseline date from missing data.

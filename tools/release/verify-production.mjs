@@ -23,6 +23,7 @@ try {
   page.on('pageerror', error => errors.push(error.message));
   const entries = {
     '/index.html': '#pulsePlot svg',
+    '/governance.html': '.gov-project',
     '/compare.html': '#metricCards .cmp-card',
     '/topics.html': '#topicPicker button',
     '/polls.html': '#pollTrend:not([aria-busy="true"])',

@@ -8,7 +8,7 @@
     "build": "node tools/build.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
     "build:ui": "vite build --outDir .build-ui",
-    "test:release": "python -m unittest discover -s tools/release -p test_recovery_pipeline.py",
+    "test:release": "python -m unittest discover -s tools/release -p test_*.py",
     "test:site": "node tools/release/verify-production.mjs",
     "test:mobile": "node tools/release/verify-mobile.mjs",
     "test:browser": "python tools/check_site.py",

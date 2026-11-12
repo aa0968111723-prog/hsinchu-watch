@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-12",
+  "scope_note": "首批試行案卷，涵蓋台北、新北、新竹縣與新竹市；尚非各地完整政策清單。",
+  "regions": [
+    {
+      "id": "taipei",
+      "name": "台北市"
+    },
+    {
+      "id": "new-taipei",
+      "name": "新北市"
+    },
+    {
+      "id": "hsinchu-county",
+      "name": "新竹縣"
+    },
+    {
+      "id": "hsinchu-city",
+      "name": "新竹市"
+    }
+  ],
+  "topics": [
+    {
+      "id": "housing",
+      "name": "住宅"
+    },
+    {
+      "id": "transport",
+      "name": "交通與道路"
+    }
+  ],
+  "sources": [
+    {
+      "id": "taipei-peiying",
+      "region_id": "taipei",
+      "name": "培英公共住宅工程資料",
+      "agency": "臺北市政府工務局水利工程處",
+      "url": "https://heo.gov.taipei/cp.aspx?n=DEDCC5E8E17CD3FB",
+      "kind": "project_page",
+      "source_updated_at": "2026-09-21",
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "ntp-works",
+      "region_id": "new-taipei",
+      "name": "在建工程專區",
+      "agency": "新北市政府工務局",
+      "url": "https://www.publicwork.ntpc.gov.tw/home.jsp?id=512cdd6f20d79814",
+      "kind": "project_register",
+      "source_updated_at": "2026-10-12",
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "hsc-baozhong",
+      "region_id": "hsinchu-county",
+      "name": "褒忠路道路拓寬工程開工公告",
+      "agency": "新竹縣政府",
+      "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&sms=8603&s=358194",
+      "kind": "agency_release",
+      "source_updated_at": "2026-11-12",
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "hcc-xiangshan",
+      "region_id": "hsinchu-city",
+      "name": "香山四號道路補辦土地徵收公告",
+      "agency": "新竹市政府地政處",
+      "url": "https://land.hccg.gov.tw/news/?mode=data&id=1159&parent_id=10004&type_id=10588&vc=c6c43670fef5fd8bd5237394956448ee",
+      "kind": "official_notice",
+      "source_updated_at": "2026-11-11",
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "taipei-data",
+      "region_id": "taipei",
+      "name": "臺北市資料大平臺",
+      "agency": "臺北市政府",
+      "url": "https://data.taipei/",
+      "kind": "data_catalog",
+      "source_updated_at": null,
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "ntp-meetings",
+      "region_id": "new-taipei",
+      "name": "市政會議紀錄資料集",
+      "agency": "新北市政府研究發展考核委員會",
+      "url": "https://data.ntpc.gov.tw/datasets/8662f163-3c74-47ce-91a8-f96557925231",
+      "kind": "data_catalog",
+      "source_updated_at": null,
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "hsc-council",
+      "region_id": "hsinchu-county",
+      "name": "新竹縣議會議事資料",
+      "agency": "新竹縣議會",
+      "url": "https://www.hcc.gov.tw/question?lang=&program=198",
+      "kind": "council_records",
+      "source_updated_at": null,
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "hcc-council",
+      "region_id": "hsinchu-city",
+      "name": "新竹市議會議事資料",
+      "agency": "新竹市議會",
+      "url": "https://www.hsinchu-cc.gov.tw/",
+      "kind": "council_records",
+      "source_updated_at": null,
+      "checked_at": "2026-11-12"
+    },
+    {
+      "id": "ly-data",
+      "region_id": null,
+      "name": "立法院開放資料",
+      "agency": "立法院",
+      "url": "https://data.ly.gov.tw/",
+      "kind": "national_catalog",
+      "source_updated_at": null,
+      "checked_at": "2026-11-12"
+    }
+  ]
+}

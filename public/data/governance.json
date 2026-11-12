@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-12",
+  "projects": [
+    {
+      "id": "hsinchu-county-baozhong-road",
+      "title": "新埔褒忠路道路拓寬",
+      "region_id": "hsinchu-county",
+      "topic_id": "transport",
+      "agency": "新竹縣政府",
+      "phase": "construction_start",
+      "phase_label": "開工公告",
+      "phase_as_of": "2026-11-12",
+      "summary": "縣道117線褒忠路拓寬工程已舉行開工動土；後續施工與驗收分開追蹤。",
+      "progress": null,
+      "target": {
+        "value": "2028-10",
+        "precision": "month",
+        "label": "機關發布目標：2028年10月完工通車"
+      },
+      "budget": {
+        "approved_twd": 975210000,
+        "contract_twd": 752800000,
+        "spent_twd": null,
+        "source_id": "hsc-baozhong"
+      },
+      "missing_evidence": [
+        "定期施工進度",
+        "經費實際支用",
+        "後續驗收與通車文件"
+      ],
+      "events": [
+        {
+          "date": "2026-11-12",
+          "precision": "day",
+          "summary": "機關公告舉行開工動土，並列示目標完工月份。",
+          "source_id": "hsc-baozhong",
+          "kind": "agency_report"
+        }
+      ]
+    },
+    {
+      "id": "hsinchu-city-xiangshan-four",
+      "title": "香山四號道路補辦土地程序",
+      "region_id": "hsinchu-city",
+      "topic_id": "transport",
+      "agency": "新竹市政府地政處",
+      "phase": "land_notice",
+      "phase_label": "土地程序公告",
+      "phase_as_of": "2026-11-11",
+      "summary": "地政處發布補辦土地徵收相關公告；此紀錄不據以判定道路施工或啟用進度。",
+      "progress": null,
+      "target": null,
+      "budget": null,
+      "missing_evidence": [
+        "道路工程現況說明",
+        "對應工程與驗收資料"
+      ],
+      "events": [
+        {
+          "date": "2026-11-11",
+          "precision": "day",
+          "summary": "地政處發布府地用字第11501943171號公告。",
+          "source_id": "hcc-xiangshan",
+          "kind": "official_notice"
+        }
+      ]
+    },
+    {
+      "id": "new-taipei-siyuan-footbridge",
+      "title": "思源路跨越新北大道人行天橋",
+      "region_id": "new-taipei",
+      "topic_id": "transport",
+      "agency": "新北市政府養護工程處",
+      "phase": "construction",
+      "phase_label": "在建工程表列",
+      "phase_as_of": null,
+      "summary": "工務局在建工程表列本案；進度數字的基準日未另標示，與網頁更新日期分開記錄。",
+      "progress": {
+        "value": 77.25,
+        "as_of": null,
+        "source_id": "ntp-works"
+      },
+      "target": {
+        "value": "2026-12",
+        "precision": "month",
+        "label": "來源表列預定期程：2025年12月至2026年12月"
+      },
+      "budget": null,
+      "missing_evidence": [
+        "進度數字的基準日期",
+        "當期工程報告",
+        "完工與驗收資料"
+      ],
+      "events": [
+        {
+          "date": "2026-10-12",
+          "precision": "day",
+          "summary": "在建工程網頁更新日期；表列進度為77.25%，數字本身未另列基準日。",
+          "source_id": "ntp-works",
+          "kind": "register_update"
+        }
+      ]
+    },
+    {
+      "id": "taipei-peiying-housing",
+      "title": "中山區培英公共住宅",
+      "region_id": "taipei",
+      "topic_id": "housing",
+      "agency": "臺北市政府工務局水利工程處",
+      "phase": "handover_preparation",
+      "phase_label": "驗收與點交準備記錄",
+      "phase_as_of": "2026-09",
+      "summary": "工程頁分別列示完工日期、100%工程進度，以及後續驗收、點交與使用執照準備事項。",
+      "progress": {
+        "value": 100,
+        "as_of": "2026-06-01",
+        "source_id": "taipei-peiying"
+      },
+      "target": null,
+      "budget": null,
+      "missing_evidence": [
+        "後續驗收結果",
+        "點交與使用執照文件",
+        "營運或入住資料"
+      ],
+      "events": [
+        {
+          "date": "2020-02-25",
+          "precision": "day",
+          "summary": "工程頁列示開工日期。",
+          "source_id": "taipei-peiying",
+          "kind": "agency_report"
+        },
+        {
+          "date": "2026-06-01",
+          "precision": "day",
+          "summary": "工程頁列示完工日期，並以此日為100%工程進度基準。",
+          "source_id": "taipei-peiying",
+          "kind": "agency_report"
+        },
+        {
+          "date": "2026-09",
+          "precision": "month",
+          "summary": "工程頁記載準備後續驗收、點交與使用執照取得作業。",
+          "source_id": "taipei-peiying",
+          "kind": "agency_report"
+        }
+      ]
+    }
+  ]
+}

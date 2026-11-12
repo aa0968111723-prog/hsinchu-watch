@@ -23,7 +23,7 @@ def main():
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     try:
-        all_checks = ["verify-production.mjs", "verify-mobile.mjs", "verify-depth-v3.mjs", "verify-maps-mobile.mjs", "verify-observations.mjs", "verify-page-tools.mjs"]
+        all_checks = ["verify-production.mjs", "verify-mobile.mjs", "verify-depth-v3.mjs", "verify-maps-mobile.mjs", "verify-observations.mjs", "verify-page-tools.mjs", "verify-governance.mjs"]
         selected = sys.argv[1:] or all_checks
         if any(name not in all_checks for name in selected):
             raise ValueError("Unknown browser check")

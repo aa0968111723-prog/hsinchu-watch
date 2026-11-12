@@ -10,6 +10,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        governance: resolve(__dirname, 'governance.html'),
         person: resolve(__dirname, 'person.html'),
         topics: resolve(__dirname, 'topics.html'),
         polls: resolve(__dirname, 'polls.html'),

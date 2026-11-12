@@ -91,7 +91,7 @@ def source_index(current, items, policies):
 def prepare(root=ROOT):
     root = Path(root)
     required = {"index.html": 'id="pulseView"', "compare.html": 'id="metricCards"',
-                "maps.html": "maps-mobile-", "commentary.html": "watch-comments"}
+                "governance.html": 'id="governanceBoard"', "maps.html": "maps-mobile-", "commentary.html": "watch-comments"}
     for page, marker in required.items():
         if marker not in (root / page).read_text(encoding="utf-8"):
             raise ValueError("Refusing superseded UI: " + page)
@@ -119,6 +119,8 @@ def prepare(root=ROOT):
         expected = [row for row in items if row.get("person_id") == pid]
         if payloads.get("items_" + pid + ".json") != expected:
             raise ValueError("Person shard differs from complete dataset: " + str(pid))
+    from governance_schema import validate as validate_governance
+    validate_governance(payloads["governance.json"], payloads["governance-registry.json"])
     source_path = root / "observations/sources.json"
     existing_sources = source_path.read_bytes()
     sources = source_index(json.loads(existing_sources), items, payloads["policies.json"])
@@ -144,7 +146,7 @@ def prepare(root=ROOT):
     if ui_changed:
         manifest["ui_updated_at"] = now
     manifest["release"] = {"id": revision, "ui_sha256": ui_sha, "data_sha256": data_sha}
-    manifest["ui_version"] = "editorial-v3"
+    manifest["ui_version"] = "editorial-v4"
     # Abort if an importer advanced any input while the release was assembled.
     if any(path.read_bytes() != raw for path, raw in before.items()) or source_path.read_bytes() != existing_sources:
         raise RuntimeError("Public files changed during release preparation; retry after import")
