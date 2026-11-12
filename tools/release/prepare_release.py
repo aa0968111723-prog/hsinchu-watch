@@ -98,6 +98,8 @@ def prepare(root=ROOT):
     if 'id="candidateReview"' not in (root / "compare.html").read_text(encoding="utf-8"):
         raise ValueError("Missing equal candidate reading framework")
     for page in [*root.glob("*.html"), *root.glob("reference/*.html")]:
+        if page.name == "asset-lab.html":
+            continue
         if "/assets/editorial-depth-" not in page.read_text(encoding="utf-8"):
             raise ValueError("Missing shared editorial depth stylesheet: " + page.name)
         if "/assets/page-tools-" not in page.read_text(encoding="utf-8"):

@@ -9,7 +9,7 @@ const FILES = [
   ['governance', '/data/governance.json'],
   ['governanceRegistry', '/data/governance-registry.json'],
   ['candidates', '/data/candidate-review.json'],
-  ['refreshLog', '/data/civic/refresh-log.json'],
+  ['refreshLog', '/data/civic/feed.json'],
 ]
 
 function escapeHtml(value) {
@@ -75,8 +75,15 @@ function renderSections() {
   return `<div class="civic-grid">${sections.sections.map(section => `<article class="civic-card"><h3><a href="${escapeHtml(section.href)}">${escapeHtml(section.title)}</a></h3><p>${escapeHtml(section.summary)}</p></article>`).join('')}</div>`
 }
 
-function renderRefresh(refresh) {
-  return `<section class="civic-card" id="refresh" aria-labelledby="refresh-title"><h2 id="refresh-title">來源刷新</h2><p>可用來源的檢查週期是 20 分鐘，失敗會退避並保留上一筆成功內容。排程設定、實際成功與正式站發布要分開看。</p><dl class="civic-facts"><div><dt>週期</dt><dd>${escapeHtml(refresh.interval_minutes)} 分鐘</dd></div><div><dt>狀態</dt><dd>${escapeHtml(healthLabel(refresh.health))}</dd></div><div><dt>最後嘗試</dt><dd>${escapeHtml(textOrUnknown(refresh.last_attempt_at, '沒有紀錄'))}</dd></div><div><dt>最後成功</dt><dd>${escapeHtml(textOrUnknown(refresh.last_success_at, '沒有成功紀錄'))}</dd></div><div><dt>下次檢查</dt><dd>${escapeHtml(textOrUnknown(refresh.next_due_at, '尚未排入這份快照'))}</dd></div></dl><p class="civic-note">${refresh.configured ? '' : '這份快照還沒有刷新日誌。介面更新日期不是抓取成功時間。'}</p></section>`
+function renderRefresh(refresh, sourceHealth) {
+  const rows = sourceHealth ? Object.entries(sourceHealth).map(([id, health]) => {
+    const label = health === 'ok' ? '本輪有回應' : health === 'gap' ? '尚未接入' : health
+    return `<li>${escapeHtml(id)}：${escapeHtml(label)}</li>`
+  }).join('') : ''
+  const note = refresh.last_success_at
+    ? '最後成功是蒐集時間，不是介面更新，也不是正式站已發布。'
+    : '這份快照還沒有刷新日誌。介面更新日期不是抓取成功時間。'
+  return `<section class="civic-card" id="refresh" aria-labelledby="refresh-title"><h2 id="refresh-title">來源刷新</h2><p>可用來源的檢查週期是 20 分鐘，失敗會退避並保留上一筆成功內容。排程設定、實際成功與正式站發布要分開看。</p><dl class="civic-facts"><div><dt>週期</dt><dd>${escapeHtml(refresh.interval_minutes)} 分鐘</dd></div><div><dt>狀態</dt><dd>${escapeHtml(healthLabel(refresh.health))}</dd></div><div><dt>最後嘗試</dt><dd>${escapeHtml(textOrUnknown(refresh.last_attempt_at, '沒有紀錄'))}</dd></div><div><dt>最後成功</dt><dd>${escapeHtml(textOrUnknown(refresh.last_success_at, '沒有成功紀錄'))}</dd></div><div><dt>下次檢查</dt><dd>${escapeHtml(textOrUnknown(refresh.next_due_at, '尚未排入這份快照'))}</dd></div></dl><p class="civic-note">${note}</p>${rows ? `<ul>${rows}</ul>` : ''}</section>`
 }
 
 function renderSources(sources) {
@@ -115,7 +122,7 @@ function render(snapshot, failures) {
     <section aria-labelledby="civic-title"><p class="civic-lead">選舉觀察仍在上方選單。這裡把地方治理、中央資料、地圖、人物、網路聲音與完整紀錄接到同一份快照。</p><h2 id="civic-title">現在這份快照</h2>${renderFacts(snapshot)}<p class="civic-note">人物新聞列與不重複網址來自 manifest，完整資料頁的合併筆數在<a href="/archive.html">完整資料</a>計算。兩邊不各算一套。</p></section>
     <section aria-labelledby="sections-title"><h2 id="sections-title">閱讀入口</h2>${renderSections()}</section>
     <section id="central" aria-labelledby="central-title"><h2 id="central-title">中央與法案</h2><p>法案逐筆：尚未收錄。目錄來源：${snapshot.central.catalog_source_ids.length ? escapeHtml(snapshot.central.catalog_source_ids.join('、')) : '這份來源目錄裡還沒有中央目錄。'}</p><p class="civic-note">目錄可以打開，不代表法案內容已經逐筆核對。</p></section>
-    ${renderRefresh(snapshot.refresh)}
+    ${renderRefresh(snapshot.refresh, snapshot.source_health)}
     <section aria-labelledby="source-title"><h2 id="source-title">治理來源</h2>${renderSources(snapshot.sources)}<div class="civic-actions"><button id="civicRetry" type="button">重試未載入的檔案</button></div></section>
     <section aria-labelledby="project-title"><h2 id="project-title">治理案卷與待定位</h2><div class="civic-grid">${renderProjects(snapshot)}</div><p class="civic-note"><a href="/maps.html">議題地圖</a>維持原入口。新的地理地圖要等座標證據，不用城市中心填空。</p></section>
     <section aria-labelledby="roster-title"><h2 id="roster-title">正式候選人</h2>${renderCandidates(snapshot)}</section>
@@ -139,7 +146,12 @@ async function loadDesk() {
     if (result.ok) docs[key] = result.data
     else failures.push({ key, label: labels[key], status: result.status, missing: result.missing })
   }))
-  render(buildCivicSnapshot(docs), failures)
+  if (docs.refreshLog && docs.refreshLog.status && docs.refreshLog.status !== 'ok') {
+    docs.refreshLog = { ...docs.refreshLog, consecutive_failures: Math.max(1, docs.refreshLog.consecutive_failures || 1) }
+  }
+  const snapshot = buildCivicSnapshot(docs)
+  snapshot.source_health = docs.refreshLog?.source_health || null
+  render(snapshot, failures)
 }
 
 loadDesk().catch(error => {

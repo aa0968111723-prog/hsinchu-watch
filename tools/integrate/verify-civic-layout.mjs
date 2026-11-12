@@ -25,7 +25,7 @@ try {
         }),
       }))
       if (metrics.overflow) problems.push(`${path} overflow ${metrics.scroll}>${metrics.inner} at ${width}`)
-      if (metrics.civic !== 8) problems.push(`${path} civic links ${metrics.civic}`)
+      if (metrics.civic !== 9) problems.push(`${path} civic links ${metrics.civic}`)
       const expectedPrimary = path === '/governance.html' || path === '/archive.html' ? 5 : 6
       if (metrics.primary !== expectedPrimary) problems.push(`${path} primary ${metrics.primary}`)
       if (width <= 430 && metrics.civicShort) problems.push(`${path} civic touch target at ${width}`)
@@ -34,7 +34,7 @@ try {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto(origin + '/civic.html', { waitUntil: 'networkidle' })
   const text = await page.locator('main').innerText()
-  for (const needle of ['9164', '6958', '尚未收錄', '沒有成功紀錄', '實支 尚未取得', '鄭朝方', '邱臣遠', '待定位', '不是驗收或成效']) {
+  for (const needle of ['9164', '6958', '尚未收錄', '2026-11-13T00:42:18+08:00', '尚未接入', '實支 尚未取得', '鄭朝方', '邱臣遠', '待定位', '不是驗收或成效']) {
     if (!text.includes(needle)) problems.push('missing ' + needle)
   }
   if (/\bunknown\b/.test(text)) problems.push('raw unknown status')

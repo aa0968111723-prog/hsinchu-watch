@@ -101,6 +101,6 @@ assert.equal(snapshot.refresh.health, 'unknown')
 assert.equal(snapshot.refresh.configured, false)
 assert.equal(snapshot.times.data_generated_at === snapshot.times.ui_updated_at, false)
 assert.equal(snapshot.projects[0].outcome, null)
-assert.equal(sections.sections.length, 8)
+assert.equal(sections.sections.length, 9)
 
 console.log(JSON.stringify({ civicAdapter: 'passed', sections: sections.sections.length }))

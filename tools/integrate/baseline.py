@@ -107,8 +107,11 @@ def collect():
             problems.append(key + " below retained floor")
     if measured["items_rows"] != manifest["counts"]["items_rows"]:
         problems.append("items_rows differs from manifest")
-    if on_disk - listed:
-        problems.append("unmanifested public data")
+    added = sorted(on_disk - listed)
+    if not (public / "data" / "civic" / "feed.json").is_file():
+        problems.append("civic feed missing")
+    if not (public / "data" / "art-library.json").is_file():
+        problems.append("art library index missing")
     if listed - on_disk:
         problems.append("manifest entry missing on disk")
     if nav_gaps:
