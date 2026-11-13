@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T09:33:20+08:00",
+  "generated_at": "2026-11-13T09:45:00+08:00",
   "publication": "publication-ready",
   "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
@@ -3784,6 +3784,187 @@
           "notice": "art-library/figures/NOTICE.txt"
         }
       ]
+    },
+    {
+      "id": "component-council-desk",
+      "kind": "component",
+      "title": "議事台",
+      "region_ids": [
+        "taipei",
+        "new-taipei",
+        "hsinchu-county",
+        "hsinchu-city",
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": null,
+      "creator": "新竹觀察美術庫（第五線）",
+      "license_name": "本站原創，未另行對外授權",
+      "license_url": null,
+      "attribution": "原創示意，新竹觀察",
+      "retrieved_at": null,
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "council",
+        "explainer"
+      ],
+      "alt": "立體示意議事台：提案、審查、決議三本夾分開放著，議事槌對準目前選到的那一本。敲槌是示意動作，不是表決結果，也不會把提案推成決議",
+      "focal_point": null,
+      "source": null,
+      "files": [
+        {
+          "path": "art-library/figures/council-desk/preview.svg",
+          "format": "svg",
+          "mime": "image/svg+xml",
+          "role": "preview",
+          "width": 680,
+          "height": 440,
+          "bytes": 66068,
+          "checksum": "181098a353132d363dadee1c7ca238e6fbb4f340c67841801c6d4f2ee083f1a7"
+        },
+        {
+          "path": "art-library/figures/council-desk/fragment.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "fragment",
+          "width": null,
+          "height": null,
+          "bytes": 54499,
+          "checksum": "b71756718f2b3b23fe37cb090c862f744aab231518a9a0b7e8ea1418d8d5c668"
+        },
+        {
+          "path": "art-library/figures/council-desk/index.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "page",
+          "width": null,
+          "height": null,
+          "bytes": 55154,
+          "checksum": "5e6fb31324f13996e6d68bd2be567e6f9ba9f1f7689ab46fdefa2b86029ad689"
+        },
+        {
+          "path": "art-library/figures/council-desk/live.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 2757,
+          "checksum": "f462d8fa7c2b61f9145cc6ab1e518d9ed7610c785904190c2a41dae75d6d0057"
+        },
+        {
+          "path": "art-library/figures/council-desk/model.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 2465,
+          "checksum": "3cc10f7bc3cd4c95b4db2d566d505b081426ec104b338a217967695ecfc75f57"
+        },
+        {
+          "path": "art-library/figures/council-desk/data.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 183,
+          "checksum": "36f7c7829f2ac03081331a287cda5a901db538dbe2a2e7b110826ae2cb141563"
+        },
+        {
+          "path": "art-library/figures/figures.css",
+          "format": "css",
+          "mime": "text/css",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 13806,
+          "checksum": "8e02af0cd1bef9cc4455d1bb84b757b3905de63e87bbd075ae343f4cd7923d5b"
+        },
+        {
+          "path": "art-library/figures/motion.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1089,
+          "checksum": "c93cc682f04501c361475309e29449b62f00d13b65ecb348f7b1d25551ac4f6c"
+        },
+        {
+          "path": "art-library/figures/runtime.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 3193,
+          "checksum": "7ff1f51ea48a8dfde598d95c59a2b66398d163fae1b1c70b5dad5ec2660f15d7"
+        },
+        {
+          "path": "art-library/figures/boot.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1606,
+          "checksum": "ad02eaa0e300a2e90d1d66c1afcb72c3b691e657808fd4a00c48c84315d53cfb"
+        }
+      ],
+      "dimensions": {
+        "width": 680,
+        "height": 440,
+        "unit": "viewBox"
+      },
+      "checksum": "181098a353132d363dadee1c7ca238e6fbb4f340c67841801c6d4f2ee083f1a7",
+      "checksum_of": "art-library/figures/council-desk/preview.svg",
+      "palette": [
+        {
+          "name": "paper",
+          "hex": "#f4efe6"
+        },
+        {
+          "name": "sheet",
+          "hex": "#fffaf4"
+        },
+        {
+          "name": "ink",
+          "hex": "#2b261f"
+        },
+        {
+          "name": "sage",
+          "hex": "#2f6a56"
+        },
+        {
+          "name": "clay",
+          "hex": "#9a5340"
+        },
+        {
+          "name": "sand",
+          "hex": "#ead7b4"
+        }
+      ],
+      "changes": null,
+      "concept": "提案、審查、決議是三本分開的夾。選一本只讀那一本；敲槌不產生票數或通過結論。",
+      "suggested_use": "方法頁或議會說明旁。不要放在單筆議案旁當成已通過。",
+      "identity": null,
+      "embed": {
+        "figure": "council-desk",
+        "stylesheet": "art-library/figures/figures.css",
+        "script": "art-library/figures/boot.js"
+      },
+      "third_party": [
+        {
+          "name": "anatomy kit（繪圖樣式與產生幾何的工具）",
+          "license": "MIT",
+          "notice": "art-library/figures/NOTICE.txt"
+        }
+      ]
     }
   ],
   "gaps": [
@@ -3835,7 +4016,7 @@
     {
       "region_id": "taipei",
       "kind": "component",
-      "count": 3
+      "count": 4
     },
     {
       "region_id": "new-taipei",
@@ -3855,7 +4036,7 @@
     {
       "region_id": "new-taipei",
       "kind": "component",
-      "count": 3
+      "count": 4
     },
     {
       "region_id": "hsinchu-county",
@@ -3875,7 +4056,7 @@
     {
       "region_id": "hsinchu-county",
       "kind": "component",
-      "count": 3
+      "count": 4
     },
     {
       "region_id": "hsinchu-city",
@@ -3895,7 +4076,7 @@
     {
       "region_id": "hsinchu-city",
       "kind": "component",
-      "count": 3
+      "count": 4
     },
     {
       "region_id": "central",
@@ -3915,7 +4096,7 @@
     {
       "region_id": "central",
       "kind": "component",
-      "count": 3
+      "count": 4
     }
   ]
 }
