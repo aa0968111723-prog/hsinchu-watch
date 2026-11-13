@@ -30,13 +30,13 @@
 - [x] 預算三層抽屜（核定、決標、實支；金額讀自治理案卷，沒有紀錄的那層扣住）
 - [x] 階段工地模型（規劃、施工、完工、驗收、啟用分開；準備中／目標日期／百分比不點亮）
 - [x] 議事台（提案、審查、決議分開；敲槌不是表決結果）
-- [ ] 空狀態（獨立元件；預算抽屜與階段工地已覆蓋部分空狀態用途）
+- [x] 空格銘牌架（空狀態；空格不是 0）
 - [ ] 插畫
 
 ## 驗證
 
 - [x] `tests/art-library/test_catalog.py`：15 項
-- [x] `tests/art-library/figures.test.mjs`：含階段工地模型與議事台
+- [x] `tests/art-library/figures.test.mjs`：含階段工地、議事台、空格銘牌架
 - [x] `tests/art-library/check_lab.py`：320／390／430／768／1280，獨立預覽與建置後各跑一次
 - [x] `python tools/audit_publication.py`
 - [x] `npm run build`

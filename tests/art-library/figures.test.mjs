@@ -8,6 +8,7 @@ import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import * as budget from "../../src/art-library/figures/budget-drawers/model.js";
 import * as council from "../../src/art-library/figures/council-desk/model.js";
+import * as emptyBay from "../../src/art-library/figures/empty-bay/model.js";
 import * as yard from "../../src/art-library/figures/stage-yard/model.js";
 import {
   ORIGINS,
@@ -268,4 +269,21 @@ test("council desk binders stay separate and a strike invents no vote tally", ()
   assert.equal(desk.strike, "idle");
   assert.equal(desk.chosen, 2, "striking never promotes the binder");
   assert.equal(council.describe(desk), "決議 · 只讀這一本，不推算另外兩本");
+});
+
+test("empty bay never turns a missing record into zero or a fake plaque", () => {
+  assert.deepEqual(emptyBay.STATES.map((state) => state.id), ["unbound", "missing", "present"]);
+  const bay = emptyBay.createBay(1);
+  assert.equal(emptyBay.describe(bay), "本站沒有紀錄 · 空格不是 0");
+  assert.equal(bay.seated, emptyBay.OPEN);
+  assert.equal(emptyBay.describe(bay).includes("0 元"), false);
+  emptyBay.choose(bay, 2);
+  for (let time = 0; time < 5; time += FRAME) emptyBay.advance(bay, FRAME, true);
+  assert.equal(bay.seated, emptyBay.SEATED);
+  assert.equal(emptyBay.describe(bay), "有來源紀錄 · 銘牌在架上");
+  emptyBay.choose(bay, 0);
+  for (let time = 0; time < 5; time += FRAME) emptyBay.advance(bay, FRAME, true);
+  assert.equal(bay.seated, emptyBay.OPEN);
+  assert.equal(emptyBay.describe(bay), "還沒選紀錄 · 空格先留著");
+  assert.equal(/\d/.test(emptyBay.describe(bay)), false);
 });

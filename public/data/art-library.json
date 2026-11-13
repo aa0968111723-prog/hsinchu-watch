@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T09:45:00+08:00",
+  "generated_at": "2026-11-13T09:49:22+08:00",
   "publication": "publication-ready",
   "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
@@ -3965,6 +3965,187 @@
           "notice": "art-library/figures/NOTICE.txt"
         }
       ]
+    },
+    {
+      "id": "component-empty-bay",
+      "kind": "component",
+      "title": "空格銘牌架",
+      "region_ids": [
+        "taipei",
+        "new-taipei",
+        "hsinchu-county",
+        "hsinchu-city",
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": null,
+      "creator": "新竹觀察美術庫（第五線）",
+      "license_name": "本站原創，未另行對外授權",
+      "license_url": null,
+      "attribution": "原創示意，新竹觀察",
+      "retrieved_at": null,
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "empty-state",
+        "explainer"
+      ],
+      "alt": "立體示意銘牌架：一格空位。沒有紀錄時格是空的；有來源紀錄時銘牌才放入。空格不是 0，也不是假數字",
+      "focal_point": null,
+      "source": null,
+      "files": [
+        {
+          "path": "art-library/figures/empty-bay/preview.svg",
+          "format": "svg",
+          "mime": "image/svg+xml",
+          "role": "preview",
+          "width": 640,
+          "height": 420,
+          "bytes": 65090,
+          "checksum": "624cdc7a9be668c8e4c91e2a8ab1597a2ca65c4aaed7c1a48b2aa478dcda1c17"
+        },
+        {
+          "path": "art-library/figures/empty-bay/fragment.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "fragment",
+          "width": null,
+          "height": null,
+          "bytes": 53265,
+          "checksum": "ed4f389425a563fb0243b44d104c1ba6545b9e2be12e612291b9b91b2f1a6bfb"
+        },
+        {
+          "path": "art-library/figures/empty-bay/index.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "page",
+          "width": null,
+          "height": null,
+          "bytes": 53938,
+          "checksum": "aaa49a72169b120f48c3e89ffe05982aa8949985c40fbb380478f33e65710c39"
+        },
+        {
+          "path": "art-library/figures/empty-bay/live.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 2375,
+          "checksum": "9e4a148a1b7a12715c77644143fc43755bebab85df1f59f1a6542f84a341b42a"
+        },
+        {
+          "path": "art-library/figures/empty-bay/model.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 1552,
+          "checksum": "0ba656a44dbf1041aaa37754782e3a42383ad3bdfb946db246c7caad8b97fdf9"
+        },
+        {
+          "path": "art-library/figures/empty-bay/data.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 174,
+          "checksum": "31e9f6c4815c608a2ea81ffa07ba4c16e94a4007b73fed56f4d4b0c1e3fc9ddf"
+        },
+        {
+          "path": "art-library/figures/figures.css",
+          "format": "css",
+          "mime": "text/css",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 13806,
+          "checksum": "8e02af0cd1bef9cc4455d1bb84b757b3905de63e87bbd075ae343f4cd7923d5b"
+        },
+        {
+          "path": "art-library/figures/motion.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1089,
+          "checksum": "c93cc682f04501c361475309e29449b62f00d13b65ecb348f7b1d25551ac4f6c"
+        },
+        {
+          "path": "art-library/figures/runtime.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 3193,
+          "checksum": "7ff1f51ea48a8dfde598d95c59a2b66398d163fae1b1c70b5dad5ec2660f15d7"
+        },
+        {
+          "path": "art-library/figures/boot.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1606,
+          "checksum": "ad02eaa0e300a2e90d1d66c1afcb72c3b691e657808fd4a00c48c84315d53cfb"
+        }
+      ],
+      "dimensions": {
+        "width": 640,
+        "height": 420,
+        "unit": "viewBox"
+      },
+      "checksum": "624cdc7a9be668c8e4c91e2a8ab1597a2ca65c4aaed7c1a48b2aa478dcda1c17",
+      "checksum_of": "art-library/figures/empty-bay/preview.svg",
+      "palette": [
+        {
+          "name": "paper",
+          "hex": "#f4efe6"
+        },
+        {
+          "name": "sheet",
+          "hex": "#fffaf4"
+        },
+        {
+          "name": "ink",
+          "hex": "#2b261f"
+        },
+        {
+          "name": "sage",
+          "hex": "#2f6a56"
+        },
+        {
+          "name": "clay",
+          "hex": "#9a5340"
+        },
+        {
+          "name": "sand",
+          "hex": "#ead7b4"
+        }
+      ],
+      "changes": null,
+      "concept": "沒有紀錄就留空。空不是 0，也不用假銘牌補上。",
+      "suggested_use": "缺值、無資料、或尚未選紀錄的空狀態。不要把空格改顯示成 0。",
+      "identity": null,
+      "embed": {
+        "figure": "empty-bay",
+        "stylesheet": "art-library/figures/figures.css",
+        "script": "art-library/figures/boot.js"
+      },
+      "third_party": [
+        {
+          "name": "anatomy kit（繪圖樣式與產生幾何的工具）",
+          "license": "MIT",
+          "notice": "art-library/figures/NOTICE.txt"
+        }
+      ]
     }
   ],
   "gaps": [
@@ -4016,7 +4197,7 @@
     {
       "region_id": "taipei",
       "kind": "component",
-      "count": 4
+      "count": 5
     },
     {
       "region_id": "new-taipei",
@@ -4036,7 +4217,7 @@
     {
       "region_id": "new-taipei",
       "kind": "component",
-      "count": 4
+      "count": 5
     },
     {
       "region_id": "hsinchu-county",
@@ -4056,7 +4237,7 @@
     {
       "region_id": "hsinchu-county",
       "kind": "component",
-      "count": 4
+      "count": 5
     },
     {
       "region_id": "hsinchu-city",
@@ -4076,7 +4257,7 @@
     {
       "region_id": "hsinchu-city",
       "kind": "component",
-      "count": 4
+      "count": 5
     },
     {
       "region_id": "central",
@@ -4096,7 +4277,7 @@
     {
       "region_id": "central",
       "kind": "component",
-      "count": 4
+      "count": 5
     }
   ]
 }

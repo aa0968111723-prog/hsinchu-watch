@@ -36,6 +36,15 @@
       "uses": ["council", "explainer"],
       "concept": "提案、審查、決議是三本分開的夾。選一本只讀那一本；敲槌不產生票數或通過結論。",
       "suggested_use": "方法頁或議會說明旁。不要放在單筆議案旁當成已通過。"
+    },
+    {
+      "folder": "empty-bay",
+      "id": "component-empty-bay",
+      "title": "空格銘牌架",
+      "alt": "立體示意銘牌架：一格空位。沒有紀錄時格是空的；有來源紀錄時銘牌才放入。空格不是 0，也不是假數字",
+      "uses": ["empty-state", "explainer"],
+      "concept": "沒有紀錄就留空。空不是 0，也不用假銘牌補上。",
+      "suggested_use": "缺值、無資料、或尚未選紀錄的空狀態。不要把空格改顯示成 0。"
     }
   ]
 }
