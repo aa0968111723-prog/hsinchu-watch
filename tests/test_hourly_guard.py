@@ -326,6 +326,20 @@ def test_latest_ledger_must_not_be_candidate_copy(tmp_path):
     assert called == []
 
 
+def test_candidate_store_none_fails_closed(tmp_path):
+    """Candidate.store=None 不得略過共享帳衝突檢查：直接中止、不呼叫 deployer、不寫 published。"""
+    w = fx.make_world(tmp_path)
+    w["cand"].store = None
+    res, called = run(w)
+    assert res["status"] != "published" and res["code"] == "candidate_store_missing"
+    assert called == []
+    assert not [r for r in ledger(w) if r.get("status") == "published"]
+    # 直接呼叫衝突檢查也必須擲出（不是靜默通過）
+    with pytest.raises(pg.GuardAbort) as ei:
+        pg.check_data_conflicts(w["cand"], w["latest"])
+    assert ei.value.code == "candidate_store_missing"
+
+
 def test_no_conflict_when_latest_already_has_batch(tmp_path):
     w = fx.make_world(tmp_path)
     assert run(w)[0]["status"] == "published"

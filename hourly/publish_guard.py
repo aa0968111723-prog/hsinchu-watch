@@ -172,7 +172,7 @@ class Candidate:
     artifact_dir: Path
     artifact: dict                   # 已封存的 artifact manifest
     expected_release_id: Optional[str] = None   # 4 線給新 build 的 release id（可空，空則取 artifact manifest）
-    store: Optional[Store] = None    # 候選端 ledger（可空）
+    store: Optional[Store] = None    # 候選端 ledger；None → 衝突檢查 fail-closed（候選無法證明與共享帳的關係，不放行）
 
 
 def _parse_ts(s: Optional[str]) -> datetime:
@@ -284,7 +284,9 @@ def check_live(c: Candidate, env: Env) -> dict:
 def check_data_conflicts(c: Candidate, latest: Store) -> None:
     """候選批次的事件對「最新 ledger」的衝突檢查。任一衝突 → 整個候選中止（不部分套用）。"""
     b = c.batch
-    if c.store is not None and Path(c.store.root).resolve() == Path(latest.root).resolve():
+    if c.store is None:
+        raise GuardAbort("candidate_store_missing", "Candidate.store 為 None：無法核對候選帳與共享最新帳，fail-closed 中止（不略過衝突檢查）")
+    if Path(c.store.root).resolve() == Path(latest.root).resolve():
         raise GuardAbort("latest_ledger_is_candidate_copy", "latest_store 必須是共享最新帳（fetch 最新 main 後的 ledger），不得是候選自己的副本")
     st = latest.state_at()
     cur, item_rev = st["items"], st["item_rev"]
