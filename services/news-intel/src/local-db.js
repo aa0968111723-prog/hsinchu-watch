@@ -1,0 +1,67 @@
+import { DatabaseSync } from "node:sqlite";
+import { mkdirSync, readFileSync } from "node:fs";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { applyScheduledResult } from "./index.js";
+
+export function openNewsDb(file) {
+  if (file !== ":memory:") mkdirSync(dirname(file), { recursive: true });
+  const db = new DatabaseSync(file);
+  for (const name of ["0001_init.sql", "0002_snapshot.sql", "0003_final_accounts.sql"]) {
+    db.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), "utf8"));
+  }
+  return {
+    prepare(sql) {
+      const statement = (params) => ({
+        bind(...next) {
+          return statement(next);
+        },
+        async run() {
+          db.prepare(sql).run(...params);
+          return { success: true };
+        },
+        async all() {
+          return { results: db.prepare(sql).all(...params) };
+        },
+        async first() {
+          return db.prepare(sql).get(...params) || null;
+        },
+      });
+      return statement([]);
+    },
+  };
+}
+
+export function resultFromPublished(payload) {
+  return {
+    ok: Boolean(payload?.ok),
+    articles: (payload?.articles || []).map((article) => ({
+      original_title: article.title || article.original_title,
+      source_url: article.url || article.source_url,
+      publisher_timestamp: article.published_at || article.publisher_timestamp,
+      region_id: article.region_id,
+      verification_status: article.verification_status,
+      review_status: article.verification_status === "UNVERIFIED" ? "needs_review" : "pending_index",
+      claim_kind: article.claim_kind,
+      source_name: article.source_name,
+      source_type: String(article.url || article.source_url || "").includes("cna.com.tw") ? "news_rss" : "official_rss",
+      fetched_at: payload.last_success_at,
+    })),
+    announcements: (payload?.announcements || []).map((item) => ({
+      original_title: item.title || item.original_title,
+      source_url: item.url || item.source_url,
+      publisher_timestamp: item.published_at || item.publisher_timestamp,
+      source_name: item.source_name,
+    })),
+    public_records: payload?.public_records || [],
+    model_review: payload?.model_review || [],
+    gemini: payload?.gemini,
+    last_success_at: payload?.last_success_at,
+  };
+}
+
+export async function storeRun(result) {
+  const file = fileURLToPath(new URL("../state/news.sqlite", import.meta.url));
+  const db = openNewsDb(file);
+  await applyScheduledResult(db, { articles: [], announcements: [], public_records: [], model_review: [] }, result);
+}

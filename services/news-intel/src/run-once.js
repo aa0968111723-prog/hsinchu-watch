@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { ADAPTERS } from "./adapters.js";
+import { storeRun } from "./local-db.js";
 import { runHour } from "./run.js";
 
 const publicUrl = new URL("../../../public/data/news-intel/latest.json", import.meta.url);
@@ -50,6 +51,11 @@ const payload = {
   model_review: result.model_review || [],
 };
 mkdirSync(new URL("../state/", import.meta.url), { recursive: true });
+try {
+  await storeRun(result);
+} catch (error) {
+  console.log(JSON.stringify({ database: "failed", error: String(error.message || error).slice(0, 180) }));
+}
 writeFileSync(new URL("../state/last-run.json", import.meta.url), JSON.stringify(payload, null, 2));
 if (result.ok) writeFileSync(publicUrl, JSON.stringify(payload, null, 2));
 console.log(JSON.stringify({ ok: result.ok, retained: result.retained, count: result.articles.length, failures: result.failures, gemini: result.gemini }, null, 2));

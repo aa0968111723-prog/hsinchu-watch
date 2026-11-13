@@ -187,6 +187,13 @@ test("final accounts keep blank amounts empty and stay out of the news list", as
   assert.equal(retained.articles.length, 1);
 });
 
+test("local database opens the final-account migration", async () => {
+  const { openNewsDb } = await import("../src/local-db.js");
+  const db = openNewsDb(":memory:");
+  const table = await db.prepare("SELECT name FROM sqlite_master WHERE name = 'final_accounts'").first();
+  assert.equal(table.name, "final_accounts");
+});
+
 test("published news file stays within the real cap", () => {
   const data = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/latest.json", import.meta.url), "utf8"));
   assert.ok(data.count <= 20);
