@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T10:13:04+08:00",
+  "generated_at": "2026-11-13T10:18:49+08:00",
   "publication": "publication-ready",
   "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
@@ -4305,6 +4305,605 @@
       "identity": null
     },
     {
+      "id": "scene-guanxi-dongan-bridge",
+      "kind": "scene",
+      "title": "關西東安古橋",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E9%97%9C%E8%A5%BF%E6%9D%B1%E5%AE%89%E5%8F%A4%E6%A9%8B.jpg",
+      "creator": "李元鈞",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "李元鈞／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:18:33+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "place-context",
+        "public-works",
+        "city-scene"
+      ],
+      "alt": "新竹縣關西鎮東安古橋的石拱橋身與橋面，兩側有矮牆，周圍是樹木與河岸。歷史橋梁街景，不是當代拓寬工地",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:新竹關西東安古橋.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/%E6%96%B0%E7%AB%B9%E9%97%9C%E8%A5%BF%E6%9D%B1%E5%AE%89%E5%8F%A4%E6%A9%8B.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6000,
+        "original_height": 4000,
+        "original_sha1": "a1595bf28cad92acef249e33b0531144c5e71988",
+        "uploaded_at": "2020-09-10T14:40:38Z",
+        "date_taken": "2019-07-13 10:37:51",
+        "described_as": null,
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 853,
+          "bytes": 402555,
+          "checksum": "5912998d27eb10d6382e5abe1378a689e224b14c9342a03744800301ac33ebc6"
+        },
+        {
+          "path": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 23116,
+          "checksum": "9730493afdc9460f54a6792f6c36692b296e637dcb37bce8f2969c0c86a80130"
+        },
+        {
+          "path": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 43272,
+          "checksum": "aaa9b887e3f5a3578e1b101ebdefd726dad2cee2da425511c3a61098b171e54f"
+        },
+        {
+          "path": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 69588,
+          "checksum": "021c7a3be4373955f9730088c15fa757c9a0aca261fe523a72160d4f0e183bc2"
+        },
+        {
+          "path": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 125804,
+          "checksum": "50498387f806bba2e901a300d7651cedc0b968bd5a6287c8f76aa610d8a841bf"
+        },
+        {
+          "path": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 185526,
+          "checksum": "795e8e4902f58cef682e07cc2471ed59acf0f7fa92c589097b08f3f74b6ac03e"
+        },
+        {
+          "path": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 335906,
+          "checksum": "786ee74eade5392ed10fe253fd63f408073cbce78e52dd78533e6be9110de179"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 853,
+        "unit": "px"
+      },
+      "checksum": "5912998d27eb10d6382e5abe1378a689e224b14c9342a03744800301ac33ebc6",
+      "checksum_of": "art-library/scenes/scene-guanxi-dongan-bridge/scene-guanxi-dongan-bridge-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#56584b",
+          "share": 0.26
+        },
+        {
+          "name": null,
+          "hex": "#2b2c2c",
+          "share": 0.246
+        },
+        {
+          "name": null,
+          "hex": "#7e8273",
+          "share": 0.208
+        },
+        {
+          "name": null,
+          "hex": "#96a09e",
+          "share": 0.167
+        },
+        {
+          "name": null,
+          "hex": "#c0d1e3",
+          "share": 0.119
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-hukou-entrance-2026",
+      "kind": "scene",
+      "title": "湖口鄉入口界牌",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:202603_Town_entrance_of_Hukou_Township_,Hsinchu_County_TW_PHW1.jpg",
+      "creator": "Junyu-K",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution": "Junyu-K／CC BY 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:18:37+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣湖口鄉與桃園市交界的鄉名界牌，立於省道旁，後方可見道路與路樹。2026年3月。是鄉鎮入口，不是特定工程現況",
+      "focal_point": {
+        "x": 0.45,
+        "y": 0.4
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:202603 Town entrance of Hukou Township ,Hsinchu County TW PHW1.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/202603_Town_entrance_of_Hukou_Township_%2CHsinchu_County_TW_PHW1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6180,
+        "original_height": 4120,
+        "original_sha1": "e0752407f5a8b0b16f861c12ac1085ac6563cf44",
+        "uploaded_at": "2026-05-18T20:21:01Z",
+        "date_taken": "2026-03-25 16:00:37",
+        "described_as": "Town entrance sign of Hukou Township, Hsinchu county together with a Taoyuan city's \" Have a nice trip \" sign at the limit of Hsinchu county and Taoyuan city",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 853,
+          "bytes": 261935,
+          "checksum": "7319327c1548abfaa1b2dbb14ce6099a4afb55cbabd2a714a6e6961fc5bf565d"
+        },
+        {
+          "path": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 15501,
+          "checksum": "804970b8919b260bf191220b2c40322d184b179b32dd9a3066e06beaa5b580c8"
+        },
+        {
+          "path": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 27372,
+          "checksum": "eae968222224ae0470c12baf3772f6b2d1586240aa8436d98eed5d2898e682e5"
+        },
+        {
+          "path": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 45072,
+          "checksum": "e37d82905cdc74440dccd4d649fa8ad927c9e6c4bb52dd70ccc3e8fd25148a34"
+        },
+        {
+          "path": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 75118,
+          "checksum": "e3afcf9796af587cf42acb0a0864b8dd8b792640daccbbb971d3188cbd2fed25"
+        },
+        {
+          "path": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 114278,
+          "checksum": "01670249a7c860a151fd89761bc0d1c5a949135b508e746b0d6e8001941690b5"
+        },
+        {
+          "path": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 194530,
+          "checksum": "e786dfd7c1e2457bc2d0a5c7d39224695f9667d958f60b915724453187add5d1"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 853,
+        "unit": "px"
+      },
+      "checksum": "7319327c1548abfaa1b2dbb14ce6099a4afb55cbabd2a714a6e6961fc5bf565d",
+      "checksum_of": "art-library/scenes/scene-hukou-entrance-2026/scene-hukou-entrance-2026-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#3c4f54",
+          "share": 0.262
+        },
+        {
+          "name": null,
+          "hex": "#d0dbe0",
+          "share": 0.233
+        },
+        {
+          "name": null,
+          "hex": "#8f9593",
+          "share": 0.206
+        },
+        {
+          "name": null,
+          "hex": "#e0ebee",
+          "share": 0.16
+        },
+        {
+          "name": null,
+          "hex": "#e9f2f5",
+          "share": 0.139
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-beipu-old-street",
+      "kind": "scene",
+      "title": "北埔老街與慈天宮",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%9F%94%E8%80%81%E8%A1%97%E8%88%87%E5%8C%97%E5%9F%94%E6%85%88%E5%A4%A9%E5%AE%AE.jpg",
+      "creator": "Outlookxp",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Outlookxp／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:18:41+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣北埔鄉老街街景，前方是行人步道與店招，盡頭可見北埔慈天宮的廟宇屋頂。地方生活場景，不是治理案卷工地",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:北埔老街與北埔慈天宮.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/%E5%8C%97%E5%9F%94%E8%80%81%E8%A1%97%E8%88%87%E5%8C%97%E5%9F%94%E6%85%88%E5%A4%A9%E5%AE%AE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4032,
+        "original_height": 3024,
+        "original_sha1": "33a494f6246a3764a27b26e84371789c2dfd1850",
+        "uploaded_at": "2017-11-23T10:40:21Z",
+        "date_taken": "2017-10-29 14:16:24",
+        "described_as": "北埔老街與北埔慈天宮",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 960,
+          "bytes": 438245,
+          "checksum": "8638355cfb3bda0dc0ce9e800cd508fda2b0fd6376dcd3fc1ee6199de6ce4cb3"
+        },
+        {
+          "path": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 27371,
+          "checksum": "56d6087523503d6ea4049db676f78aa39b822d83c82996983c3b64e378c96a73"
+        },
+        {
+          "path": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 50082,
+          "checksum": "d47c3a2cf8b58354e316048ebcc0e316d65d92514e5df9d6bd593b2cf503a0e6"
+        },
+        {
+          "path": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 76369,
+          "checksum": "e91088c7926f06dc2eb5d85bd15e59ee425f7453c3d52c59eb0c2020d424e9c4"
+        },
+        {
+          "path": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 136304,
+          "checksum": "0690de94ecd04b53e4faac84fd204a8adf51afc91f33598f75aad9ccd17dbefa"
+        },
+        {
+          "path": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 195579,
+          "checksum": "f93e0c247eca4d950e3de9850adf7ad5139b2043472b545f8c07c48752e83cc0"
+        },
+        {
+          "path": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 355664,
+          "checksum": "0e4902eeb79250b2147748c8dba658a4793581a1b9e380c5079c28dd02c58c0a"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 960,
+        "unit": "px"
+      },
+      "checksum": "8638355cfb3bda0dc0ce9e800cd508fda2b0fd6376dcd3fc1ee6199de6ce4cb3",
+      "checksum_of": "art-library/scenes/scene-beipu-old-street/scene-beipu-old-street-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#4a4242",
+          "share": 0.278
+        },
+        {
+          "name": null,
+          "hex": "#5e5d5a",
+          "share": 0.25
+        },
+        {
+          "name": null,
+          "hex": "#201f25",
+          "share": 0.221
+        },
+        {
+          "name": null,
+          "hex": "#d8d1c0",
+          "share": 0.127
+        },
+        {
+          "name": null,
+          "hex": "#9e8d7d",
+          "share": 0.123
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-control-yuan-2024",
+      "kind": "scene",
+      "title": "監察院廳舍",
+      "region_ids": [
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": [
+        "office:cy"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Control_Yuan_Building-01.2024-09-21.jpg",
+      "creator": "阿道",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "阿道／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:18:46+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "監察院廳舍外觀，淺色立面與門廊，攝於2024年全國古蹟日。2024年9月21日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Control Yuan Building-01.2024-09-21.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Control_Yuan_Building-01.2024-09-21.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 2154,
+        "original_height": 1377,
+        "original_sha1": "b03707df7da7af7865ebd79280aa3f817686caee",
+        "uploaded_at": "2024-09-21T15:56:41Z",
+        "date_taken": "2024-09-21 12:25:29",
+        "described_as": "監察院廳舍，攝於2024年全國古蹟日。",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 818,
+          "bytes": 303147,
+          "checksum": "23506e47a64f8b2ca2b35b780e521081d868cad1b31e93d5bd5ac58c4b1519a7"
+        },
+        {
+          "path": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 307,
+          "bytes": 21065,
+          "checksum": "78b7bd48d987a4c1bcd64cce4371eab49507e3dd59c0a56d8166c8cde96e1bc5"
+        },
+        {
+          "path": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 307,
+          "bytes": 36352,
+          "checksum": "b7fe1eb9b0f5604863d5aee229fa26ef71a12a33a7d32e9ab865241a40dfa75a"
+        },
+        {
+          "path": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 511,
+          "bytes": 55857,
+          "checksum": "3fca1898b44e6f29200b65a7901cf3a61f7e991d89401b045bc3e3130cedf1b3"
+        },
+        {
+          "path": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 511,
+          "bytes": 96806,
+          "checksum": "e359d456f6290eeaccc9e56624e7b53a24436033257c397d7f5b0bb7d1f0e6db"
+        },
+        {
+          "path": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 818,
+          "bytes": 124415,
+          "checksum": "0ab8b0e2bac5051ad22ea4dfafda30420f36dd44e36de50b029d469889f63aa7"
+        },
+        {
+          "path": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 818,
+          "bytes": 219230,
+          "checksum": "90f9d5204b24a25f03245059d58f8d3dda1b5d1ab2f0ffb6058c6f823527d9ad"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 818,
+        "unit": "px"
+      },
+      "checksum": "23506e47a64f8b2ca2b35b780e521081d868cad1b31e93d5bd5ac58c4b1519a7",
+      "checksum_of": "art-library/scenes/scene-control-yuan-2024/scene-control-yuan-2024-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#797368",
+          "share": 0.264
+        },
+        {
+          "name": null,
+          "hex": "#595349",
+          "share": 0.261
+        },
+        {
+          "name": null,
+          "hex": "#2e2f26",
+          "share": 0.242
+        },
+        {
+          "name": null,
+          "hex": "#dbe0e3",
+          "share": 0.178
+        },
+        {
+          "name": null,
+          "hex": "#b3b5b3",
+          "share": 0.055
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
       "id": "component-evidence-desk",
       "kind": "component",
       "title": "證據分類台",
@@ -5393,6 +5992,188 @@
           "notice": "art-library/figures/NOTICE.txt"
         }
       ]
+    },
+    {
+      "id": "illustration-works-section",
+      "kind": "illustration",
+      "title": "公共建設剖面",
+      "region_ids": [
+        "taipei",
+        "new-taipei",
+        "hsinchu-county",
+        "hsinchu-city",
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": null,
+      "creator": "新竹觀察美術庫（第五線）",
+      "license_name": "本站原創，未另行對外授權",
+      "license_url": null,
+      "attribution": "原創示意，新竹觀察",
+      "retrieved_at": null,
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-works",
+        "policy-scene",
+        "explainer"
+      ],
+      "alt": "立體示意插畫：路基剖面露出回填、排水管、路面與護欄四層。選一層只標構造名稱，不帶百分比。它不是任何真實道路或橋梁的現況圖",
+      "focal_point": null,
+      "source": null,
+      "files": [
+        {
+          "path": "art-library/figures/works-section/preview.svg",
+          "format": "svg",
+          "mime": "image/svg+xml",
+          "role": "preview",
+          "width": 680,
+          "height": 440,
+          "bytes": 62945,
+          "checksum": "9f94212de8762f342ade0d610cce0f6898f591adb0fbcb2a811d7252d3fce017"
+        },
+        {
+          "path": "art-library/figures/works-section/fragment.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "fragment",
+          "width": null,
+          "height": null,
+          "bytes": 51272,
+          "checksum": "6ad2120aa49a396a21ea29d526071b8858f17cb9e838d297ec36a1359b1bd3b5"
+        },
+        {
+          "path": "art-library/figures/works-section/index.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "page",
+          "width": null,
+          "height": null,
+          "bytes": 51952,
+          "checksum": "a6e60db1a32c8f5a6d52eb752ccd3fe158200ea45b6bbcdf0ee0a368b3563e60"
+        },
+        {
+          "path": "art-library/figures/works-section/live.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 2510,
+          "checksum": "ebc688637468f885aa86052b5c53d16a1ed88d2841a6104a5829565354ad9f2b"
+        },
+        {
+          "path": "art-library/figures/works-section/model.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 1817,
+          "checksum": "593500b478af99e1833257c85eb95ad8514dcd3ff7dd6119bc527dfbe7d66f78"
+        },
+        {
+          "path": "art-library/figures/works-section/data.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 164,
+          "checksum": "2141d7de674cc20484cdcbe581bca94434d4c5eb596df8745c83117dbfbf6db6"
+        },
+        {
+          "path": "art-library/figures/figures.css",
+          "format": "css",
+          "mime": "text/css",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 13806,
+          "checksum": "8e02af0cd1bef9cc4455d1bb84b757b3905de63e87bbd075ae343f4cd7923d5b"
+        },
+        {
+          "path": "art-library/figures/motion.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1089,
+          "checksum": "c93cc682f04501c361475309e29449b62f00d13b65ecb348f7b1d25551ac4f6c"
+        },
+        {
+          "path": "art-library/figures/runtime.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 3193,
+          "checksum": "7ff1f51ea48a8dfde598d95c59a2b66398d163fae1b1c70b5dad5ec2660f15d7"
+        },
+        {
+          "path": "art-library/figures/boot.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1606,
+          "checksum": "ad02eaa0e300a2e90d1d66c1afcb72c3b691e657808fd4a00c48c84315d53cfb"
+        }
+      ],
+      "dimensions": {
+        "width": 680,
+        "height": 440,
+        "unit": "viewBox"
+      },
+      "checksum": "9f94212de8762f342ade0d610cce0f6898f591adb0fbcb2a811d7252d3fce017",
+      "checksum_of": "art-library/figures/works-section/preview.svg",
+      "palette": [
+        {
+          "name": "paper",
+          "hex": "#f4efe6"
+        },
+        {
+          "name": "sheet",
+          "hex": "#fffaf4"
+        },
+        {
+          "name": "ink",
+          "hex": "#2b261f"
+        },
+        {
+          "name": "sage",
+          "hex": "#2f6a56"
+        },
+        {
+          "name": "clay",
+          "hex": "#9a5340"
+        },
+        {
+          "name": "sand",
+          "hex": "#ead7b4"
+        }
+      ],
+      "changes": null,
+      "concept": "回填、排水、路面、護欄是分開的構造層。選一層只讀名稱；完工、驗收與啟用仍要分開查來源。",
+      "suggested_use": "公共建設說明、方法頁、進度旁的示意。不要當成特定工地現況，也不要把剖面接成完工百分比。",
+      "identity": null,
+      "embed": {
+        "figure": "works-section",
+        "stylesheet": "art-library/figures/figures.css",
+        "script": "art-library/figures/boot.js"
+      },
+      "third_party": [
+        {
+          "name": "anatomy kit（繪圖樣式與產生幾何的工具）",
+          "license": "MIT",
+          "notice": "art-library/figures/NOTICE.txt"
+        }
+      ]
     }
   ],
   "gaps": [
@@ -5495,7 +6276,7 @@
     {
       "region_id": "taipei",
       "kind": "illustration",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "taipei",
@@ -5515,7 +6296,7 @@
     {
       "region_id": "new-taipei",
       "kind": "illustration",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "new-taipei",
@@ -5530,12 +6311,12 @@
     {
       "region_id": "hsinchu-county",
       "kind": "scene",
-      "count": 6
+      "count": 9
     },
     {
       "region_id": "hsinchu-county",
       "kind": "illustration",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "hsinchu-county",
@@ -5555,7 +6336,7 @@
     {
       "region_id": "hsinchu-city",
       "kind": "illustration",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "hsinchu-city",
@@ -5570,12 +6351,12 @@
     {
       "region_id": "central",
       "kind": "scene",
-      "count": 4
+      "count": 5
     },
     {
       "region_id": "central",
       "kind": "illustration",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "central",

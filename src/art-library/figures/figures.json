@@ -55,6 +55,16 @@
       "uses": ["place-context", "policy-scene", "explainer"],
       "concept": "行政界線、主張範圍、核對圖層是三張片。掀開主張不會變成核對；只有核對圖層能上銷。",
       "suggested_use": "地圖說明、方法頁、地點情境旁。不要當成特定地號或工程的現況圖，也不要把主張範圍畫成已核對。"
+    },
+    {
+      "folder": "works-section",
+      "id": "illustration-works-section",
+      "kind": "illustration",
+      "title": "公共建設剖面",
+      "alt": "立體示意插畫：路基剖面露出回填、排水管、路面與護欄四層。選一層只標構造名稱，不帶百分比。它不是任何真實道路或橋梁的現況圖",
+      "uses": ["public-works", "policy-scene", "explainer"],
+      "concept": "回填、排水、路面、護欄是分開的構造層。選一層只讀名稱；完工、驗收與啟用仍要分開查來源。",
+      "suggested_use": "公共建設說明、方法頁、進度旁的示意。不要當成特定工地現況，也不要把剖面接成完工百分比。"
     }
   ]
 }

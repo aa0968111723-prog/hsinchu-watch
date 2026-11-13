@@ -30,12 +30,17 @@
 | `scene-xiangshan-tra-intersection-2018` | 場景 | 香山車站前路口 | Tbatb | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:View_on_the_Intersection_before_TRA_Xiangshan_Station.jpg) | 2026-11-13T10:12:54+08:00 |
 | `scene-presidential-office-2014` | 場景 | 總統府正面 | CEphoto, Uwe Aranas | CC BY-SA 3.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Presidential-Office-Building-01.jpg) | 2026-11-13T10:12:58+08:00 |
 | `scene-judicial-yuan-2023` | 場景 | 司法大廈正面 | Yu tptw | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:Judicial_Yuan_Building_20230503.jpg) | 2026-11-13T10:13:01+08:00 |
+| `scene-guanxi-dongan-bridge` | 場景 | 關西東安古橋 | 李元鈞 | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E9%97%9C%E8%A5%BF%E6%9D%B1%E5%AE%89%E5%8F%A4%E6%A9%8B.jpg) | 2026-11-13T10:18:33+08:00 |
+| `scene-hukou-entrance-2026` | 場景 | 湖口鄉入口界牌 | Junyu-K | CC BY 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:202603_Town_entrance_of_Hukou_Township_,Hsinchu_County_TW_PHW1.jpg) | 2026-11-13T10:18:37+08:00 |
+| `scene-beipu-old-street` | 場景 | 北埔老街與慈天宮 | Outlookxp | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%9F%94%E8%80%81%E8%A1%97%E8%88%87%E5%8C%97%E5%9F%94%E6%85%88%E5%A4%A9%E5%AE%AE.jpg) | 2026-11-13T10:18:41+08:00 |
+| `scene-control-yuan-2024` | 場景 | 監察院廳舍 | 阿道 | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:Control_Yuan_Building-01.2024-09-21.jpg) | 2026-11-13T10:18:46+08:00 |
 | `component-evidence-desk` | 3D元件 | 證據分類台 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `component-budget-drawers` | 3D元件 | 預算三層抽屜 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `component-stage-yard` | 3D元件 | 階段工地模型 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `component-council-desk` | 3D元件 | 議事台 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `component-empty-bay` | 3D元件 | 空格銘牌架 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `illustration-layer-board` | 插畫 | 疊圖校準板 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
+| `illustration-works-section` | 插畫 | 公共建設剖面 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 
 ## 缺口
 
