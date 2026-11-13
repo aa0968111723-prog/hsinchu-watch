@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, readFileSync } from "node:fs";
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -33,4 +33,10 @@ copyFileSync(fileURLToPath(new URL("../../../public/data/news-intel/latest.json"
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
 const wranglerBin = fileURLToPath(new URL("../node_modules/wrangler/bin/wrangler.js", import.meta.url));
 const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit" });
-process.exit(deployed.status ?? 1);
+const status = deployed.status ?? 1;
+writeFileSync(fileURLToPath(new URL("../state/publish-status.json", import.meta.url)), JSON.stringify({
+  published: status === 0,
+  status,
+  at: new Date().toISOString(),
+}, null, 2));
+process.exit(status);
