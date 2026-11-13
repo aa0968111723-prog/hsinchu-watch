@@ -141,6 +141,8 @@ export const COUNTY_BED_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n
 export const COUNTY_ELECTION_PAGE = "https://web.cec.gov.tw/hccec/article/65398";
 export const COUNTY_DEBT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/5/519f61d1-d792-4f7e-8873-46a6f41898ed.json";
 export const COUNTY_DEBT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=5";
+export const COUNTY_AIR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/257/649793d9-60fe-483f-939e-5ccc9caedf3d.json";
+export const COUNTY_AIR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=257";
 export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
 
 export function populationPeriod(html) {
@@ -244,6 +246,44 @@ export function normalizeCountyDebt(payload) {
     };
   }
   return best;
+}
+
+function airValue(value) {
+  const text = String(value ?? "").trim();
+  if (!text || text === "—") return null;
+  return text;
+}
+
+export function normalizeCountyAir(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return null;
+  let bestKey = "";
+  for (const row of rows) {
+    const stamp = String(row?.["民國年月"] || "").trim();
+    const match = stamp.match(/^(\d{3})(\d{2})$/);
+    if (!match) continue;
+    const month = Number(match[2]);
+    if (month < 1 || month > 12) continue;
+    const year = Number(match[1]) + 1911;
+    const key = `${year}-${String(month).padStart(2, "0")}|${stamp}`;
+    if (key > bestKey) bestKey = key;
+  }
+  if (!bestKey) return null;
+  const [period, periodText] = bestKey.split("|");
+  const readings = rows.flatMap((row) => {
+    if (String(row?.["民國年月"] || "").trim() !== periodText) return [];
+    const station = String(row["測站名稱"] || "").trim();
+    if (!station) return [];
+    return [{
+      station,
+      tsp: airValue(row["懸浮微粒_TSP"]),
+      pm10: airValue(row["懸浮微粒_PM10"]),
+      pm25: airValue(row["懸浮微粒_PM2.5"]),
+      dust: airValue(row["落塵量"]),
+    }];
+  });
+  if (!readings.length) return null;
+  return { period, period_text: periodText, unit: null, rows: readings };
 }
 
 export function normalizeElectionNotice(html) {

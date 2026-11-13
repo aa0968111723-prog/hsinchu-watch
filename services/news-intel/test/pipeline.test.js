@@ -488,6 +488,39 @@ test("county debt keeps the latest original balances and a written zero", async 
   assert.equal(page.includes("不是歲出決算或實支"), true);
 });
 
+test("county air readings keep the latest month and blank marks", async () => {
+  const { normalizeCountyAir } = await import("../src/adapters.js");
+  const air = normalizeCountyAir(JSON.stringify([
+    { "測站名稱": "竹北站上半月", "民國年月": "11301", "懸浮微粒_TSP": "45", "懸浮微粒_PM10": "—", "懸浮微粒_PM2.5": "", "落塵量": "3.5" },
+    { "測站名稱": "竹東站下半月", "民國年月": "11411", "懸浮微粒_TSP": "70", "懸浮微粒_PM10": "0", "懸浮微粒_PM2.5": "15", "落塵量": "" },
+  ]));
+  assert.equal(air.period, "2025-11");
+  assert.equal(air.period_text, "11411");
+  assert.equal(air.unit, null);
+  assert.equal(air.rows.length, 1);
+  assert.equal(air.rows[0].tsp, "70");
+  assert.equal(air.rows[0].pm10, "0");
+  assert.equal(air.rows[0].dust, null);
+  const kept = await runHour({
+    previous: { articles: [], air: { period_text: "11410", rows: [{ station: "舊站", tsp: "1" }] } },
+    now: "2026-11-14T02:00:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.air.period_text, "11410");
+  assert.equal(kept.air.retained, true);
+  const synced = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "sync_environment_data", input: { payload: JSON.stringify([{ "測站名稱": "竹東站下半月", "民國年月": "11411", "懸浮微粒_TSP": "70", "懸浮微粒_PM10": "—", "懸浮微粒_PM2.5": "15", "落塵量": "" }]) } },
+  });
+  assert.equal(synced.status, 200);
+  assert.equal(synced.body.stored, false);
+  assert.equal(synced.body.air.rows[0].pm10, null);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不是今天的即時空氣"), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -900,6 +933,11 @@ test("published news file stays within the real cap", () => {
   assert.equal(data.debt.unit, "新臺幣元");
   assert.match(data.debt.period, /^\d{4}-\d{2}$/);
   assert.ok([data.debt.long_term, data.debt.short_term, data.debt.per_person, data.debt.self_liquidating].every((value) => value === null || /^\d+$/.test(value)));
+  assert.equal(data.air.unit, null);
+  assert.match(data.air.period, /^\d{4}-\d{2}$/);
+  assert.match(data.air.period_text, /^\d{5}$/);
+  assert.ok(data.air.rows.length >= 1);
+  assert.ok(data.air.rows.every((row) => row.station && [row.tsp, row.pm10, row.pm25, row.dust].every((value) => value === null || /^\d+(?:\.\d+)?$/.test(value))));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {

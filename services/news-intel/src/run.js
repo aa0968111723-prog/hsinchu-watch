@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyBeds, normalizeCountyDebt, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyDebt, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -56,6 +56,7 @@ export function mergeRun(previous, result) {
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
       debt: previous?.debt || null,
+      air: previous?.air || null,
       election: previous?.election || null,
       model_review: previous?.model_review || [],
     };
@@ -76,9 +77,30 @@ export function mergeRun(previous, result) {
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
+    air: result.air === undefined ? (previous?.air || null) : result.air,
     election: result.election === undefined ? (previous?.election || null) : result.election,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCountyAir(fetcher, previous) {
+  const kept = previous?.air ? { ...previous.air, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_AIR_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const air = normalizeCountyAir(await response.text());
+    if (!air?.rows?.length) return kept;
+    return {
+      ...air,
+      source_url: COUNTY_AIR_PAGE,
+      dataset_url: COUNTY_AIR_URL,
+      retained: false,
+      note: "只留檔案裡最新的民國年月。這不是今天的即時空氣。數值沿用原文，欄名沒有單位就不另加。「—」和空值維持未填。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadCountyDebt(fetcher, previous) {
@@ -338,6 +360,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
       debt: await loadCountyDebt(fetcher, previous),
+      air: await loadCountyAir(fetcher, previous),
       election: await loadElectionNotice(fetcher, previous),
       model_review: modelReview,
     });

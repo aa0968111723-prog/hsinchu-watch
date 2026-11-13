@@ -44,6 +44,9 @@
   <h2>新竹縣醫院急性一般病床</h2>
   <p id="bed-status" class="meta"></p>
   <ol id="beds"></ol>
+  <h2>新竹縣空氣懸浮微粒</h2>
+  <p id="air-status" class="meta"></p>
+  <ol id="air"></ol>
   <h2>新竹縣選舉委員會公告</h2>
   <p id="election-status" class="meta"></p>
   <ol id="election-files"></ol>
@@ -118,6 +121,8 @@ const electionStatus = document.querySelector("#election-status");
 const electionFiles = document.querySelector("#election-files");
 const bedStatus = document.querySelector("#bed-status");
 const bedList = document.querySelector("#beds");
+const airStatus = document.querySelector("#air-status");
+const airList = document.querySelector("#air");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
@@ -299,6 +304,21 @@ fetch("/data/news-intel/latest.json")
       const open = row.acute_general_open === null || row.acute_general_open === undefined || row.acute_general_open === "" ? "開放數未填" : row.acute_general_open;
       addItem(bedList, row.name, bedData.source_url, `許可 ${permitted} · 開放 ${open}`);
     }
+    const air = data.air;
+    const airRows = Array.isArray(air?.rows) ? air.rows : [];
+    const airText = (value) => value === null || value === undefined || value === "" ? "未填" : value;
+    airStatus.textContent = air?.period_text
+      ? `檔案最新民國年月 ${air.period_text}。這不是今天的即時空氣。數值沿用原文，欄名沒有單位就不另加。`
+      : "這一輪沒有懸浮微粒資料，沒有補 0。";
+    if (air?.source_url && airRows.length) {
+      const source = document.createElement("a");
+      source.href = air.source_url;
+      source.textContent = "資料集頁";
+      airStatus.append(" ", source);
+    }
+    for (const row of airRows) {
+      addItem(airList, row.station, air.source_url, `TSP ${airText(row.tsp)} · PM10 ${airText(row.pm10)} · PM2.5 ${airText(row.pm25)}`);
+    }
     const election = data.election;
     const electionFilesRows = Array.isArray(election?.files) ? election.files : [];
     electionStatus.textContent = election?.title
@@ -360,6 +380,7 @@ fetch("/data/news-intel/latest.json")
     schoolStatus.textContent = "學區資料讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
+    airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";
     electionStatus.textContent = "選務公告讀取失敗。頁面沒有改用假資料。";
   });
 </script>

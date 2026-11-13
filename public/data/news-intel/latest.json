@@ -606,5 +606,71 @@
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=5",
     "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/5/519f61d1-d792-4f7e-8873-46a6f41898ed.json",
     "note": "金額沿用欄位原文。單位是欄名寫的新臺幣元。這是未償餘額，不是歲出決算或實支。0 是資料檔的 0。"
+  },
+  "air": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=257",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/257/649793d9-60fe-483f-939e-5ccc9caedf3d.json",
+    "period": "2025-11",
+    "period_text": "11411",
+    "unit": null,
+    "rows": [
+      {
+        "station": "竹北站上半月",
+        "tsp": "29",
+        "pm10": null,
+        "pm25": null,
+        "dust": "4.5"
+      },
+      {
+        "station": "竹東站上半月",
+        "tsp": "41",
+        "pm10": null,
+        "pm25": null,
+        "dust": "3.5"
+      },
+      {
+        "station": "五峰站上半月",
+        "tsp": "25",
+        "pm10": null,
+        "pm25": null,
+        "dust": "3.4"
+      },
+      {
+        "station": "山崎站上半月",
+        "tsp": "25",
+        "pm10": null,
+        "pm25": null,
+        "dust": "5"
+      },
+      {
+        "station": "竹北站下半月",
+        "tsp": "70",
+        "pm10": "38",
+        "pm25": "14",
+        "dust": null
+      },
+      {
+        "station": "竹東站下半月",
+        "tsp": "22",
+        "pm10": null,
+        "pm25": null,
+        "dust": null
+      },
+      {
+        "station": "五峰站下半月",
+        "tsp": "33",
+        "pm10": null,
+        "pm25": null,
+        "dust": null
+      },
+      {
+        "station": "山崎站下半月",
+        "tsp": "70",
+        "pm10": "33",
+        "pm25": "15",
+        "dust": null
+      }
+    ],
+    "note": "只留檔案裡最新的民國年月。這不是今天的即時空氣。數值沿用原文，欄名沒有單位就不另加。「—」和空值維持未填。"
   }
 }
