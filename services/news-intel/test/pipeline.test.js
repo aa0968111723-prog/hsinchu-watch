@@ -11,12 +11,19 @@ import { publicationFields } from "../src/verify.js";
 const tokens = { reader: "reader-token", collector: "collector-token", verifier: "verifier-token", publisher: "publisher-token", admin: "admin-token" };
 
 test("news times are shown in Taipei and date-only values stay unchanged", async () => {
+  const { readFileSync } = await import("node:fs");
   const { taipeiStamp } = await import("../../../public/news-intel-time.js");
   assert.equal(taipeiStamp("2026-11-13T14:16:16.000Z"), "2026-11-13 22:16:16 臺北時間");
   assert.equal(taipeiStamp("2026-11-13T15:52:37.184Z"), "2026-11-13 23:52:37 臺北時間");
   assert.equal(taipeiStamp("2026-11-06"), "2026-11-06");
   assert.equal(taipeiStamp("2017"), "2017");
   assert.equal(taipeiStamp(""), "");
+  const html = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  const source = html.match(/function taipeiStamp\(value\) \{[\s\S]*?\n\}/);
+  assert.ok(source);
+  const pageStamp = new Function(`${source[0]}; return taipeiStamp;`)();
+  assert.equal(pageStamp("2026-11-13T14:16:16.000Z"), taipeiStamp("2026-11-13T14:16:16.000Z"));
+  assert.equal(html.includes('type="module"'), false);
 });
 
 test("a hidden url is skipped and the next article fills the list", () => {
