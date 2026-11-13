@@ -14,5 +14,14 @@ Write-Hourly "collect $collect"
 if ($collect -ne 0) { exit $collect }
 & $Node (Join-Path $PSScriptRoot "src\publish-pages.js")
 $publish = $LASTEXITCODE
-Write-Hourly "publish $publish"
+$reason = ""
+$StatusPath = Join-Path $PSScriptRoot "state\publish-status.json"
+if (Test-Path $StatusPath) {
+  try {
+    $status = Get-Content $StatusPath -Raw -Encoding utf8 | ConvertFrom-Json
+    if ($status.reason) { $reason = " " + $status.reason }
+    elseif ($null -ne $status.published) { $reason = " published=" + $status.published }
+  } catch {}
+}
+Write-Hourly ("publish " + $publish + $reason)
 exit $publish
