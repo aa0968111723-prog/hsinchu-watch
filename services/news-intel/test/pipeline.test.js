@@ -1150,6 +1150,52 @@ test("old trees keep blank measurements empty and the written ownership", async 
   assert.equal(page.includes("不換成經緯度"), true);
 });
 
+test("wifi hotspots keep the short area label and a blank address", async () => {
+  const { normalizeCountyWifi, splitWifi } = await import("../src/adapters.js");
+  const hotspots = normalizeCountyWifi(JSON.stringify([
+    { "編號": "1", "熱點名稱": "竹東戶政", "郵遞區號": "310", "地址": "新竹縣竹東鎮康寧街89號", "地區": "竹東" },
+    { "編號": "2", "熱點名稱": "峨嵋站", "郵遞區號": "315", "地址": "", "地區": "峨嵋" },
+    { "編號": "3", "熱點名稱": " ", "地址": "關西鎮", "地區": "關西" },
+  ]));
+  assert.equal(hotspots.length, 2);
+  assert.equal(hotspots[0].area, "竹東");
+  assert.equal(hotspots[0].region_id, "zhudong");
+  assert.equal(hotspots[0].postal_code, "310");
+  assert.equal(hotspots[1].area, "峨嵋");
+  assert.equal(hotspots[1].region_id, "emei");
+  assert.equal(hotspots[1].address, null);
+  const parts = splitWifi({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=227", dataset_url: "https://ws.hsinchu.gov.tw/wifi.json", count: 2, hotspots });
+  assert.equal(parts.summary.hotspots, undefined);
+  assert.equal(parts.download.hotspots[1].area, "峨嵋");
+  const kept = await runHour({
+    previous: { articles: [], wifi: { count: 1, hotspots: [{ code: "2", name: "峨嵋站", area: "峨嵋", address: null }] } },
+    now: "2026-11-14T02:30:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.wifi.hotspots[0].area, "峨嵋");
+  assert.equal(kept.wifi.hotspots[0].address, null);
+  assert.equal(kept.wifi.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-wifi-hotspots", payload: JSON.stringify([{ "編號": "8", "熱點名稱": "新埔站", "郵遞區號": "305", "地址": "", "地區": "新埔" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-wifi-hotspots", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.hotspots[0].area, "新埔");
+  assert.equal(imported.body.hotspots[0].region_id, "xinpu");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("空白地址留空"), true);
+  assert.equal(page.includes("不補鎮市鄉"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1966,6 +2012,18 @@ test("published news file stays within the real cap", () => {
     assert.ok(trees.trees.some((row) => row.height_m === null));
     assert.ok(trees.trees.some((row) => row.ownership === "伯公地"));
     assert.equal(JSON.stringify(trees).includes("03-5518101"), false);
+  }
+  if (data.wifi) {
+    assert.equal(data.wifi.count, 91);
+    assert.equal(data.wifi.hotspots, undefined);
+    const wifi = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/wifi-hotspots.json", import.meta.url), "utf8"));
+    assert.equal(wifi.hotspots.length, 91);
+    assert.ok(wifi.hotspots.every((row) => row.name && row.area));
+    assert.ok(wifi.hotspots.some((row) => row.address === null));
+    const emei = wifi.hotspots.find((row) => row.area === "峨嵋");
+    assert.equal(emei.region_id, "emei");
+    assert.equal(emei.area, "峨嵋");
+    assert.equal(JSON.stringify(wifi).includes("03-5518101"), false);
   }
   assert.ok(data.visitors.rows.length >= 1);
   assert.match(data.visitors.period, /^\d{4}-\d{2}$/);

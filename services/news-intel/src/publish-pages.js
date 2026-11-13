@@ -81,6 +81,8 @@ const farmFile = fileURLToPath(new URL("../../../public/data/news-intel/organic-
 if (existsSync(farmFile)) copyFileSync(farmFile, `${mirror}\\data\\news-intel\\organic-farms.json`);
 const treeFile = fileURLToPath(new URL("../../../public/data/news-intel/old-trees.json", import.meta.url));
 if (existsSync(treeFile)) copyFileSync(treeFile, `${mirror}\\data\\news-intel\\old-trees.json`);
+const wifiFile = fileURLToPath(new URL("../../../public/data/news-intel/wifi-hotspots.json", import.meta.url));
+if (existsSync(wifiFile)) copyFileSync(wifiFile, `${mirror}\\data\\news-intel\\wifi-hotspots.json`);
 const rescueFile = fileURLToPath(new URL("../../../public/data/news-intel/rescue-stats.json", import.meta.url));
 if (existsSync(rescueFile)) copyFileSync(rescueFile, `${mirror}\\data\\news-intel\\rescue-stats.json`);
 const bridgeFile = fileURLToPath(new URL("../../../public/data/news-intel/bridges.json", import.meta.url));

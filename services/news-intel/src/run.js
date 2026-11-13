@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_JUNIOR_PAGE, COUNTY_JUNIOR_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_TREE_PAGE, COUNTY_TREE_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_CRASH_PAGE, COUNTY_CRASH_URL, COUNTY_DISCHARGE_PAGE, COUNTY_DISCHARGE_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyCrashes, normalizeCountyDebt, normalizeCountyDischarge, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, normalizeCountyToilets, normalizeCountyTrees, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_JUNIOR_PAGE, COUNTY_JUNIOR_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_TREE_PAGE, COUNTY_TREE_URL, COUNTY_WIFI_PAGE, COUNTY_WIFI_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_CRASH_PAGE, COUNTY_CRASH_URL, COUNTY_DISCHARGE_PAGE, COUNTY_DISCHARGE_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyCrashes, normalizeCountyDebt, normalizeCountyDischarge, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, normalizeCountyToilets, normalizeCountyTrees, normalizeCountyVisitors, normalizeCountyWifi, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -73,6 +73,7 @@ export function mergeRun(previous, result) {
       electric_buses: previous?.electric_buses || null,
       farms: previous?.farms || null,
       trees: previous?.trees || null,
+      wifi: previous?.wifi || null,
       rescue: previous?.rescue || null,
       bridges: previous?.bridges || null,
       river: previous?.river || null,
@@ -113,6 +114,7 @@ export function mergeRun(previous, result) {
     electric_buses: result.electric_buses === undefined ? (previous?.electric_buses || null) : result.electric_buses,
     farms: result.farms === undefined ? (previous?.farms || null) : result.farms,
     trees: result.trees === undefined ? (previous?.trees || null) : result.trees,
+    wifi: result.wifi === undefined ? (previous?.wifi || null) : result.wifi,
     rescue: result.rescue === undefined ? (previous?.rescue || null) : result.rescue,
     bridges: result.bridges === undefined ? (previous?.bridges || null) : result.bridges,
     river: result.river === undefined ? (previous?.river || null) : result.river,
@@ -428,6 +430,27 @@ async function loadCountyRescue(fetcher, previous) {
       rows,
       retained: false,
       note: "車輛數、送醫次數和各類人次沿用原文，不加總。沒有資料期間，不拿抓取時間充當。聯絡人沒有入檔。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
+async function loadCountyWifi(fetcher, previous) {
+  const kept = previous?.wifi ? { ...previous.wifi, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_WIFI_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const hotspots = normalizeCountyWifi(await response.text());
+    if (!hotspots.length) return kept;
+    return {
+      source_url: COUNTY_WIFI_PAGE,
+      dataset_url: COUNTY_WIFI_URL,
+      count: hotspots.length,
+      hotspots,
+      retained: false,
+      note: "只留熱點名稱、郵遞區號、地址和地區原文。空白地址留空。地區沿用原文，不補鎮市鄉。沒有日期欄，不拿抓取時間充當。聯絡人沒有入檔。",
     };
   } catch {
     return kept;
@@ -836,6 +859,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       electric_buses: await loadCountyElectricBuses(fetcher, previous),
       farms: await loadCountyFarms(fetcher, previous),
       trees: await loadCountyTrees(fetcher, previous),
+      wifi: await loadCountyWifi(fetcher, previous),
       rescue: await loadCountyRescue(fetcher, previous),
       bridges: await loadCountyBridges(fetcher, previous),
       river: await loadCountyRiver(fetcher, previous),

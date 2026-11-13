@@ -68,6 +68,8 @@
   <p id="farm-status" class="meta"></p>
   <h2>新竹縣珍貴老樹</h2>
   <p id="tree-status" class="meta"></p>
+  <h2>新竹縣免費無線熱點</h2>
+  <p id="wifi-status" class="meta"></p>
   <h2>新竹縣消防救護</h2>
   <p id="rescue-status" class="meta"></p>
   <ol id="rescue"></ol>
@@ -175,6 +177,7 @@ const ebusStatus = document.querySelector("#ebus-status");
 const ebusList = document.querySelector("#ebuses");
 const farmStatus = document.querySelector("#farm-status");
 const treeStatus = document.querySelector("#tree-status");
+const wifiStatus = document.querySelector("#wifi-status");
 const rescueStatus = document.querySelector("#rescue-status");
 const rescueList = document.querySelector("#rescue");
 const bridgeStatus = document.querySelector("#bridge-status");
@@ -571,6 +574,22 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       treeStatus.append(" ", source);
     }
+    const wifi = data.wifi;
+    wifiStatus.textContent = wifi?.count
+      ? `${wifi.count} 處。只留熱點名稱、郵遞區號、地址和地區原文。空白地址留空。地區沿用原文，不補鎮市鄉。沒有日期欄，不拿抓取時間充當。`
+      : "這一輪沒有無線熱點，沒有補地點。";
+    if (wifi?.download_url && wifi?.count) {
+      const download = document.createElement("a");
+      download.href = wifi.download_url;
+      download.textContent = "下載清冊";
+      wifiStatus.append(" ", download);
+    }
+    if (wifi?.source_url && wifi?.count) {
+      const source = document.createElement("a");
+      source.href = wifi.source_url;
+      source.textContent = "資料集頁";
+      wifiStatus.append(" ", source);
+    }
     const rescue = data.rescue;
     const rescueRows = Array.isArray(rescue?.rows) ? rescue.rows : [];
     rescueStatus.textContent = rescueRows.length
@@ -796,6 +815,7 @@ fetch("/data/news-intel/latest.json")
     ebusStatus.textContent = "電動公車路線讀取失敗。頁面沒有改用假資料。";
     farmStatus.textContent = "有機農場清冊讀取失敗。頁面沒有改用假資料。";
     treeStatus.textContent = "老樹清冊讀取失敗。頁面沒有改用假資料。";
+    wifiStatus.textContent = "無線熱點讀取失敗。頁面沒有改用假資料。";
     rescueStatus.textContent = "消防救護統計讀取失敗。頁面沒有改用假資料。";
     bridgeStatus.textContent = "橋梁清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";

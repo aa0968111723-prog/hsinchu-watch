@@ -162,6 +162,8 @@ export const COUNTY_FARM_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/
 export const COUNTY_FARM_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=349";
 export const COUNTY_TREE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/12/68167c51-f4a2-4e23-8c2f-0021e2557ae0.json";
 export const COUNTY_TREE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=12";
+export const COUNTY_WIFI_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/227/f2561d97-a772-4989-ba84-25a01c2faebe.json";
+export const COUNTY_WIFI_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=227";
 export const COUNTY_RESCUE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/218/bc8484ef-bd7c-4d4e-ada3-09927e301cb5.json";
 export const COUNTY_RESCUE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=218";
 export const COUNTY_BRIDGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/262/46c9c65a-6261-45a6-ab64-1d8f3ef350ed.json";
@@ -1053,6 +1055,45 @@ export function splitTrees(trees) {
     note: trees.note || "樹種、生長地點、樹齡和測量值沿用原文。空白測量留空，不補 0。座標沿用原文，不換成經緯度。沒有日期欄，不拿抓取時間充當。聯絡人沒有入檔。",
   };
   const download = Array.isArray(trees.trees) ? { ...summary, trees: trees.trees } : null;
+  return { summary, download };
+}
+
+function wifiRegion(area, address) {
+  if (area === "峨嵋") return "emei";
+  if (HERITAGE_TOWNS[area]) return HERITAGE_TOWNS[area];
+  const township = Object.keys(PARKING_DISTRICTS).find((label) => address.includes(label));
+  return township ? PARKING_DISTRICTS[township] : null;
+}
+
+export function normalizeCountyWifi(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["熱點名稱"] || "").trim();
+    if (!name) return [];
+    const area = String(row["地區"] || "").trim();
+    const address = String(row["地址"] || "").trim();
+    return [{
+      code: originalNumber(row["編號"]),
+      name,
+      postal_code: originalNumber(row["郵遞區號"]),
+      address: address || null,
+      area: area || null,
+      region_id: wifiRegion(area, address),
+    }];
+  });
+}
+
+export function splitWifi(wifi) {
+  if (!wifi?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: wifi.source_url,
+    dataset_url: wifi.dataset_url,
+    count: wifi.count,
+    download_url: "/data/news-intel/wifi-hotspots.json",
+    note: wifi.note || "只留熱點名稱、郵遞區號、地址和地區原文。空白地址留空。地區沿用原文，不補鎮市鄉。沒有日期欄，不拿抓取時間充當。聯絡人沒有入檔。",
+  };
+  const download = Array.isArray(wifi.hotspots) ? { ...summary, hotspots: wifi.hotspots } : null;
   return { summary, download };
 }
 
