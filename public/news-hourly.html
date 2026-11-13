@@ -42,6 +42,29 @@ function regionGroup(id) {
   if (text.startsWith("hsinchu-county") || countyTowns.includes(text)) return "hsinchu-county";
   return "";
 }
+function placeLabel(id) {
+  const labels = {
+    "hsinchu-city": "新竹市",
+    "hsinchu-city-east": "新竹市東區",
+    "hsinchu-city-north": "新竹市北區",
+    "hsinchu-city-xiangshan": "新竹市香山",
+    "hsinchu-county": "新竹縣",
+    zhubei: "新竹縣竹北",
+    zhudong: "新竹縣竹東",
+    hukou: "新竹縣湖口",
+    xinfeng: "新竹縣新豐",
+    xinpu: "新竹縣新埔",
+    guanxi: "新竹縣關西",
+    qionglin: "新竹縣芎林",
+    baoshan: "新竹縣寶山",
+    beipu: "新竹縣北埔",
+    emei: "新竹縣峨眉",
+    hengshan: "新竹縣橫山",
+    jianshi: "新竹縣尖石",
+    wufeng: "新竹縣五峰",
+  };
+  return labels[id] || (regionGroup(id) === "hsinchu-city" ? "新竹市" : regionGroup(id) === "hsinchu-county" ? "新竹縣" : "地區未標");
+}
 function taipeiStamp(value) {
   const text = String(value || "").trim();
   if (!text) return "";
@@ -101,7 +124,7 @@ fetch("/data/news-intel/latest.json")
           ? ` · 清單是更新時間，原文時間 ${pageTime}`
           : article.date_checked === true ? " · 發布時間已對過原文" : "";
       const group = regionGroup(article.region_id);
-      const place = group === "hsinchu-city" ? "新竹市" : group === "hsinchu-county" ? "新竹縣" : "地區未標";
+      const place = placeLabel(article.region_id);
       addItem(list, article.title, article.url, `${place} · ${article.source_name || "來源未標"} · ${taipeiStamp(article.published_at) || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}${dateNote}`, group);
     }
     const records = Array.isArray(data.public_records) ? data.public_records : [];

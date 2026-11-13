@@ -34,8 +34,19 @@ export function regionGroup(id) {
 }
 
 export function regionFor(text) {
-  const hits = TOWNS.filter(([name]) => String(text || "").includes(name)).map(([, id]) => id);
-  return hits[0] || null;
+  const source = String(text || "");
+  const hits = TOWNS.filter(([name]) => source.includes(name));
+  const specific = hits.filter(([name]) => name !== "新竹市" && name !== "新竹縣");
+  const pool = specific.length ? specific : hits;
+  if (!pool.length) return null;
+  pool.sort((left, right) => source.indexOf(left[0]) - source.indexOf(right[0]));
+  return pool[0][1];
+}
+
+const PLACE_LABELS = Object.fromEntries(TOWNS.map(([name, id]) => [id, name === "新竹市" || name === "新竹縣" ? name : `${name.startsWith("新竹") ? "" : regionGroup(id) === "hsinchu-city" ? "新竹市" : "新竹縣"}${name}`]));
+
+export function placeLabel(id) {
+  return PLACE_LABELS[id] || (regionGroup(id) === "hsinchu-city" ? "新竹市" : regionGroup(id) === "hsinchu-county" ? "新竹縣" : "地區未標");
 }
 
 export function normalizeTitle(title) {
