@@ -217,13 +217,15 @@ test("a verification change revises the stored article", async () => {
   };
   await persistArticles(db, { articles: [article], now: "2026-11-13T02:00:00.000Z" });
   const revised = await persistArticles(db, {
-    articles: [{ ...article, verification_status: "SINGLE_SOURCE", review_status: "pending_index" }],
+    articles: [{ ...article, verification_status: "SINGLE_SOURCE", review_status: "pending_index", date_checked: true, page_published_at: "2026-11-13T09:05:00.000Z", feed_time_kind: "published" }],
     now: "2026-11-13T03:00:00.000Z",
   });
-  const row = await db.prepare("SELECT verification_status, content_version FROM articles").first();
+  const row = await db.prepare("SELECT verification_status, content_version, date_checked, page_published_at FROM articles").first();
   assert.equal(revised.revised, 1);
   assert.equal(row.verification_status, "SINGLE_SOURCE");
   assert.equal(row.content_version, 2);
+  assert.equal(row.date_checked, 1);
+  assert.equal(row.page_published_at, "2026-11-13T09:05:00.000Z");
 });
 
 test("local database opens the final-account migration", async () => {
@@ -303,6 +305,7 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   const db = new DatabaseSync(":memory:");
   db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
       const statement = (params) => ({
@@ -414,6 +417,7 @@ test("a failed scheduled round keeps the previous database rows", async () => {
   const db = new DatabaseSync(":memory:");
   db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
       const statement = (params) => ({
@@ -460,6 +464,7 @@ test("final account text stays unchanged in the database and the read API", asyn
   const db = new DatabaseSync(":memory:");
   db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0003_final_accounts.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
