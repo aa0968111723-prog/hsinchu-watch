@@ -988,9 +988,12 @@ test("published news file stays within the real cap", () => {
   assert.ok(data.schools.count >= 80);
   if (data.kindergartens) {
     assert.equal(data.kindergartens.period, null);
+    assert.equal(data.kindergartens.period_text, "113學年度");
     assert.ok(data.kindergartens.count > 0);
     assert.equal(data.kindergartens.kindergartens, undefined);
-    assert.equal(JSON.stringify(data.kindergartens).includes("電話"), false);
+    const roster = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/kindergartens.json", import.meta.url), "utf8"));
+    assert.equal(roster.kindergartens.length, data.kindergartens.count);
+    assert.ok(roster.kindergartens.every((row) => !Object.hasOwn(row, "phone") && !Object.keys(row).some((key) => key.includes("電話"))));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);
