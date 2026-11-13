@@ -55,7 +55,7 @@ fetch("/data/news-intel/latest.json")
     for (const article of articles) {
       const claimLabels = { candidate_statement: "候選人說法", poll: "民調", legal_status: "司法程序", commentary: "評論", official_notice: "官方公告", news_report: "新聞報導", project_progress: "工程進度說法" };
       const statusLabels = { SINGLE_SOURCE: "單一來源", UNVERIFIED: "尚未查證", VERIFIED_OFFICIAL: "官方已核對", VERIFIED_MULTI_SOURCE: "多來源已核對", DISPUTED: "說法衝突", CORRECTED: "已更正", RETRACTED: "已撤下" };
-      const dateNote = article.date_checked === true ? " · 發布時間已對過原文" : article.date_checked === false ? " · 發布時間與原文不一致" : "";
+      const dateNote = article.date_checked === true ? " · 發布時間已對過原文" : article.date_checked === false ? ` · 原文時間 ${article.page_published_at || "未讀到"}` : "";
       addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}${dateNote}`);
     }
     const records = Array.isArray(data.public_records) ? data.public_records : [];

@@ -32,13 +32,22 @@ export function classifyArticle(article) {
   return "UNVERIFIED";
 }
 
-export function pageDateAgrees(publishedAt, html) {
-  const match = String(html || "").match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})/);
+export function readPagePublishedAt(html) {
+  const match = String(html || "").match(/"datePublished"\s*:\s*"([^"]+)"/);
   if (!match) return null;
-  const pageTime = Date.parse(`${match[1]}T${match[2]}:00+08:00`);
+  const text = match[1].trim();
+  const normalized = text.includes("T") ? text : `${text.replace(" ", "T")}+08:00`;
+  const parsed = Date.parse(normalized);
+  if (Number.isNaN(parsed)) return null;
+  return new Date(parsed).toISOString();
+}
+
+export function pageDateAgrees(publishedAt, html) {
+  const pageTime = readPagePublishedAt(html);
+  if (!pageTime) return null;
   const feedTime = Date.parse(publishedAt);
-  if (Number.isNaN(pageTime) || Number.isNaN(feedTime)) return false;
-  return Math.abs(pageTime - feedTime) < 5 * 60 * 1000;
+  if (Number.isNaN(feedTime)) return false;
+  return Math.abs(Date.parse(pageTime) - feedTime) < 5 * 60 * 1000;
 }
 
 export function publicationFields(article) {
