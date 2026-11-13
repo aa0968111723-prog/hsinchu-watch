@@ -51,7 +51,7 @@ export function mergeRun(previous, result) {
   };
 }
 
-export async function runHour({ fetcher, adapters, env, previous, now }) {
+export async function runHour({ fetcher, adapters, env, previous, now, hidden = new Set() }) {
   const decision = decideGemini(env || {}, { tokens_today: 0, requests_this_hour: 0 });
   const called = Boolean(decision.use && typeof env?.propose === "function");
   const gemini = { ...decision, called };
@@ -81,7 +81,7 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
     const publicRecords = accountsFailed ? (previous?.public_records || []) : freshRecords;
     const proposals = called ? await env.propose() : [];
     const modelReview = acceptModelProposals(proposals);
-    const selected = selectArticles(collected.candidates).map((article) => ({
+    const selected = selectArticles(collected.candidates, hidden).map((article) => ({
       ...article,
       ...publicationFields(article),
       fetched_at: now,

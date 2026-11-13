@@ -10,6 +10,14 @@ import { publicationFields } from "../src/verify.js";
 
 const tokens = { reader: "reader-token", collector: "collector-token", verifier: "verifier-token", publisher: "publisher-token", admin: "admin-token" };
 
+test("a hidden url is skipped and the next article fills the list", () => {
+  const rows = selectArticles([
+    { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
+    { original_title: "新竹縣舊公告", source_url: "https://www.hsinchu.gov.tw/old", publisher_timestamp: "2026-11-12", source_id: "hsinchu-county-news" },
+  ], new Set(["https://www.hsinchu.gov.tw/new"]));
+  assert.deepEqual(rows.map((row) => row.source_url), ["https://www.hsinchu.gov.tw/old"]);
+});
+
 test("an empty successful hour keeps the previous news list", async () => {
   const { publishableResult } = await import("../src/run.js");
   const previous = { articles: [{ original_title: "新竹縣仍在", source_url: "https://www.hsinchu.gov.tw/live" }], last_success_at: "2026-11-13T01:00:00.000Z" };

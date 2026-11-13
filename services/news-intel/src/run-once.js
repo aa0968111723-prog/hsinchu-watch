@@ -27,19 +27,20 @@ try {
 } catch {
   previous = { articles: [], last_success_at: null };
 }
-const result = await runHour({
-  adapters: ADAPTERS,
-  fetcher: sourceFetch,
-  env: {},
-  previous,
-  now: new Date().toISOString(),
-});
 let hidden = new Set();
 try {
   hidden = await hiddenSourceUrls();
 } catch (error) {
   console.log(JSON.stringify({ database: "failed", error: String(error.message || error).slice(0, 180) }));
 }
+const result = await runHour({
+  adapters: ADAPTERS,
+  fetcher: sourceFetch,
+  env: {},
+  previous,
+  now: new Date().toISOString(),
+  hidden,
+});
 previous.articles = withoutHidden(previous.articles, hidden);
 result.articles = withoutHidden(result.articles, hidden);
 const publishable = publishableResult(previous, result);

@@ -35,7 +35,7 @@ export function normalizeTitle(title) {
 
 const OFFICIAL_HSINCHU = new Set(["hsinchu-county-news", "hsinchu-city-news", "hsinchu-county-council"]);
 
-export function selectArticles(candidates) {
+export function selectArticles(candidates, hidden = new Set()) {
   const seen = new Set();
   const selected = [];
   const ranked = [...(candidates || [])].sort((left, right) => {
@@ -47,7 +47,7 @@ export function selectArticles(candidates) {
     const url = String(item?.source_url || "");
     const title = String(item?.original_title || "").trim();
     const published = parsePublisherTimestamp(item?.publisher_timestamp);
-    if (!url.startsWith("https://") || !title || !published || item.source_id === "hsinchu-county-council" || item.source_id === "hsc-expenditure-final") continue;
+    if (!url.startsWith("https://") || !title || !published || hidden.has(url) || item.source_id === "hsinchu-county-council" || item.source_id === "hsc-expenditure-final") continue;
     const region = regionFor(`${title} ${item.summary || ""}`) || (OFFICIAL_HSINCHU.has(item.source_id) ? item.region_id : null);
     if (!region) continue;
     const key = normalizeTitle(title);
