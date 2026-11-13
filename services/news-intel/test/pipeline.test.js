@@ -10,6 +10,15 @@ import { publicationFields } from "../src/verify.js";
 
 const tokens = { reader: "reader-token", collector: "collector-token", verifier: "verifier-token", publisher: "publisher-token", admin: "admin-token" };
 
+test("news times are shown in Taipei and date-only values stay unchanged", async () => {
+  const { taipeiStamp } = await import("../../../public/news-intel-time.js");
+  assert.equal(taipeiStamp("2026-11-13T14:16:16.000Z"), "2026-11-13 22:16:16 臺北時間");
+  assert.equal(taipeiStamp("2026-11-13T15:52:37.184Z"), "2026-11-13 23:52:37 臺北時間");
+  assert.equal(taipeiStamp("2026-11-06"), "2026-11-06");
+  assert.equal(taipeiStamp("2017"), "2017");
+  assert.equal(taipeiStamp(""), "");
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },

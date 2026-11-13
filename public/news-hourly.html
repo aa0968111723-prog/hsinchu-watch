@@ -25,7 +25,8 @@
   <p id="notice-status" class="meta"></p>
   <ol id="notices"></ol>
 </main>
-<script>
+<script type="module">
+import { taipeiStamp } from "/news-intel-time.js";
 const status = document.querySelector("#status");
 const list = document.querySelector("#list");
 const accountStatus = document.querySelector("#account-status");
@@ -51,17 +52,19 @@ fetch("/data/news-intel/latest.json")
   })
   .then((data) => {
     const articles = Array.isArray(data.articles) ? data.articles.slice(0, 20) : [];
-    const when = data.last_success_at || "未知";
-    status.textContent = `成功時間 ${when}。顯示 ${articles.length} 篇。Gemini 未使用。這是單一來源索引，不是已查核事實。`;
+    const when = taipeiStamp(data.last_success_at) || "未知";
+    const geminiNote = data.gemini?.called ? "Gemini 有提出候選，尚未當事實。" : "Gemini 未使用。";
+    status.textContent = `成功時間 ${when}。顯示 ${articles.length} 篇。${geminiNote}這是單一來源索引，不是已查核事實。`;
     for (const article of articles) {
       const claimLabels = { candidate_statement: "候選人說法", poll: "民調", legal_status: "司法程序", commentary: "評論", official_notice: "官方公告", news_report: "新聞報導", project_progress: "工程進度說法" };
       const statusLabels = { SINGLE_SOURCE: "單一來源", UNVERIFIED: "尚未查證", VERIFIED_OFFICIAL: "官方已核對", VERIFIED_MULTI_SOURCE: "多來源已核對", DISPUTED: "說法衝突", CORRECTED: "已更正", RETRACTED: "已撤下" };
+      const pageTime = taipeiStamp(article.page_published_at) || "未讀到";
       const dateNote = article.date_checked === false
-        ? ` · 原文時間 ${article.page_published_at || "未讀到"}`
+        ? ` · 原文時間 ${pageTime}`
         : article.feed_time_kind === "updated" && article.page_published_at
-          ? ` · 清單是更新時間，原文時間 ${article.page_published_at}`
+          ? ` · 清單是更新時間，原文時間 ${pageTime}`
           : article.date_checked === true ? " · 發布時間已對過原文" : "";
-      addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}${dateNote}`);
+      addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${taipeiStamp(article.published_at) || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}${dateNote}`);
     }
     const records = Array.isArray(data.public_records) ? data.public_records : [];
     accountStatus.textContent = records.length ? "金額沿用資料檔原文。單位未標示，不換算。這不是驗收或實支。" : "這一輪沒有決算數字，沒有補 0。";
@@ -72,7 +75,7 @@ fetch("/data/news-intel/latest.json")
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
     for (const notice of announcements) {
-      addItem(notices, notice.title, notice.url, `${notice.source_name || "新竹縣議會"} · ${notice.published_at || "日期未知"}`);
+      addItem(notices, notice.title, notice.url, `${notice.source_name || "新竹縣議會"} · ${taipeiStamp(notice.published_at) || "日期未知"}`);
     }
     if (!articles.length) status.textContent = "這一輪沒有可顯示的文章，沒有補假資料。";
   })
