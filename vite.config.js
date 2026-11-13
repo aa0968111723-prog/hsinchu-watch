@@ -12,6 +12,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         governance: resolve(__dirname, 'governance.html'),
         archive: resolve(__dirname, 'archive.html'),
+        lab: resolve(__dirname, 'ui-lab.html'),
         person: resolve(__dirname, 'person.html'),
         topics: resolve(__dirname, 'topics.html'),
         polls: resolve(__dirname, 'polls.html'),

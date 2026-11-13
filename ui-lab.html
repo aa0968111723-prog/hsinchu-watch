@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>明亮介面預覽｜新竹選情觀察</title>
+  <meta name="description" content="明亮樣式與互動組件的預覽：首頁閱讀檯、治理案卷、完整資料與地圖側欄，全部使用已發布的資料。" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/mobile.css" />
+  <link rel="stylesheet" href="/editorial-depth.css" />
+  <link rel="stylesheet" href="/bright-civic.css" />
+</head>
+<body class="civic-bright civic-lab">
+  <header class="top">
+    <div class="wrap">
+      <div>
+        <h1>明亮介面預覽</h1>
+        <p class="sub">首頁、治理案卷、完整資料、地圖側欄</p>
+      </div>
+      <div class="status">使用已發布資料</div>
+    </div>
+    <nav class="wrap nav">
+      <a href="/index.html">總覽</a>
+      <a href="/compare.html">比較</a>
+      <a href="/topics.html">議題</a>
+      <a href="/polls.html">民調</a>
+      <a href="/commentary.html">評論</a>
+      <a href="/manual.html">手動收錄</a>
+    </nav>
+  </header>
+  <main class="wrap" id="lab">
+    <div class="civic-toolbar">
+      <nav class="civic-chips" aria-label="預覽分區">
+        <a class="civic-chip" href="#home">首頁</a>
+        <a class="civic-chip" href="#governance">治理案卷</a>
+        <a class="civic-chip" href="#archive">完整資料</a>
+        <a class="civic-chip" href="#atlas">地圖側欄</a>
+        <a class="civic-chip" href="#style">樣式</a>
+      </nav>
+      <div class="civic-prefs" role="group" aria-label="顯示設定">
+        <button type="button" class="civic-btn" data-civic-theme-toggle aria-pressed="false">夜讀</button>
+        <button type="button" class="civic-btn" data-civic-motion-toggle aria-pressed="false">靜態圖</button>
+      </div>
+    </div>
+
+    <section class="civic-section" id="home" aria-labelledby="homeTitle">
+      <p class="civic-kicker">首頁</p>
+      <h2 class="civic-title" id="homeTitle">這裡保存了哪些紀錄</h2>
+      <p class="civic-lede">政策、工程、民調、各方說法與網路留言分開收錄。點一疊紙，看那一種有多少、最新幾筆是什麼。</p>
+      <div id="labHome" class="civic-stack">
+        <div class="civic-split">
+          <div data-desk><noscript><p class="civic-gapnote">啟用 JavaScript 後會畫出各類筆數。也可以直接到<a href="/archive.html">完整資料頁</a>。</p></noscript></div>
+          <div class="civic-sheet" data-look></div>
+        </div>
+        <p class="civic-gapnote" data-stale hidden></p>
+        <ul class="civic-doors">
+          <li><a class="civic-door civic-tone-sky" href="/governance.html">
+            <span class="civic-door-figure" data-door="governance"><b>—</b><small>件案卷</small></span>
+            <span class="civic-door-name">地方治理觀察</span>
+            <span class="civic-door-about">追蹤台北、新北、新竹縣市的政策與工程・首批試行</span>
+          </a></li>
+          <li><a class="civic-door civic-tone-clay" href="/compare.html#candidateReview">
+            <span class="civic-door-figure" data-door="candidates"><b>—</b><small>位候選人</small></span>
+            <span class="civic-door-name">候選人，同一標準閱讀</span>
+            <span class="civic-door-about" data-door-about="candidates">新竹縣長：鄭朝方、徐欣瑩、朱定瑀；竹北市長：吳旭智、曾聖凱、邱臣遠。依選委會號次排列。</span>
+          </a></li>
+          <li><a class="civic-door civic-tone-sage" href="/archive.html">
+            <span class="civic-door-figure" data-door="archive"><b>—</b><small>筆紀錄</small></span>
+            <span class="civic-door-name">查閱全部已收錄資料</span>
+            <span class="civic-door-about">新聞、政策、民調、匿名留言、公開來源與地方治理，可搜尋、翻頁與匯出</span>
+          </a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="civic-section" id="governance" aria-labelledby="governanceTitle">
+      <p class="civic-kicker">治理案卷</p>
+      <h2 class="civic-title" id="governanceTitle">一件公共工程，目前到哪一步</h2>
+      <p class="civic-lede">篩地區與議題、收藏、展開事件與來源，再把幾件案卷並排比較。沒有收錄的數字會寫明，不會畫成零。</p>
+      <div id="labGovernance"><p class="civic-meta" role="status">正在讀取治理案卷。</p></div>
+    </section>
+
+    <section class="civic-section" id="archive" aria-labelledby="archiveTitle">
+      <p class="civic-kicker">完整資料</p>
+      <h2 class="civic-title" id="archiveTitle">從一疊紙翻到每一筆</h2>
+      <p class="civic-lede">載入全部紀錄後，用人物、關鍵字與狀態篩選。量紙檯會重新量一次，下方逐筆列出選中的那一種。</p>
+      <div id="labArchive" class="civic-stack"></div>
+    </section>
+
+    <section class="civic-section" id="atlas" aria-labelledby="atlasTitle">
+      <p class="civic-kicker">地圖側欄</p>
+      <h2 class="civic-title" id="atlasTitle">沒有座標來源的，先列在待定位</h2>
+      <p class="civic-lede">側欄負責清單、篩選與選取。地圖畫面由第三線的 atlas 提供；沒有座標來源的案卷不會被放到地圖上。</p>
+      <div class="civic-split civic-split--side">
+        <div class="civic-mapslot">
+          <p>這一格留給地圖。這裡不畫示意地形，只顯示側欄和地圖之間傳遞的訊息。</p>
+          <code id="labMapLog">尚未選取</code>
+          <p><button type="button" class="civic-btn" id="labMapPick">模擬地圖選到第一件</button></p>
+        </div>
+        <div id="labSide"><p class="civic-meta" role="status">正在讀取治理案卷。</p></div>
+      </div>
+    </section>
+
+    <section class="civic-section" id="style" aria-labelledby="styleTitle">
+      <p class="civic-kicker">樣式</p>
+      <h2 class="civic-title" id="styleTitle">顏色、標籤與字級</h2>
+      <p class="civic-lede">下面的顏色直接讀自 bright-civic.css。切到夜讀時會重新計算。</p>
+      <div id="labStyle" class="civic-sheet civic-stack"></div>
+    </section>
+  </main>
+  <footer class="wrap foot">這一頁是介面預覽，資料與正式頁面相同。已收錄資料不等於網路全部資訊，原文內容以來源網站為準。</footer>
+  <script type="module" src="/src/civic-ui/lab.js"></script>
+  <script defer src="/page-tools.js"></script>
+</body>
+</html>
