@@ -1,9 +1,10 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { ADAPTERS } from "./adapters.js";
+import { ADAPTERS, splitCityCatalog } from "./adapters.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
 import { publishableResult, runHour, sourceFetch } from "./run.js";
 
 const publicUrl = new URL("../../../public/data/news-intel/latest.json", import.meta.url);
+const catalogUrl = new URL("../../../public/data/news-intel/city-catalog.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
 try {
   const existing = JSON.parse(readFileSync(publicUrl, "utf8"));
@@ -45,6 +46,8 @@ const result = await runHour({
 previous.articles = withoutHidden(previous.articles, hidden);
 result.articles = withoutHidden(result.articles, hidden);
 const publishable = publishableResult(previous, result);
+const catalogParts = splitCityCatalog(publishable.city_catalog);
+if (catalogParts.download) writeFileSync(catalogUrl, JSON.stringify(catalogParts.download));
 const payload = {
   ok: publishable.ok,
   retained: publishable.retained,
@@ -66,7 +69,7 @@ const payload = {
   })),
   announcements: publishable.announcements || [],
   public_records: publishable.public_records || [],
-  city_catalog: publishable.city_catalog || null,
+  city_catalog: catalogParts.summary,
   model_review: publishable.model_review || [],
 };
 mkdirSync(new URL("../state/", import.meta.url), { recursive: true });

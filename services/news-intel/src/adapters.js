@@ -123,6 +123,18 @@ export function normalizeCnaAtom(xml) {
 export const CITY_CATALOG_URL = "https://opendata.hccg.gov.tw/OpenDataCSV.aspx";
 export const CITY_CATALOG_LIST = "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059";
 
+export function splitCityCatalog(catalog) {
+  if (!catalog?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: catalog.source_url,
+    list_url: catalog.list_url,
+    count: catalog.count,
+    download_url: "/data/news-intel/city-catalog.json",
+  };
+  const download = Array.isArray(catalog.datasets) ? { ...summary, datasets: catalog.datasets } : null;
+  return { summary, download };
+}
+
 export function normalizeCityCatalog(text) {
   const lines = String(text || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
   const headerIndex = lines.findIndex((line) => line.startsWith("資料集名稱,"));

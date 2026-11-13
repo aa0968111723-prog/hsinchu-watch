@@ -101,6 +101,12 @@ fetch("/data/news-intel/latest.json")
     catalogStatus.textContent = catalog?.count
       ? `目錄 ${catalog.count} 筆。只留名稱、機關和格式，不含聯絡人。`
       : "這一輪沒有讀到市府目錄，沒有補假資料。";
+    if (catalog?.download_url) {
+      const download = document.createElement("a");
+      download.href = catalog.download_url;
+      download.textContent = "下載目錄";
+      catalogStatus.append(" ", download);
+    }
     if (catalog?.list_url) {
       const link = document.createElement("a");
       link.href = catalog.list_url;

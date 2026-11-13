@@ -30,6 +30,11 @@ test("city catalog keeps dataset names and drops contact fields", async () => {
   const { normalizeCityCatalog } = await import("../src/adapters.js");
   const rows = normalizeCityCatalog("資料產生時間,2026/11/14\n資料集名稱,資料來源,聯絡人,聯絡電話,提供格式,資料說明\n新竹市路燈,工務處,王小明,03-5216121,CSV;JSON,說明,多餘");
   assert.deepEqual(rows, [{ name: "新竹市路燈", agency: "工務處", formats: "CSV;JSON" }]);
+  const { splitCityCatalog } = await import("../src/adapters.js");
+  const parts = splitCityCatalog({ source_url: "https://opendata.hccg.gov.tw/OpenDataCSV.aspx", list_url: "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059", count: 1, datasets: rows });
+  assert.equal(parts.summary.datasets, undefined);
+  assert.equal(parts.summary.download_url, "/data/news-intel/city-catalog.json");
+  assert.equal(parts.download.datasets[0].name, "新竹市路燈");
   const { runHour } = await import("../src/run.js");
   const kept = await runHour({
     previous: { articles: [], city_catalog: { count: 2, datasets: [{ name: "舊目錄", agency: "交通處", formats: "CSV" }] } },
@@ -386,8 +391,8 @@ test("published news file stays within the real cap", () => {
   }
   assert.ok((data.public_records || []).every((record) => record.unit === null && (record.spent_amount === null || typeof record.spent_amount === "string")));
   if (data.city_catalog) {
-    assert.equal(data.city_catalog.count, data.city_catalog.datasets.length);
-    assert.ok(data.city_catalog.datasets.every((row) => row.name && row.agency !== undefined && !("contact" in row) && !("phone" in row)));
+    assert.equal(data.city_catalog.datasets, undefined);
+    assert.ok(data.city_catalog.count > 0);
   }
 });
 
