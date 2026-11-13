@@ -565,6 +565,102 @@
         "y": 0.55
       },
       "reviewed": true
+    },
+    {
+      "id": "scene-zhudong-jiumu-2023",
+      "title": "竹東九牧第",
+      "commons": "File:竹東九牧第.jpg",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣竹東鎮縣定古蹟九牧第的三合院正面，紅磚牆與瓦頂，門額有九牧第字樣。2023年9月27日。不是任何治理案卷工地",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-xinpu-entrance-2026",
+      "title": "新埔鎮入口界牌",
+      "commons": "File:202603 Town entrance of Xinpu Township ,Hsinchu County 01.jpg",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣新埔鎮與桃園市龍潭區交界處的鎮名界牌，藍底白字寫新埔鎮歡迎蒞臨，後方是道路與路樹。2026年3月18日。不是褒忠路拓寬工地現況",
+      "focal_point": {
+        "x": 0.55,
+        "y": 0.4
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-xiangshan-tra-intersection-2018",
+      "title": "香山車站前路口",
+      "commons": "File:View on the Intersection before TRA Xiangshan Station.jpg",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "臺鐵香山車站前的路口與行人穿越道，背景可見站體與路樹。2018年9月7日。是香山地區街景，不是香山四號道路工地或徵收現況",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-presidential-office-2014",
+      "title": "總統府正面",
+      "commons": "File:Taipei Taiwan Presidential-Office-Building-01.jpg",
+      "region_ids": [
+        "central"
+      ],
+      "office_refs": [
+        "office:presidential"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "中華民國總統府正面，紅磚立面與中央塔樓，前景是廣場與旗桿。2014年5月18日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-judicial-yuan-2023",
+      "title": "司法大廈正面",
+      "commons": "File:Judicial Yuan Building 20230503.jpg",
+      "region_ids": [
+        "central"
+      ],
+      "office_refs": [
+        "office:jy"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "司法院司法大廈正面全貌，淺色立面與中央門廊，前景是街道與行道樹。2023年5月3日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "reviewed": true
     }
   ],
   "gaps": [
@@ -595,6 +691,62 @@
       "review_status": "gap",
       "reason": "Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。",
       "needed": "有明確授權的官方或本人提供照片。不用他人照片，也不用生成肖像。"
+    },
+    {
+      "id": "gap-scene-peiying-housing",
+      "kind": "scene",
+      "title": "培英公共住宅現場",
+      "region_ids": [
+        "taipei"
+      ],
+      "project_refs": [
+        "taipei-peiying-housing"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 Commons 搜尋「培英 公共住宅」無命中。沒有已核對、可確認為該案址的授權照片。",
+      "needed": "授權清楚且可核對地點的現場照片。鄰近中山區街景不能冒充該案現況。"
+    },
+    {
+      "id": "gap-scene-baozhong-road",
+      "kind": "scene",
+      "title": "新埔褒忠路拓寬現場",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "project_refs": [
+        "hsinchu-county-baozhong-road"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 有新埔鎮入口等鄉鎮照片可入庫，但 Commons 沒有可確認為褒忠路工地的授權照片。",
+      "needed": "授權清楚、可確認路段的工地或沿線照片。鎮入口界牌不能當成該工程現況。"
+    },
+    {
+      "id": "gap-scene-siyuan-footbridge",
+      "kind": "scene",
+      "title": "思源路人行天橋現場",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "project_refs": [
+        "new-taipei-siyuan-footbridge"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 Commons 搜尋「思源路 天橋」無命中。沒有已核對可公開使用的該橋照片。",
+      "needed": "授權清楚且可確認為思源路跨越新北大道人行天橋的照片。"
+    },
+    {
+      "id": "gap-scene-xiangshan-four",
+      "kind": "scene",
+      "title": "香山四號道路現場",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "project_refs": [
+        "hsinchu-city-xiangshan-four"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 有香山車站前路口等地區街景可入庫，但 Commons 沒有可確認為香山四號道路或徵收範圍的授權照片。",
+      "needed": "授權清楚、可確認路廊的照片。車站前路口不能當成該道路工地或徵收現況。"
     }
   ]
 }

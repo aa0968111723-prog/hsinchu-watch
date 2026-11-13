@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T10:07:25+08:00",
+  "generated_at": "2026-11-13T10:13:04+08:00",
   "publication": "publication-ready",
   "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
@@ -3556,6 +3556,755 @@
       "identity": null
     },
     {
+      "id": "scene-zhudong-jiumu-2023",
+      "kind": "scene",
+      "title": "竹東九牧第",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E7%AB%B9%E6%9D%B1%E4%B9%9D%E7%89%A7%E7%AC%AC.jpg",
+      "creator": "小三可",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "小三可／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:12:45+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣竹東鎮縣定古蹟九牧第的三合院正面，紅磚牆與瓦頂，門額有九牧第字樣。2023年9月27日。不是任何治理案卷工地",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:竹東九牧第.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/%E7%AB%B9%E6%9D%B1%E4%B9%9D%E7%89%A7%E7%AC%AC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5888,
+        "original_height": 3926,
+        "original_sha1": "273c635300add5af170ec80ed9d2255e8f18816c",
+        "uploaded_at": "2023-09-30T10:30:28Z",
+        "date_taken": "2023-09-27 15:13:27",
+        "described_as": "九牧第為竹東地方仕紳林春秀起造之伙房屋，除了是其故居，也是處理竹東圳開鑿事務之辦公場所，是竹東地區經濟發展史的重要場所。",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 853,
+          "bytes": 285003,
+          "checksum": "f91ccc34dfbbdec57446b8f8aa583d19c11ff6f20e3d7a6ab9043b6a20093770"
+        },
+        {
+          "path": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 18478,
+          "checksum": "68c72f6ac1d4f15d48efea9ba4cecbd72b3290d4bd351abff9b23c45c52140f6"
+        },
+        {
+          "path": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 32190,
+          "checksum": "d3b7fbac9f6dd43756f81540c7760309569cfaa24999cd1141b8a8b558ea3a7d"
+        },
+        {
+          "path": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 47857,
+          "checksum": "adfccb838be847b563bf6bca939692a184810a62c4bc7101f7e70ac91afb9c17"
+        },
+        {
+          "path": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 85534,
+          "checksum": "441892c033fb05559f1645e11949e7a9d09c5a4905cbd345bd7e0406b99e3c15"
+        },
+        {
+          "path": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 115685,
+          "checksum": "5fa7e8f52645bfa413958169a037da2780531a988772a7968294d862b77d373d"
+        },
+        {
+          "path": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 203966,
+          "checksum": "bec4e0a844d92c8232003ebfd369f6c6b18d9c78de139f01c8bd5fbe02e444a9"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 853,
+        "unit": "px"
+      },
+      "checksum": "f91ccc34dfbbdec57446b8f8aa583d19c11ff6f20e3d7a6ab9043b6a20093770",
+      "checksum_of": "art-library/scenes/scene-zhudong-jiumu-2023/scene-zhudong-jiumu-2023-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#757876",
+          "share": 0.327
+        },
+        {
+          "name": null,
+          "hex": "#8bafde",
+          "share": 0.257
+        },
+        {
+          "name": null,
+          "hex": "#323133",
+          "share": 0.214
+        },
+        {
+          "name": null,
+          "hex": "#859cc0",
+          "share": 0.124
+        },
+        {
+          "name": null,
+          "hex": "#a3c5e2",
+          "share": 0.079
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-xinpu-entrance-2026",
+      "kind": "scene",
+      "title": "新埔鎮入口界牌",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:202603_Town_entrance_of_Xinpu_Township_,Hsinchu_County_01.jpg",
+      "creator": "Junyu-K",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Junyu-K／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:12:50+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣新埔鎮與桃園市龍潭區交界處的鎮名界牌，藍底白字寫新埔鎮歡迎蒞臨，後方是道路與路樹。2026年3月18日。不是褒忠路拓寬工地現況",
+      "focal_point": {
+        "x": 0.55,
+        "y": 0.4
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:202603 Town entrance of Xinpu Township ,Hsinchu County 01.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/202603_Town_entrance_of_Xinpu_Township_%2CHsinchu_County_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6120,
+        "original_height": 4080,
+        "original_sha1": "9d8575f427104ba3e1e6ca4de2b5bfb3c51991de",
+        "uploaded_at": "2026-03-18T16:09:37Z",
+        "date_taken": "2026-03-18 16:36:52",
+        "described_as": "There is a town sign of Xinpu Township (Hsinchu county) at the limit of Xinpu twp. ,Hsinchu county and Longtan dist. ,Taoyuan city . The photo sight location is one of Xinpu Township entrance on the t",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 853,
+          "bytes": 346867,
+          "checksum": "0db41874df1d7ee0ff1478cbc1509c438392720cdcb78f8886746fea759d45a8"
+        },
+        {
+          "path": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 20758,
+          "checksum": "767b8207e867004a0a57775eaf78c3e247509a7074c70579431f93f80826397c"
+        },
+        {
+          "path": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 36430,
+          "checksum": "ea9930562d8f7317d8240df0b41e2988b1f8e414f330cac6a7ef39c2afbdb96a"
+        },
+        {
+          "path": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 58253,
+          "checksum": "1c0664afb34c8422d933f0bc2486b812c10551d4794fb2ec1158a527811274cb"
+        },
+        {
+          "path": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 103410,
+          "checksum": "bcd5ecf5199113e720f0fab811a9f4c00d6b72bbad001eb3175eece0db9d5077"
+        },
+        {
+          "path": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 152967,
+          "checksum": "8cbfc345d9a647e3539cd75e6e5f2979c2fc9147504ff5cdca4e5339de586e3e"
+        },
+        {
+          "path": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 267568,
+          "checksum": "89af47a65cd3e327bcd10f40c0ac78554df916a8e6ce308962a0b2a96005ef44"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 853,
+        "unit": "px"
+      },
+      "checksum": "0db41874df1d7ee0ff1478cbc1509c438392720cdcb78f8886746fea759d45a8",
+      "checksum_of": "art-library/scenes/scene-xinpu-entrance-2026/scene-xinpu-entrance-2026-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#e4d1b8",
+          "share": 0.258
+        },
+        {
+          "name": null,
+          "hex": "#32382c",
+          "share": 0.212
+        },
+        {
+          "name": null,
+          "hex": "#8b8f8d",
+          "share": 0.208
+        },
+        {
+          "name": null,
+          "hex": "#62695e",
+          "share": 0.166
+        },
+        {
+          "name": null,
+          "hex": "#465d4c",
+          "share": 0.156
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-xiangshan-tra-intersection-2018",
+      "kind": "scene",
+      "title": "香山車站前路口",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:View_on_the_Intersection_before_TRA_Xiangshan_Station.jpg",
+      "creator": "Tbatb",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Tbatb／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:12:54+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "臺鐵香山車站前的路口與行人穿越道，背景可見站體與路樹。2018年9月7日。是香山地區街景，不是香山四號道路工地或徵收現況",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:View on the Intersection before TRA Xiangshan Station.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/View_on_the_Intersection_before_TRA_Xiangshan_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5456,
+        "original_height": 3632,
+        "original_sha1": "06acef96d51169ee34e1df798393e60243e6e15c",
+        "uploaded_at": "2020-08-23T15:08:50Z",
+        "date_taken": "2018-09-07 14:14:24",
+        "described_as": "臺鐵香山車站前路口一景。",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 852,
+          "bytes": 225000,
+          "checksum": "b085ae12b60aa007e0088d5bfa760d9a73ba970b4059245861120f3a3c04a45d"
+        },
+        {
+          "path": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 14689,
+          "checksum": "f9a9ef619c6ffdfcc43dc2189bd1af059439fdcf8da099ba404ed7a728d5b947"
+        },
+        {
+          "path": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 24974,
+          "checksum": "511b500854088c7fee58f8c98040b7fa136ecd3a37b790551a36dd75e7a0af10"
+        },
+        {
+          "path": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 532,
+          "bytes": 37268,
+          "checksum": "c8519a168bcaad47120ab37d15455bfb4cfa75e7a17193ce06848810f9b6a4f6"
+        },
+        {
+          "path": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 532,
+          "bytes": 62772,
+          "checksum": "c842b1fcb022f20c6c2c88896c11f960219b5479128f511cd59934bca15486fd"
+        },
+        {
+          "path": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 852,
+          "bytes": 89217,
+          "checksum": "c117b849134fd292fb7493f340268fbab2db406e360dee72ebd498facdd7ea75"
+        },
+        {
+          "path": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 852,
+          "bytes": 137942,
+          "checksum": "adea115851b7e19a0aa5a8205c4afa1ba4efc3707190de9ea6b7a300582f68b7"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 852,
+        "unit": "px"
+      },
+      "checksum": "b085ae12b60aa007e0088d5bfa760d9a73ba970b4059245861120f3a3c04a45d",
+      "checksum_of": "art-library/scenes/scene-xiangshan-tra-intersection-2018/scene-xiangshan-tra-intersection-2018-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#544c4f",
+          "share": 0.274
+        },
+        {
+          "name": null,
+          "hex": "#1f171a",
+          "share": 0.253
+        },
+        {
+          "name": null,
+          "hex": "#87848a",
+          "share": 0.209
+        },
+        {
+          "name": null,
+          "hex": "#ffffff",
+          "share": 0.171
+        },
+        {
+          "name": null,
+          "hex": "#e3e4e6",
+          "share": 0.093
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-presidential-office-2014",
+      "kind": "scene",
+      "title": "總統府正面",
+      "region_ids": [
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": [
+        "office:presidential"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Presidential-Office-Building-01.jpg",
+      "creator": "CEphoto, Uwe Aranas",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution": "Photo by CEphoto, Uwe Aranas／CC BY-SA 3.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:12:58+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "中華民國總統府正面，紅磚立面與中央塔樓，前景是廣場與旗桿。2014年5月18日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Taipei Taiwan Presidential-Office-Building-01.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Taipei_Taiwan_Presidential-Office-Building-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5201,
+        "original_height": 2957,
+        "original_sha1": "11b38304be174cffaf768f95ae64ba3f3f08d1fd",
+        "uploaded_at": "2014-06-15T08:41:31Z",
+        "date_taken": "2014-05-18",
+        "described_as": "Taipei, Taiwan: Presidential Office Building",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 728,
+          "bytes": 196099,
+          "checksum": "dc042fa54b5ff8fba9bd16ef4429e8349626a6b417a1d63217e5c2808f337bce"
+        },
+        {
+          "path": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 273,
+          "bytes": 12999,
+          "checksum": "7f3a99da4d2fc445311746069948a08c18e21fc3daa4838fbb42142315c8cda3"
+        },
+        {
+          "path": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 273,
+          "bytes": 21660,
+          "checksum": "3fbe47db81ca94160e41f1dded7909d446968626dc9136f49dc072a5af82a39e"
+        },
+        {
+          "path": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 455,
+          "bytes": 33023,
+          "checksum": "a2201ce1533add525483022456eb2cfd9fc018cfabfa572cd5bcb45eb34dd5a7"
+        },
+        {
+          "path": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 455,
+          "bytes": 55792,
+          "checksum": "1711a2f38b288f45b31b90069deb8c0d4327a26df011e7ab281c8a1c96d2bffc"
+        },
+        {
+          "path": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 728,
+          "bytes": 77921,
+          "checksum": "b225a1cd3f50e1fa712988393ffc9b0f27d08adfff7ff6984d5be9372ee2e0d8"
+        },
+        {
+          "path": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 728,
+          "bytes": 134292,
+          "checksum": "40399e406b8b3c94dde17d039edc80c32cc7b37fc74564f7d3359c12f96be91f"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 728,
+        "unit": "px"
+      },
+      "checksum": "dc042fa54b5ff8fba9bd16ef4429e8349626a6b417a1d63217e5c2808f337bce",
+      "checksum_of": "art-library/scenes/scene-presidential-office-2014/scene-presidential-office-2014-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#8c857e",
+          "share": 0.242
+        },
+        {
+          "name": null,
+          "hex": "#52443a",
+          "share": 0.241
+        },
+        {
+          "name": null,
+          "hex": "#afbfd3",
+          "share": 0.238
+        },
+        {
+          "name": null,
+          "hex": "#bdcadc",
+          "share": 0.168
+        },
+        {
+          "name": null,
+          "hex": "#d4dae1",
+          "share": 0.111
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-judicial-yuan-2023",
+      "kind": "scene",
+      "title": "司法大廈正面",
+      "region_ids": [
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": [
+        "office:jy"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Judicial_Yuan_Building_20230503.jpg",
+      "creator": "Yu tptw",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Yu tptw／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T10:13:01+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "司法院司法大廈正面全貌，淺色立面與中央門廊，前景是街道與行道樹。2023年5月3日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Judicial Yuan Building 20230503.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Judicial_Yuan_Building_20230503.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3341,
+        "original_height": 1524,
+        "original_sha1": "3609941c5bc71f8b3babe0ac5f15f6267eb09130",
+        "uploaded_at": "2023-05-03T04:40:16Z",
+        "date_taken": "2023-05-03 09:52:14",
+        "described_as": "司法大廈正面全貌",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 584,
+          "bytes": 237921,
+          "checksum": "c9e7970a5cd5e309a26d9a0e8ed644aa27951256f77555038d553c0971563327"
+        },
+        {
+          "path": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 219,
+          "bytes": 13948,
+          "checksum": "153acbd401682a71a1fb46b45422c1c584f9e4f32698b86b4db77ba7a10984cd"
+        },
+        {
+          "path": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 219,
+          "bytes": 23638,
+          "checksum": "52bbc6cbaa675d8a838815b9901f6e894ac5883183756cf45bcb8800e19adfbc"
+        },
+        {
+          "path": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 365,
+          "bytes": 39307,
+          "checksum": "2048127307f136036618d83c6953a47982cafcb0b87ce5bb2a82a1721056283c"
+        },
+        {
+          "path": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 365,
+          "bytes": 67246,
+          "checksum": "9c64d02e9b82049cdf0d38dd6e36c546fd315967a73f846208fe4de0d85e1f95"
+        },
+        {
+          "path": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 584,
+          "bytes": 103224,
+          "checksum": "635d09602ca4c417fedd4c895612065577486ea408d22dc49ee7f43f64ddd09c"
+        },
+        {
+          "path": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 584,
+          "bytes": 180232,
+          "checksum": "8e0a297542e1d2781cfde748121d32b2bbb7dd2460bcdc1ecfaa37e51a24fde2"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 584,
+        "unit": "px"
+      },
+      "checksum": "c9e7970a5cd5e309a26d9a0e8ed644aa27951256f77555038d553c0971563327",
+      "checksum_of": "art-library/scenes/scene-judicial-yuan-2023/scene-judicial-yuan-2023-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#9ca09e",
+          "share": 0.389
+        },
+        {
+          "name": null,
+          "hex": "#a0bede",
+          "share": 0.205
+        },
+        {
+          "name": null,
+          "hex": "#606255",
+          "share": 0.186
+        },
+        {
+          "name": null,
+          "hex": "#99b3d0",
+          "share": 0.113
+        },
+        {
+          "name": null,
+          "hex": "#bbcfe6",
+          "share": 0.107
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
       "id": "component-evidence-desk",
       "kind": "component",
       "title": "證據分類台",
@@ -4674,6 +5423,62 @@
       "review_status": "gap",
       "reason": "Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。",
       "needed": "有明確授權的官方或本人提供照片。不用他人照片，也不用生成肖像。"
+    },
+    {
+      "id": "gap-scene-peiying-housing",
+      "kind": "scene",
+      "title": "培英公共住宅現場",
+      "region_ids": [
+        "taipei"
+      ],
+      "project_refs": [
+        "taipei-peiying-housing"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 Commons 搜尋「培英 公共住宅」無命中。沒有已核對、可確認為該案址的授權照片。",
+      "needed": "授權清楚且可核對地點的現場照片。鄰近中山區街景不能冒充該案現況。"
+    },
+    {
+      "id": "gap-scene-baozhong-road",
+      "kind": "scene",
+      "title": "新埔褒忠路拓寬現場",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "project_refs": [
+        "hsinchu-county-baozhong-road"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 有新埔鎮入口等鄉鎮照片可入庫，但 Commons 沒有可確認為褒忠路工地的授權照片。",
+      "needed": "授權清楚、可確認路段的工地或沿線照片。鎮入口界牌不能當成該工程現況。"
+    },
+    {
+      "id": "gap-scene-siyuan-footbridge",
+      "kind": "scene",
+      "title": "思源路人行天橋現場",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "project_refs": [
+        "new-taipei-siyuan-footbridge"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 Commons 搜尋「思源路 天橋」無命中。沒有已核對可公開使用的該橋照片。",
+      "needed": "授權清楚且可確認為思源路跨越新北大道人行天橋的照片。"
+    },
+    {
+      "id": "gap-scene-xiangshan-four",
+      "kind": "scene",
+      "title": "香山四號道路現場",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "project_refs": [
+        "hsinchu-city-xiangshan-four"
+      ],
+      "review_status": "gap",
+      "reason": "2026-11-13 有香山車站前路口等地區街景可入庫，但 Commons 沒有可確認為香山四號道路或徵收範圍的授權照片。",
+      "needed": "授權清楚、可確認路廊的照片。車站前路口不能當成該道路工地或徵收現況。"
     }
   ],
   "coverage": [
@@ -4725,7 +5530,7 @@
     {
       "region_id": "hsinchu-county",
       "kind": "scene",
-      "count": 4
+      "count": 6
     },
     {
       "region_id": "hsinchu-county",
@@ -4745,7 +5550,7 @@
     {
       "region_id": "hsinchu-city",
       "kind": "scene",
-      "count": 4
+      "count": 5
     },
     {
       "region_id": "hsinchu-city",
@@ -4765,7 +5570,7 @@
     {
       "region_id": "central",
       "kind": "scene",
-      "count": 2
+      "count": 4
     },
     {
       "region_id": "central",
