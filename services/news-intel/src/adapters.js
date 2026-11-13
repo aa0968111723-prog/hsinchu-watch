@@ -130,6 +130,8 @@ export const COUNTY_SCHOOL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_SCHOOL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
+export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
+export const COUNTY_BED_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=238";
 export const COUNTY_ELECTION_PAGE = "https://web.cec.gov.tw/hccec/article/65398";
 export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
 
@@ -191,6 +193,20 @@ export function visitorPeriod(rows) {
   const first = periods[0];
   if (periods.some((item) => item.period !== first.period)) return { period: null, period_text: null };
   return first;
+}
+
+export function normalizeCountyBeds(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["機構名稱"] || "").trim();
+    if (!name) return [];
+    return [{
+      name,
+      acute_general_permitted: originalNumber(row["急性-一般病床-許可數"]),
+      acute_general_open: originalNumber(row["急性-一般病床-開放數"]),
+    }];
+  });
 }
 
 export function normalizeElectionNotice(html) {

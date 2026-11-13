@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyBeds, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -54,6 +54,7 @@ export function mergeRun(previous, result) {
       parking: previous?.parking || null,
       schools: previous?.schools || null,
       visitors: previous?.visitors || null,
+      beds: previous?.beds || null,
       election: previous?.election || null,
       model_review: previous?.model_review || [],
     };
@@ -72,9 +73,30 @@ export function mergeRun(previous, result) {
     parking: result.parking === undefined ? (previous?.parking || null) : result.parking,
     schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
+    beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     election: result.election === undefined ? (previous?.election || null) : result.election,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCountyBeds(fetcher, previous) {
+  const kept = previous?.beds ? { ...previous.beds, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_BED_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const rows = normalizeCountyBeds(await response.text());
+    if (!rows.length) return kept;
+    return {
+      source_url: COUNTY_BED_PAGE,
+      dataset_url: COUNTY_BED_URL,
+      rows,
+      retained: false,
+      note: "只列急性一般病床的許可數和開放數，沿用原文。檔案寫 0 就保留 0。其他床別不加總。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadElectionNotice(fetcher, previous) {
@@ -292,6 +314,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       parking: await loadCountyParking(fetcher, previous),
       schools: await loadCountySchools(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
+      beds: await loadCountyBeds(fetcher, previous),
       election: await loadElectionNotice(fetcher, previous),
       model_review: modelReview,
     });

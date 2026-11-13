@@ -35,6 +35,7 @@ try {
     parking: existing.parking || null,
     schools: existing.schools || null,
     visitors: existing.visitors || null,
+    beds: existing.beds || null,
     election: existing.election || null,
   };
 } catch {
@@ -110,6 +111,12 @@ const payload = {
     period_text: publishable.visitors.period_text,
     rows: publishable.visitors.rows,
     note: publishable.visitors.note,
+  } : null,
+  beds: publishable.beds ? {
+    source_url: publishable.beds.source_url,
+    dataset_url: publishable.beds.dataset_url,
+    rows: publishable.beds.rows,
+    note: publishable.beds.note,
   } : null,
   election: publishable.election ? {
     title: publishable.election.title,

@@ -422,6 +422,38 @@ test("different wording is not treated as a disputed claim", async () => {
   assert.equal(result.body.relation, "not_compared");
 });
 
+test("hospital bed counts stay as written and are not added together", async () => {
+  const { normalizeCountyBeds } = await import("../src/adapters.js");
+  const rows = normalizeCountyBeds(JSON.stringify([
+    { "機構名稱": "大安醫院", "急性-一般病床-許可數": "20", "急性-一般病床-開放數": "0", "加護病床": "3" },
+    { "機構名稱": " ", "急性-一般病床-開放數": "5" },
+    { "機構名稱": "空白開放數", "急性-一般病床-許可數": "", "急性-一般病床-開放數": "" },
+  ]));
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].acute_general_open, "0");
+  assert.equal(rows[1].acute_general_open, null);
+  assert.equal(JSON.stringify(rows).includes("加護"), false);
+  const kept = await runHour({
+    previous: { articles: [], beds: { rows: [{ name: "大安醫院", acute_general_open: "0" }] } },
+    now: "2026-11-14T01:30:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.beds.rows[0].acute_general_open, "0");
+  assert.equal(kept.beds.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-hospital-beds", payload: JSON.stringify([{ "機構名稱": "大安醫院", "急性-一般病床-許可數": "20", "急性-一般病床-開放數": "0", "加護病床": "3" }]) } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.rows[0].acute_general_open, "0");
+  assert.equal(JSON.stringify(imported.body).includes("加護"), false);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("其他床別不加總"), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -824,6 +856,9 @@ test("published news file stays within the real cap", () => {
   assert.ok(data.election.files.length >= 1);
   assert.ok(data.election.files.every((file) => String(file.url).startsWith("https://web.cec.gov.tw/api/file/") && String(file.url).endsWith(".pdf")));
   assert.equal(JSON.stringify(data.election).includes("鄭朝方"), false);
+  assert.ok(data.beds.rows.length >= 1);
+  assert.equal(data.beds.total, undefined);
+  assert.ok(data.beds.rows.every((row) => row.name && (row.acute_general_open === null || /^\d+$/.test(row.acute_general_open)) && (row.acute_general_permitted === null || /^\d+$/.test(row.acute_general_permitted))));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {

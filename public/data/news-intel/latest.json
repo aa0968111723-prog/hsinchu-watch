@@ -532,5 +532,62 @@
       }
     ],
     "note": "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。"
+  },
+  "beds": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=238",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json",
+    "rows": [
+      {
+        "name": "國立臺灣大學醫學院附設醫院新竹臺大分院生醫醫院",
+        "acute_general_permitted": "625",
+        "acute_general_open": "409"
+      },
+      {
+        "name": "中國醫藥大學新竹附設醫院",
+        "acute_general_permitted": "499",
+        "acute_general_open": "499"
+      },
+      {
+        "name": "東元醫療社團法人東元綜合醫院",
+        "acute_general_permitted": "290",
+        "acute_general_open": "279"
+      },
+      {
+        "name": "竹北新仁醫療社團法人新仁醫院",
+        "acute_general_permitted": "69",
+        "acute_general_open": "69"
+      },
+      {
+        "name": "大安醫院",
+        "acute_general_permitted": "48",
+        "acute_general_open": "48"
+      },
+      {
+        "name": "天主教仁慈醫療財團法人仁慈醫院",
+        "acute_general_permitted": "146",
+        "acute_general_open": "80"
+      },
+      {
+        "name": "培靈醫療社團法人關西醫院",
+        "acute_general_permitted": "0",
+        "acute_general_open": "0"
+      },
+      {
+        "name": "林醫院",
+        "acute_general_permitted": "20",
+        "acute_general_open": "20"
+      },
+      {
+        "name": "竹信醫院",
+        "acute_general_permitted": "24",
+        "acute_general_open": "24"
+      },
+      {
+        "name": "臺北榮民總醫院新竹分院",
+        "acute_general_permitted": "178",
+        "acute_general_open": "145"
+      }
+    ],
+    "note": "只列急性一般病床的許可數和開放數，沿用原文。檔案寫 0 就保留 0。其他床別不加總。"
   }
 }
