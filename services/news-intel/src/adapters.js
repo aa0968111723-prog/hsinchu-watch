@@ -137,16 +137,22 @@ export function splitCityCatalog(catalog) {
 
 export function normalizeCityCatalog(text) {
   const lines = String(text || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
-  const headerIndex = lines.findIndex((line) => line.startsWith("資料集名稱,"));
+  const headerIndex = lines.findIndex((line) => line.split(",").some((column) => column.trim() === "資料集名稱"));
   if (headerIndex < 0) return [];
+  const header = lines[headerIndex].split(",").map((column) => column.trim());
+  const nameIndex = header.indexOf("資料集名稱");
+  const agencyIndex = header.indexOf("資料來源");
+  const formatIndex = header.indexOf("提供格式");
   const datasets = [];
   for (const line of lines.slice(headerIndex + 1)) {
     const fields = line.split(",");
-    const name = fields[0]?.trim() || "";
-    const agency = fields[1]?.trim() || "";
-    const formats = fields[4]?.trim() || "";
+    const name = fields[nameIndex]?.trim() || "";
     if (!name) continue;
-    datasets.push({ name, agency, formats });
+    datasets.push({
+      name,
+      agency: agencyIndex >= 0 ? fields[agencyIndex]?.trim() || "" : "",
+      formats: formatIndex >= 0 ? fields[formatIndex]?.trim() || "" : "",
+    });
   }
   return datasets;
 }

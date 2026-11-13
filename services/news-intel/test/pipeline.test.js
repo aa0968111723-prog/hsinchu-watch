@@ -97,6 +97,9 @@ test("city catalog keeps dataset names and drops contact fields", async () => {
   const { normalizeCityCatalog } = await import("../src/adapters.js");
   const rows = normalizeCityCatalog("資料產生時間,2026/11/14\n資料集名稱,資料來源,聯絡人,聯絡電話,提供格式,資料說明\n新竹市路燈,工務處,王小明,03-5216121,CSV;JSON,說明,多餘");
   assert.deepEqual(rows, [{ name: "新竹市路燈", agency: "工務處", formats: "CSV;JSON" }]);
+  const reordered = normalizeCityCatalog("聯絡電話,提供格式,資料集名稱,資料來源\n03-5216121,CSV,新竹市路燈,工務處");
+  assert.deepEqual(reordered, [{ name: "新竹市路燈", agency: "工務處", formats: "CSV" }]);
+  assert.equal(JSON.stringify(reordered).includes("03-5216121"), false);
   const { splitCityCatalog } = await import("../src/adapters.js");
   const parts = splitCityCatalog({ source_url: "https://opendata.hccg.gov.tw/OpenDataCSV.aspx", list_url: "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059", count: 1, datasets: rows });
   assert.equal(parts.summary.datasets, undefined);
