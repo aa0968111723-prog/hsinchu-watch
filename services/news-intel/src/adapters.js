@@ -1,6 +1,8 @@
 const COUNTY_FEED = "https://www.hsinchu.gov.tw/OpenData.aspx?SN=92F93E5891B49161";
 const CITY_HOME = "https://www.hccg.gov.tw/";
 const COUNCIL_HOME = "https://www.hcc.gov.tw/";
+const FINAL_ACCOUNT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/181/3a4b5634-9141-414a-a0f6-422e45ccab19.json";
+const FINAL_ACCOUNT_LIST = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181";
 const CNA_FEED = "https://www.cna.com.tw/atomfeed_cfp.xml";
 
 function decode(value) {
@@ -77,6 +79,29 @@ export function normalizeCouncilHtml(html) {
   return rows;
 }
 
+export function normalizeFinalAccounts(payload) {
+  const rows = JSON.parse(payload).filter((row) => row && String(row["年度"] || "").trim());
+  rows.sort((left, right) => Number(left["年度"]) - Number(right["年度"]));
+  return rows.slice(-4).map((row) => {
+    const roc = Number(String(row["年度"]).trim());
+    const year = roc < 1911 ? roc + 1911 : roc;
+    const raw = row["歲出決算數"];
+    const spent = raw === null || raw === undefined || String(raw).trim() === "" ? null : String(raw).trim();
+    return {
+      original_title: `新竹縣${year}年度歲出決算`,
+      source_url: FINAL_ACCOUNT_LIST,
+      publisher_timestamp: String(year),
+      source_name: "新竹縣政府",
+      source_type: "official_json",
+      source_id: "hsc-expenditure-final",
+      region_id: "hsinchu-county",
+      year,
+      spent_amount: spent,
+      dataset_url: FINAL_ACCOUNT_URL,
+    };
+  });
+}
+
 export function normalizeCnaAtom(xml) {
   return items(xml, "entry").map((block) => {
     const link = block.match(/<link[^>]+href="([^"]+)"/i)?.[1] || "";
@@ -131,6 +156,19 @@ export const ADAPTERS = [
       return response.text();
     },
     normalize: normalizeCouncilHtml,
+  },
+  {
+    id: "hsc-expenditure-final",
+    kind: "final_account",
+    discover() {
+      return { url: FINAL_ACCOUNT_URL, docs: FINAL_ACCOUNT_LIST, license: "政府資料開放授權條款", free: true, needs_key: false };
+    },
+    async fetch(fetcher) {
+      const response = await fetcher(FINAL_ACCOUNT_URL);
+      if (!response.ok) throw new Error(`final_account_${response.status}`);
+      return response.text();
+    },
+    normalize: normalizeFinalAccounts,
   },
   {
     id: "cna-atom",

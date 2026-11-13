@@ -17,6 +17,9 @@
   <h1>新竹新聞索引</h1>
   <p id="status" class="meta">讀取中</p>
   <ol id="list"></ol>
+  <h2>新竹縣歲出決算</h2>
+  <p id="account-status" class="meta"></p>
+  <ol id="accounts"></ol>
   <h2>新竹縣議會公告</h2>
   <p id="notice-status" class="meta"></p>
   <ol id="notices"></ol>
@@ -24,6 +27,8 @@
 <script>
 const status = document.querySelector("#status");
 const list = document.querySelector("#list");
+const accountStatus = document.querySelector("#account-status");
+const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
 
@@ -52,6 +57,12 @@ fetch("/data/news-intel/latest.json")
       const statusLabels = { SINGLE_SOURCE: "單一來源", UNVERIFIED: "尚未查證", VERIFIED_OFFICIAL: "官方已核對", VERIFIED_MULTI_SOURCE: "多來源已核對", DISPUTED: "說法衝突", CORRECTED: "已更正", RETRACTED: "已撤下" };
       addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}`);
     }
+    const records = Array.isArray(data.public_records) ? data.public_records : [];
+    accountStatus.textContent = records.length ? "金額沿用資料檔原文。單位未標示，不換算。這不是驗收或實支。" : "這一輪沒有決算數字，沒有補 0。";
+    for (const record of records) {
+      const amount = record.spent_amount === null || record.spent_amount === undefined || record.spent_amount === "" ? "欄位是空的" : record.spent_amount;
+      addItem(accounts, `${record.year} 年度歲出決算`, record.list_url, `${record.source_name || "新竹縣政府"} · ${amount}`);
+    }
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
     for (const notice of announcements) {
@@ -61,6 +72,7 @@ fetch("/data/news-intel/latest.json")
   })
   .catch(() => {
     status.textContent = "新聞索引讀取失敗。頁面沒有改用假資料。";
+    accountStatus.textContent = "決算數字讀取失敗。頁面沒有改用假資料。";
     noticeStatus.textContent = "議會公告讀取失敗。頁面沒有改用假資料。";
   });
 </script>

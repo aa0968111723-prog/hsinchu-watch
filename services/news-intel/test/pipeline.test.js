@@ -109,6 +109,34 @@ test("city list keeps a dated municipal item and drops a blank date", async () =
   assert.equal(rows[0].source_url, "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=1");
 });
 
+test("final accounts keep blank amounts empty and stay out of the news list", async () => {
+  const { normalizeFinalAccounts } = await import("../src/adapters.js");
+  const rows = normalizeFinalAccounts(JSON.stringify([
+    { "年度": "105", "歲出決算數": "1" },
+    { "年度": "106", "歲出決算數": "19340599" },
+    { "年度": "107", "歲出決算數": "" },
+    { "年度": "108", "歲出決算數": "0" },
+    { "年度": "109", "歲出決算數": "25151903.17" },
+  ]));
+  assert.equal(rows.length, 4);
+  assert.equal(rows[0].year, 2017);
+  assert.equal(rows[1].spent_amount, null);
+  assert.equal(rows[2].spent_amount, "0");
+  assert.equal(rows[3].spent_amount, "25151903.17");
+  assert.equal(selectArticles(rows).length, 0);
+  const retained = await runHour({
+    previous: { articles: [], public_records: [{ year: 2020, spent_amount: "1", unit: null }] },
+    now: "2026-11-13T02:00:00.000Z",
+    adapters: [
+      { id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } },
+      { id: "hsc-expenditure-final", async fetch() { throw new Error("timeout"); }, normalize() { return []; } },
+    ],
+    fetcher: async () => ({ ok: false, status: 503, text: async () => "" }),
+  });
+  assert.equal(retained.public_records[0].spent_amount, "1");
+  assert.equal(retained.articles.length, 1);
+});
+
 test("published news file stays within the real cap", () => {
   const data = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/latest.json", import.meta.url), "utf8"));
   assert.ok(data.count <= 20);

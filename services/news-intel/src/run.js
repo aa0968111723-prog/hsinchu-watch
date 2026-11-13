@@ -12,6 +12,7 @@ export function mergeRun(previous, result) {
       error: result.error,
       failures: result.failures || [],
       announcements: previous?.announcements || [],
+      public_records: previous?.public_records || [],
     };
   }
   return {
@@ -22,6 +23,7 @@ export function mergeRun(previous, result) {
     failures: result.failures || [],
     gemini: result.gemini,
     announcements: result.announcements || [],
+    public_records: result.public_records || [],
   };
 }
 
@@ -40,6 +42,17 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
       source_name: item.source_name,
     }));
     const announcements = councilFailed ? (previous?.announcements || []) : freshNotices;
+    const accountsFailed = collected.failures.some((failure) => failure.id === "hsc-expenditure-final");
+    const freshRecords = collected.candidates.filter((item) => item.source_id === "hsc-expenditure-final").map((item) => ({
+      year: item.year,
+      spent_amount: item.spent_amount,
+      unit: null,
+      source_name: item.source_name,
+      dataset_url: item.dataset_url,
+      list_url: item.source_url,
+      note: "年度欄是民國年，這裡換成西元。金額維持原文字。單位未標示，不換算。這是歲出決算數，不是驗收或實支。",
+    }));
+    const publicRecords = accountsFailed ? (previous?.public_records || []) : freshRecords;
     const articles = selectArticles(collected.candidates).map((article) => ({
       ...article,
       ...publicationFields(article),
@@ -52,6 +65,7 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
       finished_at: now,
       gemini,
       announcements,
+      public_records: publicRecords,
     });
   } catch (error) {
     return mergeRun(previous, { ok: false, error: String(error.message || error).slice(0, 180) });
