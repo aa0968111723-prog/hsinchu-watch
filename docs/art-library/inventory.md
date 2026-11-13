@@ -25,6 +25,11 @@
 | `scene-new-taipei-zhongyuan-station-2019` | 場景 | 環狀線中原站出口 | Viy4092 | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:Zhongyuan_Station_of_Taipei_Metro_Circular_Line_20190828.jpg) | 2026-11-13T08:23:51+08:00 |
 | `scene-legislative-yuan-chamber-2017` | 場景 | 立法院議場外觀 | 林高志 | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:%E7%AB%8B%E6%B3%95%E9%99%A2%E8%AD%B0%E5%A0%B4.jpg) | 2026-11-13T08:23:54+08:00 |
 | `scene-executive-yuan-2017` | 場景 | 行政院中央大樓 | 寺人孟子 | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:%E8%A1%8C%E6%94%BF%E9%99%A2%E4%B8%AD%E5%A4%AE%E5%A4%A7%E6%A8%93_2.jpg) | 2026-11-13T08:23:56+08:00 |
+| `scene-zhudong-jiumu-2023` | 場景 | 竹東九牧第 | 小三可 | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:%E7%AB%B9%E6%9D%B1%E4%B9%9D%E7%89%A7%E7%AC%AC.jpg) | 2026-11-13T10:12:45+08:00 |
+| `scene-xinpu-entrance-2026` | 場景 | 新埔鎮入口界牌 | Junyu-K | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:202603_Town_entrance_of_Xinpu_Township_,Hsinchu_County_01.jpg) | 2026-11-13T10:12:50+08:00 |
+| `scene-xiangshan-tra-intersection-2018` | 場景 | 香山車站前路口 | Tbatb | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:View_on_the_Intersection_before_TRA_Xiangshan_Station.jpg) | 2026-11-13T10:12:54+08:00 |
+| `scene-presidential-office-2014` | 場景 | 總統府正面 | CEphoto, Uwe Aranas | CC BY-SA 3.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Presidential-Office-Building-01.jpg) | 2026-11-13T10:12:58+08:00 |
+| `scene-judicial-yuan-2023` | 場景 | 司法大廈正面 | Yu tptw | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:Judicial_Yuan_Building_20230503.jpg) | 2026-11-13T10:13:01+08:00 |
 | `component-evidence-desk` | 3D元件 | 證據分類台 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `component-budget-drawers` | 3D元件 | 預算三層抽屜 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `component-stage-yard` | 3D元件 | 階段工地模型 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
@@ -36,3 +41,7 @@
 
 - `gap-portrait-zhu`：朱定瑀肖像。Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。
 - `gap-portrait-tseng`：曾聖凱肖像。Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。
+- `gap-scene-peiying-housing`：培英公共住宅現場。2026-11-13 Commons 搜尋「培英 公共住宅」無命中。沒有已核對、可確認為該案址的授權照片。
+- `gap-scene-baozhong-road`：新埔褒忠路拓寬現場。2026-11-13 有新埔鎮入口等鄉鎮照片可入庫，但 Commons 沒有可確認為褒忠路工地的授權照片。
+- `gap-scene-siyuan-footbridge`：思源路人行天橋現場。2026-11-13 Commons 搜尋「思源路 天橋」無命中。沒有已核對可公開使用的該橋照片。
+- `gap-scene-xiangshan-four`：香山四號道路現場。2026-11-13 有香山車站前路口等地區街景可入庫，但 Commons 沒有可確認為香山四號道路或徵收範圍的授權照片。

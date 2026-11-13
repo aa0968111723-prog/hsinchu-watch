@@ -582,6 +582,141 @@
         "width": 1280,
         "sha256": "02b14f1d68e84ee95d5da3dd2fde89399e2fd6594ac7126af1f53ffc69b65083"
       }
+    },
+    "scene-zhudong-jiumu-2023": {
+      "commons": "File:竹東九牧第.jpg",
+      "retrieved_at": "2026-11-13T10:12:45+08:00",
+      "evidence": {
+        "title": "File:竹東九牧第.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E7%AB%B9%E6%9D%B1%E4%B9%9D%E7%89%A7%E7%AC%AC.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/%E7%AB%B9%E6%9D%B1%E4%B9%9D%E7%89%A7%E7%AC%AC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5888,
+        "original_height": 3926,
+        "original_mime": "image/jpeg",
+        "original_sha1": "273c635300add5af170ec80ed9d2255e8f18816c",
+        "uploaded_at": "2023-09-30T10:30:28Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "小三可",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2023-09-27 15:13:27",
+        "description": "九牧第為竹東地方仕紳林春秀起造之伙房屋，除了是其故居，也是處理竹東圳開鑿事務之辦公場所，是竹東地區經濟發展史的重要場所。",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "55059ff18163e23b0519245f10fbeae4f519a5aa99f67641049bd11228270628"
+      }
+    },
+    "scene-xinpu-entrance-2026": {
+      "commons": "File:202603 Town entrance of Xinpu Township ,Hsinchu County 01.jpg",
+      "retrieved_at": "2026-11-13T10:12:50+08:00",
+      "evidence": {
+        "title": "File:202603 Town entrance of Xinpu Township ,Hsinchu County 01.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:202603_Town_entrance_of_Xinpu_Township_,Hsinchu_County_01.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/202603_Town_entrance_of_Xinpu_Township_%2CHsinchu_County_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6120,
+        "original_height": 4080,
+        "original_mime": "image/jpeg",
+        "original_sha1": "9d8575f427104ba3e1e6ca4de2b5bfb3c51991de",
+        "uploaded_at": "2026-03-18T16:09:37Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Junyu-K",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2026-03-18 16:36:52",
+        "description": "There is a town sign of Xinpu Township (Hsinchu county) at the limit of Xinpu twp. ,Hsinchu county and Longtan dist. ,Taoyuan city . The photo sight location is one of Xinpu Township entrance on the township road between Hs20 and Ty20 in Taiwan.",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "16547885442a48358a2ef1740dc004603cb7f7cbd583df5ffd8e3bfe1f245678"
+      }
+    },
+    "scene-xiangshan-tra-intersection-2018": {
+      "commons": "File:View on the Intersection before TRA Xiangshan Station.jpg",
+      "retrieved_at": "2026-11-13T10:12:54+08:00",
+      "evidence": {
+        "title": "File:View on the Intersection before TRA Xiangshan Station.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:View_on_the_Intersection_before_TRA_Xiangshan_Station.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/View_on_the_Intersection_before_TRA_Xiangshan_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5456,
+        "original_height": 3632,
+        "original_mime": "image/jpeg",
+        "original_sha1": "06acef96d51169ee34e1df798393e60243e6e15c",
+        "uploaded_at": "2020-08-23T15:08:50Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Tbatb",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2018-09-07 14:14:24",
+        "description": "臺鐵香山車站前路口一景。",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "fe90674d8b2a0c128fed16b7a1272181566626fb08c57d77f6d31bc0854a0b6d"
+      }
+    },
+    "scene-presidential-office-2014": {
+      "commons": "File:Taipei Taiwan Presidential-Office-Building-01.jpg",
+      "retrieved_at": "2026-11-13T10:12:58+08:00",
+      "evidence": {
+        "title": "File:Taipei Taiwan Presidential-Office-Building-01.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Presidential-Office-Building-01.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Taipei_Taiwan_Presidential-Office-Building-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5201,
+        "original_height": 2957,
+        "original_mime": "image/jpeg",
+        "original_sha1": "11b38304be174cffaf768f95ae64ba3f3f08d1fd",
+        "uploaded_at": "2014-06-15T08:41:31Z",
+        "license_short": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "artist": "CEphoto, Uwe Aranas",
+        "attribution": "Photo by CEphoto, Uwe Aranas or alternatively © CEphoto, Uwe Aranas",
+        "credit": "Own work",
+        "date_original": "2014-05-18",
+        "description": "Taipei, Taiwan: Presidential Office Building",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "43975399ba3c51af79a9c4f9dabfd45a8e82e6582a9f6c32312a72c65cc45bd8"
+      }
+    },
+    "scene-judicial-yuan-2023": {
+      "commons": "File:Judicial Yuan Building 20230503.jpg",
+      "retrieved_at": "2026-11-13T10:13:01+08:00",
+      "evidence": {
+        "title": "File:Judicial Yuan Building 20230503.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Judicial_Yuan_Building_20230503.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Judicial_Yuan_Building_20230503.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3341,
+        "original_height": 1524,
+        "original_mime": "image/jpeg",
+        "original_sha1": "3609941c5bc71f8b3babe0ac5f15f6267eb09130",
+        "uploaded_at": "2023-05-03T04:40:16Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Yu tptw",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2023-05-03 09:52:14",
+        "description": "司法大廈正面全貌",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "db1671a5fb91a35e5f90eee7654add94ff1aff811937224a568e0e00230cd119"
+      }
     }
   }
 }
