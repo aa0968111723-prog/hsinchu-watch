@@ -1,5 +1,12 @@
 import { handleMcp } from "./mcp.js";
-import { decideGemini, selectArticles } from "./pipeline.js";
+import { runHour } from "./run.js";
+
+async function previousSnapshot(env) {
+  if (!env.DB) return { articles: [], last_success_at: null };
+  const row = await env.DB.prepare("SELECT articles_json, last_success_at FROM published_snapshots WHERE id = 1").first();
+  if (!row) return { articles: [], last_success_at: null };
+  return { articles: JSON.parse(row.articles_json), last_success_at: row.last_success_at };
+}
 
 function tokensFromEnv(env) {
   return {
@@ -33,12 +40,21 @@ export default {
   },
 
   async scheduled(_event, env) {
-    const decision = decideGemini(env, { tokens_today: 0, requests_this_hour: 0 });
-    const selected = selectArticles([]);
-    if (env.DB) {
+    const previous = await previousSnapshot(env);
+    const result = await runHour({
+      fetcher: (url) => fetch(url, { headers: { "user-agent": "HsinchuNewsIntel/0.1" } }),
+      env,
+      previous,
+      now: new Date().toISOString(),
+    });
+    if (!env.DB) return;
+    await env.DB.prepare(
+      "INSERT INTO agent_runs (id, started_at, finished_at, status, article_count, gemini_used, error) VALUES (?, datetime('now'), datetime('now'), ?, ?, ?, ?)"
+    ).bind(crypto.randomUUID(), result.ok ? "ok" : "failed", result.articles.length, result.gemini?.use ? 1 : 0, result.ok ? null : result.error).run();
+    if (result.ok) {
       await env.DB.prepare(
-        "INSERT INTO agent_runs (id, started_at, finished_at, status, article_count, gemini_used, error) VALUES (?, datetime('now'), datetime('now'), ?, ?, ?, ?)"
-      ).bind(crypto.randomUUID(), "ok", selected.length, decision.use ? 1 : 0, decision.use ? null : decision.reason).run();
+        "INSERT INTO published_snapshots (id, articles_json, last_success_at) VALUES (1, ?, ?) ON CONFLICT(id) DO UPDATE SET articles_json = excluded.articles_json, last_success_at = excluded.last_success_at"
+      ).bind(JSON.stringify(result.articles), result.last_success_at).run();
     }
   },
 };
