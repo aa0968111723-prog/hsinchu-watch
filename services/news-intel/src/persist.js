@@ -342,6 +342,30 @@ export async function persistToilets(db, { toilets, now, actor = "scheduler" }) 
   return { upserted };
 }
 
+export async function persistHeritage(db, { heritage, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of heritage?.sites || []) {
+    const name = String(row?.name || "").trim();
+    if (!name) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    const township = row.township || "";
+    keys.push([code, name, township]);
+    const ownership = row.ownership || null;
+    const existing = await db.prepare("SELECT ownership, designation FROM heritage_sites WHERE code = ? AND name = ? AND township = ?").bind(code, name, township).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO heritage_sites (code, name, township, region_id, heritage_kind, designation, postal_code, address, ownership, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, name, township, row.region_id || null, row.heritage_kind || null, row.designation || null, row.postal_code || null, row.address || null, ownership, heritage.dataset_url, heritage.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.ownership ?? null) !== ownership || (existing.designation ?? null) !== (row.designation || null)) {
+      await db.prepare("UPDATE heritage_sites SET region_id = ?, heritage_kind = ?, designation = ?, postal_code = ?, address = ?, ownership = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND name = ? AND township = ?").bind(row.region_id || null, row.heritage_kind || null, row.designation || null, row.postal_code || null, row.address || null, ownership, heritage.dataset_url, heritage.source_url, now, code, name, township).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "heritage_sites", heritage?.dataset_url, ["code", "name", "township"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_heritage', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

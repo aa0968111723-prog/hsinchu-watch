@@ -610,6 +610,47 @@ test("accessible toilets keep the shared update date and a blank address", async
   assert.equal(page.includes("最後更新時間沿用資料檔"), true);
 });
 
+test("heritage sites keep the short township label and do not rename 新埔鄉", async () => {
+  const { normalizeCountyHeritage, splitHeritage } = await import("../src/adapters.js");
+  const rows = normalizeCountyHeritage(JSON.stringify([
+    { "編號": "1", "指定名稱": "某宅", "古蹟類別": "宅第", "指定類別": "縣定古蹟", "鄉鎮": "新埔", "郵遞區號": "305", "地址或位置": "中正路", "權屬": "私有" },
+    { "編號": "2", "指定名稱": "寫錯的鄉", "古蹟類別": "寺廟", "指定類別": "歷史建築", "鄉鎮": "新埔鄉", "地址或位置": "某路", "權屬": "公有" },
+    { "編號": "3", "指定名稱": " ", "鄉鎮": "竹北", "權屬": "公有" },
+  ]));
+  assert.deepEqual(rows.map((row) => ({ name: row.name, township: row.township, region_id: row.region_id, ownership: row.ownership })), [
+    { name: "某宅", township: "新埔", region_id: "xinpu", ownership: "私有" },
+    { name: "寫錯的鄉", township: "新埔鄉", region_id: null, ownership: "公有" },
+  ]);
+  const parts = splitHeritage({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=267", dataset_url: "https://ws.hsinchu.gov.tw/heritage.json", count: rows.length, sites: rows });
+  assert.equal(parts.summary.sites, undefined);
+  const kept = await runHour({
+    previous: { articles: [], heritage: { count: 3 } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.heritage.count, 3);
+  assert.equal(kept.heritage.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-heritage", payload: JSON.stringify([{ "編號": "1", "指定名稱": "某宅", "鄉鎮": "新埔", "權屬": "土地私有.建築公有" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-heritage", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.sites[0].region_id, "xinpu");
+  assert.equal(imported.body.sites[0].township, "新埔");
+  assert.equal(imported.body.sites[0].ownership, "土地私有.建築公有");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不補市鎮鄉"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1318,6 +1359,15 @@ test("published news file stays within the real cap", () => {
     const toilets = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/accessible-toilets.json", import.meta.url), "utf8"));
     assert.equal(toilets.toilets.length, data.toilets.count);
     assert.ok(toilets.toilets.every((row) => row.name && !Object.hasOwn(row, "phone")));
+  }
+  if (data.heritage) {
+    assert.ok(data.heritage.count > 50);
+    assert.equal(data.heritage.sites, undefined);
+    const heritage = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/heritage-sites.json", import.meta.url), "utf8"));
+    assert.equal(heritage.sites.length, data.heritage.count);
+    assert.ok(heritage.sites.every((row) => row.name && row.township && !String(row.township).endsWith("鄉") && !String(row.township).endsWith("鎮") && !String(row.township).endsWith("市")));
+    assert.equal(heritage.sites.some((row) => row.township === "新埔" && row.region_id === "xinpu"), true);
+    assert.equal(heritage.sites.some((row) => row.township === "新埔鄉"), false);
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

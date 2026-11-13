@@ -148,6 +148,8 @@ export const COUNTY_SHELTER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/openda
 export const COUNTY_SHELTER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=312";
 export const COUNTY_TOILET_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/533/fa516b6e-25d4-4ebc-9a18-4996026786f8.json";
 export const COUNTY_TOILET_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=533";
+export const COUNTY_HERITAGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/267/26aab9a2-ca06-4aa6-a878-979c9d32c59b.json";
+export const COUNTY_HERITAGE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=267";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -627,6 +629,58 @@ export function splitToilets(toilets) {
     note: toilets.note || "只留名稱、鄉鎮、村里、地址、類型和備註。最後更新時間沿用資料檔，不是抓取時間。",
   };
   const download = Array.isArray(toilets.toilets) ? { ...summary, toilets: toilets.toilets } : null;
+  return { summary, download };
+}
+
+const HERITAGE_TOWNS = {
+  "竹北": "zhubei",
+  "竹東": "zhudong",
+  "湖口": "hukou",
+  "新豐": "xinfeng",
+  "新埔": "xinpu",
+  "關西": "guanxi",
+  "芎林": "qionglin",
+  "寶山": "baoshan",
+  "北埔": "beipu",
+  "峨眉": "emei",
+  "橫山": "hengshan",
+  "尖石": "jianshi",
+  "五峰": "wufeng",
+};
+
+export function normalizeCountyHeritage(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["指定名稱"] || "").trim();
+    if (!name) return [];
+    const township = String(row["鄉鎮"] || "").trim();
+    const address = String(row["地址或位置"] || "").trim();
+    const postal = String(row["郵遞區號"] ?? "").trim();
+    return [{
+      code: originalNumber(row["編號"]),
+      name,
+      heritage_kind: String(row["古蹟類別"] || "").trim() || null,
+      designation: String(row["指定類別"] || "").trim() || null,
+      township: township || null,
+      region_id: HERITAGE_TOWNS[township] || null,
+      postal_code: postal || null,
+      address: address || null,
+      ownership: String(row["權屬"] || "").trim() || null,
+    }];
+  });
+}
+
+export function splitHeritage(heritage) {
+  if (!heritage?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: heritage.source_url,
+    dataset_url: heritage.dataset_url,
+    count: heritage.count,
+    download_url: "/data/news-intel/heritage-sites.json",
+    note: heritage.note || "只留名稱、類別、指定別、鄉鎮簡稱、地址和權屬原文。鄉鎮沒有寫市鎮鄉就不補字。檔案沒有日期欄，不拿抓取時間充當。",
+  };
+  const download = Array.isArray(heritage.sites) ? { ...summary, sites: heritage.sites } : null;
   return { summary, download };
 }
 
