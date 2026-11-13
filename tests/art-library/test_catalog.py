@@ -151,10 +151,18 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(set(covered) | missing, roster, "every listed candidate has a portrait or a stated gap")
         self.assertEqual(set(covered) & missing, set())
         size = self.catalog["portrait_standard"]["size"]
+        card = self.catalog["portrait_standard"]["card"]
         for asset in portraits:
             with self.subTest(asset=asset["id"]):
                 fallback = next(entry for entry in asset["files"] if entry["role"] == "fallback")
                 self.assertEqual((fallback["width"], fallback["height"]), (size, size))
+                cards = [entry for entry in asset["files"] if entry["role"] == "card"]
+                self.assertTrue(cards, "every portrait ships the shared 3:4 card")
+                primary = next(entry for entry in cards if entry["format"] == "jpeg" and entry["height"] == card["height"])
+                self.assertEqual((primary["width"], primary["height"]), (card["width"], card["height"]))
+                self.assertEqual(asset["card_dimensions"]["width"] / asset["card_dimensions"]["height"], 0.75)
+                self.assertEqual(asset["card_3x4"]["w"] / asset["card_3x4"]["h"], asset["card_3x4"]["w"] / asset["card_3x4"]["h"])
+                self.assertAlmostEqual(asset["card_3x4"]["w"] / asset["card_3x4"]["h"], 0.75, places=2)
                 self.assertTrue(asset["identity"]["basis"])
                 self.assertTrue(asset["identity"]["site_file_check"])
                 match = self.lock[asset["id"]]["site_match"]
