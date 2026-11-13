@@ -41,7 +41,7 @@
 | 保留兩個特例 | exit 0，15 頁，9,164 筆 | 通過 |
 | 拿掉兩個特例 | exit 0，15 頁，9,164 筆 | 通過（`--built`） |
 
-第四線採用第二種，並已發布。2026-11-13 對 https://hsinchu-watch.pages.dev 跑 `check_live.py`：release `hsinchu-d3eeeaa781cd685d`，索引 schema 2、22 筆，與當時 checkout 位元組相同，`generated_at` 為 `2026-11-13T08:51:39+08:00`。`/asset-lab.html` 有 `data-ui-depth=v3` 與 `#alCount`。`/art-library/figures/evidence-bench/index.html` 與首頁同為 7,824 bytes，是未知路徑回首頁。`evidence-desk/fragment.html` 與 `boot.js` 是實際檔案。
+第四線採用第二種。2026-11-13 預算抽屜發布後，`check_live.py` 對 https://hsinchu-watch.pages.dev 回報：release `hsinchu-06e22ef430c3f85d`，索引 schema 2、23 筆，含 `component-budget-drawers`，與當時 checkout 位元組相同，`generated_at` 為 `2026-11-13T09:17:51+08:00`。金額來自治理案卷；沒有紀錄的抽屜維持門閂，不顯示 0 元。`/art-library/figures/evidence-bench/index.html` 與首頁同為 7,824 bytes，是未知路徑回首頁。`evidence-desk/fragment.html` 與 `boot.js` 是實際檔案。
 
 整合後請跑：
 
