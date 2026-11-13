@@ -87,7 +87,8 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
   }
   if (tool === "query_public_records") {
     const rows = await db.prepare("SELECT id, title, source_url, published_on FROM government_announcements ORDER BY published_on DESC LIMIT 20").all();
-    return { status: 200, body: { records: rows.results || [] } };
+    const accounts = await db.prepare("SELECT year, spent_text, unit, dataset_url, list_url FROM final_accounts ORDER BY year DESC LIMIT 20").all();
+    return { status: 200, body: { records: rows.results || [], final_accounts: accounts.results || [] } };
   }
   if (tool === "get_review_queue") {
     const rows = await db.prepare("SELECT id, article_id, reason, status FROM review_queue WHERE status = 'open' ORDER BY created_at DESC LIMIT 20").all();

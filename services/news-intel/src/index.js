@@ -1,5 +1,5 @@
 import { handleMcp } from "./mcp.js";
-import { persistAnnouncements, persistArticles, snapshotPayload } from "./persist.js";
+import { persistAnnouncements, persistArticles, persistPublicRecords, snapshotPayload } from "./persist.js";
 import { runHour } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -26,6 +26,9 @@ export async function applyScheduledResult(db, previous, result) {
   if (result.ok && result.announcements?.length) {
     await persistAnnouncements(db, { announcements: result.announcements, now: result.last_success_at });
   }
+  if (result.ok && result.public_records?.length) {
+    await persistPublicRecords(db, { records: result.public_records, now: result.last_success_at });
+  }
   const snapshot = snapshotPayload(previous, result);
   if (snapshot.replaced) {
     await persistArticles(db, { articles: result.articles, now: result.last_success_at });
@@ -39,6 +42,12 @@ export async function applyScheduledResult(db, previous, result) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (request.method === "GET" && url.pathname === "/api/v1/public-records") {
+      const rows = env.DB
+        ? await env.DB.prepare("SELECT year, spent_text, unit, dataset_url, list_url, note FROM final_accounts ORDER BY year DESC").all()
+        : { results: [] };
+      return Response.json({ records: rows.results || [], note: "spent_text 是資料檔原文，不是驗收或實支" });
+    }
     if (request.method === "GET" && url.pathname === "/api/v1/news") {
       const rows = env.DB
         ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status, claim_kind FROM articles WHERE review_status NOT IN ('rejected', 'retracted') AND verification_status != 'RETRACTED' ORDER BY publisher_timestamp DESC LIMIT 20").all()

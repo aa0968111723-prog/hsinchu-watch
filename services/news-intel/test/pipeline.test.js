@@ -344,3 +344,39 @@ test("a failed scheduled round keeps the previous database rows", async () => {
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM agent_runs").get().n, 2);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM project_budgets").get().n, 0);
 });
+
+test("final account text stays unchanged in the database and the read API", async () => {
+  const { DatabaseSync } = await import("node:sqlite");
+  const { persistPublicRecords } = await import("../src/persist.js");
+  const worker = (await import("../src/index.js")).default;
+  const db = new DatabaseSync(":memory:");
+  db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0003_final_accounts.sql", import.meta.url), "utf8"));
+  const d1 = {
+    prepare(sql) {
+      const statement = (params) => ({
+        bind(...next) { return statement(next); },
+        async run() { db.prepare(sql).run(...params); return { success: true }; },
+        async all() { return { results: db.prepare(sql).all(...params) }; },
+        async first() { return db.prepare(sql).get(...params) || null; },
+      });
+      return statement([]);
+    },
+  };
+  const records = [
+    { year: 2018, spent_amount: "20531850.69", unit: null, dataset_url: "https://ws.hsinchu.gov.tw/a.json", list_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181", note: "原文" },
+    { year: 2017, spent_amount: null, unit: null, dataset_url: "https://ws.hsinchu.gov.tw/a.json", list_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181", note: "空欄" },
+  ];
+  const first = await persistPublicRecords(d1, { records, now: "2026-11-13T02:00:00.000Z" });
+  const repeat = await persistPublicRecords(d1, { records, now: "2026-11-13T03:00:00.000Z" });
+  const response = await worker.fetch(new Request("https://news.local/api/v1/public-records"), { DB: d1 });
+  const body = await response.json();
+  const queried = await handleMcp({ authorization: "Bearer reader-token", tokens, db: d1, body: { tool: "query_public_records" } });
+  assert.equal(first.inserted, 2);
+  assert.equal(repeat.inserted, 0);
+  assert.equal(body.records[0].spent_text, "20531850.69");
+  assert.equal(body.records[1].spent_text, null);
+  assert.equal(queried.body.final_accounts.length, 2);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM project_budgets").get().n, 0);
+});

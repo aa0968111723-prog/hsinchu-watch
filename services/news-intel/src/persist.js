@@ -77,6 +77,23 @@ export async function persistArticles(db, { articles, now, actor = "scheduler" }
   return { inserted, revised };
 }
 
+export async function persistPublicRecords(db, { records, now, actor = "scheduler" }) {
+  let inserted = 0;
+  for (const record of records || []) {
+    if (!record?.year || !record.dataset_url || !record.list_url) continue;
+    const spent = record.spent_amount === undefined || record.spent_amount === "" ? null : record.spent_amount;
+    const existing = await db.prepare("SELECT id, spent_text FROM final_accounts WHERE region_id = ? AND year = ?").bind("hsinchu-county", record.year).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO final_accounts (id, region_id, year, spent_text, unit, dataset_url, list_url, note) VALUES (?, 'hsinchu-county', ?, ?, ?, ?, ?, ?)").bind(crypto.randomUUID(), record.year, spent, record.unit ?? null, record.dataset_url, record.list_url, record.note || "").run();
+      inserted += 1;
+    } else if ((existing.spent_text ?? null) !== spent) {
+      await db.prepare("UPDATE final_accounts SET spent_text = ?, unit = ? WHERE id = ?").bind(spent, record.unit ?? null, existing.id).run();
+    }
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_public_records', ?, ?)").bind(crypto.randomUUID(), actor, `inserted=${inserted}`, now).run();
+  return { inserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();
