@@ -124,6 +124,8 @@ export const CITY_CATALOG_URL = "https://opendata.hccg.gov.tw/OpenDataCSV.aspx";
 export const CITY_CATALOG_LIST = "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059";
 export const COUNTY_POPULATION_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/339/a3138432-c1c2-475a-8552-7e201bfdb0af.json";
 export const COUNTY_POPULATION_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=339";
+export const COUNTY_PARKING_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/271/18b31a65-54c3-4fb6-93c4-63bf021e1bb6.json";
+export const COUNTY_PARKING_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271";
 export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
 
 export function populationPeriod(html) {
@@ -135,6 +137,56 @@ export function populationPeriod(html) {
   if (!Number.isInteger(roc) || !Number.isInteger(month) || roc < 1 || month < 1 || month > 12) return { period: null, period_text: null };
   const year = roc < 1911 ? roc + 1911 : roc;
   return { period: `${year}-${String(month).padStart(2, "0")}`, period_text: `${match[1]}年${match[2]}月` };
+}
+
+const PARKING_DISTRICTS = {
+  "竹北市": "zhubei",
+  "竹東鎮": "zhudong",
+  "湖口鄉": "hukou",
+  "新豐鄉": "xinfeng",
+  "新埔鎮": "xinpu",
+  "關西鎮": "guanxi",
+  "芎林鄉": "qionglin",
+  "寶山鄉": "baoshan",
+  "北埔鄉": "beipu",
+  "峨眉鄉": "emei",
+  "橫山鄉": "hengshan",
+  "尖石鄉": "jianshi",
+  "五峰鄉": "wufeng",
+};
+
+export function normalizeCountyParking(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["停車場名稱"] || "").trim();
+    if (!name) return [];
+    const district = String(row["行政區"] || "").trim();
+    const spaces = row["停車格數量"];
+    const fee = row["收費方式"];
+    return [{
+      name,
+      district,
+      region_id: PARKING_DISTRICTS[district] || null,
+      address: String(row["停車場地址-地號"] || "").trim(),
+      kind: String(row["型式"] || "").trim(),
+      spaces: spaces === null || spaces === undefined || String(spaces).trim() === "" ? null : String(spaces).trim(),
+      fee: fee === null || fee === undefined || String(fee).trim() === "" ? null : String(fee).trim(),
+    }];
+  });
+}
+
+export function splitParking(parking) {
+  if (!parking?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: parking.source_url,
+    dataset_url: parking.dataset_url,
+    count: parking.count,
+    download_url: "/data/news-intel/parking.json",
+    note: parking.note || "只留名稱、行政區、地址、型式、格數原文和收費方式。不含電話、分機、公司名稱或證號。",
+  };
+  const download = Array.isArray(parking.lots) ? { ...summary, lots: parking.lots } : null;
+  return { summary, download };
 }
 
 export function normalizeCountyPopulation(payload) {

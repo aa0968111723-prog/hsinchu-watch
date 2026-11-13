@@ -1,5 +1,5 @@
 import { handleMcp } from "./mcp.js";
-import { persistAnnouncements, persistArticles, persistModelReview, persistPopulation, persistPublicRecords, snapshotPayload } from "./persist.js";
+import { persistAnnouncements, persistArticles, persistModelReview, persistPopulation, persistPublicRecords, persistTransport, snapshotPayload } from "./persist.js";
 import { runHour, sourceFetch } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -38,6 +38,9 @@ export async function applyScheduledResult(db, previous, result) {
   }
   if (result.ok && result.population?.rows?.length && result.population.retained !== true) {
     await persistPopulation(db, { population: result.population, now: result.last_success_at });
+  }
+  if (result.ok && result.parking?.lots?.length && result.parking.retained !== true) {
+    await persistTransport(db, { parking: result.parking, now: result.last_success_at });
   }
   if (result.ok && result.model_review?.length) {
     await persistModelReview(db, { proposals: result.model_review, now: result.last_success_at });

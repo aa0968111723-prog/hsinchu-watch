@@ -129,6 +129,30 @@ export async function persistPopulation(db, { population, now, actor = "schedule
   return { upserted };
 }
 
+export async function persistTransport(db, { parking, now, actor = "scheduler" }) {
+  const ids = [];
+  let upserted = 0;
+  for (const lot of parking?.lots || []) {
+    if (!lot?.name) continue;
+    const id = (await digest(`${lot.name}\n${lot.address || ""}\n${lot.district || ""}`)).slice(0, 32);
+    ids.push(id);
+    const summary = [lot.name, lot.district || "行政區未填", lot.kind || "型式未填", lot.spaces || "格數未填", lot.fee || "收費未填"].join("｜");
+    const existing = await db.prepare("SELECT summary FROM transport_updates WHERE id = ?").bind(id).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO transport_updates (id, region_id, summary, source_url, published_at) VALUES (?, ?, ?, ?, NULL)").bind(id, lot.region_id, summary, parking.source_url).run();
+      upserted += 1;
+    } else if (existing.summary !== summary) {
+      await db.prepare("UPDATE transport_updates SET region_id = ?, summary = ?, source_url = ? WHERE id = ?").bind(lot.region_id, summary, parking.source_url, id).run();
+    }
+  }
+  if (ids.length) {
+    const placeholders = ids.map(() => "?").join(",");
+    await db.prepare(`DELETE FROM transport_updates WHERE source_url = ? AND id NOT IN (${placeholders})`).bind(parking.source_url, ...ids).run();
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_transport', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

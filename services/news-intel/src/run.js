@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, collectAdapters, normalizeCityCatalog, normalizeCountyPopulation, populationPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, populationPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -41,6 +41,7 @@ export function mergeRun(previous, result) {
       public_records: previous?.public_records || [],
       city_catalog: previous?.city_catalog || null,
       population: previous?.population || null,
+      parking: previous?.parking || null,
       model_review: previous?.model_review || [],
     };
   }
@@ -55,8 +56,30 @@ export function mergeRun(previous, result) {
     public_records: result.public_records || [],
     city_catalog: result.city_catalog || null,
     population: result.population === undefined ? (previous?.population || null) : result.population,
+    parking: result.parking === undefined ? (previous?.parking || null) : result.parking,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCountyParking(fetcher, previous) {
+  const kept = previous?.parking ? { ...previous.parking, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_PARKING_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const lots = normalizeCountyParking(await response.text());
+    if (!lots.length) return kept;
+    return {
+      source_url: COUNTY_PARKING_PAGE,
+      dataset_url: COUNTY_PARKING_URL,
+      count: lots.length,
+      lots,
+      retained: false,
+      note: "只留名稱、行政區、地址、型式、格數原文和收費方式。不含電話、分機、公司名稱或證號。格數不換算。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadCountyPopulation(fetcher, previous) {
@@ -162,6 +185,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       public_records: publicRecords,
       city_catalog: await loadCityCatalog(fetcher, previous),
       population: await loadCountyPopulation(fetcher, previous),
+      parking: await loadCountyParking(fetcher, previous),
       model_review: modelReview,
     });
   } catch (error) {

@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitCityCatalog } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitCityCatalog, splitParking } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -8,6 +8,7 @@ import { publishableResult, runHour, sourceFetch } from "./run.js";
 
 const publicUrl = new URL("../../../public/data/news-intel/latest.json", import.meta.url);
 const catalogUrl = new URL("../../../public/data/news-intel/city-catalog.json", import.meta.url);
+const parkingUrl = new URL("../../../public/data/news-intel/parking.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
 try {
   const existing = JSON.parse(readFileSync(publicUrl, "utf8"));
@@ -30,6 +31,7 @@ try {
     public_records: existing.public_records || [],
     city_catalog: existing.city_catalog || null,
     population: existing.population || null,
+    parking: existing.parking || null,
   };
 } catch {
   previous = { articles: [], last_success_at: null };
@@ -55,6 +57,10 @@ const publishable = publishableResult(previous, result);
 const catalogParts = splitCityCatalog(publishable.city_catalog);
 const catalogPublish = catalogForPublish(catalogParts.download, catalogParts.summary, previous.city_catalog, (download) => {
   writeFileSync(catalogUrl, JSON.stringify(download));
+});
+const parkingParts = splitParking(publishable.parking);
+const parkingPublish = catalogForPublish(parkingParts.download, parkingParts.summary, previous.parking, (download) => {
+  writeFileSync(parkingUrl, JSON.stringify(download));
 });
 const payload = {
   ok: publishable.ok,
@@ -87,6 +93,7 @@ const payload = {
     rows: publishable.population.rows,
     note: publishable.population.note,
   } : null,
+  parking: parkingPublish.summary,
   changes: articleChanges(previous.articles, publishable.articles),
   duration_ms: Date.now() - started,
   model_review: publishable.model_review || [],

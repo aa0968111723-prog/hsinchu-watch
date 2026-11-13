@@ -425,5 +425,12 @@
       }
     ],
     "note": "只列性別為計的總計。人數沿用資料檔原文。縣合計的區域別在資料檔寫 D-，代碼是 10004000。"
+  },
+  "parking": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/271/18b31a65-54c3-4fb6-93c4-63bf021e1bb6.json",
+    "count": 139,
+    "download_url": "/data/news-intel/parking.json",
+    "note": "只留名稱、行政區、地址、型式、格數原文和收費方式。不含電話、分機、公司名稱或證號。格數不換算。"
   }
 }

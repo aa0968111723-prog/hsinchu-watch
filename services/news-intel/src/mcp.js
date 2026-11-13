@@ -1,8 +1,8 @@
-import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, MOENV_AIR_URL, normalizeCountyPopulation, normalizeFinalAccounts } from "./adapters.js";
+import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, MOENV_AIR_URL, normalizeCountyParking, normalizeCountyPopulation, normalizeFinalAccounts } from "./adapters.js";
 import { authorize, consumeWrite } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
-import { persistPopulation, persistPublicRecords } from "./persist.js";
+import { persistPopulation, persistPublicRecords, persistTransport } from "./persist.js";
 import { parsePublisherTimestamp } from "./verify.js";
 
 export const TOOLS = [
@@ -20,12 +20,12 @@ export const TOOLS = [
 const WRITE_TOOLS = new Set([
   "submit_article_batch", "collect_latest_news", "create_article_candidate",
   "approve_verified_article", "reject_article", "revise_article", "retract_article",
-  "import_government_dataset",
+  "import_government_dataset", "sync_transport_data",
 ]);
 const defaultWriteRates = new Map();
 
 const UNCONNECTED = new Set([
-  "sync_governance_records", "sync_transport_data", "sync_environment_data",
+  "sync_governance_records", "sync_environment_data",
   "sync_election_data", "sync_poll_metadata",
 ]);
 
@@ -34,6 +34,7 @@ function sources() {
     ...ADAPTERS.map((adapter) => ({ id: adapter.id, kind: adapter.kind, ...adapter.discover() })),
     { id: "hccg-opendata-catalog", kind: "open_data", url: CITY_CATALOG_URL, docs: CITY_CATALOG_LIST, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-population", kind: "open_data", url: COUNTY_POPULATION_URL, docs: COUNTY_POPULATION_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
+    { id: "hsc-parking", kind: "transport", url: COUNTY_PARKING_URL, docs: COUNTY_PARKING_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "moenv-aqx-p-432", kind: "environment", url: MOENV_AIR_URL, docs: "https://data.moenv.gov.tw/", license: "未取得 api_key，不當作公開來源", free: false, needs_key: true },
   ];
 }
@@ -62,6 +63,25 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
   function remember(result) {
     if (idempotencyKey && state?.idempotency && result.status < 500) state.idempotency.set(cacheKey, { status: result.status, body: result.body });
     return result;
+  }
+  if (tool === "sync_transport_data") {
+    let raw = input.payload;
+    if (!raw && fetcher) {
+      const response = await fetcher(COUNTY_PARKING_URL);
+      if (!response.ok) return { status: 502, body: { error: `parking_${response.status}` } };
+      raw = await response.text();
+    }
+    if (!raw) return { status: 409, body: { error: "fetcher_unavailable" } };
+    let lots;
+    try {
+      lots = normalizeCountyParking(raw);
+    } catch {
+      return { status: 400, body: { error: "invalid_dataset" } };
+    }
+    if (!lots.length) return { status: 409, body: { error: "empty_dataset" } };
+    const parking = { source_url: COUNTY_PARKING_PAGE, dataset_url: COUNTY_PARKING_URL, count: lots.length, lots };
+    if (db) await persistTransport(db, { parking, now: new Date().toISOString() });
+    return remember({ status: 200, body: { count: lots.length, lots, stored: Boolean(db) } });
   }
   if (tool === "import_government_dataset" && input.dataset === "hsc-population") {
     let raw = input.payload;

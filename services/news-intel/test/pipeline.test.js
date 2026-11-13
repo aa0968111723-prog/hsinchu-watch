@@ -195,6 +195,54 @@ test("county population keeps the file total and the D- label", async () => {
   assert.equal(blocked.status, 409);
 });
 
+test("county parking drops phone numbers and keeps the space text", async () => {
+  const { normalizeCountyParking, splitParking } = await import("../src/adapters.js");
+  const lots = normalizeCountyParking(JSON.stringify([
+    { "停車場名稱": "湖口鄉中興立體停車場", "行政區": "湖口鄉", "停車場地址-地號": "湖口鄉興湖段", "型式": "立體", "停車格數量": "小型車167格", "收費方式": "計時", "電話": "03-0000000", "分機": "1", "公司名稱": "某公司", "證號": "003-4" },
+    { "停車場名稱": " ", "行政區": "竹北市", "電話": "03-111" },
+    { "停車場名稱": "地址未填場", "行政區": "別處", "停車格數量": "", "收費方式": "" },
+  ]));
+  assert.equal(lots.length, 2);
+  assert.equal(lots[0].region_id, "hukou");
+  assert.equal(lots[0].spaces, "小型車167格");
+  assert.equal(lots[1].region_id, null);
+  assert.equal(lots[1].spaces, null);
+  assert.equal(JSON.stringify(lots).includes("03-0000000"), false);
+  assert.equal(JSON.stringify(lots).includes("某公司"), false);
+  assert.equal(JSON.stringify(lots).includes("003-4"), false);
+  const parts = splitParking({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271", dataset_url: "https://ws.hsinchu.gov.tw/parking.json", count: lots.length, lots });
+  assert.equal(parts.summary.lots, undefined);
+  assert.equal(parts.download.lots.length, 2);
+  const kept = await runHour({
+    previous: { articles: [], parking: { count: 3, source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271" } },
+    now: "2026-11-14T01:10:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.parking.count, 3);
+  assert.equal(kept.parking.retained, true);
+  const { openNewsDb } = await import("../src/local-db.js");
+  const db = openNewsDb(":memory:");
+  const synced = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    db,
+    body: { tool: "sync_transport_data", input: { payload: JSON.stringify([{ "停車場名稱": "湖口鄉中興立體停車場", "行政區": "湖口鄉", "停車場地址-地號": "湖口鄉興湖段", "型式": "立體", "停車格數量": "小型車167格", "收費方式": "計時", "電話": "03-0000000" }]) } },
+  });
+  const row = await db.prepare("SELECT summary, published_at, region_id FROM transport_updates").first();
+  const budgets = await db.prepare("SELECT COUNT(*) AS n FROM project_budgets").first();
+  assert.equal(synced.status, 200);
+  assert.equal(synced.body.lots[0].spaces, "小型車167格");
+  assert.equal(row.region_id, "hukou");
+  assert.equal(row.published_at, null);
+  assert.equal(String(row.summary).includes("03-0000000"), false);
+  assert.equal(budgets.n, 0);
+  const reader = await handleMcp({ authorization: "Bearer reader-token", tokens, body: { tool: "sync_transport_data", input: { payload: "[]" } } });
+  assert.equal(reader.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不含電話"), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -572,6 +620,13 @@ test("published news file stays within the real cap", () => {
   assert.equal(data.population.rows.some((row) => row.area_code === "10004000" && row.area_label === "D-"), true);
   assert.ok(data.population.rows.every((row) => row.total === null || /^\d+$/.test(row.total)));
   assert.equal(JSON.stringify(data.population).includes("@"), false);
+  assert.ok(data.parking.count >= 100);
+  assert.equal(data.parking.lots, undefined);
+  const parking = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/parking.json", import.meta.url), "utf8"));
+  assert.equal(parking.lots.length, data.parking.count);
+  assert.ok(parking.lots.every((lot) => lot.name && (lot.spaces === null || typeof lot.spaces === "string")));
+  assert.ok(parking.lots.every((lot) => !Object.keys(lot).some((key) => /電話|公司|證號|分機/.test(key))));
+  assert.ok(parking.lots.filter((lot) => lot.district === "新埔鄉").every((lot) => lot.region_id === null));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {
