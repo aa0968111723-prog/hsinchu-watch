@@ -211,7 +211,9 @@ test("published news file stays within the real cap", () => {
   const data = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/latest.json", import.meta.url), "utf8"));
   assert.ok(data.count <= 20);
   assert.equal(data.gemini.use, false);
+  assert.equal(data.gemini.called, false);
   assert.ok(data.articles.every((article) => article.title && article.url.startsWith("https://")));
+  assert.ok(data.articles.every((article) => article.verification_status !== "VERIFIED_OFFICIAL" && article.verification_status !== "VERIFIED_MULTI_SOURCE"));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {
