@@ -467,6 +467,16 @@ test("mcp checks dates, duplicates, and refuses unverified facts", async () => {
     ] } },
   });
   assert.equal(dupes.body.events, 1);
+  const related = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "find_related_events", input: { articles: [
+      { original_title: "竹北道路開工", source_url: "https://www.cna.com.tw/a", publisher_timestamp: "2026-11-13T02:00:00Z", source_id: "cna-atom" },
+      { original_title: "竹北道路開工", source_url: "https://www.hsinchu.gov.tw/b", publisher_timestamp: "2026-11-13T01:00:00Z", source_id: "hsinchu-county-news" },
+    ] } },
+  });
+  assert.equal(related.status, 200);
+  assert.deepEqual(related.body.articles[0].related_urls, ["https://www.hsinchu.gov.tw/b"]);
   const refused = await handleMcp({
     authorization: "Bearer publisher-token",
     tokens,

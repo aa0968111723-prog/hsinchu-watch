@@ -92,9 +92,13 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
     const parsed = parsePublisherTimestamp(input.publisher_timestamp);
     return { status: 200, body: { parsed, accepted: Boolean(parsed) } };
   }
-  if (tool === "detect_duplicate_articles" || tool === "find_related_events") {
+  if (tool === "detect_duplicate_articles") {
     const articles = input.articles || [];
     return { status: 200, body: { articles: articles.length, events: linkEvents(articles).length } };
+  }
+  if (tool === "find_related_events") {
+    const selected = selectArticles(input.articles || []);
+    return { status: 200, body: { articles: selected.map((article) => ({ source_url: article.source_url, related_urls: article.related_urls || [] })) } };
   }
   if (tool === "compare_source_claims") {
     const left = String(input.left || "").trim();
