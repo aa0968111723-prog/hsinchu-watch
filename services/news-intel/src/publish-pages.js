@@ -2,7 +2,7 @@ import { copyFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
+import { cloudflareApiReachable, deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
 import { FETCH_TIMEOUT_MS } from "./run.js";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
@@ -29,6 +29,15 @@ const local = { index: sha(readFileSync(mirrorIndex)), civic: sha(readFileSync(m
 if (!sameSnapshot(live, local)) {
   console.log(JSON.stringify({ published: false, reason: "production_snapshot_changed" }));
   process.exit(0);
+}
+if (!await cloudflareApiReachable()) {
+  console.log(JSON.stringify({ published: false, reason: "cloudflare_unavailable" }));
+  writeFileSync(fileURLToPath(new URL("../state/publish-status.json", import.meta.url)), JSON.stringify({
+    published: false,
+    reason: "cloudflare_unavailable",
+    at: new Date().toISOString(),
+  }, null, 2));
+  process.exit(1);
 }
 copyFileSync(fileURLToPath(new URL("../../../public/data/news-intel/latest.json", import.meta.url)), `${mirror}\\data\\news-intel\\latest.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
