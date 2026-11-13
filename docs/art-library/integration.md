@@ -24,19 +24,32 @@
 
 ## 給第四線
 
-1. `public/asset-lab.html` 會被 `assemble-production.py` 當成一般頁面處理，所以它有 `.top nav.nav` 與 `main`。少了這兩個，`edit_page` 會丟 `Page shell missing`，整個建置中斷。`tests/art-library/test_catalog.py` 會檢查這件事。
-2. 本工作區跑過 `npm run build`，exit 0，輸出 `pages: 13, reference: 7`。也就是加上美術庫後是 20 個 HTML，不是 AGENTS.md 寫的 19 個。
-3. 建置會在本頁頂端插入「候選人閱讀標準」那一行。美術庫用不到；要不要讓 `asset-lab` 和 `governance`、`archive` 一樣跳過，由第四線決定。
-4. 導覽還沒有入口。要加的話是 `MORE` 裡一筆「美術庫」→ `/asset-lab.html`。
+main 上已經有本線第一個切片（`fc5b4f1`，從 `c472a13` cherry-pick）。後續的 commit 也請用 cherry-pick；merge 分支會出現 add/add 衝突。
+
+1. `public/asset-lab.html` 有 `.top nav.nav` 與 `main`，可以讓 `assemble-production.py` 當一般頁面處理。`tests/art-library/test_catalog.py` 會檢查外殼還在。
+2. main 現在對 `asset-lab.html` 有兩個特例：`assemble-production.py` 的 `edit_page` 一開始就 `return`，`prepare_release.py` 跳過它的樣式檢查。兩個都可以拿掉。拿掉後頁面會有全站頁首與公共事務導覽，「美術庫」會標成目前所在頁。留著也能用，頁面維持自己的簡單頁首。兩種都試過，見下表。
+3. 當成一般頁面時，建置會在頂端插入「候選人閱讀標準」那一行。美術庫用不到；要不要像 `governance`、`archive` 一樣略過，由第四線決定。
+4. `tools/integrate/verify-art-lab.mjs` 是照第一版頁面寫的，對新版會失敗。第 12 行改成 `page.locator('#alDetail').getByText('portrait-wu-moi')`，第 14 行的 `#count` 改成 `#alCount`。
 5. `public/data/art-library.json` 會被 `finalize_manifest` 收進 manifest 的 `files`。
 6. `public/art-library/figures/*/index.html` 在子資料夾，建置不會改它們，也不受根頁面的檢查影響。
-7. 整合後請跑：
+7. 正式站對不存在的路徑回 200 與首頁內容。檢查檔案有沒有上線要看 `Content-Type`，不能只看狀態碼。`tests/art-library/check_live.py` 是這樣做的。
+
+在 main `ea7ffc0` 的匯出副本上套用本線檔案，2026-11-13 的結果：
+
+| 做法 | `npm run build` | `check_lab.py`（五種寬度） |
+| --- | --- | --- |
+| 保留兩個特例 | exit 0，15 頁，9,164 筆 | 通過 |
+| 拿掉兩個特例 | exit 0，15 頁，9,164 筆 | 通過（`--built`） |
+
+整合後請跑：
 
 ```text
 python -m unittest discover -s tests/art-library -p "test_*.py"
 node --test tests/art-library/figures.test.mjs
 npm run build
-python tests/art-library/check_lab.py --root dist --built
+python tests/art-library/check_lab.py --root dist            # 保留特例時
+python tests/art-library/check_lab.py --root dist --built    # 拿掉特例時
+python tests/art-library/check_live.py                       # 發布後，看正式站實際送出什麼
 ```
 
 ## 本線發現、不屬於本線的事

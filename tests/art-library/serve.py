@@ -59,6 +59,13 @@ class Handler(SimpleHTTPRequestHandler):
     def log_message(self, *args):  # keep test output readable
         pass
 
+    def copyfile(self, source, outputfile):
+        # A browser that closes a page mid-download is not an error worth a traceback.
+        try:
+            super().copyfile(source, outputfile)
+        except (ConnectionAbortedError, ConnectionResetError, BrokenPipeError):
+            pass
+
     def guess_type(self, path):
         return TYPES.get(Path(path).suffix.lower()) or super().guess_type(path)
 

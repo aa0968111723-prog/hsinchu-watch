@@ -45,6 +45,7 @@ python -m unittest discover -s tests/art-library -p "test_*.py"
 node --test tests/art-library/figures.test.mjs
 python tests/art-library/check_lab.py                      # 瀏覽器驗收，public/
 python tests/art-library/check_lab.py --root dist --built  # 先跑 npm run build
+python tests/art-library/check_live.py                     # 正式站實際送出的美術庫內容，唯讀
 python tests/art-library/serve.py                          # 手動預覽，http://127.0.0.1:4173/asset-lab.html
 ```
 
