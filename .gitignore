@@ -28,3 +28,10 @@ work/
 .DS_Store
 Thumbs.db
 artifacts/
+
+# hourly MCP / guard runtime state (never commit; may hold exclusion ledger, checkpoints, publish ledger)
+hourly_store/
+*.lock
+.publish.lock
+publish_ledger.jsonl
+hourly_artifacts/

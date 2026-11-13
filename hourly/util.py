@@ -128,3 +128,14 @@ class FileLock:
             fcntl.flock(self._fd, fcntl.LOCK_UN)
         finally:
             os.close(self._fd)
+
+
+def url_ref(url: str) -> str:
+    """與公開 excluded.json 同形的脫敏參照：host#sha256[:12]。原始 URL 不入帳、不出 MCP。"""
+    from urllib.parse import urlparse
+    host = urlparse(str(url)).netloc.lower() or "unknown"
+    return f"{host}#{sha256_bytes(str(url).encode('utf-8'))[:12]}"
+
+
+def is_raw_url(s: str) -> bool:
+    return isinstance(s, str) and s.lower().startswith(("http://", "https://", "//"))

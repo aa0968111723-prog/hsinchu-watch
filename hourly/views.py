@@ -34,6 +34,22 @@ def verification_label(store: Store, item_id: str, upto_corr: Optional[int] = No
             "correction_seq": last["corr_seq"] if last else None}
 
 
+def corr_limit_for_seq(store: Store, seq: Optional[int]) -> Optional[int]:
+    """at_seq 凍結：只套用「該 seq 之前最後一個批次建立時」已存在的更正。"""
+    if seq is None:
+        return None
+    batch_ids = []
+    for e in store.events():
+        if e["seq"] > seq:
+            break
+        if e.get("batch_id") and (not batch_ids or batch_ids[-1] != e["batch_id"]):
+            batch_ids.append(e["batch_id"])
+    if not batch_ids:
+        return 0
+    b = store.get_batch(batch_ids[-1])
+    return (b or {}).get("corr_seq_after", 0)
+
+
 def item_view(store: Store, item_id: str, at_seq: Optional[int] = None) -> Optional[Dict[str, Any]]:
     st = store.state_at(at_seq)
     h = st["items"].get(item_id)
@@ -46,9 +62,12 @@ def item_view(store: Store, item_id: str, at_seq: Optional[int] = None) -> Optio
     v = dict(obj)
     v["content_hash"] = h
     v["event_seq"] = st["item_rev"].get(item_id)
-    v.update(verification_label(store, item_id))
+    limit = corr_limit_for_seq(store, at_seq)
+    v.update(verification_label(store, item_id, limit))
     corrected = {}
     for c in store.corrections():
+        if limit is not None and c["corr_seq"] > limit:
+            continue
         if c["item_id"] == item_id and c["field"] != "verification" and c.get("kind") == "field":
             corrected[c["field"]] = c["new_value"]
     if corrected:

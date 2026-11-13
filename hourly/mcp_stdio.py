@@ -42,6 +42,10 @@ def validate_args(schema: dict, args: dict) -> None:
             raise ToolError(f"argument {k} must be {t}")
         if "enum" in props[k] and v not in props[k]["enum"]:
             raise ToolError(f"argument {k} must be one of {props[k]['enum']}")
+        if t == "string" and "maxLength" in props[k] and len(v) > props[k]["maxLength"]:
+            raise ToolError(f"argument {k} too long")
+        if t == "string" and len(v) > 2000:
+            raise ToolError(f"argument {k} too long")
         if t == "integer":
             if "minimum" in props[k] and v < props[k]["minimum"]:
                 raise ToolError(f"argument {k} < minimum")

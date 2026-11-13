@@ -18,7 +18,7 @@ from typing import Any, Dict
 from . import views
 from .mcp_stdio import Server, Tool, ToolError
 from .store import AGENT_RE, DEFAULT_AGENTS, Store, StoreError
-from .util import now_iso
+from .util import is_raw_url, now_iso, url_ref
 
 STALE_MINUTES = 90  # 每小時批次；超過 90 分鐘無成功批次即過期
 MAX_PAGE = 500
@@ -53,7 +53,8 @@ def build(store: Store, agents=DEFAULT_AGENTS) -> Server:
         last_fail = fail_rows[-1] if fail_rows else None
         age = _age_minutes(last_ok)
         stale = age is None or age > STALE_MINUTES
-        failing_now = bool(last_fail and (not last_ok or last_fail["at"] > last_ok))
+        ingest_rows = [r for r in rows if r.get("kind") == "ingest"]
+        failing_now = bool(ingest_rows and not ingest_rows[-1].get("ok"))  # 以帳的順序判斷（同秒也正確）
         return {
             "head_batch": head, "revision": b["revision"] if b else None, "head_seq": store.head_seq(),
             "batch_created_at": b["created_at"] if b else None,
@@ -65,6 +66,7 @@ def build(store: Store, agents=DEFAULT_AGENTS) -> Server:
                                             "base_live_release", "live_manifest_hash", "live_data_sha256")} if b else None),
             "counts": b["counts"] if b else None,
             "registered_agents": list(agents),
+            "writes": "only checkpoints via hw_ack / hw_report_failure",
             "published": False,
             "publish_state": "已交第四線，尚待整合發布（本 MCP 不發布；已發布須第四線提供線上驗證證據）",
             "fairness": views.FAIRNESS,
@@ -84,32 +86,30 @@ def build(store: Store, agents=DEFAULT_AGENTS) -> Server:
                 "note": "disabled_platform_limit＝robots/登入/驗證/付費牆等平台限制，如實記錄，不繞過；ok_count null＝未知，不是 0。"}
 
     def pull_events(a):
+        """純讀：不寫任何 checkpoint。回 ack_token，匯入成功後用 hw_ack 確認。"""
         ag = agent_of(a)
         limit = min(a.get("limit", 100), MAX_PAGE)
         cp = store.checkpoint(ag)
         after = cp["acked_seq"]
-        page, more = [], False
-        for e in store.events(after):
-            if len(page) >= limit:
-                more = True
-                break
-            page.append(e)
+        page = store.page_after(ag, after, limit + 1)
+        more = len(page) > limit
+        page = page[:limit]
+        token = store.page_token(ag, after, page) if page else None
         if a.get("include_items"):
+            page = [dict(e) for e in page]
             for e in page:
                 if e["type"] in ("item_added", "item_changed"):
                     e["item"] = store.get_object(e["hash"])
         through = page[-1]["seq"] if page else after
-        if page:
-            store.serve(ag, through)
         return {"agent_id": ag, "after_seq": after, "through_seq": through, "count": len(page),
-                "has_more": more, "events": page,
-                "next": "匯入成功後呼叫 hw_ack(agent_id, through_seq)；失敗請 hw_report_failure，cursor 不會動。",
+                "has_more": more, "events": page, "ack_token": token,
+                "next": "匯入成功後呼叫 hw_ack(agent_id, through_seq, ack_token)；失敗請 hw_report_failure，cursor 不會動。",
                 "head_seq": store.head_seq(), "stale": status({})["stale"]}
 
     def ack(a):
         ag = agent_of(a)
         try:
-            cp = store.ack(ag, a["through_seq"], a.get("import_receipt"))
+            cp = store.ack(ag, a["through_seq"], a["ack_token"], a.get("import_receipt"))
         except StoreError as e:
             raise ToolError(str(e))
         return {"agent_id": ag, "acked_seq": cp["acked_seq"], "idempotent": bool(cp.get("idempotent"))}
@@ -159,7 +159,8 @@ def build(store: Store, agents=DEFAULT_AGENTS) -> Server:
                 "note": "更正歷史只增不改；較新更正不會被舊批次覆蓋。"}
 
     def exclusions(a):
-        rows = [c for c in store.exclusions() if c["excl_seq"] > a.get("after_excl_seq", 0)]
+        rows = [dict(c, ref=url_ref(c["ref"]) if is_raw_url(c["ref"]) else c["ref"])  # 輸出層再擋一次：絕不外送原始 URL
+                for c in store.exclusions() if c["excl_seq"] > a.get("after_excl_seq", 0)]
         lim = min(a.get("limit", 100), MAX_PAGE)
         return {"exclusions": rows[:lim], "has_more": len(rows) > lim}
 
@@ -168,14 +169,16 @@ def build(store: Store, agents=DEFAULT_AGENTS) -> Server:
     tools = [
         Tool("hw_status", "批次、cursor head、過期狀態、基準（base main／live release）、發布狀態。", S({}), status),
         Tool("hw_source_health", "來源健康與覆蓋缺口（平台限制如實記錄）。", S({}), source_health),
-        Tool("hw_pull_events", "依持久化事件序號取該代理 cursor 之後的一頁增量（不推進 cursor）。",
+        Tool("hw_pull_events", "【純讀】依持久化事件序號取該代理已確認 cursor 之後的一頁增量；不寫任何檔、不推進 cursor；回 ack_token。",
              S({"agent_id": agent, "limit": {"type": "integer", "minimum": 1, "maximum": MAX_PAGE},
                 "include_items": {"type": "boolean"}}, ["agent_id"]), pull_events),
         Tool("hw_ack", "匯入成功後確認 cursor（不可超過已提供的 through_seq；重複確認冪等）。",
              S({"agent_id": agent, "through_seq": {"type": "integer", "minimum": 1},
-                "import_receipt": {"type": "string"}}, ["agent_id", "through_seq"]), ack, read_only=False),
+                "ack_token": {"type": "string", "maxLength": 64},
+                "import_receipt": {"type": "string", "maxLength": 200}}, ["agent_id", "through_seq", "ack_token"]),
+             ack, read_only=False),
         Tool("hw_report_failure", "匯入失敗回報；cursor 不動。",
-             S({"agent_id": agent, "error": {"type": "string"}, "seq": {"type": "integer"}}, ["agent_id", "error"]),
+             S({"agent_id": agent, "error": {"type": "string", "maxLength": 500}, "seq": {"type": "integer"}}, ["agent_id", "error"]),
              fail, read_only=False),
         Tool("hw_checkpoint", "查詢該代理獨立 checkpoint 與落後事件數。", S({"agent_id": agent}, ["agent_id"]), checkpoint),
         Tool("hw_get_item", "單筆詳情（含更正疊加、待審狀態）；可指定 at_seq 看固定版本內容。",
@@ -199,7 +202,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--store", default="hourly_store")
     ns = ap.parse_args(argv)
-    build(Store(ns.store)).serve()
+    build(Store(ns.store, create=False)).serve()  # 讀取路徑不建立目錄
     return 0
 
 

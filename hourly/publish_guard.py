@@ -30,7 +30,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Protocol
 
 from .store import Store
-from .util import append_jsonl, atomic_write_bytes, canon, now_iso, read_json, read_jsonl, sha256_bytes, sha256_file
+from .util import url_ref, append_jsonl, atomic_write_bytes, canon, now_iso, read_json, read_jsonl, sha256_bytes, sha256_file
 
 CLOCK_SKEW = timedelta(minutes=5)
 REQUIRED_ARTIFACT_FILES = ("index.html", "data/manifest.json", "data/items.json", "data/stats.json")
@@ -90,16 +90,25 @@ class PublishLock:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         meta = {"owner": self.owner, "token": self.token, "pid": os.getpid(),
                 "acquired_at": now_iso(), "ttl_seconds": self.ttl}
-        try:
-            fd = os.open(str(self.path), os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644)
-        except FileExistsError:
-            cur = read_json(self.path, {}) or {}
-            raise GuardAbort("lock_held", f"owner={cur.get('owner')} since={cur.get('acquired_at')} "
-                                          f"(不自動接管；過期鎖請第四線人工確認後處置)")
+        # 先把完整內容寫進暫存檔，再以 os.link 原子「建立並可見」：已存在則 FileExistsError（單一持有者），
+        # 且別人讀到鎖檔時內容一定完整（避免 O_EXCL 建立後、寫入前的空檔競態）。
+        import tempfile
+        fd, tmp = tempfile.mkstemp(dir=str(self.path.parent), prefix=".lock-", suffix=".tmp")
         with os.fdopen(fd, "w") as f:
             f.write(json.dumps(meta))
             f.flush()
             os.fsync(f.fileno())
+        try:
+            os.link(tmp, self.path)
+        except FileExistsError:
+            try:
+                cur = json.loads(self.path.read_text(encoding="utf-8"))
+            except Exception:
+                cur = {}
+            raise GuardAbort("lock_held", f"owner={cur.get('owner')} since={cur.get('acquired_at')} "
+                                          f"(不自動接管；過期鎖請第四線人工確認後處置)")
+        finally:
+            os.unlink(tmp)
         self.held = True
 
     def release(self) -> None:
@@ -119,8 +128,26 @@ class PublishLock:
 
 
 # ---------------------------------------------------------------- artifact（完整 build 的不可變 manifest）
+UNSAFE_NAME_RE = __import__("re").compile(r"(^\.env|\.pem$|\.key$|\.p12$|\.pfx$|id_rsa|id_ed25519|secret|credential|\.local\.json$|^\.git$|\.netrc$)", __import__("re").I)
+REPO_MARKERS = (".git", "hourly", "collectors", "scripts", "node_modules", "work", "hourly_store")
+
+
+def check_artifact_dir_safe(artifact_dir: Path) -> None:
+    """封存目錄必須是已建置 dist：不得是 repo 根／含 repo 標記、不得含密鑰類檔名。"""
+    root = Path(artifact_dir).resolve()
+    if not root.is_dir():
+        raise GuardAbort("artifact_dir_missing", str(root.name))
+    marks = [m for m in REPO_MARKERS if (root / m).exists()]
+    if marks:
+        raise GuardAbort("artifact_dir_unsafe", f"looks like a repo/source root (contains {marks})")
+    bad = [p.name for p in root.rglob("*") if UNSAFE_NAME_RE.search(p.name)]
+    if bad:
+        raise GuardAbort("artifact_dir_unsafe", f"secret-like file names in artifact: {sorted(set(bad))[:5]}")
+
+
 def artifact_manifest(artifact_dir: Path, *, batch_id: str, sealed_at: Optional[str] = None) -> dict:
     """計算整個 build 輸出的逐檔 sha256；artifact_id＝逐檔 hash 的雜湊。唯讀。"""
+    check_artifact_dir_safe(Path(artifact_dir))
     root = Path(artifact_dir)
     files = {}
     for p in sorted(root.rglob("*")):
@@ -168,6 +195,7 @@ def check_no_bypass(environ=None) -> None:
 
 def check_artifact(c: Candidate, env: Env) -> None:
     a, b = c.artifact, c.batch
+    check_artifact_dir_safe(c.artifact_dir)
     if a.get("batch_id") != b.get("batch_id"):
         raise GuardAbort("artifact_batch_mismatch")
     files = a.get("files") or {}
@@ -256,6 +284,8 @@ def check_live(c: Candidate, env: Env) -> dict:
 def check_data_conflicts(c: Candidate, latest: Store) -> None:
     """候選批次的事件對「最新 ledger」的衝突檢查。任一衝突 → 整個候選中止（不部分套用）。"""
     b = c.batch
+    if c.store is not None and Path(c.store.root).resolve() == Path(latest.root).resolve():
+        raise GuardAbort("latest_ledger_is_candidate_copy", "latest_store 必須是共享最新帳（fetch 最新 main 後的 ledger），不得是候選自己的副本")
     st = latest.state_at()
     cur, item_rev = st["items"], st["item_rev"]
     base_seq = b.get("base_event_seq", 0)
@@ -283,7 +313,7 @@ def check_data_conflicts(c: Candidate, latest: Store) -> None:
                 break
         if e["type"] != "item_withdrawn":
             for x in excls:
-                if x["ref"] == iid and x["excl_seq"] > b.get("excl_seq_after", 0):
+                if x["ref"] in (iid, e.get("url_ref")) and x["excl_seq"] > b.get("excl_seq_after", 0):
                     conflicts.append(f"excluded_after_base:{iid}#{x['excl_seq']}")
                     break
     if conflicts:

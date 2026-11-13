@@ -17,7 +17,7 @@ from typing import Any, Callable, Dict, List, Optional
 
 from . import classify
 from .store import Store
-from .util import canon, now_iso, read_json, sha256_file, sha256_obj
+from .util import canon, now_iso, read_json, sha256_file, sha256_obj, url_ref
 
 SKIP_DATA_FILES = {"excluded_urls.local.json"}  # 含原始個人頁網址，不讀、不雜湊、不入庫
 DROP_THRESHOLD = 0.5
@@ -86,9 +86,13 @@ def _exclusion_refs(data_dir: Path) -> List[dict]:
         x = read_json(data_dir / fname) or {}
         for sect, kind in (("excluded", "excluded"), ("pending_review", "pending_review")):
             for e in x.get(sect) or []:
-                if not isinstance(e, dict) or not (e.get("id") or e.get("url")):
+                if not isinstance(e, dict):
                     continue
-                refs.append({"ref": e.get("id") or e.get("url"), "reason": f"{kind}:{e.get('reason')}",
+                # P0：只收 item id；缺 id 時用 host#sha256[:12]（與公開 excluded.json 同形），絕不存原始 URL
+                ref = e.get("id") or (url_ref(e["url"]) if e.get("url") else None)
+                if not ref:
+                    continue
+                refs.append({"ref": ref, "reason": f"{kind}:{e.get('reason')}",
                              "source": f"{fname}/{src}"})
     return refs
 
@@ -97,7 +101,11 @@ def ingest(data_dir: Path | str, store: Store, ctx: Dict[str, Any], *, built_by:
     """回傳 {status: created|noop|failed, ...}。失敗不改 HEAD。"""
     data_dir = Path(data_dir)
     with store.lock:
-        recover(store)
+        try:
+            store.assert_writable()
+            recover(store)
+        except Exception as e:  # 預檢／補寫失敗：在動任何檔之前就失敗，保留最後成功資料
+            return {"status": "failed", "code": "store_not_writable", "detail": str(e), "kept_head": store.head()}
         try:
             return _ingest_locked(data_dir, store, ctx, built_by)
         except IngestError as e:
@@ -129,7 +137,7 @@ def _ingest_locked(data_dir: Path, store: Store, ctx: Dict[str, Any], built_by: 
             continue
         pending_objs[c["hash"]] = c["proj"]
         events.append({"event_key": f"{c['hash']}:{iid}:{t}", "type": t, "item_id": iid, "hash": c["hash"],
-                       "prev_hash": prev_items.get(iid), "person_id": c["proj"].get("person_id"),
+                       "prev_hash": prev_items.get(iid), "person_id": c["proj"].get("person_id"), "url_ref": url_ref(c["proj"].get("url") or ""),
                        "layer": c["proj"].get("layer"), "verification": "待審"})
     for iid, h in prev_items.items():
         if iid not in cur:
@@ -206,10 +214,10 @@ def _ingest_locked(data_dir: Path, store: Store, ctx: Dict[str, Any], built_by: 
         "new_exclusions": new_excl_keys,
         "new_review_decisions": [k for _, _, k in corr_candidates],
     }
-    # 1) 物件（內容定址、不覆寫）
+    # 1) 物件（內容定址、不覆寫；孤兒物件無害，類似 git）。目錄可寫已在 ingest() 開頭預檢
     for h, proj in pending_objs.items():
-        store.put_object(proj)
-    # 2) 批次檔（不可變，含事件列供崩潰補寫）
+        store.put_object(proj, h)
+    # 2) 批次檔（不可變，含事件列供崩潰補寫）。批次檔存在 ⇒ 物件必已落地，recover 才安全
     from .util import atomic_write_bytes
     atomic_write_bytes(store.p("batches", batch_id + ".json"), canon(batch), immutable=True)
     # 3) 帳（只增）
@@ -220,7 +228,7 @@ def _ingest_locked(data_dir: Path, store: Store, ctx: Dict[str, Any], built_by: 
                              "review_decisions.json(human)", key=key, kind="review_decision")
     # 4) 事件 → 5) HEAD
     store.append_events([dict(e, batch_id=batch_id, at=batch["created_at"]) for e in events])
-    store.set_head(batch_id)
+    store.set_head(batch_id, store.raw_max_seq())   # 提交點：HEAD 帶已提交 seq，之前事件對讀取路徑不可見
     store.record_health({"kind": "ingest", "ok": True, "batch_id": batch_id, "revision": revision,
                          "counts": batch["counts"], "source_health": health})
     return {"status": "created", "batch_id": batch_id, "revision": revision, "counts": batch["counts"],
@@ -236,7 +244,7 @@ def recover(store: Store) -> Optional[str]:
     if store.head() == last["batch_id"]:
         return None
     store.append_events([dict(e, batch_id=last["batch_id"], at=last["created_at"]) for e in last["events"]])
-    store.set_head(last["batch_id"])
+    store.set_head(last["batch_id"], store.raw_max_seq())
     return last["batch_id"]
 
 
