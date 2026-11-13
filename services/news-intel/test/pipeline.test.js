@@ -77,6 +77,14 @@ test("a failed hour keeps the last successful articles", async () => {
   assert.deepEqual(mergeRun(previous, { ok: false, error: "down" }).articles, previous.articles);
 });
 
+test("city list keeps a dated municipal item and drops a blank date", async () => {
+  const { normalizeCityHtml } = await import("../src/adapters.js");
+  const rows = normalizeCityHtml('<a href="/hccg/app/data/view?module=municipalnews&amp;id=1" title="新竹市道路修復"><span class="date">115-11-12</span></a><a href="/hccg/app/data/view?module=municipalnews&amp;id=2" title="沒有日期"><span class="date"></span></a>');
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].publisher_timestamp, "2026-11-12");
+  assert.equal(rows[0].source_url, "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=1");
+});
+
 test("migration creates the article and audit tables", () => {
   const sql = readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8");
   for (const table of ["articles", "events", "review_queue", "agent_runs", "audit_logs", "project_budgets", "poll_methodologies"]) {
