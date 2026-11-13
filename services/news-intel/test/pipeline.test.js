@@ -200,6 +200,32 @@ test("final accounts keep blank amounts empty and stay out of the news list", as
   assert.equal(retained.articles.length, 1);
 });
 
+test("a verification change revises the stored article", async () => {
+  const { openNewsDb } = await import("../src/local-db.js");
+  const { persistArticles } = await import("../src/persist.js");
+  const db = openNewsDb(":memory:");
+  const article = {
+    original_title: "新竹縣道路公告",
+    source_url: "https://www.hsinchu.gov.tw/a",
+    publisher_timestamp: "2026-11-13",
+    region_id: "hsinchu-county",
+    verification_status: "UNVERIFIED",
+    review_status: "needs_review",
+    claim_kind: "official_notice",
+    source_name: "新竹縣政府",
+    source_type: "official_rss",
+  };
+  await persistArticles(db, { articles: [article], now: "2026-11-13T02:00:00.000Z" });
+  const revised = await persistArticles(db, {
+    articles: [{ ...article, verification_status: "SINGLE_SOURCE", review_status: "pending_index" }],
+    now: "2026-11-13T03:00:00.000Z",
+  });
+  const row = await db.prepare("SELECT verification_status, content_version FROM articles").first();
+  assert.equal(revised.revised, 1);
+  assert.equal(row.verification_status, "SINGLE_SOURCE");
+  assert.equal(row.content_version, 2);
+});
+
 test("local database opens the final-account migration", async () => {
   const { openNewsDb } = await import("../src/local-db.js");
   const db = openNewsDb(":memory:");

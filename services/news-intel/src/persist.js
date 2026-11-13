@@ -33,7 +33,7 @@ export async function persistArticles(db, { articles, now, actor = "scheduler" }
   const stored = [];
   for (const article of articles || []) {
     const id = await articleId(article.source_url);
-    const hash = (await digest(`${article.source_url}\n${article.original_title}\n${article.publisher_timestamp}\n${article.claim_kind || ""}`)).slice(0, 32);
+    const hash = (await digest(`${article.source_url}\n${article.original_title}\n${article.publisher_timestamp}\n${article.claim_kind || ""}\n${article.verification_status || ""}`)).slice(0, 32);
     const existing = await db.prepare("SELECT content_hash, content_version FROM articles WHERE source_url = ?").bind(article.source_url).first();
     const event = linkEvents([article])[0];
     if (!existing) {
