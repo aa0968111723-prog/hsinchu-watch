@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 
 const origin = process.argv[2] || 'http://127.0.0.1:4178'
@@ -33,8 +34,9 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto(origin + '/civic.html', { waitUntil: 'networkidle' })
+  const feed = JSON.parse(await readFile(new URL('../../public/data/civic/feed.json', import.meta.url), 'utf8'))
   const text = await page.locator('main').innerText()
-  for (const needle of ['9164', '6958', '尚未收錄', '2026-11-13T00:42:18+08:00', '尚未接入', '實支 尚未取得', '鄭朝方', '邱臣遠', '待定位', '不是驗收或成效']) {
+  for (const needle of ['9164', '6958', '尚未收錄', feed.last_success_at, '尚未接入', '實支 尚未取得', '鄭朝方', '邱臣遠', '待定位', '不是驗收或成效']) {
     if (!text.includes(needle)) problems.push('missing ' + needle)
   }
   if (/\bunknown\b/.test(text)) problems.push('raw unknown status')
