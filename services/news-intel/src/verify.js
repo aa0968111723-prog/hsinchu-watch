@@ -4,7 +4,7 @@ export function classifyArticle(article) {
   if (!article?.publisher_timestamp || !article?.source_url) return "UNVERIFIED";
   const blob = `${article.original_title || ""} ${article.summary || ""}`;
   if (HIGH_RISK.some((word) => blob.includes(word))) return "UNVERIFIED";
-  if (article.source_type === "official_rss") return "SINGLE_SOURCE";
+  if (article.source_type === "official_rss" || article.source_type === "official_html") return "SINGLE_SOURCE";
   if (article.source_type === "news_rss") return "SINGLE_SOURCE";
   return "UNVERIFIED";
 }

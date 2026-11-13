@@ -1,8 +1,8 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T14:21:42.318Z",
-  "count": 17,
+  "last_success_at": "2026-11-13T14:22:51.799Z",
+  "count": 20,
   "failures": [],
   "gemini": {
     "use": false,
@@ -128,6 +128,30 @@
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
       "source_name": "新竹縣政府"
+    },
+    {
+      "title": "嚴正駁斥造謠抹黑！新竹市政府說明年底公務出訪：市政延續不受政治干擾 持續帶領新竹走向國際",
+      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30207&serno=0b6b2f89-b440-4634-bd6d-f439c834c4ae",
+      "published_at": "2026-11-06",
+      "region_id": "hsinchu-city",
+      "verification_status": "SINGLE_SOURCE",
+      "source_name": "新竹市政府"
+    },
+    {
+      "title": "嚴正駁斥有心人士針對香山高中通學步道工程之造謠 該案係高虹安市長傾聽香中學子提案 皆於高虹安市長任內規劃設計、招標發包、開完工",
+      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30207&serno=4b00ea72-1125-40cb-a524-b0c09bc42233",
+      "published_at": "2026-10-28",
+      "region_id": "hsinchu-city-xiangshan",
+      "verification_status": "SINGLE_SOURCE",
+      "source_name": "新竹市政府"
+    },
+    {
+      "title": "新竹市立棒球場改善工程正式完工！人工草皮場地進入啟用前整備！",
+      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30211&serno=94e76cb4-5839-4b0f-9e0d-fca30a8286e7",
+      "published_at": "2026-09-16",
+      "region_id": "hsinchu-city",
+      "verification_status": "SINGLE_SOURCE",
+      "source_name": "新竹市政府"
     },
     {
       "title": "藍營中央地方接力支持 吳旭智：將持續爭取選民認同",

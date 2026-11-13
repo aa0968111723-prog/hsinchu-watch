@@ -1,4 +1,5 @@
 const COUNTY_FEED = "https://www.hsinchu.gov.tw/OpenData.aspx?SN=92F93E5891B49161";
+const CITY_HOME = "https://www.hccg.gov.tw/";
 const CNA_FEED = "https://www.cna.com.tw/atomfeed_cfp.xml";
 
 function decode(value) {
@@ -24,6 +25,28 @@ export function normalizeCountyRss(xml) {
     source_type: "official_rss",
     source_id: "hsinchu-county-news",
   })).filter((row) => row.original_title && row.source_url);
+}
+
+export function normalizeCityHtml(html) {
+  const pattern = /href="(\/hccg\/app\/data\/view\?module=municipalnews[^"]+)"[^>]*title="([^"]*)"[^>]*>\s*<span class="date">([^<]*)<\/span>/gi;
+  const seen = new Set();
+  const rows = [];
+  for (const match of String(html || "").matchAll(pattern)) {
+    const sourceUrl = `https://www.hccg.gov.tw${decode(match[1])}`;
+    if (seen.has(sourceUrl)) continue;
+    seen.add(sourceUrl);
+    const date = match[3].trim().match(/^(\d{2,3})-(\d{2})-(\d{2})$/);
+    rows.push({
+      original_title: decode(match[2]).replace(/\s+/g, " ").trim(),
+      source_url: sourceUrl,
+      publisher_timestamp: date ? `${Number(date[1]) + 1911}-${date[2]}-${date[3]}` : "",
+      summary: "",
+      source_name: "新竹市政府",
+      source_type: "official_html",
+      source_id: "hsinchu-city-news",
+    });
+  }
+  return rows.filter((row) => row.original_title && row.publisher_timestamp);
 }
 
 export function normalizeCnaAtom(xml) {
@@ -54,6 +77,19 @@ export const ADAPTERS = [
       return response.text();
     },
     normalize: normalizeCountyRss,
+  },
+  {
+    id: "hsinchu-city-news",
+    kind: "official",
+    discover() {
+      return { url: CITY_HOME, docs: "https://www.hccg.gov.tw/", license: "政府網站公開列表", free: true, needs_key: false };
+    },
+    async fetch(fetcher) {
+      const response = await fetcher(CITY_HOME);
+      if (!response.ok) throw new Error(`city_html_${response.status}`);
+      return response.text();
+    },
+    normalize: normalizeCityHtml,
   },
   {
     id: "cna-atom",
