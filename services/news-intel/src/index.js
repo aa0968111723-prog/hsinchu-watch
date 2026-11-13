@@ -9,6 +9,8 @@ async function previousSnapshot(env) {
   return { articles: JSON.parse(row.articles_json), last_success_at: row.last_success_at };
 }
 
+const mcpState = { idempotency: new Map() };
+
 function tokensFromEnv(env) {
   return {
     reader: env.NEWS_INTEL_READER_TOKEN,
@@ -77,6 +79,7 @@ export default {
         authorization: request.headers.get("authorization"),
         body,
         tokens: tokensFromEnv(env),
+        state: mcpState,
         db: env.DB,
         fetcher: sourceFetch,
       });

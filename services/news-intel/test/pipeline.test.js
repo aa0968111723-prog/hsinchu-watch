@@ -50,6 +50,26 @@ test("districts stay inside the city or county filter", () => {
   assert.equal(html.includes('data-region="hsinchu-county"'), true);
 });
 
+test("the http mcp entry replays the same write", async () => {
+  const worker = (await import("../src/index.js")).default;
+  const env = { NEWS_INTEL_COLLECTOR_TOKEN: "collector-http" };
+  const payload = JSON.stringify({
+    tool: "submit_article_batch",
+    idempotency_key: "http-batch-1",
+    input: { articles: [{ original_title: "竹北道路開工", source_url: "https://www.hsinchu.gov.tw/http", publisher_timestamp: "2026-11-13T02:00:00Z", source_id: "hsinchu-county-news" }] },
+  });
+  const headers = { authorization: "Bearer collector-http", "content-type": "application/json" };
+  const first = await worker.fetch(new Request("https://news.local/mcp", { method: "POST", headers, body: payload }), env);
+  const replay = await worker.fetch(new Request("https://news.local/mcp", { method: "POST", headers, body: payload }), env);
+  const firstBody = await first.json();
+  const replayBody = await replay.json();
+  assert.equal(first.status, 202);
+  assert.equal(firstBody.accepted, 1);
+  assert.equal(replay.status, 202);
+  assert.equal(replayBody.replayed, true);
+  assert.equal(replayBody.accepted, 1);
+});
+
 test("the first news list has no previous diff", () => {
   assert.equal(articleChanges([], [{ source_url: "https://www.hsinchu.gov.tw/a", original_title: "新竹縣公告" }]), null);
   const diff = articleChanges(
