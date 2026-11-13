@@ -24,6 +24,15 @@ const TOWNS = [
   ["五峰", "wufeng"],
 ];
 
+const COUNTY_TOWNS = new Set(["zhubei", "zhudong", "hukou", "xinfeng", "xinpu", "guanxi", "qionglin", "baoshan", "beipu", "emei", "hengshan", "jianshi", "wufeng"]);
+
+export function regionGroup(id) {
+  const text = String(id || "");
+  if (text.startsWith("hsinchu-city")) return "hsinchu-city";
+  if (text.startsWith("hsinchu-county") || COUNTY_TOWNS.has(text)) return "hsinchu-county";
+  return "";
+}
+
 export function regionFor(text) {
   const hits = TOWNS.filter(([name]) => String(text || "").includes(name)).map(([, id]) => id);
   return hits[0] || null;

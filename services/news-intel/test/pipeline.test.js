@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { authorize } from "../src/auth.js";
 import { allowedUrl } from "../src/allowlist.js";
-import { decideGemini, linkEvents, selectArticles } from "../src/pipeline.js";
+import { decideGemini, linkEvents, regionGroup, selectArticles } from "../src/pipeline.js";
 import { handleMcp } from "../src/mcp.js";
 import { mergeRun, runHour } from "../src/run.js";
 import { publicationFields } from "../src/verify.js";
@@ -24,6 +24,16 @@ test("news times are shown in Taipei and date-only values stay unchanged", async
   const pageStamp = new Function(`${source[0]}; return taipeiStamp;`)();
   assert.equal(pageStamp("2026-11-13T14:16:16.000Z"), taipeiStamp("2026-11-13T14:16:16.000Z"));
   assert.equal(html.includes('type="module"'), false);
+});
+
+test("districts stay inside the city or county filter", () => {
+  assert.equal(regionGroup("hsinchu-city-xiangshan"), "hsinchu-city");
+  assert.equal(regionGroup("hsinchu-county"), "hsinchu-county");
+  assert.equal(regionGroup("zhubei"), "hsinchu-county");
+  assert.equal(regionGroup(""), "");
+  const html = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(html.includes('data-region="hsinchu-city"'), true);
+  assert.equal(html.includes('data-region="hsinchu-county"'), true);
 });
 
 test("city catalog keeps dataset names and drops contact fields", async () => {
