@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T16:15:57.808Z",
+  "last_success_at": "2026-11-13T16:27:49.018Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -20,7 +20,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T13:56:00.000Z",
       "feed_time_kind": "updated",
-      "source_name": "中央社"
+      "source_name": "中央社",
+      "related_urls": []
     },
     {
       "title": "邱臣遠車隊掃街 傅崐萁率藍委合體黃國昌竹北助選",
@@ -32,7 +33,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T13:41:00.000Z",
       "feed_time_kind": "updated",
-      "source_name": "中央社"
+      "source_name": "中央社",
+      "related_urls": []
     },
     {
       "title": "跨海切磋消防戰力！澳洲消防員代表團訪竹縣同場競技",
@@ -44,7 +46,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T09:05:09.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "竹縣教育類青年志工評鑑出爐！ 4單位奪優等獲獎金 展現青年熱血行動力",
@@ -56,7 +59,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T08:30:57.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "社區交流好所在 新豐松林村暨明新村集會所活動中心落成啟用",
@@ -68,7 +72,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T05:43:22.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "紓解經濟壓力！欠稅遭移送執行可申請分期繳納 稅務局提醒核准分期後務必按期繳款",
@@ -80,7 +85,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T02:22:43.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "竹縣醫政管理成果受肯定 榮獲衛福部考評第二組第一名",
@@ -92,7 +98,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T01:57:13.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "實戰力滿點！竹縣數位青年實習成果發表 跨域人才為企業注入AI創新活水",
@@ -104,7 +111,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T01:41:22.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "竹市深化2030雙語教育！第四屆英文菁英盃1,178人參賽 高虹安市長：培養學子英語力、接軌國際",
@@ -116,7 +124,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13",
       "feed_time_kind": "",
-      "source_name": "新竹市政府"
+      "source_name": "新竹市政府",
+      "related_urls": []
     },
     {
       "title": "竹市警察局無人機隊成軍！導入AI提升治安維護與應變效能 高虹安市長：科技助力守護市民",
@@ -128,7 +137,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13",
       "feed_time_kind": "",
-      "source_name": "新竹市政府"
+      "source_name": "新竹市政府",
+      "related_urls": []
     },
     {
       "title": "竹市首屆「茶花公主」8強出爐！高虹安市長：11/21二二八公園決戰 卓文萱壓軸獻唱",
@@ -140,7 +150,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13",
       "feed_time_kind": "",
-      "source_name": "新竹市政府"
+      "source_name": "新竹市政府",
+      "related_urls": []
     },
     {
       "title": "聯合國總部展出作品跨海來竹市！高虹安市長：以藝術串聯國際交流與在地關懷",
@@ -152,7 +163,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13",
       "feed_time_kind": "",
-      "source_name": "新竹市政府"
+      "source_name": "新竹市政府",
+      "related_urls": []
     },
     {
       "title": "觀音山新竹金剛手道場致贈570份蔬食便當傳遞愛心 高虹安市長感謝推廣蔬食環保共創永續城市",
@@ -164,7 +176,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13",
       "feed_time_kind": "",
-      "source_name": "新竹市政府"
+      "source_name": "新竹市政府",
+      "related_urls": []
     },
     {
       "title": "《竹塹文獻》三十載薪傳！竹市攜手清大辦竹塹學國際學術研討會 高虹安市長：讓城市記憶走向世界",
@@ -176,7 +189,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13",
       "feed_time_kind": "",
-      "source_name": "新竹市政府"
+      "source_name": "新竹市政府",
+      "related_urls": []
     },
     {
       "title": "竹市勇奪亞太永續會展獎銀級及永續導覽卓越獎 高虹安市長：讓永續融入市民生活",
@@ -188,7 +202,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-13",
       "feed_time_kind": "",
-      "source_name": "新竹市政府"
+      "source_name": "新竹市政府",
+      "related_urls": []
     },
     {
       "title": "新竹縣地區11月16日至18日辦理加嗅系統維護作業",
@@ -200,7 +215,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T09:17:18.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "臺灣國際茶業博覽會週五登場 竹縣「茶里拾光」特色展區邀您入場品好茶",
@@ -212,7 +228,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T07:25:05.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "十大交通建設再邁前一步 新埔褒忠路道路拓寬工程開工",
@@ -224,7 +241,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T06:03:30.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "剩餘財產分配免契稅！房屋、土地規定大不同！",
@@ -236,7 +254,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T05:42:44.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     },
     {
       "title": "打造學生藝文展演的夢想舞台 竹縣光明國小向陽館落成啟用",
@@ -248,7 +267,8 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T05:26:35.000Z",
       "feed_time_kind": "",
-      "source_name": "新竹縣政府"
+      "source_name": "新竹縣政府",
+      "related_urls": []
     }
   ],
   "announcements": [
@@ -320,6 +340,10 @@
     "list_url": "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059",
     "count": 981,
     "download_url": "/data/news-intel/city-catalog.json"
+  },
+  "changes": {
+    "added": [],
+    "removed": []
   },
   "model_review": []
 }

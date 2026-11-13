@@ -18,6 +18,7 @@
   <p class="meta"><a href="/">回到新竹選情觀察</a></p>
   <h1>新竹新聞索引</h1>
   <p id="status" class="meta">讀取中</p>
+  <p id="changes" class="meta"></p>
   <p>
     <button type="button" data-region="" aria-pressed="true">全部</button>
     <button type="button" data-region="hsinchu-city" aria-pressed="false">新竹市</button>
@@ -84,6 +85,7 @@ function taipeiStamp(value) {
   return `${formatted} 臺北時間`;
 }
 const status = document.querySelector("#status");
+const changes = document.querySelector("#changes");
 const filterStatus = document.querySelector("#filter-status");
 const list = document.querySelector("#list");
 const accountStatus = document.querySelector("#account-status");
@@ -133,6 +135,12 @@ fetch("/data/news-intel/latest.json")
     const when = taipeiStamp(data.last_success_at) || "未知";
     const geminiNote = data.gemini?.called ? "Gemini 有提出候選，尚未當事實。" : "Gemini 未使用。";
     status.textContent = `成功時間 ${when}。顯示 ${articles.length} 篇。${geminiNote}這是單一來源索引，不是已查核事實。`;
+    const diff = data.changes;
+    if (diff && Array.isArray(diff.added) && Array.isArray(diff.removed)) {
+      changes.textContent = diff.added.length || diff.removed.length
+        ? `和上一輪相比，新進 ${diff.added.length} 篇，退出 ${diff.removed.length} 篇。`
+        : "和上一輪相比，清單沒有增減。";
+    }
     for (const article of articles) {
       const claimLabels = { candidate_statement: "候選人說法", poll: "民調", legal_status: "司法程序", commentary: "評論", official_notice: "官方公告", news_report: "新聞報導", project_progress: "工程進度說法" };
       const statusLabels = { SINGLE_SOURCE: "單一來源", UNVERIFIED: "尚未查證", VERIFIED_OFFICIAL: "官方已核對", VERIFIED_MULTI_SOURCE: "多來源已核對", DISPUTED: "說法衝突", CORRECTED: "已更正", RETRACTED: "已撤下" };

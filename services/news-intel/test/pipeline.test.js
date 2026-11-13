@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { authorize } from "../src/auth.js";
 import { allowedUrl } from "../src/allowlist.js";
-import { decideGemini, linkEvents, placeLabel, regionFor, regionGroup, selectArticles } from "../src/pipeline.js";
+import { articleChanges, decideGemini, linkEvents, placeLabel, regionFor, regionGroup, selectArticles } from "../src/pipeline.js";
 import { handleMcp } from "../src/mcp.js";
 import { mergeRun, runHour } from "../src/run.js";
 import { publicationFields } from "../src/verify.js";
@@ -48,6 +48,20 @@ test("districts stay inside the city or county filter", () => {
   const html = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
   assert.equal(html.includes('data-region="hsinchu-city"'), true);
   assert.equal(html.includes('data-region="hsinchu-county"'), true);
+});
+
+test("the first news list has no previous diff", () => {
+  assert.equal(articleChanges([], [{ source_url: "https://www.hsinchu.gov.tw/a", original_title: "新竹縣公告" }]), null);
+  const diff = articleChanges(
+    [{ source_url: "https://www.hsinchu.gov.tw/a", original_title: "舊公告" }],
+    [{ source_url: "https://www.hsinchu.gov.tw/b", original_title: "新公告" }],
+  );
+  assert.deepEqual(diff.added, ["新公告"]);
+  assert.deepEqual(diff.removed, ["舊公告"]);
+  assert.deepEqual(articleChanges(
+    [{ url: "https://www.hsinchu.gov.tw/a", title: "同一則" }],
+    [{ source_url: "https://www.hsinchu.gov.tw/a", original_title: "同一則" }],
+  ), { added: [], removed: [] });
 });
 
 test("city catalog keeps dataset names and drops contact fields", async () => {

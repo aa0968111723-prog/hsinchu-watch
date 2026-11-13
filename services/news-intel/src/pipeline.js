@@ -107,6 +107,17 @@ export function selectArticles(candidates, hidden = new Set()) {
   return selected;
 }
 
+export function articleChanges(previous, next) {
+  const before = previous || [];
+  if (!before.length) return null;
+  const beforeUrls = new Set(before.map((article) => article.source_url || article.url));
+  const afterUrls = new Set((next || []).map((article) => article.source_url || article.url));
+  return {
+    added: (next || []).filter((article) => !beforeUrls.has(article.source_url || article.url)).map((article) => article.original_title || article.title),
+    removed: before.filter((article) => !afterUrls.has(article.source_url || article.url)).map((article) => article.original_title || article.title),
+  };
+}
+
 export function acceptModelProposals(proposals) {
   return selectArticles((proposals || []).filter((item) => allowedUrl(item?.source_url))).map((article) => ({
     ...article,

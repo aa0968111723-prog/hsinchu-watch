@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { ADAPTERS, splitCityCatalog } from "./adapters.js";
+import { articleChanges } from "./pipeline.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
 import { publishableResult, runHour, sourceFetch } from "./run.js";
 
@@ -72,6 +73,7 @@ const payload = {
   announcements: publishable.announcements || [],
   public_records: publishable.public_records || [],
   city_catalog: catalogParts.summary,
+  changes: articleChanges(previous.articles, publishable.articles),
   model_review: publishable.model_review || [],
 };
 mkdirSync(new URL("../state/", import.meta.url), { recursive: true });
