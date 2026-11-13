@@ -7,7 +7,7 @@ import { applyScheduledResult } from "./index.js";
 export function openNewsDb(file) {
   if (file !== ":memory:") mkdirSync(dirname(file), { recursive: true });
   const db = new DatabaseSync(file);
-  for (const name of ["0001_init.sql", "0002_snapshot.sql", "0003_final_accounts.sql", "0006_population.sql", "0007_school_zones.sql", "0009_public_rosters.sql", "0010_fire_hydrants.sql", "0011_bus_shelters.sql", "0012_accessible_toilets.sql", "0013_heritage_sites.sql", "0014_ev_chargers.sql", "0015_gas_stations.sql", "0016_electric_buses.sql", "0017_organic_farms.sql", "0018_rescue_stats.sql", "0019_county_bridges.sql", "0020_river_samples.sql", "0021_junior_high_zones.sql"]) {
+  for (const name of ["0001_init.sql", "0002_snapshot.sql", "0003_final_accounts.sql", "0006_population.sql", "0007_school_zones.sql", "0009_public_rosters.sql", "0010_fire_hydrants.sql", "0011_bus_shelters.sql", "0012_accessible_toilets.sql", "0013_heritage_sites.sql", "0014_ev_chargers.sql", "0015_gas_stations.sql", "0016_electric_buses.sql", "0017_organic_farms.sql", "0018_rescue_stats.sql", "0019_county_bridges.sql", "0020_river_samples.sql", "0021_junior_high_zones.sql", "0022_traffic_crashes.sql"]) {
     db.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), "utf8"));
   }
   for (const name of ["0004_article_dates.sql", "0005_related_urls.sql", "0008_source_unavailable.sql"]) {

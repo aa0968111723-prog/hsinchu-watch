@@ -83,6 +83,9 @@
   <h2>新竹縣河川水質</h2>
   <p id="river-status" class="meta"></p>
   <ol id="river"></ol>
+  <h2>新竹縣交通事故件數</h2>
+  <p id="crash-status" class="meta"></p>
+  <ol id="crashes"></ol>
   <h2>新竹縣選舉委員會公告</h2>
   <p id="election-status" class="meta"></p>
   <ol id="election-files"></ol>
@@ -179,6 +182,8 @@ const airStatus = document.querySelector("#air-status");
 const airList = document.querySelector("#air");
 const riverStatus = document.querySelector("#river-status");
 const riverList = document.querySelector("#river");
+const crashStatus = document.querySelector("#crash-status");
+const crashList = document.querySelector("#crashes");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
@@ -655,6 +660,25 @@ fetch("/data/news-intel/latest.json")
       item.textContent = `${row.river} · ${row.station} · 採樣 ${row.sample_date || "日期未填"}`;
       riverList.append(item);
     }
+    const crashes = data.crashes;
+    const crashRows = Array.isArray(crashes?.rows) ? crashes.rows : [];
+    crashStatus.textContent = crashRows.length
+      ? `${crashRows.length} 列。年月份沿用原文。這不是本月事故。A1、A2、A3 沿用原文，不加總。`
+      : "這一輪沒有交通事故件數，沒有補 0。";
+    if (crashes?.source_url && crashRows.length) {
+      const source = document.createElement("a");
+      source.href = crashes.source_url;
+      source.textContent = "資料集頁";
+      crashStatus.append(" ", source);
+    }
+    for (const row of crashRows) {
+      const item = document.createElement("li");
+      const a1 = row.a1 ?? "未填";
+      const a2 = row.a2 ?? "未填";
+      const a3 = row.a3 ?? "未填";
+      item.textContent = `${row.period_text} · A1 ${a1} · A2 ${a2} · A3 ${a3}`;
+      crashList.append(item);
+    }
     const election = data.election;
     const electionFilesRows = Array.isArray(election?.files) ? election.files : [];
     electionStatus.textContent = election?.title
@@ -733,6 +757,7 @@ fetch("/data/news-intel/latest.json")
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";
     riverStatus.textContent = "河川水質讀取失敗。頁面沒有改用假資料。";
+    crashStatus.textContent = "交通事故件數讀取失敗。頁面沒有改用假資料。";
     electionStatus.textContent = "選務公告讀取失敗。頁面沒有改用假資料。";
   });
 </script>

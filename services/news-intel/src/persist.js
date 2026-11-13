@@ -556,6 +556,31 @@ export async function persistRiver(db, { river, now, actor = "scheduler" }) {
   return { upserted };
 }
 
+export async function persistCrashes(db, { crashes, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of crashes?.rows || []) {
+    const periodText = String(row?.period_text || "").trim();
+    if (!periodText) continue;
+    keys.push(periodText);
+    const a1 = row.a1 ?? null;
+    const existing = await db.prepare("SELECT a1, a2, a3 FROM traffic_crash_counts WHERE period_text = ?").bind(periodText).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO traffic_crash_counts (period_text, period, a1, a2, a3, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)").bind(periodText, row.period || null, a1, row.a2 ?? null, row.a3 ?? null, crashes.dataset_url, crashes.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.a1 ?? null) !== a1 || (existing.a2 ?? null) !== (row.a2 ?? null) || (existing.a3 ?? null) !== (row.a3 ?? null)) {
+      await db.prepare("UPDATE traffic_crash_counts SET period = ?, a1 = ?, a2 = ?, a3 = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE period_text = ?").bind(row.period || null, a1, row.a2 ?? null, row.a3 ?? null, crashes.dataset_url, crashes.source_url, now, periodText).run();
+      upserted += 1;
+    }
+  }
+  if (keys.length && crashes?.dataset_url) {
+    const placeholders = keys.map(() => "?").join(",");
+    await db.prepare(`DELETE FROM traffic_crash_counts WHERE dataset_url = ? AND period_text NOT IN (${placeholders})`).bind(crashes.dataset_url, ...keys).run();
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_crashes', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

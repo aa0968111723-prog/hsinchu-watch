@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T20:25:55.899Z",
+  "last_success_at": "2026-11-13T20:30:03.642Z",
   "count": 20,
   "failures": [
     {
@@ -723,6 +723,49 @@
     "download_url": "/data/news-intel/river-quality.json",
     "note": "採樣日期沿用原文。這不是今天的水質。測值、ND 和小於號沿用原文，不加總，單位不另加。聯絡人沒有入檔。"
   },
+  "crashes": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=310",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/310/286c395c-e268-41c5-853b-edb20b9cd575.json",
+    "count": 5,
+    "rows": [
+      {
+        "period_text": "108年1月",
+        "period": "2019-01",
+        "a1": "3",
+        "a2": "685",
+        "a3": "756"
+      },
+      {
+        "period_text": "108年2月",
+        "period": "2019-02",
+        "a1": "5",
+        "a2": "537",
+        "a3": "551"
+      },
+      {
+        "period_text": "108年3月",
+        "period": "2019-03",
+        "a1": "3",
+        "a2": "546",
+        "a3": "670"
+      },
+      {
+        "period_text": "108年4月",
+        "period": "2019-04",
+        "a1": "1",
+        "a2": "545",
+        "a3": "646"
+      },
+      {
+        "period_text": "108年5月",
+        "period": "2019-05",
+        "a1": "6",
+        "a2": "608",
+        "a3": "687"
+      }
+    ],
+    "note": "年月份和 A1、A2、A3 件數沿用原文，不加總。這不是本月事故。聯絡人沒有入檔。"
+  },
   "electric_buses": {
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=313",
     "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/313/1e32f0e4-e3ea-4c01-b650-3757a08fae07.json",
@@ -1283,6 +1326,6 @@
     "added": [],
     "removed": []
   },
-  "duration_ms": 22297,
+  "duration_ms": 26152,
   "model_review": []
 }

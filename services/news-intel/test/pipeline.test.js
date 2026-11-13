@@ -1019,6 +1019,48 @@ test("junior high zones keep the description year and do not add a month", async
   assert.equal(page.includes("沒有月份就不補月"), true);
 });
 
+test("traffic crash counts keep the written month and do not add the classes together", async () => {
+  const { normalizeCountyCrashes } = await import("../src/adapters.js");
+  const rows = normalizeCountyCrashes(JSON.stringify([
+    { "編號": "1", "年月份": "108年1月", "A1件數": "0", "A2件數": "685", "A3件數": "756" },
+    { "年月份": " ", "A1件數": "1", "A2件數": "2", "A3件數": "3" },
+    { "年月份": "108年13月", "A1件數": "1", "A2件數": "2", "A3件數": "3" },
+  ]));
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].period_text, "108年1月");
+  assert.equal(rows[0].period, "2019-01");
+  assert.equal(rows[0].a1, "0");
+  assert.equal(rows[0].total, undefined);
+  assert.equal(rows[1].period, null);
+  assert.equal(rows[1].period_text, "108年13月");
+  const kept = await runHour({
+    previous: { articles: [], crashes: { count: 1, rows: [{ period_text: "108年1月", a1: "3", a2: "685", a3: "756" }] } },
+    now: "2026-11-14T02:00:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.crashes.rows[0].a1, "3");
+  assert.equal(kept.crashes.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-traffic-crashes", payload: JSON.stringify([{ "年月份": "108年5月", "A1件數": "6", "A2件數": "608", "A3件數": "687" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-traffic-crashes", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.rows[0].period, "2019-05");
+  assert.equal(imported.body.rows[0].total, undefined);
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不是本月事故"), true);
+  assert.equal(page.includes("A1、A2、A3 沿用原文，不加總"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1810,6 +1852,13 @@ test("published news file stays within the real cap", () => {
     assert.equal(JSON.stringify(junior).includes("03-5518101"), false);
     const xinpu = junior.schools.find((row) => row.township === "新埔鎮");
     assert.equal(xinpu.region_id, "xinpu");
+  }
+  if (data.crashes?.rows) {
+    assert.equal(data.crashes.count, data.crashes.rows.length);
+    assert.ok(data.crashes.rows.every((row) => /^\d{2,3}年\d{1,2}月$/.test(row.period_text) && typeof row.a1 === "string" && typeof row.a2 === "string" && typeof row.a3 === "string" && row.total === undefined));
+    assert.equal(data.crashes.rows[0].period_text, "108年1月");
+    assert.equal(data.crashes.rows.at(-1).period_text, "108年5月");
+    assert.equal(JSON.stringify(data.crashes).includes("03-5513509"), false);
   }
   assert.ok(data.visitors.rows.length >= 1);
   assert.match(data.visitors.period, /^\d{4}-\d{2}$/);

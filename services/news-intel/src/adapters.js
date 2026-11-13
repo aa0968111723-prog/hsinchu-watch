@@ -166,6 +166,8 @@ export const COUNTY_BRIDGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_BRIDGE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=262";
 export const COUNTY_RIVER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1725/1bd9c2cc-6fda-4f36-907b-1b6cb8212435.json";
 export const COUNTY_RIVER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1725";
+export const COUNTY_CRASH_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/310/286c395c-e268-41c5-853b-edb20b9cd575.json";
+export const COUNTY_CRASH_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=310";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -965,6 +967,35 @@ export function splitRiver(river) {
   };
   const download = Array.isArray(river.rows) ? { ...summary, rows: river.rows } : null;
   return { summary, download };
+}
+
+export function crashPeriod(label) {
+  const text = String(label || "").trim();
+  const match = text.match(/^(\d{2,3})年(\d{1,2})月$/);
+  if (!match) return { period: null, period_text: text || null };
+  const roc = Number(match[1]);
+  const month = Number(match[2]);
+  if (!Number.isInteger(roc) || !Number.isInteger(month) || roc < 1 || roc > 300 || month < 1 || month > 12) {
+    return { period: null, period_text: text };
+  }
+  const year = roc < 1911 ? roc + 1911 : roc;
+  return { period: `${year}-${String(month).padStart(2, "0")}`, period_text: text };
+}
+
+export function normalizeCountyCrashes(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const period = crashPeriod(row?.["年月份"]);
+    if (!period.period_text) return [];
+    return [{
+      period_text: period.period_text,
+      period: period.period,
+      a1: originalNumber(row["A1件數"]),
+      a2: originalNumber(row["A2件數"]),
+      a3: originalNumber(row["A3件數"]),
+    }];
+  });
 }
 
 export function normalizeSpecialClasses(payload) {
