@@ -375,6 +375,36 @@ def parse_pcc_tenders(spec: dict, body: bytes) -> list[dict]:
     return _rows_from_tender_xml(spec, payload, file_url)
 
 
+def parse_hsc_final_account(spec: dict, body: bytes) -> list[dict]:
+    payload = json.loads(body.decode("utf-8-sig"))
+    rows = [row for row in payload if isinstance(row, dict) and str(row.get("年度") or "").strip()]
+    rows.sort(key=lambda row: int(str(row.get("年度"))))
+    found = []
+    for row in rows[-4:]:
+        roc = int(str(row.get("年度")))
+        year = roc + 1911 if roc < 1911 else roc
+        total = row.get("歲出決算數")
+        if total is None or str(total).strip() == "":
+            amount = None
+            amount_note = "歲出決算數欄位是空的，不補 0。"
+        else:
+            amount = str(total).strip()
+            amount_note = f"資料檔歲出決算數為 {amount}。單位未在欄名標示，不換算。"
+        item = _item_from(
+            spec,
+            title=f"新竹縣{year}年度歲出決算",
+            url=spec.get("list_url") or spec["url"],
+            excerpt=f"新竹縣政府歲出決算。{amount_note}這是機關決算數，不是驗收或成效。",
+            published=f"{year:04d}",
+            precision="year",
+            native_id=str(year),
+        )
+        if item:
+            item["reported_total"] = amount
+            found.append(item)
+    return found
+
+
 PARSERS = {
     "rss": parse_rss,
     "atom_title": parse_atom_title,
@@ -384,5 +414,6 @@ PARSERS = {
     "ntpc_json": parse_ntpc_json,
     "ly_json": parse_ly_json,
     "pcc_tender_xml": parse_pcc_tenders,
+    "hsc_final_json": parse_hsc_final_account,
 }
 

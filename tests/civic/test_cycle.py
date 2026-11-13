@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from collectors.civic.catalog import GAPS, SOURCES
 from collectors.civic.cycle import content_hash, run_cycle
-from collectors.civic.parsers import parse_pcc_tenders, parse_rss
+from collectors.civic.parsers import parse_hsc_final_account, parse_pcc_tenders, parse_rss
 from collectors.civic.textutil import public_excerpt
 
 NOW = datetime(2026, 11, 13, 1, 0, tzinfo=timezone(timedelta(hours=8)))
@@ -249,6 +249,24 @@ class CycleTests(unittest.TestCase):
         self.assertNotIn("02-27208888", blob)
         self.assertNotIn("敷料", blob)
         self.assertIn("不是支用或驗收", rows[0]["text_excerpt"])
+
+    def test_hsc_final_account_keeps_blank_distinct_from_zero(self):
+        spec = next(row for row in SOURCES if row["id"] == "hsc-expenditure-final")
+        body = json.dumps([
+            {"年度": "110", "歲出決算數": "100"},
+            {"年度": "111", "歲出決算數": "0"},
+            {"年度": "112", "歲出決算數": ""},
+            {"年度": "109", "歲出決算數": "90"},
+            {"年度": "108", "歲出決算數": "80"},
+        ], ensure_ascii=False).encode()
+        rows = parse_hsc_final_account(spec, body)
+        by_year = {row["published_at"]: row for row in rows}
+        self.assertEqual(set(by_year), {"2020", "2021", "2022", "2023"})
+        self.assertEqual(by_year["2022"]["reported_total"], "0")
+        self.assertIsNone(by_year["2023"]["reported_total"])
+        self.assertIn("不補 0", by_year["2023"]["text_excerpt"])
+        self.assertEqual(by_year["2023"]["date_precision"], "year")
+        self.assertEqual(by_year["2023"]["region_refs"], ["hsinchu-county"])
 
 
 if __name__ == "__main__":
