@@ -5,6 +5,8 @@ import { authorize } from "../src/auth.js";
 import { allowedUrl } from "../src/allowlist.js";
 import { decideGemini, linkEvents, selectArticles } from "../src/pipeline.js";
 import { handleMcp } from "../src/mcp.js";
+import { mergeRun, runHour } from "../src/run.js";
+import { publicationFields } from "../src/verify.js";
 
 const tokens = { reader: "reader-token", collector: "collector-token", verifier: "verifier-token", publisher: "publisher-token", admin: "admin-token" };
 
@@ -56,6 +58,23 @@ test("blocks private and off-allowlist fetches", () => {
 test("gemini stays off without a key or when the cap is hit", () => {
   assert.equal(decideGemini({}, {}).use, false);
   assert.equal(decideGemini({ GEMINI_API_KEY: "present" }, { tokens_today: 200000 }).reason, "daily_token_cap");
+});
+
+test("a failed hour keeps the last successful articles", async () => {
+  const previous = { articles: [{ original_title: "既有新竹市公告", source_url: "https://www.hccg.gov.tw/a" }], last_success_at: "2026-11-13T01:00:00+08:00" };
+  const failed = await runHour({
+    previous,
+    now: "2026-11-13T02:00:00+08:00",
+    adapters: [{ id: "down", async fetch() { throw new Error("timeout"); }, normalize() { return []; } }],
+    fetcher: async () => ({ ok: false, status: 503, text: async () => "" }),
+  });
+  assert.equal(failed.retained, true);
+  assert.equal(failed.articles.length, 1);
+  assert.equal(failed.last_success_at, "2026-11-13T01:00:00+08:00");
+  const poll = publicationFields({ original_title: "新竹市民調支持度", source_url: "https://www.cna.com.tw/a", publisher_timestamp: "2026-11-13", source_type: "news_rss", summary: "支持度" });
+  assert.equal(poll.verification_status, "UNVERIFIED");
+  assert.equal(poll.fact_fields_allowed, false);
+  assert.deepEqual(mergeRun(previous, { ok: false, error: "down" }).articles, previous.articles);
 });
 
 test("migration creates the article and audit tables", () => {
