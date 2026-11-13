@@ -85,7 +85,13 @@ export function selectArticles(candidates, hidden = new Set()) {
     const region = regionFor(title, item.summary || "") || (OFFICIAL_HSINCHU.has(item.source_id) ? (item.region_id || fallback) : null);
     if (!region) continue;
     const key = normalizeTitle(title);
-    if (seen.has(url) || seen.has(key)) continue;
+    if (seen.has(url)) continue;
+    if (seen.has(key)) {
+      const kept = selected.find((article) => normalizeTitle(article.original_title) === key);
+      if (kept && !(kept.related_urls || []).includes(url)) kept.related_urls = [...(kept.related_urls || []), url];
+      continue;
+    }
+    if (selected.length >= MAX_ARTICLES) continue;
     seen.add(url);
     seen.add(key);
     selected.push({
@@ -95,8 +101,8 @@ export function selectArticles(candidates, hidden = new Set()) {
       region_id: region,
       publisher_timestamp: published,
       review_status: "pending_index",
+      related_urls: [],
     });
-    if (selected.length >= MAX_ARTICLES) break;
   }
   return selected;
 }

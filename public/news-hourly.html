@@ -92,7 +92,7 @@ const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
 const catalogStatus = document.querySelector("#catalog-status");
 
-function addItem(parent, title, url, meta, group) {
+function addItem(parent, title, url, meta, group, related) {
   const item = document.createElement("li");
   if (group) item.dataset.group = group;
   const link = document.createElement("a");
@@ -102,6 +102,19 @@ function addItem(parent, title, url, meta, group) {
   note.className = "meta";
   note.textContent = meta;
   item.append(link, note);
+  const links = (related || []).filter((href) => String(href).startsWith("https://"));
+  if (links.length) {
+    const extra = document.createElement("div");
+    extra.className = "meta";
+    extra.append("相關報導");
+    for (const href of links) {
+      const rel = document.createElement("a");
+      rel.href = href;
+      rel.textContent = new URL(href).host.replace(/^www\./, "");
+      extra.append(" ", rel);
+    }
+    item.append(extra);
+  }
   parent.append(item);
 }
 fetch("/data/news-intel/latest.json")
@@ -125,7 +138,7 @@ fetch("/data/news-intel/latest.json")
           : article.date_checked === true ? " · 發布時間已對過原文" : "";
       const group = regionGroup(article.region_id);
       const place = placeLabel(article.region_id);
-      addItem(list, article.title, article.url, `${place} · ${article.source_name || "來源未標"} · ${taipeiStamp(article.published_at) || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}${dateNote}`, group);
+      addItem(list, article.title, article.url, `${place} · ${article.source_name || "來源未標"} · ${taipeiStamp(article.published_at) || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}${dateNote}`, group, article.related_urls);
     }
     const records = Array.isArray(data.public_records) ? data.public_records : [];
     accountStatus.textContent = records.length ? "金額沿用資料檔原文。單位未標示，不換算。這不是驗收或實支。" : "這一輪沒有決算數字，沒有補 0。";
