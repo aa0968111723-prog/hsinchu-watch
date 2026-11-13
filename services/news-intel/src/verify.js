@@ -15,10 +15,11 @@ const LEGAL_WORDS = ["搜索", "偵查", "交保", "聲押", "起訴", "羈押",
 export function claimKind(article) {
   const blob = `${article?.original_title || ""} ${article?.summary || ""}`;
   if (blob.includes("民調") || blob.includes("支持度")) return "poll";
-  if (["開工", "完工", "落成", "驗收", "進度"].some((word) => blob.includes(word))) return "project_progress";
   if (LEGAL_WORDS.some((word) => blob.includes(word))) return "legal_status";
+  if (article?.source_type === "news_rss" && CANDIDATE_WORDS.some((word) => blob.includes(word))) return "candidate_statement";
+  if (["開工", "完工", "落成", "驗收", "進度"].some((word) => blob.includes(word))) return "project_progress";
   if (article?.source_type === "official_rss" || article?.source_type === "official_html") return "official_notice";
-  if (article?.source_type === "news_rss" && (CANDIDATE_WORDS.some((word) => blob.includes(word)) || String(article?.original_title || "").includes("："))) return "candidate_statement";
+  if (article?.source_type === "news_rss" && String(article?.original_title || "").includes("：")) return "candidate_statement";
   if (blob.includes("評論") || blob.includes("社論")) return "commentary";
   return "news_report";
 }

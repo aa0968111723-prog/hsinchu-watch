@@ -153,6 +153,13 @@ test("a failed hour keeps the last successful articles", async () => {
   const speech = publicationFields({ original_title: "吳旭智：將持續爭取選民認同", source_url: "https://www.cna.com.tw/b", publisher_timestamp: "2026-11-13T14:16:16.000Z", source_type: "news_rss" });
   assert.equal(speech.claim_kind, "candidate_statement");
   assert.equal(speech.fact_fields_allowed, false);
+  const speechProject = publicationFields({ original_title: "候選人助選並視察開工", source_url: "https://www.cna.com.tw/c", publisher_timestamp: "2026-11-13", source_type: "news_rss" });
+  assert.equal(speechProject.claim_kind, "candidate_statement");
+  assert.equal(speechProject.fact_fields_allowed, false);
+  const legal = publicationFields({ original_title: "新竹工程案起訴", source_url: "https://www.cna.com.tw/d", publisher_timestamp: "2026-11-13", source_type: "news_rss" });
+  assert.equal(legal.claim_kind, "legal_status");
+  assert.equal(legal.verification_status, "UNVERIFIED");
+  assert.equal(legal.fact_fields_allowed, false);
   const { pageDateAgrees } = await import("../src/verify.js");
   const { readPagePublishedAt } = await import("../src/verify.js");
   assert.equal(readPagePublishedAt('"datePublished": "2026-11-13T21:56:00+08:00"'), "2026-11-13T13:56:00.000Z");
