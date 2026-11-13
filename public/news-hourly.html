@@ -194,11 +194,13 @@ fetch("/data/news-intel/latest.json")
       const claimLabels = { candidate_statement: "候選人說法", poll: "民調", legal_status: "司法程序", commentary: "評論", official_notice: "官方公告", news_report: "新聞報導", project_progress: "工程進度說法" };
       const statusLabels = { SINGLE_SOURCE: "單一來源", UNVERIFIED: "尚未查證", VERIFIED_OFFICIAL: "官方已核對", VERIFIED_MULTI_SOURCE: "多來源已核對", DISPUTED: "說法衝突", CORRECTED: "已更正", RETRACTED: "已撤下" };
       const pageTime = taipeiStamp(article.page_published_at) || "未讀到";
-      const dateNote = article.date_checked === false
-        ? ` · 原文時間 ${pageTime}`
-        : article.feed_time_kind === "updated" && article.page_published_at
-          ? ` · 清單是更新時間，原文時間 ${pageTime}`
-          : article.date_checked === true ? " · 發布時間已對過原文" : "";
+      const dateNote = article.source_unavailable
+        ? (article.date_checked === true ? " · 先前對過發布時間" : "")
+        : article.date_checked === false
+          ? ` · 原文時間 ${pageTime}`
+          : article.feed_time_kind === "updated" && article.page_published_at
+            ? ` · 清單是更新時間，原文時間 ${pageTime}`
+            : article.date_checked === true ? " · 發布時間已對過原文" : "";
       const unavailable = article.source_unavailable ? " · 原文頁目前打不開" : "";
       const group = regionGroup(article.region_id);
       const place = placeLabel(article.region_id);

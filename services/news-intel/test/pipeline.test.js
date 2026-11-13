@@ -98,6 +98,7 @@ test("round duration is a whole number of seconds", () => {
   assert.equal(html.includes("本輪抓取"), true);
   assert.equal(html.includes("沒有讀到新文章。"), true);
   assert.equal(html.includes("新竹市政府列表"), true);
+  assert.equal(html.includes("先前對過發布時間"), true);
   assert.equal(html.includes("沒有補假資料。${roundNote}"), true);
 });
 
