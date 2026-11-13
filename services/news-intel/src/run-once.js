@@ -23,6 +23,7 @@ try {
     last_success_at: existing.last_success_at || null,
     announcements: existing.announcements || [],
     public_records: existing.public_records || [],
+    city_catalog: existing.city_catalog || null,
   };
 } catch {
   previous = { articles: [], last_success_at: null };
@@ -65,6 +66,7 @@ const payload = {
   })),
   announcements: publishable.announcements || [],
   public_records: publishable.public_records || [],
+  city_catalog: publishable.city_catalog || null,
   model_review: publishable.model_review || [],
 };
 mkdirSync(new URL("../state/", import.meta.url), { recursive: true });

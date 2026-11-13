@@ -120,6 +120,25 @@ export function normalizeCnaAtom(xml) {
   }).filter((row) => row.original_title && row.source_url);
 }
 
+export const CITY_CATALOG_URL = "https://opendata.hccg.gov.tw/OpenDataCSV.aspx";
+export const CITY_CATALOG_LIST = "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059";
+
+export function normalizeCityCatalog(text) {
+  const lines = String(text || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const headerIndex = lines.findIndex((line) => line.startsWith("資料集名稱,"));
+  if (headerIndex < 0) return [];
+  const datasets = [];
+  for (const line of lines.slice(headerIndex + 1)) {
+    const fields = line.split(",");
+    const name = fields[0]?.trim() || "";
+    const agency = fields[1]?.trim() || "";
+    const formats = fields[4]?.trim() || "";
+    if (!name) continue;
+    datasets.push({ name, agency, formats });
+  }
+  return datasets;
+}
+
 export const ADAPTERS = [
   {
     id: "hsinchu-county-news",

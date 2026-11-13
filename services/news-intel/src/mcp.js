@@ -1,4 +1,4 @@
-import { ADAPTERS, normalizeFinalAccounts } from "./adapters.js";
+import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, normalizeFinalAccounts } from "./adapters.js";
 import { authorize } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
@@ -23,7 +23,10 @@ const UNCONNECTED = new Set([
 ]);
 
 function sources() {
-  return ADAPTERS.map((adapter) => ({ id: adapter.id, kind: adapter.kind, ...adapter.discover() }));
+  return [
+    ...ADAPTERS.map((adapter) => ({ id: adapter.id, kind: adapter.kind, ...adapter.discover() })),
+    { id: "hccg-opendata-catalog", kind: "open_data", url: CITY_CATALOG_URL, docs: CITY_CATALOG_LIST, license: "政府資料開放授權條款", free: true, needs_key: false },
+  ];
 }
 
 async function audit(db, actor, action, target) {

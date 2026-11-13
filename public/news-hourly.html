@@ -24,6 +24,8 @@
   <h2>新竹縣議會公告</h2>
   <p id="notice-status" class="meta"></p>
   <ol id="notices"></ol>
+  <h2>新竹市資料開放目錄</h2>
+  <p id="catalog-status" class="meta"></p>
 </main>
 <script>
 function taipeiStamp(value) {
@@ -50,6 +52,7 @@ const accountStatus = document.querySelector("#account-status");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
+const catalogStatus = document.querySelector("#catalog-status");
 
 function addItem(parent, title, url, meta) {
   const item = document.createElement("li");
@@ -94,12 +97,23 @@ fetch("/data/news-intel/latest.json")
     for (const notice of announcements) {
       addItem(notices, notice.title, notice.url, `${notice.source_name || "新竹縣議會"} · ${taipeiStamp(notice.published_at) || "日期未知"}`);
     }
+    const catalog = data.city_catalog;
+    catalogStatus.textContent = catalog?.count
+      ? `目錄 ${catalog.count} 筆。只留名稱、機關和格式，不含聯絡人。`
+      : "這一輪沒有讀到市府目錄，沒有補假資料。";
+    if (catalog?.list_url) {
+      const link = document.createElement("a");
+      link.href = catalog.list_url;
+      link.textContent = "新竹市政府資料開放平臺";
+      catalogStatus.append(" ", link);
+    }
     if (!articles.length) status.textContent = "這一輪沒有可顯示的文章，沒有補假資料。";
   })
   .catch(() => {
     status.textContent = "新聞索引讀取失敗。頁面沒有改用假資料。";
     accountStatus.textContent = "決算數字讀取失敗。頁面沒有改用假資料。";
     noticeStatus.textContent = "議會公告讀取失敗。頁面沒有改用假資料。";
+    catalogStatus.textContent = "市府目錄讀取失敗。頁面沒有改用假資料。";
   });
 </script>
 </body>

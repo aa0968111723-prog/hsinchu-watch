@@ -1,4 +1,4 @@
-import { collectAdapters } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, collectAdapters, normalizeCityCatalog } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -39,6 +39,7 @@ export function mergeRun(previous, result) {
       failures: result.failures || [],
       announcements: previous?.announcements || [],
       public_records: previous?.public_records || [],
+      city_catalog: previous?.city_catalog || null,
       model_review: previous?.model_review || [],
     };
   }
@@ -51,8 +52,23 @@ export function mergeRun(previous, result) {
     gemini: result.gemini,
     announcements: result.announcements || [],
     public_records: result.public_records || [],
+    city_catalog: result.city_catalog || null,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCityCatalog(fetcher, previous) {
+  const kept = previous?.city_catalog || null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(CITY_CATALOG_URL);
+    if (!response?.ok || typeof response.arrayBuffer !== "function") return kept;
+    const datasets = normalizeCityCatalog(new TextDecoder("big5").decode(new Uint8Array(await response.arrayBuffer())));
+    if (!datasets.length) return kept;
+    return { source_url: CITY_CATALOG_URL, list_url: CITY_CATALOG_LIST, count: datasets.length, datasets };
+  } catch {
+    return kept;
+  }
 }
 
 export async function runHour({ fetcher, adapters, env, previous, now, hidden = new Set() }) {
@@ -118,6 +134,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       gemini,
       announcements,
       public_records: publicRecords,
+      city_catalog: await loadCityCatalog(fetcher, previous),
       model_review: modelReview,
     });
   } catch (error) {

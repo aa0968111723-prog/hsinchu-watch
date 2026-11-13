@@ -26,6 +26,23 @@ test("news times are shown in Taipei and date-only values stay unchanged", async
   assert.equal(html.includes('type="module"'), false);
 });
 
+test("city catalog keeps dataset names and drops contact fields", async () => {
+  const { normalizeCityCatalog } = await import("../src/adapters.js");
+  const rows = normalizeCityCatalog("資料產生時間,2026/11/14\n資料集名稱,資料來源,聯絡人,聯絡電話,提供格式,資料說明\n新竹市路燈,工務處,王小明,03-5216121,CSV;JSON,說明,多餘");
+  assert.deepEqual(rows, [{ name: "新竹市路燈", agency: "工務處", formats: "CSV;JSON" }]);
+  const { runHour } = await import("../src/run.js");
+  const kept = await runHour({
+    previous: { articles: [], city_catalog: { count: 2, datasets: [{ name: "舊目錄", agency: "交通處", formats: "CSV" }] } },
+    now: "2026-11-14T00:00:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.city_catalog.count, 2);
+  assert.equal(kept.articles.length, 1);
+  const registry = await handleMcp({ authorization: "Bearer reader-token", tokens, body: { tool: "list_source_registry" } });
+  assert.equal(registry.body.sources.some((source) => source.id === "hccg-opendata-catalog" && source.needs_key === false), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -368,6 +385,10 @@ test("published news file stays within the real cap", () => {
     }
   }
   assert.ok((data.public_records || []).every((record) => record.unit === null && (record.spent_amount === null || typeof record.spent_amount === "string")));
+  if (data.city_catalog) {
+    assert.equal(data.city_catalog.count, data.city_catalog.datasets.length);
+    assert.ok(data.city_catalog.datasets.every((row) => row.name && row.agency !== undefined && !("contact" in row) && !("phone" in row)));
+  }
 });
 
 test("a failed council fetch keeps the previous notices", async () => {

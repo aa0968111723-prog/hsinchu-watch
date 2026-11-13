@@ -6,6 +6,7 @@ export const ALLOWED_HOSTS = new Set([
   "data.gov.tw",
   "ws.hsinchu.gov.tw",
   "web.pcc.gov.tw",
+  "opendata.hccg.gov.tw",
 ]);
 
 export function allowedUrl(value) {
