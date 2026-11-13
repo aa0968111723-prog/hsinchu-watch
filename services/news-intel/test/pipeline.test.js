@@ -148,6 +148,7 @@ test("a failed hour keeps the last successful articles", async () => {
   assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", '"datePublished": "2026-11-12 17:05:09"'), false);
   assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", "<p>沒有日期</p>"), null);
   assert.equal(pageDateAgrees("2026-11-06", "<p>發布日期：115-11-06</p>"), true);
+  assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", '"datePublished": "2026-11-13 17:05:09" 發布日期：115-11-12'), true);
   assert.equal(pageDateAgrees("2026-11-06", "<p>發布日期：115-11-05</p>"), false);
   const project = publicationFields({ original_title: "新竹市立棒球場改善工程正式完工", source_url: "https://www.hccg.gov.tw/a", publisher_timestamp: "2026-11-01", source_type: "official_html" });
   assert.equal(project.claim_kind, "project_progress");

@@ -42,10 +42,12 @@ function taipeiDay(value) {
 
 export function readPagePublishedAt(html) {
   const source = String(html || "");
-  const roc = source.match(/發布日期：(\d{2,3})-(\d{2})-(\d{2})/);
-  if (roc) return `${Number(roc[1]) + 1911}-${roc[2]}-${roc[3]}`;
   const match = source.match(/"datePublished"\s*:\s*"([^"]+)"/);
-  if (!match) return null;
+  if (!match) {
+    const roc = source.match(/發布日期：(\d{2,3})-(\d{2})-(\d{2})/);
+    if (!roc) return null;
+    return `${Number(roc[1]) + 1911}-${roc[2]}-${roc[3]}`;
+  }
   const text = match[1].trim();
   const normalized = text.includes("T") ? text : `${text.replace(" ", "T")}+08:00`;
   const parsed = Date.parse(normalized);
