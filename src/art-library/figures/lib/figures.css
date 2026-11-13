@@ -1,0 +1,76 @@
+/* Civic paper theme for the figures. Colours follow 01-ui public/bright-civic.css:
+   paper #f4efe6, sheet #fffaf4, ink #2b261f, sage #2f6a56, clay #9a5340, sand #ead7b4. */
+.iso.civic[data-theme="light"]{
+  --anatomy-page:#f4efe6;--anatomy-card:#fffaf4;--anatomy-text:#5e564c;--anatomy-strong:#2b261f;--anatomy-muted:#6f6557;
+  --anatomy-paper:#fffaf4;--anatomy-face:#ffffff;--anatomy-top:#fffdf8;
+  --anatomy-shade-0:#e0d3be;--anatomy-shade-1:#e9ddca;--anatomy-shade-2:#f0e7d8;--anatomy-shade-3:#f6efe3;
+  --anatomy-lit-top:#eef6f1;--anatomy-lit-shade:#cbe0d5;
+  --anatomy-hi:#3a332a;--anatomy-mid:#8c7f6d;--anatomy-lo:#b5a894;--anatomy-faint:#d6cab7;--anatomy-lit:#2f6a56;
+  --anatomy-halo:#8a6f4c;--anatomy-halo-opacity:.26;--anatomy-dot:#4a4136;
+  --anatomy-mono:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  color:#2b261f;
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+/* Materials. Each keeps four side tones and a lighter top, so parts still read as solids. */
+.civic .mat-sage{--anatomy-paper:#d3e6dc;--anatomy-face:#e4f0ea;--anatomy-top:#e7f2ec;--anatomy-shade-0:#a3c7b6;--anatomy-shade-1:#b4d2c4;--anatomy-shade-2:#c4ddd1;--anatomy-shade-3:#d3e6dc}
+.civic .mat-clay{--anatomy-paper:#efd3c5;--anatomy-face:#f8ebe4;--anatomy-top:#f7e6dd;--anatomy-shade-0:#d39f88;--anatomy-shade-1:#dcb09b;--anatomy-shade-2:#e5c0ae;--anatomy-shade-3:#eccfc0}
+.civic .mat-sand{--anatomy-paper:#ecdcb9;--anatomy-face:#f6ecd3;--anatomy-top:#f4e8cb;--anatomy-shade-0:#cfb886;--anatomy-shade-1:#d9c597;--anatomy-shade-2:#e2d1a8;--anatomy-shade-3:#eadcba}
+.civic .mat-void{--anatomy-paper:#6b5f50;--anatomy-face:#6b5f50;--anatomy-top:#7a6d5c;--anatomy-shade-0:#4f4539;--anatomy-shade-1:#584d40;--anatomy-shade-2:#625748;--anatomy-shade-3:#6b5f50}
+
+.iso-figure.civic{margin:0}
+.civic .iso-plate{border-radius:14px;box-shadow:0 0 0 1px #e3d6c6,0 1px 0 rgba(255,255,255,.8),0 14px 28px -22px rgba(90,62,32,.55);padding:46px 16px 50px}
+.civic .iso-plate-corners{inset:16px 18px}
+.civic .iso-plate-corner{font-size:12.5px;letter-spacing:0;line-height:1.2;text-transform:none}
+.civic .iso-plate-corner[data-corner="title"],.civic .iso-plate-corner[data-corner="hint"]{letter-spacing:0;text-transform:none}
+.civic .iso-plate-corner[data-corner="readout"]{color:#2b261f;font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.civic .iso-stage{touch-action:pan-y;cursor:pointer;border-radius:10px;-webkit-tap-highlight-color:transparent}
+.civic .iso-stage:focus{outline:none}
+.civic .iso-stage:focus-visible{outline:3px solid #2f6a56;outline-offset:4px}
+.civic .iso-legend{font-size:14px;line-height:1.7;color:#5e564c;margin-top:12px}
+.civic .iso-key{font-size:13.5px}
+
+.iso-figure.civic .fig-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.iso-figure.civic .fig-controls button,.iso-figure.civic .fig-controls select{
+  min-height:44px;min-width:44px;padding:8px 14px;border-radius:999px;border:1px solid #d9cab6;
+  background:#fffaf4;color:#2b261f;font:inherit;font-size:15px;line-height:1.3;cursor:pointer;box-shadow:none;transform:none
+}
+.iso-figure.civic .fig-controls select{border-radius:12px;max-width:100%}
+.iso-figure.civic .fig-controls button[aria-pressed="true"]{background:#2f6a56;border-color:#2f6a56;color:#fffaf4;box-shadow:none}
+.iso-figure.civic .fig-controls button[data-primary]{background:#f8ebe4;border-color:#dcb09b;color:#6b3323}
+.iso-figure.civic .fig-controls button:disabled{opacity:.55;cursor:default}
+.iso-figure.civic .fig-controls button:focus-visible,.iso-figure.civic .fig-controls select:focus-visible{outline:3px solid #2f6a56;outline-offset:2px}
+.iso-figure.civic .fig-controls .fig-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.iso-figure.civic .fig-controls label{display:grid;gap:4px;font-size:13.5px;color:#5e564c}
+.iso-figure.civic .fig-facts{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14.5px;line-height:1.6}
+.iso-figure.civic .fig-facts dt{color:#5e564c}
+.iso-figure.civic .fig-facts dd{margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.iso-figure.civic .fig-source{margin:8px 0 0;font-size:13.5px;color:#5e564c;overflow-wrap:anywhere}
+.iso-figure.civic .fig-source a{color:#2f6a56}
+
+/* Parts the live code shows or hides. Marks and tags fade, they never pop. */
+.civic .fig-mark{stroke:#9a5340;stroke-width:1.2px;opacity:0;transition:opacity 240ms var(--anatomy-ease)}
+.civic .fig-mark[data-on]{opacity:1}
+.civic .fig-when{opacity:0;transition:opacity 320ms var(--anatomy-ease)}
+.civic .fig-when[data-on]{opacity:1}
+.civic [data-gone]{display:none}
+
+/* Standalone figure page. */
+.fig-page{margin:0;background:#f4efe6;color:#2b261f;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.7}
+.fig-main{width:min(760px,100% - 24px);margin:8px auto 40px}
+.fig-back{margin:0 0 4px}
+.fig-back a,.fig-note a{display:inline-flex;align-items:center;min-height:44px;color:#2f6a56}
+.fig-note{color:#5e564c;font-size:14px}
+.fig-fallback{display:block;width:100%;height:auto;border-radius:14px;background:#fffaf4}
+@media (max-width:560px){
+  .civic .iso-plate{padding:44px 8px 64px}
+  .civic .iso-plate-corner[data-corner="hint"]{bottom:20px}
+  /* On a phone the drawing is enlarged a little so small parts stay readable. */
+  .civic .iso-stage{overflow:hidden}
+  .civic .iso-stage .iso-svg{width:116%;max-width:none;margin-left:-8%}
+}
+@media (prefers-reduced-motion:reduce){
+  .civic .fig-mark,.civic .fig-when{transition:none}
+}
+@media (forced-colors:active){
+  .iso-figure.civic .fig-controls button{border:1px solid ButtonText}
+}

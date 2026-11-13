@@ -1,27 +1,45 @@
 # 接到正式站
 
-第五線現在用獨立入口，不改發布腳本、其他線 CSS、地圖、人物資料或既有照片。
+本線沒有改發布工具、其他線的 CSS、地圖、人物資料或既有照片。
 
-## 已可給第一線、第三線的 ID
+## 給第一線、第三線
 
-公開索引在 `public/data/art-library.json`。
+用素材 ID 取用。完整清單在 `docs/art-library/inventory.md`，或開 `/asset-lab.html` 篩選後按「複製 ID」「複製嵌入碼」。
 
-| ID | 種類 | 建議 |
-| --- | --- | --- |
-| `portrait-wu-moi` | 人物 | 吳旭智人物卡。沿用既有 256 正方形，不要另裁 |
-| `portrait-xu-ly` | 人物 | 徐欣瑩人物卡。`license_url` 是 null |
-| `portrait-zheng-moi` | 人物 | 鄭朝方人物卡 |
-| `scene-hsinchu-city-hall-2015` | 場景 | 新竹市政府正門，2015-04-03，不是工程現況 |
-| `scene-hsinchu-tra-station-2024` | 場景 | 新竹車站周邊軌道，不是月台或列車特寫 |
-| `scene-taipei-city-hall` | 場景 | 臺北市市政大樓，畫面同時有臺北101 |
-| `scene-new-taipei-fire-hq-2016` | 場景 | 新北市消防局總隊部，2016 |
-| `component-evidence-bench` | 3D元件 | 來源可信度示意。夾厚不可當政策百分比 |
+照片的嵌入碼是 `<picture>`，含 AVIF、WebP 與 JPEG，並附一行署名。CC BY-SA 的照片一定要帶署名與授權。
 
-## 第四線
+立體元件這樣放：
 
-1. `public/` 已含 `asset-lab.html`、`data/art-library.json`、`art-library/`。`assemble-production.py` 會把 `public` 整樹複製進 stage，不必先改發布工具。
-2. 若要讓 Vite 的 HTML 輸入也涵蓋此頁，把 `asset-lab.html` 加進 `vite.config.js` 的 `rollupOptions.input`。此頁不依賴打包，靜態複製即可開啟。
-3. 正式導覽加一筆「美術庫」→ `/asset-lab.html`。本線沒有改 `MORE` 或共用 CSS。
-4. 待審名單只在 `docs/art-library/pending.md`。不要把 `public/img/persons/chiu.jpg` 補進美術索引，除非另一次授權核對。
+```html
+<link rel="stylesheet" href="/art-library/figures/figures.css">
+<div data-figure="evidence-desk" data-alt="…"></div>
+<script type="module" src="/art-library/figures/boot.js"></script>
+```
 
-預覽：在本工作區執行 `npx vite --host 127.0.0.1 --port 4173`，開啟 `/asset-lab.html`。
+不要用 iframe，也不要把元件的程式貼成行內 `<script>`，正式站的 CSP 兩個都擋。片段或模組載入失敗時，`boot.js` 會留下靜態圖。
+
+地區識別碼和治理案卷、資料線一致：`taipei`、`new-taipei`、`hsinchu-county`、`hsinchu-city`、`central`。建築照片另有 `office_refs`（例如 `office:ly`），對應資料線 `graph.json` 的機關。
+
+實景照片是拍攝當天的外觀。不要放在工程進度旁邊當成現況。
+
+## 給第四線
+
+1. `public/asset-lab.html` 會被 `assemble-production.py` 當成一般頁面處理，所以它有 `.top nav.nav` 與 `main`。少了這兩個，`edit_page` 會丟 `Page shell missing`，整個建置中斷。`tests/art-library/test_catalog.py` 會檢查這件事。
+2. 本工作區跑過 `npm run build`，exit 0，輸出 `pages: 13, reference: 7`。也就是加上美術庫後是 20 個 HTML，不是 AGENTS.md 寫的 19 個。
+3. 建置會在本頁頂端插入「候選人閱讀標準」那一行。美術庫用不到；要不要讓 `asset-lab` 和 `governance`、`archive` 一樣跳過，由第四線決定。
+4. 導覽還沒有入口。要加的話是 `MORE` 裡一筆「美術庫」→ `/asset-lab.html`。
+5. `public/data/art-library.json` 會被 `finalize_manifest` 收進 manifest 的 `files`。
+6. `public/art-library/figures/*/index.html` 在子資料夾，建置不會改它們，也不受根頁面的檢查影響。
+7. 整合後請跑：
+
+```text
+python -m unittest discover -s tests/art-library -p "test_*.py"
+node --test tests/art-library/figures.test.mjs
+npm run build
+python tests/art-library/check_lab.py --root dist --built
+```
+
+## 本線發現、不屬於本線的事
+
+- `public/data/candidate_photos.json` 的 `treatment.crop` 寫 `center-square`。實際比對後，三張檔案是 Commons 原檔靠上方的正方形裁切。照片本身沒問題，是說明文字不精確。
+- `public/img/persons/chiu.jpg` 不在 `candidate_photos.json` 裡，但它和 Commons 的 `File:邱臣遠副市長肖像.jpg` 位元組相同（SHA-1 `b31f588e72a709e03399ab919e7b6ab23e6aba97`），作者新竹市政府，GWOIA。人物頁若要顯示出處，可以引用美術庫的 `portrait-chiu-hccg`。

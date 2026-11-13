@@ -1,123 +1,215 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T00:53:34+08:00",
+  "generated_at": "2026-11-13T08:51:39+08:00",
   "publication": "publication-ready",
+  "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
     {
-      "id": "tw-taipei",
+      "id": "taipei",
       "label": "臺北市"
     },
     {
-      "id": "tw-new-taipei",
+      "id": "new-taipei",
       "label": "新北市"
     },
     {
-      "id": "tw-hsinchu-county",
+      "id": "hsinchu-county",
       "label": "新竹縣"
     },
     {
-      "id": "tw-hsinchu-city",
+      "id": "hsinchu-city",
       "label": "新竹市"
     },
     {
-      "id": "tw-central",
+      "id": "central",
       "label": "中央"
     }
   ],
   "kinds": [
     {
       "id": "portrait",
-      "label": "人物"
+      "label": "人物",
+      "nature": "real-photo"
     },
     {
       "id": "scene",
-      "label": "場景"
+      "label": "場景",
+      "nature": "real-photo"
     },
     {
       "id": "illustration",
-      "label": "插畫"
+      "label": "插畫",
+      "nature": "original-schematic"
     },
     {
       "id": "component",
-      "label": "3D元件"
+      "label": "3D元件",
+      "nature": "original-schematic"
     }
   ],
-  "coverage_gaps": [
-    "新竹縣尚無已核對城市實景。",
-    "中央機關尚無已核對實景。",
-    "插畫尚無已核對素材。",
-    "朱定瑀、曾聖凱尚無已核對肖像。",
-    "邱臣遠的既有影像未進入本索引：授權與身份未在本線核對。",
-    "議會、預算、政策階段與空狀態仍待後續原創元件；目前只有證據壓印台。",
-    "地圖底圖未入庫。"
+  "uses": [
+    {
+      "id": "person-card",
+      "label": "人物卡"
+    },
+    {
+      "id": "candidate-review",
+      "label": "候選人閱讀"
+    },
+    {
+      "id": "place-context",
+      "label": "地點情境"
+    },
+    {
+      "id": "city-scene",
+      "label": "城市實景"
+    },
+    {
+      "id": "public-building",
+      "label": "機關建築"
+    },
+    {
+      "id": "council",
+      "label": "議會"
+    },
+    {
+      "id": "public-works",
+      "label": "公共建設"
+    },
+    {
+      "id": "policy-scene",
+      "label": "政策場景"
+    },
+    {
+      "id": "source-credibility",
+      "label": "來源可信度"
+    },
+    {
+      "id": "explainer",
+      "label": "說明圖"
+    }
   ],
+  "review_statuses": [
+    {
+      "id": "publication-ready",
+      "label": "已核對，可公開使用"
+    },
+    {
+      "id": "gap",
+      "label": "缺口，沒有可用素材"
+    }
+  ],
+  "usage_statuses": [
+    {
+      "id": "available",
+      "label": "可取用"
+    },
+    {
+      "id": "in-use",
+      "label": "站上已使用"
+    }
+  ],
+  "portrait_standard": {
+    "size": 256,
+    "shape": "square",
+    "framing": "頭肩正面。",
+    "colour": "不調色、不修圖。",
+    "note": "吳旭智、徐欣瑩、鄭朝方沿用站上既有的 256 正方形檔，是各自 Commons 原檔靠上方的正方形裁切。邱臣遠的官方照是半身照，裁成頭肩，裁切框記在紀錄裡。四張的臉部大小還不一致：頭頂到下巴占畫面高度，吳旭智約六成，另外三位約八到九成，鄭朝方的頭頂貼到上緣。統一比例的版本列在待辦。"
+  },
   "assets": [
     {
       "id": "portrait-wu-moi",
       "kind": "portrait",
       "title": "吳旭智官方肖像",
       "region_ids": [
-        "tw-hsinchu-county"
+        "hsinchu-county"
       ],
       "actor_refs": [
         "wu"
       ],
       "project_refs": null,
+      "office_refs": null,
       "original_source_url": "https://commons.wikimedia.org/wiki/File:%E5%90%B3%E6%97%AD%E6%99%BA%E8%AD%B0%E5%93%A1.png",
       "creator": "內政部民政司",
-      "license_name": "GWOIA（政府網站資料開放宣告）",
+      "license_name": "政府網站資料開放宣告（GWOIA）",
       "license_url": "https://cand.moi.gov.tw/of/home.jsp?mserno=201011010017&serno=201011010017&menudata=OfMenu&contlink=content/copyright.jsp",
-      "attribution": "照片：內政部民政司（GWOIA）",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "attribution": "內政部民政司／政府網站資料開放宣告（GWOIA）／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:22:56+08:00",
       "review_status": "publication-ready",
-      "usage_status": "available",
+      "usage_status": "in-use",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "alt": "吳旭智官方肖像，頭肩正面，淺藍背景",
+      "focal_point": {
+        "x": 0.52,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:吳旭智議員.png",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/%E5%90%B3%E6%97%AD%E6%99%BA%E8%AD%B0%E5%93%A1.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 1961,
+        "original_height": 2395,
+        "original_sha1": "95f5bcdd10b4f85718974c042164fcfdf7ae1c92",
+        "uploaded_at": "2021-02-15T03:21:19Z",
+        "date_taken": "2010sdate QS:P,+2010-00-00T00:00:00Z/8",
+        "described_as": "吳旭智議員",
+        "credit_source": "https://cand.moi.gov.tw/of/home.jsp"
+      },
       "files": [
         {
           "path": "img/persons/wu.jpg",
-          "mime": "image/jpeg",
-          "role": "original",
-          "width": 256,
-          "height": 256,
-          "bytes": 9981,
-          "checksum": "5f8c855fc2153367b4cfe0583c8d8318dfe4e1f3bb2e9c51e884569c86ce3d75",
-          "note": "既有網站檔，本線未改像素"
-        },
-        {
-          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi.jpg",
+          "format": "jpeg",
           "mime": "image/jpeg",
           "role": "fallback",
           "width": 256,
           "height": 256,
-          "bytes": 9640,
-          "checksum": "cc43446b4f7aa027c5967f4c3dc9ec6fb9cb142315fe8a3586393b2bb6f0b7d4"
+          "bytes": 9981,
+          "checksum": "5f8c855fc2153367b4cfe0583c8d8318dfe4e1f3bb2e9c51e884569c86ce3d75",
+          "note": "站上既有檔，本線未改像素。"
         },
         {
-          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi.webp",
-          "mime": "image/webp",
-          "role": "web",
-          "width": 256,
-          "height": 256,
-          "bytes": 5004,
-          "checksum": "de3eaab2fbf89432ef461fda71f9bfde521848a7064d565b92d9a2a1273b0d25"
-        },
-        {
-          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi.avif",
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-128.avif",
+          "format": "avif",
           "mime": "image/avif",
-          "role": "web",
-          "width": 256,
-          "height": 256,
-          "bytes": 3199,
-          "checksum": "bf8cae840607c79db6b90098e4d0909c4ddc3ba03e9f9472a3198be49b629b33"
-        },
-        {
-          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-thumb.webp",
-          "mime": "image/webp",
-          "role": "thumb",
+          "role": "responsive",
           "width": 128,
           "height": 128,
-          "bytes": 1928,
-          "checksum": "a44252fb9dfdaf9f2db71861c79d4273e56e4c84f8e5649bfd66beb64b0ab55e"
+          "bytes": 1708,
+          "checksum": "fac47c249ae7dd431e8d1c0f413c5d13f82c7040a3f3dc802c01f0430857772e"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-128.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 128,
+          "height": 128,
+          "bytes": 1884,
+          "checksum": "fc34fdbb84b7d89644833853fb300a5515afde56ef8f216ca6d1fc43964909b3"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-256.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 3648,
+          "checksum": "42ef55d0a345625f9ebe6d1eba82a03fb29e1e30b64841a8ea1ecf123ed1654f"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-256.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 4630,
+          "checksum": "e057bf8a2d5c6281cb94088dfef2c36f78e47cd7e1b399b62031b2877237b942"
         }
       ],
       "dimensions": {
@@ -125,85 +217,136 @@
         "height": 256,
         "unit": "px"
       },
-      "alt": "吳旭智官方肖像，正方形裁切，供候選人卡片使用",
-      "focal_point": {
-        "x": 0.5,
-        "y": 0.5
-      },
       "checksum": "5f8c855fc2153367b4cfe0583c8d8318dfe4e1f3bb2e9c51e884569c86ce3d75",
-      "uses": [
-        "person-card",
-        "candidate-review"
+      "checksum_of": "img/persons/wu.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#a3e9ff",
+          "share": 0.282
+        },
+        {
+          "name": null,
+          "hex": "#b3edff",
+          "share": 0.265
+        },
+        {
+          "name": null,
+          "hex": "#dcc2b0",
+          "share": 0.194
+        },
+        {
+          "name": null,
+          "hex": "#52392c",
+          "share": 0.177
+        },
+        {
+          "name": null,
+          "hex": "#d1f1fc",
+          "share": 0.081
+        }
       ],
-      "palette": null,
-      "reproduction": "Commons 檔案頁模板 {{GWOIA}}，與既有 candidate_photos.json 一致。身份依據檔名與選舉人名冊相同，本線未改圖。",
-      "suggested_use": "人物卡與候選人閱讀。與其他官方肖像同一正方形比例，勿再裁成不同臉部比例。"
+      "crop": null,
+      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。",
+      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "identity": {
+        "basis": "Commons 檔案頁說明「吳旭智議員」，來源 https://cand.moi.gov.tw/of/home.jsp。",
+        "site_file_check": "站上檔是 Commons 原檔靠上方的正方形裁切。逐格比對後最接近的一格，64 像素灰階平均差 6.15（0 為相同；對照組裡換成別人的官方照是 42 以上）。",
+        "checked_at": "2026-11-13T08:22:56+08:00"
+      }
     },
     {
       "id": "portrait-xu-ly",
       "kind": "portrait",
       "title": "徐欣瑩官方肖像",
       "region_ids": [
-        "tw-hsinchu-county"
+        "hsinchu-county"
       ],
       "actor_refs": [
         "xu"
       ],
       "project_refs": null,
+      "office_refs": null,
       "original_source_url": "https://commons.wikimedia.org/wiki/File:%E5%BE%90%E6%AC%A3%E7%91%A9%E8%82%96%E5%83%8F.jpg",
       "creator": "立法院",
-      "license_name": "LY-GWOIA（立法院政府網站資料開放宣告）",
+      "license_name": "立法院政府網站資料開放宣告（LY-GWOIA）",
       "license_url": null,
-      "attribution": "照片：立法院（LY-GWOIA）",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "attribution": "立法院／立法院政府網站資料開放宣告（LY-GWOIA）／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:22:58+08:00",
       "review_status": "publication-ready",
-      "usage_status": "available",
+      "usage_status": "in-use",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "alt": "徐欣瑩官方肖像，頭肩正面，白色背景",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:徐欣瑩肖像.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/%E5%BE%90%E6%AC%A3%E7%91%A9%E8%82%96%E5%83%8F.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 420,
+        "original_height": 554,
+        "original_sha1": "4189c291a5d852cd9dbfb26b2cb6e6d4f25c575b",
+        "uploaded_at": "2023-09-07T12:49:53Z",
+        "date_taken": "2018-11-24",
+        "described_as": "徐欣瑩第八屆立法委員肖像。",
+        "credit_source": "https://www.ly.gov.tw/Pages/List.aspx?nodeid=1731"
+      },
       "files": [
         {
           "path": "img/persons/xu.jpg",
-          "mime": "image/jpeg",
-          "role": "original",
-          "width": 256,
-          "height": 256,
-          "bytes": 10433,
-          "checksum": "80c40cb6a75d95ae56546fa1aad90cb62c4bf613c34a3b2fa188e5805905773b",
-          "note": "既有網站檔，本線未改像素"
-        },
-        {
-          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly.jpg",
+          "format": "jpeg",
           "mime": "image/jpeg",
           "role": "fallback",
           "width": 256,
           "height": 256,
-          "bytes": 10156,
-          "checksum": "0121368ab7679b4e8869e520668f1f393bd891a1c98b6d9f889007e089f58fc4"
+          "bytes": 10433,
+          "checksum": "80c40cb6a75d95ae56546fa1aad90cb62c4bf613c34a3b2fa188e5805905773b",
+          "note": "站上既有檔，本線未改像素。"
         },
         {
-          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly.webp",
-          "mime": "image/webp",
-          "role": "web",
-          "width": 256,
-          "height": 256,
-          "bytes": 4224,
-          "checksum": "33b884960deeb8f7d3d869ae6c755f644ada2cbc22a9ae5e76ddf1a64ce39210"
-        },
-        {
-          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly.avif",
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-128.avif",
+          "format": "avif",
           "mime": "image/avif",
-          "role": "web",
-          "width": 256,
-          "height": 256,
-          "bytes": 3004,
-          "checksum": "6a6131bcae3a01e533684cf2878ebb0a26d3610af384f17f33e94e91242b1841"
-        },
-        {
-          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-thumb.webp",
-          "mime": "image/webp",
-          "role": "thumb",
+          "role": "responsive",
           "width": 128,
           "height": 128,
-          "bytes": 1974,
-          "checksum": "ba62f50a9374b6f57fb90014eaa6d66c0d47ad8985d7205a2c2f536d38f6ce6e"
+          "bytes": 1464,
+          "checksum": "6d80538b4e889577e99624055fa6eb70768cf9b916d3b1aa09cf9d4841d89c31"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-128.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 128,
+          "height": 128,
+          "bytes": 1882,
+          "checksum": "20b4525f0f69de6def567377aa5879b47704b771b9ff08c8591b25997b7441d2"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-256.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 3497,
+          "checksum": "5b5562ddff058a9e8a39f6fb19bc3a4f6963e8990644d0489b84e8f0d5dcd66e"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-256.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 3862,
+          "checksum": "9e1caaa8419aa634876fd379c557781bea57c4defcbb04ea5deaa8e11cd7a5fc"
         }
       ],
       "dimensions": {
@@ -211,85 +354,136 @@
         "height": 256,
         "unit": "px"
       },
-      "alt": "徐欣瑩官方肖像，正方形裁切，供候選人卡片使用",
-      "focal_point": {
-        "x": 0.5,
-        "y": 0.5
-      },
       "checksum": "80c40cb6a75d95ae56546fa1aad90cb62c4bf613c34a3b2fa188e5805905773b",
-      "uses": [
-        "person-card",
-        "candidate-review"
+      "checksum_of": "img/persons/xu.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#e7e7e5",
+          "share": 0.263
+        },
+        {
+          "name": null,
+          "hex": "#9e6f5a",
+          "share": 0.259
+        },
+        {
+          "name": null,
+          "hex": "#19120f",
+          "share": 0.256
+        },
+        {
+          "name": null,
+          "hex": "#e9e9e8",
+          "share": 0.135
+        },
+        {
+          "name": null,
+          "hex": "#dac8bd",
+          "share": 0.088
+        }
       ],
-      "palette": null,
-      "reproduction": "Commons 檔案頁為 {{LY-GWOIA}}，模板未附獨立授權條款網址，license_url 保持 null。",
-      "suggested_use": "人物卡與候選人閱讀。與其他官方肖像同一正方形比例，勿再裁成不同臉部比例。"
+      "crop": null,
+      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。",
+      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "identity": {
+        "basis": "Commons 檔案頁說明「徐欣瑩第八屆立法委員肖像。」，來源 https://www.ly.gov.tw/Pages/List.aspx?nodeid=1731。",
+        "site_file_check": "站上檔是 Commons 原檔靠上方的正方形裁切。逐格比對後最接近的一格，64 像素灰階平均差 7.87（0 為相同；對照組裡換成別人的官方照是 42 以上）。",
+        "checked_at": "2026-11-13T08:22:58+08:00"
+      }
     },
     {
       "id": "portrait-zheng-moi",
       "kind": "portrait",
       "title": "鄭朝方官方肖像",
       "region_ids": [
-        "tw-hsinchu-county"
+        "hsinchu-county"
       ],
       "actor_refs": [
         "zheng"
       ],
       "project_refs": null,
+      "office_refs": null,
       "original_source_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82%E5%85%AC%E6%89%80_%E9%84%AD%E6%9C%9D%E6%96%B9.jpg",
       "creator": "中華民國內政部",
-      "license_name": "GWOIA（政府網站資料開放宣告）",
+      "license_name": "政府網站資料開放宣告（GWOIA）",
       "license_url": "https://www.moi.gov.tw/cp.aspx?n=10954",
-      "attribution": "照片：中華民國內政部（GWOIA）",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "attribution": "中華民國內政部／政府網站資料開放宣告（GWOIA）／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:01+08:00",
       "review_status": "publication-ready",
-      "usage_status": "available",
+      "usage_status": "in-use",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "alt": "鄭朝方官方肖像，頭肩正面，白色背景",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:新竹縣竹北市公所 鄭朝方.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82%E5%85%AC%E6%89%80_%E9%84%AD%E6%9C%9D%E6%96%B9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 404,
+        "original_height": 553,
+        "original_sha1": "3d815fa5e268b9b4e0762a44d26d433f3d11f61e",
+        "uploaded_at": "2023-03-26T05:30:46Z",
+        "date_taken": "18 October 2022 (according to Exif data)",
+        "described_as": "新竹縣竹北市公所 鄭朝方",
+        "credit_source": "新竹縣竹北市公所鄭朝方"
+      },
       "files": [
         {
           "path": "img/persons/zheng.jpg",
-          "mime": "image/jpeg",
-          "role": "original",
-          "width": 256,
-          "height": 256,
-          "bytes": 10409,
-          "checksum": "5b647709c3de9409d211b28215236bc663a258e0c06399f17e104205c61046db",
-          "note": "既有網站檔，本線未改像素"
-        },
-        {
-          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi.jpg",
+          "format": "jpeg",
           "mime": "image/jpeg",
           "role": "fallback",
           "width": 256,
           "height": 256,
-          "bytes": 10097,
-          "checksum": "e64e0fa0e87a6c3ea545bfd84108794b1718aef5b11f141c44c7fbbad41b3dda"
+          "bytes": 10409,
+          "checksum": "5b647709c3de9409d211b28215236bc663a258e0c06399f17e104205c61046db",
+          "note": "站上既有檔，本線未改像素。"
         },
         {
-          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi.webp",
-          "mime": "image/webp",
-          "role": "web",
-          "width": 256,
-          "height": 256,
-          "bytes": 4816,
-          "checksum": "f2ee68d21364026c23aa7058da46900be088526d58d9bb96b22a3297e733c526"
-        },
-        {
-          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi.avif",
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-128.avif",
+          "format": "avif",
           "mime": "image/avif",
-          "role": "web",
-          "width": 256,
-          "height": 256,
-          "bytes": 3398,
-          "checksum": "c25cc110863f2991aa883c8e00c2253d0b9da71715a6b3d04ea099571d171a4e"
-        },
-        {
-          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-thumb.webp",
-          "mime": "image/webp",
-          "role": "thumb",
+          "role": "responsive",
           "width": 128,
           "height": 128,
-          "bytes": 1878,
-          "checksum": "b2747a02b1a129218bf3678834aaccc4b65ec7004266d220113bf21cc3860784"
+          "bytes": 1565,
+          "checksum": "a21b7ebefd1ef5828b6afbc44117b8ae6744867397ef34142a197e21d89b48e6"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-128.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 128,
+          "height": 128,
+          "bytes": 1792,
+          "checksum": "b578a7498206f3bdc74927f91050f61b23108ba4df67b671cf594e62ec3c7719"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-256.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 3918,
+          "checksum": "28b65e3ddaafdf4365740dcae469613e54219f96ce487c5d0f34ca0de64c0224"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-256.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 4440,
+          "checksum": "bb481202f964928dcc3da07a728211b0c4d5ec26a44b16c801b02df9ef5fa377"
         }
       ],
       "dimensions": {
@@ -297,73 +491,306 @@
         "height": 256,
         "unit": "px"
       },
-      "alt": "鄭朝方官方肖像，正方形裁切，供候選人卡片使用",
-      "focal_point": {
-        "x": 0.5,
-        "y": 0.5
-      },
       "checksum": "5b647709c3de9409d211b28215236bc663a258e0c06399f17e104205c61046db",
+      "checksum_of": "img/persons/zheng.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#ffffff",
+          "share": 0.367
+        },
+        {
+          "name": null,
+          "hex": "#ebbbc6",
+          "share": 0.281
+        },
+        {
+          "name": null,
+          "hex": "#6c5c68",
+          "share": 0.21
+        },
+        {
+          "name": null,
+          "hex": "#f9e6ed",
+          "share": 0.097
+        },
+        {
+          "name": null,
+          "hex": "#fdfffe",
+          "share": 0.045
+        }
+      ],
+      "crop": null,
+      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。",
+      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "identity": {
+        "basis": "Commons 檔案頁說明「新竹縣竹北市公所 鄭朝方」，來源 新竹縣竹北市公所鄭朝方。",
+        "site_file_check": "站上檔是 Commons 原檔靠上方的正方形裁切。逐格比對後最接近的一格，64 像素灰階平均差 5.51（0 為相同；對照組裡換成別人的官方照是 42 以上）。",
+        "checked_at": "2026-11-13T08:23:01+08:00"
+      }
+    },
+    {
+      "id": "portrait-chiu-hccg",
+      "kind": "portrait",
+      "title": "邱臣遠官方肖像",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": [
+        "chiu"
+      ],
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E9%82%B1%E8%87%A3%E9%81%A0%E5%89%AF%E5%B8%82%E9%95%B7%E8%82%96%E5%83%8F.jpg",
+      "creator": "新竹市政府",
+      "license_name": "政府網站資料開放宣告（GWOIA）",
+      "license_url": "https://www.hccg.gov.tw/ch/home.jsp?id=10051&parentpath=0,19",
+      "attribution": "新竹市政府／政府網站資料開放宣告（GWOIA）／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:03+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
       "uses": [
         "person-card",
         "candidate-review"
       ],
-      "palette": null,
-      "reproduction": "Commons 檔案頁模板 {{GWOIA}}，zhurl 為內政部開放宣告頁。",
-      "suggested_use": "人物卡與候選人閱讀。與其他官方肖像同一正方形比例，勿再裁成不同臉部比例。"
+      "alt": "邱臣遠官方肖像，頭肩正面，灰色背景。取自新竹市政府副市長任內的半身官方照",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:邱臣遠副市長肖像.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/%E9%82%B1%E8%87%A3%E9%81%A0%E5%89%AF%E5%B8%82%E9%95%B7%E8%82%96%E5%83%8F.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 1046,
+        "original_height": 1568,
+        "original_sha1": "b31f588e72a709e03399ab919e7b6ab23e6aba97",
+        "uploaded_at": "2024-02-06T21:17:04Z",
+        "date_taken": "2024-02-06",
+        "described_as": "新竹市副市長邱臣遠肖像",
+        "credit_source": "https://www.hccg.gov.tw/ch/home.jsp?id=30217&amp;parentpath=0,7"
+      },
+      "files": [
+        {
+          "path": "img/persons/chiu.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "original",
+          "width": 1046,
+          "height": 1568,
+          "bytes": 212179,
+          "checksum": "e847031c19c87c33bcb256db964af2a3d955bd91e7e9f8b54e73c24a54ce17c7",
+          "note": "站上既有檔，本線未改。"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-256.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 256,
+          "height": 256,
+          "bytes": 9176,
+          "checksum": "79c9961713848c264d655f2cc294d163591a74887697be51b086a58239e3fca4"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-128.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 128,
+          "height": 128,
+          "bytes": 1486,
+          "checksum": "17f03fa271e526f9cf502ad32b0d0d4e94e7f848ffc7ea217ba8de30c38759eb"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-128.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 128,
+          "height": 128,
+          "bytes": 1644,
+          "checksum": "296ee0f71876fe4965968a24f10861a9ae5d93f8b8e28f0b5a670fab218cdacf"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-256.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 3569,
+          "checksum": "fcd5830aa21297a5de9a71c6c9914949bb4989171e79cf962951a42a35ec1785"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-256.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 256,
+          "height": 256,
+          "bytes": 4210,
+          "checksum": "6d5e4b059e385a0f1ebe7ae5b62139e2bc343f19e2e20f12ca1799b07cde0703"
+        }
+      ],
+      "dimensions": {
+        "width": 256,
+        "height": 256,
+        "unit": "px"
+      },
+      "checksum": "79c9961713848c264d655f2cc294d163591a74887697be51b086a58239e3fca4",
+      "checksum_of": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-256.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#a3a3a3",
+          "share": 0.435
+        },
+        {
+          "name": null,
+          "hex": "#433029",
+          "share": 0.227
+        },
+        {
+          "name": null,
+          "hex": "#dab9a7",
+          "share": 0.143
+        },
+        {
+          "name": null,
+          "hex": "#a9978e",
+          "share": 0.111
+        },
+        {
+          "name": null,
+          "hex": "#aba6a4",
+          "share": 0.084
+        }
+      ],
+      "crop": {
+        "x": 412,
+        "y": 134,
+        "size": 390
+      },
+      "changes": "自原檔取頭肩範圍（左上 412,134，邊長 390 像素）縮為 256 正方形，再轉 AVIF、WebP。未調色、未修圖。",
+      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "identity": {
+        "basis": "Commons 檔案頁說明「新竹市副市長邱臣遠肖像」，來源 https://www.hccg.gov.tw/ch/home.jsp?id=30217&amp;parentpath=0,7。",
+        "site_file_check": "站上檔與 Commons 原檔位元組相同（SHA-1 一致）。",
+        "checked_at": "2026-11-13T08:23:03+08:00"
+      }
     },
     {
       "id": "scene-hsinchu-city-hall-2015",
       "kind": "scene",
       "title": "新竹市政府（市役所）",
       "region_ids": [
-        "tw-hsinchu-city"
+        "hsinchu-city"
       ],
       "actor_refs": null,
       "project_refs": null,
-      "original_source_url": "https://commons.wikimedia.org/wiki/File%3AHsinchu_City_Hall_20150403.jpg",
+      "office_refs": [
+        "office:hsinchu-city"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Hsinchu_City_Hall_20150403.jpg",
       "creator": "Suicasmo",
       "license_name": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "attribution": "Suicasmo／CC BY-SA 4.0",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Suicasmo／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:04+08:00",
       "review_status": "publication-ready",
       "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新竹市政府正門，紅磚與洗石子立面，門額寫新竹市政府，屋頂有旗。2015年4月3日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Hsinchu City Hall 20150403.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Hsinchu_City_Hall_20150403.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3872,
+        "original_height": 2592,
+        "original_sha1": "43760b2a58fb17ebfc13304f7193d2091aab54a4",
+        "uploaded_at": "2020-06-08T09:09:28Z",
+        "date_taken": "2015-04-03 16:14:35",
+        "described_as": "新竹州廳大門正面外觀，頂樓升起中華民國國旗。",
+        "credit_source": "Own work"
+      },
       "files": [
         {
-          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015.jpg",
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-1280.jpg",
+          "format": "jpeg",
           "mime": "image/jpeg",
           "role": "fallback",
           "width": 1280,
           "height": 857,
-          "bytes": 287939,
-          "checksum": "a097b27fd67228c7935535a9ffabbbe925312c9c3522b11ec098df71d3e9d132"
+          "bytes": 271532,
+          "checksum": "b7b76665c5a64413bcf395cbe2f0ec7140e6905463d15929705e475cddb1c281"
         },
         {
-          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015.webp",
-          "mime": "image/webp",
-          "role": "web",
-          "width": 1280,
-          "height": 857,
-          "bytes": 186604,
-          "checksum": "73eb2842b62f893ea86fba5eb374efe39a9a528ec3790d0d34a7c02353a40df1"
-        },
-        {
-          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015.avif",
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-480.avif",
+          "format": "avif",
           "mime": "image/avif",
-          "role": "web",
-          "width": 1280,
-          "height": 857,
-          "bytes": 78874,
-          "checksum": "a4f531203f0702a352a38d13e1a8c86b63f8d4e52b508b5ed4f4a7defac3bdd7"
-        },
-        {
-          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-thumb.webp",
-          "mime": "image/webp",
-          "role": "thumb",
+          "role": "responsive",
           "width": 480,
           "height": 321,
-          "bytes": 25866,
-          "checksum": "4f316747bec673492356d6c7b9dabbcccaae9ec3ed959e9fff2247dfb601359f"
+          "bytes": 14790,
+          "checksum": "ea29e16612e182af2e16deb44aaef513bbabf0bcd1f5e3c73bbfa9d45ece58aa"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 321,
+          "bytes": 25740,
+          "checksum": "fdc0b6b983fb2eaf4a1385703ec4455ebde8b86152becdf83d17ee3ca58399e4"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 536,
+          "bytes": 37576,
+          "checksum": "44cff24069b4407c59a2473a75965694dc6811f81335c0cfa5b0f86c28423e3d"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 536,
+          "bytes": 67004,
+          "checksum": "dc3efdcb87f2caaf76c2556a482823070deb6d968f89a0451e723f0600447a8e"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 857,
+          "bytes": 96414,
+          "checksum": "6fc96140a0d7e0ab0a4d764c3e231134fdc26a6d36470c8a2a72cafa9ab220c3"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 857,
+          "bytes": 171576,
+          "checksum": "8347530168c705ee9cd9d69230e64320d7a90ea0f138e42e2c1a803760c671f9"
         }
       ],
       "dimensions": {
@@ -371,70 +798,149 @@
         "height": 857,
         "unit": "px"
       },
-      "alt": "新竹市政府正門，門額為新竹市政府，2015年4月3日",
-      "focal_point": null,
-      "checksum": "a097b27fd67228c7935535a9ffabbbe925312c9c3522b11ec098df71d3e9d132",
-      "uses": [
-        "place-context",
-        "city-scene"
+      "checksum": "b7b76665c5a64413bcf395cbe2f0ec7140e6905463d15929705e475cddb1c281",
+      "checksum_of": "art-library/scenes/scene-hsinchu-city-hall-2015/scene-hsinchu-city-hall-2015-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#948681",
+          "share": 0.331
+        },
+        {
+          "name": null,
+          "hex": "#353632",
+          "share": 0.218
+        },
+        {
+          "name": null,
+          "hex": "#bcbfb7",
+          "share": 0.173
+        },
+        {
+          "name": null,
+          "hex": "#879ec0",
+          "share": 0.144
+        },
+        {
+          "name": null,
+          "hex": "#93aece",
+          "share": 0.134
+        }
       ],
-      "palette": null,
-      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
-      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
     },
     {
       "id": "scene-hsinchu-tra-station-2024",
       "kind": "scene",
       "title": "新竹車站周邊鐵道",
       "region_ids": [
-        "tw-hsinchu-city"
+        "hsinchu-city"
       ],
       "actor_refs": null,
       "project_refs": null,
-      "original_source_url": "https://commons.wikimedia.org/wiki/File%3AHsinchu_TRA_Station_Railway%2C_Nov_2024.jpg",
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Hsinchu_TRA_Station_Railway,_Nov_2024.jpg",
       "creator": "Ralff Nestor Nacor",
       "license_name": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "attribution": "Ralff Nestor Nacor／CC BY-SA 4.0",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Ralff Nestor Nacor／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:07+08:00",
       "review_status": "publication-ready",
       "usage_status": "available",
+      "uses": [
+        "city-scene",
+        "public-works",
+        "place-context"
+      ],
+      "alt": "新竹火車站周邊的軌道、電車線與市區天際線，2024年11月。畫面沒有月台或列車",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Hsinchu TRA Station Railway, Nov 2024.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Hsinchu_TRA_Station_Railway%2C_Nov_2024.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4080,
+        "original_height": 3072,
+        "original_sha1": "22255d4b600a58145c7fe56b290ca2d58c020756",
+        "uploaded_at": "2024-11-05T03:22:04Z",
+        "date_taken": "2024-11-03 13:42:03",
+        "described_as": "Hsinchu TRA Station Railway, Nov 2024",
+        "credit_source": "Own work"
+      },
       "files": [
         {
-          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024.jpg",
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-1280.jpg",
+          "format": "jpeg",
           "mime": "image/jpeg",
           "role": "fallback",
           "width": 1280,
           "height": 964,
-          "bytes": 352039,
-          "checksum": "239be9488128b1a58e390043d1b6214a637c2502201dc1af23c0ae681ebe3849"
+          "bytes": 325093,
+          "checksum": "0dc3961d587b5a4fb7adbf484c2f21e4d893ba844d2916fd9f8afbeac1292b8f"
         },
         {
-          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024.webp",
-          "mime": "image/webp",
-          "role": "web",
-          "width": 1280,
-          "height": 964,
-          "bytes": 257568,
-          "checksum": "9fd3ea5e00d08dbba0a493f9608eb85b218ba909e237a8300e1bd98715ab18d2"
-        },
-        {
-          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024.avif",
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-480.avif",
+          "format": "avif",
           "mime": "image/avif",
-          "role": "web",
-          "width": 1280,
-          "height": 964,
-          "bytes": 119406,
-          "checksum": "716922161dbaba2220d03d6cd16ce201c005191ae2a5678643671c85b74db3e3"
-        },
-        {
-          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-thumb.webp",
-          "mime": "image/webp",
-          "role": "thumb",
+          "role": "responsive",
           "width": 480,
           "height": 362,
-          "bytes": 29272,
-          "checksum": "2603c80d5abfa108659ea6079b2f00d417121bd43ba3dae6959802cf296ef724"
+          "bytes": 18365,
+          "checksum": "700581bb6ca60c7529d5ef6af6a8eb6c2103b73416a99bf02049532cd1f9ebc2"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 362,
+          "bytes": 29166,
+          "checksum": "f21032e675da34b37b9d906616783f2d6eeb7ce723f4b033d1c9b02f37f6f839"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 602,
+          "bytes": 53164,
+          "checksum": "1513130657f9277e24f19ee9cfddfe49e770a392e4cf336379bbbf66d8a217bf"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 602,
+          "bytes": 87842,
+          "checksum": "faf02ec4bb82a150a8e47436caafab2b8024176722be2191f1754685b64b2fb7"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 964,
+          "bytes": 142003,
+          "checksum": "aafdcd47c394039fd5e9620fcc7117c1d5b14b629fce44be1ac618721a8b8d21"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 964,
+          "bytes": 241870,
+          "checksum": "106d867015b364fd9360f643ce2f8ee2c226314e6816121dcbf2558be18d6706"
         }
       ],
       "dimensions": {
@@ -442,70 +948,151 @@
         "height": 964,
         "unit": "px"
       },
-      "alt": "新竹火車站周邊的軌道、電車線與市區天際線，2024年11月。畫面沒有月台或列車",
-      "focal_point": null,
-      "checksum": "239be9488128b1a58e390043d1b6214a637c2502201dc1af23c0ae681ebe3849",
-      "uses": [
-        "place-context",
-        "city-scene"
+      "checksum": "0dc3961d587b5a4fb7adbf484c2f21e4d893ba844d2916fd9f8afbeac1292b8f",
+      "checksum_of": "art-library/scenes/scene-hsinchu-tra-station-2024/scene-hsinchu-tra-station-2024-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#2f2e30",
+          "share": 0.358
+        },
+        {
+          "name": null,
+          "hex": "#212124",
+          "share": 0.226
+        },
+        {
+          "name": null,
+          "hex": "#b9c8d4",
+          "share": 0.219
+        },
+        {
+          "name": null,
+          "hex": "#c7d2db",
+          "share": 0.14
+        },
+        {
+          "name": null,
+          "hex": "#76818d",
+          "share": 0.057
+        }
       ],
-      "palette": null,
-      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
-      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
     },
     {
       "id": "scene-taipei-city-hall",
       "kind": "scene",
       "title": "臺北市市政大樓",
       "region_ids": [
-        "tw-taipei"
+        "taipei"
       ],
       "actor_refs": null,
       "project_refs": null,
-      "original_source_url": "https://commons.wikimedia.org/wiki/File%3ATaipei_Taiwan_Taipei-City-Hall-01.jpg",
+      "office_refs": [
+        "office:tpe-city"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Taipei-City-Hall-01.jpg",
       "creator": "CEphoto, Uwe Aranas",
       "license_name": "CC BY-SA 3.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
-      "attribution": "CEphoto, Uwe Aranas／CC BY-SA 3.0",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution": "Photo by CEphoto, Uwe Aranas／CC BY-SA 3.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:11+08:00",
       "review_status": "publication-ready",
       "usage_status": "available",
+      "uses": [
+        "public-building",
+        "city-scene",
+        "place-context"
+      ],
+      "alt": "臺北市市政大樓與左側的臺北101，前景是路口與行人。2015年12月25日",
+      "focal_point": {
+        "x": 0.68,
+        "y": 0.6
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Taipei Taiwan Taipei-City-Hall-01.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Taipei_Taiwan_Taipei-City-Hall-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4907,
+        "original_height": 3505,
+        "original_sha1": "d0d5e0fa6a87fb04321078458ee6334d7fa177da",
+        "uploaded_at": "2016-03-09T21:07:39Z",
+        "date_taken": "2015-12-25",
+        "described_as": "Taipei, Taiwan: Taipei City Hall. In the background, the top in clouds, Taipei 101 Tower",
+        "credit_source": "Own work"
+      },
       "files": [
         {
-          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall.jpg",
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-1280.jpg",
+          "format": "jpeg",
           "mime": "image/jpeg",
           "role": "fallback",
           "width": 1280,
           "height": 914,
-          "bytes": 296575,
-          "checksum": "2b8a88b8afa6217e65ecba04d89610a568e8c1db4d79f4758550b68d9ff25442"
+          "bytes": 275279,
+          "checksum": "d2bb434baf8a5061196dc379061c04de4e95d8b15631e048f800855827f05ffa"
         },
         {
-          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall.webp",
-          "mime": "image/webp",
-          "role": "web",
-          "width": 1280,
-          "height": 914,
-          "bytes": 211236,
-          "checksum": "453f914131f9f0bed789f2afad33adb31d190a8059a7b0da3516f9c0cbb627e1"
-        },
-        {
-          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall.avif",
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-480.avif",
+          "format": "avif",
           "mime": "image/avif",
-          "role": "web",
-          "width": 1280,
-          "height": 914,
-          "bytes": 99658,
-          "checksum": "e7539877c69e91bb5a2cfa48c54457f9b73baa91f1ba9d7ae98a6e28d04b6d43"
-        },
-        {
-          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-thumb.webp",
-          "mime": "image/webp",
-          "role": "thumb",
+          "role": "responsive",
           "width": 480,
           "height": 343,
-          "bytes": 29874,
-          "checksum": "8e8518199f067e18c2c0f6f25288fc69088355c2f7b2f72b98a0087ff31364c0"
+          "bytes": 17541,
+          "checksum": "82cd5f0caa92834be8575186d7e3ee574297688429ec7f198f29d6f1d1ecf04d"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 343,
+          "bytes": 29368,
+          "checksum": "057ada6cf4a59f127a85e5bb6f9f59cb87992abe2ec7fd6f6da93ed2f4330e1a"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 571,
+          "bytes": 46551,
+          "checksum": "3a292a284b47026b8fe07e3d27a7567bfb795a4e2b40c21d4152f64da3afdca2"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 571,
+          "bytes": 78102,
+          "checksum": "c25553e13a527a2b9a33a0516edb720c7ed5d00e1d9eec8e5a57d606d7f6c2cb"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 914,
+          "bytes": 116756,
+          "checksum": "7b1e8754531b83a51c469f6645758ac6859c663046408bc39b466a8e4edb0332"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 914,
+          "bytes": 197262,
+          "checksum": "299a52d8c155e026f2c0e83c11c99124742a46fa166ef0d72f49d844a88276c3"
         }
       ],
       "dimensions": {
@@ -513,70 +1100,148 @@
         "height": 914,
         "unit": "px"
       },
-      "alt": "臺北市市政大樓與左側的臺北101",
-      "focal_point": null,
-      "checksum": "2b8a88b8afa6217e65ecba04d89610a568e8c1db4d79f4758550b68d9ff25442",
-      "uses": [
-        "place-context",
-        "city-scene"
+      "checksum": "d2bb434baf8a5061196dc379061c04de4e95d8b15631e048f800855827f05ffa",
+      "checksum_of": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#807563",
+          "share": 0.273
+        },
+        {
+          "name": null,
+          "hex": "#4e432c",
+          "share": 0.231
+        },
+        {
+          "name": null,
+          "hex": "#d8d9d7",
+          "share": 0.218
+        },
+        {
+          "name": null,
+          "hex": "#c5c6c5",
+          "share": 0.142
+        },
+        {
+          "name": null,
+          "hex": "#dededd",
+          "share": 0.136
+        }
       ],
-      "palette": null,
-      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
-      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
     },
     {
       "id": "scene-new-taipei-fire-hq-2016",
       "kind": "scene",
       "title": "新北市政府消防局總隊部",
       "region_ids": [
-        "tw-new-taipei"
+        "new-taipei"
       ],
       "actor_refs": null,
       "project_refs": null,
-      "original_source_url": "https://commons.wikimedia.org/wiki/File%3AHeadquarters_of_Fire_Department%2C_New_Taipei_City_Government_face_to_Golf_Road_2016.jpg",
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Headquarters_of_Fire_Department,_New_Taipei_City_Government_face_to_Golf_Road_2016.jpg",
       "creator": "Wpcpey",
       "license_name": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "attribution": "Wpcpey／CC BY-SA 4.0",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Wpcpey／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:14+08:00",
       "review_status": "publication-ready",
       "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新北市政府消防局總隊部臨高爾富路的清水混凝土建築，一樓車庫停著消防車。2016年",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Headquarters of Fire Department, New Taipei City Government face to Golf Road 2016.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Headquarters_of_Fire_Department%2C_New_Taipei_City_Government_face_to_Golf_Road_2016.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 2112,
+        "original_height": 1408,
+        "original_sha1": "810ea44599f11b0d814e2abdb5ab2a0fa2d1155d",
+        "uploaded_at": "2017-06-24T14:14:13Z",
+        "date_taken": "2016-08-29 11:16",
+        "described_as": "Headquarters of Fire Department, New Taipei City Government. Address : No.15, Section 2, Nanya South Road, Banqiao District, New Taipei City. Taken on Golf Road, Banqiao District.",
+        "credit_source": "Own work"
+      },
       "files": [
         {
-          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016.jpg",
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-1280.jpg",
+          "format": "jpeg",
           "mime": "image/jpeg",
           "role": "fallback",
           "width": 1280,
           "height": 853,
-          "bytes": 284118,
-          "checksum": "3ea21e907139718dd2a16eed644f2265b1dd9f6ea8276f0686f381b4785851a2"
+          "bytes": 267162,
+          "checksum": "386934c98f31600943db5c1605077e1bf1fe2fb5e4708b576b80a734cb38bad2"
         },
         {
-          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016.webp",
-          "mime": "image/webp",
-          "role": "web",
-          "width": 1280,
-          "height": 853,
-          "bytes": 200410,
-          "checksum": "bb525e611431629cd8eb2e16f86279f5d4376e14a7c5da594efd0b0b825236d1"
-        },
-        {
-          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016.avif",
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-480.avif",
+          "format": "avif",
           "mime": "image/avif",
-          "role": "web",
-          "width": 1280,
-          "height": 853,
-          "bytes": 93622,
-          "checksum": "da5a683155603855d79aff5a276d44093dc7cff932a0dd32c6a936f9da29dfa8"
-        },
-        {
-          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-thumb.webp",
-          "mime": "image/webp",
-          "role": "thumb",
+          "role": "responsive",
           "width": 480,
           "height": 320,
-          "bytes": 25842,
-          "checksum": "a1ce11b6d2f9c746c8085fdcee87198b047dc275e345a5b33719ae78ad973c9c"
+          "bytes": 15441,
+          "checksum": "581236394e661dac9328977aa846b12e4e150ad6a9b5e638459d1f962a5b805e"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 25302,
+          "checksum": "5e37b416b6142eff25b12c203adbe9c7f1329341a302b2bb4a96d43d307b3e6a"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 42143,
+          "checksum": "2feb6eada7bb600d13e7ea5f4e48f2205b2ffdbb281960de4f1ab8390b7a6de9"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 69126,
+          "checksum": "8575114c65cb0807acf81c40eef645c43c394ef9d8f340675834d0656d3d3802"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 113133,
+          "checksum": "6f08772da085fdbd6110aa76c0d9d1c4ad530ed6bb4f6162124faf35b66227c4"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 186028,
+          "checksum": "b71b9d9e528e55e8b3a1284705b6ef3244f978f0773a43da4c31250b356bcf5d"
         }
       ],
       "dimensions": {
@@ -584,71 +1249,2122 @@
         "height": 853,
         "unit": "px"
       },
-      "alt": "新北市政府消防局總隊部臨高爾富路側，2016年",
-      "focal_point": null,
-      "checksum": "3ea21e907139718dd2a16eed644f2265b1dd9f6ea8276f0686f381b4785851a2",
-      "uses": [
-        "place-context",
-        "public-building"
+      "checksum": "386934c98f31600943db5c1605077e1bf1fe2fb5e4708b576b80a734cb38bad2",
+      "checksum_of": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#bac3c7",
+          "share": 0.255
+        },
+        {
+          "name": null,
+          "hex": "#4a4c49",
+          "share": 0.253
+        },
+        {
+          "name": null,
+          "hex": "#8a8f88",
+          "share": 0.218
+        },
+        {
+          "name": null,
+          "hex": "#d4e5fa",
+          "share": 0.159
+        },
+        {
+          "name": null,
+          "hex": "#c4d3e2",
+          "share": 0.115
+        }
       ],
-      "palette": null,
-      "reproduction": "Commons imageinfo LicenseShortName 在允許清單內；本機檔是寬度 1280 的縮圖，未再裁切。",
-      "suggested_use": "城市或公共建築的實景上下文。這是該拍攝日期的外觀，不是工程進度證明。"
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
     },
     {
-      "id": "component-evidence-bench",
-      "kind": "component",
-      "title": "證據壓印台",
+      "id": "scene-hsinchu-county-hall-2011",
+      "kind": "scene",
+      "title": "新竹縣政府大樓",
       "region_ids": [
-        "tw-taipei",
-        "tw-new-taipei",
-        "tw-hsinchu-county",
-        "tw-hsinchu-city",
-        "tw-central"
+        "hsinchu-county"
       ],
       "actor_refs": null,
       "project_refs": null,
-      "original_source_url": null,
-      "creator": "新竹觀察美術庫",
-      "license_name": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "attribution": "原創示意儀器，新竹觀察美術庫",
-      "retrieved_at": "2026-11-13T00:53:34+08:00",
+      "office_refs": [
+        "office:hsinchu-county"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E6%94%BF%E5%BA%9C.JPG",
+      "creator": "象心力",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution": "象心力／CC BY-SA 3.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:18+08:00",
       "review_status": "publication-ready",
       "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新竹縣政府大樓正面，紅磚與灰色立面，前方是大片鋪面廣場與停放的車輛。2011年10月8日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.57
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:新竹縣政府.JPG",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/%E6%96%B0%E7%AB%B9%E7%B8%A3%E6%94%BF%E5%BA%9C.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4288,
+        "original_height": 3216,
+        "original_sha1": "3b905e99eb287e3aff56b2f7b638c458110186a1",
+        "uploaded_at": "2011-10-08T15:44:11Z",
+        "date_taken": "2011-10-08",
+        "described_as": "Hsinchu County Government, Zhubei City, Hsinchu County, Taiwana",
+        "credit_source": "Own work"
+      },
       "files": [
         {
-          "path": "art-library/figures/evidence-bench/preview.svg",
+          "path": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 960,
+          "bytes": 194170,
+          "checksum": "cd5bd91f7d7ade79b217302ef39a6b54407e72d039c923be72ed8aee4d735d66"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 10533,
+          "checksum": "7f9c2108ff5c5cb34493d557929120e65aca23c289d32b817b26321a24f44013"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 14800,
+          "checksum": "84f92d6eed1e603a7d88b3100627af5c3cff94639e71e491203c26a9b63facce"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 27438,
+          "checksum": "fe90baf1ebb86246a219497c2d128ff2e7d7cfb8f9d0796ee8f0dedc3b0b0e19"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 38340,
+          "checksum": "ea3a0107141a6120a8944bbea345cfbc6d87d1f509a3665a666cc17fa98a693b"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 72053,
+          "checksum": "367d998ab531a108622d2cce41dd4aa503a3492fde2e03842f9970bf3533946f"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 89428,
+          "checksum": "17905d3e6d2dffc10642997a115e28a1dc72437a8a653a2fd820ee2f7fe7d4af"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 960,
+        "unit": "px"
+      },
+      "checksum": "cd5bd91f7d7ade79b217302ef39a6b54407e72d039c923be72ed8aee4d735d66",
+      "checksum_of": "art-library/scenes/scene-hsinchu-county-hall-2011/scene-hsinchu-county-hall-2011-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#858884",
+          "share": 0.329
+        },
+        {
+          "name": null,
+          "hex": "#404446",
+          "share": 0.207
+        },
+        {
+          "name": null,
+          "hex": "#a4bad1",
+          "share": 0.177
+        },
+        {
+          "name": null,
+          "hex": "#8aa1b4",
+          "share": 0.155
+        },
+        {
+          "name": null,
+          "hex": "#b1c4d8",
+          "share": 0.133
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-hsinchu-county-council-2011",
+      "kind": "scene",
+      "title": "新竹縣議會",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E8%AD%B0%E6%9C%83.JPG",
+      "creator": "象心力",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution": "象心力／CC BY-SA 3.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:21+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "新竹縣議會大樓正面，門楣掛著慶祝雙十國慶的橫幅，前方是草地與松樹。2011年10月8日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:新竹縣議會.JPG",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/%E6%96%B0%E7%AB%B9%E7%B8%A3%E8%AD%B0%E6%9C%83.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4288,
+        "original_height": 3216,
+        "original_sha1": "d32177534301c8935cd1f1601e206754c8a43e1c",
+        "uploaded_at": "2011-10-08T16:00:06Z",
+        "date_taken": "2011-10-08 10:10",
+        "described_as": "Hsinchu County Council Hall",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 960,
+          "bytes": 228245,
+          "checksum": "478581a425654f7c077a88267b09273309b12985ac3a7c8d95c9c5bd1e81ca76"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 14768,
+          "checksum": "735e9373be6f46f8ca90f3481efb003af9b381bfe554225617b3eac463af2d9f"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 21806,
+          "checksum": "265760152b786a53c4e43a98bd712d378f156a1ec1d50ddaf46d52880201fcf8"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 37811,
+          "checksum": "53d49b675e78ae7e123a3e3b5477aaf99dfcbe9c29866b9c7e29c7f60d521d66"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 58074,
+          "checksum": "061a8a9471013eb54dfa5f844897666487232f81b2d1e6dab1f64f90288dd8c3"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 98579,
+          "checksum": "c6efd56e9c3b87ba241b63ef70b2db917b2d998c2960b0c4b29541f990091d3c"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 140346,
+          "checksum": "1803a813d567a51fc65a928b86c8e2e10104a6e793575f526657367793033aa4"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 960,
+        "unit": "px"
+      },
+      "checksum": "478581a425654f7c077a88267b09273309b12985ac3a7c8d95c9c5bd1e81ca76",
+      "checksum_of": "art-library/scenes/scene-hsinchu-county-council-2011/scene-hsinchu-county-council-2011-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#79865d",
+          "share": 0.366
+        },
+        {
+          "name": null,
+          "hex": "#f2faff",
+          "share": 0.257
+        },
+        {
+          "name": null,
+          "hex": "#505049",
+          "share": 0.208
+        },
+        {
+          "name": null,
+          "hex": "#f9fdff",
+          "share": 0.124
+        },
+        {
+          "name": null,
+          "hex": "#bbcabf",
+          "share": 0.044
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-zhubei-skyline-2023",
+      "kind": "scene",
+      "title": "竹北高樓與頭前溪鐵路橋",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Zhubei,_Hsinchu_Skyline_20231117.jpg",
+      "creator": "周承漢",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "周承漢／CC BY-SA 2.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:23+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "city-scene",
+        "place-context"
+      ],
+      "alt": "河上的鐵路橋，橘色柴電機車牽引一輛黑色蒸汽機車通過，後方是竹北的高樓住宅群。2023年11月17日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Zhubei, Hsinchu Skyline 20231117.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Zhubei%2C_Hsinchu_Skyline_20231117.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5472,
+        "original_height": 3080,
+        "original_sha1": "c120a1697f7195a150d267dd1541f07858197ede",
+        "uploaded_at": "2024-09-03T11:05:11Z",
+        "date_taken": "2023-11-17 12:17:17",
+        "described_as": "Zhubei, Hsinchu Skyline 20231117",
+        "credit_source": "https://www.flickr.com/photos/112285385@N07/53337407539/"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 720,
+          "bytes": 295974,
+          "checksum": "a7932613c14f65b9c34ce607658c19d7e7f8c9e4cb1c9b74d7e45440ab0420c6"
+        },
+        {
+          "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 270,
+          "bytes": 17558,
+          "checksum": "d71cf2c449d07fad1b27cefc895fe5435f073f253dde7cf763dd16d210d8bcb2"
+        },
+        {
+          "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 270,
+          "bytes": 30240,
+          "checksum": "d1aac4a72349e32bf870cb229e64f0cce9a19477718e5f6b55187bb791606119"
+        },
+        {
+          "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 450,
+          "bytes": 49083,
+          "checksum": "651085e55b0f86194807ead1b39465161b434acd64bb3cb9f7183f61cdcc14a7"
+        },
+        {
+          "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 450,
+          "bytes": 88338,
+          "checksum": "cd2d96f27a9189da4349d8460cb7ab1faa8f3e4415ea7b4d1eea408fc7c19cf0"
+        },
+        {
+          "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 720,
+          "bytes": 131020,
+          "checksum": "4b9342b12be1beec6e3fe55a34cdaccf4c49dfb5dc67456fee85197a661ae9b9"
+        },
+        {
+          "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 720,
+          "bytes": 230616,
+          "checksum": "334494762474b5bc9abd771584601c3e074eb15cd475c37e71dd1c73949a94a6"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 720,
+        "unit": "px"
+      },
+      "checksum": "a7932613c14f65b9c34ce607658c19d7e7f8c9e4cb1c9b74d7e45440ab0420c6",
+      "checksum_of": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#717c6d",
+          "share": 0.282
+        },
+        {
+          "name": null,
+          "hex": "#485258",
+          "share": 0.226
+        },
+        {
+          "name": null,
+          "hex": "#97a089",
+          "share": 0.182
+        },
+        {
+          "name": null,
+          "hex": "#c4cade",
+          "share": 0.173
+        },
+        {
+          "name": null,
+          "hex": "#b7bfcc",
+          "share": 0.137
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-touqian-thsr-bridge-2020",
+      "kind": "scene",
+      "title": "頭前溪北岸的高架橋與鋼桁架橋",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:View_of_THSR_Touqian_River_Bridge_and_Mountains_around_Qionglin_from_the_north_bank.jpg",
+      "creator": "Tbatb",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Tbatb／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:26+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-works",
+        "place-context"
+      ],
+      "alt": "從頭前溪北岸橋下往芎林方向看：混凝土高架橋與白色鋼桁架橋，前景是水泥護岸與雜草。2020年10月27日",
+      "focal_point": {
+        "x": 0.6,
+        "y": 0.3
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:View of THSR Touqian River Bridge and Mountains around Qionglin from the north bank.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/View_of_THSR_Touqian_River_Bridge_and_Mountains_around_Qionglin_from_the_north_bank.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4032,
+        "original_height": 3024,
+        "original_sha1": "aa78564cf8045b34915a0fef9d186fc6e548b0fd",
+        "uploaded_at": "2020-12-03T07:43:56Z",
+        "date_taken": "2020-10-27 16:19:41",
+        "described_as": "頭前溪北岸望向芎林，高鐵與六家線橋下。",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 960,
+          "bytes": 391964,
+          "checksum": "8f041cf9959765c94ca7ab1d4f55cef69c1d4622c3c6afb78e1275716e29b422"
+        },
+        {
+          "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 22017,
+          "checksum": "fd2fd510720376bd3502d1f657d8f09a83f9f6f698d4b4e52aed88a4455bfdd1"
+        },
+        {
+          "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 39228,
+          "checksum": "0375e2a930775bc0b70b82bcddebeebbb870f9839c46efedbcf58c8427353226"
+        },
+        {
+          "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 61609,
+          "checksum": "96bff5d7250bbd2aad35aac83c7fe8377d1b8be472d0d741f11a5141d51a6fca"
+        },
+        {
+          "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 111682,
+          "checksum": "485f88f02efdb30bd64a26ea1dbf558cd048fb5eada87ebe2e4a007be95deaf5"
+        },
+        {
+          "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 169485,
+          "checksum": "57444b18f644aa3873dc56c36d3fe8a08f99c239b6e9964ea4685b510768d96c"
+        },
+        {
+          "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 301138,
+          "checksum": "8293228debcc19d181869e10efdfb953f5616d12c12c7c91e5168fad1b6c4326"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 960,
+        "unit": "px"
+      },
+      "checksum": "8f041cf9959765c94ca7ab1d4f55cef69c1d4622c3c6afb78e1275716e29b422",
+      "checksum_of": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#736d53",
+          "share": 0.298
+        },
+        {
+          "name": null,
+          "hex": "#29271c",
+          "share": 0.212
+        },
+        {
+          "name": null,
+          "hex": "#93a8c2",
+          "share": 0.207
+        },
+        {
+          "name": null,
+          "hex": "#8e908d",
+          "share": 0.184
+        },
+        {
+          "name": null,
+          "hex": "#bac6cd",
+          "share": 0.099
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-hsinchu-city-council-2019",
+      "kind": "scene",
+      "title": "新竹市議會",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E5%B8%82%E8%AD%B0%E6%9C%83%E5%A4%A7%E6%A8%93.jpg",
+      "creator": "寺人孟子",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "寺人孟子／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:31+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "新竹市議會大樓，白色列柱門廊上有新竹市議會金字，旁邊是橘紅色側棟與大王椰子。2019年6月15日",
+      "focal_point": {
+        "x": 0.45,
+        "y": 0.6
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:新竹市議會大樓.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/%E6%96%B0%E7%AB%B9%E5%B8%82%E8%AD%B0%E6%9C%83%E5%A4%A7%E6%A8%93.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4592,
+        "original_height": 3448,
+        "original_sha1": "e2330ff566c27d8d87871a0943edb2eae7434416",
+        "uploaded_at": "2019-06-16T01:35:45Z",
+        "date_taken": "2019-06-15 13:04:44",
+        "described_as": "新竹市議會大樓，新竹市北區北門聯里大同里",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 961,
+          "bytes": 280535,
+          "checksum": "49e896d1b552ced69bbbeb5276cf138581a9ff585acb12b8d8cc157a7ca7ebe0"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 17147,
+          "checksum": "8e7ac8ccbf6178e7850cac2283cdd85c830e9c67411fbf9983b3015974690751"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 29292,
+          "checksum": "a9261492c11d0c692225ed78f67d34c19613fd5665673dfdf97530908268c265"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 601,
+          "bytes": 46502,
+          "checksum": "f5f1f9ebba2a41a02d96d748c4faba601a9047d65d49ba1420f53ca619f45996"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 601,
+          "bytes": 78686,
+          "checksum": "f67b827a64ef2140c6161ffbb706bec311c335d9227c991745caeced7bb62d6d"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 961,
+          "bytes": 117949,
+          "checksum": "9bbdf39be354208076b94a165f2f917b76271ad19843193079a3119b49a9340c"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 961,
+          "bytes": 198334,
+          "checksum": "508438820d9fcabc43d6070a9f42a028a4c017403fe45954cd61cfe242691701"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 961,
+        "unit": "px"
+      },
+      "checksum": "49e896d1b552ced69bbbeb5276cf138581a9ff585acb12b8d8cc157a7ca7ebe0",
+      "checksum_of": "art-library/scenes/scene-hsinchu-city-council-2019/scene-hsinchu-city-council-2019-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#a3cff9",
+          "share": 0.372
+        },
+        {
+          "name": null,
+          "hex": "#968e89",
+          "share": 0.254
+        },
+        {
+          "name": null,
+          "hex": "#3d382d",
+          "share": 0.233
+        },
+        {
+          "name": null,
+          "hex": "#a3c6ec",
+          "share": 0.097
+        },
+        {
+          "name": null,
+          "hex": "#afd3f4",
+          "share": 0.044
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-hsinchu-youbike-2016",
+      "kind": "scene",
+      "title": "新竹轉運站 YouBike 停車柱",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Youbike_%E6%96%B0%E7%AB%B9%E5%B8%82%E6%96%B0%E7%AB%B9%E8%BD%89%E9%81%8B%E7%AB%99_2016-08-01.jpg",
+      "creator": "T Gordon Cheng",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "T Gordon Cheng／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:35+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "policy-scene",
+        "public-works"
+      ],
+      "alt": "新竹轉運站的 YouBike 站，兩排空的灰色停車柱沿鋪面排開，後方是太平洋 SOGO 與新竹客運大樓。2016年8月1日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Youbike 新竹市新竹轉運站 2016-08-01.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Youbike_%E6%96%B0%E7%AB%B9%E5%B8%82%E6%96%B0%E7%AB%B9%E8%BD%89%E9%81%8B%E7%AB%99_2016-08-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3264,
+        "original_height": 2448,
+        "original_sha1": "890e80008b5071ee9e48d31ec3ec5a55d6c61256",
+        "uploaded_at": "2022-08-26T15:49:43Z",
+        "date_taken": "2016-08-01 15:14:37",
+        "described_as": "新竹市公共自行車租賃系統Youbike新竹轉運站",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 960,
+          "bytes": 260294,
+          "checksum": "6e2bd3e9ba0c0d6cf817e16bc8f4259a6b7a8834899cc8d4eb673e5626c4c866"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 16348,
+          "checksum": "0b85762d66a63c3ed74ad36586d980ecfe1ad2cbed746d03c857fe566e13faa5"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 25110,
+          "checksum": "b25c8dfd1af872df49e01caed951d16b8c49999456584bfdd4955f8036efb7ee"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 41331,
+          "checksum": "c300e8742496cab465346d5c26250cab1a492d9f33cd7d36e7a404d7f985610b"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 63680,
+          "checksum": "82a6efb970171b4d39b1586fc5b70b88105f2fc0e79e3bcf8c792cbc8717626c"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 104142,
+          "checksum": "61dcc5fc4905c69e37069580166c09f39bf495c94994af27d9dd13747a110433"
+        },
+        {
+          "path": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 155860,
+          "checksum": "07fd4813d38d3df895f58aa74b59b6389303d9bc1e1fe4a883418f6865a39960"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 960,
+        "unit": "px"
+      },
+      "checksum": "6e2bd3e9ba0c0d6cf817e16bc8f4259a6b7a8834899cc8d4eb673e5626c4c866",
+      "checksum_of": "art-library/scenes/scene-hsinchu-youbike-2016/scene-hsinchu-youbike-2016-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#7e817f",
+          "share": 0.299
+        },
+        {
+          "name": null,
+          "hex": "#939592",
+          "share": 0.23
+        },
+        {
+          "name": null,
+          "hex": "#9ea09d",
+          "share": 0.206
+        },
+        {
+          "name": null,
+          "hex": "#4b4e48",
+          "share": 0.173
+        },
+        {
+          "name": null,
+          "hex": "#cacfd3",
+          "share": 0.091
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-taipei-city-council-2011",
+      "kind": "scene",
+      "title": "臺北市議會",
+      "region_ids": [
+        "taipei"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E5%8F%B0%E5%8C%97%E5%B8%82%E8%AD%B0%E6%9C%83.JPG",
+      "creator": "象心力",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution": "象心力／CC BY-SA 3.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:38+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "臺北市議會大樓正面，圓弧形量體上有臺北市議會金字，前方是圓形花圃。2011年3月13日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:台北市議會.JPG",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/%E5%8F%B0%E5%8C%97%E5%B8%82%E8%AD%B0%E6%9C%83.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4000,
+        "original_height": 3000,
+        "original_sha1": "ebf7f78be15fd171cd4cfb925bd443dbfdb2755d",
+        "uploaded_at": "2012-07-22T05:55:46Z",
+        "date_taken": "2011-03-13",
+        "described_as": "Taipei City Council",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 960,
+          "bytes": 254286,
+          "checksum": "a4bd668a9eaac54bb7619d3136b14be44cde8b0ea57507619950389ddd1900ff"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 14620,
+          "checksum": "d0f2a6c00aa66cd5ee01cb30646a217da7e836b4953542acc22acb9aa6ad02a6"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 24608,
+          "checksum": "03e2107ab42529b0286260df91ec0019020c35888ef7704cabe65aee830fb78c"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 38537,
+          "checksum": "ca0efb47bbecf1fb6a222ed4ad74ea8ed58b328056e62dc37647c012f8b5e7e2"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 64450,
+          "checksum": "a0298f96d5eec66248126cbfc6bf1d52368aac00976c928a4b44ffbe0360620c"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 100945,
+          "checksum": "34f22f2928a842c76af53e5df4f680803f90092b4af87802caf65e6d80349c7a"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 154342,
+          "checksum": "ca8175137ee0f66dcc925bd8e53351d2d82a7c459cc18acb2827008c789baf6f"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 960,
+        "unit": "px"
+      },
+      "checksum": "a4bd668a9eaac54bb7619d3136b14be44cde8b0ea57507619950389ddd1900ff",
+      "checksum_of": "art-library/scenes/scene-taipei-city-council-2011/scene-taipei-city-council-2011-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#989692",
+          "share": 0.357
+        },
+        {
+          "name": null,
+          "hex": "#1e2414",
+          "share": 0.261
+        },
+        {
+          "name": null,
+          "hex": "#fefdff",
+          "share": 0.194
+        },
+        {
+          "name": null,
+          "hex": "#6e705e",
+          "share": 0.169
+        },
+        {
+          "name": null,
+          "hex": "#ccd5da",
+          "share": 0.019
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-taipei-minglun-housing-2023",
+      "kind": "scene",
+      "title": "明倫社會住宅",
+      "region_ids": [
+        "taipei"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Minglun_Social_Housing_front_view_20230304.jpg",
+      "creator": "Solomon203",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Solomon203／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:42+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "policy-scene",
+        "public-works"
+      ],
+      "alt": "臺北市大同區明倫社會住宅，弧形的粉色與藍灰色磁磚立面，前景是承德路三段的路口與號誌。2023年3月4日",
+      "focal_point": {
+        "x": 0.42,
+        "y": 0.4
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Minglun Social Housing front view 20230304.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Minglun_Social_Housing_front_view_20230304.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4912,
+        "original_height": 2763,
+        "original_sha1": "0c6e71b50b4398a34503399c09485243d7890ce4",
+        "uploaded_at": "2023-03-11T07:38:53Z",
+        "date_taken": "2023-03-04 14:26:51",
+        "described_as": "從臺北市大同區承德路三段仰望明倫社會住宅正面。",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 720,
+          "bytes": 298211,
+          "checksum": "33a84e1a2da1f32d49fcf8a10ae535ed2b8591479e5ad2c21996c14aa13e8b38"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 270,
+          "bytes": 18078,
+          "checksum": "46e3721d5666ce936c10123ae3fa9e7e51aabb6b2e4e2f0809d258f9f95b6250"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 270,
+          "bytes": 32842,
+          "checksum": "1f241a3a8e7d0ad0e5842710e6c6e88e5bdd02a31f2c07d19551083469cdacec"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 450,
+          "bytes": 47282,
+          "checksum": "d69ef6b81a8ac631a5bd13157f63115bac76e371adc3122ba55c87bafd68d8c2"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 450,
+          "bytes": 88714,
+          "checksum": "720a0a05639989afa2b62155a96e19970756a7cb02c752ea904c53fbfa3141f0"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 720,
+          "bytes": 123685,
+          "checksum": "f51b19d5caefa7d771e262306fbc93555b4743ffee951c331e7927e0a7945cd5"
+        },
+        {
+          "path": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 720,
+          "bytes": 227058,
+          "checksum": "4ef382b57f8d78d2a9b1ab11cb3373a08e13db20f85383a57f51c9c3d9bdc0f1"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 720,
+        "unit": "px"
+      },
+      "checksum": "33a84e1a2da1f32d49fcf8a10ae535ed2b8591479e5ad2c21996c14aa13e8b38",
+      "checksum_of": "art-library/scenes/scene-taipei-minglun-housing-2023/scene-taipei-minglun-housing-2023-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#95959e",
+          "share": 0.275
+        },
+        {
+          "name": null,
+          "hex": "#303636",
+          "share": 0.246
+        },
+        {
+          "name": null,
+          "hex": "#656969",
+          "share": 0.235
+        },
+        {
+          "name": null,
+          "hex": "#e7f4fd",
+          "share": 0.157
+        },
+        {
+          "name": null,
+          "hex": "#bfcbdf",
+          "share": 0.087
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-new-taipei-city-hall-2013",
+      "kind": "scene",
+      "title": "新北市政府大樓與板橋高樓群",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": [
+        "office:ntpc-city"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:New_Taipei_City_Hall_20131108.jpg",
+      "creator": "Undefined~commonswiki",
+      "license_name": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "attribution": "Undefined~commonswiki／CC BY 3.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:45+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新北市板橋區的高樓群，畫面中央米色與玻璃帷幕的高樓是新北市政府大樓，前景是路口的車流與行人。2013年11月8日",
+      "focal_point": {
+        "x": 0.52,
+        "y": 0.42
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:New Taipei City Hall 20131108.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/New_Taipei_City_Hall_20131108.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3264,
+        "original_height": 2448,
+        "original_sha1": "814cb6cd23ca9605bedc202e3b4bae7a9ad930f5",
+        "uploaded_at": "2015-07-02T23:35:04Z",
+        "date_taken": "2013-11-08 16:12",
+        "described_as": "New Taipei City Hall, Banqiao District, New Taipei City.",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 960,
+          "bytes": 394529,
+          "checksum": "4a33e48ffc969ab27d374d327a7e10d97242741b9a79bff10b3236dde1e17b24"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 19850,
+          "checksum": "cb117a98cd9999bb9e3b1d017b791c7a3013e32380d6633d54f50eeea0737e71"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 34132,
+          "checksum": "26b1ab15f81850bb4afde81c74da032f49e8d76a6929a056e5fa42b7bff8bc1a"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 59167,
+          "checksum": "cd68e99ce029449507543c829cc1290a10decf10b006a9060788e8c242baf5c9"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 600,
+          "bytes": 104510,
+          "checksum": "4408203c29cf6338209ddeed8e775eec11ac2c30211883b27e7eddd7734e4170"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 169257,
+          "checksum": "fcd185bd1f3052035071dd8abbb559877c0127b55eb389d151e0916f28dfa2d7"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 960,
+          "bytes": 299334,
+          "checksum": "7137b2e026947e026a5d36dba318ec7b3f1510568bb15927294d012b8e83abbf"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 960,
+        "unit": "px"
+      },
+      "checksum": "4a33e48ffc969ab27d374d327a7e10d97242741b9a79bff10b3236dde1e17b24",
+      "checksum_of": "art-library/scenes/scene-new-taipei-city-hall-2013/scene-new-taipei-city-hall-2013-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#363a37",
+          "share": 0.292
+        },
+        {
+          "name": null,
+          "hex": "#131b19",
+          "share": 0.262
+        },
+        {
+          "name": null,
+          "hex": "#c4d2ec",
+          "share": 0.2
+        },
+        {
+          "name": null,
+          "hex": "#848487",
+          "share": 0.136
+        },
+        {
+          "name": null,
+          "hex": "#e9f1f0",
+          "share": 0.11
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-new-taipei-council-2017",
+      "kind": "scene",
+      "title": "新北市議會",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:New_Taipei_City_Council_building_front_view_20171028.jpg",
+      "creator": "Solomon203",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Solomon203／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:48+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "新北市議會大樓正門，深色門廊上有新北市議會金字，兩側是修成圓形的大樹。2017年10月28日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:New Taipei City Council building front view 20171028.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/New_Taipei_City_Council_building_front_view_20171028.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4608,
+        "original_height": 2592,
+        "original_sha1": "48a81139cc039edf5eb6fd05f9db9967e3ecfc9c",
+        "uploaded_at": "2017-11-07T12:49:56Z",
+        "date_taken": "2017-10-28 13:30:16",
+        "described_as": "新北市議會大樓正面。",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 720,
+          "bytes": 235215,
+          "checksum": "b552dc806cb4f1d7376a7498fecbfb14832bdf6b348939efc7afb536cfc8a458"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 270,
+          "bytes": 12814,
+          "checksum": "16b925cdff8a81c52477ea93b6548145ac58797d367c0523ab26f9867f6e1acb"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 270,
+          "bytes": 20324,
+          "checksum": "6a06d6c9ace9311ad0c8a60c94c8bee7abe856b5713f8f9dff5cec0dd736748e"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 450,
+          "bytes": 36284,
+          "checksum": "966a8d8c71b4ed23c12d99761ddcaed13d6b2d67291dbd14acf5cd7725db3a18"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 450,
+          "bytes": 61376,
+          "checksum": "379b51249930ce936abd68ed26bd6e9c3f650336e8edce1c5771852c96235ff7"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 720,
+          "bytes": 97539,
+          "checksum": "04587bee922a58d6beb5a205b94add2342d22e8573948d0ebdd26ae433b4e245"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 720,
+          "bytes": 165738,
+          "checksum": "9ac98b318f92ee399c52fc4a33018e7930aca911c2acc4d55c6632736a77b057"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 720,
+        "unit": "px"
+      },
+      "checksum": "b552dc806cb4f1d7376a7498fecbfb14832bdf6b348939efc7afb536cfc8a458",
+      "checksum_of": "art-library/scenes/scene-new-taipei-council-2017/scene-new-taipei-council-2017-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#888371",
+          "share": 0.305
+        },
+        {
+          "name": null,
+          "hex": "#131316",
+          "share": 0.215
+        },
+        {
+          "name": null,
+          "hex": "#dbd9d2",
+          "share": 0.179
+        },
+        {
+          "name": null,
+          "hex": "#30332e",
+          "share": 0.162
+        },
+        {
+          "name": null,
+          "hex": "#464940",
+          "share": 0.139
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-new-taipei-zhongyuan-station-2019",
+      "kind": "scene",
+      "title": "環狀線中原站出口",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:Zhongyuan_Station_of_Taipei_Metro_Circular_Line_20190828.jpg",
+      "creator": "Viy4092",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Viy4092／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:51+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-works",
+        "place-context"
+      ],
+      "alt": "臺北捷運環狀線中原站的出口，站名燈箱在入口上方，前景是高架橋的藍色橋墩。2019年8月28日",
+      "focal_point": {
+        "x": 0.48,
+        "y": 0.62
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:Zhongyuan Station of Taipei Metro Circular Line 20190828.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Zhongyuan_Station_of_Taipei_Metro_Circular_Line_20190828.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5472,
+        "original_height": 3648,
+        "original_sha1": "4d145152ea60ba8ea24e86f9f486534310499fb1",
+        "uploaded_at": "2019-11-20T20:13:18Z",
+        "date_taken": "2019-08-28 14:34:17",
+        "described_as": "位於板南路北側的環狀線中原站出口",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 853,
+          "bytes": 197639,
+          "checksum": "5f67628b26506d6472d86046c4ffc6069ca229939198850d2222f7de5e1bbcec"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 11826,
+          "checksum": "ab622df58f577d737af35766818ee148d4dcbde7936cd5610517569c0345c1b0"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 19804,
+          "checksum": "fd324d47bd4a0a6bf29b61b4c96873add0c64c7c2093267b8460705836d6f781"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 30885,
+          "checksum": "0a1d2675c36b18c77054fd7823a7460c47e000d5a4778b8725430d2d6f7ec72a"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 49472,
+          "checksum": "9a69bd64b9f70b29e885a3dac7c8e7ca9de82779a8c32c1b0ab50edd70349caa"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 73157,
+          "checksum": "aecfade6d37bacb85c172f9bff165830c3cb42dea6ef25673f2d1f711e57bf30"
+        },
+        {
+          "path": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 114116,
+          "checksum": "ccfab0d52fc7a119118820342a02244d72356f615bb3b54c0b9cd2a9175daa00"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 853,
+        "unit": "px"
+      },
+      "checksum": "5f67628b26506d6472d86046c4ffc6069ca229939198850d2222f7de5e1bbcec",
+      "checksum_of": "art-library/scenes/scene-new-taipei-zhongyuan-station-2019/scene-new-taipei-zhongyuan-station-2019-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#1a1a1a",
+          "share": 0.26
+        },
+        {
+          "name": null,
+          "hex": "#405158",
+          "share": 0.253
+        },
+        {
+          "name": null,
+          "hex": "#7e94aa",
+          "share": 0.179
+        },
+        {
+          "name": null,
+          "hex": "#a3bec9",
+          "share": 0.167
+        },
+        {
+          "name": null,
+          "hex": "#d3d0ce",
+          "share": 0.142
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-legislative-yuan-chamber-2017",
+      "kind": "scene",
+      "title": "立法院議場外觀",
+      "region_ids": [
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": [
+        "office:ly"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E7%AB%8B%E6%B3%95%E9%99%A2%E8%AD%B0%E5%A0%B4.jpg",
+      "creator": "林高志",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "林高志／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:54+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "立法院議場建築的外觀，白色面磚立面，門廊上方有「議場」二字，前方是階梯與盆栽。不是議場內部。2017年10月3日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:立法院議場.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/%E7%AB%8B%E6%B3%95%E9%99%A2%E8%AD%B0%E5%A0%B4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6000,
+        "original_height": 4000,
+        "original_sha1": "7164a13118e9619329f1883e468389340232625a",
+        "uploaded_at": "2017-10-15T10:25:54Z",
+        "date_taken": "2017-10-03 15:12:26",
+        "described_as": "立法院議場",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 853,
+          "bytes": 252479,
+          "checksum": "7950b83d6037effa1dc91725b7b21f9ea8c1ac12b42abc584aab195c6e1ea9ee"
+        },
+        {
+          "path": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 12473,
+          "checksum": "fd2c694a67693e89777e62d728bce6a4249f4a4094e250474667a1c2fc01ad44"
+        },
+        {
+          "path": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 320,
+          "bytes": 21936,
+          "checksum": "80c4256a782dd634402b767cbf87ead263a5749772d2138f72cc6859d89ffe55"
+        },
+        {
+          "path": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 33369,
+          "checksum": "24ced8df174bcfdbbfd2c77b12b6966830b03d9ef10f853eb18a25018531fb09"
+        },
+        {
+          "path": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 533,
+          "bytes": 64612,
+          "checksum": "ec463b95634f61eebe28618bf3242dfebeb72721946b793d2b170b5c7f07c603"
+        },
+        {
+          "path": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 92924,
+          "checksum": "a4c4fde5786e54c542cff563287ba102ca0feb808f858ca571ff596a183c4c90"
+        },
+        {
+          "path": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 853,
+          "bytes": 178278,
+          "checksum": "f5a5eeb0e4f9759721c46727f43cf72cf65ed590bea86b25cbd9fdb607458cf7"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 853,
+        "unit": "px"
+      },
+      "checksum": "7950b83d6037effa1dc91725b7b21f9ea8c1ac12b42abc584aab195c6e1ea9ee",
+      "checksum_of": "art-library/scenes/scene-legislative-yuan-chamber-2017/scene-legislative-yuan-chamber-2017-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#878684",
+          "share": 0.276
+        },
+        {
+          "name": null,
+          "hex": "#3c3933",
+          "share": 0.237
+        },
+        {
+          "name": null,
+          "hex": "#b8c8df",
+          "share": 0.192
+        },
+        {
+          "name": null,
+          "hex": "#aeb8c4",
+          "share": 0.156
+        },
+        {
+          "name": null,
+          "hex": "#c4d2e7",
+          "share": 0.139
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "scene-executive-yuan-2017",
+      "kind": "scene",
+      "title": "行政院中央大樓",
+      "region_ids": [
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": [
+        "office:ey"
+      ],
+      "original_source_url": "https://commons.wikimedia.org/wiki/File:%E8%A1%8C%E6%94%BF%E9%99%A2%E4%B8%AD%E5%A4%AE%E5%A4%A7%E6%A8%93_2.jpg",
+      "creator": "寺人孟子",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "寺人孟子／CC BY-SA 4.0／Wikimedia Commons",
+      "retrieved_at": "2026-11-13T08:23:56+08:00",
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "行政院中央大樓，淺褐色面磚與列柱陽台，前景是路口號誌與樹叢。2017年8月26日",
+      "focal_point": {
+        "x": 0.6,
+        "y": 0.55
+      },
+      "source": {
+        "host": "Wikimedia Commons",
+        "file_title": "File:行政院中央大樓 2.jpg",
+        "original_file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/%E8%A1%8C%E6%94%BF%E9%99%A2%E4%B8%AD%E5%A4%AE%E5%A4%A7%E6%A8%93_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4592,
+        "original_height": 3448,
+        "original_sha1": "16101e8dc4a11085dca1c90868d3986f1c3196fc",
+        "uploaded_at": "2019-02-16T14:29:13Z",
+        "date_taken": "2017-08-26 13:36:29",
+        "described_as": "行政院中央大樓,台北市中正區東門次分區梅花里",
+        "credit_source": "Own work"
+      },
+      "files": [
+        {
+          "path": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-1280.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "fallback",
+          "width": 1280,
+          "height": 961,
+          "bytes": 317233,
+          "checksum": "3cfffa856005d551722fa27d24fe0677871c2f000826e03f850c2783a04638b3"
+        },
+        {
+          "path": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 19126,
+          "checksum": "08cd5defe920312e18be22a2da57e96894fb7c1ffdbf625eabee97fcdc67d3a6"
+        },
+        {
+          "path": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 480,
+          "height": 360,
+          "bytes": 32976,
+          "checksum": "7a45eb5fc8379d6832a2136bbe9231a3645c2217e2fb07a919712401dee16c0a"
+        },
+        {
+          "path": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-800.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 800,
+          "height": 601,
+          "bytes": 53244,
+          "checksum": "a9864c277662ffea1544281a89c3302bf93aa8d5eec23d0f203944abd256fcd8"
+        },
+        {
+          "path": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-800.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 800,
+          "height": 601,
+          "bytes": 88928,
+          "checksum": "c55122783ad1d601e4e0e435b7ae51d52769a463c9f98eacfb9d5e94df955a80"
+        },
+        {
+          "path": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-1280.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "responsive",
+          "width": 1280,
+          "height": 961,
+          "bytes": 134692,
+          "checksum": "69ef2c9aac6d70a8c60eafb5f3a3745ca98db64dfb2a5c4d1476918641b38289"
+        },
+        {
+          "path": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-1280.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "responsive",
+          "width": 1280,
+          "height": 961,
+          "bytes": 227328,
+          "checksum": "076676bde4dc8357c1f81ecca9b65d20e097aec5039b4f754087ca6536ffa953"
+        }
+      ],
+      "dimensions": {
+        "width": 1280,
+        "height": 961,
+        "unit": "px"
+      },
+      "checksum": "3cfffa856005d551722fa27d24fe0677871c2f000826e03f850c2783a04638b3",
+      "checksum_of": "art-library/scenes/scene-executive-yuan-2017/scene-executive-yuan-2017-1280.jpg",
+      "palette": [
+        {
+          "name": null,
+          "hex": "#22271d",
+          "share": 0.273
+        },
+        {
+          "name": null,
+          "hex": "#6ba8e2",
+          "share": 0.227
+        },
+        {
+          "name": null,
+          "hex": "#698db3",
+          "share": 0.185
+        },
+        {
+          "name": null,
+          "hex": "#5c6d75",
+          "share": 0.177
+        },
+        {
+          "name": null,
+          "hex": "#b4b6ac",
+          "share": 0.139
+        }
+      ],
+      "changes": "自 Commons 取寬 1280 像素的縮圖，再縮為 480、800、1280 像素並轉成 AVIF、WebP 與 JPEG。未裁切、未調色。衍生檔沿用同一授權。",
+      "suggested_use": "城市或機關的實景情境。這是拍攝當天的外觀，不是工程進度或現況的證明。",
+      "identity": null
+    },
+    {
+      "id": "component-evidence-desk",
+      "kind": "component",
+      "title": "證據分類台",
+      "region_ids": [
+        "taipei",
+        "new-taipei",
+        "hsinchu-county",
+        "hsinchu-city",
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": null,
+      "creator": "新竹觀察美術庫（第五線）",
+      "license_name": "本站原創，未另行對外授權",
+      "license_url": null,
+      "attribution": "原創示意，新竹觀察",
+      "retrieved_at": null,
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "source-credibility",
+        "explainer"
+      ],
+      "alt": "立體示意儀器：卡片架上有機關發布、新聞報導、議事紀錄、公開貼文四疊來源卡，一枚查核章懸在其中一疊上方。它說明誰說的和有沒有核對是兩件事，不代表任何一筆實際紀錄",
+      "focal_point": null,
+      "source": null,
+      "files": [
+        {
+          "path": "art-library/figures/evidence-desk/preview.svg",
+          "format": "svg",
           "mime": "image/svg+xml",
           "role": "preview",
           "width": 680,
           "height": 440,
-          "bytes": 84650,
-          "checksum": "c421d0c82ce198be99f0df3a5e6cc85dc7e5238a9c9ede58f3321b0ea64b3a4f"
+          "bytes": 92759,
+          "checksum": "b3941ce1dc818a3bb48b614cb5a708c600c1411845403757e1ade724ccc74a48"
         },
         {
-          "path": "art-library/figures/evidence-bench/index.html",
+          "path": "art-library/figures/evidence-desk/fragment.html",
+          "format": "html",
           "mime": "text/html",
-          "role": "interactive",
+          "role": "fragment",
           "width": null,
           "height": null,
-          "bytes": 126792,
-          "checksum": "c2c0f8713afcb686a86ccf70b5695de359e84fee2859dd69023e5c2af493ad27"
+          "bytes": 81739,
+          "checksum": "0b33305144c57170dffecf5f229cc61ce82953833d7922b0dcbf9a159fc635cb"
+        },
+        {
+          "path": "art-library/figures/evidence-desk/index.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "page",
+          "width": null,
+          "height": null,
+          "bytes": 82401,
+          "checksum": "e78e018d40bef5d8b51fc13a43f9b93f3acefb02eaaae1544213f77a17877f32"
+        },
+        {
+          "path": "art-library/figures/evidence-desk/live.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 3357,
+          "checksum": "8625d00655646d398841c3d68b8605862b324fe519801e12ba08a69b1890b59f"
+        },
+        {
+          "path": "art-library/figures/evidence-desk/model.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 3753,
+          "checksum": "e40e615e203decbb88a69d705ee35da9891c1f572472e1fb43ca3494ccc50bf9"
+        },
+        {
+          "path": "art-library/figures/evidence-desk/data.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 152,
+          "checksum": "e4e3c3501e22960dff92ed4ba0e803874f2e4f46e4462af7aaef42a12061bbe8"
+        },
+        {
+          "path": "art-library/figures/figures.css",
+          "format": "css",
+          "mime": "text/css",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 13511,
+          "checksum": "9ea56d478c29220d83371aef7e1018ba31ebab27b5c0f3b9c81e2e6fa62bd104"
+        },
+        {
+          "path": "art-library/figures/motion.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1089,
+          "checksum": "c93cc682f04501c361475309e29449b62f00d13b65ecb348f7b1d25551ac4f6c"
+        },
+        {
+          "path": "art-library/figures/runtime.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 3193,
+          "checksum": "7ff1f51ea48a8dfde598d95c59a2b66398d163fae1b1c70b5dad5ec2660f15d7"
+        },
+        {
+          "path": "art-library/figures/boot.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1606,
+          "checksum": "ad02eaa0e300a2e90d1d66c1afcb72c3b691e657808fd4a00c48c84315d53cfb"
         }
       ],
       "dimensions": {
         "width": 680,
         "height": 440,
-        "unit": "px"
+        "unit": "viewBox"
       },
-      "alt": "立體證據壓印台，用來說明尚未核對、機關報告與獨立查核，不是特定工程，也不是政策百分比",
-      "focal_point": null,
-      "checksum": "c421d0c82ce198be99f0df3a5e6cc85dc7e5238a9c9ede58f3321b0ea64b3a4f",
-      "uses": [
-        "source-credibility",
-        "explainer",
-        "empty-state"
-      ],
+      "checksum": "b3941ce1dc818a3bb48b614cb5a708c600c1411845403757e1ade724ccc74a48",
+      "checksum_of": "art-library/figures/evidence-desk/preview.svg",
       "palette": [
         {
           "name": "paper",
@@ -669,10 +3385,160 @@
         {
           "name": "clay",
           "hex": "#9a5340"
+        },
+        {
+          "name": "sand",
+          "hex": "#ead7b4"
         }
       ],
-      "reproduction": "original-anatomy-figure",
-      "suggested_use": "第一線在來源說明、空狀態或可信度圖例使用；不可把夾厚當成施政數據。"
+      "changes": null,
+      "concept": "claim_origin 與 verification_status 是兩個欄位。換一疊卡不會多出章印。",
+      "suggested_use": "來源說明、方法頁、可信度圖例旁。不要放在單筆紀錄旁當成該筆的查核結果。",
+      "identity": null,
+      "embed": {
+        "figure": "evidence-desk",
+        "stylesheet": "art-library/figures/figures.css",
+        "script": "art-library/figures/boot.js"
+      },
+      "third_party": [
+        {
+          "name": "anatomy kit（繪圖樣式與產生幾何的工具）",
+          "license": "MIT",
+          "notice": "art-library/figures/NOTICE.txt"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-portrait-zhu",
+      "kind": "portrait",
+      "title": "朱定瑀肖像",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": [
+        "zhu"
+      ],
+      "review_status": "gap",
+      "reason": "Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。",
+      "needed": "有明確授權的官方或本人提供照片。不用他人照片，也不用生成肖像。"
+    },
+    {
+      "id": "gap-portrait-tseng",
+      "kind": "portrait",
+      "title": "曾聖凱肖像",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": [
+        "tseng"
+      ],
+      "review_status": "gap",
+      "reason": "Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。",
+      "needed": "有明確授權的官方或本人提供照片。不用他人照片，也不用生成肖像。"
+    }
+  ],
+  "coverage": [
+    {
+      "region_id": "taipei",
+      "kind": "portrait",
+      "count": 0
+    },
+    {
+      "region_id": "taipei",
+      "kind": "scene",
+      "count": 3
+    },
+    {
+      "region_id": "taipei",
+      "kind": "illustration",
+      "count": 0
+    },
+    {
+      "region_id": "taipei",
+      "kind": "component",
+      "count": 1
+    },
+    {
+      "region_id": "new-taipei",
+      "kind": "portrait",
+      "count": 0
+    },
+    {
+      "region_id": "new-taipei",
+      "kind": "scene",
+      "count": 4
+    },
+    {
+      "region_id": "new-taipei",
+      "kind": "illustration",
+      "count": 0
+    },
+    {
+      "region_id": "new-taipei",
+      "kind": "component",
+      "count": 1
+    },
+    {
+      "region_id": "hsinchu-county",
+      "kind": "portrait",
+      "count": 4
+    },
+    {
+      "region_id": "hsinchu-county",
+      "kind": "scene",
+      "count": 4
+    },
+    {
+      "region_id": "hsinchu-county",
+      "kind": "illustration",
+      "count": 0
+    },
+    {
+      "region_id": "hsinchu-county",
+      "kind": "component",
+      "count": 1
+    },
+    {
+      "region_id": "hsinchu-city",
+      "kind": "portrait",
+      "count": 0
+    },
+    {
+      "region_id": "hsinchu-city",
+      "kind": "scene",
+      "count": 4
+    },
+    {
+      "region_id": "hsinchu-city",
+      "kind": "illustration",
+      "count": 0
+    },
+    {
+      "region_id": "hsinchu-city",
+      "kind": "component",
+      "count": 1
+    },
+    {
+      "region_id": "central",
+      "kind": "portrait",
+      "count": 0
+    },
+    {
+      "region_id": "central",
+      "kind": "scene",
+      "count": 2
+    },
+    {
+      "region_id": "central",
+      "kind": "illustration",
+      "count": 0
+    },
+    {
+      "region_id": "central",
+      "kind": "component",
+      "count": 1
     }
   ]
 }

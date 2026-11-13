@@ -148,8 +148,6 @@ def edit_page(path, common_css, script_url, style_url, depth_url, tools_url, *, 
     doc = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
     nav = doc.select_one(".top nav.nav")
     main = doc.main
-    if path.name == "asset-lab.html":
-        return
     if not nav or not main or not doc.head or not doc.body:
         raise ValueError(f"Page shell missing on {path}")
     for node in doc.select('.candidate-review-note,.release-directory,.release-extra,script[src^="/assets/release-nav-"],link[href^="/assets/release-nav-"],link[href="/editorial-depth.css"],link[href^="/assets/editorial-depth-"]'):
