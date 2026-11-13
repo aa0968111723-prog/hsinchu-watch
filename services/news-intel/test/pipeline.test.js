@@ -85,6 +85,13 @@ test("city list keeps a dated municipal item and drops a blank date", async () =
   assert.equal(rows[0].source_url, "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=1");
 });
 
+test("published news file stays within the real cap", () => {
+  const data = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/latest.json", import.meta.url), "utf8"));
+  assert.ok(data.count <= 20);
+  assert.equal(data.gemini.use, false);
+  assert.ok(data.articles.every((article) => article.title && article.url.startsWith("https://")));
+});
+
 test("migration creates the article and audit tables", () => {
   const sql = readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8");
   for (const table of ["articles", "events", "review_queue", "agent_runs", "audit_logs", "project_budgets", "poll_methodologies"]) {
