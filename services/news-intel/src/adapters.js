@@ -146,6 +146,8 @@ export const COUNTY_HYDRANT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/openda
 export const COUNTY_HYDRANT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=222";
 export const COUNTY_SHELTER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/312/0fa9ce89-b525-4a66-9d35-cc4a12d7d35f.json";
 export const COUNTY_SHELTER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=312";
+export const COUNTY_TOILET_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/533/fa516b6e-25d4-4ebc-9a18-4996026786f8.json";
+export const COUNTY_TOILET_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=533";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -571,6 +573,60 @@ export function splitBusShelters(shelters) {
     note: shelters.note || "只留站名、路段、年度原文、方向、路線和管理機關。年度不換成西元年。完工與否沿用「是」或「否」。",
   };
   const download = Array.isArray(shelters.shelters) ? { ...summary, shelters: shelters.shelters } : null;
+  return { summary, download };
+}
+
+export function toiletUpdatePeriod(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows) || !rows.length) return { period: null, period_text: null };
+  const dates = rows.map((row) => String(row?.["最後更新時間"] ?? "").trim()).filter(Boolean);
+  if (!dates.length || dates.some((date) => date !== dates[0])) return { period: null, period_text: null };
+  const match = dates[0].match(/^(\d{2,3})\/(\d{2})\/(\d{2})$/);
+  if (!match) return { period: null, period_text: dates[0] };
+  const roc = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (roc < 1 || roc > 200 || month < 1 || month > 12 || day < 1 || day > 31) return { period: null, period_text: dates[0] };
+  const year = roc < 1911 ? roc + 1911 : roc;
+  return { period: `${year}-${match[2]}-${match[3]}`, period_text: dates[0] };
+}
+
+export function normalizeCountyToilets(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["無障礙廁所名稱"] || "").trim();
+    if (!name) return [];
+    const township = String(row["鄉鎮市區"] || "").trim();
+    const address = String(row["地址"] || "").trim();
+    const village = String(row["地址-村里"] || "").trim();
+    const kind = String(row["公廁類型"] || "").trim();
+    const note = String(row["備註"] || "").trim();
+    return [{
+      code: originalNumber(row["編號"]),
+      name,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+      village: village || null,
+      address: address || null,
+      kind: kind || null,
+      note: note || null,
+    }];
+  });
+}
+
+export function splitToilets(toilets) {
+  if (!toilets?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: toilets.source_url,
+    dataset_url: toilets.dataset_url,
+    period: toilets.period || null,
+    period_text: toilets.period_text || null,
+    count: toilets.count,
+    download_url: "/data/news-intel/accessible-toilets.json",
+    note: toilets.note || "只留名稱、鄉鎮、村里、地址、類型和備註。最後更新時間沿用資料檔，不是抓取時間。",
+  };
+  const download = Array.isArray(toilets.toilets) ? { ...summary, toilets: toilets.toilets } : null;
   return { summary, download };
 }
 

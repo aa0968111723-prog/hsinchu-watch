@@ -563,6 +563,53 @@ test("county bus shelters keep the written year and the yes or no flag", async (
   assert.equal(page.includes("不換成西元年"), true);
 });
 
+test("accessible toilets keep the shared update date and a blank address", async () => {
+  const { normalizeCountyToilets, splitToilets, toiletUpdatePeriod } = await import("../src/adapters.js");
+  const payload = JSON.stringify([
+    { "編號": "1", "鄉鎮市區": "竹北市", "地址-村里": "光明里", "無障礙廁所名稱": "縣府廁所", "地址": "光明一路1號", "公廁類型": "各級機關學校", "備註": "一樓", "最後更新時間": "112/09/12" },
+    { "編號": "2", "鄉鎮市區": "新埔鄉", "無障礙廁所名稱": "沒有地址的廁所", "地址": "", "公廁類型": "公園", "備註": "", "最後更新時間": "112/09/12" },
+    { "編號": "3", "鄉鎮市區": "竹北市", "無障礙廁所名稱": " ", "最後更新時間": "112/09/12" },
+  ]);
+  const rows = normalizeCountyToilets(payload);
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].region_id, "zhubei");
+  assert.equal(rows[0].address, "光明一路1號");
+  assert.equal(rows[1].region_id, null);
+  assert.equal(rows[1].address, null);
+  assert.deepEqual(toiletUpdatePeriod(payload), { period: "2023-09-12", period_text: "112/09/12" });
+  assert.deepEqual(toiletUpdatePeriod(JSON.stringify([
+    { "最後更新時間": "112/09/12" },
+    { "最後更新時間": "112/09/13" },
+  ])), { period: null, period_text: null });
+  const parts = splitToilets({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=533", dataset_url: "https://ws.hsinchu.gov.tw/toilets.json", period: "2023-09-12", period_text: "112/09/12", count: rows.length, toilets: rows });
+  assert.equal(parts.summary.toilets, undefined);
+  const kept = await runHour({
+    previous: { articles: [], toilets: { count: 5, period_text: "112/09/12" } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.toilets.count, 5);
+  assert.equal(kept.toilets.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-accessible-toilets", payload } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-accessible-toilets", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.period_text, "112/09/12");
+  assert.equal(imported.body.toilets[1].address, null);
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("最後更新時間沿用資料檔"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1262,6 +1309,15 @@ test("published news file stays within the real cap", () => {
     const shelters = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/bus-shelters.json", import.meta.url), "utf8"));
     assert.equal(shelters.shelters.length, data.bus_shelters.count);
     assert.ok(shelters.shelters.every((row) => row.name && (row.year === null || typeof row.year === "string") && (row.opened === null || row.opened === "是" || row.opened === "否")));
+  }
+  if (data.toilets) {
+    assert.equal(data.toilets.period_text, "112/09/12");
+    assert.equal(data.toilets.period, "2023-09-12");
+    assert.ok(data.toilets.count > 100);
+    assert.equal(data.toilets.toilets, undefined);
+    const toilets = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/accessible-toilets.json", import.meta.url), "utf8"));
+    assert.equal(toilets.toilets.length, data.toilets.count);
+    assert.ok(toilets.toilets.every((row) => row.name && !Object.hasOwn(row, "phone")));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

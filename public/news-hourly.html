@@ -51,6 +51,8 @@
   <p id="hydrant-status" class="meta"></p>
   <h2>新竹縣候車亭</h2>
   <p id="shelter-status" class="meta"></p>
+  <h2>新竹縣無障礙廁所</h2>
+  <p id="toilet-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -135,6 +137,7 @@ const specialStatus = document.querySelector("#special-status");
 const permitStatus = document.querySelector("#permit-status");
 const hydrantStatus = document.querySelector("#hydrant-status");
 const shelterStatus = document.querySelector("#shelter-status");
+const toiletStatus = document.querySelector("#toilet-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -390,6 +393,23 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       shelterStatus.append(" ", source);
     }
+    const toilets = data.toilets;
+    const toiletWhen = toilets?.period_text ? `最後更新時間沿用資料檔 ${toilets.period_text}。` : "資料檔的更新時間不一致或沒有寫。";
+    toiletStatus.textContent = toilets?.count
+      ? `${toilets.count} 處。${toiletWhen}只留名稱、鄉鎮、村里、地址、類型和備註。`
+      : "這一輪沒有無障礙廁所清冊，沒有補地點。";
+    if (toilets?.download_url) {
+      const download = document.createElement("a");
+      download.href = toilets.download_url;
+      download.textContent = "下載清冊";
+      toiletStatus.append(" ", download);
+    }
+    if (toilets?.source_url && toilets?.count) {
+      const source = document.createElement("a");
+      source.href = toilets.source_url;
+      source.textContent = "資料集頁";
+      toiletStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -504,6 +524,7 @@ fetch("/data/news-intel/latest.json")
     permitStatus.textContent = "使用執照清冊讀取失敗。頁面沒有改用假資料。";
     hydrantStatus.textContent = "消防栓清冊讀取失敗。頁面沒有改用假資料。";
     shelterStatus.textContent = "候車亭清冊讀取失敗。頁面沒有改用假資料。";
+    toiletStatus.textContent = "無障礙廁所清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";

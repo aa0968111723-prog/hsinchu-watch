@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitBusShelters, splitCityCatalog, splitHydrants, splitKindergartens, splitParking, splitSchools, splitSpecialClasses } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitBusShelters, splitCityCatalog, splitHydrants, splitKindergartens, splitParking, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -14,6 +14,7 @@ const kindergartenUrl = new URL("../../../public/data/news-intel/kindergartens.j
 const specialUrl = new URL("../../../public/data/news-intel/special-classes.json", import.meta.url);
 const hydrantUrl = new URL("../../../public/data/news-intel/hydrants.json", import.meta.url);
 const shelterUrl = new URL("../../../public/data/news-intel/bus-shelters.json", import.meta.url);
+const toiletUrl = new URL("../../../public/data/news-intel/accessible-toilets.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
 try {
   const existing = JSON.parse(readFileSync(publicUrl, "utf8"));
@@ -45,6 +46,7 @@ try {
     use_permits: existing.use_permits || null,
     hydrants: existing.hydrants || null,
     bus_shelters: existing.bus_shelters || null,
+    toilets: existing.toilets || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
     debt: existing.debt || null,
@@ -100,6 +102,10 @@ const shelterParts = splitBusShelters(publishable.bus_shelters);
 const shelterPublish = catalogForPublish(shelterParts.download, shelterParts.summary, previous.bus_shelters, (download) => {
   writeFileSync(shelterUrl, JSON.stringify(download));
 });
+const toiletParts = splitToilets(publishable.toilets);
+const toiletPublish = catalogForPublish(toiletParts.download, toiletParts.summary, previous.toilets, (download) => {
+  writeFileSync(toiletUrl, JSON.stringify(download));
+});
 const payload = {
   ok: publishable.ok,
   retained: publishable.retained,
@@ -138,6 +144,7 @@ const payload = {
   special_classes: specialPublish.summary,
   hydrants: hydrantPublish.summary,
   bus_shelters: shelterPublish.summary,
+  toilets: toiletPublish.summary,
   use_permits: publishable.use_permits ? {
     source_url: publishable.use_permits.source_url,
     dataset_url: publishable.use_permits.dataset_url,

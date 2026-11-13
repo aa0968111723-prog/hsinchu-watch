@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T19:02:56.010Z",
+  "last_success_at": "2026-11-13T19:06:41.668Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -487,6 +487,15 @@
     "count": 178,
     "download_url": "/data/news-intel/bus-shelters.json",
     "note": "只留站名、路段、年度原文、方向、路線和管理機關。年度不換成西元年。完工與否沿用「是」或「否」。"
+  },
+  "toilets": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=533",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/533/fa516b6e-25d4-4ebc-9a18-4996026786f8.json",
+    "period": "2023-09-12",
+    "period_text": "112/09/12",
+    "count": 128,
+    "download_url": "/data/news-intel/accessible-toilets.json",
+    "note": "只留名稱、鄉鎮、村里、地址、類型和備註。最後更新時間沿用資料檔，不是抓取時間。"
   },
   "use_permits": {
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=261",
@@ -1032,6 +1041,6 @@
     "added": [],
     "removed": []
   },
-  "duration_ms": 30531,
+  "duration_ms": 19242,
   "model_review": []
 }
