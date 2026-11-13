@@ -105,6 +105,15 @@ html body.civic-bright .top {
 }
 html body.civic-bright .top :is(.sub, .status) { color: var(--civic-ink-3); }
 html body.civic-bright .top nav.nav a { color: var(--civic-ink-2); border-radius: var(--civic-r-control); }
+html body.civic-bright .civic-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem .75rem;
+  padding: .15rem .75rem .9rem;
+  border-top: 1px solid var(--civic-line);
+}
+html body.civic-bright .civic-nav a { white-space: nowrap; color: var(--civic-ink-2); }
 html body.civic-bright .top nav.nav a:is(.active, [aria-current="page"]) {
   color: var(--civic-sage-ink);
   background: var(--civic-sage-soft);
@@ -517,10 +526,56 @@ html body.civic-bright main.wrap .civic-place[aria-pressed="true"], .civic-place
 .civic-stage .civic-paper[data-lit] > .iso-shade[data-shade="2"] { fill: var(--civic-lit-2); }
 .civic-stage .civic-paper[data-lit] > .iso-shade[data-shade="3"] { fill: var(--civic-lit-3); }
 .civic-stage .civic-sheet-leaf[data-lit] > .iso-fill { fill: var(--civic-lit-top); }
-@media (max-width: 560px) {
-  .civic-stage.iso .iso-plate { padding: 52px 0 62px; }
-  .civic-stage.iso .iso-plate .iso-plate-corner[data-corner="hint"] { bottom: 0; }
-  .civic-stage.iso .iso-plate .iso-plate-corner[data-corner="readout"] { bottom: 22px; max-width: 100%; }
+/* Phone: one job per band. The second menu scrolls sideways, the reading sits
+   under the drawing, and the big entry cards step aside when that menu exists. */
+@media (max-width: 720px) {
+  html body.civic-bright .civic-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: .5rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: .35rem .75rem .85rem;
+    border-top: 1px solid var(--civic-line);
+    scrollbar-width: none;
+  }
+  html body.civic-bright .civic-nav::-webkit-scrollbar { display: none; }
+  html body.civic-bright .civic-nav a { flex: none; white-space: nowrap; padding: .4rem .85rem; font-size: .95rem; }
+  html body.civic-bright .candidate-review-note {
+    margin: .9rem 0 1.15rem;
+    padding: .75rem .9rem;
+    background: var(--civic-sheet);
+    border: 1px solid var(--civic-line);
+    border-radius: var(--civic-r-card);
+  }
+  html body.civic-bright .civic-section { margin-bottom: 1.4rem; }
+  html body.civic-bright .civic-lede { margin-bottom: .85rem; }
+  html body.civic-bright .civic-desk { gap: .9rem; }
+  html body.civic-bright .civic-desk .civic-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: .2rem;
+    scrollbar-width: thin;
+  }
+  html body.civic-bright .civic-desk .civic-chip { flex: none; }
+  html body.civic-bright:has(.civic-nav) .civic-doors { display: none; }
+  html body.civic-bright .civic-door { padding: .85rem 1rem; }
+  html body.civic-bright .civic-door-about {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  html body.civic-bright .civic-stage.iso .iso-plate { padding: 2.2rem .4rem 4.8rem; }
+  html body.civic-bright .civic-stage.iso .iso-plate-corner[data-corner="hint"] {
+    top: auto; bottom: 1.65rem; left: .7rem; right: .7rem; max-width: none;
+  }
+  html body.civic-bright .civic-stage.iso .iso-plate-corner[data-corner="readout"] {
+    top: auto; bottom: .4rem; left: .7rem; right: .7rem; max-width: none; text-align: left;
+  }
+  html body.civic-bright .civic-stage.iso .iso-legend { padding-inline: .7rem; }
 }
 
 /* ── 5. Motion, contrast modes, print ──────────────────────────────────── */

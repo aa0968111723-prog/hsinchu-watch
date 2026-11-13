@@ -2,97 +2,97 @@
   "schema_version": 1,
   "sources": {
     "taipei-news-rss": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:18:09+08:00",
-      "records_kept": 13
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T22:25:01+08:00",
+      "records_kept": 37
     },
     "ntpc-news-json": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:58:09+08:00",
-      "records_kept": 8
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T23:05:01+08:00",
+      "records_kept": 12
     },
     "hsinchu-county-news-rss": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:18:09+08:00",
-      "records_kept": 12
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T22:25:01+08:00",
+      "records_kept": 18
     },
     "hsinchu-city-news-html": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
-      "last_modified": "Thu, 12 Nov 2026 23:57:42 GMT",
+      "last_modified": "Fri, 13 Nov 2026 14:03:58 GMT",
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:18:09+08:00",
-      "records_kept": 12
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T22:25:01+08:00",
+      "records_kept": 22
     },
     "ey-news-html": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:18:09+08:00",
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T22:25:01+08:00",
       "records_kept": 4
     },
     "dgbas-news-rss": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:58:09+08:00",
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T23:05:01+08:00",
       "records_kept": 12
     },
     "ly-meeting-json": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T10:58:09+08:00",
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-14T01:05:01+08:00",
       "records_kept": 12
     },
     "cna-atom": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:18:09+08:00",
-      "records_kept": 2,
-      "etag": "\"805ccf78173dd1:0\"",
-      "last_modified": "Thu, 12 Nov 2026 23:56:45 GMT"
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T22:25:01+08:00",
+      "records_kept": 7,
+      "etag": "\"0a6eef7773dd1:0\"",
+      "last_modified": "Fri, 13 Nov 2026 14:04:44 GMT"
     },
     "ptt-hsinchu-atom": {
-      "last_attempt_at": "2026-11-13T07:58:09+08:00",
+      "last_attempt_at": "2026-11-13T22:05:01+08:00",
       "last_http_status": 200,
       "consecutive_failures": 0,
       "health": "ok",
       "error": null,
-      "last_success_at": "2026-11-13T07:58:09+08:00",
-      "next_due_at": "2026-11-13T08:18:09+08:00",
-      "records_kept": 13
+      "last_success_at": "2026-11-13T22:05:01+08:00",
+      "next_due_at": "2026-11-13T22:25:01+08:00",
+      "records_kept": 19
     },
     "threads": {
       "health": "gap",

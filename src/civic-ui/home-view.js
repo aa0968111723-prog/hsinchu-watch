@@ -135,7 +135,7 @@ export function mountHome(root, { fig = "圖 1", tour = false } = {}) {
     max,
     fig,
     tour,
-    caption: `紙疊高度按筆數等比例畫，最高那一疊是 ${formatCount(max)} 筆；後牆每一格是它的一成。少到畫不出厚度的種類只放一張紙，數字看讀數或數字表。這是筆數，不是不重複文章數，也不代表重要性。`,
+    caption: `紙疊高度就是筆數，最高 ${formatCount(max)} 筆。很薄的那幾疊看讀數。這是筆數，不是排名。`,
     note: `筆數統計自 ${dateLabel(ARCHIVE_SUMMARY.counted_at)} 的已發布資料，合計 ${formatCount(view.total)} 筆${blackout ? `；封關期間另有 ${formatCount(view.held)} 筆民調相關紀錄暫不顯示` : ""}。`,
     onChoose: (row) => { void show(row); },
   });

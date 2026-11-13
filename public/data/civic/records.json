@@ -44,6 +44,112 @@
       "data_class": null
     },
     {
+      "id": "rec-066b1ca97150cc31",
+      "kind": "news_report",
+      "source_id": "cna-atom",
+      "source_url": "https://www.cna.com.tw/news/aloc/202611130094.aspx",
+      "title": "李四川允任內啟動新北大巨蛋 蘇巧慧百天內設都更局",
+      "published_at": "2026-11-13T13:01:28+08:00",
+      "collected_at": "2026-11-13T13:05:02+08:00",
+      "checked_at": "2026-11-13T13:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "李四川允任內啟動新北大巨蛋 蘇巧慧百天內設都更局",
+      "claim_origin": "news_report",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-9e5b6b6a1a373272",
+      "kind": "news_report",
+      "source_id": "cna-atom",
+      "source_url": "https://www.cna.com.tw/newsworld/article/20261113n007/",
+      "title": "新北耶誕城登場 台北凱達攜手SOUNDSGOOD推住房專案",
+      "published_at": "2026-11-13T18:14:17+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "new-taipei",
+        "taipei"
+      ],
+      "text_excerpt": "新北耶誕城登場 台北凱達攜手SOUNDSGOOD推住房專案",
+      "claim_origin": "news_report",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-fe725fc75f2d34e9",
+      "kind": "news_report",
+      "source_id": "cna-atom",
+      "source_url": "https://www.cna.com.tw/news/aloc/202611130291.aspx",
+      "title": "卡娜赫拉萌翻新北 歡樂耶誕城點燈開城吸睛",
+      "published_at": "2026-11-13T21:56:17+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "卡娜赫拉萌翻新北 歡樂耶誕城點燈開城吸睛",
+      "claim_origin": "news_report",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-1afdb554399c4081",
+      "kind": "news_report",
+      "source_id": "cna-atom",
+      "source_url": "https://www.cna.com.tw/news/asoc/202611130319.aspx",
+      "title": "境外勢力勾結在地黑幫 新北警選前掃黑跨區掃蕩",
+      "published_at": "2026-11-13T21:56:28+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "境外勢力勾結在地黑幫 新北警選前掃黑跨區掃蕩",
+      "claim_origin": "news_report",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-e58bba6a28c33d68",
+      "kind": "news_report",
+      "source_id": "cna-atom",
+      "source_url": "https://www.cna.com.tw/news/aipl/202611130315.aspx",
+      "title": "邱臣遠車隊掃街 傅崐萁率藍委合體黃國昌竹北助選",
+      "published_at": "2026-11-13T22:01:16+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "邱臣遠車隊掃街 傅崐萁率藍委合體黃國昌竹北助選",
+      "claim_origin": "news_report",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
       "id": "rec-2fa3f790a76e2be0",
       "kind": "agency_release",
       "source_id": "dgbas-news-rss",
@@ -876,6 +982,266 @@
       "data_class": null
     },
     {
+      "id": "rec-2e3171d862dc1ba9",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=62acbba7-4353-4059-8731-6cc64066a914",
+      "title": "竹市警察局無人機隊成軍！導入AI提升治安維護與應變效能 高虹安市長：科技助力守護市民",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市警察局無人機隊成軍！導入AI提升治安維護與應變效能 高虹安市長：科技助力守護市民",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-325cb89f841ba7cc",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=cfb9abea-b6c5-403b-a020-b4afab22b0c3",
+      "title": "光華國中歡慶創校70週年 高虹安市長祝福扎根教育、開創新篇章",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T10:45:02+08:00",
+      "checked_at": "2026-11-13T10:45:02+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "光華國中歡慶創校70週年 高虹安市長祝福扎根教育、開創新篇章",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-3df2b84bceb60d2e",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=e987929d-2a4f-4af1-8571-5921639e2009",
+      "title": "《竹塹文獻》三十載薪傳！竹市攜手清大辦竹塹學國際學術研討會 高虹安市長：讓城市記憶走向世界",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T12:05:02+08:00",
+      "checked_at": "2026-11-13T12:05:02+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "《竹塹文獻》三十載薪傳！竹市攜手清大辦竹塹學國際學術研討會 高虹安市長：讓城市記憶走向世界",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-638ee98ffde0e1b0",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=a7845b3a-7e29-4fcf-8d14-9f1fc586ef17",
+      "title": "竹市深化2030雙語教育！第四屆英文菁英盃1,178人參賽 高虹安市長：培養學子英語力、接軌國際",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市深化2030雙語教育！第四屆英文菁英盃1,178人參賽 高虹安市長：培養學子英語力、接軌國際",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-8213b4d491214c04",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=3a85946c-17a8-4b5c-8803-77002d1ef0b6",
+      "title": "樹林頭公園停車場即日起恢復營運！高虹安市長：積極協調中華郵政 活化土地紓解停車需求",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T09:45:02+08:00",
+      "checked_at": "2026-11-13T09:45:02+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "樹林頭公園停車場即日起恢復營運！高虹安市長：積極協調中華郵政 活化土地紓解停車需求",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-99afc78e73376f22",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=4f2b377c-8322-45ba-b3e2-e300a64cd4d2",
+      "title": "觀音山新竹金剛手道場致贈570份蔬食便當傳遞愛心 高虹安市長感謝推廣蔬食環保共創永續城市",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T14:05:02+08:00",
+      "checked_at": "2026-11-13T14:05:02+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "觀音山新竹金剛手道場致贈570份蔬食便當傳遞愛心 高虹安市長感謝推廣蔬食環保共創永續城市",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-ab880d5b50ae2a2d",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=693982df-c9de-4e1e-97b5-832cb7a28f4c",
+      "title": "竹市首屆「茶花公主」8強出爐！高虹安市長：11/21二二八公園決戰 卓文萱壓軸獻唱",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市首屆「茶花公主」8強出爐！高虹安市長：11/21二二八公園決戰 卓文萱壓軸獻唱",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-b8387f4fb861a876",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=6126e7ec-76fc-4848-9eb8-1519329b9b63",
+      "title": "竹市勇奪亞太永續會展獎銀級及永續導覽卓越獎 高虹安市長：讓永續融入市民生活",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T12:05:02+08:00",
+      "checked_at": "2026-11-13T12:05:02+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "竹市勇奪亞太永續會展獎銀級及永續導覽卓越獎 高虹安市長：讓永續融入市民生活",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-d120c6ed1ad1862a",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=edc16123-d0e9-4467-b904-0c1098c1cc12",
+      "title": "2026新竹市購物節消費登錄突破20億元！高虹安市長邀民眾把握機會抽大獎",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T09:45:02+08:00",
+      "checked_at": "2026-11-13T09:45:02+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "2026新竹市購物節消費登錄突破20億元！高虹安市長邀民眾把握機會抽大獎",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-d2c831276a7154e2",
+      "kind": "agency_release",
+      "source_id": "hsinchu-city-news-html",
+      "source_url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=9061d9ea-013f-447e-9a4e-7c1b59878e58",
+      "title": "聯合國總部展出作品跨海來竹市！高虹安市長：以藝術串聯國際交流與在地關懷",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-city"
+      ],
+      "text_excerpt": "聯合國總部展出作品跨海來竹市！高虹安市長：以藝術串聯國際交流與在地關懷",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
       "id": "rec-6a203a3957a83148",
       "kind": "agency_release",
       "source_id": "hsinchu-county-news-rss",
@@ -1181,6 +1547,162 @@
         "hsinchu-county"
       ],
       "text_excerpt": "為維護供氣安全，新竹瓦斯股份有限公司訂於115年11月16日至11月18日上午9時至下午5時辦理「新竹縣加嗅系統維護作業」。如施工期間可能產生較明顯嗅味，請勿驚慌，造成不便，敬請見諒。 詳情請電洽新竹瓦斯股份有限公司：[電話已省略](維修部分機2400-2416或竹北服務中心分機2900至2901)。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-20b6a4d0f96a4982",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358205",
+      "title": "實戰力滿點！竹縣數位青年實習成果發表 跨域人才為企業注入AI創新活水",
+      "published_at": "2026-11-13T09:41:00+08:00",
+      "collected_at": "2026-11-13T10:05:02+08:00",
+      "checked_at": "2026-11-13T10:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣「數位創新青年培育就業計畫」昨（12日）於暐順國際會議中心盛大舉行實習成果發表會，現場匯聚多家頂尖企業與大專院校代表，共同見證青年學子如何將校園所學轉化為解決企業痛點的實質產出。竹縣府教育局副局長沈靜濤代表縣長楊文科頒發績優實習生結業證書及6000元獎勵金，高度肯定青年世代的創新能量。同時，縣府也向全台大專院校學子與各界企業主遞出橄欖枝，期盼明年能持續…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-79df1ae5dc70eec4",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358207",
+      "title": "竹縣醫政管理成果受肯定 榮獲衛福部考評第二組第一名",
+      "published_at": "2026-11-13T09:57:00+08:00",
+      "collected_at": "2026-11-13T10:25:02+08:00",
+      "checked_at": "2026-11-13T10:25:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府衛生局榮獲114年衛生福利部醫政業務考評績優單位第二組第一名，醫政政策推動及業務執行成果獲中央肯定。11月10日在縣府主管會報中獻獎，新竹縣長楊文科表示，這次考評獲得第一名令人欣慰，期待這些平時不容易被看見的工作，能夠實際回應縣民就醫的需要。 衛生福利部於10月1日於嘉義縣舉辦115年度醫療行政及醫療法規研討會，會中頒發114年醫政業務考評績優單位…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-7d082f82009d5be4",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358208",
+      "title": "紓解經濟壓力！欠稅遭移送執行可申請分期繳納 稅務局提醒核准分期後務必按期繳款",
+      "published_at": "2026-11-13T10:22:00+08:00",
+      "collected_at": "2026-11-13T10:45:02+08:00",
+      "checked_at": "2026-11-13T10:45:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "收到行政執行分署傳繳通知別慌張！新竹縣政府稅務局表示，稅務局不只催繳欠稅，更深切理解民眾生計與財務壓力。所以民眾若因經濟困難或遭遇突發變故致無法一次繳清應納稅捐，請勿過度焦慮，只要符合條件，皆可向法務部行政執行署新竹分署申請分期繳納，彈性分期繳清稅款。 稅務局說明，經審核核准分期繳納者，執行分署得暫緩採取扣押存款、扣薪或拍賣不動產等強制執行程序，讓有心繳納的…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-f2234c5fc3e6d0fc",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358228",
+      "title": "社區交流好所在 新豐松林村暨明新村集會所活動中心落成啟用",
+      "published_at": "2026-11-13T13:55:00+08:00",
+      "collected_at": "2026-11-13T14:05:02+08:00",
+      "checked_at": "2026-11-13T14:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣長楊文科、議長張鎮榮今(13)日出席新豐鄉公所舉辦「松林村暨明新村集會所活動中心」落成啟用典禮，現場聚集百餘位鄉親及各界民意代表共同見證，氣氛熱鬧歡愉。楊文科表示，這座集會所提供松林村及明新村兩個村使用，分別規劃於一樓及二樓，整體空間寬敞明亮、環境舒適，未來不論是舉辦社區活動、歌唱、舞蹈、共餐或會議等，都能在這裡進行，讓村民有更好的交流與互動場所，提升…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-27c0af7258b7968f",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358236",
+      "title": "竹縣教育類青年志工評鑑出爐！ 4單位奪優等獲獎金 展現青年熱血行動力",
+      "published_at": "2026-11-13T16:30:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府為持續深化青年公共參與，今（13）日舉辦「教育類青年志工運用單位評鑑會議」，針對轄內單位的年度志願服務成果進行嚴格評核。經專家學者評議，新竹縣私立義民高級中學等4個單位全數榮獲「優等」殊榮，不僅各獲頒1萬5千元獎金，更將接受縣府公開表揚，展現新竹縣充沛且扎實的青年服務量能。 本次評鑑邀集新竹縣教育類青年志願服務運用單位齊聚交流，並從「志工招募」、「…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-d23b9ae6481f3740",
+      "kind": "agency_release",
+      "source_id": "hsinchu-county-news-rss",
+      "source_url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358237",
+      "title": "跨海切磋消防戰力！澳洲消防員代表團訪竹縣同場競技",
+      "published_at": "2026-11-13T17:05:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "享譽國際、以陽光正面形象與公益熱忱著稱的「澳洲消防員代表團」，今（13）日跨海蒞臨新竹縣進行消防專業交流。新竹縣政府消防局特別舉辦歡迎儀式與趣味體能競賽，期盼透過實務切磋深化台澳消防夥伴關係，同時帶領外賓走訪北埔與峨眉，展現新竹縣獨特的客庄文化與低碳生態魅力。 新竹縣政府消防局表示，消防救災是一項不分國界、共同守護生命的偉大志業。面對近年極端氣候帶來的多元且…",
       "claim_origin": "agency_release",
       "verification_status": "unreviewed",
       "stats_eligible": false,
@@ -1708,6 +2230,110 @@
       "data_class": "焦點新聞"
     },
     {
+      "id": "rec-34cd473a2f0c1064",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "表揚24位新北市好人好事代表 侯友宜感謝民間力量讓城市更團結溫暖",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】「115年新北市表揚好人好事代表頒獎典禮」今（13）日於新北市政府6樓大禮堂舉行，由新北市長侯友宜頒獎表揚24位長期投入公益與社會服務的市民。他表示，感謝每一位無私奉獻的市民朋友，相信這些善與愛的付出會形成正向循環，匯聚成無窮的力量，讓新北成為團結、溫暖的城市。侯友宜感謝好人好事運動協會長期與市府並肩同行，持續發掘社會中的良善典範，希望藉著表揚活…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611130041",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-4e43d8e8ecaf7e14",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "卡娜赫拉的小動物萌幻登場！侯友宜點亮新北歡樂耶誕城",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】「2026新北歡樂耶誕城」今（13）日晚間盛大開城，今年特別攜手國際知名IP「卡娜赫拉的小動物」，以「萌幻啟程・耶誕開城秀」為主題揭開序幕。新北市長侯友宜率市府團隊與貴賓們共同點亮巨型熱氣球耶誕主燈「萌幻飛行號」，並欣賞精彩的3D光雕秀，帶領現場民眾一同踏入充滿童趣的萌幻旅程。侯友宜表示，每年舉辦的新北歡樂耶誕城已成為享譽國內外的知名觀光品牌，去…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611130049",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-a2da8599c3879be0",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "三鶯延伸八德線開工 侯友宜： 實現「一車直達」 力拚2034年完工",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "【新北市訊】新北市政府今（13）日攜手桃園市政府舉行三鶯延伸八德線地下段土建及全線機電系統開工動土典禮，新北市長侯友宜表示，三鶯延伸八德線是串聯新北與桃園的重要路線，全長4.03公里、設置3座車站，並以2034年完工為目標，民眾可從桃園搭乘捷運「一車直達」新北，實現跨縣市軌道共榮願景。侯友宜指出，三鶯線今年6月通車後，已帶動三峽、鶯歌地區人潮與發展，延伸八德…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611130037",
+      "data_class": "焦點新聞"
+    },
+    {
+      "id": "rec-a60b3d77f1142a77",
+      "kind": "agency_release",
+      "source_id": "ntpc-news-json",
+      "source_url": "https://data.ntpc.gov.tw/datasets/0516BC87-2C1E-4C73-BB7B-78538024EEF4",
+      "title": "115.11.14(六)新北市政府新聞行程",
+      "published_at": "2026-11-13",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "day",
+      "actor_refs": [
+        {
+          "id": "office:ntpc-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "new-taipei"
+      ],
+      "text_excerpt": "民國115年11月14日 星期六新 北 市 政 府 新 聞 行 程09:30 115年度原住民族學生語言競賽地點：仁愛國小（蘆洲區民族路488號）參加：原民局副局長 陳碧霞14:00 115年慶祝志工日系列活動-「讓奉獻成為一種榮耀」公益演唱會地點：市府3樓多功能集會堂參加：社會局長 李美珍14:00 「2026新北市文學獎」頒獎典禮地點：三重安芯中心4樓展…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "202611130042",
+      "data_class": "焦點新聞"
+    },
+    {
       "id": "rec-0a24d0cd70b79b0c",
       "kind": "procurement_award",
       "source_id": "pcc-award-xml",
@@ -1958,16 +2584,16 @@
       "kind": "public_post",
       "source_id": "ptt-hsinchu-atom",
       "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794480063.A.C5B.html",
-      "title": "[問卷] 科技金融接受度之研究",
+      "title": "[問卷] 科技金融接受度之研究(有抽獎)",
       "published_at": "2026-11-12T18:41:03+08:00",
-      "collected_at": "2026-11-13T00:39:35+08:00",
-      "checked_at": "2026-11-13T00:39:35+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
       "date_precision": "minute",
       "actor_refs": [],
       "region_refs": [
         "hsinchu"
       ],
-      "text_excerpt": "[問卷] 科技金融接受度之研究",
+      "text_excerpt": "[問卷] 科技金融接受度之研究(有抽獎)",
       "claim_origin": "public_post",
       "verification_status": "unreviewed",
       "stats_eligible": false,
@@ -2052,6 +2678,132 @@
         "hsinchu"
       ],
       "text_excerpt": "[贈送] 竹北 絨毛玩具/食品",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-47a7eb159255639a",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794546216.A.8E4.html",
+      "title": "[贈送] 斷捨離一批+一大桶薄荷糖（洽中）",
+      "published_at": "2026-11-13T13:03:36+08:00",
+      "collected_at": "2026-11-13T13:45:02+08:00",
+      "checked_at": "2026-11-13T13:45:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] 斷捨離一批+一大桶薄荷糖（洽中）",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-5f54aa5623aca39e",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794547438.A.01C.html",
+      "title": "[徵求] 紙箱",
+      "published_at": "2026-11-13T13:23:58+08:00",
+      "collected_at": "2026-11-13T13:25:02+08:00",
+      "checked_at": "2026-11-13T13:25:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[徵求] 紙箱",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-1f85ef0b97c66f81",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794548077.A.220.html",
+      "title": "[贈送] Aprica Fladea STD 汽車座椅",
+      "published_at": "2026-11-13T13:34:37+08:00",
+      "collected_at": "2026-11-13T13:45:02+08:00",
+      "checked_at": "2026-11-13T13:45:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] Aprica Fladea STD 汽車座椅",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-236819d5eaf487bf",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794572611.A.DE3.html",
+      "title": "[贈送] 故障的小米打氣機",
+      "published_at": "2026-11-13T20:23:31+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] 故障的小米打氣機",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-c9f53761ec0bfa85",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794573270.A.BED.html",
+      "title": "[合購] 巨城Sogo肌膚之鑰激光露",
+      "published_at": "2026-11-13T20:34:30+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[合購] 巨城Sogo肌膚之鑰激光露",
+      "claim_origin": "public_post",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-0da7271ebb8430c3",
+      "kind": "public_post",
+      "source_id": "ptt-hsinchu-atom",
+      "source_url": "https://www.ptt.cc/bbs/Hsinchu/M.1794576581.A.AF5.html",
+      "title": "[贈送] 阿Q桶麵（即期）",
+      "published_at": "2026-11-13T21:29:41+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [],
+      "region_refs": [
+        "hsinchu"
+      ],
+      "text_excerpt": "[贈送] 阿Q桶麵（即期）",
       "claim_origin": "public_post",
       "verification_status": "unreviewed",
       "stats_eligible": false,
@@ -2390,6 +3142,630 @@
         "taipei"
       ],
       "text_excerpt": "迎接新年不必人擠人！備受市民喜愛的內湖碧山露營場與北投貴子坑露營場，擁有豐富自然的森林生態與開闊視野，是遠離都市喧囂、親近自然的最佳首選。大地處邀請市民朋友一同走進大自然，在璀璨夜景與滿天星斗下共度歲末美好時光。 碧山露營場位於內湖的大崙頭山與大崙尾山之間，周圍生態資源豐富，是爬山、露營放鬆的理想場所，營區北側設有特色造型營位，彷彿走進森林懷抱；南側的開放式…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-119f7a2dd2d65627",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=A16576E4058CB446",
+      "title": "球場有頂，運動無限！本市風雨球場升級，打造全天候運動、綠能永續與社區共享空間",
+      "published_at": "2026-11-13T07:56:00+08:00",
+      "collected_at": "2026-11-13T08:25:01+08:00",
+      "checked_at": "2026-11-13T08:25:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府教育局新聞稿 請轉交文教記者 業務聯絡：臺北市政府教育局工程及財產科 粘志偉科長[電話已省略]",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-e53e9032652014ef",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=CAE212AC80D309F0",
+      "title": "北市115-117年投入10.33億元 汰換環保清潔車輛 精進服務品質 守護宜居臺北",
+      "published_at": "2026-11-13T10:00:00+08:00",
+      "collected_at": "2026-11-13T11:05:02+08:00",
+      "checked_at": "2026-11-13T11:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "承辦單位：環境清潔管理科 發稿日期：115年11月13日 聯 絡 人：陳浩彰科長 聯絡電話：[電話已省略] 為加速汰換老舊車輛，提升空氣品質並確保第一線清潔隊員職業安全，臺北市環保局今(13)日於信義區苗圃停車場辦理「115年度環保清潔車輛新車啟用典禮」，李泰興副市長親自出席見證，並感謝清潔隊員日夜守護市容的辛勞。 李副市長表示，北市府非常重視清潔同仁的工作…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-b42b42c3cf363895",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=399C8CF37DD8B114",
+      "title": "北市府：輝達北士科海外總部履約一切正常，籌建如期推進",
+      "published_at": "2026-11-13T10:19:00+08:00",
+      "collected_at": "2026-11-13T11:05:02+08:00",
+      "checked_at": "2026-11-13T11:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "有關輝達公司（NVIDIA）董事會於昨（12）日宣布黃仁勳先生辭任公司執行長等職務一事，北市府表示輝達北士科海外總部地上權案簽約主體為其在臺北市設立之子公司「台灣輝達經典股份有限公司」，履約保證金、權利金及地租皆依約繳付，履約一切正常。 北市府進一步說明，輝達北士科海外總部建造執照已於今（115）年7月15日掛件；地下連續壁工程亦於11月5日獲都審幹事會審議…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-43b12d57da61661f",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=D581DB5D92C8A00F",
+      "title": "因應115年11月14日本市信義區市府路集會活動，公車配合調整措施",
+      "published_at": "2026-11-13T10:30:00+08:00",
+      "collected_at": "2026-11-13T11:05:02+08:00",
+      "checked_at": "2026-11-13T11:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市公共運輸處表示，因應信義區市府路舉辦集會活動，市府路(松高-松壽)及仁愛路(市府-光復)將於115年11月14日0時至21時將分階段進行交通管制(視現場交管情況提前或延後)，南環幹線、承德幹線及仁愛幹線等共22條路線，將取消停靠「市政府(市府)」及「國父紀念館」等共8站，公車改道表如附件，請民眾至前後鄰近站位乘車，或搭乘捷運板南線前往集會活動地點。 臺…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-2c5c60451de64495",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=7F369EAE34DEC24E",
+      "title": "響應國際身障日！《2026臺北市優秀身心障礙勞工暨移工專刊》開放下載",
+      "published_at": "2026-11-13T10:37:00+08:00",
+      "collected_at": "2026-11-13T14:05:02+08:00",
+      "checked_at": "2026-11-13T14:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "為響應「12月3日國際身心障礙者日」的多元共融精神，臺北市勞動力重建運用處於11月6日盛大舉辦表揚典禮、公開嘉許本年度15位優秀身心障礙勞工後，正式於今日（11月13日）推出《經緯共生 交織共融 2026臺北市優秀身心障礙勞工暨移工專刊》電子專刊，即日起開放社會大眾免費下載。專刊內每篇文章均附有 QR Code，掃描即可連結至線上有聲書，提供社會大眾更加多元…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-0514a264356c4428",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=13F0ADF29E9765A9",
+      "title": "北市勞動局10月裁罰89家事業單位 開罰387萬元",
+      "published_at": "2026-11-13T11:05:00+08:00",
+      "collected_at": "2026-11-13T12:05:02+08:00",
+      "checked_at": "2026-11-13T12:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府勞動局公布115年10月份違反《勞動基準法》裁罰結果，共有89家事業單位遭裁處，總罰鍰金額為387萬元，其中「威煦軟體開發有限公司」遭罰25萬元為最高。勞動局表示，保障勞工權益不僅是企業法定的義務，也是企業的社會責任，雇主應確實遵守勞動法令，不僅能維護勞工權益，亦能提高員工向心力，增加企業產能，勞資雙方共同合作，可創造雙贏！ 勞動局長王秋冬表示，1…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-05c1f8e4a926c487",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=9DE68F81E7BFFC34",
+      "title": "松山區敦化北路巷弄道路塌陷 由第三方技師公會製作調查報告及審核復工改善計畫 已恢復施工",
+      "published_at": "2026-11-13T11:21:00+08:00",
+      "collected_at": "2026-11-13T12:05:02+08:00",
+      "checked_at": "2026-11-13T12:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "有關松山區敦化北路台塑大樓都更工地115年7月8日造成道路塌陷，涉及危害公共安全，建管處立即依違反建築法處承、監造人最高各新臺幣90,000元罰鍰並勒令停工在案，並由專業技師公會判定事件發生原因及責任歸屬，後續復工計畫書應經第三方專業公會審定通過後，始得申請復工。 建管處說明，本案道路塌陷事故原因鑑定報告經台北市結構工程工業技師公會115年8月17日製作完成…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-8d11d0f03bbbff56",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=525F545F0D2EB72C",
+      "title": "北市學生音樂比賽大安高工場地11/12電梯臨時故障處理說明",
+      "published_at": "2026-11-13T11:24:00+08:00",
+      "collected_at": "2026-11-13T12:05:02+08:00",
+      "checked_at": "2026-11-13T12:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府教育局回應新聞稿 請轉交文教記者 業務聯絡：臺北市政府教育局特殊教育科李素禎科長 ([電話已省略]轉6341 張雅涵股長 ([電話已省略]轉6346",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-5a5dbf70dd1c8d5f",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=FB4EB3281F03B119",
+      "title": "115年11月14日至16日中正區八德路一段舉辦「2026八德3C哈樂Day」實施交通管制說明",
+      "published_at": "2026-11-13T11:25:00+08:00",
+      "collected_at": "2026-11-13T12:05:02+08:00",
+      "checked_at": "2026-11-13T12:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "為配合臺北市商業處協助八德資訊商圈申請於115年(以下同)11月14日(星期六)0時起至11月16日(星期一)2時止，假臺北市中正區八德路一段等路段舉辦「2026八德3C哈樂Day-主題封街活動」，中正第一分局為維護前揭活動交通秩序與安全，業規劃交通疏導管制措施，相關活動周邊交通管制時段及範圍，說明如下：一、 自11月14日0時起至11月16日2時止(視狀況…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-3363f8093c3817a7",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=68F93BAA509E8F34",
+      "title": "面對基泰大直案絕不迴避、執法更無雙標 北市府釐清裁罰法源與事發前會勘真相、重啟公辦都更調查並確保安置不中斷",
+      "published_at": "2026-11-13T11:44:00+08:00",
+      "collected_at": "2026-11-13T12:05:02+08:00",
+      "checked_at": "2026-11-13T12:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "針對外界於社群媒體就「基泰大直」案提出之相關質疑，包含事發前會勘認定公文、施工圖說去向，以及將基泰大直工安事件罰鍰與「北投舊市場拆除工程鷹架倒塌案」對比一事，臺北建管處今（13）日嚴正說明，兩案在《建築法》行政裁罰上均依現行法定上限開出「最重罰鍰」，標準完全一致、絕無雙標；面對112年9月7日發生的重大工安災變，市府始終秉持「不迴避、負責任、重改革」的態度，…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-ab875650f85e4b94",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=F1EB26E7427B66A8",
+      "title": "一日小小警察出勤！ 中正第二分局趣味參訪溫馨登場",
+      "published_at": "2026-11-13T12:18:00+08:00",
+      "collected_at": "2026-11-13T13:25:02+08:00",
+      "checked_at": "2026-11-13T13:25:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府警察局中正第二分局泉州街派出所日前接待轄內幼兒園學童參訪，舉辦一日小小警察體驗活動。當日由所長黃炤楠及警員陳康碩準備豐富的宣導內容，帶領孩童認識警察工作，並從小建立交通安全與自我保護等正確觀念。 活動中，警方向小朋友們展示各項應勤裝備，並將實務案例化為淺顯易懂的故事，以生動活潑的方式講解行人交通安全常識，以及遇到陌生人時的應對方式，同時也耐心回應孩…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-af91b9d4e8891c8f",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=3658ED4855581A00",
+      "title": "家有煩人的兒童/青少年怎麼辦？11月21日「數位教養微論壇」與您共同解答",
+      "published_at": "2026-11-13T12:44:00+08:00",
+      "collected_at": "2026-11-13T13:25:02+08:00",
+      "checked_at": "2026-11-13T13:25:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "【臺北訊】在AI的時代，親子教養是否可以問AI呢？問AI會得到什麼答案呢？為了協助家庭應對數位時代的育兒挑戰，臺北市家庭教育中心特別規劃免費活動——數位教養微論壇「AI不能回答的事：家有煩人的兒童/青少年怎麼辦？」，從情緒的陪伴、正向教養的練習，一起學習面對與正向看待每一個孩子的獨特性！ 隨著孩子的發展，向外探索成為一次次成長的挑戰——「我可以有自己的手機嗎…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-76ee61350faae749",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=5D6893D1894409D7",
+      "title": "老翁郵局提款卻迷途 文山警及時伸援助平安返家",
+      "published_at": "2026-11-13T13:55:00+08:00",
+      "collected_at": "2026-11-13T14:05:02+08:00",
+      "checked_at": "2026-11-13T14:05:02+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "文山第一分局指南派出所日前接獲轄區郵局通報，表示有一名年約八旬老翁辦理完業務後，仍遲遲停留在現場，疑似需要協助，警員黃玉銓、黃順進獲報後立即趕赴現場了解情況。 經了解，當日老翁前往郵局櫃檯辦理提款業務，領取現金後疑似因記憶力衰退，一時忘記返家路線而不知所措，只好暫時留在原地，所幸郵局人員發現異狀並通報警方。由於老翁未隨身攜帶身分證件，也無法清楚表達自己的住家…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-7a4a87584e5d204d",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=C036767302409B7C",
+      "title": "電商防詐不能只靠事後停權！北市府促平台強化AI預警 北市府盼攜手中央將平台防詐機制納入友善電商評定",
+      "published_at": "2026-11-13T14:13:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府法務局今（13）日發布新聞稿，為降低消費者使用電商平台遭詐騙的風險，法務局消保官邀集業者與相關單位召開「電商平台消費防詐管理機制精進會議」，檢視各平台現行防詐措施，並研商導入AI監測，補強高風險訊息辨識與即時警示機制，並盼與中央共同推動將平台防詐機制納入友善電商評定項目。 消保官指出，詐騙集團可能利用諧音、特殊符號、變形文字或圖片，甚至將訊息拆成多…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-c9c0ed7306f80782",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=B03B3BC422F932A7",
+      "title": "成功路3段10號對面邊坡樹木遭移除 新工處澄清：協助邊坡搶修工程 並非任意砍伐",
+      "published_at": "2026-11-13T14:17:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "發稿單位：新工處 發稿日期：115年11月13日",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-b1cd35dfb0de21f0",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=1A4F1001B627BD5F",
+      "title": "繪本說淨零、體驗學環教！2026環教饗宴揭曉臺北繪童話得獎作品、表揚淨零綠達人",
+      "published_at": "2026-11-13T15:00:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "承辦單位：綜合企劃科 發稿日期：115年11月13日 聯 絡 人：杜俊穎技正 聯絡電話：[電話已省略] 臺北市環保局今（13）日於國立臺灣博物館南門館小白宮舉辦2026「臺北市『環教饗宴』—臺北繪童話及淨零綠達人表揚暨成果交流」，頒獎表揚「臺北繪童話」得獎作品（名單如附件）及「臺北FUN暑假 環教之旅」淨零綠達人，並結合環境教育基金補助民間單位成果交流及繪本…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-58108600cc425064",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=C8183B2482D0038E",
+      "title": "北投分館歡慶20週年 攜手九典文化基金會邀民眾探索綠建築、許願新未來",
+      "published_at": "2026-11-13T15:11:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市立圖書館北投分館迎來20週年！自2006年啟用以來，北投分館以融合自然環境的設計，成為臺灣綠建築的重要代表。一座綠建築的價值，不只在於落成時的設計，更在於長期使用中的維護與管理。今年上半年度，北市圖與九典建築文化藝術基金會攜手合作，由基金會協助圖書館完成硬體修繕，包含外牆、陽臺、屋頂木構造修繕更新以及外觀石材、空調冰水管保溫修復。下半年第二階段更完成智…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-6c2f9ea1fdcc013e",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=7A3F321149E78E6B",
+      "title": "雙料大獎肯定 北市聯醫中興院區榮獲 運動企業認證及TeamWalk健康號召獎",
+      "published_at": "2026-11-13T16:00:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "發稿日期：115年11月13日 臺北市立聯合醫院中興院區推動員工健康促進榮獲運動企業認證肯定。今年運動部首度開放醫療院所申請「運動企業認證」，臺北市立聯合醫院中興院區成功取得認證，昨（12）日由謝宗保院長親自出席授證典禮；日前更榮獲台灣人壽「2026 TeamWalk健康企業大賞－健康號召獎」，雙料獲獎展現推動健康友善職場的具體成果。透過多元運動社團、體適能…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-83f1411e141adfd9",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=A1A21ABDA15D9248",
+      "title": "因應115年11月14日中正區二二八和平紀念公園及周邊道路集會遊行擴大管制，公車配合調整措施",
+      "published_at": "2026-11-13T17:00:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市公共運輸處表示，因應115年11月14日中正區二二八和平紀念公園及周邊道路集會遊行擴大管制，115年11月14日14時起至22時止，彈性擴大管制襄陽路、館前路、懷寧街、衡陽路等交通管制（視現場交通管制狀況提前、延後或擴大、縮小範圍），原行駛該路段之18路、241、仁愛幹線路等17線公車將配合改道行駛，受影響公車站位計有共10站，公車改道及取消站位如附件…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-96c48bda912c25ae",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=F251A86795480C33",
+      "title": "「1114集會遊行」活動交通疏導、管制措施",
+      "published_at": "2026-11-13T17:00:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府警察局為配合「1114集會遊行活動」，將於活動會場周邊及遊行沿線實施交通管制，相關時間、區域及管制措施如下： 一、活動時間：115年11月14日13時30分起至21時止(視現場狀況彈性調整)。 二、集合地點： (一)敦化北路【敦化北路88號（不含）至敦化北路56號（不含）】東、西側外側一車道及人行道。 (二)南京東路四段【南京東路四段1號（不含）至…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-9073db696dd8e3a1",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=2ABB129EACE64160",
+      "title": "獲證數突破百家！ 熟齡人力從補位走向核心 北市攜手104家友善企業打造全齡友善城市",
+      "published_at": "2026-11-13T17:11:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "超高齡社會海嘯與 AI 科技轉型齊至，單純解決眼前缺工已不足以支撐永續經營，善用高穩定度、富實務智慧的高年級人才，已成為企業迎來「第二條成長曲線」的關鍵引擎。臺北市政府自 111 年起特別制定並發布認證指標，並於 112 年正式推辦第一屆認證，在市長蔣萬安的大力推動與支持下，持續積極倡議並輔導企業打造友善職場，政策推行至今成果斐然，115年臺北市中高齡者暨高…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-f28d4b496219c778",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=EF5677EBB07C5F29",
+      "title": "臺北市百貨賣場週年慶安檢 全數檢查合格",
+      "published_at": "2026-11-13T17:25:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "百貨商場週年慶正如火如荼進行當中，各大百貨及賣場折扣下殺，民眾無不把握此時進行消費，為保障市民消費安全，臺北市政府自115年10月28日起至11月13日止針對大型百貨賣場進行無預警的動態公共安全檢查，共計檢查39家場所 ，全數檢查合格。 建管處表示，由於百貨賣場週年慶期間，大型消費場所是人潮眾多的地方，場所使用人自主安全管理上一定要有更高的安全標準，建管處除…",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-24e0989d5c9bdeab",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=EBCB73808A08FA8B",
+      "title": "從紙電路機關到智慧學伴！北市教育局出展2026教育科技展 帶孩子玩轉AI科技與STEAM教育",
+      "published_at": "2026-11-13T18:40:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府教育局新聞稿 請轉交文教記者 業務聯絡：臺北市政府教育局資訊教育科 卓育欣科長 ([電話已省略]轉1230",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": null,
+      "data_class": null
+    },
+    {
+      "id": "rec-2e7cd1b9748e2192",
+      "kind": "agency_release",
+      "source_id": "taipei-news-rss",
+      "source_url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=1E547A7BF2088252",
+      "title": "智慧防災再獲肯定 北市消防局「臺北市智慧災害應變雲端協作平臺」榮獲標竿學習特優獎 AI科技打造城市防災新韌性",
+      "published_at": "2026-11-13T18:51:00+08:00",
+      "collected_at": "2026-11-13T22:05:01+08:00",
+      "checked_at": "2026-11-13T22:05:01+08:00",
+      "date_precision": "minute",
+      "actor_refs": [
+        {
+          "id": "office:tpe-city",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "taipei"
+      ],
+      "text_excerpt": "臺北市政府推動智慧城市與科技防災再傳捷報！臺北市政府消防局建置之「臺北市智慧災害應變雲端協作平臺（T-SAGE）」，創新導入人工智慧（AI）、跨機關資訊整合及雲端協作技術，榮獲115年度「標竿學習案例地方機關特優獎」，並於今（13）日接受表揚，展現AI智慧預警、災情蒐整及跨機關協同應變等具體成果，讓科技成為守護市民安全的重要力量。 面對極端氣候及複合型災害挑…",
       "claim_origin": "agency_release",
       "verification_status": "unreviewed",
       "stats_eligible": false,

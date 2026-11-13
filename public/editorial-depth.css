@@ -183,8 +183,9 @@ html body .pulse-tools button { min-height: 44px; padding: .3rem .55rem; font: i
 }
 @media (max-width: 720px) {
   html body main.wrap { font-size: 16px; padding-inline: .8rem; }
-  html body .top nav.nav { gap: 3px; padding: .3rem .5rem .65rem; }
-  html body .top nav.nav a { padding-inline: .1rem; font-size: .79rem; }
+  html body .top { position: static; }
+  html body .top nav.nav { gap: 6px; padding: .35rem .6rem .7rem; }
+  html body .top nav.nav a { padding: .4rem .35rem; font-size: .92rem; }
   html body main.wrap .panel { padding: .9rem; }
   html body .frontdesk { gap: 1.1rem; }
   html body .pulse h2 { font-size: 1.25rem; }

@@ -1,36 +1,186 @@
 {
   "schema_version": 1,
-  "etag": "\"906d25c14e9c26c4a037fded5a7ac84b6724f72941ac5d4278f378ebc8988d12\"",
-  "content_hash": "906d25c14e9c26c4a037fded5a7ac84b6724f72941ac5d4278f378ebc8988d12",
-  "generated_at": "2026-11-13T08:01:07+08:00",
-  "last_attempt_at": "2026-11-13T08:01:07+08:00",
-  "last_success_at": "2026-11-13T08:01:07+08:00",
+  "etag": "\"92faa0a4a004a27f627a26d3464175fb5158439d2ab5dc01a749435c5ddde543\"",
+  "content_hash": "92faa0a4a004a27f627a26d3464175fb5158439d2ab5dc01a749435c5ddde543",
+  "generated_at": "2026-11-13T22:05:01+08:00",
+  "last_attempt_at": "2026-11-13T22:05:01+08:00",
+  "last_success_at": "2026-11-13T22:05:01+08:00",
   "status": "ok",
   "stale_after_minutes": 90,
   "changes": [
     {
       "op": "add",
-      "id": "rec-6476f9ea0bc96b4e",
-      "source_id": "hsc-expenditure-final",
-      "at": "2026-11-13T08:01:07+08:00"
+      "id": "rec-2e7cd1b9748e2192",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
     },
     {
       "op": "add",
-      "id": "rec-d9e916ab3b40de9b",
-      "source_id": "hsc-expenditure-final",
-      "at": "2026-11-13T08:01:07+08:00"
+      "id": "rec-24e0989d5c9bdeab",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
     },
     {
       "op": "add",
-      "id": "rec-8882aa25f9b9e142",
-      "source_id": "hsc-expenditure-final",
-      "at": "2026-11-13T08:01:07+08:00"
+      "id": "rec-f28d4b496219c778",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
     },
     {
       "op": "add",
-      "id": "rec-86ee3ce555943e70",
-      "source_id": "hsc-expenditure-final",
-      "at": "2026-11-13T08:01:07+08:00"
+      "id": "rec-9073db696dd8e3a1",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-96c48bda912c25ae",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-83f1411e141adfd9",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-6c2f9ea1fdcc013e",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-58108600cc425064",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-b1cd35dfb0de21f0",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-c9c0ed7306f80782",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-7a4a87584e5d204d",
+      "source_id": "taipei-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-4e43d8e8ecaf7e14",
+      "source_id": "ntpc-news-json",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-a60b3d77f1142a77",
+      "source_id": "ntpc-news-json",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-34cd473a2f0c1064",
+      "source_id": "ntpc-news-json",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-a2da8599c3879be0",
+      "source_id": "ntpc-news-json",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-d23b9ae6481f3740",
+      "source_id": "hsinchu-county-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-27c0af7258b7968f",
+      "source_id": "hsinchu-county-news-rss",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-638ee98ffde0e1b0",
+      "source_id": "hsinchu-city-news-html",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-2e3171d862dc1ba9",
+      "source_id": "hsinchu-city-news-html",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-ab880d5b50ae2a2d",
+      "source_id": "hsinchu-city-news-html",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-d2c831276a7154e2",
+      "source_id": "hsinchu-city-news-html",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-9e5b6b6a1a373272",
+      "source_id": "cna-atom",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-1afdb554399c4081",
+      "source_id": "cna-atom",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-e58bba6a28c33d68",
+      "source_id": "cna-atom",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-fe725fc75f2d34e9",
+      "source_id": "cna-atom",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-0da7271ebb8430c3",
+      "source_id": "ptt-hsinchu-atom",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-c9f53761ec0bfa85",
+      "source_id": "ptt-hsinchu-atom",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-236819d5eaf487bf",
+      "source_id": "ptt-hsinchu-atom",
+      "at": "2026-11-13T22:05:01+08:00"
+    },
+    {
+      "op": "update",
+      "id": "rec-c3bf35d70682aa8f",
+      "source_id": "ptt-hsinchu-atom",
+      "at": "2026-11-13T22:05:01+08:00"
     }
   ],
   "changes_truncated": false,
