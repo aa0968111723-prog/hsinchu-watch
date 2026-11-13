@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
+import { FETCH_TIMEOUT_MS } from "./run.js";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
 const mirror = `${process.env.TEMP}\\hsinchu-pages-mirror`;
@@ -12,7 +13,7 @@ function sha(bytes) {
 }
 
 async function liveHash(path) {
-  const response = await fetch(`https://hsinchu-watch.pages.dev${path}`, { headers: { "user-agent": "HsinchuNewsIntel/0.1" } });
+  const response = await fetch(`https://hsinchu-watch.pages.dev${path}`, { headers: { "user-agent": "HsinchuNewsIntel/0.1" }, signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
   if (!response.ok) return "";
   return sha(Buffer.from(await response.arrayBuffer()));
 }

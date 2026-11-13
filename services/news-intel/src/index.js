@@ -1,6 +1,6 @@
 import { handleMcp } from "./mcp.js";
 import { persistAnnouncements, persistArticles, persistModelReview, persistPublicRecords, snapshotPayload } from "./persist.js";
-import { runHour } from "./run.js";
+import { runHour, sourceFetch } from "./run.js";
 
 async function previousSnapshot(env) {
   if (!env.DB) return { articles: [], last_success_at: null };
@@ -64,7 +64,7 @@ export default {
         body,
         tokens: tokensFromEnv(env),
         db: env.DB,
-        fetcher: (target) => fetch(target, { headers: { "user-agent": "HsinchuNewsIntel/0.1" } }),
+        fetcher: sourceFetch,
       });
       return Response.json(result.body, { status: result.status });
     }
@@ -74,7 +74,7 @@ export default {
   async scheduled(_event, env) {
     const previous = await previousSnapshot(env);
     const result = await runHour({
-      fetcher: (url) => fetch(url, { headers: { "user-agent": "HsinchuNewsIntel/0.1" } }),
+      fetcher: sourceFetch,
       env,
       previous,
       now: new Date().toISOString(),

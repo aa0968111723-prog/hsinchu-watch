@@ -3,6 +3,15 @@ import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
 
+export const FETCH_TIMEOUT_MS = 15000;
+
+export function sourceFetch(url) {
+  return fetch(url, {
+    headers: { "user-agent": "HsinchuNewsIntel/0.1" },
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
+}
+
 export function mergeRun(previous, result) {
   if (!result.ok) {
     return {

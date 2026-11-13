@@ -10,6 +10,12 @@ import { publicationFields } from "../src/verify.js";
 
 const tokens = { reader: "reader-token", collector: "collector-token", verifier: "verifier-token", publisher: "publisher-token", admin: "admin-token" };
 
+test("source fetches give up before the next hourly run", async () => {
+  const { FETCH_TIMEOUT_MS } = await import("../src/run.js");
+  const { PUBLISH_TIMEOUT_MS } = await import("../src/publish-gate.js");
+  assert.equal(FETCH_TIMEOUT_MS < PUBLISH_TIMEOUT_MS, true);
+});
+
 test("does not invent articles when the hour is empty", () => {
   assert.deepEqual(selectArticles([]), []);
   assert.equal(selectArticles([{ original_title: "新竹市公告", source_url: "https://www.hccg.gov.tw/a", publisher_timestamp: "不是日期" }]).length, 0);

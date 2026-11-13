@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { ADAPTERS } from "./adapters.js";
 import { storeRun } from "./local-db.js";
-import { runHour } from "./run.js";
+import { runHour, sourceFetch } from "./run.js";
 
 const publicUrl = new URL("../../../public/data/news-intel/latest.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
@@ -25,7 +25,7 @@ try {
 }
 const result = await runHour({
   adapters: ADAPTERS,
-  fetcher: (url) => fetch(url, { headers: { "user-agent": "HsinchuNewsIntel/0.1" } }),
+  fetcher: sourceFetch,
   env: {},
   previous,
   now: new Date().toISOString(),
