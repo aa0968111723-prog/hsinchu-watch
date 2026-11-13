@@ -1,0 +1,14 @@
+{
+  "note": "Original schematic components. They carry no policy numbers of their own and never stand for a specific real site.",
+  "figures": [
+    {
+      "folder": "evidence-desk",
+      "id": "component-evidence-desk",
+      "title": "證據分類台",
+      "alt": "立體示意儀器：卡片架上有機關發布、新聞報導、議事紀錄、公開貼文四疊來源卡，一枚查核章懸在其中一疊上方。它說明誰說的和有沒有核對是兩件事，不代表任何一筆實際紀錄",
+      "uses": ["source-credibility", "explainer"],
+      "concept": "claim_origin 與 verification_status 是兩個欄位。換一疊卡不會多出章印。",
+      "suggested_use": "來源說明、方法頁、可信度圖例旁。不要放在單筆紀錄旁當成該筆的查核結果。"
+    }
+  ]
+}

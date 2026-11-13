@@ -1,11 +1,49 @@
-# 美術庫 backlog
+# 美術庫待辦
 
-- [x] 可篩選的 `public/asset-lab.html` 與 `src/art-library/`
-- [x] 三張既有 GWOIA／LY-GWOIA 肖像入索引，原檔不改
-- [x] 至少一組原創立體元件：證據壓印台
-- [ ] 議會、預算、政策階段、空狀態各自的 Figure
-- [ ] 新竹縣與中央的已核對實景
-- [ ] 朱定瑀、曾聖凱的已核對肖像；邱臣遠待授權
-- [ ] 插畫與可追溯地圖素材
-- [ ] 第四線接到正式導覽與 `vite.config.js` input
-- [x] 320／390／430／768／1280 截圖留在 `docs/art-library/screenshots/`
+## 圖庫頁
+
+- [x] `public/asset-lab.html` 與 `src/art-library/`
+- [x] 搜尋，以及地區、種類、用途、授權、審核狀態五種篩選
+- [x] 詳情：來源、授權、作者、原檔尺寸、取得時間、身份核對、改動、檔案與格式、色盤
+- [x] 複製素材 ID、署名、嵌入碼
+- [x] 篩選與開啟的素材會寫進網址，可以分享
+- [x] 頁面外殼符合建置流程（`.top nav.nav`、`main`）
+- [x] 不用行內腳本、不用 iframe
+- [x] 索引讀不到時顯示錯誤與重試，不顯示成 0 件
+- [ ] 正式導覽入口（第四線）
+
+## 照片
+
+- [x] 盤點既有四張肖像，逐張對上 Commons 檔案頁與授權
+- [x] 邱臣遠既有照片的來源查清楚（與 Commons 原檔位元組相同）
+- [x] 17 張實景：臺北市 3、新北市 4、新竹縣 4、新竹市 4、中央 2
+- [x] AVIF、WebP、JPEG，實景 480／800／1280 三種寬度
+- [x] 授權證據快照 `sources.lock.json`
+- [ ] 朱定瑀、曾聖凱的肖像（目前是缺口）
+- [ ] 統一 3:4 比例的肖像組
+- [ ] 四個治理案卷現場的照片
+- [ ] 新竹縣鄉鎮、中央其他機關的實景
+
+## 原創示意
+
+- [x] 證據分類台（來源可信度）
+- [ ] 預算三層抽屜（核定、決標、實支；沒有紀錄的那層鎖著）
+- [ ] 階段工地模型（政策階段與公共建設；完工、驗收、啟用分開）
+- [ ] 議會
+- [ ] 空狀態
+- [ ] 插畫
+
+## 驗證
+
+- [x] `tests/art-library/test_catalog.py`：15 項
+- [x] `tests/art-library/figures.test.mjs`：7 項
+- [x] `tests/art-library/check_lab.py`：320／390／430／768／1280，獨立預覽與建置後各跑一次
+- [x] `python tools/audit_publication.py`
+- [x] `npm run build`
+- [ ] `npm run test:release`
+- [ ] `npm run test:browser`
+
+## 交接
+
+- [x] `docs/art-library/integration.md`
+- [ ] 推送 `cursor/20261113-art`，核對遠端 SHA
