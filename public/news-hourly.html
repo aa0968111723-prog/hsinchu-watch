@@ -162,7 +162,17 @@ fetch("/data/news-intel/latest.json")
     const geminiNote = data.gemini?.called ? "Gemini 有提出候選，尚未當事實。" : "Gemini 未使用。";
     let roundNote = "";
     if (Number.isFinite(data.duration_ms) && data.duration_ms >= 0) roundNote += `本輪抓取 ${Math.round(data.duration_ms / 1000)} 秒。`;
-    if (Array.isArray(data.failures) && data.failures.length) roundNote += `有 ${data.failures.length} 個來源沒讀到。`;
+    if (Array.isArray(data.failures) && data.failures.length) {
+      const failureNames = {
+        "hsinchu-city-news": "新竹市政府列表",
+        "hsinchu-county-news": "新竹縣政府",
+        "cna-atom": "中央社",
+        "hsinchu-county-council": "新竹縣議會",
+        "hsc-expenditure-final": "歲出決算",
+      };
+      const names = data.failures.map((failure) => failureNames[failure.id] || "未命名來源");
+      roundNote += `${names.join("、")}沒有讀到新文章。`;
+    }
     status.textContent = articles.length
       ? `成功時間 ${when}。顯示 ${articles.length} 篇。${geminiNote}這是單一來源索引，不是已查核事實。${roundNote}`
       : `這一輪沒有可顯示的文章，沒有補假資料。${roundNote}`;
