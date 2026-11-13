@@ -128,6 +128,8 @@ export const COUNTY_PARKING_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/openda
 export const COUNTY_PARKING_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271";
 export const COUNTY_SCHOOL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/350/4e47a693-21da-4c61-b537-19e4b1c2617e.json";
 export const COUNTY_SCHOOL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350";
+export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
+export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
 
 export function populationPeriod(html) {
@@ -149,6 +151,45 @@ export function schoolZonePeriod(html) {
   if (!Number.isInteger(roc) || roc < 1 || roc > 300) return { period: null, period_text: null };
   const year = roc < 1911 ? roc + 1911 : roc;
   return { period: String(year), period_text: `${match[1]}年` };
+}
+
+function originalNumber(value) {
+  if (value === null || value === undefined || String(value).trim() === "") return null;
+  return String(value).trim();
+}
+
+export function normalizeCountyVisitors(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["觀光遊憩區別"] || "").trim();
+    if (!name) return [];
+    const rocYear = String(row["民國年"] ?? "").trim();
+    const month = String(row["月份"] ?? "").trim();
+    return [{
+      name,
+      roc_year: rocYear || null,
+      month: month || null,
+      visits: originalNumber(row["遊客人次"]),
+      previous_visits: originalNumber(row["上年同月份遊客人次"]),
+      change: originalNumber(row["增減數"]),
+      rate: originalNumber(row["成長率"]),
+    }];
+  });
+}
+
+export function visitorPeriod(rows) {
+  const periods = (rows || []).map((row) => {
+    const roc = Number(row?.roc_year);
+    const month = Number(row?.month);
+    if (!Number.isInteger(roc) || !Number.isInteger(month) || roc < 1 || month < 1 || month > 12) return null;
+    const year = roc < 1911 ? roc + 1911 : roc;
+    return { period: `${year}-${String(month).padStart(2, "0")}`, period_text: `${row.roc_year}年${row.month}月` };
+  });
+  if (!periods.length || periods.some((item) => !item)) return { period: null, period_text: null };
+  const first = periods[0];
+  if (periods.some((item) => item.period !== first.period)) return { period: null, period_text: null };
+  return first;
 }
 
 const PARKING_DISTRICTS = {

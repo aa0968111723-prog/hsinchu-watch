@@ -36,6 +36,9 @@
   <p id="parking-status" class="meta"></p>
   <h2>新竹縣國小學區</h2>
   <p id="school-status" class="meta"></p>
+  <h2>新竹縣觀光遊憩人次</h2>
+  <p id="visitor-status" class="meta"></p>
+  <ol id="visitors"></ol>
   <h2>新竹縣議會公告</h2>
   <p id="notice-status" class="meta"></p>
   <ol id="notices"></ol>
@@ -100,6 +103,8 @@ const populationList = document.querySelector("#population");
 const populationStatus = document.querySelector("#population-status");
 const parkingStatus = document.querySelector("#parking-status");
 const schoolStatus = document.querySelector("#school-status");
+const visitorStatus = document.querySelector("#visitor-status");
+const visitors = document.querySelector("#visitors");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
@@ -226,6 +231,24 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       schoolStatus.append(" ", source);
     }
+    const visitorData = data.visitors;
+    const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
+    const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
+    visitorStatus.textContent = visitorRows.length
+      ? `${visitorPeriodText}人次、增減和成長率沿用原文，不另加總。`
+      : "這一輪沒有遊憩人次，沒有補 0。";
+    if (visitorData?.source_url && visitorRows.length) {
+      const source = document.createElement("a");
+      source.href = visitorData.source_url;
+      source.textContent = "資料集頁";
+      visitorStatus.append(" ", source);
+    }
+    for (const row of visitorRows) {
+      const visits = row.visits === null || row.visits === undefined || row.visits === "" ? "人次未填" : row.visits;
+      const change = row.change === null || row.change === undefined || row.change === "" ? "增減未填" : row.change;
+      const when = row.roc_year && row.month ? `${row.roc_year}年${row.month}月` : "年月未填";
+      addItem(visitors, row.name, visitorData.source_url, `${when} · 人次 ${visits} · 增減 ${change}`);
+    }
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
     for (const notice of announcements) {
@@ -269,6 +292,7 @@ fetch("/data/news-intel/latest.json")
     populationStatus.textContent = "人口數讀取失敗。頁面沒有改用假資料。";
     parkingStatus.textContent = "停車場資料讀取失敗。頁面沒有改用假資料。";
     schoolStatus.textContent = "學區資料讀取失敗。頁面沒有改用假資料。";
+    visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
   });
 </script>
 </body>

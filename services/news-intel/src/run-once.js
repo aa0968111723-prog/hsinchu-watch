@@ -34,6 +34,7 @@ try {
     population: existing.population || null,
     parking: existing.parking || null,
     schools: existing.schools || null,
+    visitors: existing.visitors || null,
   };
 } catch {
   previous = { articles: [], last_success_at: null };
@@ -101,6 +102,14 @@ const payload = {
   } : null,
   parking: parkingPublish.summary,
   schools: schoolPublish.summary,
+  visitors: publishable.visitors ? {
+    source_url: publishable.visitors.source_url,
+    dataset_url: publishable.visitors.dataset_url,
+    period: publishable.visitors.period,
+    period_text: publishable.visitors.period_text,
+    rows: publishable.visitors.rows,
+    note: publishable.visitors.note,
+  } : null,
   changes: articleChanges(previous.articles, publishable.articles),
   duration_ms: Date.now() - started,
   model_review: publishable.model_review || [],

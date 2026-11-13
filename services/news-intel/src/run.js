@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, populationPeriod, schoolZonePeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -43,6 +43,7 @@ export function mergeRun(previous, result) {
       population: previous?.population || null,
       parking: previous?.parking || null,
       schools: previous?.schools || null,
+      visitors: previous?.visitors || null,
       model_review: previous?.model_review || [],
     };
   }
@@ -59,8 +60,32 @@ export function mergeRun(previous, result) {
     population: result.population === undefined ? (previous?.population || null) : result.population,
     parking: result.parking === undefined ? (previous?.parking || null) : result.parking,
     schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
+    visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCountyVisitors(fetcher, previous) {
+  const kept = previous?.visitors ? { ...previous.visitors, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_VISITOR_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const rows = normalizeCountyVisitors(await response.text());
+    if (!rows.length) return kept;
+    const period = visitorPeriod(rows);
+    return {
+      source_url: COUNTY_VISITOR_PAGE,
+      dataset_url: COUNTY_VISITOR_URL,
+      period: period.period,
+      period_text: period.period_text,
+      rows,
+      retained: false,
+      note: "人次、增減和成長率沿用資料檔原文，不另加總，也不另算。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadCountySchools(fetcher, previous) {
@@ -214,6 +239,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       population: await loadCountyPopulation(fetcher, previous),
       parking: await loadCountyParking(fetcher, previous),
       schools: await loadCountySchools(fetcher, previous),
+      visitors: await loadCountyVisitors(fetcher, previous),
       model_review: modelReview,
     });
   } catch (error) {

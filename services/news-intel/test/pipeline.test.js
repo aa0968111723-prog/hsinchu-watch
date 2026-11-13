@@ -285,6 +285,46 @@ test("county school zones keep the description year and the zone text", async ()
   assert.equal(page.includes("沒有月份就不補月") || page.includes("沒有寫年度"), true);
 });
 
+test("county visitor counts stay as written and are not added together", async () => {
+  const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
+  const rows = normalizeCountyVisitors(JSON.stringify([
+    { "觀光遊憩區別": "內灣老街", "民國年": "115", "月份": "06", "遊客人次": "100158", "上年同月份遊客人次": "121970", "增減數": "-21812", "成長率": "-0.1788" },
+    { "觀光遊憩區別": " ", "遊客人次": "1" },
+    { "觀光遊憩區別": "空白人次", "民國年": "115", "月份": "06", "遊客人次": "", "增減數": "" },
+  ]));
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].visits, "100158");
+  assert.equal(rows[0].change, "-21812");
+  assert.equal(rows[1].visits, null);
+  assert.deepEqual(visitorPeriod(rows.slice(0, 1)), { period: "2026-06", period_text: "115年06月" });
+  assert.deepEqual(visitorPeriod([rows[0], { ...rows[0], month: "07" }]), { period: null, period_text: null });
+  const kept = await runHour({
+    previous: { articles: [], visitors: { rows: [{ name: "內灣老街", visits: "1" }] } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.visitors.rows[0].visits, "1");
+  assert.equal(kept.visitors.retained, true);
+  const { openNewsDb } = await import("../src/local-db.js");
+  const db = openNewsDb(":memory:");
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    db,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-visitors", payload: JSON.stringify([{ "觀光遊憩區別": "內灣老街", "民國年": "115", "月份": "06", "遊客人次": "100158", "增減數": "-21812" }]) } },
+  });
+  const polls = await db.prepare("SELECT COUNT(*) AS n FROM poll_results").first();
+  const budgets = await db.prepare("SELECT COUNT(*) AS n FROM project_budgets").first();
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.rows[0].change, "-21812");
+  assert.equal(polls.n, 0);
+  assert.equal(budgets.n, 0);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不另加總"), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -676,6 +716,10 @@ test("published news file stays within the real cap", () => {
   assert.equal(schools.schools.length, data.schools.count);
   assert.equal(schools.period_text, data.schools.period_text);
   assert.ok(schools.schools.every((row) => row.name && row.township && (row.zone === null || typeof row.zone === "string")));
+  assert.ok(data.visitors.rows.length >= 1);
+  assert.match(data.visitors.period, /^\d{4}-\d{2}$/);
+  assert.equal(data.visitors.total, undefined);
+  assert.ok(data.visitors.rows.every((row) => row.name && (row.visits === null || /^\d+$/.test(row.visits)) && (row.change === null || /^-?\d+$/.test(row.change))));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {

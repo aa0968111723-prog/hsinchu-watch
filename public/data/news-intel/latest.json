@@ -441,5 +441,68 @@
     "count": 90,
     "download_url": "/data/news-intel/school-zones.json",
     "note": "只留學校名稱、鄉鎮市和學區原文。年度沿用資料集描述，沒有月份就不補月。"
+  },
+  "visitors": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json",
+    "period": "2026-06",
+    "period_text": "115年06月",
+    "rows": [
+      {
+        "name": "六福村主題遊樂園",
+        "roc_year": "115",
+        "month": "06",
+        "visits": "64783",
+        "previous_visits": "98258",
+        "change": "-33475",
+        "rate": "-0.3407"
+      },
+      {
+        "name": "小叮噹科學主題樂園",
+        "roc_year": "115",
+        "month": "06",
+        "visits": "16557",
+        "previous_visits": "27705",
+        "change": "-11148",
+        "rate": "-0.4024"
+      },
+      {
+        "name": "萬瑞森林樂園",
+        "roc_year": "115",
+        "month": "06",
+        "visits": "2435",
+        "previous_visits": "3582",
+        "change": "-1147",
+        "rate": "-0.3202"
+      },
+      {
+        "name": "內灣老街",
+        "roc_year": "115",
+        "month": "06",
+        "visits": "100158",
+        "previous_visits": "121970",
+        "change": "-21812",
+        "rate": "-0.1788"
+      },
+      {
+        "name": "北埔老街",
+        "roc_year": "115",
+        "month": "06",
+        "visits": "39250",
+        "previous_visits": "85654",
+        "change": "-46404",
+        "rate": "-0.5418"
+      },
+      {
+        "name": "綠世界休閒農場",
+        "roc_year": "115",
+        "month": "06",
+        "visits": "14125",
+        "previous_visits": "19940",
+        "change": "-5815",
+        "rate": "-0.2916"
+      }
+    ],
+    "note": "人次、增減和成長率沿用資料檔原文，不另加總，也不另算。"
   }
 }
