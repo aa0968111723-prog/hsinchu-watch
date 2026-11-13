@@ -69,6 +69,16 @@ export function resultFromPublished(payload) {
   };
 }
 
+export async function hiddenSourceUrls(db) {
+  const database = db || openNewsDb(fileURLToPath(new URL("../state/news.sqlite", import.meta.url)));
+  const rows = await database.prepare("SELECT source_url FROM articles WHERE review_status IN ('rejected', 'retracted') OR verification_status = 'RETRACTED'").all();
+  return new Set((rows.results || []).map((row) => row.source_url));
+}
+
+export function withoutHidden(articles, hidden) {
+  return (articles || []).filter((article) => !hidden.has(article.source_url));
+}
+
 export async function storeRun(result) {
   const file = fileURLToPath(new URL("../state/news.sqlite", import.meta.url));
   const db = openNewsDb(file);

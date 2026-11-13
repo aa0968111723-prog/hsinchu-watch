@@ -234,6 +234,33 @@ test("a verification change revises the stored article", async () => {
   assert.equal(row.page_published_at, "2026-11-13T09:05:00.000Z");
 });
 
+test("a retracted source stays out of the next published list", async () => {
+  const { hiddenSourceUrls, openNewsDb, withoutHidden } = await import("../src/local-db.js");
+  const { persistArticles } = await import("../src/persist.js");
+  const db = openNewsDb(":memory:");
+  await persistArticles(db, {
+    articles: [{
+      original_title: "新竹縣已撤稿",
+      source_url: "https://www.hsinchu.gov.tw/retracted",
+      publisher_timestamp: "2026-11-13",
+      region_id: "hsinchu-county",
+      verification_status: "RETRACTED",
+      review_status: "retracted",
+      claim_kind: "official_notice",
+      source_name: "新竹縣政府",
+      source_type: "official_rss",
+    }],
+    now: "2026-11-13T02:00:00.000Z",
+  });
+  const hidden = await hiddenSourceUrls(db);
+  const visible = withoutHidden([
+    { source_url: "https://www.hsinchu.gov.tw/retracted", original_title: "新竹縣已撤稿" },
+    { source_url: "https://www.hsinchu.gov.tw/live", original_title: "新竹縣仍在" },
+  ], hidden);
+  assert.equal(hidden.has("https://www.hsinchu.gov.tw/retracted"), true);
+  assert.deepEqual(visible.map((article) => article.source_url), ["https://www.hsinchu.gov.tw/live"]);
+});
+
 test("local database opens the final-account migration", async () => {
   const { openNewsDb } = await import("../src/local-db.js");
   const db = openNewsDb(":memory:");

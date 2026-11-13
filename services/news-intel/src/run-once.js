@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { ADAPTERS } from "./adapters.js";
-import { storeRun } from "./local-db.js";
+import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
 import { runHour, sourceFetch } from "./run.js";
 
 const publicUrl = new URL("../../../public/data/news-intel/latest.json", import.meta.url);
@@ -30,6 +30,11 @@ const result = await runHour({
   previous,
   now: new Date().toISOString(),
 });
+try {
+  result.articles = withoutHidden(result.articles, await hiddenSourceUrls());
+} catch (error) {
+  console.log(JSON.stringify({ database: "failed", error: String(error.message || error).slice(0, 180) }));
+}
 const payload = {
   ok: result.ok,
   retained: result.retained,
