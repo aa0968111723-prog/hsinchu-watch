@@ -581,6 +581,32 @@ export async function persistCrashes(db, { crashes, now, actor = "scheduler" }) 
   return { upserted };
 }
 
+export async function persistDischarge(db, { discharge, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of discharge?.rows || []) {
+    const date = String(row?.date || "").trim();
+    if (!date) continue;
+    keys.push(date);
+    const flow = row.daily_flow ?? null;
+    const cumulative = row.cumulative ?? null;
+    const existing = await db.prepare("SELECT daily_flow, cumulative FROM discharge_daily WHERE date = ?").bind(date).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO discharge_daily (date, year, daily_flow, cumulative, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?)").bind(date, row.year || null, flow, cumulative, discharge.dataset_url, discharge.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.daily_flow ?? null) !== flow || (existing.cumulative ?? null) !== cumulative) {
+      await db.prepare("UPDATE discharge_daily SET year = ?, daily_flow = ?, cumulative = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE date = ?").bind(row.year || null, flow, cumulative, discharge.dataset_url, discharge.source_url, now, date).run();
+      upserted += 1;
+    }
+  }
+  if (keys.length && discharge?.dataset_url) {
+    const placeholders = keys.map(() => "?").join(",");
+    await db.prepare(`DELETE FROM discharge_daily WHERE dataset_url = ? AND date NOT IN (${placeholders})`).bind(discharge.dataset_url, ...keys).run();
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_discharge', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

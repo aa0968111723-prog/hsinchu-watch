@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_JUNIOR_PAGE, COUNTY_JUNIOR_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_CRASH_PAGE, COUNTY_CRASH_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyCrashes, normalizeCountyDebt, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_JUNIOR_PAGE, COUNTY_JUNIOR_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_CRASH_PAGE, COUNTY_CRASH_URL, COUNTY_DISCHARGE_PAGE, COUNTY_DISCHARGE_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyCrashes, normalizeCountyDebt, normalizeCountyDischarge, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -76,6 +76,7 @@ export function mergeRun(previous, result) {
       bridges: previous?.bridges || null,
       river: previous?.river || null,
       crashes: previous?.crashes || null,
+      discharge: previous?.discharge || null,
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
       debt: previous?.debt || null,
@@ -114,6 +115,7 @@ export function mergeRun(previous, result) {
     bridges: result.bridges === undefined ? (previous?.bridges || null) : result.bridges,
     river: result.river === undefined ? (previous?.river || null) : result.river,
     crashes: result.crashes === undefined ? (previous?.crashes || null) : result.crashes,
+    discharge: result.discharge === undefined ? (previous?.discharge || null) : result.discharge,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
@@ -319,6 +321,27 @@ async function loadCountyCameras(fetcher, previous) {
       rows,
       retained: false,
       note: "沿用資料檔的設置地點、取締項目和速限原文。這是設備清冊，不是今日執法紀錄。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
+async function loadCountyDischarge(fetcher, previous) {
+  const kept = previous?.discharge ? { ...previous.discharge, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_DISCHARGE_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const rows = normalizeCountyDischarge(await response.text());
+    if (!rows.length) return kept;
+    return {
+      source_url: COUNTY_DISCHARGE_PAGE,
+      dataset_url: COUNTY_DISCHARGE_URL,
+      count: rows.length,
+      rows,
+      retained: false,
+      note: "日期、日放流量和累計量沿用原文，不另加總，單位不另換算。這不是今天的放流量。聯絡人沒有入檔。",
     };
   } catch {
     return kept;
@@ -793,6 +816,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       bridges: await loadCountyBridges(fetcher, previous),
       river: await loadCountyRiver(fetcher, previous),
       crashes: await loadCountyCrashes(fetcher, previous),
+      discharge: await loadCountyDischarge(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
       debt: await loadCountyDebt(fetcher, previous),

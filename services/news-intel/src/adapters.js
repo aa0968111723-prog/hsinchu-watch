@@ -168,6 +168,8 @@ export const COUNTY_RIVER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata
 export const COUNTY_RIVER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1725";
 export const COUNTY_CRASH_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/310/286c395c-e268-41c5-853b-edb20b9cd575.json";
 export const COUNTY_CRASH_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=310";
+export const COUNTY_DISCHARGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1380/65a91511-a465-4531-a551-1ba589b3cdb8.json";
+export const COUNTY_DISCHARGE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1380";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -994,6 +996,21 @@ export function normalizeCountyCrashes(payload) {
       a1: originalNumber(row["A1件數"]),
       a2: originalNumber(row["A2件數"]),
       a3: originalNumber(row["A3件數"]),
+    }];
+  });
+}
+
+export function normalizeCountyDischarge(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const date = originalNumber(row?.["日期"]);
+    if (!date) return [];
+    return [{
+      year: originalNumber(row["西元年"]),
+      date,
+      daily_flow: originalNumber(row["日放流量_CMD"]),
+      cumulative: originalNumber(row["累計量_m3"]),
     }];
   });
 }

@@ -1061,6 +1061,47 @@ test("traffic crash counts keep the written month and do not add the classes tog
   assert.equal(page.includes("A1、A2、A3 沿用原文，不加總"), true);
 });
 
+test("discharge rows keep the written cumulative instead of adding the daily flows", async () => {
+  const { normalizeCountyDischarge } = await import("../src/adapters.js");
+  const rows = normalizeCountyDischarge(JSON.stringify([
+    { "編號": "1", "西元年": "2022", "日期": "20220201", "日放流量_CMD": "10", "累計量_m3": "99" },
+    { "編號": "2", "西元年": "2022", "日期": "20220202", "日放流量_CMD": "0", "累計量_m3": "99" },
+    { "日期": " ", "日放流量_CMD": "5", "累計量_m3": "5" },
+  ]));
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].date, "20220201");
+  assert.equal(rows[0].daily_flow, "10");
+  assert.equal(rows[0].cumulative, "99");
+  assert.equal(rows[0].total, undefined);
+  assert.equal(rows[1].daily_flow, "0");
+  const kept = await runHour({
+    previous: { articles: [], discharge: { count: 1, rows: [{ date: "20220201", daily_flow: "15242", cumulative: "15242" }] } },
+    now: "2026-11-14T02:10:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.discharge.rows[0].cumulative, "15242");
+  assert.equal(kept.discharge.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-discharge", payload: JSON.stringify([{ "西元年": "2022", "日期": "20220228", "日放流量_CMD": "23452", "累計量_m3": "602249" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-discharge", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.rows[0].cumulative, "602249");
+  assert.equal(imported.body.rows[0].total, undefined);
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不是今天的放流量"), true);
+  assert.equal(page.includes("不另加總"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1859,6 +1900,14 @@ test("published news file stays within the real cap", () => {
     assert.equal(data.crashes.rows[0].period_text, "108年1月");
     assert.equal(data.crashes.rows.at(-1).period_text, "108年5月");
     assert.equal(JSON.stringify(data.crashes).includes("03-5513509"), false);
+  }
+  if (data.discharge?.rows) {
+    assert.equal(data.discharge.count, 28);
+    assert.equal(data.discharge.rows[0].date, "20220201");
+    assert.equal(data.discharge.rows.at(-1).date, "20220228");
+    assert.equal(data.discharge.rows.at(-1).cumulative, "602249");
+    assert.ok(data.discharge.rows.every((row) => /^\d{8}$/.test(row.date) && typeof row.daily_flow === "string" && typeof row.cumulative === "string" && row.total === undefined));
+    assert.equal(JSON.stringify(data.discharge).includes("03-5518101"), false);
   }
   assert.ok(data.visitors.rows.length >= 1);
   assert.match(data.visitors.period, /^\d{4}-\d{2}$/);

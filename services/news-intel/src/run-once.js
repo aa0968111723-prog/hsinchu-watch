@@ -65,6 +65,7 @@ try {
     bridges: existing.bridges || null,
     river: existing.river || null,
     crashes: existing.crashes || null,
+    discharge: existing.discharge || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
     debt: existing.debt || null,
@@ -209,6 +210,13 @@ const payload = {
     count: publishable.crashes.count,
     rows: publishable.crashes.rows,
     note: publishable.crashes.note,
+  } : null,
+  discharge: publishable.discharge ? {
+    source_url: publishable.discharge.source_url,
+    dataset_url: publishable.discharge.dataset_url,
+    count: publishable.discharge.count,
+    rows: publishable.discharge.rows,
+    note: publishable.discharge.note,
   } : null,
   electric_buses: publishable.electric_buses ? {
     source_url: publishable.electric_buses.source_url,

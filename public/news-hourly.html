@@ -86,6 +86,9 @@
   <h2>新竹縣交通事故件數</h2>
   <p id="crash-status" class="meta"></p>
   <ol id="crashes"></ol>
+  <h2>竹北水資源回收中心放流量</h2>
+  <p id="discharge-status" class="meta"></p>
+  <ol id="discharge"></ol>
   <h2>新竹縣選舉委員會公告</h2>
   <p id="election-status" class="meta"></p>
   <ol id="election-files"></ol>
@@ -184,6 +187,8 @@ const riverStatus = document.querySelector("#river-status");
 const riverList = document.querySelector("#river");
 const crashStatus = document.querySelector("#crash-status");
 const crashList = document.querySelector("#crashes");
+const dischargeStatus = document.querySelector("#discharge-status");
+const dischargeList = document.querySelector("#discharge");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
@@ -679,6 +684,26 @@ fetch("/data/news-intel/latest.json")
       item.textContent = `${row.period_text} · A1 ${a1} · A2 ${a2} · A3 ${a3}`;
       crashList.append(item);
     }
+    const discharge = data.discharge;
+    const dischargeRows = Array.isArray(discharge?.rows) ? discharge.rows : [];
+    const firstDate = dischargeRows[0]?.date || "日期未填";
+    const lastDate = dischargeRows.at(-1)?.date || "日期未填";
+    dischargeStatus.textContent = dischargeRows.length
+      ? `${dischargeRows.length} 日。日期沿用原文，從 ${firstDate} 到 ${lastDate}。這不是今天的放流量。日放流量和累計量沿用原文，不另加總。`
+      : "這一輪沒有放流量，沒有補 0。";
+    if (discharge?.source_url && dischargeRows.length) {
+      const source = document.createElement("a");
+      source.href = discharge.source_url;
+      source.textContent = "資料集頁";
+      dischargeStatus.append(" ", source);
+    }
+    for (const row of dischargeRows) {
+      const item = document.createElement("li");
+      const flow = row.daily_flow ?? "未填";
+      const cumulative = row.cumulative ?? "未填";
+      item.textContent = `${row.date} · 日放流量 ${flow} · 累計 ${cumulative}`;
+      dischargeList.append(item);
+    }
     const election = data.election;
     const electionFilesRows = Array.isArray(election?.files) ? election.files : [];
     electionStatus.textContent = election?.title
@@ -758,6 +783,7 @@ fetch("/data/news-intel/latest.json")
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";
     riverStatus.textContent = "河川水質讀取失敗。頁面沒有改用假資料。";
     crashStatus.textContent = "交通事故件數讀取失敗。頁面沒有改用假資料。";
+    dischargeStatus.textContent = "放流量讀取失敗。頁面沒有改用假資料。";
     electionStatus.textContent = "選務公告讀取失敗。頁面沒有改用假資料。";
   });
 </script>

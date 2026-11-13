@@ -1,5 +1,5 @@
 import { handleMcp } from "./mcp.js";
-import { persistAnnouncements, persistArticles, persistBridges, persistBusShelters, persistCameras, persistChargers, persistCrashes, persistElectricBuses, persistFarms, persistGasStations, persistHeritage, persistHydrants, persistJuniorHigh, persistKindergartens, persistModelReview, persistPopulation, persistPublicRecords, persistRescue, persistRiver, persistSchools, persistSpecialClasses, persistToilets, persistTransport, persistUsePermitSummary, snapshotPayload } from "./persist.js";
+import { persistAnnouncements, persistArticles, persistBridges, persistBusShelters, persistCameras, persistChargers, persistCrashes, persistDischarge, persistElectricBuses, persistFarms, persistGasStations, persistHeritage, persistHydrants, persistJuniorHigh, persistKindergartens, persistModelReview, persistPopulation, persistPublicRecords, persistRescue, persistRiver, persistSchools, persistSpecialClasses, persistToilets, persistTransport, persistUsePermitSummary, snapshotPayload } from "./persist.js";
 import { runHour, sourceFetch } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -105,6 +105,9 @@ export async function applyScheduledResult(db, previous, result) {
   }
   if (result.ok && result.crashes?.rows?.length && result.crashes.retained !== true) {
     await persistCrashes(db, { crashes: result.crashes, now: result.last_success_at });
+  }
+  if (result.ok && result.discharge?.rows?.length && result.discharge.retained !== true) {
+    await persistDischarge(db, { discharge: result.discharge, now: result.last_success_at });
   }
   return snapshot;
 }
