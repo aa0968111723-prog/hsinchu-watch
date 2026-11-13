@@ -117,6 +117,13 @@ test("city catalog keeps dataset names and drops contact fields", async () => {
   const { normalizeCityCatalog } = await import("../src/adapters.js");
   const rows = normalizeCityCatalog("資料產生時間,2026/11/14\n資料集名稱,資料來源,聯絡人,聯絡電話,提供格式,資料說明\n新竹市路燈,工務處,王小明,03-5216121,CSV;JSON,說明,多餘");
   assert.deepEqual(rows, [{ name: "新竹市路燈", agency: "工務處", formats: "CSV;JSON" }]);
+  const { catalogForPublish } = await import("../src/adapters.js");
+  const failedCatalog = catalogForPublish({ datasets: [] }, { count: 2 }, { count: 981 }, () => { throw new Error("disk full"); });
+  assert.equal(failedCatalog.written, false);
+  assert.equal(failedCatalog.summary.count, 981);
+  const writtenCatalog = catalogForPublish({ datasets: [] }, { count: 2 }, { count: 981 }, () => {});
+  assert.equal(writtenCatalog.written, true);
+  assert.equal(writtenCatalog.summary.count, 2);
   const reordered = normalizeCityCatalog("聯絡電話,提供格式,資料集名稱,資料來源\n03-5216121,CSV,新竹市路燈,工務處");
   assert.deepEqual(reordered, [{ name: "新竹市路燈", agency: "工務處", formats: "CSV" }]);
   assert.equal(JSON.stringify(reordered).includes("03-5216121"), false);

@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, splitCityCatalog } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitCityCatalog } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -52,7 +52,9 @@ previous.articles = withoutHidden(previous.articles, hidden);
 result.articles = withoutHidden(result.articles, hidden);
 const publishable = publishableResult(previous, result);
 const catalogParts = splitCityCatalog(publishable.city_catalog);
-if (catalogParts.download) writeFileSync(catalogUrl, JSON.stringify(catalogParts.download));
+const catalogPublish = catalogForPublish(catalogParts.download, catalogParts.summary, previous.city_catalog, (download) => {
+  writeFileSync(catalogUrl, JSON.stringify(download));
+});
 const payload = {
   ok: publishable.ok,
   retained: publishable.retained,
@@ -75,7 +77,7 @@ const payload = {
   })),
   announcements: publishable.announcements || [],
   public_records: publishable.public_records || [],
-  city_catalog: catalogParts.summary,
+  city_catalog: catalogPublish.summary,
   changes: articleChanges(previous.articles, publishable.articles),
   duration_ms: Date.now() - started,
   model_review: publishable.model_review || [],

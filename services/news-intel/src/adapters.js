@@ -123,6 +123,16 @@ export function normalizeCnaAtom(xml) {
 export const CITY_CATALOG_URL = "https://opendata.hccg.gov.tw/OpenDataCSV.aspx";
 export const CITY_CATALOG_LIST = "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059";
 
+export function catalogForPublish(download, summary, previousCatalog, write) {
+  if (!download) return { summary, written: false };
+  try {
+    write(download);
+    return { summary, written: true };
+  } catch (error) {
+    return { summary: previousCatalog || null, written: false, error: String(error.message || error).slice(0, 180) };
+  }
+}
+
 export function splitCityCatalog(catalog) {
   if (!catalog?.count) return { summary: null, download: null };
   const summary = {
