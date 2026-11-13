@@ -294,6 +294,30 @@ export async function persistHydrants(db, { hydrants, now, actor = "scheduler" }
   return { upserted };
 }
 
+export async function persistBusShelters(db, { shelters, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of shelters?.shelters || []) {
+    const name = String(row?.name || "").trim();
+    if (!name) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    const year = row.year == null || String(row.year).trim() === "" ? "" : String(row.year).trim();
+    keys.push([code, name, year]);
+    const opened = row.opened || null;
+    const existing = await db.prepare("SELECT opened, routes FROM bus_shelters WHERE code = ? AND name = ? AND year = ?").bind(code, name, year).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO bus_shelters (code, name, year, kind, road, direction, routes, agency, opened, integrated, township, region_id, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, name, year, row.kind || null, row.road || null, row.direction || null, row.routes || null, row.agency || null, opened, row.integrated || null, row.township || null, row.region_id || null, shelters.dataset_url, shelters.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.opened ?? null) !== opened || (existing.routes ?? null) !== (row.routes || null)) {
+      await db.prepare("UPDATE bus_shelters SET kind = ?, road = ?, direction = ?, routes = ?, agency = ?, opened = ?, integrated = ?, township = ?, region_id = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND name = ? AND year = ?").bind(row.kind || null, row.road || null, row.direction || null, row.routes || null, row.agency || null, opened, row.integrated || null, row.township || null, row.region_id || null, shelters.dataset_url, shelters.source_url, now, code, name, year).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "bus_shelters", shelters?.dataset_url, ["code", "name", "year"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_bus_shelters', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

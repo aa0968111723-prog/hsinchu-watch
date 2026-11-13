@@ -512,6 +512,57 @@ test("county hydrants keep the written pressure and drop a blank place", async (
   assert.equal(page.includes("檔案沒有日期欄"), true);
 });
 
+test("county bus shelters keep the written year and the yes or no flag", async () => {
+  const { normalizeCountyBusShelters, splitBusShelters } = await import("../src/adapters.js");
+  const rows = normalizeCountyBusShelters(JSON.stringify([
+    { "編號": "1", "年度": "099", "設施種類": "候車亭", "設置路段": "新竹縣竹北市光明一路", "站名": "光明站", "方向": "往東", "行經之公車路線": "5608", "完工後管理機關": "新竹縣政府", "是否已完工啟用": "否", "是否已整合行經當地之公路客運設站": "是" },
+    { "編號": "2", "年度": "", "站名": " ", "是否已完工啟用": "是" },
+  ]));
+  assert.deepEqual(rows, [{
+    code: "1",
+    year: "099",
+    kind: "候車亭",
+    road: "新竹縣竹北市光明一路",
+    name: "光明站",
+    direction: "往東",
+    routes: "5608",
+    agency: "新竹縣政府",
+    opened: "否",
+    integrated: "是",
+    township: "竹北市",
+    region_id: "zhubei",
+  }]);
+  const parts = splitBusShelters({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=312", dataset_url: "https://ws.hsinchu.gov.tw/shelters.json", count: rows.length, shelters: rows });
+  assert.equal(parts.summary.shelters, undefined);
+  assert.equal(parts.summary.note.includes("不換成西元年"), true);
+  const kept = await runHour({
+    previous: { articles: [], bus_shelters: { count: 4 } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.bus_shelters.count, 4);
+  assert.equal(kept.bus_shelters.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-bus-shelters", payload: JSON.stringify([{ "編號": "9", "年度": "109", "站名": "竹東站", "設置路段": "竹東鎮", "是否已完工啟用": "是" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-bus-shelters", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.shelters[0].year, "109");
+  assert.equal(imported.body.shelters[0].opened, "是");
+  assert.equal(imported.body.shelters[0].region_id, "zhudong");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不換成西元年"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1204,6 +1255,13 @@ test("published news file stays within the real cap", () => {
     const hydrants = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/hydrants.json", import.meta.url), "utf8"));
     assert.equal(hydrants.hydrants.length, data.hydrants.count);
     assert.ok(hydrants.hydrants.every((row) => row.place && (row.pressure === null || typeof row.pressure === "string") && !Object.hasOwn(row, "phone")));
+  }
+  if (data.bus_shelters) {
+    assert.ok(data.bus_shelters.count > 100);
+    assert.equal(data.bus_shelters.shelters, undefined);
+    const shelters = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/bus-shelters.json", import.meta.url), "utf8"));
+    assert.equal(shelters.shelters.length, data.bus_shelters.count);
+    assert.ok(shelters.shelters.every((row) => row.name && (row.year === null || typeof row.year === "string") && (row.opened === null || row.opened === "是" || row.opened === "否")));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

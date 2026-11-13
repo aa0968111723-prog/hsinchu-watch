@@ -65,6 +65,8 @@ const specialFile = fileURLToPath(new URL("../../../public/data/news-intel/speci
 if (existsSync(specialFile)) copyFileSync(specialFile, `${mirror}\\data\\news-intel\\special-classes.json`);
 const hydrantFile = fileURLToPath(new URL("../../../public/data/news-intel/hydrants.json", import.meta.url));
 if (existsSync(hydrantFile)) copyFileSync(hydrantFile, `${mirror}\\data\\news-intel\\hydrants.json`);
+const shelterFile = fileURLToPath(new URL("../../../public/data/news-intel/bus-shelters.json", import.meta.url));
+if (existsSync(shelterFile)) copyFileSync(shelterFile, `${mirror}\\data\\news-intel\\bus-shelters.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
 const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit", timeout: PUBLISH_TIMEOUT_MS });
 const status = deployed.status ?? 1;

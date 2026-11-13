@@ -49,6 +49,8 @@
   <p id="permit-status" class="meta"></p>
   <h2>新竹縣消防栓</h2>
   <p id="hydrant-status" class="meta"></p>
+  <h2>新竹縣候車亭</h2>
+  <p id="shelter-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -132,6 +134,7 @@ const cameraList = document.querySelector("#cameras");
 const specialStatus = document.querySelector("#special-status");
 const permitStatus = document.querySelector("#permit-status");
 const hydrantStatus = document.querySelector("#hydrant-status");
+const shelterStatus = document.querySelector("#shelter-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -371,6 +374,22 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       hydrantStatus.append(" ", source);
     }
+    const shelters = data.bus_shelters;
+    shelterStatus.textContent = shelters?.count
+      ? `${shelters.count} 處。年度沿用各列原文，不換成西元年。完工與否沿用「是」或「否」。`
+      : "這一輪沒有候車亭清冊，沒有補站名。";
+    if (shelters?.download_url) {
+      const download = document.createElement("a");
+      download.href = shelters.download_url;
+      download.textContent = "下載清冊";
+      shelterStatus.append(" ", download);
+    }
+    if (shelters?.source_url && shelters?.count) {
+      const source = document.createElement("a");
+      source.href = shelters.source_url;
+      source.textContent = "資料集頁";
+      shelterStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -484,6 +503,7 @@ fetch("/data/news-intel/latest.json")
     specialStatus.textContent = "特殊教育班名冊讀取失敗。頁面沒有改用假資料。";
     permitStatus.textContent = "使用執照清冊讀取失敗。頁面沒有改用假資料。";
     hydrantStatus.textContent = "消防栓清冊讀取失敗。頁面沒有改用假資料。";
+    shelterStatus.textContent = "候車亭清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";

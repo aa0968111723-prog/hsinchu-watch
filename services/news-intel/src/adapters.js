@@ -144,6 +144,8 @@ export const COUNTY_PERMIT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_PERMIT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=261";
 export const COUNTY_HYDRANT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/222/2e4cbf1c-337b-4660-94b9-c0af33d61fbe.json";
 export const COUNTY_HYDRANT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=222";
+export const COUNTY_SHELTER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/312/0fa9ce89-b525-4a66-9d35-cc4a12d7d35f.json";
+export const COUNTY_SHELTER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=312";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -528,6 +530,47 @@ export function splitHydrants(hydrants) {
     note: hydrants.note || "只留編號、水源編號、設置地點、型式和壓力原文。沒有設置地點的列不收入。壓力單位沿用欄名。檔案沒有日期欄，不拿抓取時間充當。",
   };
   const download = Array.isArray(hydrants.hydrants) ? { ...summary, hydrants: hydrants.hydrants } : null;
+  return { summary, download };
+}
+
+export function normalizeCountyBusShelters(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["站名"] || "").trim();
+    if (!name) return [];
+    const road = String(row["設置路段"] || "").trim();
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => `${road} ${name}`.includes(label)) || "";
+    const year = String(row["年度"] ?? "").trim();
+    const opened = String(row["是否已完工啟用"] ?? "").trim();
+    const integrated = String(row["是否已整合行經當地之公路客運設站"] ?? "").trim();
+    return [{
+      code: originalNumber(row["編號"]),
+      year: year || null,
+      kind: String(row["設施種類"] || "").trim() || null,
+      road: road || null,
+      name,
+      direction: String(row["方向"] || "").trim() || null,
+      routes: String(row["行經之公車路線"] || "").trim() || null,
+      agency: String(row["完工後管理機關"] || "").trim() || null,
+      opened: opened || null,
+      integrated: integrated || null,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+    }];
+  });
+}
+
+export function splitBusShelters(shelters) {
+  if (!shelters?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: shelters.source_url,
+    dataset_url: shelters.dataset_url,
+    count: shelters.count,
+    download_url: "/data/news-intel/bus-shelters.json",
+    note: shelters.note || "只留站名、路段、年度原文、方向、路線和管理機關。年度不換成西元年。完工與否沿用「是」或「否」。",
+  };
+  const download = Array.isArray(shelters.shelters) ? { ...summary, shelters: shelters.shelters } : null;
   return { summary, download };
 }
 

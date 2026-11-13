@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -64,6 +64,7 @@ export function mergeRun(previous, result) {
       special_classes: previous?.special_classes || null,
       use_permits: previous?.use_permits || null,
       hydrants: previous?.hydrants || null,
+      bus_shelters: previous?.bus_shelters || null,
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
       debt: previous?.debt || null,
@@ -90,6 +91,7 @@ export function mergeRun(previous, result) {
     special_classes: result.special_classes === undefined ? (previous?.special_classes || null) : result.special_classes,
     use_permits: result.use_permits === undefined ? (previous?.use_permits || null) : result.use_permits,
     hydrants: result.hydrants === undefined ? (previous?.hydrants || null) : result.hydrants,
+    bus_shelters: result.bus_shelters === undefined ? (previous?.bus_shelters || null) : result.bus_shelters,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
@@ -270,6 +272,27 @@ async function loadCountyCameras(fetcher, previous) {
       rows,
       retained: false,
       note: "沿用資料檔的設置地點、取締項目和速限原文。這是設備清冊，不是今日執法紀錄。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
+async function loadCountyBusShelters(fetcher, previous) {
+  const kept = previous?.bus_shelters ? { ...previous.bus_shelters, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_SHELTER_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const shelters = normalizeCountyBusShelters(await response.text());
+    if (!shelters.length) return kept;
+    return {
+      source_url: COUNTY_SHELTER_PAGE,
+      dataset_url: COUNTY_SHELTER_URL,
+      count: shelters.length,
+      shelters,
+      retained: false,
+      note: "只留站名、路段、年度原文、方向、路線和管理機關。年度不換成西元年。完工與否沿用「是」或「否」。",
     };
   } catch {
     return kept;
@@ -498,6 +521,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       special_classes: await loadSpecialClasses(fetcher, previous),
       use_permits: await loadUsePermits(fetcher, previous),
       hydrants: await loadCountyHydrants(fetcher, previous),
+      bus_shelters: await loadCountyBusShelters(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
       debt: await loadCountyDebt(fetcher, previous),
