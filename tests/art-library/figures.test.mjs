@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import * as budget from "../../src/art-library/figures/budget-drawers/model.js";
 import * as council from "../../src/art-library/figures/council-desk/model.js";
 import * as emptyBay from "../../src/art-library/figures/empty-bay/model.js";
+import * as layers from "../../src/art-library/figures/layer-board/model.js";
 import * as yard from "../../src/art-library/figures/stage-yard/model.js";
 import {
   ORIGINS,
@@ -286,4 +287,23 @@ test("empty bay never turns a missing record into zero or a fake plaque", () => 
   assert.equal(bay.seated, emptyBay.OPEN);
   assert.equal(emptyBay.describe(bay), "還沒選紀錄 · 空格先留著");
   assert.equal(/\d/.test(emptyBay.describe(bay)), false);
+});
+
+test("layer board keeps claim off the registration pin", () => {
+  assert.deepEqual(layers.LAYERS.map((layer) => layer.id), ["boundary", "claim", "verified"]);
+  const board = layers.createBoard(1);
+  assert.equal(layers.LAYERS[board.chosen].id, "claim");
+  assert.equal(board.pinGoal, 0);
+  assert.equal(layers.describe(board).includes("主張不是核對"), true);
+  for (let time = 0; time < 5; time += FRAME) layers.advance(board, FRAME, true);
+  assert.equal(board.pin, 0);
+  assert.equal(board.lift[1], layers.RAISED);
+  layers.choose(board, 2);
+  for (let time = 0; time < 5; time += FRAME) layers.advance(board, FRAME, true);
+  assert.equal(board.pin, 1);
+  assert.equal(layers.describe(board), "核對圖層 · 銷已卡住，可引用");
+  layers.choose(board, 0);
+  for (let time = 0; time < 5; time += FRAME) layers.advance(board, FRAME, true);
+  assert.equal(board.pin, 0);
+  assert.equal(layers.describe(board), "行政界線 · 界線不是案址");
 });
