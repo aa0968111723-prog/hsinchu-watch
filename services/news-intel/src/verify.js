@@ -32,8 +32,19 @@ export function classifyArticle(article) {
   return "UNVERIFIED";
 }
 
+function taipeiDay(value) {
+  const text = String(value || "");
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return text;
+  const parsed = Date.parse(text);
+  if (Number.isNaN(parsed)) return null;
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(parsed));
+}
+
 export function readPagePublishedAt(html) {
-  const match = String(html || "").match(/"datePublished"\s*:\s*"([^"]+)"/);
+  const source = String(html || "");
+  const roc = source.match(/發布日期：(\d{2,3})-(\d{2})-(\d{2})/);
+  if (roc) return `${Number(roc[1]) + 1911}-${roc[2]}-${roc[3]}`;
+  const match = source.match(/"datePublished"\s*:\s*"([^"]+)"/);
   if (!match) return null;
   const text = match[1].trim();
   const normalized = text.includes("T") ? text : `${text.replace(" ", "T")}+08:00`;
@@ -45,6 +56,9 @@ export function readPagePublishedAt(html) {
 export function pageDateAgrees(publishedAt, html) {
   const pageTime = readPagePublishedAt(html);
   if (!pageTime) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(pageTime) || /^\d{4}-\d{2}-\d{2}$/.test(String(publishedAt))) {
+    return taipeiDay(pageTime) === taipeiDay(publishedAt);
+  }
   const feedTime = Date.parse(publishedAt);
   if (Number.isNaN(feedTime)) return false;
   return Math.abs(Date.parse(pageTime) - feedTime) < 5 * 60 * 1000;
