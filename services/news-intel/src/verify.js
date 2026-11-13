@@ -1,3 +1,13 @@
+export function parsePublisherTimestamp(value) {
+  const text = String(value || "").trim();
+  if (!text) return null;
+  if (/^\d{4}$/.test(text)) return text;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return text;
+  const parsed = Date.parse(text);
+  if (Number.isNaN(parsed)) return null;
+  return new Date(parsed).toISOString();
+}
+
 const HIGH_RISK = ["民調", "支持度", "起訴", "羈押", "判決", "預算執行率", "完工驗收"];
 
 export function classifyArticle(article) {

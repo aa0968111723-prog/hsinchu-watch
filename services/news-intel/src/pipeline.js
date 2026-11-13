@@ -1,3 +1,5 @@
+import { parsePublisherTimestamp } from "./verify.js";
+
 export const MAX_ARTICLES = 20;
 
 const TOWNS = [
@@ -36,7 +38,8 @@ export function selectArticles(candidates) {
   for (const item of candidates || []) {
     const url = String(item?.source_url || "");
     const title = String(item?.original_title || "").trim();
-    if (!url.startsWith("https://") || !title || !item?.publisher_timestamp) continue;
+    const published = parsePublisherTimestamp(item?.publisher_timestamp);
+    if (!url.startsWith("https://") || !title || !published) continue;
     if (!regionFor(`${title} ${item.summary || ""}`)) continue;
     const key = normalizeTitle(title);
     if (seen.has(url) || seen.has(key)) continue;
@@ -47,7 +50,7 @@ export function selectArticles(candidates) {
       original_title: title,
       source_url: url,
       region_id: regionFor(`${title} ${item.summary || ""}`),
-      verification_status: item.verification_status || "SINGLE_SOURCE",
+      publisher_timestamp: published,
       review_status: "pending_index",
     });
     if (selected.length >= MAX_ARTICLES) break;

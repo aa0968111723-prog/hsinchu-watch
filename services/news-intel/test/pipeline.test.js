@@ -12,7 +12,8 @@ const tokens = { reader: "reader-token", collector: "collector-token", verifier:
 
 test("does not invent articles when the hour is empty", () => {
   assert.deepEqual(selectArticles([]), []);
-  assert.equal(selectArticles([{ original_title: "全國新聞", source_url: "https://www.cna.com.tw/a", publisher_timestamp: "2026-11-13T00:00:00+08:00" }]).length, 0);
+  assert.equal(selectArticles([{ original_title: "新竹市公告", source_url: "https://www.hccg.gov.tw/a", publisher_timestamp: "不是日期" }]).length, 0);
+  assert.equal(selectArticles([{ original_title: "新竹市公告", source_url: "https://www.hccg.gov.tw/a", publisher_timestamp: "Fri, 13 Nov 2026 09:05:00 GMT" }]).length, 1);
 });
 
 test("caps at 20 and collapses reprints", () => {
