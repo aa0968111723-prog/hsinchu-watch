@@ -506,6 +506,22 @@ test("mcp checks dates, duplicates, and refuses unverified facts", async () => {
     body: { tool: "approve_verified_article", input: { verification_status: "SINGLE_SOURCE" } },
   });
   assert.equal(refused.status, 409);
+  const idempotency = new Map();
+  const rateStore = new Map();
+  const batch = {
+    tool: "submit_article_batch",
+    idempotency_key: "batch-1",
+    input: { articles: [{ original_title: "竹北道路開工", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13T02:00:00Z", source_id: "hsinchu-county-news" }] },
+  };
+  const rate = { idempotency, rateStore, now: 1_000, rateLimit: 1 };
+  const first = await handleMcp({ authorization: "Bearer collector-token", tokens, state: rate, body: batch });
+  const replay = await handleMcp({ authorization: "Bearer collector-token", tokens, state: rate, body: batch });
+  const limited = await handleMcp({ authorization: "Bearer collector-token", tokens, state: rate, body: { ...batch, idempotency_key: "batch-2" } });
+  assert.equal(first.status, 202);
+  assert.equal(first.body.accepted, 1);
+  assert.equal(replay.body.replayed, true);
+  assert.equal(replay.body.accepted, 1);
+  assert.equal(limited.status, 429);
 });
 
 test("migration creates the article and audit tables", () => {

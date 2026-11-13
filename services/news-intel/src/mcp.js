@@ -1,5 +1,5 @@
 import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, normalizeFinalAccounts } from "./adapters.js";
-import { authorize } from "./auth.js";
+import { authorize, consumeWrite } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
 import { persistPublicRecords } from "./persist.js";
@@ -16,6 +16,13 @@ export const TOOLS = [
   "query_public_records", "search_existing_articles", "get_pipeline_status",
   "get_latest_successful_run", "get_failed_sources", "retry_failed_job", "list_audit_logs",
 ];
+
+const WRITE_TOOLS = new Set([
+  "submit_article_batch", "collect_latest_news", "create_article_candidate",
+  "approve_verified_article", "reject_article", "revise_article", "retract_article",
+  "import_government_dataset",
+]);
+const defaultWriteRates = new Map();
 
 const UNCONNECTED = new Set([
   "sync_governance_records", "sync_transport_data", "sync_environment_data",
@@ -38,6 +45,22 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
   const input = body?.input || {};
   const gate = authorize(authorization, tool, tokens);
   if (!gate.ok) return { status: gate.status, body: { error: gate.error } };
+  const idempotencyKey = WRITE_TOOLS.has(tool) ? String(body?.idempotency_key || "") : "";
+  const cacheKey = `${gate.scope}:${tool}:${idempotencyKey}`;
+  const cached = idempotencyKey ? state?.idempotency?.get(cacheKey) : null;
+  if (cached) return { status: cached.status, body: { ...cached.body, replayed: true } };
+  if (WRITE_TOOLS.has(tool) && !consumeWrite({
+    store: state?.rateStore || defaultWriteRates,
+    token: `${gate.scope}:${tool}`,
+    now: state?.now ?? Date.now(),
+    limit: state?.rateLimit ?? 120,
+  })) {
+    return { status: 429, body: { error: "rate_limited" } };
+  }
+  function remember(result) {
+    if (idempotencyKey && state?.idempotency && result.status < 500) state.idempotency.set(cacheKey, { status: result.status, body: result.body });
+    return result;
+  }
   if (tool === "import_government_dataset") {
     if (input.dataset !== "hsc-expenditure-final") return { status: 409, body: { error: "adapter_not_connected" } };
     let raw = input.payload;
@@ -63,7 +86,7 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
       note: "年度欄是民國年，這裡換成西元。金額維持原文字。單位未標示，不換算。這是歲出決算數，不是驗收或實支。",
     }));
     if (db) await persistPublicRecords(db, { records, now: new Date().toISOString() });
-    return { status: 200, body: { records, stored: Boolean(db) } };
+    return remember({ status: 200, body: { records, stored: Boolean(db) } });
   }
   if (UNCONNECTED.has(tool)) return { status: 409, body: { error: "adapter_not_connected" } };
   if (tool === "retry_failed_job") return { status: 409, body: { error: "job_runner_not_connected" } };
@@ -82,7 +105,7 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
   if (tool === "list_source_registry") return { status: 200, body: { sources: sources() } };
   if (tool === "submit_article_batch" || tool === "collect_latest_news" || tool === "create_article_candidate") {
     const articles = selectArticles(input.articles || (input.article ? [input.article] : []));
-    return { status: 202, body: { accepted: articles.length, articles, review_status: "pending_index", scope: gate.scope } };
+    return remember({ status: 202, body: { accepted: articles.length, articles, review_status: "pending_index", scope: gate.scope } });
   }
   if (tool === "extract_article_metadata") {
     const published = parsePublisherTimestamp(input.publisher_timestamp);

@@ -37,6 +37,17 @@ export function scopeFor(tool) {
   return TOOL_SCOPES[tool] || null;
 }
 
+export function consumeWrite({ store, token, now, limit = 120, windowMs = 60_000 }) {
+  const hits = (store.get(token) || []).filter((time) => now - time < windowMs);
+  if (hits.length >= limit) {
+    store.set(token, hits);
+    return false;
+  }
+  hits.push(now);
+  store.set(token, hits);
+  return true;
+}
+
 export function authorize(authorization, tool, tokens) {
   const required = scopeFor(tool);
   if (!required) return { ok: false, status: 404, error: "unknown_tool" };
