@@ -57,9 +57,39 @@ test("blocks private and off-allowlist fetches", async () => {
   assert.equal(blocked.status, 400);
 });
 
-test("gemini stays off without a key or when the cap is hit", () => {
+test("gemini stays off without a key or when the cap is hit", async () => {
   assert.equal(decideGemini({}, {}).use, false);
   assert.equal(decideGemini({ GEMINI_API_KEY: "present" }, { tokens_today: 200000 }).reason, "daily_token_cap");
+  let proposed = false;
+  const quiet = await runHour({
+    env: { propose() { proposed = true; return []; } },
+    now: "2026-11-13T02:00:00.000Z",
+    previous: { articles: [] },
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/real", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: true, status: 200, text: async () => "" }),
+  });
+  const guarded = await runHour({
+    env: {
+      GEMINI_API_KEY: "present",
+      async propose() {
+        return [
+          { original_title: "模型虛構的新竹市新聞", source_url: "https://example.com/a", publisher_timestamp: "2026-11-13" },
+          { original_title: "模型提出的竹北開工", source_url: "https://www.hsinchu.gov.tw/model", publisher_timestamp: "2026-11-13", source_type: "official_rss" },
+          { original_title: "新竹市民調支持度模型稿", source_url: "https://www.cna.com.tw/model", publisher_timestamp: "2026-11-13", source_type: "news_rss" },
+        ];
+      },
+    },
+    now: "2026-11-13T02:00:00.000Z",
+    previous: { articles: [] },
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/real", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: true, status: 200, text: async () => "" }),
+  });
+  assert.equal(proposed, false);
+  assert.equal(quiet.gemini.called, false);
+  assert.equal(quiet.articles.length, 1);
+  assert.equal(guarded.articles.map((article) => article.original_title).includes("模型提出的竹北開工"), false);
+  assert.equal(guarded.model_review.length, 2);
+  assert.equal(guarded.model_review.every((article) => article.verification_status === "UNVERIFIED" && article.fact_fields_allowed === false), true);
 });
 
 test("a failed hour keeps the last successful articles", async () => {

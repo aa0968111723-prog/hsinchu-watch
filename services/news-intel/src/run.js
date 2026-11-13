@@ -1,5 +1,5 @@
 import { collectAdapters } from "./adapters.js";
-import { decideGemini, selectArticles } from "./pipeline.js";
+import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { publicationFields } from "./verify.js";
 
 export function mergeRun(previous, result) {
@@ -13,6 +13,7 @@ export function mergeRun(previous, result) {
       failures: result.failures || [],
       announcements: previous?.announcements || [],
       public_records: previous?.public_records || [],
+      model_review: previous?.model_review || [],
     };
   }
   return {
@@ -24,11 +25,14 @@ export function mergeRun(previous, result) {
     gemini: result.gemini,
     announcements: result.announcements || [],
     public_records: result.public_records || [],
+    model_review: result.model_review || [],
   };
 }
 
 export async function runHour({ fetcher, adapters, env, previous, now }) {
-  const gemini = decideGemini(env || {}, { tokens_today: 0, requests_this_hour: 0 });
+  const decision = decideGemini(env || {}, { tokens_today: 0, requests_this_hour: 0 });
+  const called = Boolean(decision.use && typeof env?.propose === "function");
+  const gemini = { ...decision, called };
   try {
     const collected = await collectAdapters(fetcher, adapters);
     if (!collected.candidates.length && collected.failures.length) {
@@ -53,6 +57,8 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
       note: "年度欄是民國年，這裡換成西元。金額維持原文字。單位未標示，不換算。這是歲出決算數，不是驗收或實支。",
     }));
     const publicRecords = accountsFailed ? (previous?.public_records || []) : freshRecords;
+    const proposals = called ? await env.propose() : [];
+    const modelReview = acceptModelProposals(proposals);
     const articles = selectArticles(collected.candidates).map((article) => ({
       ...article,
       ...publicationFields(article),
@@ -66,6 +72,7 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
       gemini,
       announcements,
       public_records: publicRecords,
+      model_review: modelReview,
     });
   } catch (error) {
     return mergeRun(previous, { ok: false, error: String(error.message || error).slice(0, 180) });

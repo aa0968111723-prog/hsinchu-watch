@@ -1,4 +1,5 @@
-import { parsePublisherTimestamp } from "./verify.js";
+import { allowedUrl } from "./allowlist.js";
+import { parsePublisherTimestamp, publicationFields } from "./verify.js";
 
 export const MAX_ARTICLES = 20;
 
@@ -64,6 +65,17 @@ export function selectArticles(candidates) {
     if (selected.length >= MAX_ARTICLES) break;
   }
   return selected;
+}
+
+export function acceptModelProposals(proposals) {
+  return selectArticles((proposals || []).filter((item) => allowedUrl(item?.source_url))).map((article) => ({
+    ...article,
+    ...publicationFields(article),
+    verification_status: "UNVERIFIED",
+    review_status: "needs_review",
+    fact_fields_allowed: false,
+    proposed_by: "model",
+  }));
 }
 
 export function linkEvents(articles) {

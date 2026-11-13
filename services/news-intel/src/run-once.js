@@ -47,6 +47,7 @@ const payload = {
   })),
   announcements: result.announcements || [],
   public_records: result.public_records || [],
+  model_review: result.model_review || [],
 };
 mkdirSync(new URL("../state/", import.meta.url), { recursive: true });
 writeFileSync(new URL("../state/last-run.json", import.meta.url), JSON.stringify(payload, null, 2));
