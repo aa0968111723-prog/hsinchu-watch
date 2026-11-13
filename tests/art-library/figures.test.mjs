@@ -7,6 +7,7 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import * as budget from "../../src/art-library/figures/budget-drawers/model.js";
+import * as yard from "../../src/art-library/figures/stage-yard/model.js";
 import {
   ORIGINS,
   STAMP,
@@ -195,4 +196,53 @@ test("a project without a budget record latches all three, and an unbound cabine
   assert.equal(cabinet.drawers[1].at, budget.TRAVEL);
   assert.equal(budget.describe(cabinet), "決標 · 還沒選案卷");
   assert.equal(/\d/.test(budget.describe(cabinet)), false, "no number without a bound record");
+});
+
+test("stage yard keeps five stages separate and never invents one from another", () => {
+  assert.deepEqual(
+    yard.STAGES.map((stage) => stage.id),
+    ["planned", "under_construction", "completed", "accepted", "in_use"],
+  );
+  assert.equal(yard.stageOfSummary("機關公告舉行開工動土，並列示目標完工月份。"), "under_construction");
+  assert.equal(yard.stageOfSummary("工程頁列示完工日期，並以此日為100%工程進度基準。"), "completed");
+  assert.equal(yard.stageOfSummary("工程頁記載準備後續驗收、點交與使用執照取得作業。"), null);
+  assert.equal(yard.stageOfSummary("在建工程網頁更新日期；表列進度為77.25%，數字本身未另列基準日。"), "under_construction");
+  assert.equal(yard.stageOfSummary("地政處發布府地用字第11501943171號公告。"), null);
+});
+
+test("peiying events light construction and completion only", () => {
+  const project = governance.projects.find((row) => row.id === "taipei-peiying-housing");
+  const slots = yard.stagesFromEvents(project.events);
+  assert.equal(slots.under_construction?.date, "2020-02-25");
+  assert.equal(slots.completed?.date, "2026-06-01");
+  assert.equal(slots.accepted, null);
+  assert.equal(slots.in_use, null);
+  assert.equal(slots.planned, null);
+  const model = yard.createYard(0);
+  yard.bind(model, slots);
+  assert.deepEqual(
+    model.pegs.map((peg) => peg.state),
+    ["unknown", "known", "known", "unknown", "unknown"],
+  );
+  yard.choose(model, 2);
+  for (let time = 0; time < 5; time += FRAME) yard.advance(model, FRAME, true);
+  assert.equal(yard.describe(model), "完工 · 2026-06-01 · 有來源事件");
+  yard.choose(model, 3);
+  for (let time = 0; time < 5; time += FRAME) yard.advance(model, FRAME, true);
+  assert.equal(yard.describe(model), "驗收 · 本站沒有這階段的紀錄");
+});
+
+test("a progress percentage alone never lights a stage, and unbound shows no date", () => {
+  const project = governance.projects.find((row) => row.id === "new-taipei-siyuan-footbridge");
+  const slots = yard.stagesFromEvents(project.events);
+  assert.equal(slots.under_construction?.date, "2026-10-12");
+  assert.equal(slots.completed, null);
+  const model = yard.createYard(0);
+  assert.equal(yard.describe(model), "規劃 · 還沒選案卷");
+  assert.equal(/\d{4}/.test(yard.describe(model)), false);
+  yard.bind(model, slots);
+  yard.choose(model, 1);
+  for (let time = 0; time < 5; time += FRAME) yard.advance(model, FRAME, true);
+  assert.equal(yard.describe(model), "施工 · 2026-10-12 · 有來源事件");
+  assert.equal(yard.pegText(model.pegs[2]).includes("77"), false);
 });

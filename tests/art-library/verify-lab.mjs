@@ -210,6 +210,35 @@ try {
     await context.close();
   }
 
+  // Stage yard: completion is not acceptance; preparing language stays blank.
+  {
+    const problems = [];
+    const governance = await (await fetch(origin + '/data/governance.json')).json();
+    const peiying = governance.projects.find((project) => project.id === 'taipei-peiying-housing');
+    assert(peiying, 'peiying housing is in the pilot records');
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await openLab(context, problems, '/asset-lab.html?asset=component-stage-yard');
+    const dialog = page.locator('#alDetail');
+    await dialog.locator('[data-figure="stage-yard"][data-state="live"]').waitFor();
+    assert.equal(await dialog.locator('[data-readout]').textContent(), '規劃 · 還沒選案卷');
+    await page.waitForFunction(() => document.querySelectorAll('#alDetail [data-project] option').length > 1);
+    await dialog.locator('[data-project]').selectOption(peiying.id);
+    await page.waitForFunction(() => document.querySelector('#alDetail [data-value="2"]').textContent.includes('2026-06-01'));
+    assert.equal(await dialog.locator('[data-value="0"]').textContent(), '本站沒有這階段的紀錄');
+    assert.equal(await dialog.locator('[data-value="1"]').textContent(), '2020-02-25 · 有來源事件');
+    assert.equal(await dialog.locator('[data-value="3"]').textContent(), '本站沒有這階段的紀錄');
+    assert.equal(await dialog.locator('[data-value="4"]').textContent(), '本站沒有這階段的紀錄');
+    assert.equal(await dialog.locator('[data-blank="3"][data-on]').count(), 1);
+    assert.equal(await dialog.locator('[data-rules="2"][data-on]').count(), 1);
+    await dialog.locator('[data-stage="3"]').click();
+    await page.waitForFunction(() => document.querySelector('#alDetail [data-readout]').textContent === '驗收 · 本站沒有這階段的紀錄');
+    assert((await dialog.locator('[data-source]').textContent()).includes('百分比進度不會被讀成任一階段'));
+    assert.deepEqual(problems, [], 'stage yard problems');
+    await shot(page, 'lab-1280-detail-stage.png');
+    summary.checks.push('stage yard bound to governance events');
+    await context.close();
+  }
+
   // A deep link opens the same asset.
   {
     const problems = [];

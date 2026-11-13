@@ -18,6 +18,15 @@
       "uses": ["budget", "explainer", "empty-state"],
       "concept": "approved_twd、contract_twd、spent_twd 各自儲存，不互相推算。null 是沒有紀錄，不是 0。",
       "suggested_use": "治理案卷的預算區塊或方法頁。加上 data-project 就會讀該案卷的三筆金額；沒有紀錄的那層維持扣住，不要改顯示成 0。"
+    },
+    {
+      "folder": "stage-yard",
+      "id": "component-stage-yard",
+      "title": "階段工地模型",
+      "alt": "立體示意測板：規劃、施工、完工、驗收、啟用五根樁分開立著，測桿只對準其中一根。有來源事件的樁會亮標籤；沒有紀錄的樁保持空白。它說明五個階段互不推算，也不是特定工地的現況圖",
+      "uses": ["policy-stage", "public-works", "explainer", "empty-state"],
+      "concept": "planned、under_construction、completed、accepted、in_use 各自對應來源事件。完工不是驗收，驗收不是啟用；準備中的文字與目標日期不會點亮該階段。",
+      "suggested_use": "治理案卷的進度區塊或方法頁。加上 data-project 就會讀該案卷事件；沒有對上的階段維持空白，不要改顯示成已完成，也不要把百分比進度讀成階段。"
     }
   ]
 }
