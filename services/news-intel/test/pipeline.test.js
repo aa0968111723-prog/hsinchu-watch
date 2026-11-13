@@ -344,6 +344,16 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "b" }), true);
   const unconnected = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "sync_poll_metadata" } });
   assert.equal(unconnected.status, 409);
+  const refusedDataset = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "import_government_dataset", input: { dataset: "unknown" } } });
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-expenditure-final", payload: JSON.stringify([{ "年度": "109", "歲出決算數": "25151903.17" }, { "年度": "108", "歲出決算數": "" }]) } },
+  });
+  assert.equal(refusedDataset.status, 409);
+  assert.equal(imported.body.records[0].spent_amount, null);
+  assert.equal(imported.body.records[1].spent_amount, "25151903.17");
+  assert.equal(imported.body.stored, false);
   const rejected = await handleMcp({ authorization: "Bearer publisher-token", tokens, db: d1, body: { tool: "reject_article", input: { source_url: articles[1].source_url } } });
   const retracted = await handleMcp({ authorization: "Bearer admin-token", tokens, db: d1, body: { tool: "retract_article", input: { source_url: articles[0].source_url } } });
   const after = await worker.fetch(new Request("https://news.local/api/v1/news"), { DB: d1 });

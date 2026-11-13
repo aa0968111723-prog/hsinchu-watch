@@ -1,7 +1,8 @@
-import { ADAPTERS } from "./adapters.js";
+import { ADAPTERS, normalizeFinalAccounts } from "./adapters.js";
 import { authorize } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
+import { persistPublicRecords } from "./persist.js";
 import { parsePublisherTimestamp } from "./verify.js";
 
 export const TOOLS = [
@@ -17,8 +18,8 @@ export const TOOLS = [
 ];
 
 const UNCONNECTED = new Set([
-  "import_government_dataset", "sync_governance_records", "sync_transport_data",
-  "sync_environment_data", "sync_election_data", "sync_poll_metadata",
+  "sync_governance_records", "sync_transport_data", "sync_environment_data",
+  "sync_election_data", "sync_poll_metadata",
 ]);
 
 function sources() {
@@ -34,6 +35,33 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
   const input = body?.input || {};
   const gate = authorize(authorization, tool, tokens);
   if (!gate.ok) return { status: gate.status, body: { error: gate.error } };
+  if (tool === "import_government_dataset") {
+    if (input.dataset !== "hsc-expenditure-final") return { status: 409, body: { error: "adapter_not_connected" } };
+    let raw = input.payload;
+    if (!raw && fetcher) {
+      const response = await fetcher("https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/181/3a4b5634-9141-414a-a0f6-422e45ccab19.json");
+      if (!response.ok) return { status: 502, body: { error: `final_account_${response.status}` } };
+      raw = await response.text();
+    }
+    if (!raw) return { status: 409, body: { error: "fetcher_unavailable" } };
+    let rows;
+    try {
+      rows = normalizeFinalAccounts(raw);
+    } catch {
+      return { status: 400, body: { error: "invalid_dataset" } };
+    }
+    const records = rows.map((row) => ({
+      year: row.year,
+      spent_amount: row.spent_amount,
+      unit: null,
+      source_name: row.source_name,
+      dataset_url: row.dataset_url,
+      list_url: row.source_url,
+      note: "年度欄是民國年，這裡換成西元。金額維持原文字。單位未標示，不換算。這是歲出決算數，不是驗收或實支。",
+    }));
+    if (db) await persistPublicRecords(db, { records, now: new Date().toISOString() });
+    return { status: 200, body: { records, stored: Boolean(db) } };
+  }
   if (UNCONNECTED.has(tool)) return { status: 409, body: { error: "adapter_not_connected" } };
   if (tool === "retry_failed_job") return { status: 409, body: { error: "job_runner_not_connected" } };
   if (tool === "fetch_source_document" || tool === "verify_source_url") {
