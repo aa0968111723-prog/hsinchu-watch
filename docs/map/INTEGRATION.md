@@ -40,7 +40,7 @@
 
   | 參數 | 值 | 例子 |
   | --- | --- | --- |
-  | `s` | `overview` 或 `region:<地區代碼>` | `#s=region:taipei` |
+  | `s` | `overview`、`region:<地區代碼>` 或 `site:<案卷ID>`（現地沙盤） | `#s=region:taipei`；`#s=site:taipei-peiying-housing` |
   | `v` | `plan`（預設）或 `iso` | `#v=iso` |
   | `p` | 案卷 ID | `#p=taipei-peiying-housing` |
   | `t` | 議題代碼 | `#t=housing` |

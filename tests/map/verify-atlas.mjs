@@ -174,6 +174,11 @@ try {
     await page.locator(`#atlasDetail [data-site="${IDS.peiying}"]`).click();
     await until(() => page.evaluate(() => document.querySelector('#atlasCanvas svg')?.dataset.scene === 'region'), '按鈕切回地區圖');
 
+    // 現地離開後仍在台北地區篩選；先回全部地區，列表才有上下鄰居可測方向鍵。
+    await page.locator('#atlasRegion').selectOption('');
+    await until(() => page.evaluate(() => document.querySelector('#atlasCanvas svg')?.dataset.scene === 'overview'), '地區選全部後回總覽');
+    await page.locator(`[data-select="${IDS.peiying}"]`).first().click();
+    await until(() => pin(page, IDS.peiying).getAttribute('aria-pressed').then((value) => value === 'true'), '總覽下再選培英');
     await page.locator(`.atl-item[data-project="${IDS.peiying}"] .atl-item-main`).focus();
     await page.keyboard.press('ArrowUp');
     const moved = await page.evaluate(() => document.activeElement.closest('.atl-item')?.dataset.project);
