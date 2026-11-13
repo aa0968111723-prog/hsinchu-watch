@@ -9,9 +9,9 @@ try {
   const card = page.locator('article', { has: page.getByRole('heading', { name: '吳旭智官方肖像' }) })
   await card.waitFor()
   await card.getByRole('button', { name: '看來源與尺寸' }).click()
-  await page.getByText('portrait-wu-moi').waitFor()
+  await page.locator('#alDetail').getByText('portrait-wu-moi').waitFor()
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)
-  const count = await page.locator('#count').innerText()
+  const count = await page.locator('#alCount').innerText()
   if (overflow) throw new Error('asset-lab overflow')
   console.log(JSON.stringify({ artLab: 'passed', count, overflow }))
 } finally {

@@ -24,22 +24,24 @@
 
 ## 給第四線
 
-main 上已經有本線第一個切片（`fc5b4f1`，從 `c472a13` cherry-pick）。後續的 commit 也請用 cherry-pick；merge 分支會出現 add/add 衝突。
+後續 commit 請用 cherry-pick。merge 美術庫分支會出現 add/add 衝突。
 
 1. `public/asset-lab.html` 有 `.top nav.nav` 與 `main`，可以讓 `assemble-production.py` 當一般頁面處理。`tests/art-library/test_catalog.py` 會檢查外殼還在。
-2. main 現在對 `asset-lab.html` 有兩個特例：`assemble-production.py` 的 `edit_page` 一開始就 `return`，`prepare_release.py` 跳過它的樣式檢查。兩個都可以拿掉。拿掉後頁面會有全站頁首與公共事務導覽，「美術庫」會標成目前所在頁。留著也能用，頁面維持自己的簡單頁首。兩種都試過，見下表。
-3. 當成一般頁面時，建置會在頂端插入「候選人閱讀標準」那一行。美術庫用不到；要不要像 `governance`、`archive` 一樣略過，由第四線決定。
-4. `tools/integrate/verify-art-lab.mjs` 是照第一版頁面寫的，對新版會失敗。第 12 行改成 `page.locator('#alDetail').getByText('portrait-wu-moi')`，第 14 行的 `#count` 改成 `#alCount`。
+2. `799bf8b` 已拿掉兩個特例：`edit_page` 不再對 `asset-lab.html` 提早返回，`prepare_release.py` 也不再跳過它的樣式檢查。正式頁有全站頁首與公共事務導覽，「美術庫」會標成目前所在頁。
+3. 當成一般頁面時，建置會在頂端插入「候選人閱讀標準」那一行。美術庫用不到；要不要像 `governance`、`archive` 一樣略過，還沒改。
+4. `tools/integrate/verify-art-lab.mjs` 改看 `#alDetail` 裡的 `portrait-wu-moi`，計數改看 `#alCount`。
 5. `public/data/art-library.json` 會被 `finalize_manifest` 收進 manifest 的 `files`。
 6. `public/art-library/figures/*/index.html` 在子資料夾，建置不會改它們，也不受根頁面的檢查影響。
-7. 正式站對不存在的路徑回 200 與首頁內容。檢查檔案有沒有上線要看 `Content-Type`，不能只看狀態碼。`tests/art-library/check_live.py` 是這樣做的。
+7. 正式站對不存在的路徑回 200 與首頁內容。檢查檔案有沒有上線要看內容與 `Content-Type`，不能只看狀態碼。`tests/art-library/check_live.py` 印出這些事實，不自行判定發布成敗。
 
-在 main `ea7ffc0` 的匯出副本上套用本線檔案，2026-11-13 的結果：
+美術庫線在 main `ea7ffc0` 的匯出副本上比過兩種做法，2026-11-13：
 
 | 做法 | `npm run build` | `check_lab.py`（五種寬度） |
 | --- | --- | --- |
 | 保留兩個特例 | exit 0，15 頁，9,164 筆 | 通過 |
 | 拿掉兩個特例 | exit 0，15 頁，9,164 筆 | 通過（`--built`） |
+
+第四線採用第二種，並已發布。2026-11-13 對 https://hsinchu-watch.pages.dev 跑 `check_live.py`：release `hsinchu-d3eeeaa781cd685d`，索引 schema 2、22 筆，與當時 checkout 位元組相同，`generated_at` 為 `2026-11-13T08:51:39+08:00`。`/asset-lab.html` 有 `data-ui-depth=v3` 與 `#alCount`。`/art-library/figures/evidence-bench/index.html` 與首頁同為 7,824 bytes，是未知路徑回首頁。`evidence-desk/fragment.html` 與 `boot.js` 是實際檔案。
 
 整合後請跑：
 
@@ -47,9 +49,8 @@ main 上已經有本線第一個切片（`fc5b4f1`，從 `c472a13` cherry-pick�
 python -m unittest discover -s tests/art-library -p "test_*.py"
 node --test tests/art-library/figures.test.mjs
 npm run build
-python tests/art-library/check_lab.py --root dist            # 保留特例時
-python tests/art-library/check_lab.py --root dist --built    # 拿掉特例時
-python tests/art-library/check_live.py                       # 發布後，看正式站實際送出什麼
+python tests/art-library/check_lab.py --root dist --built
+python tests/art-library/check_live.py
 ```
 
 ## 本線發現、不屬於本線的事

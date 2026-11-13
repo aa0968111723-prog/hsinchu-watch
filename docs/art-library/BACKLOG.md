@@ -49,4 +49,4 @@
 
 - [x] `docs/art-library/integration.md`
 - [x] 推送 `cursor/20261113-art`，核對遠端 SHA
-- [ ] 第四線改用 `25bf1d4` 之後的版本並發布（正式站目前還是第一個切片）
+- [x] 第四線已發布 `25bf1d4` 之後的版本。正式站 release `hsinchu-d3eeeaa781cd685d`，美術庫 22 筆，與本索引位元組相同
