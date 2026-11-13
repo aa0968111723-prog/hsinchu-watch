@@ -23,12 +23,12 @@ node src/atlas/build/build-locations.mjs   → exit 0
 
 ```text
 node --test "tests/map/*.test.mjs"
-# tests 36
-# pass 36
+# tests 39
+# pass 39
 # fail 0
 ```
 
-涵蓋投影／視角數學、網址狀態、篩選與時間軸模型、美術庫選取規則、GeoJSON schema、座標落在行政區、manifest 雜湊與授權欄位。
+涵蓋投影／視角數學、網址狀態（含 `site:` 場景）、篩選與時間軸模型、美術庫選取規則、示意建物高度上限、現地沙盤平面／立體共座標、GeoJSON schema、座標落在行政區、manifest 雜湊與授權欄位。
 
 ## 3. 瀏覽器驗收
 
@@ -40,6 +40,7 @@ node --test "tests/map/*.test.mjs"
 - 平面與立體示意切換；立體有底座／尺規與「立體示意視角」文字
 - 滑鼠縮放／平移／重設；Ctrl＋滾輪；鍵盤方向鍵、`+`／`-`／`0`、Tab／Enter／Esc
 - 列表與圖釘同步、來源卡七階段與經費刻度、時間軸、篩選、收藏、分享網址、CSV 匯出
+- 現地沙盤：培英案進入／離開、OSM 地物、立體示意底座、Esc 先回地區圖再關來源卡
 - 手機寬度底部詳情面板；桌面側欄
 - `prefers-reduced-motion: reduce` 時動畫停用
 - WebGL 被關掉時仍可操作（本頁本來就不用 WebGL）
@@ -55,6 +56,7 @@ node --test "tests/map/*.test.mjs"
 | `atlas-430-iso.png` | 430 立體示意 |
 | `atlas-768-iso.png` | 768 立體示意 |
 | `atlas-1280-plan.png`／`atlas-1280-iso.png`／`atlas-1280-detail.png` | 1280 平面／立體／來源卡 |
+| `atlas-1280-site-iso.png` | 1280 培英現地沙盤立體示意 |
 | `atlas-no-webgl.png` | 關掉 WebGL 仍可用 |
 | `atlas-no-js.png` | 無 JavaScript 靜態替代 |
 | `atlas-fail-governance.png`／`atlas-fail-locations.png`／`atlas-fail-boundaries.png` | 載入失敗態 |
@@ -69,13 +71,14 @@ node --test "tests/map/*.test.mjs"
 | `npm run test:release` | 16 tests OK；archiveModel allRows 18422 |
 | `npm run build` | Complete site assembled in dist/；verified_files 23 |
 | `npm run test:browser` | governance／candidateReview／archive 等 passed |
-| `node --test "tests/map/*.test.mjs"` | 36 pass／0 fail |
-| `node tests/map/run-bundle-check.mjs artifacts/screens` | `atlas: passed`；正式站 CSP；widths 5；loadFailures 7；noWebgl／noJavaScript／reducedMotion true |
+| `node --test "tests/map/*.test.mjs"` | 39 pass／0 fail（2026-11-13 現地沙盤追加後） |
+| `node tests/map/verify-atlas.mjs http://127.0.0.1:5183 artifacts/screens` | `atlas: passed`（job `c95e6e76…` exit 0；含現地沙盤） |
+| `node tests/map/run-bundle-check.mjs artifacts/screens` | 首批交付時 `atlas: passed`；正式站 CSP；widths 5；loadFailures 7 |
 
-注意：`atlas.html` 尚未列入正式組裝輸入（見 [INTEGRATION.md](INTEGRATION.md)），所以 `npm run build` 的 `dist/` 目前不會產出 atlas 頁；本線用 Vite atlas 設定與 `run-bundle-check.mjs` 驗本線頁面。第四線整合後才會進完整 `dist/`。
+注意：正式站已有 `/atlas.html`（第四線先前整合）。本輪「現地沙盤疊層」仍在 `cursor/20261113-map`，需第四線再合一次才會進正式站。本線用 Vite atlas 設定驗本線頁面。
 
-## 5. 尚未納入首批驗收（如實列出）
+## 5. 尚未納入本輪交付（如實列出）
 
-- 每案現地沙盤圖層（`public/data/geo/sites/` 已建好並通過資料測試，頁面尚未疊上）
 - 美術庫實景在整合後的實際顯示（本線分支沒有 `art-library.json`；選取規則有單元測試）
-- 正式站部署與 GitHub Actions：屬第四線；本線只推 `cursor/20261113-map`
+- 正式站再發布與 GitHub Actions：屬第四線；本線只推 `cursor/20261113-map`
+- 更多案卷的現地沙盤：需資料線新增已查核案卷後再補 OSM 框

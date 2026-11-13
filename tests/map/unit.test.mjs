@@ -8,7 +8,7 @@ import { CAMERA, IDENTITY, applyView, centerOn, clampView, fitCamera, makeFrame,
 import { clipLineToRect, clipRingToRect, distanceToRingM, haversine, lineLength, localProjector, pointAlong, pointInGeometry, polygonAreaM2 } from '../../src/atlas/geo.js';
 import { EMPTY_FILTERS, LAYERS, artForProject, artForRegion, artImage, budgetScaleMax, buildModel, csvCell, dateSpan, exportRows, filterProjects, formatDate, formatTwd, latestDocumentedStage, stageCounts, timelineItems, timelineRange, toCsv } from '../../src/atlas/model.js';
 import { pinArt } from '../../src/atlas/pins.js';
-import { buildRegionScene } from '../../src/atlas/scene.js';
+import { buildRegionScene, buildSiteScene, illustrativeBuildingHeight } from '../../src/atlas/scene.js';
 import { WATCH_KEY, createFavorites, parseState, serializeState } from '../../src/atlas/state.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -333,4 +333,43 @@ test('圖釘：沒有階段紀錄時釘頭是中性點，不借用其他階段�
   assert.ok(pinArt({ stage: null }).includes('>·</text>'));
   assert.ok(pinArt({ stage: 'completion', precision: 'site' }).includes('>完</text>'));
   assert.ok(pinArt({ stage: 'construction', precision: 'street' }).includes('data-precision="street"'));
+});
+
+test('示意建物高度：樓層與缺值有上限，不當成政績分數', () => {
+  assert.equal(illustrativeBuildingHeight({}), 2.2);
+  assert.ok(illustrativeBuildingHeight({ levels: 14 }) > illustrativeBuildingHeight({ levels: 3 }));
+  assert.equal(illustrativeBuildingHeight({ levels: 99 }), 14);
+  assert.ok(illustrativeBuildingHeight({ height_m: 40 }) <= 14);
+});
+
+test('現地沙盤：培英案有施工範圍與圖釘，平面與立體共座標', () => {
+  const layers = realLayers();
+  const model = buildModel(layers);
+  const project = model.projects.find((item) => item.id === 'taipei-peiying-housing');
+  assert.equal(project.hasSite, true);
+  const site = readJson('public/data/geo/sites/taipei-peiying-housing.geojson');
+  const stage = { width: 900, height: 620 };
+  const plan = buildSiteScene({ site, project, mode: 'plan', stage });
+  const iso = buildSiteScene({ site, project, mode: 'iso', stage });
+  assert.equal(plan.kind, 'site');
+  assert.equal(plan.projectId, 'taipei-peiying-housing');
+  assert.equal(plan.pins.length, 1);
+  assert.ok(plan.markup.includes('atl-site-construction') || plan.markup.includes('atl-site-building'));
+  assert.ok(iso.markup.includes('atl-furniture'));
+  assert.ok(!plan.markup.includes('atl-furniture'));
+  assert.ok(!/NaN|undefined|Infinity/.test(plan.markup + iso.markup));
+  const back = plan.toLonLat(plan.pins[0].at);
+  close(back[0], project.location.anchor[0], 3e-4, '現地平面經度');
+  close(back[1], project.location.anchor[1], 3e-4, '現地平面緯度');
+  assert.match(iso.siteMeta.buildingHeightNote, /不是預算/);
+  assert.ok(iso.siteMeta.license?.id === 'odbl-1.0');
+});
+
+test('網址狀態：site 場景可序列化與還原', () => {
+  const hash = serializeState({ scene: 'site:taipei-peiying-housing', view: 'iso', project: 'taipei-peiying-housing', filters: { ...EMPTY_FILTERS, region: 'taipei' }, center: [121.54844, 25.07997], zoom: 2.5 });
+  assert.match(hash, /s=site:taipei-peiying-housing/);
+  const state = parseState(hash);
+  assert.equal(state.scene, 'site:taipei-peiying-housing');
+  assert.equal(state.view, 'iso');
+  assert.equal(state.project, 'taipei-peiying-housing');
 });

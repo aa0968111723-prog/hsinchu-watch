@@ -105,6 +105,8 @@ export function buildModel(layers) {
       locationState,
       precision: location?.location_precision ?? null,
       location,
+      hasSite: Boolean(location?.site_context),
+      sitePath: location?.site_context ? `/data/geo/${location.site_context}` : null,
       stages: overlay?.stages ?? null,
       latestStage: overlay ? latestDocumentedStage(overlay.stages) : null,
       stageNote: overlay?.stage_note ?? null,

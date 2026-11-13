@@ -1,8 +1,8 @@
 // 政策與工程地圖：把資料模型、場景、互動層與介面片段接起來。
 import '../lib/mobile-nav.js';
 import { CAMERA } from './camera.js';
-import { EMPTY_FILTERS, PRECISION_LABEL, artForProject, artForRegion, budgetScaleMax, buildModel, exportRows, filterProjects, formatDate, loadLayers, stageCounts, toCsv } from './model.js';
-import { buildRegionScene, formatDistance } from './scene.js';
+import { EMPTY_FILTERS, PRECISION_LABEL, artForProject, artForRegion, budgetScaleMax, buildModel, exportRows, fetchJson, filterProjects, formatDate, loadLayers, stageCounts, toCsv } from './model.js';
+import { buildRegionScene, buildSiteScene, formatDistance } from './scene.js';
 import { WATCH_KEY, createFavorites, parseState, serializeState } from './state.js';
 import { coordinateSourcesHtml, detailEmptyHtml, detailHtml, esc, gapsHtml, listHtml, pendingHtml, regionArtHtml, stageBar, timelineHtml } from './ui.js';
 import { createMapView } from './view.js';
@@ -21,6 +21,8 @@ const app = {
   state: parseState(location.hash),
   map: null,
   scenes: new Map(),
+  sites: new Map(),
+  siteErrors: new Map(),
   scaleMax: null,
   returnFocus: null,
   hover: null,
@@ -57,9 +59,17 @@ function normalizeState() {
   if (state.filters.region && !model.regions.some((region) => region.id === state.filters.region)) state.filters.region = '';
   if (state.filters.topic && !model.topics.some((topic) => topic.id === state.filters.topic)) state.filters.topic = '';
   if (state.scene.startsWith('region:') && !model.regions.some((region) => region.id === state.scene.slice(7))) state.scene = 'overview';
-  if (state.scene.startsWith('site:')) state.scene = 'overview';
-  // 看某個地區就是只看那個地區的案卷：場景與地區篩選永遠一致。
+  if (state.scene.startsWith('site:')) {
+    const siteProject = projectById(state.scene.slice(5));
+    if (!siteProject?.hasSite) state.scene = siteProject ? `region:${siteProject.regionId}` : 'overview';
+    else {
+      state.project = siteProject.id;
+      state.filters.region = siteProject.regionId;
+    }
+  }
+  // 看某個地區就是只看那個地區的案卷：場景與地區篩選永遠一致。現地沙盤另綁單一案卷。
   if (state.scene.startsWith('region:')) state.filters.region = state.scene.slice(7);
+  else if (state.scene.startsWith('site:')) { /* 上面已對齊 */ }
   else if (state.filters.region) state.scene = `region:${state.filters.region}`;
 }
 
@@ -158,7 +168,14 @@ function renderDetail() {
     return;
   }
   delete detail.dataset.empty;
-  body.innerHTML = detailHtml(app.model, project, { favorites: app.favorites, scaleMax: app.scaleMax, art: artForProject(app.layers.art?.data, project.id), hasSite: false, sceneKind: app.map?.scene?.kind });
+  body.innerHTML = detailHtml(app.model, project, {
+    favorites: app.favorites,
+    scaleMax: app.scaleMax,
+    art: artForProject(app.layers.art?.data, project.id),
+    hasSite: project.hasSite,
+    sceneKind: app.map?.scene?.kind,
+    siteError: app.siteErrors.get(project.id) ?? null,
+  });
   body.scrollTop = 0;
 }
 
@@ -168,18 +185,53 @@ function renderTimeline() {
 
 // ---- 場景 ----
 
+async function ensureSite(projectId) {
+  if (app.sites.has(projectId)) return app.sites.get(projectId);
+  const project = projectById(projectId);
+  if (!project?.sitePath) throw new Error('這個案卷沒有現地圖資');
+  try {
+    const data = await fetchJson(project.sitePath);
+    app.sites.set(projectId, data);
+    app.siteErrors.delete(projectId);
+    return data;
+  } catch (error) {
+    app.siteErrors.set(projectId, error.message || '讀取失敗');
+    throw error;
+  }
+}
+
 function sceneFor(id, mode) {
   const stage = app.map.stage();
   const key = `${id}|${mode}|${stage.width}x${stage.height}`;
   if (!app.scenes.has(key)) {
-    if (app.scenes.size > 5) app.scenes.delete(app.scenes.keys().next().value);
-    app.scenes.set(key, buildRegionScene({ data: geoData(), sceneId: id, mode, stage, projects: app.model.projects }));
+    if (app.scenes.size > 8) app.scenes.delete(app.scenes.keys().next().value);
+    if (id.startsWith('site:')) {
+      const project = projectById(id.slice(5));
+      const site = app.sites.get(project.id);
+      if (!site) throw new Error('現地圖資尚未載入');
+      app.scenes.set(key, buildSiteScene({ site, project, mode, stage }));
+    } else {
+      app.scenes.set(key, buildRegionScene({ data: geoData(), sceneId: id, mode, stage, projects: app.model.projects }));
+    }
   }
   return app.scenes.get(key);
 }
 
-function renderScene({ keep = false } = {}) {
+async function renderScene({ keep = false } = {}) {
   const before = keep ? app.map.snapshot() : null;
+  const wanted = app.state.scene;
+  if (wanted.startsWith('site:')) {
+    try {
+      await ensureSite(wanted.slice(5));
+    } catch (error) {
+      console.error('現地圖資載入失敗', error);
+      canvas.dataset.broken = '';
+      $('atlasViewNote').textContent = `現地沙盤讀不到（${error.message}）。來源卡與地區圖仍可用。`;
+      renderDetail();
+      return;
+    }
+  }
+  if (app.state.scene !== wanted) return;
   let scene;
   try {
     scene = sceneFor(app.state.scene, app.state.view);
@@ -192,10 +244,11 @@ function renderScene({ keep = false } = {}) {
   delete canvas.dataset.broken;
   app.map.setScene(scene);
   // 界線全都沒載入時，地圖只剩圖釘；明講底圖缺漏，不讓空白看起來像完整地圖。
-  if (scene.missing.regions && scene.missing.districts && scene.missing.land) canvas.dataset.nobase = ''; else delete canvas.dataset.nobase;
+  if (scene.kind !== 'site' && scene.missing.regions && scene.missing.districts && scene.missing.land) canvas.dataset.nobase = ''; else delete canvas.dataset.nobase;
   renderPins();
   if (before && !before.atHome) app.map.restore(before.center, before.k);
   renderChrome();
+  renderDetail();
 }
 
 function renderPins() {
@@ -222,16 +275,29 @@ function renderPins() {
 function renderChrome() {
   const scene = app.map.scene;
   const { state } = app;
-  const focusId = state.scene.startsWith('region:') ? state.scene.slice(7) : null;
-  $('atlasCrumbs').innerHTML = focusId
-    ? `<button type="button" data-scene="overview">四地區總覽</button><span aria-hidden="true">›</span><span aria-current="true">${esc(regionName(focusId))}</span>`
-    : '<span aria-current="true">四地區總覽</span>';
+  const siteId = state.scene.startsWith('site:') ? state.scene.slice(5) : null;
+  const siteProject = siteId ? projectById(siteId) : null;
+  const focusId = state.scene.startsWith('region:') ? state.scene.slice(7) : siteProject?.regionId ?? null;
+  if (siteProject) {
+    $('atlasCrumbs').innerHTML = `<button type="button" data-scene="overview">四地區總覽</button><span aria-hidden="true">›</span><button type="button" data-scene="region:${esc(siteProject.regionId)}">${esc(siteProject.regionName)}</button><span aria-hidden="true">›</span><span aria-current="true">${esc(siteProject.title)}・現地沙盤</span>`;
+  } else if (focusId) {
+    $('atlasCrumbs').innerHTML = `<button type="button" data-scene="overview">四地區總覽</button><span aria-hidden="true">›</span><span aria-current="true">${esc(regionName(focusId))}</span>`;
+  } else {
+    $('atlasCrumbs').innerHTML = '<span aria-current="true">四地區總覽</span>';
+  }
   for (const mode of ['plan', 'iso']) $(`atlasView-${mode}`).setAttribute('aria-pressed', String(state.view === mode));
-  canvas.setAttribute('aria-label', `${focusId ? regionName(focusId) : '台北、新北、新竹縣市'}政策與工程地圖，${CAMERA[state.view].label}。圖釘可用 Tab 鍵逐一選取。`);
-  $('atlasViewNote').textContent = state.view === 'iso'
-    ? `立體示意視角：地面位置與平面圖相同，厚度只為立體感，不代表高程或任何數值。桌面尺規小格 ${formatDistance(scene.ruler.stepM)}、大格 ${formatDistance(scene.ruler.majorM)}。`
-    : '平面視角：正北朝上，比例尺隨縮放更新。';
-  const art = focusId ? artForRegion(app.layers.art?.data, focusId) : [];
+  canvas.setAttribute('aria-label', `${siteProject ? `${siteProject.title}現地沙盤` : focusId ? regionName(focusId) : '台北、新北、新竹縣市'}政策與工程地圖，${CAMERA[state.view].label}。圖釘可用 Tab 鍵逐一選取。`);
+  if (scene.kind === 'site' && scene.siteMeta) {
+    const license = scene.siteMeta.license?.name ? `授權：${scene.siteMeta.license.name}。` : '';
+    $('atlasViewNote').textContent = state.view === 'iso'
+      ? `現地沙盤・立體示意：${scene.siteMeta.note} ${scene.siteMeta.buildingHeightNote} ${license}尺規小格 ${formatDistance(scene.ruler.stepM)}。`
+      : `現地沙盤・平面：${scene.siteMeta.note} ${license}比例尺隨縮放更新。`;
+  } else {
+    $('atlasViewNote').textContent = state.view === 'iso'
+      ? `立體示意視角：地面位置與平面圖相同，厚度只為立體感，不代表高程或任何數值。桌面尺規小格 ${formatDistance(scene.ruler.stepM)}、大格 ${formatDistance(scene.ruler.majorM)}。`
+      : '平面視角：正北朝上，比例尺隨縮放更新。';
+  }
+  const art = focusId && !siteProject ? artForRegion(app.layers.art?.data, focusId) : [];
   const artBox = $('atlasRegionArt');
   artBox.hidden = !art.length;
   artBox.innerHTML = regionArtHtml(art);
@@ -268,7 +334,13 @@ const syncUrlSoon = debounce(syncUrl, 250);
 function setScene(sceneId, { keep = false } = {}) {
   if (app.state.scene === sceneId) return;
   app.state.scene = sceneId;
-  app.state.filters.region = sceneId.startsWith('region:') ? sceneId.slice(7) : '';
+  if (sceneId.startsWith('site:')) {
+    const project = projectById(sceneId.slice(5));
+    app.state.filters.region = project?.regionId ?? '';
+    if (project) app.state.project = project.id;
+  } else {
+    app.state.filters.region = sceneId.startsWith('region:') ? sceneId.slice(7) : '';
+  }
   syncFilterInputs();
   renderFiltersState();
   renderList();
@@ -277,12 +349,26 @@ function setScene(sceneId, { keep = false } = {}) {
   syncUrl();
 }
 
+function toggleSite(projectId) {
+  const project = projectById(projectId);
+  if (!project?.hasSite) return;
+  if (app.state.scene === `site:${projectId}`) setScene(`region:${project.regionId}`);
+  else setScene(`site:${projectId}`);
+}
+
 function selectProject(id, { fly = true, focusDetail = true, from = null } = {}) {
   const project = projectById(id);
   if (!project) return;
   app.returnFocus = from ?? document.activeElement;
   app.state.project = id;
-  if (project.locationState === 'located' && app.state.scene.startsWith('region:') && app.state.scene !== `region:${project.regionId}`) {
+  if (app.state.scene.startsWith('site:') && app.state.scene !== `site:${project.id}`) {
+    // 換案卷時離開舊的現地沙盤，回到該案所在地區（有現地圖資可再按一次進入）。
+    app.state.scene = `region:${project.regionId}`;
+    app.state.filters.region = project.regionId;
+    syncFilterInputs();
+    renderFiltersState();
+    renderScene();
+  } else if (project.locationState === 'located' && app.state.scene.startsWith('region:') && app.state.scene !== `region:${project.regionId}`) {
     app.state.scene = `region:${project.regionId}`;
     app.state.filters.region = project.regionId;
     syncFilterInputs();
@@ -403,19 +489,31 @@ const mapHandlers = {
   onBackground: () => { app.map.setActiveDistrict(null); },
   onHover: (info) => { $('atlasHover').textContent = info ? `${info.regionId ? regionName(info.regionId) : ''}${info.name}${info.regionId ? '' : '（周邊縣市，不在案卷範圍）'}` : ''; },
   onView: (snapshot) => { updateHud(snapshot); syncUrlSoon(); },
-  onEscape: () => { if (app.state.project) clearSelection(); else if (app.state.scene !== 'overview') setScene('overview'); },
+  onEscape: () => leaveSiteOrSelection(),
 };
 
+function leaveSiteOrSelection() {
+  if (app.state.scene.startsWith('site:')) {
+    const project = projectById(app.state.scene.slice(5));
+    setScene(project ? `region:${project.regionId}` : 'overview');
+    return true;
+  }
+  if (app.state.project) { clearSelection(); return true; }
+  if (app.state.scene !== 'overview') { setScene('overview'); return true; }
+  return false;
+}
+
 root.addEventListener('click', (event) => {
-  const target = event.target.closest('[data-select],[data-favorite],[data-share],[data-locate],[data-scene],[data-stage-filter],[data-retry],[data-close-detail]');
+  const target = event.target.closest('[data-select],[data-favorite],[data-share],[data-locate],[data-site],[data-scene],[data-stage-filter],[data-retry],[data-close-detail]');
   if (!target) return;
-  if (target.dataset.retry !== undefined) { app.scenes.clear(); boot().catch(bootFailed); return; }
+  if (target.dataset.retry !== undefined) { app.scenes.clear(); app.sites.clear(); app.siteErrors.clear(); boot().catch(bootFailed); return; }
   if (!app.model?.ok) return;
   if (target.dataset.select) selectProject(target.dataset.select, { from: target });
   else if (target.dataset.favorite) toggleFavorite(target.dataset.favorite);
   else if (target.dataset.share !== undefined) share(target.dataset.share || null);
+  else if (target.dataset.site) toggleSite(target.dataset.site);
   else if (target.dataset.locate) {
-    const pin = app.map.scene.pins.find((item) => item.projectId === target.dataset.locate);
+    const pin = app.map.scene?.pins.find((item) => item.projectId === target.dataset.locate);
     if (!pin) return;
     // 手機：面板縮成一列，讓出地圖。
     if (!desktop()) openSheet('peek');
@@ -476,7 +574,10 @@ $('atlasSheetHandle').addEventListener('click', () => openSheet(detail.dataset.s
 
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape' || !app.model?.ok || event.target === canvas) return;
-  if (app.state.project && (detail.contains(event.target) || event.target.closest('.atl-pin'))) { event.preventDefault(); clearSelection(); }
+  if (detail.contains(event.target) || event.target.closest('.atl-pin') || app.state.scene.startsWith('site:')) {
+    event.preventDefault();
+    leaveSiteOrSelection();
+  }
 });
 
 window.addEventListener('hashchange', () => {

@@ -201,7 +201,7 @@ function artHtml(assets) {
   }).join('')}</ul><p class="atl-note">照片是拍攝當時的外觀，只作地方脈絡，不是工程進度或成果的證明。</p></section>`;
 }
 
-export function detailHtml(model, project, { favorites, scaleMax, art = [], hasSite = false, sceneKind = 'overview' }) {
+export function detailHtml(model, project, { favorites, scaleMax, art = [], hasSite = false, sceneKind = 'overview', siteError = null } = {}) {
   const fav = favorites.has(project.id);
   const located = project.locationState === 'located';
   return `<header class="atl-detail-head">
@@ -215,6 +215,8 @@ export function detailHtml(model, project, { favorites, scaleMax, art = [], hasS
         ${hasSite ? `<button type="button" data-site="${esc(project.id)}" aria-pressed="${sceneKind === 'site'}">${sceneKind === 'site' ? '回到地區圖' : '看現地沙盤'}</button>` : ''}
       </div>
       <p class="atl-share-out" data-share-out role="status" aria-live="polite"></p>
+      ${siteError ? `<p class="atl-note" role="alert">現地沙盤讀不到：${esc(siteError)}。案卷來源卡與地區地圖仍可用。</p>` : ''}
+      ${hasSite && !siteError ? '<p class="atl-note">現地沙盤的道路、建物與公園來自 OpenStreetMap，只作周邊脈絡；圖釘座標仍依案卷查核來源。</p>' : ''}
     </header>
     <p class="atl-summary">${esc(project.summary)}</p>
     <section class="atl-block"><h3>位置 ${precisionBadge(project)}</h3>${locationHtml(model, project)}</section>
@@ -295,6 +297,7 @@ function gapEffect(layer) {
     land: '陸地底層無法顯示',
     governance: '案卷內容無法顯示',
     registry: '來源目錄無法顯示',
+    art: '美術庫實景照片無法顯示（不影響案卷與地圖）',
   }[layer] ?? '相關內容無法顯示';
 }
 
