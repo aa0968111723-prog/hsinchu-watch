@@ -107,6 +107,12 @@ export function selectArticles(candidates, hidden = new Set()) {
   return selected;
 }
 
+export function chooseBackups(names, keep = 24) {
+  const sorted = [...names].filter((name) => name.startsWith("latest-") && name.endsWith(".json")).sort();
+  const extra = Math.max(0, sorted.length - keep);
+  return { remove: sorted.slice(0, extra), keep: sorted.slice(extra) };
+}
+
 export function formatDuration(ms) {
   if (!Number.isFinite(ms) || ms < 0) return "";
   return `本輪抓取 ${Math.round(ms / 1000)} 秒。`;

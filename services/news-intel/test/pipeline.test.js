@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { authorize } from "../src/auth.js";
 import { allowedUrl } from "../src/allowlist.js";
-import { articleChanges, decideGemini, formatDuration, linkEvents, placeLabel, regionFor, regionGroup, selectArticles } from "../src/pipeline.js";
+import { articleChanges, chooseBackups, decideGemini, formatDuration, linkEvents, placeLabel, regionFor, regionGroup, selectArticles } from "../src/pipeline.js";
 import { handleMcp } from "../src/mcp.js";
 import { mergeRun, runHour } from "../src/run.js";
 import { publicationFields } from "../src/verify.js";
@@ -68,6 +68,14 @@ test("the http mcp entry replays the same write", async () => {
   assert.equal(replay.status, 202);
   assert.equal(replayBody.replayed, true);
   assert.equal(replayBody.accepted, 1);
+});
+
+test("old news backups are removed after the newest twenty-four", () => {
+  const names = ["latest-b.json", "latest-a.json", "latest-c.json", "notes.txt"];
+  const chosen = chooseBackups(names, 2);
+  assert.deepEqual(chosen.keep, ["latest-b.json", "latest-c.json"]);
+  assert.deepEqual(chosen.remove, ["latest-a.json"]);
+  assert.equal(chooseBackups(Array.from({ length: 25 }, (_, index) => `latest-${String(index).padStart(2, "0")}.json`)).keep.length, 24);
 });
 
 test("round duration is a whole number of seconds", () => {
