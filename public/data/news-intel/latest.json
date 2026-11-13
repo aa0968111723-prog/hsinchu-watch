@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T19:12:34.108Z",
+  "last_success_at": "2026-11-13T19:16:53.640Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -510,6 +510,13 @@
     "count": 43,
     "download_url": "/data/news-intel/chargers.json",
     "note": "只留設置單位、地址、郵遞區號和備註。設置單位是店名或公司名。檔案沒有日期欄，不拿抓取時間充當。"
+  },
+  "gas_stations": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=347",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/347/1bfd655b-da64-4d5c-9530-3b085d4ea427.json",
+    "count": 78,
+    "download_url": "/data/news-intel/gas-stations.json",
+    "note": "只留站名、營業主體、營業日期原文、地址、供油廠商和備註。不含負責人和電話。營業日期不換成西元年。"
   },
   "use_permits": {
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=261",
@@ -1055,6 +1062,6 @@
     "added": [],
     "removed": []
   },
-  "duration_ms": 18682,
+  "duration_ms": 44985,
   "model_review": []
 }

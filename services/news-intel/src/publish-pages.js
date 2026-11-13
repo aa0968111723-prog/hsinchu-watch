@@ -73,6 +73,8 @@ const heritageFile = fileURLToPath(new URL("../../../public/data/news-intel/heri
 if (existsSync(heritageFile)) copyFileSync(heritageFile, `${mirror}\\data\\news-intel\\heritage-sites.json`);
 const chargerFile = fileURLToPath(new URL("../../../public/data/news-intel/chargers.json", import.meta.url));
 if (existsSync(chargerFile)) copyFileSync(chargerFile, `${mirror}\\data\\news-intel\\chargers.json`);
+const gasFile = fileURLToPath(new URL("../../../public/data/news-intel/gas-stations.json", import.meta.url));
+if (existsSync(gasFile)) copyFileSync(gasFile, `${mirror}\\data\\news-intel\\gas-stations.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
 const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit", timeout: PUBLISH_TIMEOUT_MS });
 const status = deployed.status ?? 1;

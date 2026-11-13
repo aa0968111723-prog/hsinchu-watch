@@ -389,6 +389,29 @@ export async function persistChargers(db, { chargers, now, actor = "scheduler" }
   return { upserted };
 }
 
+export async function persistGasStations(db, { stations, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of stations?.stations || []) {
+    const name = String(row?.name || "").trim();
+    if (!name) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    keys.push([code, name]);
+    const opened = row.opened_on || null;
+    const existing = await db.prepare("SELECT opened_on, address FROM gas_stations WHERE code = ? AND name = ?").bind(code, name).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO gas_stations (code, name, operator, opened_on, address, supplier, note, township, region_id, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, name, row.operator || null, opened, row.address || null, row.supplier || null, row.note || null, row.township || null, row.region_id || null, stations.dataset_url, stations.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.opened_on ?? null) !== opened || (existing.address ?? null) !== (row.address || null)) {
+      await db.prepare("UPDATE gas_stations SET operator = ?, opened_on = ?, address = ?, supplier = ?, note = ?, township = ?, region_id = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND name = ?").bind(row.operator || null, opened, row.address || null, row.supplier || null, row.note || null, row.township || null, row.region_id || null, stations.dataset_url, stations.source_url, now, code, name).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "gas_stations", stations?.dataset_url, ["code", "name"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_gas_stations', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

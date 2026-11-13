@@ -152,6 +152,8 @@ export const COUNTY_HERITAGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opend
 export const COUNTY_HERITAGE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=267";
 export const COUNTY_CHARGER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/248/2103dcb9-95bb-44f9-b997-921ace6407bc.json";
 export const COUNTY_CHARGER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=248";
+export const COUNTY_GAS_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/347/1bfd655b-da64-4d5c-9530-3b085d4ea427.json";
+export const COUNTY_GAS_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=347";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -718,6 +720,43 @@ export function splitChargers(chargers) {
     note: chargers.note || "只留設置單位、地址、郵遞區號和備註。設置單位是店名或公司名。檔案沒有日期欄，不拿抓取時間充當。",
   };
   const download = Array.isArray(chargers.chargers) ? { ...summary, chargers: chargers.chargers } : null;
+  return { summary, download };
+}
+
+export function normalizeCountyGasStations(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["站名"] || "").trim();
+    if (!name) return [];
+    const address = String(row["聯絡地址"] || "").trim();
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => address.includes(label)) || "";
+    const opened = String(row["營業日期"] ?? "").trim();
+    const note = String(row["備註"] || "").trim();
+    return [{
+      code: originalNumber(row["編號"]),
+      operator: String(row["營業主體"] || "").trim() || null,
+      name,
+      opened_on: opened || null,
+      address: address || null,
+      supplier: String(row["供油廠商"] || "").trim() || null,
+      note: note || null,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+    }];
+  });
+}
+
+export function splitGasStations(stations) {
+  if (!stations?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: stations.source_url,
+    dataset_url: stations.dataset_url,
+    count: stations.count,
+    download_url: "/data/news-intel/gas-stations.json",
+    note: stations.note || "只留站名、營業主體、營業日期原文、地址、供油廠商和備註。不含負責人和電話。營業日期不換成西元年。",
+  };
+  const download = Array.isArray(stations.stations) ? { ...summary, stations: stations.stations } : null;
   return { summary, download };
 }
 

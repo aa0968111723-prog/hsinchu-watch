@@ -694,6 +694,56 @@ test("ev chargers keep the shop name and map the address township", async () => 
   assert.equal(page.includes("店名或公司名"), true);
 });
 
+test("gas stations drop the owner and phone and keep the written open date", async () => {
+  const { normalizeCountyGasStations, splitGasStations } = await import("../src/adapters.js");
+  const rows = normalizeCountyGasStations(JSON.stringify([
+    { "編號": "1", "營業主體": "某公司", "負責人": "不應留下", "站名": "竹北站", "營業日期": "47.10.01", "聯絡電話": "03-0000000", "聯絡地址": "新竹縣竹北市光明一路1號", "供油廠商": "中油", "備註": "" },
+    { "編號": "2", "站名": " ", "營業日期": "57.04.20", "聯絡電話": "03-1111111", "負責人": "也不留下" },
+  ]));
+  assert.deepEqual(rows, [{
+    code: "1",
+    operator: "某公司",
+    name: "竹北站",
+    opened_on: "47.10.01",
+    address: "新竹縣竹北市光明一路1號",
+    supplier: "中油",
+    note: null,
+    township: "竹北市",
+    region_id: "zhubei",
+  }]);
+  assert.equal(JSON.stringify(rows).includes("不應留下"), false);
+  assert.equal(JSON.stringify(rows).includes("03-0000000"), false);
+  const parts = splitGasStations({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=347", dataset_url: "https://ws.hsinchu.gov.tw/gas.json", count: rows.length, stations: rows });
+  assert.equal(parts.summary.stations, undefined);
+  const kept = await runHour({
+    previous: { articles: [], gas_stations: { count: 6 } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.gas_stations.count, 6);
+  assert.equal(kept.gas_stations.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-gas-stations", payload: JSON.stringify([{ "編號": "9", "站名": "竹東站", "營業日期": "64.11.15", "聯絡地址": "新竹縣竹東鎮中正路", "聯絡電話": "03-2222222", "負責人": "某人" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-gas-stations", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.stations[0].opened_on, "64.11.15");
+  assert.equal(imported.body.stations[0].region_id, "zhudong");
+  assert.equal(JSON.stringify(imported.body).includes("03-2222222"), false);
+  assert.equal(JSON.stringify(imported.body).includes("某人"), false);
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不含負責人和電話"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1418,6 +1468,15 @@ test("published news file stays within the real cap", () => {
     const chargers = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/chargers.json", import.meta.url), "utf8"));
     assert.equal(chargers.chargers.length, data.chargers.count);
     assert.ok(chargers.chargers.every((row) => row.name && row.address && row.region_id && !Object.hasOwn(row, "phone")));
+  }
+  if (data.gas_stations) {
+    assert.ok(data.gas_stations.count > 50);
+    assert.equal(data.gas_stations.stations, undefined);
+    const stations = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/gas-stations.json", import.meta.url), "utf8"));
+    assert.equal(stations.stations.length, data.gas_stations.count);
+    assert.ok(stations.stations.every((row) => row.name && (row.opened_on === null || typeof row.opened_on === "string") && !Object.hasOwn(row, "phone") && !Object.hasOwn(row, "owner")));
+    assert.equal(JSON.stringify(stations.stations).includes("負責人"), false);
+    assert.equal(JSON.stringify(stations.stations).includes("聯絡電話"), false);
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);
