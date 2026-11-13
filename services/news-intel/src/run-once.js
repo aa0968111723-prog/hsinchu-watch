@@ -1,8 +1,8 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { ADAPTERS, splitCityCatalog } from "./adapters.js";
-import { articleChanges, chooseBackups } from "./pipeline.js";
+import { articleChanges } from "./pipeline.js";
+import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
 import { publishableResult, runHour, sourceFetch } from "./run.js";
 
@@ -87,12 +87,8 @@ try {
   console.log(JSON.stringify({ database: "failed", error: String(error.message || error).slice(0, 180) }));
 }
 writeFileSync(new URL("../state/last-run.json", import.meta.url), JSON.stringify(payload, null, 2));
-const publicPath = fileURLToPath(publicUrl);
-if (publishable.ok && existsSync(publicPath)) {
-  const backupDir = fileURLToPath(new URL("../state/backups/", import.meta.url));
-  mkdirSync(backupDir, { recursive: true });
-  copyFileSync(publicPath, join(backupDir, `latest-${new Date().toISOString().replace(/[:.]/g, "-")}.json`));
-  for (const name of chooseBackups(readdirSync(backupDir)).remove) unlinkSync(join(backupDir, name));
-}
+const backup = publishable.ok
+  ? backupPreviousNews(fileURLToPath(publicUrl), fileURLToPath(new URL("../state/backups/", import.meta.url)))
+  : { backed_up: false };
 if (publishable.ok) writeFileSync(publicUrl, JSON.stringify(payload, null, 2));
-console.log(JSON.stringify({ ok: publishable.ok, retained: publishable.retained, count: publishable.articles.length, failures: publishable.failures, gemini: publishable.gemini, duration_ms: payload.duration_ms }, null, 2));
+console.log(JSON.stringify({ ok: publishable.ok, retained: publishable.retained, count: publishable.articles.length, failures: publishable.failures, gemini: publishable.gemini, duration_ms: payload.duration_ms, backed_up: backup.backed_up }, null, 2));

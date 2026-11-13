@@ -70,6 +70,18 @@ test("the http mcp entry replays the same write", async () => {
   assert.equal(replayBody.accepted, 1);
 });
 
+test("a backup failure still lets the news file be replaced", async () => {
+  const { mkdtempSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const { backupPreviousNews } = await import("../src/backup.js");
+  const dir = mkdtempSync(join(tmpdir(), "hsinchu-news-"));
+  const failed = backupPreviousNews(dir, join(dir, "backups"));
+  assert.equal(failed.backed_up, false);
+  assert.equal(typeof failed.error, "string");
+  assert.equal(backupPreviousNews(join(dir, "missing.json"), join(dir, "backups")).backed_up, false);
+});
+
 test("old news backups are removed after the newest twenty-four", () => {
   const names = ["latest-b.json", "latest-a.json", "latest-c.json", "notes.txt"];
   const chosen = chooseBackups(names, 2);
