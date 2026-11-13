@@ -34,11 +34,13 @@ if (!sameSnapshot(live, local)) {
 }
 const wranglerConfig = join(homedir(), ".wrangler", "config", "default.toml");
 const authHeaders = cloudflareAuthHeaders(existsSync(wranglerConfig) ? readFileSync(wranglerConfig, "utf8") : "");
-if (!await cloudflareApiReachable(fetch, 8000, authHeaders)) {
-  console.log(JSON.stringify({ published: false, reason: "cloudflare_unavailable" }));
+const api = await cloudflareApiReachable(fetch, 8000, authHeaders);
+if (!api.ok) {
+  console.log(JSON.stringify({ published: false, reason: "cloudflare_unavailable", status: api.status }));
   writeFileSync(fileURLToPath(new URL("../state/publish-status.json", import.meta.url)), JSON.stringify({
     published: false,
     reason: "cloudflare_unavailable",
+    status: api.status,
     at: new Date().toISOString(),
   }, null, 2));
   process.exit(1);

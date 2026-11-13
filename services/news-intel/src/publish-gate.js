@@ -15,9 +15,9 @@ export function cloudflareAuthHeaders(configText = "", now = Date.now()) {
 export async function cloudflareApiReachable(fetchImpl = fetch, timeoutMs = 8000, headers = {}) {
   try {
     const response = await fetchImpl("https://api.cloudflare.com/client/v4/accounts/380f907638bc2293fa09da0666ac15fd/pages/projects/hsinchu-watch", { signal: AbortSignal.timeout(timeoutMs), headers });
-    return response.status === 200;
+    return { ok: response.status === 200, status: response.status };
   } catch {
-    return false;
+    return { ok: false, status: 0 };
   }
 }
 

@@ -496,13 +496,13 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.match(deployCommand("C:\\mirror", "C:\\wrangler.js"), /node "C:\\wrangler.js" pages deploy .*--commit-message "Publish the hourly Hsinchu news index"/);
   assert.equal(PUBLISH_TIMEOUT_MS < 60 * 60 * 1000, true);
   const { cloudflareApiReachable } = await import("../src/publish-gate.js");
-  assert.equal(await cloudflareApiReachable(async () => { throw new Error("timeout"); }), false);
+  assert.equal((await cloudflareApiReachable(async () => { throw new Error("timeout"); })).ok, false);
   let probed = "";
-  assert.equal(await cloudflareApiReachable(async (url) => { probed = url; return { status: 200 }; }), true);
+  assert.equal((await cloudflareApiReachable(async (url) => { probed = url; return { status: 200 }; })).ok, true);
   assert.equal(probed.includes("/pages/projects/hsinchu-watch"), true);
-  assert.equal(await cloudflareApiReachable(async () => ({ status: 400 })), false);
-  assert.equal(await cloudflareApiReachable(async () => ({ status: 403 })), false);
-  assert.equal(await cloudflareApiReachable(async () => ({ status: 503 })), false);
+  assert.equal((await cloudflareApiReachable(async () => ({ status: 400 }))).status, 400);
+  assert.equal((await cloudflareApiReachable(async () => ({ status: 403 }))).ok, false);
+  assert.equal((await cloudflareApiReachable(async () => ({ status: 503 }))).ok, false);
   const { cloudflareAuthHeaders } = await import("../src/publish-gate.js");
   assert.deepEqual(cloudflareAuthHeaders(""), {});
   assert.deepEqual(cloudflareAuthHeaders('oauth_token = "test-token"\nexpiration_time = "2020-01-01T00:00:00.000Z"'), {});
