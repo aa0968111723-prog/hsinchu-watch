@@ -13,7 +13,7 @@
 ```html
 <link rel="stylesheet" href="/art-library/figures/figures.css">
 <div data-figure="evidence-desk" data-alt="…"></div>
-<!-- 或 budget-drawers、stage-yard、council-desk；預算／階段可加 data-project="案卷 id" -->
+<!-- 或 budget-drawers、stage-yard、council-desk、empty-bay；預算／階段可加 data-project="案卷 id" -->
 <script type="module" src="/art-library/figures/boot.js"></script>
 ```
 
@@ -22,6 +22,8 @@
 `stage-yard` 只點亮有來源事件的階段。完工不是驗收，驗收不是啟用；「準備驗收」與「目標完工」不會點亮該階段，百分比進度也不會。
 
 `council-desk` 的提案、審查、決議是三本分開的夾。敲槌是示意，不會寫出票數，也不會把提案推成決議。
+
+`empty-bay` 的空格表示沒有紀錄。空格不是 0，也不要放假銘牌。
 
 地區識別碼和治理案卷、資料線一致：`taipei`、`new-taipei`、`hsinchu-county`、`hsinchu-city`、`central`。建築照片另有 `office_refs`（例如 `office:ly`），對應資料線 `graph.json` 的機關。
 

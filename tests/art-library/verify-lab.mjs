@@ -258,6 +258,25 @@ try {
     await context.close();
   }
 
+  // Empty bay: a missing record stays empty and is never shown as zero.
+  {
+    const problems = [];
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+    const page = await openLab(context, problems, '/asset-lab.html?asset=component-empty-bay');
+    const dialog = page.locator('#alDetail');
+    await dialog.locator('[data-figure="empty-bay"][data-state="live"]').waitFor();
+    assert.equal(await dialog.locator('[data-readout]').textContent(), '本站沒有紀錄 · 空格不是 0');
+    await dialog.locator('button[data-state="2"]').click();
+    await page.waitForFunction(() => document.querySelector('#alDetail [data-readout]').textContent === '有來源紀錄 · 銘牌在架上');
+    await dialog.locator('button[data-state="1"]').click();
+    await page.waitForFunction(() => document.querySelector('#alDetail [data-readout]').textContent === '本站沒有紀錄 · 空格不是 0');
+    assert.equal((await dialog.locator('[data-readout]').textContent()).includes('0 元'), false);
+    assert.deepEqual(problems, [], 'empty bay problems');
+    await shot(page, 'lab-1280-detail-empty.png');
+    summary.checks.push('empty bay states');
+    await context.close();
+  }
+
   // A deep link opens the same asset.
   {
     const problems = [];
