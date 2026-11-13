@@ -1491,3 +1491,86 @@ test("final account text stays unchanged in the database and the read API", asyn
   assert.equal(queried.body.final_accounts.length, 2);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM project_budgets").get().n, 0);
 });
+
+test("public rosters are stored without phones, costs, or checked facts", async () => {
+  const { openNewsDb } = await import("../src/local-db.js");
+  const { applyScheduledResult } = await import("../src/index.js");
+  const db = openNewsDb(":memory:");
+  const dataset = "https://ws.hsinchu.gov.tw/roster.json";
+  const page = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1";
+  const first = await applyScheduledResult(db, { articles: [] }, {
+    ok: true,
+    articles: [],
+    last_success_at: "2026-11-14T18:49:00.000Z",
+    gemini: { use: false, called: false },
+    kindergartens: {
+      dataset_url: dataset,
+      source_url: page,
+      period_text: "113學年度",
+      kindergartens: [
+        { name: "竹北園", address: "新竹縣竹北市光明一路1號", category: "教保服務", postal_code: "302", township: "竹北市", region_id: "zhubei", phone: "不應留下" },
+        { name: "舊園", address: "新竹縣竹東鎮中正路2號", township: "竹東鎮", region_id: "zhudong" },
+      ],
+    },
+    cameras: {
+      dataset_url: dataset,
+      source_url: page,
+      period_text: "202509",
+      rows: [{ place: "縣政一路", district: "竹北市", code: "1", region_id: "zhubei", speed_limit: "0", offense: "超速" }],
+    },
+    special_classes: {
+      dataset_url: dataset,
+      source_url: page,
+      period: "2023-09-04",
+      period_text: "1120904",
+      classes: [{ name: "竹北國小", address: "新竹縣竹北市光明一路1號", code: "1", class_type: "集中式", township: "竹北市", region_id: "zhubei", phone: "也不留下" }],
+    },
+    use_permits: {
+      dataset_url: dataset,
+      source_url: page,
+      count: 4,
+      dated: 2,
+      outside: 1,
+      unreadable: 1,
+      earliest_issue_date: "068/01/08",
+      latest_issue_date: "107/12/27",
+      cost: 999999,
+    },
+  });
+  assert.equal(first.replaced, false);
+  const kinder = await db.prepare("SELECT category, postal_code FROM kindergarten_roster WHERE name = ?").bind("竹北園").first();
+  assert.equal(kinder.category, "教保服務");
+  assert.equal(kinder.postal_code, "302");
+  const speed = await db.prepare("SELECT speed_limit FROM speed_cameras WHERE place = ?").bind("縣政一路").first();
+  assert.equal(speed.speed_limit, "0");
+  const special = await db.prepare("SELECT class_type, period FROM special_classes WHERE name = ?").bind("竹北國小").first();
+  assert.equal(special.class_type, "集中式");
+  assert.equal(special.period, "2023-09-04");
+  const permits = await db.prepare("SELECT permit_count, outside_count, unreadable, earliest_issue_date FROM use_permit_summaries WHERE dataset_url = ?").bind(dataset).first();
+  assert.equal(permits.permit_count, 4);
+  assert.equal(permits.outside_count, 1);
+  assert.equal(permits.unreadable, 1);
+  assert.equal(permits.earliest_issue_date, "068/01/08");
+  const columns = await db.prepare("SELECT name FROM pragma_table_info('kindergarten_roster') UNION ALL SELECT name FROM pragma_table_info('speed_cameras') UNION ALL SELECT name FROM pragma_table_info('special_classes') UNION ALL SELECT name FROM pragma_table_info('use_permit_summaries')").all();
+  assert.equal(columns.results.some((row) => /phone|電話|cost|造價/.test(row.name)), false);
+  await applyScheduledResult(db, { articles: [] }, {
+    ok: true,
+    articles: [],
+    last_success_at: "2026-11-14T19:49:00.000Z",
+    gemini: { use: false },
+    kindergartens: {
+      dataset_url: dataset,
+      source_url: page,
+      period_text: "113學年度",
+      kindergartens: [{ name: "竹北園", address: "新竹縣竹北市光明一路1號", category: "教保服務", postal_code: "302", township: "竹北市", region_id: "zhubei" }],
+    },
+  });
+  const remaining = await db.prepare("SELECT COUNT(*) AS n FROM kindergarten_roster").first();
+  assert.equal(remaining.n, 1);
+  const budgets = await db.prepare("SELECT COUNT(*) AS n FROM project_budgets").first();
+  const announcements = await db.prepare("SELECT COUNT(*) AS n FROM education_announcements").first();
+  const polls = await db.prepare("SELECT COUNT(*) AS n FROM poll_results").first();
+  assert.equal(budgets.n, 0);
+  assert.equal(announcements.n, 0);
+  assert.equal(polls.n, 0);
+});

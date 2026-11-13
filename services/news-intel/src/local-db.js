@@ -7,7 +7,7 @@ import { applyScheduledResult } from "./index.js";
 export function openNewsDb(file) {
   if (file !== ":memory:") mkdirSync(dirname(file), { recursive: true });
   const db = new DatabaseSync(file);
-  for (const name of ["0001_init.sql", "0002_snapshot.sql", "0003_final_accounts.sql", "0006_population.sql", "0007_school_zones.sql"]) {
+  for (const name of ["0001_init.sql", "0002_snapshot.sql", "0003_final_accounts.sql", "0006_population.sql", "0007_school_zones.sql", "0009_public_rosters.sql"]) {
     db.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), "utf8"));
   }
   for (const name of ["0004_article_dates.sql", "0005_related_urls.sql", "0008_source_unavailable.sql"]) {

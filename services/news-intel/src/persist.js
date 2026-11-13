@@ -173,6 +173,104 @@ export async function persistSchools(db, { schools, now, actor = "scheduler" }) 
   return { upserted };
 }
 
+async function deleteMissing(db, table, datasetUrl, columns, keys) {
+  if (!datasetUrl || !keys.length) return;
+  const tuple = `(${columns.join(", ")})`;
+  const placeholders = keys.map(() => `(${columns.map(() => "?").join(", ")})`).join(",");
+  await db.prepare(`DELETE FROM ${table} WHERE dataset_url = ? AND ${tuple} NOT IN (${placeholders})`).bind(datasetUrl, ...keys.flat()).run();
+}
+
+export async function persistKindergartens(db, { kindergartens, now, actor = "scheduler" }) {
+  const periodText = kindergartens?.period_text || "";
+  const keys = [];
+  let upserted = 0;
+  for (const row of kindergartens?.kindergartens || []) {
+    const name = String(row?.name || "").trim();
+    const address = String(row?.address || "").trim();
+    if (!name || !address) continue;
+    keys.push([name, address, periodText]);
+    const category = row.category || null;
+    const postal = row.postal_code || null;
+    const township = row.township || null;
+    const region = row.region_id || null;
+    const existing = await db.prepare("SELECT category, postal_code, township, region_id FROM kindergarten_roster WHERE name = ? AND address = ? AND period_text = ?").bind(name, address, periodText).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO kindergarten_roster (name, address, period_text, category, postal_code, township, region_id, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(name, address, periodText, category, postal, township, region, kindergartens.dataset_url, kindergartens.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.category ?? null) !== category || (existing.postal_code ?? null) !== postal || (existing.township ?? null) !== township || (existing.region_id ?? null) !== region) {
+      await db.prepare("UPDATE kindergarten_roster SET category = ?, postal_code = ?, township = ?, region_id = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE name = ? AND address = ? AND period_text = ?").bind(category, postal, township, region, kindergartens.dataset_url, kindergartens.source_url, now, name, address, periodText).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "kindergarten_roster", kindergartens?.dataset_url, ["name", "address", "period_text"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_kindergartens', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
+export async function persistCameras(db, { cameras, now, actor = "scheduler" }) {
+  const periodText = cameras?.period_text || "";
+  const keys = [];
+  let upserted = 0;
+  for (const row of cameras?.rows || []) {
+    const place = String(row?.place || "").trim();
+    const district = String(row?.district || "").trim();
+    if (!place || !district) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    keys.push([place, district, periodText, code]);
+    const speed = row.speed_limit == null || row.speed_limit === "" ? null : String(row.speed_limit);
+    const existing = await db.prepare("SELECT speed_limit FROM speed_cameras WHERE place = ? AND district = ? AND period_text = ? AND code = ?").bind(place, district, periodText, code).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO speed_cameras (place, district, period_text, code, region_id, kind, offense, latitude, longitude, direction, speed_limit, station, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(place, district, periodText, code, row.region_id || null, row.kind || null, row.offense || null, row.latitude || null, row.longitude || null, row.direction || null, speed, row.station || null, cameras.dataset_url, cameras.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.speed_limit ?? null) !== speed) {
+      await db.prepare("UPDATE speed_cameras SET region_id = ?, kind = ?, offense = ?, latitude = ?, longitude = ?, direction = ?, speed_limit = ?, station = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE place = ? AND district = ? AND period_text = ? AND code = ?").bind(row.region_id || null, row.kind || null, row.offense || null, row.latitude || null, row.longitude || null, row.direction || null, speed, row.station || null, cameras.dataset_url, cameras.source_url, now, place, district, periodText, code).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "speed_cameras", cameras?.dataset_url, ["place", "district", "period_text", "code"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_cameras', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
+export async function persistSpecialClasses(db, { specialClasses, now, actor = "scheduler" }) {
+  const periodText = specialClasses?.period_text || "";
+  const period = specialClasses?.period || null;
+  const keys = [];
+  let upserted = 0;
+  for (const row of specialClasses?.classes || []) {
+    const name = String(row?.name || "").trim();
+    const address = String(row?.address || "").trim();
+    if (!name || !address) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    keys.push([name, address, periodText, code]);
+    const classType = row.class_type || null;
+    const existing = await db.prepare("SELECT class_type FROM special_classes WHERE name = ? AND address = ? AND period_text = ? AND code = ?").bind(name, address, periodText, code).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO special_classes (name, address, period_text, code, class_type, township, region_id, period, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(name, address, periodText, code, classType, row.township || null, row.region_id || null, period, specialClasses.dataset_url, specialClasses.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.class_type ?? null) !== classType) {
+      await db.prepare("UPDATE special_classes SET class_type = ?, township = ?, region_id = ?, period = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE name = ? AND address = ? AND period_text = ? AND code = ?").bind(classType, row.township || null, row.region_id || null, period, specialClasses.dataset_url, specialClasses.source_url, now, name, address, periodText, code).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "special_classes", specialClasses?.dataset_url, ["name", "address", "period_text", "code"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_special_classes', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
+export async function persistUsePermitSummary(db, { usePermits, now, actor = "scheduler" }) {
+  if (!usePermits?.dataset_url || !Number.isInteger(usePermits.count)) return { upserted: 0 };
+  const existing = await db.prepare("SELECT permit_count, earliest_issue_date, latest_issue_date FROM use_permit_summaries WHERE dataset_url = ?").bind(usePermits.dataset_url).first();
+  const values = [usePermits.source_url, usePermits.count, usePermits.dated || 0, usePermits.outside || 0, usePermits.unreadable || 0, usePermits.earliest_issue_date || null, usePermits.latest_issue_date || null, now, usePermits.dataset_url];
+  if (!existing) {
+    await db.prepare("INSERT INTO use_permit_summaries (source_url, permit_count, dated, outside_count, unreadable, earliest_issue_date, latest_issue_date, fetched_at, dataset_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(...values).run();
+  } else {
+    await db.prepare("UPDATE use_permit_summaries SET source_url = ?, permit_count = ?, dated = ?, outside_count = ?, unreadable = ?, earliest_issue_date = ?, latest_issue_date = ?, fetched_at = ? WHERE dataset_url = ?").bind(...values).run();
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_use_permits', ?, ?)").bind(crypto.randomUUID(), actor, `count=${usePermits.count}`, now).run();
+  return { upserted: 1 };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();
