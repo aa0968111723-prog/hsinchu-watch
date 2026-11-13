@@ -1,9 +1,14 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T16:49:02.360Z",
+  "last_success_at": "2026-11-13T17:49:02.337Z",
   "count": 20,
-  "failures": [],
+  "failures": [
+    {
+      "id": "hsinchu-city-news",
+      "error": "empty_parse"
+    }
+  ],
   "gemini": {
     "use": false,
     "reason": "missing_gemini_key",
@@ -341,12 +346,6 @@
     "count": 981,
     "download_url": "/data/news-intel/city-catalog.json"
   },
-  "changes": {
-    "added": [],
-    "removed": []
-  },
-  "duration_ms": 20413,
-  "model_review": [],
   "population": {
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=339",
     "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/339/a3138432-c1c2-475a-8552-7e201bfdb0af.json",
@@ -505,34 +504,6 @@
     ],
     "note": "人次、增減和成長率沿用資料檔原文，不另加總，也不另算。"
   },
-  "election": {
-    "title": "115年地方公職人員選舉候選人姓名號次抽籤結果",
-    "source_url": "https://web.cec.gov.tw/hccec/article/65398",
-    "published_at": null,
-    "files": [
-      {
-        "label": "1-115年新竹縣縣長選舉候選人抽籤結果1027 pdf 116 KB",
-        "url": "https://web.cec.gov.tw/api/file/d2e6c0e2-4579-4034-ad98-fa2baca90066.pdf"
-      },
-      {
-        "label": "2-115年新竹縣縣議員選舉候選人抽籤結果1027 pdf 166 KB",
-        "url": "https://web.cec.gov.tw/api/file/76561c9b-2eaa-4cee-9b4e-de1f46510459.pdf"
-      },
-      {
-        "label": "3-115年新竹縣鄉鎮市長選舉候選人號次抽籤結果1027 pdf 134 KB",
-        "url": "https://web.cec.gov.tw/api/file/77b4cc63-fcb1-41e9-b0cd-da5493f1dd09.pdf"
-      },
-      {
-        "label": "4-115年新竹縣鄉鎮市民代表選舉候選人抽籤結果1027 pdf 209 KB",
-        "url": "https://web.cec.gov.tw/api/file/e30ea230-638c-48b7-acaa-7f729b7f262c.pdf"
-      },
-      {
-        "label": "5-115年新竹縣村里長選舉候選人抽籤結果1027 pdf 241 KB",
-        "url": "https://web.cec.gov.tw/api/file/896537f4-4c49-471a-a834-b8f9cec1b3bf.pdf"
-      }
-    ],
-    "note": "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。"
-  },
   "beds": {
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=238",
     "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json",
@@ -589,5 +560,51 @@
       }
     ],
     "note": "只列急性一般病床的許可數和開放數，沿用原文。檔案寫 0 就保留 0。其他床別不加總。"
+  },
+  "election": {
+    "title": "115年地方公職人員選舉候選人姓名號次抽籤結果",
+    "source_url": "https://web.cec.gov.tw/hccec/article/65398",
+    "published_at": null,
+    "files": [
+      {
+        "label": "1-115年新竹縣縣長選舉候選人抽籤結果1027 pdf 116 KB",
+        "url": "https://web.cec.gov.tw/api/file/d2e6c0e2-4579-4034-ad98-fa2baca90066.pdf"
+      },
+      {
+        "label": "2-115年新竹縣縣議員選舉候選人抽籤結果1027 pdf 166 KB",
+        "url": "https://web.cec.gov.tw/api/file/76561c9b-2eaa-4cee-9b4e-de1f46510459.pdf"
+      },
+      {
+        "label": "3-115年新竹縣鄉鎮市長選舉候選人號次抽籤結果1027 pdf 134 KB",
+        "url": "https://web.cec.gov.tw/api/file/77b4cc63-fcb1-41e9-b0cd-da5493f1dd09.pdf"
+      },
+      {
+        "label": "4-115年新竹縣鄉鎮市民代表選舉候選人抽籤結果1027 pdf 209 KB",
+        "url": "https://web.cec.gov.tw/api/file/e30ea230-638c-48b7-acaa-7f729b7f262c.pdf"
+      },
+      {
+        "label": "5-115年新竹縣村里長選舉候選人抽籤結果1027 pdf 241 KB",
+        "url": "https://web.cec.gov.tw/api/file/896537f4-4c49-471a-a834-b8f9cec1b3bf.pdf"
+      }
+    ],
+    "note": "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。"
+  },
+  "changes": {
+    "added": [],
+    "removed": []
+  },
+  "duration_ms": 15094,
+  "model_review": [],
+  "debt": {
+    "period": "2026-10",
+    "period_text": "截至115年10月底止",
+    "unit": "新臺幣元",
+    "long_term": "5000000000",
+    "short_term": "0",
+    "per_person": "8358",
+    "self_liquidating": "0",
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=5",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/5/519f61d1-d792-4f7e-8873-46a6f41898ed.json",
+    "note": "金額沿用欄位原文。單位是欄名寫的新臺幣元。這是未償餘額，不是歲出決算或實支。0 是資料檔的 0。"
   }
 }

@@ -1,4 +1,4 @@
-import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyBeds, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts } from "./adapters.js";
+import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyBeds, normalizeCountyDebt, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts } from "./adapters.js";
 import { authorize, consumeWrite } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
@@ -25,7 +25,7 @@ const WRITE_TOOLS = new Set([
 const defaultWriteRates = new Map();
 
 const UNCONNECTED = new Set([
-  "sync_governance_records", "sync_environment_data",
+  "sync_environment_data",
   "sync_poll_metadata",
 ]);
 
@@ -38,6 +38,7 @@ function sources() {
     { id: "hsc-elementary-zones", kind: "education", url: COUNTY_SCHOOL_URL, docs: COUNTY_SCHOOL_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-visitors", kind: "open_data", url: COUNTY_VISITOR_URL, docs: COUNTY_VISITOR_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-hospital-beds", kind: "health", url: COUNTY_BED_URL, docs: COUNTY_BED_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
+    { id: "hsc-public-debt", kind: "governance", url: COUNTY_DEBT_URL, docs: COUNTY_DEBT_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hccec-draw", kind: "election", url: COUNTY_ELECTION_PAGE, docs: "https://web.cec.gov.tw/hccec", license: "選舉委員會網站公開公告，只存標題與附件連結", free: true, needs_key: false },
     { id: "moenv-aqx-p-432", kind: "environment", url: MOENV_AIR_URL, docs: "https://data.moenv.gov.tw/", license: "未取得 api_key，不當作公開來源", free: false, needs_key: true },
   ];
@@ -133,6 +134,23 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
     const record = { source_url: COUNTY_SCHOOL_PAGE, dataset_url: COUNTY_SCHOOL_URL, period: null, count: schools.length, schools };
     if (db) await persistSchools(db, { schools: record, now: new Date().toISOString() });
     return remember({ status: 200, body: { count: schools.length, schools, stored: Boolean(db) } });
+  }
+  if (tool === "sync_governance_records") {
+    let raw = input.payload;
+    if (!raw && fetcher) {
+      const response = await fetcher(COUNTY_DEBT_URL);
+      if (!response.ok) return { status: 502, body: { error: `debt_${response.status}` } };
+      raw = await response.text();
+    }
+    if (!raw) return { status: 409, body: { error: "fetcher_unavailable" } };
+    let debt;
+    try {
+      debt = normalizeCountyDebt(raw);
+    } catch {
+      return { status: 400, body: { error: "invalid_dataset" } };
+    }
+    if (!debt) return { status: 409, body: { error: "empty_dataset" } };
+    return { status: 200, body: { debt, stored: false } };
   }
   if (tool === "sync_election_data") {
     let raw = input.html;

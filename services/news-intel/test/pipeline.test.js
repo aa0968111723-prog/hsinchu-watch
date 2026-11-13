@@ -455,6 +455,39 @@ test("hospital bed counts stay as written and are not added together", async () 
   assert.equal(page.includes("其他床別不加總"), true);
 });
 
+test("county debt keeps the latest original balances and a written zero", async () => {
+  const { normalizeCountyDebt } = await import("../src/adapters.js");
+  const debt = normalizeCountyDebt(JSON.stringify([
+    { "項目": "截至105年1月底止", "一年以上債務未償餘額-新臺幣元": "1", "短期債務未償餘額-新臺幣元": "2", "平均每人負擔債務-新臺幣元": "3", "自償性債務未償餘額-含非營業特種基金-新臺幣元": "4" },
+    { "項目": "截至115年10月底止", "一年以上債務未償餘額-新臺幣元": "5000000000", "短期債務未償餘額-新臺幣元": "0", "平均每人負擔債務-新臺幣元": "8358", "自償性債務未償餘額-含非營業特種基金-新臺幣元": "" },
+    { "項目": "不是月份", "一年以上債務未償餘額-新臺幣元": "9" },
+  ]));
+  assert.equal(debt.period, "2026-10");
+  assert.equal(debt.period_text, "截至115年10月底止");
+  assert.equal(debt.unit, "新臺幣元");
+  assert.equal(debt.long_term, "5000000000");
+  assert.equal(debt.short_term, "0");
+  assert.equal(debt.self_liquidating, null);
+  const kept = await runHour({
+    previous: { articles: [], debt: { period_text: "截至115年9月底止", short_term: "0" } },
+    now: "2026-11-14T02:00:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.debt.period_text, "截至115年9月底止");
+  assert.equal(kept.debt.retained, true);
+  const synced = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "sync_governance_records", input: { payload: JSON.stringify([{ "項目": "截至115年10月底止", "一年以上債務未償餘額-新臺幣元": "5000000000", "短期債務未償餘額-新臺幣元": "0", "平均每人負擔債務-新臺幣元": "8358", "自償性債務未償餘額-含非營業特種基金-新臺幣元": "0" }]) } },
+  });
+  assert.equal(synced.status, 200);
+  assert.equal(synced.body.stored, false);
+  assert.equal(synced.body.debt.short_term, "0");
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不是歲出決算或實支"), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -864,6 +897,9 @@ test("published news file stays within the real cap", () => {
   assert.ok(data.beds.rows.length >= 1);
   assert.equal(data.beds.total, undefined);
   assert.ok(data.beds.rows.every((row) => row.name && (row.acute_general_open === null || /^\d+$/.test(row.acute_general_open)) && (row.acute_general_permitted === null || /^\d+$/.test(row.acute_general_permitted))));
+  assert.equal(data.debt.unit, "新臺幣元");
+  assert.match(data.debt.period, /^\d{4}-\d{2}$/);
+  assert.ok([data.debt.long_term, data.debt.short_term, data.debt.per_person, data.debt.self_liquidating].every((value) => value === null || /^\d+$/.test(value)));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {

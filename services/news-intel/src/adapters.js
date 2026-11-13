@@ -139,6 +139,8 @@ export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.as
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
 export const COUNTY_BED_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=238";
 export const COUNTY_ELECTION_PAGE = "https://web.cec.gov.tw/hccec/article/65398";
+export const COUNTY_DEBT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/5/519f61d1-d792-4f7e-8873-46a6f41898ed.json";
+export const COUNTY_DEBT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=5";
 export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
 
 export function populationPeriod(html) {
@@ -213,6 +215,35 @@ export function normalizeCountyBeds(payload) {
       acute_general_open: originalNumber(row["急性-一般病床-開放數"]),
     }];
   });
+}
+
+export function normalizeCountyDebt(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return null;
+  let best = null;
+  let bestKey = "";
+  for (const row of rows) {
+    const label = String(row?.["項目"] || "").trim();
+    const match = label.match(/截至(\d{2,3})年(\d{1,2})月底止/);
+    if (!match) continue;
+    const roc = Number(match[1]);
+    const month = Number(match[2]);
+    if (!Number.isInteger(roc) || !Number.isInteger(month) || month < 1 || month > 12) continue;
+    const year = roc < 1911 ? roc + 1911 : roc;
+    const key = `${year}-${String(month).padStart(2, "0")}`;
+    if (key < bestKey) continue;
+    bestKey = key;
+    best = {
+      period: key,
+      period_text: label,
+      unit: "新臺幣元",
+      long_term: originalNumber(row["一年以上債務未償餘額-新臺幣元"]),
+      short_term: originalNumber(row["短期債務未償餘額-新臺幣元"]),
+      per_person: originalNumber(row["平均每人負擔債務-新臺幣元"]),
+      self_liquidating: originalNumber(row["自償性債務未償餘額-含非營業特種基金-新臺幣元"]),
+    };
+  }
+  return best;
 }
 
 export function normalizeElectionNotice(html) {

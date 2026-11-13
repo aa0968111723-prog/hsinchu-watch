@@ -36,6 +36,7 @@ try {
     schools: existing.schools || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
+    debt: existing.debt || null,
     election: existing.election || null,
   };
 } catch {
@@ -117,6 +118,18 @@ const payload = {
     dataset_url: publishable.beds.dataset_url,
     rows: publishable.beds.rows,
     note: publishable.beds.note,
+  } : null,
+  debt: publishable.debt ? {
+    source_url: publishable.debt.source_url,
+    dataset_url: publishable.debt.dataset_url,
+    period: publishable.debt.period,
+    period_text: publishable.debt.period_text,
+    unit: publishable.debt.unit,
+    long_term: publishable.debt.long_term,
+    short_term: publishable.debt.short_term,
+    per_person: publishable.debt.per_person,
+    self_liquidating: publishable.debt.self_liquidating,
+    note: publishable.debt.note,
   } : null,
   election: publishable.election ? {
     title: publishable.election.title,

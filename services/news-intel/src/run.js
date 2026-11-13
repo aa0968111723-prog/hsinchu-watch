@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyBeds, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyBeds, normalizeCountyDebt, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -55,6 +55,7 @@ export function mergeRun(previous, result) {
       schools: previous?.schools || null,
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
+      debt: previous?.debt || null,
       election: previous?.election || null,
       model_review: previous?.model_review || [],
     };
@@ -74,9 +75,30 @@ export function mergeRun(previous, result) {
     schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
+    debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
     election: result.election === undefined ? (previous?.election || null) : result.election,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCountyDebt(fetcher, previous) {
+  const kept = previous?.debt ? { ...previous.debt, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_DEBT_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const debt = normalizeCountyDebt(await response.text());
+    if (!debt) return kept;
+    return {
+      ...debt,
+      source_url: COUNTY_DEBT_PAGE,
+      dataset_url: COUNTY_DEBT_URL,
+      retained: false,
+      note: "金額沿用欄位原文。單位是欄名寫的新臺幣元。這是未償餘額，不是歲出決算或實支。0 是資料檔的 0。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadCountyBeds(fetcher, previous) {
@@ -315,6 +337,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       schools: await loadCountySchools(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
+      debt: await loadCountyDebt(fetcher, previous),
       election: await loadElectionNotice(fetcher, previous),
       model_review: modelReview,
     });
