@@ -46,6 +46,23 @@
 .atl-route-casing { fill: none; stroke: #fffdf8; stroke-width: 6px; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
 .atl-route { fill: none; stroke: var(--atl-accent); stroke-width: 3px; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
 
+/* 現地沙盤：OSM 周邊地物。柔和色票只分層次，不代表政策數值。 */
+.atl-site-pad { --anatomy-paper: #efe8d8; --anatomy-top: #f5efe3; --anatomy-shade-0: #d5cbb4; --anatomy-shade-1: #ddd4bf; --anatomy-shade-2: #e6deca; --anatomy-shade-3: #ece5d4; }
+.atl-site-pad-flat { fill: #f3ecde; stroke: #d7cdb8; stroke-width: .8px; }
+.atl-site-field { fill: #e7efc8; stroke: #c5d39a; stroke-width: .4px; stroke-linejoin: round; }
+.atl-site-green { fill: #cfe8c4; stroke: #9fc894; stroke-width: .45px; stroke-linejoin: round; }
+.atl-site-water { fill: #c5e4ef; stroke: #8ebfd2; stroke-width: .45px; stroke-linejoin: round; }
+.atl-site-building { fill: #f0e6d4; stroke: #cbb89a; stroke-width: .35px; stroke-linejoin: round; }
+.atl-site-building-side { --anatomy-shade-0: #c9b79a; --anatomy-shade-1: #d4c3a8; --anatomy-shade-2: #deceb6; --anatomy-shade-3: #e7d8c4; }
+.atl-site-construction { fill: #ffe0b0; stroke: #e4572e; stroke-width: 1px; stroke-linejoin: round; }
+.atl-site-construction-side { --anatomy-shade-0: #e0b070; --anatomy-shade-1: #e8bd84; --anatomy-shade-2: #f0c998; --anatomy-shade-3: #f6d4ab; }
+.atl-site-construction-side.is-lit > .iso-edge, .atl-site-edges .iso-line[data-tone="lit"] { stroke: #e4572e; }
+.atl-site-road .iso-line { stroke: #9a9080; stroke-width: 1.1px; }
+.atl-site-planned-road .iso-line { stroke: #b7a88f; stroke-width: .9px; stroke-dasharray: 3 3; }
+.atl-site-rail .iso-line { stroke: #6d7c88; stroke-width: 1.4px; }
+.atl-site-waterline .iso-line { stroke: #7aafc2; stroke-width: 1px; }
+.atl-svg[data-scene="site"] .atl-label[data-kind="region"] { fill: #8a4b2a; font-size: 13px; }
+
 /* 地名 */
 .atl-label { font: 600 12px/1 "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; fill: #3f4c56; paint-order: stroke; stroke: #fffdf8; stroke-width: 3px; stroke-linejoin: round; text-anchor: middle; dominant-baseline: central; pointer-events: none; user-select: none; }
 .atl-label[data-kind="region"] { font-size: 15px; font-weight: 700; letter-spacing: .1em; fill: #2f3b44; stroke-width: 4px; }

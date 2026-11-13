@@ -156,6 +156,24 @@ try {
     const peiying = await page.locator('#atlasDetail').innerText();
     for (const text of ['基地點位', '中山區', '121.54844, 25.07997', '永安里', '5.2 公尺', '100%', '不是驗收、啟用或成效', '準備中', '工程金額（原文數字）', '地下3層、地上14層']) assert(peiying.includes(text), `培英來源卡缺「${text}」`);
     assert.equal(await page.locator('#atlasDetail .atl-bar-row[data-unknown]').count(), 3, '培英案三欄經費都未收錄');
+    assert.equal(await page.locator(`#atlasDetail [data-site="${IDS.peiying}"]`).count(), 1, '培英案應有現地沙盤按鈕');
+    await page.locator(`#atlasDetail [data-site="${IDS.peiying}"]`).click();
+    await until(() => page.evaluate((id) => location.hash.includes(`s=site:${id}`) && document.querySelector('#atlasCanvas svg')?.dataset.scene === 'site', IDS.peiying), '進入現地沙盤');
+    assert(await page.locator('#atlasCanvas .atl-site-building, #atlasCanvas .atl-site-construction, #atlasCanvas .atl-site-road').count() >= 1, '現地沙盤應畫出 OSM 地物');
+    assert((await page.locator('#atlasViewNote').innerText()).includes('現地沙盤'), '現地視角要有文字標示');
+    assert((await page.locator('#atlasViewNote').innerText()).includes('不是預算') || (await page.locator('#atlasViewNote').innerText()).includes('OpenStreetMap'), '現地說明要分開真實與示意');
+    await page.locator('#atlasView-iso').click();
+    await until(() => page.evaluate(() => document.querySelector('#atlasCanvas svg').dataset.view === 'iso' && document.querySelector('#atlasCanvas svg').dataset.scene === 'site'), '現地立體示意');
+    assert(await page.locator('#atlasCanvas .atl-furniture').count() === 1, '現地立體應有底座');
+    await settled(page);
+    await page.locator('.atl-canvas-wrap').screenshot({ path: `${screenshots}/atlas-1280-site-iso.png` });
+    await page.keyboard.press('Escape');
+    await until(() => page.evaluate(() => document.querySelector('#atlasCanvas svg')?.dataset.scene === 'region'), 'Esc 離開現地沙盤回地區圖');
+    await page.locator(`#atlasDetail [data-site="${IDS.peiying}"]`).click();
+    await until(() => page.evaluate(() => document.querySelector('#atlasCanvas svg')?.dataset.scene === 'site'), '再次進入現地');
+    await page.locator(`#atlasDetail [data-site="${IDS.peiying}"]`).click();
+    await until(() => page.evaluate(() => document.querySelector('#atlasCanvas svg')?.dataset.scene === 'region'), '按鈕切回地區圖');
+
     await page.locator(`.atl-item[data-project="${IDS.peiying}"] .atl-item-main`).focus();
     await page.keyboard.press('ArrowUp');
     const moved = await page.evaluate(() => document.activeElement.closest('.atl-item')?.dataset.project);

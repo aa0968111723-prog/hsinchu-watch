@@ -113,24 +113,24 @@ function pickRulerStep(mpu) {
 export const formatDistance = (meters) => (meters >= 1000 ? `${meters / 1000} 公里` : `${meters} 公尺`);
 
 // 底座與桌面配件：腳墊、底座、溝槽、螺絲、真實比例尺規、銘牌、指北盤。全部在地圖塊以外的桌面上。
-function furniture(frame, P, rulerStepM) {
+function furniture(frame, P, rulerStepM, levels = LEVEL) {
   const [x0, y0, x1, y1] = frame.rect;
   const PL = { x: x0 - 15, y: y0 - 15, w: x1 - x0 + 30, d: y1 - y0 + 15 + 44, r: 7 };
-  const parts = [`<path class="iso-halo" d="${k.haloOf(PL, LEVEL.feet, 3, P)}"/>`];
+  const parts = [`<path class="iso-halo" d="${k.haloOf(PL, levels.feet, 3, P)}"/>`];
   const byDepth = (points) => [...points].sort((a, b) => k.depthOf([a[0], a[1], 0], P) - k.depthOf([b[0], b[1], 0], P));
   for (const [x, y] of byDepth(k.corners(PL, 22))) {
-    parts.push(k.solidSvg(k.cylinder(x, y, 7, LEVEL.feet, 1.5, P, 28), { tone: 'lo', className: 'atl-wood' }));
-    parts.push(k.solidSvg(k.cylinder(x, y, 5.4, LEVEL.feet + 1.5, 1.5, P, 28), { tone: 'mid', className: 'atl-wood' }));
+    parts.push(k.solidSvg(k.cylinder(x, y, 7, levels.feet, 1.5, P, 28), { tone: 'lo', className: 'atl-wood' }));
+    parts.push(k.solidSvg(k.cylinder(x, y, 5.4, levels.feet + 1.5, 1.5, P, 28), { tone: 'mid', className: 'atl-wood' }));
   }
-  parts.push(k.solidSvg(k.slabOf(PL, LEVEL.plinth, LEVEL.deck - LEVEL.plinth, P, 8, 1.4), { tone: 'mid', className: 'atl-wood' }));
-  parts.push(k.lineSvg(k.planOutline(k.insetPlan(PL, 4.5), LEVEL.deck, P), { tone: 'lo' }));
+  parts.push(k.solidSvg(k.slabOf(PL, levels.plinth, levels.deck - levels.plinth, P, 8, 1.4), { tone: 'mid', className: 'atl-wood' }));
+  parts.push(k.lineSvg(k.planOutline(k.insetPlan(PL, 4.5), levels.deck, P), { tone: 'lo' }));
   const screws = k.corners(PL, 9.5);
-  parts.push(k.lineSvg(screws.map(([x, y]) => k.ring(x, y, 2.1, LEVEL.deck, P, 16)).join(''), { tone: 'lo' }));
-  parts.push(k.dotsSvg(k.pointsAt(screws.map(([x, y]) => [x, y, LEVEL.deck]), P), { size: 0.55, tone: 'mid' }));
+  parts.push(k.lineSvg(screws.map(([x, y]) => k.ring(x, y, 2.1, levels.deck, P, 16)).join(''), { tone: 'lo' }));
+  parts.push(k.dotsSvg(k.pointsAt(screws.map(([x, y]) => [x, y, levels.deck]), P), { size: 0.55, tone: 'mid' }));
 
   // 尺規：刻度間距是真實地面距離（沿東西向），平面與立體視角共用同一比例。
   const strip = { x: x0, y: y1 + 9, w: x1 - x0, d: 6.4, r: 0.8 };
-  parts.push(k.solidSvg(k.slabOf(strip, LEVEL.deck, 0.6, P, 3), { tone: 'lo', crease: 'none', className: 'atl-brass' }));
+  parts.push(k.solidSvg(k.slabOf(strip, levels.deck, 0.6, P, 3), { tone: 'lo', crease: 'none', className: 'atl-brass' }));
   const stepU = rulerStepM / frame.mpu;
   const edge = strip.y + 0.6;
   const ticks = { zero: '', major: '', minor: '' };
@@ -142,7 +142,7 @@ function furniture(frame, P, rulerStepM) {
 
   // 銘牌：三條刻線代表印刷文字，是唯一允許停在空白面上的線。
   const plate = { x: x0 + 2, y: y1 + 22, w: 50, d: 12, r: 1.4 };
-  parts.push(k.solidSvg(k.slabOf(plate, LEVEL.deck, 0.8, P, 4), { tone: 'lo', className: 'atl-brass' }));
+  parts.push(k.solidSvg(k.slabOf(plate, levels.deck, 0.8, P, 4), { tone: 'lo', className: 'atl-brass' }));
   parts.push(k.lineSvg(k.planOutline(k.insetPlan(plate, 1.6), 0.8, P, 4), { tone: 'faint' }));
   parts.push(k.lineSvg([[30, 3.6], [22, 6], [26, 8.4]].map(([length, dy]) => k.lineOnTop([plate.x + 7, plate.y + dy], [plate.x + 7 + length, plate.y + dy], 0.8, P)).join(''), { tone: 'lo', free: true }));
   parts.push(k.dotsSvg(k.pointsAt([[plate.x + 3.4, plate.y + 6, 0.8], [plate.x + plate.w - 3.4, plate.y + 6, 0.8]], P), { size: 0.5, tone: 'mid' }));
@@ -150,15 +150,15 @@ function furniture(frame, P, rulerStepM) {
   // 指北盤：指針朝世界座標的正北（−y）。
   const cx = x1 - 13;
   const cy = y1 + 28;
-  const top = LEVEL.deck + 1.4;
-  parts.push(k.solidSvg(k.cylinder(cx, cy, 10, LEVEL.deck, 1.4, P, 48, 0.5), { tone: 'hi', crease: 'lo', className: 'atl-brass' }));
+  const top = levels.deck + 1.4;
+  parts.push(k.solidSvg(k.cylinder(cx, cy, 10, levels.deck, 1.4, P, 48, 0.5), { tone: 'hi', crease: 'lo', className: 'atl-brass' }));
   parts.push(k.lineSvg(k.ring(cx, cy, 8.2, top, P, 48), { tone: 'lo' }));
   const dial = k.radialTicks(cx, cy, 8, 16, 4, top, [1, 2.1], P);
   parts.push(k.lineSvg(dial.minor, { tone: 'lo' }), k.lineSvg(dial.major, { tone: 'mid' }));
   parts.push(k.lineSvg(k.lineOnTop([cx, cy], [cx, cy + 5], top + 0.05, P), { tone: 'mid' }));
   parts.push(k.lineSvg(k.lineOnTop([cx, cy], [cx, cy - 7], top + 0.05, P), { tone: 'lit', className: 'atl-needle' }));
   parts.push(k.lineSvg(k.ring(cx, cy, 1.1, top + 0.05, P, 16), { tone: 'hi' }));
-  parts.push(k.faceTextSvg(k.topMatrix([cx - 1.5, cy - 11.4], LEVEL.deck, P), 'N', { size: 3.6, tone: 'mid' }));
+  parts.push(k.faceTextSvg(k.topMatrix([cx - 1.5, cy - 11.4], levels.deck, P), 'N', { size: 3.6, tone: 'mid' }));
   return { markup: parts.join(''), plinth: PL };
 }
 
@@ -390,7 +390,7 @@ export function buildSiteScene({ site, project, mode, stage }) {
   const minArea = (0.9 / px) ** 2;
   const parts = [];
   if (!flat) {
-    parts.push(`<g class="atl-furniture">${furniture(frame, P, rulerStepM).markup}</g>`);
+    parts.push(`<g class="atl-furniture">${furniture(frame, P, rulerStepM, SITE_LEVEL).markup}</g>`);
     parts.push(k.solidSvg(k.slabOf(rect, SITE_LEVEL.deck, SITE_LEVEL.pad - SITE_LEVEL.deck, P, 1, 0.4), { tone: 'lo', className: 'atl-site-pad' }));
   } else {
     parts.push(`<path class="atl-site-pad-flat" d="${k.planOutline(rect, 0, P, 1)}"/>`);

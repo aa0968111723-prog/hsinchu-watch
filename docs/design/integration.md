@@ -20,6 +20,8 @@
 
 不要把夜讀（`data-civic-theme="dark"`）開到舊頁。舊面板還沒有暗色 tokens，夜讀開關只放在 `ui-lab.html`。
 
+手機上主選單改成兩列三格，定義在 `src/mobile.css`，並由 `public/editorial-depth.css` 在最後覆寫字級與間距。第二層 `.civic-nav` 在 720px 以下改成橫向滑動，讀數移到量紙檯圖的下方。已有這層選單時，首頁三張入口卡會收起來，避免同一條路出現兩次。
+
 ## 預覽頁還沒有進正式輸出
 
 `vite.config.js` 已把 `ui-lab.html` 加進建置入口，產物在 `.build-ui/ui-lab.html`。`tools/release/assemble-production.py` 只覆蓋既有核心頁，不會把這一頁抄進 `dist/`。請在組裝時把建置後的 `ui-lab.html` 放進輸出，並讓它走與其他頁相同的 `edit_page`。這一頁已有 `header.top`、`nav.nav` 與 `main`。
