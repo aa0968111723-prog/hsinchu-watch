@@ -34,6 +34,7 @@ export async function persistArticles(db, { articles, now, actor = "scheduler" }
   for (const article of articles || []) {
     const id = await articleId(article.source_url);
     const checked = article.date_checked === true ? 1 : article.date_checked === false ? 0 : null;
+    const unavailable = article.source_unavailable === true ? 1 : 0;
     const related = JSON.stringify((article.related_urls || []).filter((url) => String(url).startsWith("https://")));
     const hash = (await digest(`${article.source_url}\n${article.original_title}\n${article.publisher_timestamp}\n${article.claim_kind || ""}\n${article.verification_status || ""}\n${checked ?? ""}\n${article.page_published_at || ""}\n${related}`)).slice(0, 32);
     const existing = await db.prepare("SELECT content_hash, content_version FROM articles WHERE source_url = ?").bind(article.source_url).first();
@@ -63,6 +64,7 @@ export async function persistArticles(db, { articles, now, actor = "scheduler" }
       await db.prepare("INSERT INTO article_versions (id, article_id, content_version, original_title, content_hash, created_at) VALUES (?, ?, ?, ?, ?, ?)").bind(crypto.randomUUID(), id, version, article.original_title, hash, now).run();
       revised += 1;
     }
+    await db.prepare("UPDATE articles SET source_unavailable = ? WHERE source_url = ?").bind(unavailable, article.source_url).run();
     if (article.review_status === "needs_review") {
       const queued = await db.prepare("SELECT id FROM review_queue WHERE article_id = ? AND status = 'open'").bind(id).first();
       if (!queued) {

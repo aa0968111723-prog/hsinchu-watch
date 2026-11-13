@@ -1,0 +1,1 @@
+ALTER TABLE articles ADD COLUMN source_unavailable INTEGER NOT NULL DEFAULT 0;

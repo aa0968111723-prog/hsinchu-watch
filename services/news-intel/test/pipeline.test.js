@@ -412,6 +412,29 @@ test("an empty city list keeps the previous city articles", async () => {
   assert.equal(pageUnavailable("<html>新竹市公告</html>", "https://www.hccg.gov.tw/a"), false);
 });
 
+test("a closed source page is stored without a new content version", async () => {
+  const { openNewsDb } = await import("../src/local-db.js");
+  const { persistArticles } = await import("../src/persist.js");
+  const db = openNewsDb(":memory:");
+  const article = {
+    original_title: "新竹市公告",
+    source_url: "https://www.hccg.gov.tw/a",
+    publisher_timestamp: "2026-11-13",
+    verification_status: "SINGLE_SOURCE",
+    review_status: "pending_index",
+    claim_kind: "official_notice",
+    source_name: "新竹市政府",
+    source_type: "official_html",
+    date_checked: true,
+    source_unavailable: false,
+  };
+  await persistArticles(db, { articles: [article], now: "2026-11-14T01:00:00.000Z" });
+  await persistArticles(db, { articles: [{ ...article, source_unavailable: true }], now: "2026-11-14T02:00:00.000Z" });
+  const row = await db.prepare("SELECT source_unavailable, content_version FROM articles WHERE source_url = ?").bind(article.source_url).first();
+  assert.equal(row.source_unavailable, 1);
+  assert.equal(row.content_version, 1);
+});
+
 test("different wording is not treated as a disputed claim", async () => {
   const { compareClaims, handleMcp: mcp } = await import("../src/mcp.js");
   assert.equal(compareClaims("新竹市公告", "新竹市公告"), "same");
@@ -1034,6 +1057,7 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0005_related_urls.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0008_source_unavailable.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
       const statement = (params) => ({
@@ -1167,6 +1191,7 @@ test("a failed scheduled round keeps the previous database rows", async () => {
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0005_related_urls.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0008_source_unavailable.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
       const statement = (params) => ({
@@ -1220,6 +1245,7 @@ test("final account text stays unchanged in the database and the read API", asyn
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0005_related_urls.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0008_source_unavailable.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0003_final_accounts.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
