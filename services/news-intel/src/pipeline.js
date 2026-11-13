@@ -46,7 +46,7 @@ export function selectArticles(candidates) {
     const url = String(item?.source_url || "");
     const title = String(item?.original_title || "").trim();
     const published = parsePublisherTimestamp(item?.publisher_timestamp);
-    if (!url.startsWith("https://") || !title || !published) continue;
+    if (!url.startsWith("https://") || !title || !published || item.source_id === "hsinchu-county-council") continue;
     const region = regionFor(`${title} ${item.summary || ""}`) || (OFFICIAL_HSINCHU.has(item.source_id) ? item.region_id : null);
     if (!region) continue;
     const key = normalizeTitle(title);

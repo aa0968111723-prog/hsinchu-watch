@@ -11,7 +11,7 @@ export function mergeRun(previous, result) {
       last_success_at: previous?.last_success_at || null,
       error: result.error,
       failures: result.failures || [],
-      announcements: [],
+      announcements: previous?.announcements || [],
     };
   }
   return {
@@ -32,7 +32,14 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
     if (!collected.candidates.length && collected.failures.length) {
       return mergeRun(previous, { ok: false, error: "all_sources_failed", failures: collected.failures });
     }
-    const announcements = collected.candidates.filter((item) => item.source_id === "hsinchu-county-council");
+    const councilFailed = collected.failures.some((failure) => failure.id === "hsinchu-county-council");
+    const freshNotices = collected.candidates.filter((item) => item.source_id === "hsinchu-county-council").map((item) => ({
+      title: item.original_title,
+      url: item.source_url,
+      published_at: item.publisher_timestamp,
+      source_name: item.source_name,
+    }));
+    const announcements = councilFailed ? (previous?.announcements || []) : freshNotices;
     const articles = selectArticles(collected.candidates).map((article) => ({
       ...article,
       ...publicationFields(article),

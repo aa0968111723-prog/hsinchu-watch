@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T14:37:42.170Z",
+  "last_success_at": "2026-11-13T14:46:01.278Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -9,6 +9,22 @@
     "reason": "missing_gemini_key"
   },
   "articles": [
+    {
+      "title": "藍營中央地方接力支持 吳旭智：將持續爭取選民認同",
+      "url": "https://www.cna.com.tw/news/aipl/202611130318.aspx",
+      "published_at": "2026-11-13T14:16:16.000Z",
+      "region_id": "hsinchu-county",
+      "verification_status": "SINGLE_SOURCE",
+      "source_name": "中央社"
+    },
+    {
+      "title": "邱臣遠車隊掃街 傅崐萁率藍委合體黃國昌竹北助選",
+      "url": "https://www.cna.com.tw/news/aipl/202611130315.aspx",
+      "published_at": "2026-11-13T14:01:16.000Z",
+      "region_id": "hsinchu-county",
+      "verification_status": "SINGLE_SOURCE",
+      "source_name": "中央社"
+    },
     {
       "title": "跨海切磋消防戰力！澳洲消防員代表團訪竹縣同場競技",
       "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358237",
@@ -152,22 +168,32 @@
       "region_id": "hsinchu-city",
       "verification_status": "SINGLE_SOURCE",
       "source_name": "新竹市政府"
+    }
+  ],
+  "announcements": [
+    {
+      "title": "本會第20屆第8次定期會延會變更議事日程表<公告>",
+      "url": "https://www.hcc.gov.tw/detail?program=151&article=3465",
+      "published_at": "2026-10-30",
+      "source_name": "新竹縣議會"
     },
     {
-      "title": "藍營中央地方接力支持 吳旭智：將持續爭取選民認同",
-      "url": "https://www.cna.com.tw/news/aipl/202611130318.aspx",
-      "published_at": "2026-11-13T14:16:16.000Z",
-      "region_id": "hsinchu-county",
-      "verification_status": "SINGLE_SOURCE",
-      "source_name": "中央社"
+      "title": "本會第20屆第8次定期會變更議事日程表<公告>",
+      "url": "https://www.hcc.gov.tw/detail?program=151&article=3442",
+      "published_at": "2026-10-27",
+      "source_name": "新竹縣議會"
     },
     {
-      "title": "邱臣遠車隊掃街 傅崐萁率藍委合體黃國昌竹北助選",
-      "url": "https://www.cna.com.tw/news/aipl/202611130315.aspx",
-      "published_at": "2026-11-13T14:01:16.000Z",
-      "region_id": "hsinchu-county",
-      "verification_status": "SINGLE_SOURCE",
-      "source_name": "中央社"
+      "title": "新竹縣議會第20屆第8次定期會議案預告表",
+      "url": "https://www.hcc.gov.tw/detail?program=151&article=3439",
+      "published_at": "2026-10-01",
+      "source_name": "新竹縣議會"
+    },
+    {
+      "title": "本會第20屆第8次定期會<公告>",
+      "url": "https://www.hcc.gov.tw/detail?program=151&article=3436",
+      "published_at": "2026-09-23",
+      "source_name": "新竹縣議會"
     }
   ]
 }

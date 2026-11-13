@@ -16,6 +16,7 @@ try {
       source_name: article.source_name,
     })),
     last_success_at: existing.last_success_at || null,
+    announcements: existing.announcements || [],
   };
 } catch {
   previous = { articles: [], last_success_at: null };
@@ -42,6 +43,7 @@ const payload = {
     verification_status: article.verification_status,
     source_name: article.source_name,
   })),
+  announcements: result.announcements || [],
 };
 mkdirSync(new URL("../state/", import.meta.url), { recursive: true });
 writeFileSync(new URL("../state/last-run.json", import.meta.url), JSON.stringify(payload, null, 2));

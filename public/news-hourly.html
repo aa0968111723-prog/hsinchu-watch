@@ -17,10 +17,27 @@
   <h1>新竹新聞索引</h1>
   <p id="status" class="meta">讀取中</p>
   <ol id="list"></ol>
+  <h2>新竹縣議會公告</h2>
+  <p id="notice-status" class="meta"></p>
+  <ol id="notices"></ol>
 </main>
 <script>
 const status = document.querySelector("#status");
 const list = document.querySelector("#list");
+const noticeStatus = document.querySelector("#notice-status");
+const notices = document.querySelector("#notices");
+
+function addItem(parent, title, url, meta) {
+  const item = document.createElement("li");
+  const link = document.createElement("a");
+  link.href = url;
+  link.textContent = title || "未命名";
+  const note = document.createElement("div");
+  note.className = "meta";
+  note.textContent = meta;
+  item.append(link, note);
+  parent.append(item);
+}
 fetch("/data/news-intel/latest.json")
   .then((response) => {
     if (!response.ok) throw new Error(String(response.status));
@@ -31,20 +48,18 @@ fetch("/data/news-intel/latest.json")
     const when = data.last_success_at || "未知";
     status.textContent = `成功時間 ${when}。顯示 ${articles.length} 篇。Gemini 未使用。這是單一來源索引，不是已查核事實。`;
     for (const article of articles) {
-      const item = document.createElement("li");
-      const link = document.createElement("a");
-      link.href = article.url;
-      link.textContent = article.title || "未命名";
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      meta.textContent = `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${article.verification_status || "UNVERIFIED"}`;
-      item.append(link, meta);
-      list.append(item);
+      addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${article.verification_status || "UNVERIFIED"}`);
+    }
+    const announcements = Array.isArray(data.announcements) ? data.announcements : [];
+    noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
+    for (const notice of announcements) {
+      addItem(notices, notice.title, notice.url, `${notice.source_name || "新竹縣議會"} · ${notice.published_at || "日期未知"}`);
     }
     if (!articles.length) status.textContent = "這一輪沒有可顯示的文章，沒有補假資料。";
   })
   .catch(() => {
     status.textContent = "新聞索引讀取失敗。頁面沒有改用假資料。";
+    noticeStatus.textContent = "議會公告讀取失敗。頁面沒有改用假資料。";
   });
 </script>
 </body>

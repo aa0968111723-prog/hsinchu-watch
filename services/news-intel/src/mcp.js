@@ -1,3 +1,4 @@
+import { ADAPTERS } from "./adapters.js";
 import { authorize } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, selectArticles } from "./pipeline.js";
@@ -43,6 +44,12 @@ export function handleMcp({ authorization, body, tokens, state }) {
       return { status: 409, body: { error: "not_verified_fact" } };
     }
     return { status: 200, body: { approved: true, scope: gate.scope } };
+  }
+  if (tool === "list_source_registry") {
+    return { status: 200, body: { sources: ADAPTERS.map((adapter) => ({ id: adapter.id, kind: adapter.kind, ...adapter.discover() })) } };
+  }
+  if (tool === "get_failed_sources") {
+    return { status: 200, body: { failures: state?.failures || [] } };
   }
   if (tool === "get_pipeline_status") {
     return { status: 200, body: state || { status: "idle" } };

@@ -91,7 +91,7 @@ test("newer dated items outrank older ones and council notices keep their source
   assert.equal(rows[0].source_url, "https://www.hcc.gov.tw/detail?program=151&article=3465");
   assert.equal(rows[1].source_url, "https://www.hcc.gov.tw/detail?program=151&article=3442");
   assert.equal(rows[0].region_id, "hsinchu-county");
-  assert.equal(selectArticles(rows).length, 2);
+  assert.equal(selectArticles(rows).length, 0);
 });
 
 test("city list keeps a dated municipal item and drops a blank date", async () => {
@@ -107,6 +107,26 @@ test("published news file stays within the real cap", () => {
   assert.ok(data.count <= 20);
   assert.equal(data.gemini.use, false);
   assert.ok(data.articles.every((article) => article.title && article.url.startsWith("https://")));
+});
+
+test("a failed council fetch keeps the previous notices", async () => {
+  const previous = { articles: [], announcements: [{ title: "舊公告", url: "https://www.hcc.gov.tw/detail?program=151&article=1", published_at: "2026-10-30", source_name: "新竹縣議會" }] };
+  const result = await runHour({
+    previous,
+    now: "2026-11-13T02:00:00.000Z",
+    adapters: [
+      { id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } },
+      { id: "hsinchu-county-council", async fetch() { throw new Error("timeout"); }, normalize() { return []; } },
+    ],
+    fetcher: async () => ({ ok: false, status: 503, text: async () => "" }),
+  });
+  assert.equal(result.ok, true);
+  assert.equal(result.announcements.length, 1);
+  assert.equal(result.announcements[0].title, "舊公告");
+  const registry = handleMcp({ authorization: "Bearer reader-token", tokens, body: { tool: "list_source_registry" } });
+  assert.equal(registry.body.sources.some((source) => source.id === "hsinchu-county-council" && source.url === "https://www.hcc.gov.tw/" && source.needs_key === false), true);
+  const failed = handleMcp({ authorization: "Bearer reader-token", tokens, state: { failures: [{ id: "hsinchu-county-council", error: "timeout" }] }, body: { tool: "get_failed_sources" } });
+  assert.equal(failed.body.failures[0].id, "hsinchu-county-council");
 });
 
 test("mcp checks dates, duplicates, and refuses unverified facts", () => {
