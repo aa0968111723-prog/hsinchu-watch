@@ -717,6 +717,114 @@
         "width": 1280,
         "sha256": "db1671a5fb91a35e5f90eee7654add94ff1aff811937224a568e0e00230cd119"
       }
+    },
+    "scene-guanxi-dongan-bridge": {
+      "commons": "File:新竹關西東安古橋.jpg",
+      "retrieved_at": "2026-11-13T10:18:33+08:00",
+      "evidence": {
+        "title": "File:新竹關西東安古橋.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E9%97%9C%E8%A5%BF%E6%9D%B1%E5%AE%89%E5%8F%A4%E6%A9%8B.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/%E6%96%B0%E7%AB%B9%E9%97%9C%E8%A5%BF%E6%9D%B1%E5%AE%89%E5%8F%A4%E6%A9%8B.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6000,
+        "original_height": 4000,
+        "original_mime": "image/jpeg",
+        "original_sha1": "a1595bf28cad92acef249e33b0531144c5e71988",
+        "uploaded_at": "2020-09-10T14:40:38Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "李元鈞",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2019-07-13 10:37:51",
+        "description": null,
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "edc9b1e870bd71209cf3a661c955ee25fd8da6343de78cbedf853c5a8ed8110b"
+      }
+    },
+    "scene-hukou-entrance-2026": {
+      "commons": "File:202603 Town entrance of Hukou Township ,Hsinchu County TW PHW1.jpg",
+      "retrieved_at": "2026-11-13T10:18:37+08:00",
+      "evidence": {
+        "title": "File:202603 Town entrance of Hukou Township ,Hsinchu County TW PHW1.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:202603_Town_entrance_of_Hukou_Township_,Hsinchu_County_TW_PHW1.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/202603_Town_entrance_of_Hukou_Township_%2CHsinchu_County_TW_PHW1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6180,
+        "original_height": 4120,
+        "original_mime": "image/jpeg",
+        "original_sha1": "e0752407f5a8b0b16f861c12ac1085ac6563cf44",
+        "uploaded_at": "2026-05-18T20:21:01Z",
+        "license_short": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0",
+        "artist": "Junyu-K",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2026-03-25 16:00:37",
+        "description": "Town entrance sign of Hukou Township, Hsinchu county together with a Taoyuan city's \" Have a nice trip \" sign at the limit of Hsinchu county and Taoyuan city",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "d5d63b173519812b95697a65e1c1c70fccca5a64b61c48d948549af48a578f3e"
+      }
+    },
+    "scene-beipu-old-street": {
+      "commons": "File:北埔老街與北埔慈天宮.jpg",
+      "retrieved_at": "2026-11-13T10:18:41+08:00",
+      "evidence": {
+        "title": "File:北埔老街與北埔慈天宮.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E5%9F%94%E8%80%81%E8%A1%97%E8%88%87%E5%8C%97%E5%9F%94%E6%85%88%E5%A4%A9%E5%AE%AE.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/%E5%8C%97%E5%9F%94%E8%80%81%E8%A1%97%E8%88%87%E5%8C%97%E5%9F%94%E6%85%88%E5%A4%A9%E5%AE%AE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4032,
+        "original_height": 3024,
+        "original_mime": "image/jpeg",
+        "original_sha1": "33a494f6246a3764a27b26e84371789c2dfd1850",
+        "uploaded_at": "2017-11-23T10:40:21Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Outlookxp",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2017-10-29 14:16:24",
+        "description": "北埔老街與北埔慈天宮",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "5fa08ff127d37d1aa365ab3cbd7ec1eeedc2555b423cfe73a6e5df8e8107e626"
+      }
+    },
+    "scene-control-yuan-2024": {
+      "commons": "File:Control Yuan Building-01.2024-09-21.jpg",
+      "retrieved_at": "2026-11-13T10:18:46+08:00",
+      "evidence": {
+        "title": "File:Control Yuan Building-01.2024-09-21.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Control_Yuan_Building-01.2024-09-21.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Control_Yuan_Building-01.2024-09-21.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 2154,
+        "original_height": 1377,
+        "original_mime": "image/jpeg",
+        "original_sha1": "b03707df7da7af7865ebd79280aa3f817686caee",
+        "uploaded_at": "2024-09-21T15:56:41Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "阿道",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2024-09-21 12:25:29",
+        "description": "監察院廳舍，攝於2024年全國古蹟日。",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "399682494982fa23b6300393fc57ed82eb39d12a846643d39cab6207e14a722c"
+      }
     }
   }
 }

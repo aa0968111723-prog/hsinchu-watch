@@ -10,6 +10,7 @@ import * as budget from "../../src/art-library/figures/budget-drawers/model.js";
 import * as council from "../../src/art-library/figures/council-desk/model.js";
 import * as emptyBay from "../../src/art-library/figures/empty-bay/model.js";
 import * as layers from "../../src/art-library/figures/layer-board/model.js";
+import * as works from "../../src/art-library/figures/works-section/model.js";
 import * as yard from "../../src/art-library/figures/stage-yard/model.js";
 import {
   ORIGINS,
@@ -306,4 +307,17 @@ test("layer board keeps claim off the registration pin", () => {
   for (let time = 0; time < 5; time += FRAME) layers.advance(board, FRAME, true);
   assert.equal(board.pin, 0);
   assert.equal(layers.describe(board), "行政界線 · 界線不是案址");
+});
+
+test("works section names layers without inventing a percentage", () => {
+  assert.deepEqual(works.LAYERS.map((layer) => layer.id), ["fill", "drain", "pavement", "rail"]);
+  const section = works.createSection(1);
+  assert.equal(works.describe(section).includes("%"), false);
+  assert.equal(/\d{2,}/.test(works.describe(section)), false);
+  for (let time = 0; time < 5; time += FRAME) works.advance(section, FRAME, true);
+  assert.equal(section.lift[1], works.FOCUS);
+  works.choose(section, 2);
+  for (let time = 0; time < 5; time += FRAME) works.advance(section, FRAME, true);
+  assert.equal(works.describe(section), "路面層 · 示意鋪面，不是驗收厚度");
+  assert.equal(works.describe(section).includes("%"), false);
 });

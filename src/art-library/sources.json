@@ -661,6 +661,82 @@
         "y": 0.45
       },
       "reviewed": true
+    },
+    {
+      "id": "scene-guanxi-dongan-bridge",
+      "title": "關西東安古橋",
+      "commons": "File:新竹關西東安古橋.jpg",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "place-context",
+        "public-works",
+        "city-scene"
+      ],
+      "alt": "新竹縣關西鎮東安古橋的石拱橋身與橋面，兩側有矮牆，周圍是樹木與河岸。歷史橋梁街景，不是當代拓寬工地",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-hukou-entrance-2026",
+      "title": "湖口鄉入口界牌",
+      "commons": "File:202603 Town entrance of Hukou Township ,Hsinchu County TW PHW1.jpg",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣湖口鄉與桃園市交界的鄉名界牌，立於省道旁，後方可見道路與路樹。2026年3月。是鄉鎮入口，不是特定工程現況",
+      "focal_point": {
+        "x": 0.45,
+        "y": 0.4
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-beipu-old-street",
+      "title": "北埔老街與慈天宮",
+      "commons": "File:北埔老街與北埔慈天宮.jpg",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "place-context",
+        "city-scene"
+      ],
+      "alt": "新竹縣北埔鄉老街街景，前方是行人步道與店招，盡頭可見北埔慈天宮的廟宇屋頂。地方生活場景，不是治理案卷工地",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-control-yuan-2024",
+      "title": "監察院廳舍",
+      "commons": "File:Control Yuan Building-01.2024-09-21.jpg",
+      "region_ids": [
+        "central"
+      ],
+      "office_refs": [
+        "office:cy"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "監察院廳舍外觀，淺色立面與門廊，攝於2024年全國古蹟日。2024年9月21日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "reviewed": true
     }
   ],
   "gaps": [

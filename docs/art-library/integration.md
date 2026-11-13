@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/art-library/figures/figures.css">
 <div data-figure="evidence-desk" data-alt="…"></div>
 <!-- 元件：budget-drawers、stage-yard、council-desk、empty-bay；預算／階段可加 data-project="案卷 id" -->
-<!-- 插畫：layer-board（界線／主張／核對三張片；主張不能上銷） -->
+<!-- 插畫：layer-board（界線／主張／核對）；works-section（公共建設剖面，不帶百分比） -->
 <script type="module" src="/art-library/figures/boot.js"></script>
 ```
 
