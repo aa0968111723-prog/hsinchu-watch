@@ -1,0 +1,2014 @@
+{
+  "generated_at": "2026-11-13T08:57:44+08:00",
+  "timezone": "Asia/Taipei",
+  "window_from": "2026-11-11T00:00:00+08:00",
+  "baseline_urls": 1466,
+  "baseline_latest_published_at": "2026-11-11T23:35:07+08:00",
+  "baseline_latest_collected_at": "2026-11-12T06:30:55+08:00",
+  "status_values": [
+    "ok",
+    "empty",
+    "failed"
+  ],
+  "status_meaning": {
+    "ok": "來源可達且本批對該人有新的可核對材料，或搜尋層成功（見 notes）",
+    "empty": "來源可達，但窗口內無該人新材料（空不是把未知當成 0）",
+    "failed": "連線、權限、robots 或平台限制，未能取得內容"
+  },
+  "cells": [
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "自由時報",
+      "status": "ok",
+      "item_count": 2,
+      "notes": "本批收錄 2 筆"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "聯合新聞網",
+      "status": "ok",
+      "item_count": 4,
+      "notes": "本批收錄 4 筆"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "中時新聞網",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "中央社",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "TVBS",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "三立",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "民視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "ETtoday",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "公視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "鏡週刊／鏡報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "風傳媒",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "新頭殼",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "上報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "Yahoo新聞",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "LINE TODAY",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "地方媒體（新竹時報等）",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "新竹時報 RSS 可讀，11/11 星際圖書館稿已在庫；中華日報／台灣好新聞見於 GN，未全數解析穩定網址"
+    },
+    {
+      "person": "吳旭智",
+      "group": "media",
+      "source": "Google News RSS/搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "各人 when:3d RSS 成功，作為發現層；入庫以可核對原文網址為準"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "新竹縣政府新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "靜態 HTML 未列出 11/11–13 新人名稿，可能為動態載入"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "新竹縣議會新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "同上"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "竹北市公所新聞列表",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀（big5）；最新相關稿停在 2026-11-10，無 11/11 起新人名稿"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "民進黨中央新聞頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開頁可讀，未見六人 11/11 起新稿"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "國民黨中央 2026 專頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀；所見含徐欣瑩者為 115.11.8 張清照競總舊稿"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "民眾黨中央",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https://www.tpp.org.tw/ 與 /news 回 403；倉庫收集器亦註明不抓 tpp.org.tw"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "民進黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.dpp.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "國民黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.kmt.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "徐欣瑩官網 shesinging.tw/record",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "靜態頁無 11/11 起日期稿"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "吳旭智官網 drmorning.tw",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https／www／apex 與 http 均失敗：HTTPS TLS eof，HTTP 500"
+    },
+    {
+      "person": "吳旭智",
+      "group": "official",
+      "source": "中選會／新竹縣選委會",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選委會頁可讀；11/9 公告 11/13 監察員講習、11/3 議員政見會，未出現六人姓名，故不建人物條"
+    },
+    {
+      "person": "吳旭智",
+      "group": "social",
+      "source": "YouTube 頻道 RSS",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "倉庫已載明 /feeds/videos.xml 與站內搜尋為 robots Disallow；本批不抓。無授權則不用 Data API。官方清單僅徐、鄭有頻道，其餘不臆造。"
+    },
+    {
+      "person": "吳旭智",
+      "group": "social",
+      "source": "Threads 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "吳旭智",
+      "group": "social",
+      "source": "Instagram 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "吳旭智",
+      "group": "social",
+      "source": "Facebook 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "吳旭智",
+      "group": "social",
+      "source": "X 公開搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "公開搜尋成功；多為轉述或個人評論，未收未查證指控，未寫帳號"
+    },
+    {
+      "person": "吳旭智",
+      "group": "forum",
+      "source": "PTT HatePolitics",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開搜尋最新相關討論在 11/10，11/11 00:00 後無新文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "forum",
+      "source": "PTT Gossiping",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 可讀，無六人新標題"
+    },
+    {
+      "person": "吳旭智",
+      "group": "forum",
+      "source": "PTT Hsinchu",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 與搜尋可讀，無 11/11 起相關新文"
+    },
+    {
+      "person": "吳旭智",
+      "group": "forum",
+      "source": "PTT HsinchuCounty",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "atom/HsinchuCounty.xml 回 404，板不存在或已更名"
+    },
+    {
+      "person": "吳旭智",
+      "group": "forum",
+      "source": "Dcard 公開搜尋",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "www.dcard.tw/search 回 403，未繞過"
+    },
+    {
+      "person": "吳旭智",
+      "group": "fact-check",
+      "source": "台灣事實查核中心",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選舉工具箱與報告列表可讀；六人姓名 0 筆，無 11/11 起對人查核"
+    },
+    {
+      "person": "吳旭智",
+      "group": "fact-check",
+      "source": "MyGoPen",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "首頁可讀；站內搜尋頁未列出六人；WebSearch 無對人新查核"
+    },
+    {
+      "person": "吳旭智",
+      "group": "fact-check",
+      "source": "Cofacts",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "cofacts.tw 與 articles 搜尋回 403；WebSearch 所見為較舊使用者回報，非 11/11 起完成查核"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "自由時報",
+      "status": "ok",
+      "item_count": 9,
+      "notes": "本批收錄 9 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "聯合新聞網",
+      "status": "ok",
+      "item_count": 3,
+      "notes": "本批收錄 3 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "中時新聞網",
+      "status": "ok",
+      "item_count": 3,
+      "notes": "本批收錄 3 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "中央社",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "TVBS",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "三立",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "民視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "ETtoday",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "公視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "鏡週刊／鏡報",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "風傳媒",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "新頭殼",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "上報",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "Yahoo新聞",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "LINE TODAY",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "地方媒體（新竹時報等）",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "新竹時報 RSS 可讀，11/11 星際圖書館稿已在庫；中華日報／台灣好新聞見於 GN，未全數解析穩定網址"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "media",
+      "source": "Google News RSS/搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "各人 when:3d RSS 成功，作為發現層；入庫以可核對原文網址為準"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "新竹縣政府新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "靜態 HTML 未列出 11/11–13 新人名稿，可能為動態載入"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "新竹縣議會新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "同上"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "竹北市公所新聞列表",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀（big5）；最新相關稿停在 2026-11-10，無 11/11 起新人名稿"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "民進黨中央新聞頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開頁可讀，未見六人 11/11 起新稿"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "國民黨中央 2026 專頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀；所見含徐欣瑩者為 115.11.8 張清照競總舊稿"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "民眾黨中央",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https://www.tpp.org.tw/ 與 /news 回 403；倉庫收集器亦註明不抓 tpp.org.tw"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "民進黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.dpp.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "國民黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.kmt.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "徐欣瑩官網 shesinging.tw/record",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "靜態頁無 11/11 起日期稿"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "吳旭智官網 drmorning.tw",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https／www／apex 與 http 均失敗：HTTPS TLS eof，HTTP 500"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "official",
+      "source": "中選會／新竹縣選委會",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選委會頁可讀；11/9 公告 11/13 監察員講習、11/3 議員政見會，未出現六人姓名，故不建人物條"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "social",
+      "source": "YouTube 頻道 RSS",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "倉庫已載明 /feeds/videos.xml 與站內搜尋為 robots Disallow；本批不抓。無授權則不用 Data API。官方清單僅徐、鄭有頻道，其餘不臆造。"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "social",
+      "source": "Threads 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "social",
+      "source": "Instagram 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "social",
+      "source": "Facebook 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "social",
+      "source": "X 公開搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "公開搜尋成功；多為轉述或個人評論，未收未查證指控，未寫帳號"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "forum",
+      "source": "PTT HatePolitics",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開搜尋可見歷史文，11/11 00:00 後無該人新標題可收"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "forum",
+      "source": "PTT Gossiping",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 可讀，無六人新標題"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "forum",
+      "source": "PTT Hsinchu",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 與搜尋可讀，無 11/11 起相關新文"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "forum",
+      "source": "PTT HsinchuCounty",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "atom/HsinchuCounty.xml 回 404，板不存在或已更名"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "forum",
+      "source": "Dcard 公開搜尋",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "www.dcard.tw/search 回 403，未繞過"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "fact-check",
+      "source": "台灣事實查核中心",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選舉工具箱與報告列表可讀；六人姓名 0 筆，無 11/11 起對人查核"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "fact-check",
+      "source": "MyGoPen",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "首頁可讀；站內搜尋頁未列出六人；WebSearch 無對人新查核"
+    },
+    {
+      "person": "徐欣瑩",
+      "group": "fact-check",
+      "source": "Cofacts",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "cofacts.tw 與 articles 搜尋回 403；WebSearch 所見為較舊使用者回報，非 11/11 起完成查核"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "自由時報",
+      "status": "ok",
+      "item_count": 7,
+      "notes": "本批收錄 7 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "聯合新聞網",
+      "status": "ok",
+      "item_count": 4,
+      "notes": "本批收錄 4 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "中時新聞網",
+      "status": "ok",
+      "item_count": 3,
+      "notes": "本批收錄 3 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "中央社",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "TVBS",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "三立",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "民視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "ETtoday",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "公視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "鏡週刊／鏡報",
+      "status": "ok",
+      "item_count": 2,
+      "notes": "本批收錄 2 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "風傳媒",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "新頭殼",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "上報",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "Yahoo新聞",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "LINE TODAY",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "地方媒體（新竹時報等）",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "新竹時報 RSS 可讀，11/11 星際圖書館稿已在庫；中華日報／台灣好新聞見於 GN，未全數解析穩定網址"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "media",
+      "source": "Google News RSS/搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "各人 when:3d RSS 成功，作為發現層；入庫以可核對原文網址為準"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "新竹縣政府新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "靜態 HTML 未列出 11/11–13 新人名稿，可能為動態載入"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "新竹縣議會新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "同上"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "竹北市公所新聞列表",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀（big5）；最新相關稿停在 2026-11-10，無 11/11 起新人名稿"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "民進黨中央新聞頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開頁可讀，未見六人 11/11 起新稿"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "國民黨中央 2026 專頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀；所見含徐欣瑩者為 115.11.8 張清照競總舊稿"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "民眾黨中央",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https://www.tpp.org.tw/ 與 /news 回 403；倉庫收集器亦註明不抓 tpp.org.tw"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "民進黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.dpp.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "國民黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.kmt.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "徐欣瑩官網 shesinging.tw/record",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "靜態頁無 11/11 起日期稿"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "吳旭智官網 drmorning.tw",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https／www／apex 與 http 均失敗：HTTPS TLS eof，HTTP 500"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "official",
+      "source": "中選會／新竹縣選委會",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選委會頁可讀；11/9 公告 11/13 監察員講習、11/3 議員政見會，未出現六人姓名，故不建人物條"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "social",
+      "source": "YouTube 頻道 RSS",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "倉庫已載明 /feeds/videos.xml 與站內搜尋為 robots Disallow；本批不抓。無授權則不用 Data API。官方清單僅徐、鄭有頻道，其餘不臆造。"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "social",
+      "source": "Threads 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "social",
+      "source": "Instagram 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "social",
+      "source": "Facebook 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "social",
+      "source": "X 公開搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "公開搜尋成功；多為轉述或個人評論，未收未查證指控，未寫帳號"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "forum",
+      "source": "PTT HatePolitics",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開搜尋可見歷史文，11/11 00:00 後無該人新標題可收"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "forum",
+      "source": "PTT Gossiping",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 可讀，無六人新標題"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "forum",
+      "source": "PTT Hsinchu",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 與搜尋可讀，無 11/11 起相關新文"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "forum",
+      "source": "PTT HsinchuCounty",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "atom/HsinchuCounty.xml 回 404，板不存在或已更名"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "forum",
+      "source": "Dcard 公開搜尋",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "www.dcard.tw/search 回 403，未繞過"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "fact-check",
+      "source": "台灣事實查核中心",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選舉工具箱與報告列表可讀；六人姓名 0 筆，無 11/11 起對人查核"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "fact-check",
+      "source": "MyGoPen",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "首頁可讀；站內搜尋頁未列出六人；WebSearch 無對人新查核"
+    },
+    {
+      "person": "鄭朝方",
+      "group": "fact-check",
+      "source": "Cofacts",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "cofacts.tw 與 articles 搜尋回 403；WebSearch 所見為較舊使用者回報，非 11/11 起完成查核"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "自由時報",
+      "status": "ok",
+      "item_count": 5,
+      "notes": "本批收錄 5 筆"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "聯合新聞網",
+      "status": "ok",
+      "item_count": 3,
+      "notes": "本批收錄 3 筆"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "中時新聞網",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "中央社",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "TVBS",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "三立",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "民視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "ETtoday",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "公視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "鏡週刊／鏡報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "風傳媒",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "新頭殼",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "上報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "Yahoo新聞",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "LINE TODAY",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "地方媒體（新竹時報等）",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "新竹時報 RSS 可讀，11/11 星際圖書館稿已在庫；中華日報／台灣好新聞見於 GN，未全數解析穩定網址"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "media",
+      "source": "Google News RSS/搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "各人 when:3d RSS 成功，作為發現層；入庫以可核對原文網址為準"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "新竹縣政府新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "靜態 HTML 未列出 11/11–13 新人名稿，可能為動態載入"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "新竹縣議會新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "同上"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "竹北市公所新聞列表",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀（big5）；最新相關稿停在 2026-11-10，無 11/11 起新人名稿"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "民進黨中央新聞頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開頁可讀，未見六人 11/11 起新稿"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "國民黨中央 2026 專頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀；所見含徐欣瑩者為 115.11.8 張清照競總舊稿"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "民眾黨中央",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https://www.tpp.org.tw/ 與 /news 回 403；倉庫收集器亦註明不抓 tpp.org.tw"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "民進黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.dpp.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "國民黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.kmt.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "徐欣瑩官網 shesinging.tw/record",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "靜態頁無 11/11 起日期稿"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "吳旭智官網 drmorning.tw",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https／www／apex 與 http 均失敗：HTTPS TLS eof，HTTP 500"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "official",
+      "source": "中選會／新竹縣選委會",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選委會頁可讀；11/9 公告 11/13 監察員講習、11/3 議員政見會，未出現六人姓名，故不建人物條"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "social",
+      "source": "YouTube 頻道 RSS",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "倉庫已載明 /feeds/videos.xml 與站內搜尋為 robots Disallow；本批不抓。無授權則不用 Data API。官方清單僅徐、鄭有頻道，其餘不臆造。"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "social",
+      "source": "Threads 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "social",
+      "source": "Instagram 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "social",
+      "source": "Facebook 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "social",
+      "source": "X 公開搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "公開搜尋成功；多為轉述或個人評論，未收未查證指控，未寫帳號"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "forum",
+      "source": "PTT HatePolitics",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "公開搜尋與 Atom 成功；留言與帳號未收；11/11 起有公開討論標題，討論串不當作查核來源"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "forum",
+      "source": "PTT Gossiping",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 可讀，無六人新標題"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "forum",
+      "source": "PTT Hsinchu",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 與搜尋可讀，無 11/11 起相關新文"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "forum",
+      "source": "PTT HsinchuCounty",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "atom/HsinchuCounty.xml 回 404，板不存在或已更名"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "forum",
+      "source": "Dcard 公開搜尋",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "www.dcard.tw/search 回 403，未繞過"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "fact-check",
+      "source": "台灣事實查核中心",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選舉工具箱與報告列表可讀；六人姓名 0 筆，無 11/11 起對人查核"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "fact-check",
+      "source": "MyGoPen",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "首頁可讀；站內搜尋頁未列出六人；WebSearch 無對人新查核"
+    },
+    {
+      "person": "邱臣遠",
+      "group": "fact-check",
+      "source": "Cofacts",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "cofacts.tw 與 articles 搜尋回 403；WebSearch 所見為較舊使用者回報，非 11/11 起完成查核"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "自由時報",
+      "status": "ok",
+      "item_count": 2,
+      "notes": "本批收錄 2 筆"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "聯合新聞網",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "中時新聞網",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "中央社",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "TVBS",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "本批收錄 1 筆"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "三立",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "民視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "ETtoday",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "公視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "鏡週刊／鏡報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "風傳媒",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "新頭殼",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "上報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "Yahoo新聞",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "LINE TODAY",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "地方媒體（新竹時報等）",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "新竹時報 RSS 可讀，11/11 星際圖書館稿已在庫；中華日報／台灣好新聞見於 GN，未全數解析穩定網址"
+    },
+    {
+      "person": "陳見賢",
+      "group": "media",
+      "source": "Google News RSS/搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "各人 when:3d RSS 成功，作為發現層；入庫以可核對原文網址為準"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "新竹縣政府新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "靜態 HTML 未列出 11/11–13 新人名稿，可能為動態載入"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "新竹縣議會新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "同上"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "竹北市公所新聞列表",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀（big5）；最新相關稿停在 2026-11-10，無 11/11 起新人名稿"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "民進黨中央新聞頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開頁可讀，未見六人 11/11 起新稿"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "國民黨中央 2026 專頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀；所見含徐欣瑩者為 115.11.8 張清照競總舊稿"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "民眾黨中央",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https://www.tpp.org.tw/ 與 /news 回 403；倉庫收集器亦註明不抓 tpp.org.tw"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "民進黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.dpp.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "國民黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.kmt.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "徐欣瑩官網 shesinging.tw/record",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "靜態頁無 11/11 起日期稿"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "吳旭智官網 drmorning.tw",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https／www／apex 與 http 均失敗：HTTPS TLS eof，HTTP 500"
+    },
+    {
+      "person": "陳見賢",
+      "group": "official",
+      "source": "中選會／新竹縣選委會",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選委會頁可讀；11/9 公告 11/13 監察員講習、11/3 議員政見會，未出現六人姓名，故不建人物條"
+    },
+    {
+      "person": "陳見賢",
+      "group": "social",
+      "source": "YouTube 頻道 RSS",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "倉庫已載明 /feeds/videos.xml 與站內搜尋為 robots Disallow；本批不抓。無授權則不用 Data API。官方清單僅徐、鄭有頻道，其餘不臆造。"
+    },
+    {
+      "person": "陳見賢",
+      "group": "social",
+      "source": "Threads 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "陳見賢",
+      "group": "social",
+      "source": "Instagram 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "陳見賢",
+      "group": "social",
+      "source": "Facebook 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "陳見賢",
+      "group": "social",
+      "source": "X 公開搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "公開搜尋成功；多為轉述或個人評論，未收未查證指控，未寫帳號"
+    },
+    {
+      "person": "陳見賢",
+      "group": "forum",
+      "source": "PTT HatePolitics",
+      "status": "ok",
+      "item_count": 1,
+      "notes": "公開搜尋與 Atom 成功；留言與帳號未收；本批收 1 則新聞轉貼"
+    },
+    {
+      "person": "陳見賢",
+      "group": "forum",
+      "source": "PTT Gossiping",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 可讀，無六人新標題"
+    },
+    {
+      "person": "陳見賢",
+      "group": "forum",
+      "source": "PTT Hsinchu",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 與搜尋可讀，無 11/11 起相關新文"
+    },
+    {
+      "person": "陳見賢",
+      "group": "forum",
+      "source": "PTT HsinchuCounty",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "atom/HsinchuCounty.xml 回 404，板不存在或已更名"
+    },
+    {
+      "person": "陳見賢",
+      "group": "forum",
+      "source": "Dcard 公開搜尋",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "www.dcard.tw/search 回 403，未繞過"
+    },
+    {
+      "person": "陳見賢",
+      "group": "fact-check",
+      "source": "台灣事實查核中心",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選舉工具箱與報告列表可讀；六人姓名 0 筆，無 11/11 起對人查核"
+    },
+    {
+      "person": "陳見賢",
+      "group": "fact-check",
+      "source": "MyGoPen",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "首頁可讀；站內搜尋頁未列出六人；WebSearch 無對人新查核"
+    },
+    {
+      "person": "陳見賢",
+      "group": "fact-check",
+      "source": "Cofacts",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "cofacts.tw 與 articles 搜尋回 403；WebSearch 所見為較舊使用者回報，非 11/11 起完成查核"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "自由時報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "聯合新聞網",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "中時新聞網",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "中央社",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "TVBS",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "三立",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "民視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "ETtoday",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "公視",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可連線，11/11 起無該人可核對新稿"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "鏡週刊／鏡報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "風傳媒",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "新頭殼",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "上報",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "Yahoo新聞",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "來源可讀或搜尋可見，但無該人窗口內、且庫中沒有的可核對原文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "LINE TODAY",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Google News 有列出相關標題，但本批未取得可穩定去重的原文網址，不把 Google 轉址當來源。"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "地方媒體（新竹時報等）",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "新竹時報 RSS 可讀，11/11 星際圖書館稿已在庫；中華日報／台灣好新聞見於 GN，未全數解析穩定網址"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "media",
+      "source": "Google News RSS/搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "各人 when:3d RSS 成功，作為發現層；入庫以可核對原文網址為準"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "新竹縣政府新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "靜態 HTML 未列出 11/11–13 新人名稿，可能為動態載入"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "新竹縣議會新聞頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "同上"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "竹北市公所新聞列表",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀（big5）；最新相關稿停在 2026-11-10，無 11/11 起新人名稿"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "民進黨中央新聞頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開頁可讀，未見六人 11/11 起新稿"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "國民黨中央 2026 專頁",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "可讀；所見含徐欣瑩者為 115.11.8 張清照競總舊稿"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "民眾黨中央",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https://www.tpp.org.tw/ 與 /news 回 403；倉庫收集器亦註明不抓 tpp.org.tw"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "民進黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.dpp.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "國民黨新竹縣黨部",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "hsinchu.kmt.org.tw TLS unexpected eof"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "徐欣瑩官網 shesinging.tw/record",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "靜態頁無 11/11 起日期稿"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "吳旭智官網 drmorning.tw",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "https／www／apex 與 http 均失敗：HTTPS TLS eof，HTTP 500"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "official",
+      "source": "中選會／新竹縣選委會",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選委會頁可讀；11/9 公告 11/13 監察員講習、11/3 議員政見會，未出現六人姓名，故不建人物條"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "social",
+      "source": "YouTube 頻道 RSS",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "倉庫已載明 /feeds/videos.xml 與站內搜尋為 robots Disallow；本批不抓。無授權則不用 Data API。官方清單僅徐、鄭有頻道，其餘不臆造。"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "social",
+      "source": "Threads 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "social",
+      "source": "Instagram 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "social",
+      "source": "Facebook 公開頁",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "未登入僅見登入牆或幾乎空白"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "social",
+      "source": "X 公開搜尋",
+      "status": "ok",
+      "item_count": 0,
+      "notes": "公開搜尋成功；多為轉述或個人評論，未收未查證指控，未寫帳號"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "forum",
+      "source": "PTT HatePolitics",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "公開搜尋可見歷史文，11/11 00:00 後無該人新標題可收"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "forum",
+      "source": "PTT Gossiping",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 可讀，無六人新標題"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "forum",
+      "source": "PTT Hsinchu",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "Atom 與搜尋可讀，無 11/11 起相關新文"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "forum",
+      "source": "PTT HsinchuCounty",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "atom/HsinchuCounty.xml 回 404，板不存在或已更名"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "forum",
+      "source": "Dcard 公開搜尋",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "www.dcard.tw/search 回 403，未繞過"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "fact-check",
+      "source": "台灣事實查核中心",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "選舉工具箱與報告列表可讀；六人姓名 0 筆，無 11/11 起對人查核"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "fact-check",
+      "source": "MyGoPen",
+      "status": "empty",
+      "item_count": 0,
+      "notes": "首頁可讀；站內搜尋頁未列出六人；WebSearch 無對人新查核"
+    },
+    {
+      "person": "吳子嘉",
+      "group": "fact-check",
+      "source": "Cofacts",
+      "status": "failed",
+      "item_count": 0,
+      "notes": "cofacts.tw 與 articles 搜尋回 403；WebSearch 所見為較舊使用者回報，非 11/11 起完成查核"
+    }
+  ],
+  "summary": {
+    "by_group": {
+      "media": {
+        "ok": 34,
+        "empty": 68
+      },
+      "official": {
+        "failed": 36,
+        "empty": 30
+      },
+      "social": {
+        "failed": 24,
+        "ok": 6
+      },
+      "forum": {
+        "empty": 16,
+        "failed": 12,
+        "ok": 2
+      },
+      "fact-check": {
+        "empty": 12,
+        "failed": 6
+      }
+    },
+    "total_cells": 246
+  }
+}
