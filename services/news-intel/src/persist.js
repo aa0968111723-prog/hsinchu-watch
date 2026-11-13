@@ -77,6 +77,18 @@ export async function persistArticles(db, { articles, now, actor = "scheduler" }
   return { inserted, revised };
 }
 
+export async function persistModelReview(db, { proposals, now }) {
+  let inserted = 0;
+  for (const proposal of proposals || []) {
+    const reason = `model_proposal ${proposal.source_url} ${proposal.original_title}`.slice(0, 500);
+    const existing = await db.prepare("SELECT id FROM review_queue WHERE reason = ? AND status = 'open'").bind(reason).first();
+    if (existing) continue;
+    await db.prepare("INSERT INTO review_queue (id, article_id, reason, status, created_at) VALUES (?, NULL, ?, 'open', ?)").bind(crypto.randomUUID(), reason, now).run();
+    inserted += 1;
+  }
+  return { inserted };
+}
+
 export async function persistPublicRecords(db, { records, now, actor = "scheduler" }) {
   let inserted = 0;
   for (const record of records || []) {

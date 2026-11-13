@@ -1,5 +1,5 @@
 import { handleMcp } from "./mcp.js";
-import { persistAnnouncements, persistArticles, persistPublicRecords, snapshotPayload } from "./persist.js";
+import { persistAnnouncements, persistArticles, persistModelReview, persistPublicRecords, snapshotPayload } from "./persist.js";
 import { runHour } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -28,6 +28,9 @@ export async function applyScheduledResult(db, previous, result) {
   }
   if (result.ok && result.public_records?.length) {
     await persistPublicRecords(db, { records: result.public_records, now: result.last_success_at });
+  }
+  if (result.ok && result.model_review?.length) {
+    await persistModelReview(db, { proposals: result.model_review, now: result.last_success_at });
   }
   const snapshot = snapshotPayload(previous, result);
   if (snapshot.replaced) {

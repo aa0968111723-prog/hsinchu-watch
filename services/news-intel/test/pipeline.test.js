@@ -90,6 +90,26 @@ test("gemini stays off without a key or when the cap is hit", async () => {
   assert.equal(guarded.articles.map((article) => article.original_title).includes("模型提出的竹北開工"), false);
   assert.equal(guarded.model_review.length, 2);
   assert.equal(guarded.model_review.every((article) => article.verification_status === "UNVERIFIED" && article.fact_fields_allowed === false), true);
+  const { DatabaseSync } = await import("node:sqlite");
+  const { persistModelReview } = await import("../src/persist.js");
+  const db = new DatabaseSync(":memory:");
+  db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
+  const d1 = {
+    prepare(sql) {
+      const statement = (params) => ({
+        bind(...next) { return statement(next); },
+        async run() { db.prepare(sql).run(...params); return { success: true }; },
+        async all() { return { results: db.prepare(sql).all(...params) }; },
+        async first() { return db.prepare(sql).get(...params) || null; },
+      });
+      return statement([]);
+    },
+  };
+  const stored = await persistModelReview(d1, { proposals: guarded.model_review, now: "2026-11-13T02:00:00.000Z" });
+  const repeated = await persistModelReview(d1, { proposals: guarded.model_review, now: "2026-11-13T03:00:00.000Z" });
+  assert.equal(stored.inserted, 2);
+  assert.equal(repeated.inserted, 0);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM articles").get().n, 0);
 });
 
 test("a failed hour keeps the last successful articles", async () => {
