@@ -679,6 +679,10 @@ test("city list keeps a dated municipal item and drops a blank date", async () =
   assert.equal(rows.length, 1);
   assert.equal(rows[0].publisher_timestamp, "2026-11-12");
   assert.equal(rows[0].source_url, "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=1");
+  const headed = normalizeCityHtml('<a href="/hccg/app/data/view?module=municipalnews&amp;id=9"><h3>新竹市堤防整修</h3><div class="griddate">115-11-13</div></a>');
+  assert.equal(headed.length, 1);
+  assert.equal(headed[0].original_title, "新竹市堤防整修");
+  assert.equal(headed[0].publisher_timestamp, "2026-11-13");
   const shell = normalizeCityHtml("<html><title>市政新聞-新竹市政府全球資訊網</title><p>您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript狀態</p></html>");
   assert.deepEqual(shell, []);
 });

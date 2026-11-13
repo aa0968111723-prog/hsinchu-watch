@@ -31,16 +31,15 @@ export function normalizeCountyRss(xml) {
 }
 
 export function normalizeCityHtml(html) {
-  const pattern = /href="(\/hccg\/app\/data\/view\?module=municipalnews[^"]+)"[^>]*title="([^"]*)"[^>]*>\s*<span class="date">([^<]*)<\/span>/gi;
   const seen = new Set();
   const rows = [];
-  for (const match of String(html || "").matchAll(pattern)) {
-    const sourceUrl = `https://www.hccg.gov.tw${decode(match[1])}`;
-    if (seen.has(sourceUrl)) continue;
+  const add = (href, title, dateText) => {
+    const sourceUrl = `https://www.hccg.gov.tw${decode(href)}`;
+    if (seen.has(sourceUrl)) return;
     seen.add(sourceUrl);
-    const date = match[3].trim().match(/^(\d{2,3})-(\d{2})-(\d{2})$/);
+    const date = String(dateText || "").trim().match(/^(\d{2,3})-(\d{2})-(\d{2})$/);
     rows.push({
-      original_title: decode(match[2]).replace(/\s+/g, " ").trim(),
+      original_title: decode(title).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
       source_url: sourceUrl,
       publisher_timestamp: date ? `${Number(date[1]) + 1911}-${date[2]}-${date[3]}` : "",
       summary: "",
@@ -48,6 +47,13 @@ export function normalizeCityHtml(html) {
       source_type: "official_html",
       source_id: "hsinchu-city-news",
     });
+  };
+  const source = String(html || "");
+  for (const match of source.matchAll(/href="(\/hccg\/app\/data\/view\?module=municipalnews[^"]+)"[^>]*title="([^"]*)"[^>]*>\s*<span class="date">([^<]*)<\/span>/gi)) {
+    add(match[1], match[2], match[3]);
+  }
+  for (const match of source.matchAll(/href="(\/hccg\/app\/data\/view\?module=municipalnews[^"]+)"[\s\S]*?<h3>\s*([\s\S]*?)\s*<\/h3>\s*<div class="griddate">\s*([^<]+?)\s*<\/div>/gi)) {
+    add(match[1], match[2], match[3]);
   }
   return rows.filter((row) => row.original_title && row.publisher_timestamp);
 }
