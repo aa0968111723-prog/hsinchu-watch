@@ -5,10 +5,17 @@ export function sameSnapshot(live, mirror) {
 
 export const PUBLISH_TIMEOUT_MS = 90_000;
 
-export async function cloudflareApiReachable(fetchImpl = fetch, timeoutMs = 8000) {
+export function cloudflareAuthHeaders(configText = "", now = Date.now()) {
+  const token = String(configText).match(/^oauth_token\s*=\s*"([^"]+)"/m)?.[1];
+  const expiry = String(configText).match(/^expiration_time\s*=\s*"([^"]+)"/m)?.[1];
+  if (!token || (expiry && Date.parse(expiry) <= now)) return {};
+  return { authorization: `Bearer ${token}` };
+}
+
+export async function cloudflareApiReachable(fetchImpl = fetch, timeoutMs = 8000, headers = {}) {
   try {
-    const response = await fetchImpl("https://api.cloudflare.com/client/v4/accounts/380f907638bc2293fa09da0666ac15fd/pages/projects/hsinchu-watch", { signal: AbortSignal.timeout(timeoutMs) });
-    return response.status < 500;
+    const response = await fetchImpl("https://api.cloudflare.com/client/v4/accounts/380f907638bc2293fa09da0666ac15fd/pages/projects/hsinchu-watch", { signal: AbortSignal.timeout(timeoutMs), headers });
+    return response.status === 200;
   } catch {
     return false;
   }

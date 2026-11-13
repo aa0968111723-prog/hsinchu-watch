@@ -1,8 +1,10 @@
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
+import { homedir } from "node:os";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { cloudflareApiReachable, deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
+import { cloudflareApiReachable, cloudflareAuthHeaders, deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
 import { FETCH_TIMEOUT_MS } from "./run.js";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
@@ -30,7 +32,9 @@ if (!sameSnapshot(live, local)) {
   console.log(JSON.stringify({ published: false, reason: "production_snapshot_changed" }));
   process.exit(0);
 }
-if (!await cloudflareApiReachable()) {
+const wranglerConfig = join(homedir(), ".wrangler", "config", "default.toml");
+const authHeaders = cloudflareAuthHeaders(existsSync(wranglerConfig) ? readFileSync(wranglerConfig, "utf8") : "");
+if (!await cloudflareApiReachable(fetch, 8000, authHeaders)) {
   console.log(JSON.stringify({ published: false, reason: "cloudflare_unavailable" }));
   writeFileSync(fileURLToPath(new URL("../state/publish-status.json", import.meta.url)), JSON.stringify({
     published: false,

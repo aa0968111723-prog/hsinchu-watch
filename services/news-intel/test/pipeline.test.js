@@ -480,10 +480,15 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   const { cloudflareApiReachable } = await import("../src/publish-gate.js");
   assert.equal(await cloudflareApiReachable(async () => { throw new Error("timeout"); }), false);
   let probed = "";
-  assert.equal(await cloudflareApiReachable(async (url) => { probed = url; return { status: 400 }; }), true);
+  assert.equal(await cloudflareApiReachable(async (url) => { probed = url; return { status: 200 }; }), true);
   assert.equal(probed.includes("/pages/projects/hsinchu-watch"), true);
-  assert.equal(await cloudflareApiReachable(async () => ({ status: 403 })), true);
+  assert.equal(await cloudflareApiReachable(async () => ({ status: 400 })), false);
+  assert.equal(await cloudflareApiReachable(async () => ({ status: 403 })), false);
   assert.equal(await cloudflareApiReachable(async () => ({ status: 503 })), false);
+  const { cloudflareAuthHeaders } = await import("../src/publish-gate.js");
+  assert.deepEqual(cloudflareAuthHeaders(""), {});
+  assert.deepEqual(cloudflareAuthHeaders('oauth_token = "test-token"\nexpiration_time = "2020-01-01T00:00:00.000Z"'), {});
+  assert.equal(cloudflareAuthHeaders('oauth_token = "test-token"\nexpiration_time = "2099-01-01T00:00:00.000Z"').authorization, "Bearer test-token");
   assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "c" }), false);
   assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "b" }), true);
   const unconnected = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "sync_poll_metadata" } });
