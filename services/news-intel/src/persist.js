@@ -271,6 +271,29 @@ export async function persistUsePermitSummary(db, { usePermits, now, actor = "sc
   return { upserted: 1 };
 }
 
+export async function persistHydrants(db, { hydrants, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of hydrants?.hydrants || []) {
+    const place = String(row?.place || "").trim();
+    if (!place) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    keys.push([code, place]);
+    const pressure = row.pressure == null || row.pressure === "" ? null : String(row.pressure);
+    const existing = await db.prepare("SELECT pressure, kind FROM fire_hydrants WHERE code = ? AND place = ?").bind(code, place).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO fire_hydrants (code, place, water_code, kind, pressure, township, region_id, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, place, row.water_code || null, row.kind || null, pressure, row.township || null, row.region_id || null, hydrants.dataset_url, hydrants.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.pressure ?? null) !== pressure || (existing.kind ?? null) !== (row.kind || null)) {
+      await db.prepare("UPDATE fire_hydrants SET water_code = ?, kind = ?, pressure = ?, township = ?, region_id = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND place = ?").bind(row.water_code || null, row.kind || null, pressure, row.township || null, row.region_id || null, hydrants.dataset_url, hydrants.source_url, now, code, place).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "fire_hydrants", hydrants?.dataset_url, ["code", "place"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_hydrants', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

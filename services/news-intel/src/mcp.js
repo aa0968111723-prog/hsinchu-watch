@@ -1,4 +1,4 @@
-import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts, normalizeSpecialClasses, summarizeUsePermits } from "./adapters.js";
+import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts, normalizeSpecialClasses, summarizeUsePermits } from "./adapters.js";
 import { authorize, consumeWrite } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
@@ -35,6 +35,7 @@ function sources() {
     { id: "hsc-speed-cameras", kind: "public_safety", url: COUNTY_CAMERA_URL, docs: COUNTY_CAMERA_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-special-classes", kind: "education", url: COUNTY_SPECIAL_URL, docs: COUNTY_SPECIAL_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-use-permits", kind: "construction", url: COUNTY_PERMIT_URL, docs: COUNTY_PERMIT_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
+    { id: "hsc-hydrants", kind: "public_safety", url: COUNTY_HYDRANT_URL, docs: COUNTY_HYDRANT_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-visitors", kind: "open_data", url: COUNTY_VISITOR_URL, docs: COUNTY_VISITOR_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-hospital-beds", kind: "health", url: COUNTY_BED_URL, docs: COUNTY_BED_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-public-debt", kind: "governance", url: COUNTY_DEBT_URL, docs: COUNTY_DEBT_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
@@ -224,6 +225,23 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
     };
     if (db) await persistPopulation(db, { population, now: new Date().toISOString() });
     return remember({ status: 200, body: { population, stored: Boolean(db) } });
+  }
+  if (tool === "import_government_dataset" && input.dataset === "hsc-hydrants") {
+    let raw = input.payload;
+    if (!raw && fetcher) {
+      const response = await fetcher(COUNTY_HYDRANT_URL);
+      if (!response.ok) return { status: 502, body: { error: `hydrants_${response.status}` } };
+      raw = await response.text();
+    }
+    if (!raw) return { status: 409, body: { error: "fetcher_unavailable" } };
+    let hydrants;
+    try {
+      hydrants = normalizeCountyHydrants(raw);
+    } catch {
+      return { status: 400, body: { error: "invalid_dataset" } };
+    }
+    if (!hydrants.length) return { status: 409, body: { error: "empty_dataset" } };
+    return remember({ status: 200, body: { count: hydrants.length, hydrants, stored: false } });
   }
   if (tool === "import_government_dataset" && input.dataset === "hsc-use-permits") {
     let raw = input.payload;

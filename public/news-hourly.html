@@ -47,6 +47,8 @@
   <p id="special-status" class="meta"></p>
   <h2>新竹縣使用執照</h2>
   <p id="permit-status" class="meta"></p>
+  <h2>新竹縣消防栓</h2>
+  <p id="hydrant-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -129,6 +131,7 @@ const cameraStatus = document.querySelector("#camera-status");
 const cameraList = document.querySelector("#cameras");
 const specialStatus = document.querySelector("#special-status");
 const permitStatus = document.querySelector("#permit-status");
+const hydrantStatus = document.querySelector("#hydrant-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -352,6 +355,22 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       permitStatus.append(" ", source);
     }
+    const hydrants = data.hydrants;
+    hydrantStatus.textContent = hydrants?.count
+      ? `${hydrants.count} 處。只留編號、水源編號、設置地點、型式和壓力原文。沒有設置地點的列不收入。檔案沒有日期欄，不拿抓取時間充當。`
+      : "這一輪沒有消防栓清冊，沒有補地點。";
+    if (hydrants?.download_url) {
+      const download = document.createElement("a");
+      download.href = hydrants.download_url;
+      download.textContent = "下載清冊";
+      hydrantStatus.append(" ", download);
+    }
+    if (hydrants?.source_url && hydrants?.count) {
+      const source = document.createElement("a");
+      source.href = hydrants.source_url;
+      source.textContent = "資料集頁";
+      hydrantStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -464,6 +483,7 @@ fetch("/data/news-intel/latest.json")
     cameraStatus.textContent = "科學儀器清冊讀取失敗。頁面沒有改用假資料。";
     specialStatus.textContent = "特殊教育班名冊讀取失敗。頁面沒有改用假資料。";
     permitStatus.textContent = "使用執照清冊讀取失敗。頁面沒有改用假資料。";
+    hydrantStatus.textContent = "消防栓清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";

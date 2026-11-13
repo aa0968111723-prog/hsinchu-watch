@@ -1,5 +1,5 @@
 import { handleMcp } from "./mcp.js";
-import { persistAnnouncements, persistArticles, persistCameras, persistKindergartens, persistModelReview, persistPopulation, persistPublicRecords, persistSchools, persistSpecialClasses, persistTransport, persistUsePermitSummary, snapshotPayload } from "./persist.js";
+import { persistAnnouncements, persistArticles, persistCameras, persistHydrants, persistKindergartens, persistModelReview, persistPopulation, persistPublicRecords, persistSchools, persistSpecialClasses, persistTransport, persistUsePermitSummary, snapshotPayload } from "./persist.js";
 import { runHour, sourceFetch } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -66,6 +66,9 @@ export async function applyScheduledResult(db, previous, result) {
   }
   if (result.ok && result.use_permits?.count && result.use_permits.retained !== true) {
     await persistUsePermitSummary(db, { usePermits: result.use_permits, now: result.last_success_at });
+  }
+  if (result.ok && result.hydrants?.hydrants?.length && result.hydrants.retained !== true) {
+    await persistHydrants(db, { hydrants: result.hydrants, now: result.last_success_at });
   }
   return snapshot;
 }

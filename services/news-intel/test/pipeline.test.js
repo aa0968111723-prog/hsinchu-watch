@@ -471,6 +471,47 @@ test("use permits keep the written issue-date range and do not sum construction 
   assert.equal(page.includes("沒有把筆數記成 0"), true);
 });
 
+test("county hydrants keep the written pressure and drop a blank place", async () => {
+  const { normalizeCountyHydrants, splitHydrants } = await import("../src/adapters.js");
+  const rows = normalizeCountyHydrants(JSON.stringify([
+    { "編號": "1", "水源編號": "A", "設置地點": "新竹縣竹北市光明一路", "型式": "地上", "壓力-每平方公分公斤": "0" },
+    { "編號": "2", "水源編號": "B", "設置地點": "某路口", "型式": "", "壓力-每平方公分公斤": "3.5" },
+    { "編號": "3", "設置地點": " ", "壓力-每平方公分公斤": "1" },
+  ]));
+  assert.deepEqual(rows, [
+    { code: "1", water_code: "A", place: "新竹縣竹北市光明一路", kind: "地上", pressure: "0", township: "竹北市", region_id: "zhubei" },
+    { code: "2", water_code: "B", place: "某路口", kind: null, pressure: "3.5", township: null, region_id: null },
+  ]);
+  const parts = splitHydrants({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=222", dataset_url: "https://ws.hsinchu.gov.tw/hydrants.json", count: rows.length, hydrants: rows });
+  assert.equal(parts.summary.hydrants, undefined);
+  const kept = await runHour({
+    previous: { articles: [], hydrants: { count: 9 } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.hydrants.count, 9);
+  assert.equal(kept.hydrants.retained, true);
+  assert.equal(kept.articles.length, 1);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-hydrants", payload: JSON.stringify([{ "編號": "1", "設置地點": "新竹縣竹東鎮中正路", "壓力-每平方公分公斤": "2" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-hydrants", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.hydrants[0].region_id, "zhudong");
+  assert.equal(imported.body.hydrants[0].pressure, "2");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("檔案沒有日期欄"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1156,6 +1197,13 @@ test("published news file stays within the real cap", () => {
     assert.equal(typeof data.use_permits.outside, "number");
     assert.equal(data.use_permits.rows, undefined);
     assert.equal(data.use_permits.cost, undefined);
+  }
+  if (data.hydrants) {
+    assert.ok(data.hydrants.count > 4000);
+    assert.equal(data.hydrants.hydrants, undefined);
+    const hydrants = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/hydrants.json", import.meta.url), "utf8"));
+    assert.equal(hydrants.hydrants.length, data.hydrants.count);
+    assert.ok(hydrants.hydrants.every((row) => row.place && (row.pressure === null || typeof row.pressure === "string") && !Object.hasOwn(row, "phone")));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

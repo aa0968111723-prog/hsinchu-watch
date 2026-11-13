@@ -142,6 +142,8 @@ export const COUNTY_SPECIAL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/openda
 export const COUNTY_SPECIAL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=11";
 export const COUNTY_PERMIT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/261/bb6d6bbe-692e-4489-89dc-502cb87e183f.json";
 export const COUNTY_PERMIT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=261";
+export const COUNTY_HYDRANT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/222/2e4cbf1c-337b-4660-94b9-c0af33d61fbe.json";
+export const COUNTY_HYDRANT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=222";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -495,6 +497,38 @@ export function summarizeUsePermits(payload) {
     latest_issue_date: latest?.text || null,
     unreadable: rows.length - dated - outside,
   };
+}
+
+export function normalizeCountyHydrants(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const place = String(row?.["設置地點"] || "").trim();
+    if (!place) return [];
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => place.includes(label)) || "";
+    return [{
+      code: originalNumber(row["編號"]),
+      water_code: originalNumber(row["水源編號"]),
+      place,
+      kind: String(row["型式"] || "").trim() || null,
+      pressure: originalNumber(row["壓力-每平方公分公斤"]),
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+    }];
+  });
+}
+
+export function splitHydrants(hydrants) {
+  if (!hydrants?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: hydrants.source_url,
+    dataset_url: hydrants.dataset_url,
+    count: hydrants.count,
+    download_url: "/data/news-intel/hydrants.json",
+    note: hydrants.note || "只留編號、水源編號、設置地點、型式和壓力原文。沒有設置地點的列不收入。壓力單位沿用欄名。檔案沒有日期欄，不拿抓取時間充當。",
+  };
+  const download = Array.isArray(hydrants.hydrants) ? { ...summary, hydrants: hydrants.hydrants } : null;
+  return { summary, download };
 }
 
 export function normalizeSpecialClasses(payload) {
