@@ -93,6 +93,30 @@ test("published news file stays within the real cap", () => {
   assert.ok(data.articles.every((article) => article.title && article.url.startsWith("https://")));
 });
 
+test("mcp checks dates, duplicates, and refuses unverified facts", () => {
+  const date = handleMcp({
+    authorization: "Bearer verifier-token",
+    tokens,
+    body: { tool: "verify_publication_date", input: { publisher_timestamp: "不是日期" } },
+  });
+  assert.equal(date.body.accepted, false);
+  const dupes = handleMcp({
+    authorization: "Bearer verifier-token",
+    tokens,
+    body: { tool: "detect_duplicate_articles", input: { articles: [
+      { original_title: "竹北開工", source_url: "https://www.hsinchu.gov.tw/a" },
+      { original_title: "竹北開工", source_url: "https://www.cna.com.tw/b" },
+    ] } },
+  });
+  assert.equal(dupes.body.events, 1);
+  const refused = handleMcp({
+    authorization: "Bearer publisher-token",
+    tokens,
+    body: { tool: "approve_verified_article", input: { verification_status: "SINGLE_SOURCE" } },
+  });
+  assert.equal(refused.status, 409);
+});
+
 test("migration creates the article and audit tables", () => {
   const sql = readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8");
   for (const table of ["articles", "events", "review_queue", "agent_runs", "audit_logs", "project_budgets", "poll_methodologies"]) {
