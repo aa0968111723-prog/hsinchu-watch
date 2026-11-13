@@ -508,6 +508,30 @@ export async function persistBridges(db, { bridges, now, actor = "scheduler" }) 
   return { upserted };
 }
 
+export async function persistRiver(db, { river, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of river?.rows || []) {
+    const name = String(row?.river || "").trim();
+    const station = String(row?.station || "").trim();
+    const sampleDate = String(row?.sample_date || "").trim();
+    if (!name || !station || !sampleDate) continue;
+    keys.push([name, station, sampleDate]);
+    const measures = JSON.stringify(row.measures || {});
+    const existing = await db.prepare("SELECT measures_json FROM river_samples WHERE river = ? AND station = ? AND sample_date = ?").bind(name, station, sampleDate).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO river_samples (river, station, sample_date, measures_json, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?)").bind(name, station, sampleDate, measures, river.dataset_url, river.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.measures_json ?? null) !== measures) {
+      await db.prepare("UPDATE river_samples SET measures_json = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE river = ? AND station = ? AND sample_date = ?").bind(measures, river.dataset_url, river.source_url, now, name, station, sampleDate).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "river_samples", river?.dataset_url, ["river", "station", "sample_date"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_river', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

@@ -162,6 +162,8 @@ export const COUNTY_RESCUE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_RESCUE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=218";
 export const COUNTY_BRIDGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/262/46c9c65a-6261-45a6-ab64-1d8f3ef350ed.json";
 export const COUNTY_BRIDGE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=262";
+export const COUNTY_RIVER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1725/1bd9c2cc-6fda-4f36-907b-1b6cb8212435.json";
+export const COUNTY_RIVER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1725";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -923,6 +925,43 @@ export function splitBridges(bridges) {
     note: bridges.note || "鄉鎮沿用資料檔簡稱，不補鎮市鄉。長度和座標沿用原文，長度不加總。檔案沒有日期欄，不拿抓取時間充當。聯絡人沒有入檔。",
   };
   const download = Array.isArray(bridges.bridges) ? { ...summary, bridges: bridges.bridges } : null;
+  return { summary, download };
+}
+
+const RIVER_SKIP = new Set(["河川名稱", "監測站", "採樣日期", "編號"]);
+
+export function normalizeCountyRiver(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const river = String(row?.["河川名稱"] || "").trim();
+    const station = String(row?.["監測站"] || "").trim();
+    if (!river || !station) return [];
+    const measures = {};
+    for (const [key, value] of Object.entries(row || {})) {
+      if (RIVER_SKIP.has(key)) continue;
+      measures[key] = originalNumber(value);
+    }
+    return [{
+      river,
+      station,
+      sample_date: originalNumber(row["採樣日期"]),
+      measures,
+    }];
+  });
+}
+
+export function splitRiver(river) {
+  if (!river?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: river.source_url,
+    dataset_url: river.dataset_url,
+    count: river.count,
+    rows: (river.rows || []).map(({ measures, ...row }) => row),
+    download_url: "/data/news-intel/river-quality.json",
+    note: river.note || "採樣日期沿用原文。這不是今天的水質。測值、ND 和小於號沿用原文，不加總，單位不另加。聯絡人沒有入檔。",
+  };
+  const download = Array.isArray(river.rows) ? { ...summary, rows: river.rows } : null;
   return { summary, download };
 }
 

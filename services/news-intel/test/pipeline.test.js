@@ -929,6 +929,50 @@ test("county bridges keep the short township label and the written length", asyn
   assert.equal(page.includes("不補鎮市鄉"), true);
 });
 
+test("river samples keep ND and less-than marks on the written sample date", async () => {
+  const { normalizeCountyRiver, splitRiver } = await import("../src/adapters.js");
+  const rows = normalizeCountyRiver(JSON.stringify([
+    { "河川名稱": "頭前溪", "監測站": "油羅溪橋", "採樣日期": "20220413", "水溫數值": "24.1", "鎘": "ND", "銅": "<0.04", "氨氮": "0" },
+    { "河川名稱": "頭前溪", "監測站": " ", "採樣日期": "20220413", "鎘": "1" },
+    { "河川名稱": " ", "監測站": "空站", "採樣日期": "20220413" },
+  ]));
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].sample_date, "20220413");
+  assert.equal(rows[0].measures["鎘"], "ND");
+  assert.equal(rows[0].measures["銅"], "<0.04");
+  assert.equal(rows[0].measures["氨氮"], "0");
+  assert.equal(rows[0].total, undefined);
+  const parts = splitRiver({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1725", dataset_url: "https://ws.hsinchu.gov.tw/river.json", count: 1, rows });
+  assert.equal(parts.summary.rows[0].measures, undefined);
+  assert.equal(parts.download.rows[0].measures["鎘"], "ND");
+  const kept = await runHour({
+    previous: { articles: [], river: { count: 1, rows: [{ river: "頭前溪", station: "油羅溪橋", sample_date: "20220413", measures: { "鎘": "ND" } }] } },
+    now: "2026-11-14T01:40:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.river.rows[0].sample_date, "20220413");
+  assert.equal(kept.river.rows[0].measures["鎘"], "ND");
+  assert.equal(kept.river.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-river-quality", payload: JSON.stringify([{ "河川名稱": "客雅溪", "監測站": "大庄橋", "採樣日期": "20220413", "鉛": "ND" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-river-quality", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.rows[0].measures["鉛"], "ND");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不是今天的水質"), true);
+  assert.equal(page.includes("ND 和小於號沿用原文"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1692,6 +1736,16 @@ test("published news file stays within the real cap", () => {
     const xinpu = bridges.bridges.find((row) => row.township === "新埔");
     assert.equal(xinpu.region_id, "xinpu");
     assert.equal(xinpu.township.endsWith("鎮"), false);
+  }
+  if (data.river?.rows) {
+    assert.equal(data.river.count, data.river.rows.length);
+    assert.ok(data.river.rows.every((row) => row.river && row.station && /^\d{8}$/.test(row.sample_date) && !row.measures));
+    const river = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/river-quality.json", import.meta.url), "utf8"));
+    assert.equal(river.rows.length, data.river.count);
+    assert.ok(river.rows.every((row) => row.measures && row.measures["鎘"] !== undefined && row.total === undefined));
+    const text = JSON.stringify(river.rows);
+    assert.equal(text.includes("ND"), true);
+    assert.equal(text.includes("<"), true);
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitBridges, splitBusShelters, splitChargers, splitCityCatalog, splitFarms, splitGasStations, splitHeritage, splitHydrants, splitKindergartens, splitParking, splitRescue, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitBridges, splitBusShelters, splitChargers, splitCityCatalog, splitFarms, splitGasStations, splitHeritage, splitHydrants, splitKindergartens, splitParking, splitRescue, splitRiver, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -21,6 +21,7 @@ const gasUrl = new URL("../../../public/data/news-intel/gas-stations.json", impo
 const farmUrl = new URL("../../../public/data/news-intel/organic-farms.json", import.meta.url);
 const rescueUrl = new URL("../../../public/data/news-intel/rescue-stats.json", import.meta.url);
 const bridgeUrl = new URL("../../../public/data/news-intel/bridges.json", import.meta.url);
+const riverUrl = new URL("../../../public/data/news-intel/river-quality.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
 try {
   const existing = JSON.parse(readFileSync(publicUrl, "utf8"));
@@ -60,6 +61,7 @@ try {
     farms: existing.farms || null,
     rescue: existing.rescue || null,
     bridges: existing.bridges || null,
+    river: existing.river || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
     debt: existing.debt || null,
@@ -143,6 +145,10 @@ const bridgeParts = splitBridges(publishable.bridges);
 const bridgePublish = catalogForPublish(bridgeParts.download, bridgeParts.summary, previous.bridges, (download) => {
   writeFileSync(bridgeUrl, JSON.stringify(download));
 });
+const riverParts = splitRiver(publishable.river);
+const riverPublish = catalogForPublish(riverParts.download, riverParts.summary, previous.river, (download) => {
+  writeFileSync(riverUrl, JSON.stringify(download));
+});
 const payload = {
   ok: publishable.ok,
   retained: publishable.retained,
@@ -188,6 +194,7 @@ const payload = {
   farms: farmPublish.summary,
   rescue: rescuePublish.summary,
   bridges: bridgePublish.summary,
+  river: riverPublish.summary,
   electric_buses: publishable.electric_buses ? {
     source_url: publishable.electric_buses.source_url,
     dataset_url: publishable.electric_buses.dataset_url,
