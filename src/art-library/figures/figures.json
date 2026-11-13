@@ -45,6 +45,16 @@
       "uses": ["empty-state", "explainer"],
       "concept": "沒有紀錄就留空。空不是 0，也不用假銘牌補上。",
       "suggested_use": "缺值、無資料、或尚未選紀錄的空狀態。不要把空格改顯示成 0。"
+    },
+    {
+      "folder": "layer-board",
+      "id": "illustration-layer-board",
+      "kind": "illustration",
+      "title": "疊圖校準板",
+      "alt": "立體示意插畫：製圖板上有行政界線、主張範圍、核對圖層三張透明片。只有核對圖層有銷孔能上銷。它說明界線、主張與核對是分開的圖層，不是任何真實地籍或工程的現況圖",
+      "uses": ["place-context", "policy-scene", "explainer"],
+      "concept": "行政界線、主張範圍、核對圖層是三張片。掀開主張不會變成核對；只有核對圖層能上銷。",
+      "suggested_use": "地圖說明、方法頁、地點情境旁。不要當成特定地號或工程的現況圖，也不要把主張範圍畫成已核對。"
     }
   ]
 }

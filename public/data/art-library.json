@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T09:59:17+08:00",
+  "generated_at": "2026-11-13T10:07:25+08:00",
   "publication": "publication-ready",
   "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
@@ -4462,6 +4462,188 @@
           "notice": "art-library/figures/NOTICE.txt"
         }
       ]
+    },
+    {
+      "id": "illustration-layer-board",
+      "kind": "illustration",
+      "title": "疊圖校準板",
+      "region_ids": [
+        "taipei",
+        "new-taipei",
+        "hsinchu-county",
+        "hsinchu-city",
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": null,
+      "creator": "新竹觀察美術庫（第五線）",
+      "license_name": "本站原創，未另行對外授權",
+      "license_url": null,
+      "attribution": "原創示意，新竹觀察",
+      "retrieved_at": null,
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "place-context",
+        "policy-scene",
+        "explainer"
+      ],
+      "alt": "立體示意插畫：製圖板上有行政界線、主張範圍、核對圖層三張透明片。只有核對圖層有銷孔能上銷。它說明界線、主張與核對是分開的圖層，不是任何真實地籍或工程的現況圖",
+      "focal_point": null,
+      "source": null,
+      "files": [
+        {
+          "path": "art-library/figures/layer-board/preview.svg",
+          "format": "svg",
+          "mime": "image/svg+xml",
+          "role": "preview",
+          "width": 640,
+          "height": 420,
+          "bytes": 78342,
+          "checksum": "dfd151f816a5b233306073ab7ef981bb9df2a95b996bc26e18f81721f728ec7e"
+        },
+        {
+          "path": "art-library/figures/layer-board/fragment.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "fragment",
+          "width": null,
+          "height": null,
+          "bytes": 66568,
+          "checksum": "9d23530bb7f3fe0d18cad0271a84dc6d852b374e1dcfe34d13c56e020d5b0579"
+        },
+        {
+          "path": "art-library/figures/layer-board/index.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "page",
+          "width": null,
+          "height": null,
+          "bytes": 67249,
+          "checksum": "4945b93b922090a25ace74ab4838cb1c2a7a3503e705d72ac02a673cc4d3dc8e"
+        },
+        {
+          "path": "art-library/figures/layer-board/live.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 2726,
+          "checksum": "aee1eaf3f1d8cdd15a4695be1cb2897a1448c593f9bfd79257975cb0e4a41826"
+        },
+        {
+          "path": "art-library/figures/layer-board/model.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 2198,
+          "checksum": "ad952a82aa8ebbc2e2c88c8a19763e1d551d2750450fdd6cc16f7114ee8096f6"
+        },
+        {
+          "path": "art-library/figures/layer-board/data.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 221,
+          "checksum": "4883db1bc6ed51d75ae5421d03e976971aff939a74c97037d87aaac31495966c"
+        },
+        {
+          "path": "art-library/figures/figures.css",
+          "format": "css",
+          "mime": "text/css",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 13806,
+          "checksum": "8e02af0cd1bef9cc4455d1bb84b757b3905de63e87bbd075ae343f4cd7923d5b"
+        },
+        {
+          "path": "art-library/figures/motion.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1089,
+          "checksum": "c93cc682f04501c361475309e29449b62f00d13b65ecb348f7b1d25551ac4f6c"
+        },
+        {
+          "path": "art-library/figures/runtime.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 3193,
+          "checksum": "7ff1f51ea48a8dfde598d95c59a2b66398d163fae1b1c70b5dad5ec2660f15d7"
+        },
+        {
+          "path": "art-library/figures/boot.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1606,
+          "checksum": "ad02eaa0e300a2e90d1d66c1afcb72c3b691e657808fd4a00c48c84315d53cfb"
+        }
+      ],
+      "dimensions": {
+        "width": 640,
+        "height": 420,
+        "unit": "viewBox"
+      },
+      "checksum": "dfd151f816a5b233306073ab7ef981bb9df2a95b996bc26e18f81721f728ec7e",
+      "checksum_of": "art-library/figures/layer-board/preview.svg",
+      "palette": [
+        {
+          "name": "paper",
+          "hex": "#f4efe6"
+        },
+        {
+          "name": "sheet",
+          "hex": "#fffaf4"
+        },
+        {
+          "name": "ink",
+          "hex": "#2b261f"
+        },
+        {
+          "name": "sage",
+          "hex": "#2f6a56"
+        },
+        {
+          "name": "clay",
+          "hex": "#9a5340"
+        },
+        {
+          "name": "sand",
+          "hex": "#ead7b4"
+        }
+      ],
+      "changes": null,
+      "concept": "行政界線、主張範圍、核對圖層是三張片。掀開主張不會變成核對；只有核對圖層能上銷。",
+      "suggested_use": "地圖說明、方法頁、地點情境旁。不要當成特定地號或工程的現況圖，也不要把主張範圍畫成已核對。",
+      "identity": null,
+      "embed": {
+        "figure": "layer-board",
+        "stylesheet": "art-library/figures/figures.css",
+        "script": "art-library/figures/boot.js"
+      },
+      "third_party": [
+        {
+          "name": "anatomy kit（繪圖樣式與產生幾何的工具）",
+          "license": "MIT",
+          "notice": "art-library/figures/NOTICE.txt"
+        }
+      ]
     }
   ],
   "gaps": [
@@ -4508,7 +4690,7 @@
     {
       "region_id": "taipei",
       "kind": "illustration",
-      "count": 0
+      "count": 1
     },
     {
       "region_id": "taipei",
@@ -4528,7 +4710,7 @@
     {
       "region_id": "new-taipei",
       "kind": "illustration",
-      "count": 0
+      "count": 1
     },
     {
       "region_id": "new-taipei",
@@ -4548,7 +4730,7 @@
     {
       "region_id": "hsinchu-county",
       "kind": "illustration",
-      "count": 0
+      "count": 1
     },
     {
       "region_id": "hsinchu-county",
@@ -4568,7 +4750,7 @@
     {
       "region_id": "hsinchu-city",
       "kind": "illustration",
-      "count": 0
+      "count": 1
     },
     {
       "region_id": "hsinchu-city",
@@ -4588,7 +4770,7 @@
     {
       "region_id": "central",
       "kind": "illustration",
-      "count": 0
+      "count": 1
     },
     {
       "region_id": "central",

@@ -549,7 +549,7 @@ class Library:
         files[0]["width"], files[0]["height"] = width, height
         return {
             "id": entry["id"],
-            "kind": "component",
+            "kind": entry.get("kind") or "component",
             "title": entry["title"],
             "region_ids": [region["id"] for region in self.sources["regions"]],
             "actor_refs": None,

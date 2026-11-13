@@ -10,12 +10,13 @@
 
 人物卡請用各肖像 `files` 裡 `role=card` 的 3:4（360×480）組；正方形 256 檔是既有頭像相容用，臉部比例不一致。
 
-立體元件這樣放：
+立體元件與插畫這樣放（同一套 boot；插畫也用 `data-figure`）：
 
 ```html
 <link rel="stylesheet" href="/art-library/figures/figures.css">
 <div data-figure="evidence-desk" data-alt="…"></div>
-<!-- 或 budget-drawers、stage-yard、council-desk、empty-bay；預算／階段可加 data-project="案卷 id" -->
+<!-- 元件：budget-drawers、stage-yard、council-desk、empty-bay；預算／階段可加 data-project="案卷 id" -->
+<!-- 插畫：layer-board（界線／主張／核對三張片；主張不能上銷） -->
 <script type="module" src="/art-library/figures/boot.js"></script>
 ```
 

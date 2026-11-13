@@ -170,8 +170,10 @@ class CatalogTests(unittest.TestCase):
 
     def test_components_are_original_schematic_and_csp_safe(self):
         components = [asset for asset in self.assets if asset["kind"] == "component"]
+        illustrations = [asset for asset in self.assets if asset["kind"] == "illustration"]
         self.assertGreaterEqual(len(components), 1)
-        for asset in components:
+        self.assertGreaterEqual(len(illustrations), 1, "the lab ships at least one illustration")
+        for asset in components + illustrations:
             with self.subTest(asset=asset["id"]):
                 self.assertIsNone(asset["original_source_url"])
                 self.assertIsNone(asset["retrieved_at"])
@@ -187,6 +189,8 @@ class CatalogTests(unittest.TestCase):
                     self.assertEqual([tag.name for tag in doc.find_all(True) if any(key.startswith("on") for key in tag.attrs)], [])
                     self.assertEqual(len(doc.select('.iso-stage[tabindex="0"][aria-label]')), 1)
                 self.assertTrue((folder / "preview.svg").read_text(encoding="utf-8").startswith("<svg"))
+                if asset["kind"] == "illustration":
+                    self.assertIn("插畫", asset["alt"])
 
     def test_built_copies_match_their_sources(self):
         pairs = [(SRC / name, ART / name) for name in ("lab.css", "lab.js")]

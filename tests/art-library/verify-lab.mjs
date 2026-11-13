@@ -80,10 +80,15 @@ try {
     assert.equal(await page.locator('.al-card').count(), portraits);
     assert.equal(await page.locator('#alOriginals').isHidden(), true);
     await page.selectOption('select[name="kind"]', 'illustration');
-    assert.equal(await page.locator('.al-card').count(), 0);
-    await page.locator('#alEmpty').waitFor();
+    const illustrations = catalog.assets.filter((asset) => asset.kind === 'illustration').length;
+    assert.equal(await page.locator('.al-card').count(), illustrations);
     assert(page.url().includes('kind=illustration'));
-    await page.locator('#alEmpty [data-clear]').click();
+    if (illustrations === 0) {
+      await page.locator('#alEmpty').waitFor();
+      await page.locator('#alEmpty [data-clear]').click();
+    } else {
+      await page.selectOption('select[name="kind"]', '');
+    }
     await page.locator('.al-card').nth(catalog.assets.length - 1).waitFor();
     await page.selectOption('select[name="review"]', 'gap');
     assert.equal(await page.locator('.al-card').count(), 0);
