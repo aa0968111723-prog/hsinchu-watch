@@ -305,6 +305,9 @@ test("a failed scheduled round keeps the previous database rows", async () => {
   assert.equal(first.replaced, true);
   assert.equal(second.replaced, false);
   assert.equal(stored.original_title, "新竹縣道路公告");
+  const visible = await (await import("../src/index.js")).default.fetch(new Request("https://news.local/api/v1/news"), { DB: d1 });
+  const body = await visible.json();
+  assert.equal(body.articles[0].claim_kind, "official_notice");
   assert.equal(stored.claim_kind, "official_notice");
   assert.equal(snapshot.last_success_at, "2026-11-13T10:00:00.000Z");
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM agent_runs").get().n, 2);

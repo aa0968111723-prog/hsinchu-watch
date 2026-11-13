@@ -41,7 +41,7 @@ export default {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/api/v1/news") {
       const rows = env.DB
-        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status FROM articles WHERE review_status NOT IN ('rejected', 'retracted') AND verification_status != 'RETRACTED' ORDER BY publisher_timestamp DESC LIMIT 20").all()
+        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status, claim_kind FROM articles WHERE review_status NOT IN ('rejected', 'retracted') AND verification_status != 'RETRACTED' ORDER BY publisher_timestamp DESC LIMIT 20").all()
         : { results: [] };
       return Response.json({ articles: rows.results || [], note: "pending_index 不是已查核事實" });
     }
