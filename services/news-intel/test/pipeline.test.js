@@ -306,6 +306,17 @@ test("published news file stays within the real cap", () => {
   assert.equal(data.gemini.called, false);
   assert.ok(data.articles.every((article) => article.title && article.url.startsWith("https://")));
   assert.ok(data.articles.every((article) => article.verification_status !== "VERIFIED_OFFICIAL" && article.verification_status !== "VERIFIED_MULTI_SOURCE"));
+  const taipeiDay = (value) => {
+    const text = String(value || "");
+    if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return text;
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(text));
+  };
+  for (const article of data.articles) {
+    if (article.date_checked === true && article.page_published_at) {
+      assert.equal(taipeiDay(article.published_at), taipeiDay(article.page_published_at), article.title);
+    }
+  }
+  assert.ok((data.public_records || []).every((record) => record.unit === null && (record.spent_amount === null || typeof record.spent_amount === "string")));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {
