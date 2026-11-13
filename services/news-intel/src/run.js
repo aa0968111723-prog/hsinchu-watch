@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -62,6 +62,7 @@ export function mergeRun(previous, result) {
       kindergartens: previous?.kindergartens || null,
       cameras: previous?.cameras || null,
       special_classes: previous?.special_classes || null,
+      use_permits: previous?.use_permits || null,
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
       debt: previous?.debt || null,
@@ -86,6 +87,7 @@ export function mergeRun(previous, result) {
     kindergartens: result.kindergartens === undefined ? (previous?.kindergartens || null) : result.kindergartens,
     cameras: result.cameras === undefined ? (previous?.cameras || null) : result.cameras,
     special_classes: result.special_classes === undefined ? (previous?.special_classes || null) : result.special_classes,
+    use_permits: result.use_permits === undefined ? (previous?.use_permits || null) : result.use_permits,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
@@ -272,6 +274,26 @@ async function loadCountyCameras(fetcher, previous) {
   }
 }
 
+async function loadUsePermits(fetcher, previous) {
+  const kept = previous?.use_permits ? { ...previous.use_permits, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_PERMIT_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const summary = summarizeUsePermits(await response.text());
+    if (!summary?.count) return kept;
+    return {
+      source_url: COUNTY_PERMIT_PAGE,
+      dataset_url: COUNTY_PERMIT_URL,
+      ...summary,
+      retained: false,
+      note: "只留筆數，以及資料集名稱 68 到 107 年範圍內的最早和最晚發照日期。範圍外的日期另計，不拿來當起迄。工程造價不加總，也不是實支或驗收。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
 async function loadSpecialClasses(fetcher, previous) {
   const kept = previous?.special_classes ? { ...previous.special_classes, retained: true } : null;
   if (typeof fetcher !== "function") return kept;
@@ -451,6 +473,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       kindergartens: await loadCountyKindergartens(fetcher, previous),
       cameras: await loadCountyCameras(fetcher, previous),
       special_classes: await loadSpecialClasses(fetcher, previous),
+      use_permits: await loadUsePermits(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
       debt: await loadCountyDebt(fetcher, previous),

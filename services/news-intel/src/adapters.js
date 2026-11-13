@@ -140,6 +140,8 @@ export const COUNTY_CAMERA_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_CAMERA_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=297";
 export const COUNTY_SPECIAL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/11/675f2bb0-640a-4171-a380-85f84decdaf0.json";
 export const COUNTY_SPECIAL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=11";
+export const COUNTY_PERMIT_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/261/bb6d6bbe-692e-4489-89dc-502cb87e183f.json";
+export const COUNTY_PERMIT_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=261";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -454,6 +456,45 @@ export function specialClassPeriod(payload) {
   if (roc < 1 || roc > 300 || month < 1 || month > 12 || day < 1 || day > 31) return { period: null, period_text: null };
   const year = roc < 1911 ? roc + 1911 : roc;
   return { period: `${year}-${match[2]}-${match[3]}`, period_text: `${match[1]}${match[2]}${match[3]}` };
+}
+
+export function summarizeUsePermits(payload) {
+  let rows;
+  try {
+    rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(rows) || !rows.length) return null;
+  let earliest = null;
+  let latest = null;
+  let dated = 0;
+  let outside = 0;
+  for (const row of rows) {
+    const text = String(row?.["發照日期"] ?? "").trim();
+    const match = text.match(/^(\d{2,3})\/(\d{2})\/(\d{2})$/);
+    if (!match) continue;
+    const roc = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    if (!Number.isInteger(roc) || month < 1 || month > 12 || day < 1 || day > 31) continue;
+    if (roc < 68 || roc > 107) {
+      outside += 1;
+      continue;
+    }
+    dated += 1;
+    const key = roc * 10000 + month * 100 + day;
+    if (!earliest || key < earliest.key) earliest = { key, text };
+    if (!latest || key > latest.key) latest = { key, text };
+  }
+  return {
+    count: rows.length,
+    dated,
+    outside,
+    earliest_issue_date: earliest?.text || null,
+    latest_issue_date: latest?.text || null,
+    unreadable: rows.length - dated - outside,
+  };
 }
 
 export function normalizeSpecialClasses(payload) {

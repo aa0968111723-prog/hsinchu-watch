@@ -423,6 +423,54 @@ test("special education classes drop phone numbers and keep the column date", as
   assert.equal(page.includes("欄名日期不是抓取時間"), true);
 });
 
+test("use permits keep the written issue-date range and do not sum construction cost", async () => {
+  const { summarizeUsePermits } = await import("../src/adapters.js");
+  const summary = summarizeUsePermits(JSON.stringify([
+    { "發照日期": "107/12/27", "工程造價": "999999" },
+    { "發照日期": "068/01/08", "工程造價": "" },
+    { "發照日期": "不是日期", "工程造價": "1" },
+    { "發照日期": "", "工程造價": "0" },
+  ]));
+  assert.deepEqual(summary, { count: 4, dated: 2, outside: 0, earliest_issue_date: "068/01/08", latest_issue_date: "107/12/27", unreadable: 2 });
+  const bounded = summarizeUsePermits(JSON.stringify([
+    { "發照日期": "009/05/04" },
+    { "發照日期": "068/01/08" },
+    { "發照日期": "107/12/27" },
+    { "發照日期": "887/01/23" },
+  ]));
+  assert.deepEqual(bounded, { count: 4, dated: 2, outside: 2, earliest_issue_date: "068/01/08", latest_issue_date: "107/12/27", unreadable: 0 });
+  assert.equal(JSON.stringify(summary).includes("999999"), false);
+  assert.equal(summarizeUsePermits("[]"), null);
+  assert.equal(summarizeUsePermits("not-json"), null);
+  const kept = await runHour({
+    previous: { articles: [], use_permits: { count: 10, earliest_issue_date: "068/01/08", latest_issue_date: "107/12/27" } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.use_permits.count, 10);
+  assert.equal(kept.use_permits.retained, true);
+  assert.equal(kept.articles.length, 1);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-use-permits", payload: JSON.stringify([{ "發照日期": "090/02/03", "工程造價": "12345" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-use-permits", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.earliest_issue_date, "090/02/03");
+  assert.equal(JSON.stringify(imported.body).includes("12345"), false);
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不是實支或驗收"), true);
+  assert.equal(page.includes("沒有把筆數記成 0"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1100,6 +1148,14 @@ test("published news file stays within the real cap", () => {
     const classes = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/special-classes.json", import.meta.url), "utf8"));
     assert.equal(classes.classes.length, data.special_classes.count);
     assert.ok(classes.classes.every((row) => !Object.hasOwn(row, "phone") && !Object.keys(row).some((key) => key.includes("電話"))));
+  }
+  if (data.use_permits) {
+    assert.ok(data.use_permits.count > 0);
+    assert.match(data.use_permits.earliest_issue_date, /^\d{2,3}\/\d{2}\/\d{2}$/);
+    assert.match(data.use_permits.latest_issue_date, /^\d{2,3}\/\d{2}\/\d{2}$/);
+    assert.equal(typeof data.use_permits.outside, "number");
+    assert.equal(data.use_permits.rows, undefined);
+    assert.equal(data.use_permits.cost, undefined);
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

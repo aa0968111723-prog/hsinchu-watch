@@ -45,6 +45,8 @@
   <ol id="cameras"></ol>
   <h2>新竹縣特殊教育班</h2>
   <p id="special-status" class="meta"></p>
+  <h2>新竹縣使用執照</h2>
+  <p id="permit-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -126,6 +128,7 @@ const kindergartenStatus = document.querySelector("#kindergarten-status");
 const cameraStatus = document.querySelector("#camera-status");
 const cameraList = document.querySelector("#cameras");
 const specialStatus = document.querySelector("#special-status");
+const permitStatus = document.querySelector("#permit-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -336,6 +339,19 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       specialStatus.append(" ", source);
     }
+    const permits = data.use_permits;
+    const permitRange = permits?.earliest_issue_date && permits?.latest_issue_date
+      ? `資料集名稱是 68 到 107 年。這個範圍內發照日期最早 ${permits.earliest_issue_date}，最晚 ${permits.latest_issue_date}。範圍外 ${permits.outside ?? 0} 筆，不拿來當起迄。另有 ${permits.unreadable ?? 0} 筆不是民國年月日格式，不補日期。`
+      : "68 到 107 年的範圍內沒有可讀的發照日期。";
+    permitStatus.textContent = permits?.count
+      ? `${permits.count} 筆。${permitRange}工程造價不加總，也不是實支或驗收。`
+      : "這一輪沒有使用執照清冊，沒有把筆數記成 0。";
+    if (permits?.source_url && permits?.count) {
+      const source = document.createElement("a");
+      source.href = permits.source_url;
+      source.textContent = "資料集頁";
+      permitStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -447,6 +463,7 @@ fetch("/data/news-intel/latest.json")
     kindergartenStatus.textContent = "幼兒園名錄讀取失敗。頁面沒有改用假資料。";
     cameraStatus.textContent = "科學儀器清冊讀取失敗。頁面沒有改用假資料。";
     specialStatus.textContent = "特殊教育班名冊讀取失敗。頁面沒有改用假資料。";
+    permitStatus.textContent = "使用執照清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";
