@@ -1,9 +1,12 @@
 /**
  * Rules of the figures' models, without a browser.
- *   node --test tests/art-library/
+ *   node --test tests/art-library/figures.test.mjs
  */
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
+import { fileURLToPath } from "node:url";
+import * as budget from "../../src/art-library/figures/budget-drawers/model.js";
 import {
   ORIGINS,
   STAMP,
@@ -19,6 +22,17 @@ import {
 } from "../../src/art-library/figures/evidence-desk/model.js";
 
 const FRAME = 1 / 60;
+const governance = JSON.parse(readFileSync(fileURLToPath(new URL("../../public/data/governance.json", import.meta.url)), "utf8"));
+
+/** Runs a cabinet until it rests. */
+function rest(cabinet, { calm = false, each = () => {}, limit = 20 } = {}) {
+  for (let time = 0; time < limit; time += FRAME) {
+    const moving = budget.advance(cabinet, FRAME, calm);
+    each(cabinet);
+    if (!moving) return;
+  }
+  assert.fail("the cabinet never came to rest");
+}
 
 /** Runs frames until the desk rests, calling `each` after every frame. Fails if it never rests. */
 function settle(desk, { calm = false, each = () => {}, limit = 20 } = {}) {
@@ -114,4 +128,71 @@ test("choices stay inside the four stacks, and new cards clear every mark", () =
   settle(desk, { calm: true });
   clearMarks(desk);
   assert.deepEqual(desk.stamped, [false, false, false, false]);
+});
+
+test("budget drawers show exactly what each governance record holds, and nothing else", () => {
+  assert.deepEqual(budget.LAYERS.map((layer) => layer.id), ["approved_twd", "contract_twd", "spent_twd"]);
+  assert(governance.projects.length >= 4);
+  for (const project of governance.projects) {
+    const cabinet = budget.createCabinet();
+    budget.bind(cabinet, project.budget);
+    cabinet.drawers.forEach((drawer, index) => {
+      const recorded = project.budget ? project.budget[budget.LAYERS[index].id] : null;
+      assert.equal(drawer.value, recorded, `${project.id} ${budget.LAYERS[index].id}`);
+      assert.equal(drawer.state, recorded === null ? "unknown" : "known");
+    });
+  }
+});
+
+test("a layer with no record stays latched and is never shown as zero", () => {
+  const project = governance.projects.find((row) => row.budget && row.budget.spent_twd === null && row.budget.approved_twd !== null);
+  assert(project, "the pilot data has a project with an approved amount and no spending record");
+  const cabinet = budget.createCabinet();
+  budget.bind(cabinet, project.budget);
+  const spent = cabinet.drawers[2];
+  for (let pull = 0; pull < 5; pull++) {
+    assert.equal(budget.toggle(cabinet, 2), false);
+    rest(cabinet, { each: () => assert(spent.at >= 0 && spent.at < 6, "a latched drawer only rattles") });
+  }
+  assert.equal(spent.at, 0);
+  assert.equal(budget.isOpen(spent), false);
+  assert.equal(budget.describe(cabinet), "實支 · 本站沒有紀錄，不是 0 元");
+  assert.notEqual(budget.layerText(spent), budget.formatTwd(0));
+});
+
+test("a recorded amount is read only once its drawer is open", () => {
+  const project = governance.projects.find((row) => row.budget && row.budget.approved_twd !== null);
+  const cabinet = budget.createCabinet();
+  budget.bind(cabinet, project.budget);
+  assert.equal(budget.describe(cabinet), "核定 · 有紀錄，拉開來看");
+  assert.equal(budget.toggle(cabinet, 0), true);
+  rest(cabinet);
+  assert.equal(cabinet.drawers[0].at, budget.TRAVEL);
+  assert.equal(budget.describe(cabinet), `核定 · ${budget.formatTwd(project.budget.approved_twd)}`);
+  budget.toggle(cabinet, 0);
+  rest(cabinet);
+  assert.equal(cabinet.drawers[0].at, 0);
+});
+
+test("zero is a recorded amount, null is not", () => {
+  const cabinet = budget.createCabinet();
+  budget.bind(cabinet, { approved_twd: 0, contract_twd: null, spent_twd: null });
+  assert.equal(cabinet.drawers[0].state, "known");
+  assert.equal(budget.layerText(cabinet.drawers[0]), "0 元");
+  assert.equal(cabinet.drawers[1].state, "unknown");
+  assert.notEqual(budget.layerText(cabinet.drawers[1]), budget.layerText(cabinet.drawers[0]));
+});
+
+test("a project without a budget record latches all three, and an unbound cabinet shows no number", () => {
+  const cabinet = budget.createCabinet();
+  assert.deepEqual(cabinet.drawers.map((drawer) => drawer.state), ["unbound", "unbound", "unbound"]);
+  assert.equal(budget.describe(cabinet), "核定 · 還沒選案卷");
+  budget.bind(cabinet, null);
+  assert.deepEqual(cabinet.drawers.map((drawer) => drawer.state), ["unknown", "unknown", "unknown"]);
+  budget.bind(cabinet, undefined);
+  budget.toggle(cabinet, 1);
+  rest(cabinet, { calm: true });
+  assert.equal(cabinet.drawers[1].at, budget.TRAVEL);
+  assert.equal(budget.describe(cabinet), "決標 · 還沒選案卷");
+  assert.equal(/\d/.test(budget.describe(cabinet)), false, "no number without a bound record");
 });

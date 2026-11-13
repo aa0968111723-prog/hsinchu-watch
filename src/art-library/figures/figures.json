@@ -1,5 +1,5 @@
 {
-  "note": "Original schematic components. They carry no policy numbers of their own and never stand for a specific real site.",
+  "note": "Original schematic components. They never picture a specific real site. None has a number built in; a number appears only when a component is bound to a sourced record.",
   "figures": [
     {
       "folder": "evidence-desk",
@@ -9,6 +9,15 @@
       "uses": ["source-credibility", "explainer"],
       "concept": "claim_origin 與 verification_status 是兩個欄位。換一疊卡不會多出章印。",
       "suggested_use": "來源說明、方法頁、可信度圖例旁。不要放在單筆紀錄旁當成該筆的查核結果。"
+    },
+    {
+      "folder": "budget-drawers",
+      "id": "component-budget-drawers",
+      "title": "預算三層抽屜",
+      "alt": "立體示意檔案櫃：三個抽屜由上到下是核定、決標、實支。有紀錄的抽屜拉得開，沒有紀錄的被門閂扣住。它說明三筆金額分開記、沒有紀錄不是 0 元；元件本身不帶數字",
+      "uses": ["budget", "explainer", "empty-state"],
+      "concept": "approved_twd、contract_twd、spent_twd 各自儲存，不互相推算。null 是沒有紀錄，不是 0。",
+      "suggested_use": "治理案卷的預算區塊或方法頁。加上 data-project 就會讀該案卷的三筆金額；沒有紀錄的那層維持扣住，不要改顯示成 0。"
     }
   ]
 }

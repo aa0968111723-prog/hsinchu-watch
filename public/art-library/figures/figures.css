@@ -159,6 +159,11 @@
 .iso-figure.civic .fig-source{margin:8px 0 0;font-size:13.5px;color:#5e564c;overflow-wrap:anywhere}
 .iso-figure.civic .fig-source a{color:#2f6a56}
 
+.iso-figure.civic .fig-controls :is(.fig-facts,.fig-source){flex-basis:100%}
+.iso-figure.civic .fig-controls select:disabled{opacity:.55}
+/* The dark inside of an opening, seen past whatever stands in it. */
+.civic .fig-void{fill:#6b5f50;stroke:#3a332a;stroke-width:.6px;stroke-linejoin:round}
+
 /* Parts the live code shows or hides. Marks and tags fade, they never pop. */
 .civic .fig-mark{stroke:#9a5340;stroke-width:1.2px;opacity:0;transition:opacity 240ms var(--anatomy-ease)}
 .civic .fig-mark[data-on]{opacity:1}

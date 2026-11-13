@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T08:51:39+08:00",
+  "generated_at": "2026-11-13T09:17:51+08:00",
   "publication": "publication-ready",
   "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
@@ -86,8 +86,16 @@
       "label": "來源可信度"
     },
     {
+      "id": "budget",
+      "label": "預算"
+    },
+    {
       "id": "explainer",
       "label": "說明圖"
+    },
+    {
+      "id": "empty-state",
+      "label": "空狀態"
     }
   ],
   "review_statuses": [
@@ -3264,8 +3272,8 @@
           "role": "preview",
           "width": 680,
           "height": 440,
-          "bytes": 92759,
-          "checksum": "b3941ce1dc818a3bb48b614cb5a708c600c1411845403757e1ade724ccc74a48"
+          "bytes": 93054,
+          "checksum": "71799835f7b945e2963f510d8488ab4c4529e18ac94a95e2edca20788a641ee4"
         },
         {
           "path": "art-library/figures/evidence-desk/fragment.html",
@@ -3324,8 +3332,8 @@
           "role": "shared",
           "width": null,
           "height": null,
-          "bytes": 13511,
-          "checksum": "9ea56d478c29220d83371aef7e1018ba31ebab27b5c0f3b9c81e2e6fa62bd104"
+          "bytes": 13806,
+          "checksum": "8e02af0cd1bef9cc4455d1bb84b757b3905de63e87bbd075ae343f4cd7923d5b"
         },
         {
           "path": "art-library/figures/motion.js",
@@ -3363,7 +3371,7 @@
         "height": 440,
         "unit": "viewBox"
       },
-      "checksum": "b3941ce1dc818a3bb48b614cb5a708c600c1411845403757e1ade724ccc74a48",
+      "checksum": "71799835f7b945e2963f510d8488ab4c4529e18ac94a95e2edca20788a641ee4",
       "checksum_of": "art-library/figures/evidence-desk/preview.svg",
       "palette": [
         {
@@ -3397,6 +3405,188 @@
       "identity": null,
       "embed": {
         "figure": "evidence-desk",
+        "stylesheet": "art-library/figures/figures.css",
+        "script": "art-library/figures/boot.js"
+      },
+      "third_party": [
+        {
+          "name": "anatomy kit（繪圖樣式與產生幾何的工具）",
+          "license": "MIT",
+          "notice": "art-library/figures/NOTICE.txt"
+        }
+      ]
+    },
+    {
+      "id": "component-budget-drawers",
+      "kind": "component",
+      "title": "預算三層抽屜",
+      "region_ids": [
+        "taipei",
+        "new-taipei",
+        "hsinchu-county",
+        "hsinchu-city",
+        "central"
+      ],
+      "actor_refs": null,
+      "project_refs": null,
+      "office_refs": null,
+      "original_source_url": null,
+      "creator": "新竹觀察美術庫（第五線）",
+      "license_name": "本站原創，未另行對外授權",
+      "license_url": null,
+      "attribution": "原創示意，新竹觀察",
+      "retrieved_at": null,
+      "review_status": "publication-ready",
+      "usage_status": "available",
+      "uses": [
+        "budget",
+        "explainer",
+        "empty-state"
+      ],
+      "alt": "立體示意檔案櫃：三個抽屜由上到下是核定、決標、實支。有紀錄的抽屜拉得開，沒有紀錄的被門閂扣住。它說明三筆金額分開記、沒有紀錄不是 0 元；元件本身不帶數字",
+      "focal_point": null,
+      "source": null,
+      "files": [
+        {
+          "path": "art-library/figures/budget-drawers/preview.svg",
+          "format": "svg",
+          "mime": "image/svg+xml",
+          "role": "preview",
+          "width": 680,
+          "height": 470,
+          "bytes": 89606,
+          "checksum": "4feda8d74bcba5674817f6490a57fdd2d69d4d1f08fb3602e95add30f1172a2b"
+        },
+        {
+          "path": "art-library/figures/budget-drawers/fragment.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "fragment",
+          "width": null,
+          "height": null,
+          "bytes": 78348,
+          "checksum": "5895ded207e04a7dc8949160849a1f7607114dd1983aba1ceea4498175552888"
+        },
+        {
+          "path": "art-library/figures/budget-drawers/index.html",
+          "format": "html",
+          "mime": "text/html",
+          "role": "page",
+          "width": null,
+          "height": null,
+          "bytes": 79038,
+          "checksum": "04f708e1c3cf6c719e441bc5b7e372a54e408b3b66d50a1654455de20ab990b6"
+        },
+        {
+          "path": "art-library/figures/budget-drawers/live.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 6101,
+          "checksum": "5e253a180e462e0f657269e965bd34e3fa71600d0d7ef6858fcb7cd61d154fa7"
+        },
+        {
+          "path": "art-library/figures/budget-drawers/model.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 3841,
+          "checksum": "faba2c28eba6d310e3046caf5f2ac6de4dd45edf7fe8097b98b8b9c93ed40f90"
+        },
+        {
+          "path": "art-library/figures/budget-drawers/data.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "module",
+          "width": null,
+          "height": null,
+          "bytes": 156,
+          "checksum": "d2924492bcc7539b40ca601a53ebf30f11137ad1a717a89522ffc462a0dafb8c"
+        },
+        {
+          "path": "art-library/figures/figures.css",
+          "format": "css",
+          "mime": "text/css",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 13806,
+          "checksum": "8e02af0cd1bef9cc4455d1bb84b757b3905de63e87bbd075ae343f4cd7923d5b"
+        },
+        {
+          "path": "art-library/figures/motion.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1089,
+          "checksum": "c93cc682f04501c361475309e29449b62f00d13b65ecb348f7b1d25551ac4f6c"
+        },
+        {
+          "path": "art-library/figures/runtime.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 3193,
+          "checksum": "7ff1f51ea48a8dfde598d95c59a2b66398d163fae1b1c70b5dad5ec2660f15d7"
+        },
+        {
+          "path": "art-library/figures/boot.js",
+          "format": "js",
+          "mime": "text/javascript",
+          "role": "shared",
+          "width": null,
+          "height": null,
+          "bytes": 1606,
+          "checksum": "ad02eaa0e300a2e90d1d66c1afcb72c3b691e657808fd4a00c48c84315d53cfb"
+        }
+      ],
+      "dimensions": {
+        "width": 680,
+        "height": 470,
+        "unit": "viewBox"
+      },
+      "checksum": "4feda8d74bcba5674817f6490a57fdd2d69d4d1f08fb3602e95add30f1172a2b",
+      "checksum_of": "art-library/figures/budget-drawers/preview.svg",
+      "palette": [
+        {
+          "name": "paper",
+          "hex": "#f4efe6"
+        },
+        {
+          "name": "sheet",
+          "hex": "#fffaf4"
+        },
+        {
+          "name": "ink",
+          "hex": "#2b261f"
+        },
+        {
+          "name": "sage",
+          "hex": "#2f6a56"
+        },
+        {
+          "name": "clay",
+          "hex": "#9a5340"
+        },
+        {
+          "name": "sand",
+          "hex": "#ead7b4"
+        }
+      ],
+      "changes": null,
+      "concept": "approved_twd、contract_twd、spent_twd 各自儲存，不互相推算。null 是沒有紀錄，不是 0。",
+      "suggested_use": "治理案卷的預算區塊或方法頁。加上 data-project 就會讀該案卷的三筆金額；沒有紀錄的那層維持扣住，不要改顯示成 0。",
+      "identity": null,
+      "embed": {
+        "figure": "budget-drawers",
         "stylesheet": "art-library/figures/figures.css",
         "script": "art-library/figures/boot.js"
       },
@@ -3458,7 +3648,7 @@
     {
       "region_id": "taipei",
       "kind": "component",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "new-taipei",
@@ -3478,7 +3668,7 @@
     {
       "region_id": "new-taipei",
       "kind": "component",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "hsinchu-county",
@@ -3498,7 +3688,7 @@
     {
       "region_id": "hsinchu-county",
       "kind": "component",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "hsinchu-city",
@@ -3518,7 +3708,7 @@
     {
       "region_id": "hsinchu-city",
       "kind": "component",
-      "count": 1
+      "count": 2
     },
     {
       "region_id": "central",
@@ -3538,7 +3728,7 @@
     {
       "region_id": "central",
       "kind": "component",
-      "count": 1
+      "count": 2
     }
   ]
 }

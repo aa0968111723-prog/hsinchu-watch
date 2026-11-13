@@ -66,7 +66,7 @@ python tests/art-library/serve.py                          # 手動預覽，http
 
 每個元件是一個資料夾：`fragment.html`（可嵌入的片段）、`live.js` 與 `model.js`（外部模組）、`data.js`、`preview.svg`（靜態圖）、`index.html`（獨立頁）。`model.js` 沒有 DOM，頁面和 Node 測試跑同一份規則。
 
-元件不帶任何政策數字，也不代表特定工程。讀數裡的詞來自資料欄位。
+元件不是任何特定工程的樣子，本身也沒有內建數字。讀數裡的詞來自資料欄位。預算三層抽屜會顯示金額，那是綁定案卷後從 `public/data/governance.json` 讀來的，沒有紀錄的那一層維持扣住。
 
 ## 肖像
 

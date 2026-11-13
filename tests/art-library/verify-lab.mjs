@@ -156,6 +156,60 @@ try {
     await context.close();
   }
 
+  // The budget drawers read real project records. Expected amounts come from the same file the page reads.
+  for (const width of [390, 1280]) {
+    const problems = [];
+    const governance = await (await fetch(origin + '/data/governance.json')).json();
+    const withBudget = governance.projects.find((project) => project.budget && project.budget.approved_twd !== null && project.budget.spent_twd === null);
+    const withoutBudget = governance.projects.find((project) => project.budget === null);
+    assert(withBudget && withoutBudget, 'the pilot records include a project with a budget and one without');
+    const amount = (value) => `${new Intl.NumberFormat('zh-Hant-TW').format(value)} 元`;
+    const context = await browser.newContext({ viewport: { width, height: 900 }, hasTouch: width < 600 });
+    const page = await openLab(context, problems, '/asset-lab.html?asset=component-budget-drawers');
+    const dialog = page.locator('#alDetail');
+    await dialog.locator('[data-figure="budget-drawers"][data-state="live"]').waitFor();
+    const readout = () => dialog.locator('[data-readout]').textContent();
+    assert.equal(await readout(), '核定 · 還沒選案卷');
+    assert.equal(/\d/.test(await dialog.locator('.fig-facts').textContent()), false, 'no amount before a project is chosen');
+    await page.waitForFunction(() => document.querySelectorAll('#alDetail [data-project] option').length > 1);
+    await dialog.locator('[data-project]').selectOption(withBudget.id);
+    await dialog.locator('[data-layer="0"]').click();
+    await page.waitForFunction((text) => document.querySelector('#alDetail [data-readout]').textContent === text, `核定 · ${amount(withBudget.budget.approved_twd)}`, { timeout: 8000 });
+    assert.equal(await dialog.locator('[data-value="1"]').textContent(), amount(withBudget.budget.contract_twd));
+    assert.equal(await dialog.locator('[data-value="2"]').textContent(), '本站沒有紀錄，不是 0 元');
+    await dialog.locator('[data-layer="2"]').click();
+    await page.waitForFunction(() => document.querySelector('#alDetail [data-readout]').textContent === '實支 · 本站沒有紀錄，不是 0 元');
+    assert.equal(await dialog.locator('[data-latch="2"][data-on]').count(), 1);
+    assert.equal(await dialog.locator('[data-latch="0"][data-on]').count(), 0);
+    assert.equal(await dialog.locator('[data-layer="2"]').getAttribute('aria-pressed'), 'false', 'a latched drawer does not open');
+    assert((await dialog.locator('[data-source] a').getAttribute('href')).startsWith('https://'));
+    assert(await dialog.evaluate((node) => node.scrollWidth <= node.clientWidth + 1));
+    assert.deepEqual(await smallTargets(page), []);
+    await shot(page, `lab-${width}-detail-budget.png`);
+    await dialog.locator('[data-project]').selectOption(withoutBudget.id);
+    await page.waitForFunction(() => document.querySelectorAll('#alDetail [data-latch][data-on]').length === 3);
+    assert((await dialog.locator('[data-source]').textContent()).includes('不代表機關沒有公開'));
+    assert.equal(/\d{4,}/.test(await dialog.locator('.fig-facts').textContent()), false, 'no amount for a project without a budget record');
+    assert.deepEqual(problems, [], `budget figure problems at ${width}`);
+    await context.close();
+  }
+  summary.checks.push('budget drawers bound to governance records');
+
+  // Without the project records the cabinet still works and says why it shows no amounts.
+  {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const page = await context.newPage();
+    await page.route('**/data/governance.json', (route) => route.fulfill({ status: 503, body: 'Unavailable' }));
+    await page.goto(origin + '/art-library/figures/budget-drawers/index.html');
+    await page.locator('[data-figure][data-state="live"]').waitFor();
+    await page.locator('[data-project][disabled]').waitFor();
+    assert((await page.locator('[data-source]').textContent()).includes('讀不到案卷資料'));
+    await page.locator('[data-layer="1"]').click();
+    await page.waitForFunction(() => document.querySelector('[data-readout]').textContent === '決標 · 還沒選案卷');
+    summary.checks.push('budget drawers without records');
+    await context.close();
+  }
+
   // A deep link opens the same asset.
   {
     const problems = [];

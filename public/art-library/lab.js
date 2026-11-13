@@ -259,7 +259,7 @@ function openDetail(asset) {
   nature.dataset.tone = photo ? "photo" : "original";
   nature.textContent = photo
     ? "真實照片。這是拍攝當天的樣子，不是工程進度或現況的證明。"
-    : "原創示意。本站自己畫的元件，不代表任何真實工程，也不帶政策數字。";
+    : "原創示意。本站自己畫的元件，不是任何真實工程的樣子。元件本身不帶數字；畫面上若有數字，是讀自下方標明來源的紀錄。";
   const preview = $("[data-preview]", dialog);
   preview.dataset.kind = asset.kind;
   if (photo) {
