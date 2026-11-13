@@ -4,5 +4,5 @@ export function sameSnapshot(live, mirror) {
 }
 
 export function deployCommand(mirror) {
-  return `npx wrangler pages deploy "${mirror}" --project-name hsinchu-watch --branch main --commit-dirty false --commit-message "Publish the hourly Hsinchu news index"`;
+  return `npx --yes wrangler pages deploy "${mirror}" --project-name hsinchu-watch --branch main --commit-dirty false --commit-message "Publish the hourly Hsinchu news index"`;
 }

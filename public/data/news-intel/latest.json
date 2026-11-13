@@ -1,12 +1,13 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T14:58:10.410Z",
+  "last_success_at": "2026-11-13T15:06:15.728Z",
   "count": 20,
   "failures": [],
   "gemini": {
     "use": false,
-    "reason": "missing_gemini_key"
+    "reason": "missing_gemini_key",
+    "called": false
   },
   "articles": [
     {
@@ -253,5 +254,6 @@
       "list_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181",
       "note": "年度欄是民國年，這裡換成西元。金額維持原文字。單位未標示，不換算。這是歲出決算數，不是驗收或實支。"
     }
-  ]
+  ],
+  "model_review": []
 }
