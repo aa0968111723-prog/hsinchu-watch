@@ -412,6 +412,30 @@ export async function persistGasStations(db, { stations, now, actor = "scheduler
   return { upserted };
 }
 
+export async function persistElectricBuses(db, { buses, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of buses?.rows || []) {
+    const route = String(row?.route || "").trim();
+    if (!route) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    const routeNumber = row.route_number == null || String(row.route_number).trim() === "" ? "" : String(row.route_number).trim();
+    keys.push([code, route, routeNumber]);
+    const vehicles = row.vehicles == null || row.vehicles === "" ? null : String(row.vehicles);
+    const existing = await db.prepare("SELECT vehicles, model FROM electric_bus_routes WHERE code = ? AND route = ? AND route_number = ?").bind(code, route, routeNumber).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO electric_bus_routes (code, route, route_number, county, vehicles, brand, model, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, route, routeNumber, row.county || null, vehicles, row.brand || null, row.model || null, buses.dataset_url, buses.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.vehicles ?? null) !== vehicles || (existing.model ?? null) !== (row.model || null)) {
+      await db.prepare("UPDATE electric_bus_routes SET county = ?, vehicles = ?, brand = ?, model = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND route = ? AND route_number = ?").bind(row.county || null, vehicles, row.brand || null, row.model || null, buses.dataset_url, buses.source_url, now, code, route, routeNumber).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "electric_bus_routes", buses?.dataset_url, ["code", "route", "route_number"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_electric_buses', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

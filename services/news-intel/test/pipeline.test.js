@@ -744,6 +744,49 @@ test("gas stations drop the owner and phone and keep the written open date", asy
   assert.equal(page.includes("不含負責人和電話"), true);
 });
 
+test("electric bus routes keep the written route number separate from the route name", async () => {
+  const { normalizeCountyElectricBuses } = await import("../src/adapters.js");
+  const rows = normalizeCountyElectricBuses(JSON.stringify([
+    { "編號": "1", "運營縣市": "新竹縣", "運營路線": "快捷7號公車", "運營路線號": "6", "運營車輛數": "3", "車輛廠牌": "華德", "車輛型號": "大巴2/中巴1" },
+    { "運營路線": " ", "運營路線號": "1", "運營車輛數": "0" },
+  ]));
+  assert.deepEqual(rows, [{
+    code: "1",
+    county: "新竹縣",
+    route: "快捷7號公車",
+    route_number: "6",
+    vehicles: "3",
+    brand: "華德",
+    model: "大巴2/中巴1",
+  }]);
+  const kept = await runHour({
+    previous: { articles: [], electric_buses: { rows: [{ route: "舊路線", route_number: "1", vehicles: "0" }] } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.electric_buses.rows[0].vehicles, "0");
+  assert.equal(kept.electric_buses.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-electric-buses", payload: JSON.stringify([{ "運營路線": "快捷7號公車", "運營路線號": "6", "運營車輛數": "3" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-electric-buses", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.count, 1);
+  assert.equal(imported.body.rows[0].route, "快捷7號公車");
+  assert.equal(imported.body.rows[0].route_number, "6");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不互相改寫"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1477,6 +1520,11 @@ test("published news file stays within the real cap", () => {
     assert.ok(stations.stations.every((row) => row.name && (row.opened_on === null || typeof row.opened_on === "string") && !Object.hasOwn(row, "phone") && !Object.hasOwn(row, "owner")));
     assert.equal(JSON.stringify(stations.stations).includes("負責人"), false);
     assert.equal(JSON.stringify(stations.stations).includes("聯絡電話"), false);
+  }
+  if (data.electric_buses?.rows) {
+    assert.ok(data.electric_buses.rows.length > 0);
+    assert.ok(data.electric_buses.rows.every((row) => row.route && typeof row.route_number === "string" && typeof row.vehicles === "string"));
+    assert.equal(data.electric_buses.rows.some((row) => row.route.includes("7") && row.route_number !== "7"), true);
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

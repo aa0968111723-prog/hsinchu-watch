@@ -53,6 +53,7 @@ try {
     heritage: existing.heritage || null,
     chargers: existing.chargers || null,
     gas_stations: existing.gas_stations || null,
+    electric_buses: existing.electric_buses || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
     debt: existing.debt || null,
@@ -166,6 +167,12 @@ const payload = {
   heritage: heritagePublish.summary,
   chargers: chargerPublish.summary,
   gas_stations: gasPublish.summary,
+  electric_buses: publishable.electric_buses ? {
+    source_url: publishable.electric_buses.source_url,
+    dataset_url: publishable.electric_buses.dataset_url,
+    rows: publishable.electric_buses.rows,
+    note: publishable.electric_buses.note,
+  } : null,
   use_permits: publishable.use_permits ? {
     source_url: publishable.use_permits.source_url,
     dataset_url: publishable.use_permits.dataset_url,

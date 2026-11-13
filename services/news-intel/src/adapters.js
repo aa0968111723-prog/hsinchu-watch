@@ -154,6 +154,8 @@ export const COUNTY_CHARGER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/openda
 export const COUNTY_CHARGER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=248";
 export const COUNTY_GAS_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/347/1bfd655b-da64-4d5c-9530-3b085d4ea427.json";
 export const COUNTY_GAS_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=347";
+export const COUNTY_EBUS_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/313/1e32f0e4-e3ea-4c01-b650-3757a08fae07.json";
+export const COUNTY_EBUS_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=313";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -758,6 +760,24 @@ export function splitGasStations(stations) {
   };
   const download = Array.isArray(stations.stations) ? { ...summary, stations: stations.stations } : null;
   return { summary, download };
+}
+
+export function normalizeCountyElectricBuses(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const route = String(row?.["運營路線"] || "").trim();
+    if (!route) return [];
+    return [{
+      code: originalNumber(row["編號"]),
+      county: String(row["運營縣市"] || "").trim() || null,
+      route,
+      route_number: originalNumber(row["運營路線號"]),
+      vehicles: originalNumber(row["運營車輛數"]),
+      brand: String(row["車輛廠牌"] || "").trim() || null,
+      model: String(row["車輛型號"] || "").trim() || null,
+    }];
+  });
 }
 
 export function normalizeSpecialClasses(payload) {
