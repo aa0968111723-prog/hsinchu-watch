@@ -91,7 +91,7 @@ def source_index(current, items, policies):
 def prepare(root=ROOT):
     root = Path(root)
     required = {"index.html": 'id="pulseView"', "compare.html": 'id="metricCards"',
-                "archive.html": 'id="archiveBoard"', "governance.html": 'id="governanceBoard"', "maps.html": "maps-mobile-", "commentary.html": "watch-comments"}
+                "archive.html": 'id="archiveBoard"', "governance.html": 'id="governanceBoard"', "maps.html": "maps-mobile-", "atlas.html": 'id="atlasApp"', "commentary.html": "watch-comments"}
     for page, marker in required.items():
         if marker not in (root / page).read_text(encoding="utf-8"):
             raise ValueError("Refusing superseded UI: " + page)
