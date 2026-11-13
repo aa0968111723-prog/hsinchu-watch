@@ -973,6 +973,52 @@ test("river samples keep ND and less-than marks on the written sample date", asy
   assert.equal(page.includes("ND 和小於號沿用原文"), true);
 });
 
+test("junior high zones keep the description year and do not add a month", async () => {
+  const { normalizeCountySchools, schoolZonePeriod, splitJuniorHigh } = await import("../src/adapters.js");
+  const schools = normalizeCountySchools(JSON.stringify([
+    { "編號": "1", "鄉鎮市區代碼": "10004020", "鄉鎮市": "竹東鎮", "學校名稱": "竹東國中", "所屬學區": "鷄林里。榮樂里。" },
+    { "鄉鎮市": "新埔鎮", "學校名稱": "新埔國中", "所屬學區": "新埔里。" },
+    { "鄉鎮市": "竹北市", "學校名稱": " ", "所屬學區": "不應出現" },
+  ]));
+  assert.equal(schools.length, 2);
+  assert.equal(schools[0].region_id, "zhudong");
+  assert.equal(schools[0].zone, "鷄林里。榮樂里。");
+  assert.equal(schools[1].township, "新埔鎮");
+  assert.equal(schools[1].region_id, "xinpu");
+  const period = schoolZonePeriod("資料集描述：113年新竹縣各鄉鎮市國民中學學區");
+  assert.equal(period.period, "2024");
+  assert.equal(period.period_text, "113年");
+  const parts = splitJuniorHigh({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=325", dataset_url: "https://ws.hsinchu.gov.tw/junior.json", period: "2024", period_text: "113年", count: 2, schools });
+  assert.equal(parts.summary.schools, undefined);
+  assert.equal(parts.download.schools[0].zone, "鷄林里。榮樂里。");
+  const kept = await runHour({
+    previous: { articles: [], junior_high: { count: 1, period: "2024", period_text: "113年", schools: [{ name: "竹東國中", township: "竹東鎮", zone: "鷄林里。" }] } },
+    now: "2026-11-14T01:50:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.junior_high.period_text, "113年");
+  assert.equal(kept.junior_high.schools[0].zone, "鷄林里。");
+  assert.equal(kept.junior_high.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-junior-high-zones", payload: JSON.stringify([{ "鄉鎮市": "關西鎮", "學校名稱": "關西國中", "所屬學區": "關西里。" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-junior-high-zones", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.period, null);
+  assert.equal(imported.body.schools[0].region_id, "guanxi");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("沒有月份就不補月"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1753,6 +1799,18 @@ test("published news file stays within the real cap", () => {
   assert.equal(schools.schools.length, data.schools.count);
   assert.equal(schools.period_text, data.schools.period_text);
   assert.ok(schools.schools.every((row) => row.name && row.township && (row.zone === null || typeof row.zone === "string")));
+  if (data.junior_high) {
+    assert.equal(data.junior_high.count, 34);
+    assert.equal(data.junior_high.period, "2024");
+    assert.equal(data.junior_high.period_text, "113年");
+    assert.equal(data.junior_high.schools, undefined);
+    const junior = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/junior-high-zones.json", import.meta.url), "utf8"));
+    assert.equal(junior.schools.length, 34);
+    assert.ok(junior.schools.every((row) => row.name && row.township && typeof row.zone === "string" && row.region_id));
+    assert.equal(JSON.stringify(junior).includes("03-5518101"), false);
+    const xinpu = junior.schools.find((row) => row.township === "新埔鎮");
+    assert.equal(xinpu.region_id, "xinpu");
+  }
   assert.ok(data.visitors.rows.length >= 1);
   assert.match(data.visitors.period, /^\d{4}-\d{2}$/);
   assert.equal(data.visitors.total, undefined);

@@ -38,6 +38,8 @@
   <p id="parking-status" class="meta"></p>
   <h2>新竹縣國小學區</h2>
   <p id="school-status" class="meta"></p>
+  <h2>新竹縣國中學區</h2>
+  <p id="junior-status" class="meta"></p>
   <h2>新竹縣幼兒園名錄</h2>
   <p id="kindergarten-status" class="meta"></p>
   <h2>新竹縣固定式科學儀器</h2>
@@ -149,6 +151,7 @@ const populationList = document.querySelector("#population");
 const populationStatus = document.querySelector("#population-status");
 const parkingStatus = document.querySelector("#parking-status");
 const schoolStatus = document.querySelector("#school-status");
+const juniorStatus = document.querySelector("#junior-status");
 const kindergartenStatus = document.querySelector("#kindergarten-status");
 const cameraStatus = document.querySelector("#camera-status");
 const cameraList = document.querySelector("#cameras");
@@ -325,6 +328,23 @@ fetch("/data/news-intel/latest.json")
       source.href = schools.source_url;
       source.textContent = "資料集頁";
       schoolStatus.append(" ", source);
+    }
+    const junior = data.junior_high;
+    const juniorPeriod = junior?.period_text ? `資料期間沿用來源描述 ${junior.period_text}。` : "來源頁沒有寫年度。";
+    juniorStatus.textContent = junior?.count
+      ? `${juniorPeriod}${junior.count} 所。只留學校名稱、鄉鎮市和學區原文。沒有月份就不補月。`
+      : "這一輪沒有國中學區，沒有補名單。";
+    if (junior?.download_url && junior?.count) {
+      const download = document.createElement("a");
+      download.href = junior.download_url;
+      download.textContent = "下載學區";
+      juniorStatus.append(" ", download);
+    }
+    if (junior?.source_url && junior?.count) {
+      const source = document.createElement("a");
+      source.href = junior.source_url;
+      source.textContent = "資料集頁";
+      juniorStatus.append(" ", source);
     }
     const kindergartens = data.kindergartens;
     const kindergartenPeriodText = kindergartens?.period_text ? `資料期間沿用來源描述 ${kindergartens.period_text}。` : "來源頁沒有寫學年度。";
@@ -694,6 +714,7 @@ fetch("/data/news-intel/latest.json")
     populationStatus.textContent = "人口數讀取失敗。頁面沒有改用假資料。";
     parkingStatus.textContent = "停車場資料讀取失敗。頁面沒有改用假資料。";
     schoolStatus.textContent = "學區資料讀取失敗。頁面沒有改用假資料。";
+    juniorStatus.textContent = "國中學區讀取失敗。頁面沒有改用假資料。";
     kindergartenStatus.textContent = "幼兒園名錄讀取失敗。頁面沒有改用假資料。";
     cameraStatus.textContent = "科學儀器清冊讀取失敗。頁面沒有改用假資料。";
     specialStatus.textContent = "特殊教育班名冊讀取失敗。頁面沒有改用假資料。";

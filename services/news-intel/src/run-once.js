@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitBridges, splitBusShelters, splitChargers, splitCityCatalog, splitFarms, splitGasStations, splitHeritage, splitHydrants, splitKindergartens, splitParking, splitRescue, splitRiver, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitBridges, splitBusShelters, splitChargers, splitCityCatalog, splitFarms, splitGasStations, splitHeritage, splitHydrants, splitJuniorHigh, splitKindergartens, splitParking, splitRescue, splitRiver, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -10,6 +10,7 @@ const publicUrl = new URL("../../../public/data/news-intel/latest.json", import.
 const catalogUrl = new URL("../../../public/data/news-intel/city-catalog.json", import.meta.url);
 const parkingUrl = new URL("../../../public/data/news-intel/parking.json", import.meta.url);
 const schoolUrl = new URL("../../../public/data/news-intel/school-zones.json", import.meta.url);
+const juniorUrl = new URL("../../../public/data/news-intel/junior-high-zones.json", import.meta.url);
 const kindergartenUrl = new URL("../../../public/data/news-intel/kindergartens.json", import.meta.url);
 const specialUrl = new URL("../../../public/data/news-intel/special-classes.json", import.meta.url);
 const hydrantUrl = new URL("../../../public/data/news-intel/hydrants.json", import.meta.url);
@@ -47,6 +48,7 @@ try {
     population: existing.population || null,
     parking: existing.parking || null,
     schools: existing.schools || null,
+    junior_high: existing.junior_high || null,
     kindergartens: existing.kindergartens || null,
     cameras: existing.cameras || null,
     special_classes: existing.special_classes || null,
@@ -100,6 +102,10 @@ const parkingPublish = catalogForPublish(parkingParts.download, parkingParts.sum
 const schoolParts = splitSchools(publishable.schools);
 const schoolPublish = catalogForPublish(schoolParts.download, schoolParts.summary, previous.schools, (download) => {
   writeFileSync(schoolUrl, JSON.stringify(download));
+});
+const juniorParts = splitJuniorHigh(publishable.junior_high);
+const juniorPublish = catalogForPublish(juniorParts.download, juniorParts.summary, previous.junior_high, (download) => {
+  writeFileSync(juniorUrl, JSON.stringify(download));
 });
 const kindergartenParts = splitKindergartens(publishable.kindergartens);
 const kindergartenPublish = catalogForPublish(kindergartenParts.download, kindergartenParts.summary, previous.kindergartens, (download) => {
@@ -183,6 +189,7 @@ const payload = {
   } : null,
   parking: parkingPublish.summary,
   schools: schoolPublish.summary,
+  junior_high: juniorPublish.summary,
   kindergartens: kindergartenPublish.summary,
   special_classes: specialPublish.summary,
   hydrants: hydrantPublish.summary,

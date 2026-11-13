@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyDebt, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_JUNIOR_PAGE, COUNTY_JUNIOR_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyDebt, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -59,6 +59,7 @@ export function mergeRun(previous, result) {
       population: previous?.population || null,
       parking: previous?.parking || null,
       schools: previous?.schools || null,
+      junior_high: previous?.junior_high || null,
       kindergartens: previous?.kindergartens || null,
       cameras: previous?.cameras || null,
       special_classes: previous?.special_classes || null,
@@ -95,6 +96,7 @@ export function mergeRun(previous, result) {
     population: result.population === undefined ? (previous?.population || null) : result.population,
     parking: result.parking === undefined ? (previous?.parking || null) : result.parking,
     schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
+    junior_high: result.junior_high === undefined ? (previous?.junior_high || null) : result.junior_high,
     kindergartens: result.kindergartens === undefined ? (previous?.kindergartens || null) : result.kindergartens,
     cameras: result.cameras === undefined ? (previous?.cameras || null) : result.cameras,
     special_classes: result.special_classes === undefined ? (previous?.special_classes || null) : result.special_classes,
@@ -241,6 +243,31 @@ async function loadCountySchools(fetcher, previous) {
       schools,
       retained: false,
       note: "只留學校名稱、鄉鎮市和學區原文。年度沿用資料集描述，沒有月份就不補月。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
+async function loadCountyJuniorHigh(fetcher, previous) {
+  const kept = previous?.junior_high ? { ...previous.junior_high, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const page = await fetcher(COUNTY_JUNIOR_PAGE);
+    const file = await fetcher(COUNTY_JUNIOR_URL);
+    if (!page?.ok || !file?.ok || typeof page.text !== "function" || typeof file.text !== "function") return kept;
+    const schools = normalizeCountySchools(await file.text());
+    if (!schools.length) return kept;
+    const period = schoolZonePeriod(await page.text());
+    return {
+      source_url: COUNTY_JUNIOR_PAGE,
+      dataset_url: COUNTY_JUNIOR_URL,
+      period: period.period,
+      period_text: period.period_text,
+      count: schools.length,
+      schools,
+      retained: false,
+      note: "只留學校名稱、鄉鎮市和學區原文。年度沿用資料集描述，沒有月份就不補月。聯絡人沒有入檔。",
     };
   } catch {
     return kept;
@@ -726,6 +753,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       population: await loadCountyPopulation(fetcher, previous),
       parking: await loadCountyParking(fetcher, previous),
       schools: await loadCountySchools(fetcher, previous),
+      junior_high: await loadCountyJuniorHigh(fetcher, previous),
       kindergartens: await loadCountyKindergartens(fetcher, previous),
       cameras: await loadCountyCameras(fetcher, previous),
       special_classes: await loadSpecialClasses(fetcher, previous),

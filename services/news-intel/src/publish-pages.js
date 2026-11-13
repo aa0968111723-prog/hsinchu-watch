@@ -59,6 +59,8 @@ const parkingFile = fileURLToPath(new URL("../../../public/data/news-intel/parki
 if (existsSync(parkingFile)) copyFileSync(parkingFile, `${mirror}\\data\\news-intel\\parking.json`);
 const schoolFile = fileURLToPath(new URL("../../../public/data/news-intel/school-zones.json", import.meta.url));
 if (existsSync(schoolFile)) copyFileSync(schoolFile, `${mirror}\\data\\news-intel\\school-zones.json`);
+const juniorFile = fileURLToPath(new URL("../../../public/data/news-intel/junior-high-zones.json", import.meta.url));
+if (existsSync(juniorFile)) copyFileSync(juniorFile, `${mirror}\\data\\news-intel\\junior-high-zones.json`);
 const kindergartenFile = fileURLToPath(new URL("../../../public/data/news-intel/kindergartens.json", import.meta.url));
 if (existsSync(kindergartenFile)) copyFileSync(kindergartenFile, `${mirror}\\data\\news-intel\\kindergartens.json`);
 const specialFile = fileURLToPath(new URL("../../../public/data/news-intel/special-classes.json", import.meta.url));

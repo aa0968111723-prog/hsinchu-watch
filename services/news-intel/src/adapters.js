@@ -134,6 +134,8 @@ export const COUNTY_PARKING_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/openda
 export const COUNTY_PARKING_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271";
 export const COUNTY_SCHOOL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/350/4e47a693-21da-4c61-b537-19e4b1c2617e.json";
 export const COUNTY_SCHOOL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350";
+export const COUNTY_JUNIOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/325/6c9c875f-2296-4742-b187-6401c883e57c.json";
+export const COUNTY_JUNIOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=325";
 export const COUNTY_KINDERGARTEN_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/348/b36fa839-e361-4d3a-b06d-99ae6c78f122.json";
 export const COUNTY_KINDERGARTEN_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=348";
 export const COUNTY_CAMERA_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/297/f65385d7-f178-4cee-8ccc-053c14aadfdb.json";
@@ -1013,6 +1015,21 @@ export function splitSchools(schools) {
     note: schools.note || "只留學校名稱、鄉鎮市和學區原文。",
   };
   const download = Array.isArray(schools.schools) ? { ...summary, schools: schools.schools } : null;
+  return { summary, download };
+}
+
+export function splitJuniorHigh(junior) {
+  if (!junior?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: junior.source_url,
+    dataset_url: junior.dataset_url,
+    period: junior.period || null,
+    period_text: junior.period_text || null,
+    count: junior.count,
+    download_url: "/data/news-intel/junior-high-zones.json",
+    note: junior.note || "只留學校名稱、鄉鎮市和學區原文。年度沿用資料集描述，沒有月份就不補月。聯絡人沒有入檔。",
+  };
+  const download = Array.isArray(junior.schools) ? { ...summary, schools: junior.schools } : null;
   return { summary, download };
 }
 

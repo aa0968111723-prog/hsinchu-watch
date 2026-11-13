@@ -173,6 +173,30 @@ export async function persistSchools(db, { schools, now, actor = "scheduler" }) 
   return { upserted };
 }
 
+export async function persistJuniorHigh(db, { junior, now, actor = "scheduler" }) {
+  const period = junior?.period || "";
+  const keys = [];
+  let upserted = 0;
+  for (const row of junior?.schools || []) {
+    const name = String(row?.name || "").trim();
+    const township = String(row?.township || "").trim();
+    if (!name || !township) continue;
+    keys.push([name, township, period]);
+    const zone = row.zone === undefined || row.zone === "" ? null : row.zone;
+    const existing = await db.prepare("SELECT zone_text FROM junior_high_zones WHERE school_name = ? AND township = ? AND period = ?").bind(name, township, period).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO junior_high_zones (school_name, township, township_code, zone_text, period, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)").bind(name, township, row.township_code || null, zone, period, junior.dataset_url, junior.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.zone_text ?? null) !== zone) {
+      await db.prepare("UPDATE junior_high_zones SET township_code = ?, zone_text = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE school_name = ? AND township = ? AND period = ?").bind(row.township_code || null, zone, junior.dataset_url, junior.source_url, now, name, township, period).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "junior_high_zones", junior?.dataset_url, ["school_name", "township", "period"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_junior_high', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 async function deleteMissing(db, table, datasetUrl, columns, keys) {
   if (!datasetUrl || !keys.length) return;
   const tuple = `(${columns.join(", ")})`;
