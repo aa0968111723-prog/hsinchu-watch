@@ -24,10 +24,6 @@ const WRITE_TOOLS = new Set([
 ]);
 const defaultWriteRates = new Map();
 
-const UNCONNECTED = new Set([
-  "sync_poll_metadata",
-]);
-
 function sources() {
   return [
     ...ADAPTERS.map((adapter) => ({ id: adapter.id, kind: adapter.kind, ...adapter.discover() })),
@@ -252,7 +248,9 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
     if (db) await persistPublicRecords(db, { records, now: new Date().toISOString() });
     return remember({ status: 200, body: { records, stored: Boolean(db) } });
   }
-  if (UNCONNECTED.has(tool)) return { status: 409, body: { error: "adapter_not_connected" } };
+  if (tool === "sync_poll_metadata") {
+    return { status: 409, body: { error: "poll_source_not_connected", fact_fields_allowed: false } };
+  }
   if (tool === "retry_failed_job") return { status: 409, body: { error: "job_runner_not_connected" } };
   if (tool === "fetch_source_document" || tool === "verify_source_url") {
     if (!allowedUrl(input.url)) return { status: 400, body: { error: "url_not_allowed" } };

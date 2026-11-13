@@ -1134,6 +1134,8 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "b" }), true);
   const unconnected = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "sync_poll_metadata" } });
   assert.equal(unconnected.status, 409);
+  assert.equal(unconnected.body.error, "poll_source_not_connected");
+  assert.equal(unconnected.body.fact_fields_allowed, false);
   const refusedDataset = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "import_government_dataset", input: { dataset: "unknown" } } });
   const imported = await handleMcp({
     authorization: "Bearer collector-token",
