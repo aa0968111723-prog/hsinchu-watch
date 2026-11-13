@@ -112,6 +112,12 @@ test("caps at 20 and collapses reprints", () => {
   ]);
   assert.equal(reprints.length, 1);
   assert.equal(reprints[0].article_ids.length, 2);
+  const distinct = linkEvents([
+    { original_title: "新竹縣政府今日對外說明這項公共工程的後續進度並且強調第一階段", source_url: "https://www.hsinchu.gov.tw/a" },
+    { original_title: "新竹縣政府今日對外說明這項公共工程的後續進度並且強調第二階段", source_url: "https://www.hsinchu.gov.tw/b" },
+  ]);
+  assert.equal(distinct.length, 2);
+  assert.notEqual(distinct[0].id, distinct[1].id);
 });
 
 test("anonymous and under-scoped writes are rejected", async () => {

@@ -112,12 +112,21 @@ export function acceptModelProposals(proposals) {
   }));
 }
 
+function eventId(key) {
+  let hash = 2166136261;
+  for (const char of key) {
+    hash ^= char.codePointAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `evt-${(hash >>> 0).toString(16).padStart(8, "0")}`;
+}
+
 export function linkEvents(articles) {
   const events = new Map();
   for (const article of articles) {
-    const key = normalizeTitle(article.original_title).slice(0, 24);
+    const key = normalizeTitle(article.original_title) || article.source_url;
     if (!events.has(key)) {
-      events.set(key, { id: `evt-${key.slice(0, 12) || "item"}`, title: article.original_title, article_ids: [] });
+      events.set(key, { id: eventId(key), title: article.original_title, article_ids: [] });
     }
     events.get(key).article_ids.push(article.source_url);
   }
