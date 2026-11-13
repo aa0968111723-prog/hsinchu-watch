@@ -160,6 +160,13 @@ test("a failed hour keeps the last successful articles", async () => {
   assert.equal(legal.claim_kind, "legal_status");
   assert.equal(legal.verification_status, "UNVERIFIED");
   assert.equal(legal.fact_fields_allowed, false);
+  for (const title of ["新竹搜索", "新竹偵查", "新竹交保", "新竹聲押"]) {
+    const stage = publicationFields({ original_title: title, source_url: "https://www.cna.com.tw/legal", publisher_timestamp: "2026-11-13", source_type: "news_rss" });
+    assert.equal(stage.claim_kind, "legal_status");
+    assert.equal(stage.verification_status, "UNVERIFIED");
+    assert.equal(stage.review_status, "needs_review");
+    assert.equal(stage.fact_fields_allowed, false);
+  }
   const { pageDateAgrees } = await import("../src/verify.js");
   const { readPagePublishedAt } = await import("../src/verify.js");
   assert.equal(readPagePublishedAt('"datePublished": "2026-11-13T21:56:00+08:00"'), "2026-11-13T13:56:00.000Z");
