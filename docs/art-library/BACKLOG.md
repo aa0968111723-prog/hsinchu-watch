@@ -28,15 +28,15 @@
 
 - [x] 證據分類台（來源可信度）
 - [x] 預算三層抽屜（核定、決標、實支；金額讀自治理案卷，沒有紀錄的那層扣住）
-- [ ] 階段工地模型（政策階段與公共建設；完工、驗收、啟用分開）
+- [x] 階段工地模型（規劃、施工、完工、驗收、啟用分開；準備中／目標日期／百分比不點亮）
 - [ ] 議會
-- [ ] 空狀態
+- [ ] 空狀態（獨立元件；預算抽屜與階段工地已覆蓋部分空狀態用途）
 - [ ] 插畫
 
 ## 驗證
 
 - [x] `tests/art-library/test_catalog.py`：15 項
-- [x] `tests/art-library/figures.test.mjs`：7 項
+- [x] `tests/art-library/figures.test.mjs`：含階段工地模型
 - [x] `tests/art-library/check_lab.py`：320／390／430／768／1280，獨立預覽與建置後各跑一次
 - [x] `python tools/audit_publication.py`
 - [x] `npm run build`

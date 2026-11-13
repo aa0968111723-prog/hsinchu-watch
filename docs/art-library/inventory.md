@@ -27,6 +27,7 @@
 | `scene-executive-yuan-2017` | 場景 | 行政院中央大樓 | 寺人孟子 | CC BY-SA 4.0 | [檔案頁](https://commons.wikimedia.org/wiki/File:%E8%A1%8C%E6%94%BF%E9%99%A2%E4%B8%AD%E5%A4%AE%E5%A4%A7%E6%A8%93_2.jpg) | 2026-11-13T08:23:56+08:00 |
 | `component-evidence-desk` | 3D元件 | 證據分類台 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 | `component-budget-drawers` | 3D元件 | 預算三層抽屜 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
+| `component-stage-yard` | 3D元件 | 階段工地模型 | 新竹觀察美術庫（第五線） | 本站原創，未另行對外授權 | 原創 | 不適用 |
 
 ## 缺口
 

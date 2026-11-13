@@ -13,10 +13,13 @@
 ```html
 <link rel="stylesheet" href="/art-library/figures/figures.css">
 <div data-figure="evidence-desk" data-alt="…"></div>
+<!-- 或 budget-drawers、stage-yard；預算／階段可加 data-project="案卷 id" -->
 <script type="module" src="/art-library/figures/boot.js"></script>
 ```
 
 不要用 iframe，也不要把元件的程式貼成行內 `<script>`，正式站的 CSP 兩個都擋。片段或模組載入失敗時，`boot.js` 會留下靜態圖。
+
+`stage-yard` 只點亮有來源事件的階段。完工不是驗收，驗收不是啟用；「準備驗收」與「目標完工」不會點亮該階段，百分比進度也不會。
 
 地區識別碼和治理案卷、資料線一致：`taipei`、`new-taipei`、`hsinchu-county`、`hsinchu-city`、`central`。建築照片另有 `office_refs`（例如 `office:ly`），對應資料線 `graph.json` 的機關。
 
