@@ -5,11 +5,21 @@ import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify
 
 export const FETCH_TIMEOUT_MS = 15000;
 
-export function sourceFetch(url) {
-  return fetch(url, {
-    headers: { "user-agent": "HsinchuNewsIntel/0.1" },
-    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
-  });
+export async function sourceFetch(url, fetcher = fetch) {
+  let current = url;
+  for (let hop = 0; hop < 4; hop += 1) {
+    if (!allowedUrl(current)) throw new Error("url_not_allowed");
+    const response = await fetcher(current, {
+      headers: { "user-agent": "HsinchuNewsIntel/0.1" },
+      redirect: "manual",
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    if (response.status < 300 || response.status >= 400) return response;
+    const location = response.headers?.get?.("location") || "";
+    if (!location) return response;
+    current = new URL(location, current).toString();
+  }
+  throw new Error("too_many_redirects");
 }
 
 export function dateCheckOptions(article) {
@@ -222,6 +232,26 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       note: "年度欄是民國年，這裡換成西元。金額維持原文字。單位未標示，不換算。這是歲出決算數，不是驗收或實支。",
     }));
     const publicRecords = accountsFailed ? (previous?.public_records || []) : freshRecords;
+    const cityFailed = collected.failures.some((failure) => failure.id === "hsinchu-city-news");
+    if (cityFailed) {
+      for (const article of previous?.articles || []) {
+        const url = String(article.source_url || article.url || "");
+        if (!url.includes("://www.hccg.gov.tw/")) continue;
+        collected.candidates.push({
+          original_title: article.original_title || article.title,
+          source_url: url,
+          publisher_timestamp: article.publisher_timestamp || article.published_at,
+          source_name: article.source_name || "新竹市政府",
+          source_type: "official_html",
+          source_id: "hsinchu-city-news",
+          region_id: article.region_id,
+          date_checked: article.date_checked,
+          page_published_at: article.page_published_at,
+          feed_time_kind: article.feed_time_kind,
+          retained_source: true,
+        });
+      }
+    }
     const proposals = called ? await env.propose() : [];
     const modelReview = acceptModelProposals(proposals);
     const selected = selectArticles(collected.candidates, hidden).map((article) => ({
@@ -231,7 +261,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
     }));
     const articles = [];
     for (const article of selected) {
-      if (!allowedUrl(article.source_url)) {
+      if (article.retained_source || !allowedUrl(article.source_url)) {
         articles.push(article);
         continue;
       }

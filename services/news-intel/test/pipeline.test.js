@@ -361,6 +361,51 @@ test("an election notice keeps the attachment links and no candidate names", asy
   assert.equal(page.includes("不轉寫人名"), true);
 });
 
+test("source fetch stops when a redirect leaves the allowlist", async () => {
+  const { sourceFetch } = await import("../src/run.js");
+  const calls = [];
+  await assert.rejects(() => sourceFetch("https://www.hccg.gov.tw/", async (url) => {
+    calls.push(url);
+    return { status: 301, headers: { get: () => "https://example.com/secret" } };
+  }), /url_not_allowed/);
+  assert.deepEqual(calls, ["https://www.hccg.gov.tw/"]);
+  const followed = await sourceFetch("https://www.hccg.gov.tw/", async (url) => {
+    if (url === "https://www.hccg.gov.tw/") return { status: 301, headers: { get: () => "/hccg/index" } };
+    return { status: 200, ok: true, url };
+  });
+  assert.equal(followed.ok, true);
+  assert.equal(followed.url, "https://www.hccg.gov.tw/hccg/index");
+  await assert.rejects(() => sourceFetch("https://example.com/a", async () => ({ status: 200, ok: true })), /url_not_allowed/);
+});
+
+test("an empty city list keeps the previous city articles", async () => {
+  const result = await runHour({
+    previous: {
+      articles: [{
+        original_title: "新竹市舊聞",
+        source_url: "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=1",
+        publisher_timestamp: "2026-11-13",
+        source_name: "新竹市政府",
+        region_id: "hsinchu-city",
+        date_checked: true,
+        page_published_at: "2026-11-13",
+      }],
+    },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [
+      { id: "hsinchu-city-news", async fetch() { return "<html></html>"; }, normalize() { return []; } },
+      { id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-14T00:00:00.000Z", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } },
+    ],
+    fetcher: async (url) => {
+      if (String(url).includes("hccg.gov.tw")) throw new Error("retained city page was fetched");
+      return { ok: true, status: 200, text: async () => "" };
+    },
+  });
+  const city = result.articles.find((article) => article.source_url.includes("municipalnews"));
+  assert.equal(city.original_title, "新竹市舊聞");
+  assert.equal(city.date_checked, true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
