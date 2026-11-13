@@ -5,6 +5,13 @@ export function sameSnapshot(live, mirror) {
 
 export const PUBLISH_TIMEOUT_MS = 90_000;
 
+export function cloudflareRefreshNeeded(configText = "", now = Date.now()) {
+  const refresh = String(configText).match(/^refresh_token\s*=\s*"([^"]+)"/m)?.[1];
+  const expiry = Date.parse(String(configText).match(/^expiration_time\s*=\s*"([^"]+)"/m)?.[1] || "");
+  if (!refresh || Number.isNaN(expiry)) return false;
+  return expiry - now < 5 * 60 * 1000;
+}
+
 export function cloudflareAuthHeaders(configText = "", now = Date.now()) {
   const token = String(configText).match(/^oauth_token\s*=\s*"([^"]+)"/m)?.[1];
   const expiry = String(configText).match(/^expiration_time\s*=\s*"([^"]+)"/m)?.[1];

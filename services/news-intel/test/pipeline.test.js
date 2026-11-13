@@ -519,7 +519,10 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.equal((await cloudflareApiReachable(async () => ({ status: 400 }))).status, 400);
   assert.equal((await cloudflareApiReachable(async () => ({ status: 403 }))).ok, false);
   assert.equal((await cloudflareApiReachable(async () => ({ status: 503 }))).ok, false);
-  const { cloudflareAuthHeaders } = await import("../src/publish-gate.js");
+  const { cloudflareAuthHeaders, cloudflareRefreshNeeded } = await import("../src/publish-gate.js");
+  assert.equal(cloudflareRefreshNeeded('oauth_token = "test-token"\nexpiration_time = "2099-01-01T00:00:00.000Z"\nrefresh_token = "refresh"', Date.parse("2026-11-13T16:00:00.000Z")), false);
+  assert.equal(cloudflareRefreshNeeded('oauth_token = "test-token"\nexpiration_time = "2026-11-13T16:16:00.000Z"\nrefresh_token = "refresh"', Date.parse("2026-11-13T16:14:00.000Z")), true);
+  assert.equal(cloudflareRefreshNeeded('oauth_token = "test-token"\nexpiration_time = "2020-01-01T00:00:00.000Z"', Date.parse("2026-11-13T16:14:00.000Z")), false);
   assert.deepEqual(cloudflareAuthHeaders(""), {});
   assert.deepEqual(cloudflareAuthHeaders('oauth_token = "test-token"\nexpiration_time = "2020-01-01T00:00:00.000Z"'), {});
   assert.equal(cloudflareAuthHeaders('oauth_token = "test-token"\nexpiration_time = "2099-01-01T00:00:00.000Z"').authorization, "Bearer test-token");

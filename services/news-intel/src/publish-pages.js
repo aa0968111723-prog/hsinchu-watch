@@ -4,7 +4,7 @@ import { spawnSync } from "node:child_process";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { cloudflareApiReachable, cloudflareAuthHeaders, deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
+import { cloudflareApiReachable, cloudflareAuthHeaders, cloudflareRefreshNeeded, deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
 import { FETCH_TIMEOUT_MS } from "./run.js";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
@@ -32,8 +32,14 @@ if (!sameSnapshot(live, local)) {
   console.log(JSON.stringify({ published: false, reason: "production_snapshot_changed" }));
   process.exit(0);
 }
+const wranglerBin = fileURLToPath(new URL("../node_modules/wrangler/bin/wrangler.js", import.meta.url));
 const wranglerConfig = join(homedir(), ".wrangler", "config", "default.toml");
-const authHeaders = cloudflareAuthHeaders(existsSync(wranglerConfig) ? readFileSync(wranglerConfig, "utf8") : "");
+let configText = existsSync(wranglerConfig) ? readFileSync(wranglerConfig, "utf8") : "";
+if (cloudflareRefreshNeeded(configText) && existsSync(wranglerBin)) {
+  spawnSync(`node "${wranglerBin}" whoami`, { cwd: root, shell: true, stdio: "ignore", timeout: 20_000 });
+  configText = existsSync(wranglerConfig) ? readFileSync(wranglerConfig, "utf8") : "";
+}
+const authHeaders = cloudflareAuthHeaders(configText);
 const api = await cloudflareApiReachable(fetch, 8000, authHeaders);
 if (!api.ok) {
   console.log(JSON.stringify({ published: false, reason: "cloudflare_unavailable", status: api.status }));
@@ -47,7 +53,6 @@ if (!api.ok) {
 }
 copyFileSync(fileURLToPath(new URL("../../../public/data/news-intel/latest.json", import.meta.url)), `${mirror}\\data\\news-intel\\latest.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
-const wranglerBin = fileURLToPath(new URL("../node_modules/wrangler/bin/wrangler.js", import.meta.url));
 const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit", timeout: PUBLISH_TIMEOUT_MS });
 const status = deployed.status ?? 1;
 writeFileSync(fileURLToPath(new URL("../state/publish-status.json", import.meta.url)), JSON.stringify({
