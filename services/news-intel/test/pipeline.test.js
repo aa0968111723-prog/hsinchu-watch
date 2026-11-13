@@ -243,6 +243,48 @@ test("county parking drops phone numbers and keeps the space text", async () => 
   assert.equal(page.includes("不含電話"), true);
 });
 
+test("county school zones keep the description year and the zone text", async () => {
+  const { normalizeCountySchools, schoolZonePeriod, splitSchools } = await import("../src/adapters.js");
+  const schools = normalizeCountySchools(JSON.stringify([
+    { "鄉鎮市區代碼": "10004020", "鄉鎮市": "竹東鎮", "學校名稱": "瑞峰國小", "所屬學區": "上坪里。" },
+    { "鄉鎮市": "新埔鄉", "學校名稱": "未映射國小", "所屬學區": "" },
+    { "鄉鎮市": "竹東鎮", "學校名稱": " ", "所屬學區": "不應出現" },
+  ]));
+  assert.deepEqual(schools, [
+    { name: "瑞峰國小", township: "竹東鎮", township_code: "10004020", region_id: "zhudong", zone: "上坪里。" },
+    { name: "未映射國小", township: "新埔鄉", township_code: null, region_id: null, zone: null },
+  ]);
+  assert.deepEqual(schoolZonePeriod("<p>資料集描述： 114年各鄉鎮市國民小學學區資料</p><p>115年10月</p>"), { period: "2025", period_text: "114年" });
+  assert.deepEqual(schoolZonePeriod("<p>114年出現在別處</p>"), { period: null, period_text: null });
+  const parts = splitSchools({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350", dataset_url: "https://ws.hsinchu.gov.tw/schools.json", period: "2025", period_text: "114年", count: 1, schools });
+  assert.equal(parts.summary.schools, undefined);
+  const kept = await runHour({
+    previous: { articles: [], schools: { count: 2, period_text: "114年" } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.schools.count, 2);
+  assert.equal(kept.schools.retained, true);
+  const { openNewsDb } = await import("../src/local-db.js");
+  const db = openNewsDb(":memory:");
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    db,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-elementary-zones", payload: JSON.stringify([{ "鄉鎮市": "竹東鎮", "學校名稱": "瑞峰國小", "所屬學區": "上坪里。" }]) } },
+  });
+  const row = await db.prepare("SELECT zone_text, period FROM school_zones WHERE school_name = ?").bind("瑞峰國小").first();
+  const announcements = await db.prepare("SELECT COUNT(*) AS n FROM education_announcements").first();
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.schools[0].zone, "上坪里。");
+  assert.equal(row.zone_text, "上坪里。");
+  assert.equal(row.period, "");
+  assert.equal(announcements.n, 0);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("沒有月份就不補月") || page.includes("沒有寫年度"), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -627,6 +669,13 @@ test("published news file stays within the real cap", () => {
   assert.ok(parking.lots.every((lot) => lot.name && (lot.spaces === null || typeof lot.spaces === "string")));
   assert.ok(parking.lots.every((lot) => !Object.keys(lot).some((key) => /電話|公司|證號|分機/.test(key))));
   assert.ok(parking.lots.filter((lot) => lot.district === "新埔鄉").every((lot) => lot.region_id === null));
+  assert.ok(data.schools.count >= 80);
+  assert.match(data.schools.period, /^\d{4}$/);
+  assert.equal(data.schools.schools, undefined);
+  const schools = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/school-zones.json", import.meta.url), "utf8"));
+  assert.equal(schools.schools.length, data.schools.count);
+  assert.equal(schools.period_text, data.schools.period_text);
+  assert.ok(schools.schools.every((row) => row.name && row.township && (row.zone === null || typeof row.zone === "string")));
 });
 
 test("a failed council fetch keeps the previous notices", async () => {

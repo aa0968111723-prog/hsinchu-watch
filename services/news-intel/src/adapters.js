@@ -126,6 +126,8 @@ export const COUNTY_POPULATION_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/ope
 export const COUNTY_POPULATION_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=339";
 export const COUNTY_PARKING_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/271/18b31a65-54c3-4fb6-93c4-63bf021e1bb6.json";
 export const COUNTY_PARKING_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271";
+export const COUNTY_SCHOOL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/350/4e47a693-21da-4c61-b537-19e4b1c2617e.json";
+export const COUNTY_SCHOOL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350";
 export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
 
 export function populationPeriod(html) {
@@ -137,6 +139,16 @@ export function populationPeriod(html) {
   if (!Number.isInteger(roc) || !Number.isInteger(month) || roc < 1 || month < 1 || month > 12) return { period: null, period_text: null };
   const year = roc < 1911 ? roc + 1911 : roc;
   return { period: `${year}-${String(month).padStart(2, "0")}`, period_text: `${match[1]}年${match[2]}月` };
+}
+
+export function schoolZonePeriod(html) {
+  const text = String(html || "").replace(/<[^>]+>/g, " ");
+  const match = text.match(/資料集描述[:：]\s*(\d{2,3})年/);
+  if (!match) return { period: null, period_text: null };
+  const roc = Number(match[1]);
+  if (!Number.isInteger(roc) || roc < 1 || roc > 300) return { period: null, period_text: null };
+  const year = roc < 1911 ? roc + 1911 : roc;
+  return { period: String(year), period_text: `${match[1]}年` };
 }
 
 const PARKING_DISTRICTS = {
@@ -174,6 +186,40 @@ export function normalizeCountyParking(payload) {
       fee: fee === null || fee === undefined || String(fee).trim() === "" ? null : String(fee).trim(),
     }];
   });
+}
+
+export function normalizeCountySchools(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["學校名稱"] || "").trim();
+    const township = String(row?.["鄉鎮市"] || "").trim();
+    if (!name || !township) return [];
+    const zone = row["所屬學區"];
+    const code = row["鄉鎮市區代碼"];
+    return [{
+      name,
+      township,
+      township_code: code === null || code === undefined || String(code).trim() === "" ? null : String(code).trim(),
+      region_id: PARKING_DISTRICTS[township] || null,
+      zone: zone === null || zone === undefined || String(zone).trim() === "" ? null : String(zone).trim(),
+    }];
+  });
+}
+
+export function splitSchools(schools) {
+  if (!schools?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: schools.source_url,
+    dataset_url: schools.dataset_url,
+    period: schools.period || null,
+    period_text: schools.period_text || null,
+    count: schools.count,
+    download_url: "/data/news-intel/school-zones.json",
+    note: schools.note || "只留學校名稱、鄉鎮市和學區原文。",
+  };
+  const download = Array.isArray(schools.schools) ? { ...summary, schools: schools.schools } : null;
+  return { summary, download };
 }
 
 export function splitParking(parking) {

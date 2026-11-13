@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, populationPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, populationPeriod, schoolZonePeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -42,6 +42,7 @@ export function mergeRun(previous, result) {
       city_catalog: previous?.city_catalog || null,
       population: previous?.population || null,
       parking: previous?.parking || null,
+      schools: previous?.schools || null,
       model_review: previous?.model_review || [],
     };
   }
@@ -57,8 +58,34 @@ export function mergeRun(previous, result) {
     city_catalog: result.city_catalog || null,
     population: result.population === undefined ? (previous?.population || null) : result.population,
     parking: result.parking === undefined ? (previous?.parking || null) : result.parking,
+    schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCountySchools(fetcher, previous) {
+  const kept = previous?.schools ? { ...previous.schools, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const page = await fetcher(COUNTY_SCHOOL_PAGE);
+    const file = await fetcher(COUNTY_SCHOOL_URL);
+    if (!page?.ok || !file?.ok || typeof page.text !== "function" || typeof file.text !== "function") return kept;
+    const schools = normalizeCountySchools(await file.text());
+    if (!schools.length) return kept;
+    const period = schoolZonePeriod(await page.text());
+    return {
+      source_url: COUNTY_SCHOOL_PAGE,
+      dataset_url: COUNTY_SCHOOL_URL,
+      period: period.period,
+      period_text: period.period_text,
+      count: schools.length,
+      schools,
+      retained: false,
+      note: "只留學校名稱、鄉鎮市和學區原文。年度沿用資料集描述，沒有月份就不補月。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadCountyParking(fetcher, previous) {
@@ -186,6 +213,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       city_catalog: await loadCityCatalog(fetcher, previous),
       population: await loadCountyPopulation(fetcher, previous),
       parking: await loadCountyParking(fetcher, previous),
+      schools: await loadCountySchools(fetcher, previous),
       model_review: modelReview,
     });
   } catch (error) {

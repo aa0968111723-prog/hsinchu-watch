@@ -153,6 +153,24 @@ export async function persistTransport(db, { parking, now, actor = "scheduler" }
   return { upserted };
 }
 
+export async function persistSchools(db, { schools, now, actor = "scheduler" }) {
+  const period = schools?.period || "";
+  let upserted = 0;
+  for (const row of schools?.schools || []) {
+    if (!row?.name || !row.township) continue;
+    const zone = row.zone === undefined || row.zone === "" ? null : row.zone;
+    const existing = await db.prepare("SELECT zone_text FROM school_zones WHERE school_name = ? AND township = ? AND period = ?").bind(row.name, row.township, period).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO school_zones (school_name, township, township_code, zone_text, period, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)").bind(row.name, row.township, row.township_code, zone, period, schools.dataset_url, schools.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.zone_text ?? null) !== zone) {
+      await db.prepare("UPDATE school_zones SET township_code = ?, zone_text = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE school_name = ? AND township = ? AND period = ?").bind(row.township_code, zone, schools.dataset_url, schools.source_url, now, row.name, row.township, period).run();
+    }
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_schools', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

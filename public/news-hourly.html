@@ -34,6 +34,8 @@
   <ol id="population"></ol>
   <h2>新竹縣路外停車場</h2>
   <p id="parking-status" class="meta"></p>
+  <h2>新竹縣國小學區</h2>
+  <p id="school-status" class="meta"></p>
   <h2>新竹縣議會公告</h2>
   <p id="notice-status" class="meta"></p>
   <ol id="notices"></ol>
@@ -97,6 +99,7 @@ const accountStatus = document.querySelector("#account-status");
 const populationList = document.querySelector("#population");
 const populationStatus = document.querySelector("#population-status");
 const parkingStatus = document.querySelector("#parking-status");
+const schoolStatus = document.querySelector("#school-status");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
@@ -206,6 +209,23 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       parkingStatus.append(" ", source);
     }
+    const schools = data.schools;
+    const schoolPeriod = schools?.period_text ? `資料期間沿用來源描述 ${schools.period_text}。` : "來源頁沒有寫年度。";
+    schoolStatus.textContent = schools?.count
+      ? `${schoolPeriod}${schools.count} 所。只留學校名稱、鄉鎮市和學區原文。`
+      : "這一輪沒有學區資料，沒有補名單。";
+    if (schools?.download_url) {
+      const download = document.createElement("a");
+      download.href = schools.download_url;
+      download.textContent = "下載學區";
+      schoolStatus.append(" ", download);
+    }
+    if (schools?.source_url && schools?.count) {
+      const source = document.createElement("a");
+      source.href = schools.source_url;
+      source.textContent = "資料集頁";
+      schoolStatus.append(" ", source);
+    }
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
     for (const notice of announcements) {
@@ -248,6 +268,7 @@ fetch("/data/news-intel/latest.json")
     catalogStatus.textContent = "市府目錄讀取失敗。頁面沒有改用假資料。";
     populationStatus.textContent = "人口數讀取失敗。頁面沒有改用假資料。";
     parkingStatus.textContent = "停車場資料讀取失敗。頁面沒有改用假資料。";
+    schoolStatus.textContent = "學區資料讀取失敗。頁面沒有改用假資料。";
   });
 </script>
 </body>

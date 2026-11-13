@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitCityCatalog, splitParking } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitCityCatalog, splitParking, splitSchools } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -9,6 +9,7 @@ import { publishableResult, runHour, sourceFetch } from "./run.js";
 const publicUrl = new URL("../../../public/data/news-intel/latest.json", import.meta.url);
 const catalogUrl = new URL("../../../public/data/news-intel/city-catalog.json", import.meta.url);
 const parkingUrl = new URL("../../../public/data/news-intel/parking.json", import.meta.url);
+const schoolUrl = new URL("../../../public/data/news-intel/school-zones.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
 try {
   const existing = JSON.parse(readFileSync(publicUrl, "utf8"));
@@ -32,6 +33,7 @@ try {
     city_catalog: existing.city_catalog || null,
     population: existing.population || null,
     parking: existing.parking || null,
+    schools: existing.schools || null,
   };
 } catch {
   previous = { articles: [], last_success_at: null };
@@ -61,6 +63,10 @@ const catalogPublish = catalogForPublish(catalogParts.download, catalogParts.sum
 const parkingParts = splitParking(publishable.parking);
 const parkingPublish = catalogForPublish(parkingParts.download, parkingParts.summary, previous.parking, (download) => {
   writeFileSync(parkingUrl, JSON.stringify(download));
+});
+const schoolParts = splitSchools(publishable.schools);
+const schoolPublish = catalogForPublish(schoolParts.download, schoolParts.summary, previous.schools, (download) => {
+  writeFileSync(schoolUrl, JSON.stringify(download));
 });
 const payload = {
   ok: publishable.ok,
@@ -94,6 +100,7 @@ const payload = {
     note: publishable.population.note,
   } : null,
   parking: parkingPublish.summary,
+  schools: schoolPublish.summary,
   changes: articleChanges(previous.articles, publishable.articles),
   duration_ms: Date.now() - started,
   model_review: publishable.model_review || [],

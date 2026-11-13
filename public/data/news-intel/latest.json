@@ -432,5 +432,14 @@
     "count": 139,
     "download_url": "/data/news-intel/parking.json",
     "note": "只留名稱、行政區、地址、型式、格數原文和收費方式。不含電話、分機、公司名稱或證號。格數不換算。"
+  },
+  "schools": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/350/4e47a693-21da-4c61-b537-19e4b1c2617e.json",
+    "period": "2025",
+    "period_text": "114年",
+    "count": 90,
+    "download_url": "/data/news-intel/school-zones.json",
+    "note": "只留學校名稱、鄉鎮市和學區原文。年度沿用資料集描述，沒有月份就不補月。"
   }
 }
