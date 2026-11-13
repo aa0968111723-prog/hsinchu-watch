@@ -1,66 +1,102 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>美術庫 Asset Lab</title>
-  <link rel="stylesheet" href="/art-library/lab.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>美術庫｜新竹觀察</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/art-library/lab.css">
+<link rel="stylesheet" href="/art-library/figures/figures.css">
 </head>
 <body>
-  <a class="skip" href="#library">跳到圖庫</a>
-  <header class="top">
-    <div class="wrap">
-      <h1>美術庫</h1>
-      <p>給新竹觀察挑圖、看來源、複製素材 ID。真實照片和原創示意分開放。</p>
-    </div>
-  </header>
-  <main class="wrap" id="main-content">
-    <p class="notice">這是第五線的獨立預覽。第一線與第三線先用素材 ID；第四線再把 <code>public/asset-lab.html</code>、<code>public/data/art-library.json</code> 與 <code>public/art-library/</code> 接到正式導覽。本頁沒有待審圖片。</p>
-    <section class="panel" id="library" aria-labelledby="library-title">
-      <h2 id="library-title">可公開索引</h2>
-      <form id="filters" class="filters">
-        <label>搜尋
-          <input name="q" type="search" placeholder="名稱、ID、署名" autocomplete="off">
-        </label>
-        <label>地區
-          <select name="region"><option value="">全部</option></select>
-        </label>
-        <label>種類
-          <select name="kind"><option value="">全部</option></select>
-        </label>
-        <label>用途
-          <select name="use"><option value="">全部</option></select>
-        </label>
-        <label>授權
-          <select name="license"><option value="">全部</option></select>
-        </label>
-      </form>
-      <p class="count" id="count">讀取索引…</p>
-      <div class="grid" id="grid"></div>
-    </section>
-    <section class="panel" aria-labelledby="gap-title">
-      <h2 id="gap-title">目前缺口</h2>
-      <ul class="gaps" id="gaps"></ul>
-      <p class="meta">授權或身份未核對的候選只寫在工作線文件，不進這個公開索引。</p>
-    </section>
-    <section class="featured" aria-labelledby="bench-title">
-      <h2 id="bench-title">證據壓印台</h2>
-      <p>原創立體元件。夾厚不是政策數字。篩選裡的「3D元件」也能打開同一台儀器。</p>
-      <p><a class="text-button" href="/art-library/figures/evidence-bench/index.html">操作證據壓印台</a></p>
-    </section>
-  </main>
-  <footer class="wrap foot">時間帶 Asia/Taipei。未知欄位保持空白，不補攝影者或授權。</footer>
-  <dialog id="detail" aria-labelledby="detail-title">
-    <h2 id="detail-title" data-title></h2>
-    <div data-preview></div>
-    <div class="dialog-actions">
-      <button type="button" class="primary" data-copy>複製素材 ID</button>
-      <button type="button" data-close>關閉</button>
-    </div>
-    <dl data-facts></dl>
-    <p data-formats></p>
-    <ul class="swatches" data-swatches></ul>
-  </dialog>
-  <script type="module" src="/art-library/lab.js"></script>
+<a class="skip-link" href="#main-content">跳到主要內容</a>
+<header class="top">
+<div class="wrap">
+<div>
+<h1>美術庫</h1>
+<p class="sub">挑圖、看來源與授權、複製素材 ID。真實照片與原創示意分開放。</p>
+</div>
+</div>
+<nav class="wrap nav" aria-label="主選單"><a href="/index.html">總覽</a><a href="/compare.html">比較</a><a href="/topics.html">議題</a><a href="/polls.html">民調</a><a href="/commentary.html">評論</a><a href="/manual.html">手動收錄</a></nav>
+</header>
+<main class="wrap art-lab" id="main-content">
+<p class="al-lead">這裡只放來源與授權都核對過、可以公開使用的素材。照片是拍攝當天的樣子，不是工程進度的證明；示意元件是本站自己畫的，不代表任何真實工程或數字。</p>
+
+<form class="al-filters" id="alFilters" aria-label="篩選素材">
+<label class="al-field al-field-wide">搜尋
+<input name="q" type="search" placeholder="名稱、素材 ID、作者" autocomplete="off" enterkeyhint="search">
+</label>
+<label class="al-field">地區
+<select name="region"><option value="">全部地區</option></select>
+</label>
+<label class="al-field">種類
+<select name="kind"><option value="">全部種類</option></select>
+</label>
+<label class="al-field">用途
+<select name="use"><option value="">全部用途</option></select>
+</label>
+<label class="al-field">授權
+<select name="license"><option value="">全部授權</option></select>
+</label>
+<label class="al-field">審核狀態
+<select name="review"><option value="">全部狀態</option></select>
+</label>
+<button type="reset" class="al-btn al-reset">清除篩選</button>
+</form>
+<p class="al-count" id="alCount" role="status" aria-live="polite">讀取素材索引…</p>
+<div class="al-alert" id="alAlert" role="alert" hidden></div>
+
+<section class="al-section" id="alPhotos" aria-labelledby="alPhotosTitle" hidden>
+<h2 id="alPhotosTitle">真實照片</h2>
+<p class="al-hint">人物與實景。每張都有作者、授權與來源頁。</p>
+<div class="al-grid" data-grid="photo"></div>
+</section>
+
+<section class="al-section" id="alOriginals" aria-labelledby="alOriginalsTitle" hidden>
+<h2 id="alOriginalsTitle">原創示意</h2>
+<p class="al-hint">本站自製的立體元件與插畫。可以操作，不帶任何政策數字。</p>
+<div class="al-grid" data-grid="original"></div>
+</section>
+
+<section class="al-section" id="alGaps" aria-labelledby="alGapsTitle" hidden>
+<h2 id="alGapsTitle">缺口</h2>
+<p class="al-hint">還沒有可用素材的項目。缺圖不會拿別人的照片或生成圖補上。</p>
+<ul class="al-gaps" data-grid="gap"></ul>
+</section>
+
+<section class="al-section" id="alEmpty" hidden>
+<h2>沒有符合的素材</h2>
+<p>放寬篩選就能回到完整清單。</p>
+<button type="button" class="al-btn" data-clear>清除篩選</button>
+</section>
+
+<section class="al-section" aria-labelledby="alCoverageTitle">
+<h2 id="alCoverageTitle">各地區有幾件</h2>
+<p class="al-hint">0 就是還沒有，不是漏算。</p>
+<div class="al-table-wrap"><table class="al-table" id="alCoverage"><caption class="al-sr">各地區各種類的已核對素材數</caption></table></div>
+</section>
+
+<dialog class="al-dialog" id="alDetail" aria-labelledby="alDetailTitle">
+<div class="al-dialog-bar">
+<h2 id="alDetailTitle"></h2>
+<button type="button" class="al-btn" data-close>關閉</button>
+</div>
+<p class="al-nature" data-nature></p>
+<div class="al-preview" data-preview></div>
+<div class="al-actions">
+<button type="button" class="al-btn al-btn-primary" data-copy="id">複製素材 ID</button>
+<button type="button" class="al-btn" data-copy="credit">複製署名</button>
+<button type="button" class="al-btn" data-copy="embed">複製嵌入碼</button>
+</div>
+<p class="al-copied" data-copied role="status" aria-live="polite"></p>
+<dl class="al-facts" data-facts></dl>
+<h3>檔案與格式</h3>
+<div class="al-table-wrap"><table class="al-table" data-files></table></div>
+<h3>色盤</h3>
+<ul class="al-swatches" data-swatches></ul>
+</dialog>
+</main>
+<footer class="wrap foot">素材索引：<a href="/data/art-library.json">/data/art-library.json</a>。時間帶 Asia/Taipei。沒有紀錄的欄位留空，不補攝影者或授權。</footer>
+<script type="module" src="/art-library/lab.js"></script>
 </body>
 </html>

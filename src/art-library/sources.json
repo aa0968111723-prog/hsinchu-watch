@@ -1,0 +1,568 @@
+{
+  "note": "Curated list for the art library. An entry reaches the public index only when its licence passes the allowlist, `reviewed` is true and `alt` describes what the picture really shows.",
+  "regions": [
+    {
+      "id": "taipei",
+      "label": "臺北市"
+    },
+    {
+      "id": "new-taipei",
+      "label": "新北市"
+    },
+    {
+      "id": "hsinchu-county",
+      "label": "新竹縣"
+    },
+    {
+      "id": "hsinchu-city",
+      "label": "新竹市"
+    },
+    {
+      "id": "central",
+      "label": "中央"
+    }
+  ],
+  "kinds": [
+    {
+      "id": "portrait",
+      "label": "人物",
+      "nature": "real-photo"
+    },
+    {
+      "id": "scene",
+      "label": "場景",
+      "nature": "real-photo"
+    },
+    {
+      "id": "illustration",
+      "label": "插畫",
+      "nature": "original-schematic"
+    },
+    {
+      "id": "component",
+      "label": "3D元件",
+      "nature": "original-schematic"
+    }
+  ],
+  "uses": [
+    {
+      "id": "person-card",
+      "label": "人物卡"
+    },
+    {
+      "id": "candidate-review",
+      "label": "候選人閱讀"
+    },
+    {
+      "id": "place-context",
+      "label": "地點情境"
+    },
+    {
+      "id": "city-scene",
+      "label": "城市實景"
+    },
+    {
+      "id": "public-building",
+      "label": "機關建築"
+    },
+    {
+      "id": "council",
+      "label": "議會"
+    },
+    {
+      "id": "public-works",
+      "label": "公共建設"
+    },
+    {
+      "id": "policy-scene",
+      "label": "政策場景"
+    },
+    {
+      "id": "source-credibility",
+      "label": "來源可信度"
+    },
+    {
+      "id": "budget",
+      "label": "預算"
+    },
+    {
+      "id": "policy-stage",
+      "label": "政策階段"
+    },
+    {
+      "id": "explainer",
+      "label": "說明圖"
+    },
+    {
+      "id": "empty-state",
+      "label": "空狀態"
+    }
+  ],
+  "portrait_standard": {
+    "size": 256,
+    "shape": "square",
+    "framing": "頭肩正面。",
+    "colour": "不調色、不修圖。",
+    "note": "吳旭智、徐欣瑩、鄭朝方沿用站上既有的 256 正方形檔，是各自 Commons 原檔靠上方的正方形裁切。邱臣遠的官方照是半身照，裁成頭肩，裁切框記在紀錄裡。四張的臉部大小還不一致：頭頂到下巴占畫面高度，吳旭智約六成，另外三位約八到九成，鄭朝方的頭頂貼到上緣。統一比例的版本列在待辦。"
+  },
+  "portraits": [
+    {
+      "id": "portrait-wu-moi",
+      "title": "吳旭智官方肖像",
+      "actor_refs": [
+        "wu"
+      ],
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "commons": "File:吳旭智議員.png",
+      "site_file": "img/persons/wu.jpg",
+      "crop": null,
+      "focal_point": {
+        "x": 0.52,
+        "y": 0.5
+      },
+      "alt": "吳旭智官方肖像，頭肩正面，淺藍背景",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "usage_status": "in-use",
+      "reviewed": true
+    },
+    {
+      "id": "portrait-xu-ly",
+      "title": "徐欣瑩官方肖像",
+      "actor_refs": [
+        "xu"
+      ],
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "commons": "File:徐欣瑩肖像.jpg",
+      "site_file": "img/persons/xu.jpg",
+      "crop": null,
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "徐欣瑩官方肖像，頭肩正面，白色背景",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "usage_status": "in-use",
+      "reviewed": true
+    },
+    {
+      "id": "portrait-zheng-moi",
+      "title": "鄭朝方官方肖像",
+      "actor_refs": [
+        "zheng"
+      ],
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "commons": "File:新竹縣竹北市公所 鄭朝方.jpg",
+      "site_file": "img/persons/zheng.jpg",
+      "crop": null,
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "鄭朝方官方肖像，頭肩正面，白色背景",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "usage_status": "in-use",
+      "reviewed": true
+    },
+    {
+      "id": "portrait-chiu-hccg",
+      "title": "邱臣遠官方肖像",
+      "actor_refs": [
+        "chiu"
+      ],
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "commons": "File:邱臣遠副市長肖像.jpg",
+      "site_file": "img/persons/chiu.jpg",
+      "crop": {
+        "x": 412,
+        "y": 134,
+        "size": 390
+      },
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "邱臣遠官方肖像，頭肩正面，灰色背景。取自新竹市政府副市長任內的半身官方照",
+      "uses": [
+        "person-card",
+        "candidate-review"
+      ],
+      "usage_status": "available",
+      "reviewed": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-hsinchu-city-hall-2015",
+      "title": "新竹市政府（市役所）",
+      "commons": "File:Hsinchu City Hall 20150403.jpg",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "office_refs": [
+        "office:hsinchu-city"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新竹市政府正門，紅磚與洗石子立面，門額寫新竹市政府，屋頂有旗。2015年4月3日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-hsinchu-tra-station-2024",
+      "title": "新竹車站周邊鐵道",
+      "commons": "File:Hsinchu TRA Station Railway, Nov 2024.jpg",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "uses": [
+        "city-scene",
+        "public-works",
+        "place-context"
+      ],
+      "alt": "新竹火車站周邊的軌道、電車線與市區天際線，2024年11月。畫面沒有月台或列車",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-taipei-city-hall",
+      "title": "臺北市市政大樓",
+      "commons": "File:Taipei Taiwan Taipei-City-Hall-01.jpg",
+      "region_ids": [
+        "taipei"
+      ],
+      "office_refs": [
+        "office:tpe-city"
+      ],
+      "uses": [
+        "public-building",
+        "city-scene",
+        "place-context"
+      ],
+      "alt": "臺北市市政大樓與左側的臺北101，前景是路口與行人。2015年12月25日",
+      "focal_point": {
+        "x": 0.68,
+        "y": 0.6
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-new-taipei-fire-hq-2016",
+      "title": "新北市政府消防局總隊部",
+      "commons": "File:Headquarters of Fire Department, New Taipei City Government face to Golf Road 2016.jpg",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新北市政府消防局總隊部臨高爾富路的清水混凝土建築，一樓車庫停著消防車。2016年",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-hsinchu-county-hall-2011",
+      "title": "新竹縣政府大樓",
+      "commons": "File:新竹縣政府.JPG",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "office_refs": [
+        "office:hsinchu-county"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新竹縣政府大樓正面，紅磚與灰色立面，前方是大片鋪面廣場與停放的車輛。2011年10月8日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.57
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-hsinchu-county-council-2011",
+      "title": "新竹縣議會",
+      "commons": "File:新竹縣議會.JPG",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "新竹縣議會大樓正面，門楣掛著慶祝雙十國慶的橫幅，前方是草地與松樹。2011年10月8日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-zhubei-skyline-2023",
+      "title": "竹北高樓與頭前溪鐵路橋",
+      "commons": "File:Zhubei, Hsinchu Skyline 20231117.jpg",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "city-scene",
+        "place-context"
+      ],
+      "alt": "河上的鐵路橋，橘色柴電機車牽引一輛黑色蒸汽機車通過，後方是竹北的高樓住宅群。2023年11月17日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-touqian-thsr-bridge-2020",
+      "title": "頭前溪北岸的高架橋與鋼桁架橋",
+      "commons": "File:View of THSR Touqian River Bridge and Mountains around Qionglin from the north bank.jpg",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "uses": [
+        "public-works",
+        "place-context"
+      ],
+      "alt": "從頭前溪北岸橋下往芎林方向看：混凝土高架橋與白色鋼桁架橋，前景是水泥護岸與雜草。2020年10月27日",
+      "focal_point": {
+        "x": 0.6,
+        "y": 0.3
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-hsinchu-city-council-2019",
+      "title": "新竹市議會",
+      "commons": "File:新竹市議會大樓.jpg",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "新竹市議會大樓，白色列柱門廊上有新竹市議會金字，旁邊是橘紅色側棟與大王椰子。2019年6月15日",
+      "focal_point": {
+        "x": 0.45,
+        "y": 0.6
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-hsinchu-youbike-2016",
+      "title": "新竹轉運站 YouBike 停車柱",
+      "commons": "File:Youbike 新竹市新竹轉運站 2016-08-01.jpg",
+      "region_ids": [
+        "hsinchu-city"
+      ],
+      "uses": [
+        "policy-scene",
+        "public-works"
+      ],
+      "alt": "新竹轉運站的 YouBike 站，兩排空的灰色停車柱沿鋪面排開，後方是太平洋 SOGO 與新竹客運大樓。2016年8月1日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-taipei-city-council-2011",
+      "title": "臺北市議會",
+      "commons": "File:台北市議會.JPG",
+      "region_ids": [
+        "taipei"
+      ],
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "臺北市議會大樓正面，圓弧形量體上有臺北市議會金字，前方是圓形花圃。2011年3月13日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-taipei-minglun-housing-2023",
+      "title": "明倫社會住宅",
+      "commons": "File:Minglun Social Housing front view 20230304.jpg",
+      "region_ids": [
+        "taipei"
+      ],
+      "uses": [
+        "policy-scene",
+        "public-works"
+      ],
+      "alt": "臺北市大同區明倫社會住宅，弧形的粉色與藍灰色磁磚立面，前景是承德路三段的路口與號誌。2023年3月4日",
+      "focal_point": {
+        "x": 0.42,
+        "y": 0.4
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-new-taipei-city-hall-2013",
+      "title": "新北市政府大樓與板橋高樓群",
+      "commons": "File:New Taipei City Hall 20131108.jpg",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "office_refs": [
+        "office:ntpc-city"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "新北市板橋區的高樓群，畫面中央米色與玻璃帷幕的高樓是新北市政府大樓，前景是路口的車流與行人。2013年11月8日",
+      "focal_point": {
+        "x": 0.52,
+        "y": 0.42
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-new-taipei-council-2017",
+      "title": "新北市議會",
+      "commons": "File:New Taipei City Council building front view 20171028.jpg",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "新北市議會大樓正門，深色門廊上有新北市議會金字，兩側是修成圓形的大樹。2017年10月28日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-new-taipei-zhongyuan-station-2019",
+      "title": "環狀線中原站出口",
+      "commons": "File:Zhongyuan Station of Taipei Metro Circular Line 20190828.jpg",
+      "region_ids": [
+        "new-taipei"
+      ],
+      "uses": [
+        "public-works",
+        "place-context"
+      ],
+      "alt": "臺北捷運環狀線中原站的出口，站名燈箱在入口上方，前景是高架橋的藍色橋墩。2019年8月28日",
+      "focal_point": {
+        "x": 0.48,
+        "y": 0.62
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-legislative-yuan-chamber-2017",
+      "title": "立法院議場外觀",
+      "commons": "File:立法院議場.jpg",
+      "region_ids": [
+        "central"
+      ],
+      "office_refs": [
+        "office:ly"
+      ],
+      "uses": [
+        "council",
+        "public-building"
+      ],
+      "alt": "立法院議場建築的外觀，白色面磚立面，門廊上方有「議場」二字，前方是階梯與盆栽。不是議場內部。2017年10月3日",
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "reviewed": true
+    },
+    {
+      "id": "scene-executive-yuan-2017",
+      "title": "行政院中央大樓",
+      "commons": "File:行政院中央大樓 2.jpg",
+      "region_ids": [
+        "central"
+      ],
+      "office_refs": [
+        "office:ey"
+      ],
+      "uses": [
+        "public-building",
+        "place-context"
+      ],
+      "alt": "行政院中央大樓，淺褐色面磚與列柱陽台，前景是路口號誌與樹叢。2017年8月26日",
+      "focal_point": {
+        "x": 0.6,
+        "y": 0.55
+      },
+      "reviewed": true
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-portrait-zhu",
+      "kind": "portrait",
+      "title": "朱定瑀肖像",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": [
+        "zhu"
+      ],
+      "review_status": "gap",
+      "reason": "Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。",
+      "needed": "有明確授權的官方或本人提供照片。不用他人照片，也不用生成肖像。"
+    },
+    {
+      "id": "gap-portrait-tseng",
+      "kind": "portrait",
+      "title": "曾聖凱肖像",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "actor_refs": [
+        "tseng"
+      ],
+      "review_status": "gap",
+      "reason": "Wikimedia Commons 查無檔案（2026-11-13 搜尋）。沒有已核對可公開使用的肖像。",
+      "needed": "有明確授權的官方或本人提供照片。不用他人照片，也不用生成肖像。"
+    }
+  ]
+}

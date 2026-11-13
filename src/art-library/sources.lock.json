@@ -1,0 +1,587 @@
+{
+  "note": "Licence evidence as read from Wikimedia Commons on retrieved_at.",
+  "assets": {
+    "portrait-wu-moi": {
+      "commons": "File:吳旭智議員.png",
+      "retrieved_at": "2026-11-13T08:22:56+08:00",
+      "evidence": {
+        "title": "File:吳旭智議員.png",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E5%90%B3%E6%97%AD%E6%99%BA%E8%AD%B0%E5%93%A1.png",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/%E5%90%B3%E6%97%AD%E6%99%BA%E8%AD%B0%E5%93%A1.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 1961,
+        "original_height": 2395,
+        "original_mime": "image/png",
+        "original_sha1": "95f5bcdd10b4f85718974c042164fcfdf7ae1c92",
+        "uploaded_at": "2021-02-15T03:21:19Z",
+        "license_short": "Attribution",
+        "license_url": null,
+        "artist": "內政部民政司",
+        "attribution": "內政部民政司",
+        "credit": "https://cand.moi.gov.tw/of/home.jsp",
+        "date_original": "2010sdate QS:P,+2010-00-00T00:00:00Z/8",
+        "description": "吳旭智議員",
+        "gwoia": "GWOIA",
+        "gwoia_url": "https://cand.moi.gov.tw/of/home.jsp?mserno=201011010017&serno=201011010017&menudata=OfMenu&contlink=content/copyright.jsp"
+      },
+      "site_match": {
+        "method": "best-matching square of the Commons original (500 px wide), grey difference at 64 px",
+        "mean_abs_diff": 6.15,
+        "square_in_500px": {
+          "left": 0,
+          "top": 0,
+          "side": 500
+        }
+      }
+    },
+    "portrait-xu-ly": {
+      "commons": "File:徐欣瑩肖像.jpg",
+      "retrieved_at": "2026-11-13T08:22:58+08:00",
+      "evidence": {
+        "title": "File:徐欣瑩肖像.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E5%BE%90%E6%AC%A3%E7%91%A9%E8%82%96%E5%83%8F.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/%E5%BE%90%E6%AC%A3%E7%91%A9%E8%82%96%E5%83%8F.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 420,
+        "original_height": 554,
+        "original_mime": "image/jpeg",
+        "original_sha1": "4189c291a5d852cd9dbfb26b2cb6e6d4f25c575b",
+        "uploaded_at": "2023-09-07T12:49:53Z",
+        "license_short": "Attribution",
+        "license_url": null,
+        "artist": "立法院",
+        "attribution": "Legislative Yuan",
+        "credit": "https://www.ly.gov.tw/Pages/List.aspx?nodeid=1731",
+        "date_original": "2018-11-24",
+        "description": "徐欣瑩第八屆立法委員肖像。",
+        "gwoia": "LY-GWOIA",
+        "gwoia_url": null
+      },
+      "site_match": {
+        "method": "best-matching square of the Commons original (500 px wide), grey difference at 64 px",
+        "mean_abs_diff": 7.87,
+        "square_in_500px": {
+          "left": 0,
+          "top": 20,
+          "side": 420
+        }
+      }
+    },
+    "portrait-zheng-moi": {
+      "commons": "File:新竹縣竹北市公所 鄭朝方.jpg",
+      "retrieved_at": "2026-11-13T08:23:01+08:00",
+      "evidence": {
+        "title": "File:新竹縣竹北市公所 鄭朝方.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82%E5%85%AC%E6%89%80_%E9%84%AD%E6%9C%9D%E6%96%B9.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/%E6%96%B0%E7%AB%B9%E7%B8%A3%E7%AB%B9%E5%8C%97%E5%B8%82%E5%85%AC%E6%89%80_%E9%84%AD%E6%9C%9D%E6%96%B9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 404,
+        "original_height": 553,
+        "original_mime": "image/jpeg",
+        "original_sha1": "3d815fa5e268b9b4e0762a44d26d433f3d11f61e",
+        "uploaded_at": "2023-03-26T05:30:46Z",
+        "license_short": "Attribution",
+        "license_url": null,
+        "artist": "中華民國內政部",
+        "attribution": "內政部全球資訊網",
+        "credit": "新竹縣竹北市公所鄭朝方",
+        "date_original": "18 October 2022 (according to Exif data)",
+        "description": "新竹縣竹北市公所 鄭朝方",
+        "gwoia": "GWOIA",
+        "gwoia_url": "https://www.moi.gov.tw/cp.aspx?n=10954"
+      },
+      "site_match": {
+        "method": "best-matching square of the Commons original (500 px wide), grey difference at 64 px",
+        "mean_abs_diff": 5.51,
+        "square_in_500px": {
+          "left": 0,
+          "top": 30,
+          "side": 404
+        }
+      }
+    },
+    "portrait-chiu-hccg": {
+      "commons": "File:邱臣遠副市長肖像.jpg",
+      "retrieved_at": "2026-11-13T08:23:03+08:00",
+      "evidence": {
+        "title": "File:邱臣遠副市長肖像.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E9%82%B1%E8%87%A3%E9%81%A0%E5%89%AF%E5%B8%82%E9%95%B7%E8%82%96%E5%83%8F.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/%E9%82%B1%E8%87%A3%E9%81%A0%E5%89%AF%E5%B8%82%E9%95%B7%E8%82%96%E5%83%8F.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 1046,
+        "original_height": 1568,
+        "original_mime": "image/jpeg",
+        "original_sha1": "b31f588e72a709e03399ab919e7b6ab23e6aba97",
+        "uploaded_at": "2024-02-06T21:17:04Z",
+        "license_short": "Attribution",
+        "license_url": null,
+        "artist": "新竹市政府",
+        "attribution": "Hsinchu City Government",
+        "credit": "https://www.hccg.gov.tw/ch/home.jsp?id=30217&amp;parentpath=0,7",
+        "date_original": "2024-02-06",
+        "description": "新竹市副市長邱臣遠肖像",
+        "gwoia": "GWOIA",
+        "gwoia_url": "https://www.hccg.gov.tw/ch/home.jsp?id=10051&parentpath=0,19"
+      },
+      "site_match": {
+        "method": "byte-identical",
+        "same_bytes": true
+      }
+    },
+    "scene-hsinchu-city-hall-2015": {
+      "commons": "File:Hsinchu City Hall 20150403.jpg",
+      "retrieved_at": "2026-11-13T08:23:04+08:00",
+      "evidence": {
+        "title": "File:Hsinchu City Hall 20150403.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Hsinchu_City_Hall_20150403.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Hsinchu_City_Hall_20150403.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3872,
+        "original_height": 2592,
+        "original_mime": "image/jpeg",
+        "original_sha1": "43760b2a58fb17ebfc13304f7193d2091aab54a4",
+        "uploaded_at": "2020-06-08T09:09:28Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Suicasmo",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2015-04-03 16:14:35",
+        "description": "新竹州廳大門正面外觀，頂樓升起中華民國國旗。",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "e53c6e6ebc020e7f9940d5aa421ffc7426526bc30b71ed3efa67dbb253c2e7a3"
+      }
+    },
+    "scene-hsinchu-tra-station-2024": {
+      "commons": "File:Hsinchu TRA Station Railway, Nov 2024.jpg",
+      "retrieved_at": "2026-11-13T08:23:07+08:00",
+      "evidence": {
+        "title": "File:Hsinchu TRA Station Railway, Nov 2024.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Hsinchu_TRA_Station_Railway,_Nov_2024.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Hsinchu_TRA_Station_Railway%2C_Nov_2024.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4080,
+        "original_height": 3072,
+        "original_mime": "image/jpeg",
+        "original_sha1": "22255d4b600a58145c7fe56b290ca2d58c020756",
+        "uploaded_at": "2024-11-05T03:22:04Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Ralff Nestor Nacor",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2024-11-03 13:42:03",
+        "description": "Hsinchu TRA Station Railway, Nov 2024",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "3d75ae3fe6e00997d1891c696f703adebbfcbd7af67587b08d5ab5dd218a4860"
+      }
+    },
+    "scene-taipei-city-hall": {
+      "commons": "File:Taipei Taiwan Taipei-City-Hall-01.jpg",
+      "retrieved_at": "2026-11-13T08:23:11+08:00",
+      "evidence": {
+        "title": "File:Taipei Taiwan Taipei-City-Hall-01.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Taipei-City-Hall-01.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Taipei_Taiwan_Taipei-City-Hall-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4907,
+        "original_height": 3505,
+        "original_mime": "image/jpeg",
+        "original_sha1": "d0d5e0fa6a87fb04321078458ee6334d7fa177da",
+        "uploaded_at": "2016-03-09T21:07:39Z",
+        "license_short": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "artist": "CEphoto, Uwe Aranas",
+        "attribution": "Photo by CEphoto, Uwe Aranas or alternatively © CEphoto, Uwe Aranas",
+        "credit": "Own work",
+        "date_original": "2015-12-25",
+        "description": "Taipei, Taiwan: Taipei City Hall. In the background, the top in clouds, Taipei 101 Tower",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "a035edddcd01ed94300999b3894d10f5e3f1d71df70db92230aad1203f7a1543"
+      }
+    },
+    "scene-new-taipei-fire-hq-2016": {
+      "commons": "File:Headquarters of Fire Department, New Taipei City Government face to Golf Road 2016.jpg",
+      "retrieved_at": "2026-11-13T08:23:14+08:00",
+      "evidence": {
+        "title": "File:Headquarters of Fire Department, New Taipei City Government face to Golf Road 2016.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Headquarters_of_Fire_Department,_New_Taipei_City_Government_face_to_Golf_Road_2016.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Headquarters_of_Fire_Department%2C_New_Taipei_City_Government_face_to_Golf_Road_2016.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 2112,
+        "original_height": 1408,
+        "original_mime": "image/jpeg",
+        "original_sha1": "810ea44599f11b0d814e2abdb5ab2a0fa2d1155d",
+        "uploaded_at": "2017-06-24T14:14:13Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Wpcpey",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2016-08-29 11:16",
+        "description": "Headquarters of Fire Department, New Taipei City Government. Address : No.15, Section 2, Nanya South Road, Banqiao District, New Taipei City. Taken on Golf Road, Banqiao District.",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "18429109de2a989109c376621cc400129dd36e71cfe361fdf7161d7a253f8f45"
+      }
+    },
+    "scene-hsinchu-county-hall-2011": {
+      "commons": "File:新竹縣政府.JPG",
+      "retrieved_at": "2026-11-13T08:23:18+08:00",
+      "evidence": {
+        "title": "File:新竹縣政府.JPG",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E6%94%BF%E5%BA%9C.JPG",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/%E6%96%B0%E7%AB%B9%E7%B8%A3%E6%94%BF%E5%BA%9C.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4288,
+        "original_height": 3216,
+        "original_mime": "image/jpeg",
+        "original_sha1": "3b905e99eb287e3aff56b2f7b638c458110186a1",
+        "uploaded_at": "2011-10-08T15:44:11Z",
+        "license_short": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "artist": "象心力",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2011-10-08",
+        "description": "Hsinchu County Government, Zhubei City, Hsinchu County, Taiwana",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "bff4bdaccbad0c36cb951a8405069a74482337f5319e9ea22d0f1198ce2dadf4"
+      }
+    },
+    "scene-hsinchu-county-council-2011": {
+      "commons": "File:新竹縣議會.JPG",
+      "retrieved_at": "2026-11-13T08:23:21+08:00",
+      "evidence": {
+        "title": "File:新竹縣議會.JPG",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E7%B8%A3%E8%AD%B0%E6%9C%83.JPG",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/%E6%96%B0%E7%AB%B9%E7%B8%A3%E8%AD%B0%E6%9C%83.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4288,
+        "original_height": 3216,
+        "original_mime": "image/jpeg",
+        "original_sha1": "d32177534301c8935cd1f1601e206754c8a43e1c",
+        "uploaded_at": "2011-10-08T16:00:06Z",
+        "license_short": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "artist": "象心力",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2011-10-08 10:10",
+        "description": "Hsinchu County Council Hall",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "abd1b5abf40bda909d6df8cc76fe06c63c1416d107d35cb46a34313220749548"
+      }
+    },
+    "scene-zhubei-skyline-2023": {
+      "commons": "File:Zhubei, Hsinchu Skyline 20231117.jpg",
+      "retrieved_at": "2026-11-13T08:23:23+08:00",
+      "evidence": {
+        "title": "File:Zhubei, Hsinchu Skyline 20231117.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Zhubei,_Hsinchu_Skyline_20231117.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Zhubei%2C_Hsinchu_Skyline_20231117.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5472,
+        "original_height": 3080,
+        "original_mime": "image/jpeg",
+        "original_sha1": "c120a1697f7195a150d267dd1541f07858197ede",
+        "uploaded_at": "2024-09-03T11:05:11Z",
+        "license_short": "CC BY-SA 2.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+        "artist": "周承漢",
+        "attribution": null,
+        "credit": "https://www.flickr.com/photos/112285385@N07/53337407539/",
+        "date_original": "2023-11-17 12:17:17",
+        "description": "Zhubei, Hsinchu Skyline 20231117",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "fa547be0b5f6217c67bedf8acba314e27a290ee886847ae5a1746491ba605781"
+      }
+    },
+    "scene-touqian-thsr-bridge-2020": {
+      "commons": "File:View of THSR Touqian River Bridge and Mountains around Qionglin from the north bank.jpg",
+      "retrieved_at": "2026-11-13T08:23:26+08:00",
+      "evidence": {
+        "title": "File:View of THSR Touqian River Bridge and Mountains around Qionglin from the north bank.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:View_of_THSR_Touqian_River_Bridge_and_Mountains_around_Qionglin_from_the_north_bank.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/View_of_THSR_Touqian_River_Bridge_and_Mountains_around_Qionglin_from_the_north_bank.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4032,
+        "original_height": 3024,
+        "original_mime": "image/jpeg",
+        "original_sha1": "aa78564cf8045b34915a0fef9d186fc6e548b0fd",
+        "uploaded_at": "2020-12-03T07:43:56Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Tbatb",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2020-10-27 16:19:41",
+        "description": "頭前溪北岸望向芎林，高鐵與六家線橋下。",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "f48a8a54485002f701dcb103a6ecab77717485146007566862829ef86859fecd"
+      }
+    },
+    "scene-hsinchu-city-council-2019": {
+      "commons": "File:新竹市議會大樓.jpg",
+      "retrieved_at": "2026-11-13T08:23:31+08:00",
+      "evidence": {
+        "title": "File:新竹市議會大樓.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E6%96%B0%E7%AB%B9%E5%B8%82%E8%AD%B0%E6%9C%83%E5%A4%A7%E6%A8%93.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/%E6%96%B0%E7%AB%B9%E5%B8%82%E8%AD%B0%E6%9C%83%E5%A4%A7%E6%A8%93.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4592,
+        "original_height": 3448,
+        "original_mime": "image/jpeg",
+        "original_sha1": "e2330ff566c27d8d87871a0943edb2eae7434416",
+        "uploaded_at": "2019-06-16T01:35:45Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "寺人孟子",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2019-06-15 13:04:44",
+        "description": "新竹市議會大樓，新竹市北區北門聯里大同里",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "23302c754d42b221f8adc4526d79702269c54e036a543a3a3ef8e3fee25d8927"
+      }
+    },
+    "scene-hsinchu-youbike-2016": {
+      "commons": "File:Youbike 新竹市新竹轉運站 2016-08-01.jpg",
+      "retrieved_at": "2026-11-13T08:23:35+08:00",
+      "evidence": {
+        "title": "File:Youbike 新竹市新竹轉運站 2016-08-01.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Youbike_%E6%96%B0%E7%AB%B9%E5%B8%82%E6%96%B0%E7%AB%B9%E8%BD%89%E9%81%8B%E7%AB%99_2016-08-01.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Youbike_%E6%96%B0%E7%AB%B9%E5%B8%82%E6%96%B0%E7%AB%B9%E8%BD%89%E9%81%8B%E7%AB%99_2016-08-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3264,
+        "original_height": 2448,
+        "original_mime": "image/jpeg",
+        "original_sha1": "890e80008b5071ee9e48d31ec3ec5a55d6c61256",
+        "uploaded_at": "2022-08-26T15:49:43Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "T Gordon Cheng",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2016-08-01 15:14:37",
+        "description": "新竹市公共自行車租賃系統Youbike新竹轉運站",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "ef9c87f77913906199fc14da3fc34ed9ad0ec21eb524e4f47ae3341cef3a417c"
+      }
+    },
+    "scene-taipei-city-council-2011": {
+      "commons": "File:台北市議會.JPG",
+      "retrieved_at": "2026-11-13T08:23:38+08:00",
+      "evidence": {
+        "title": "File:台北市議會.JPG",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E5%8F%B0%E5%8C%97%E5%B8%82%E8%AD%B0%E6%9C%83.JPG",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/%E5%8F%B0%E5%8C%97%E5%B8%82%E8%AD%B0%E6%9C%83.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4000,
+        "original_height": 3000,
+        "original_mime": "image/jpeg",
+        "original_sha1": "ebf7f78be15fd171cd4cfb925bd443dbfdb2755d",
+        "uploaded_at": "2012-07-22T05:55:46Z",
+        "license_short": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "artist": "象心力",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2011-03-13",
+        "description": "Taipei City Council",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "3565d08709025bf4568c33fd27a02d95d44efbbbde3cc632940ace1f2cce0889"
+      }
+    },
+    "scene-taipei-minglun-housing-2023": {
+      "commons": "File:Minglun Social Housing front view 20230304.jpg",
+      "retrieved_at": "2026-11-13T08:23:42+08:00",
+      "evidence": {
+        "title": "File:Minglun Social Housing front view 20230304.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Minglun_Social_Housing_front_view_20230304.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Minglun_Social_Housing_front_view_20230304.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4912,
+        "original_height": 2763,
+        "original_mime": "image/jpeg",
+        "original_sha1": "0c6e71b50b4398a34503399c09485243d7890ce4",
+        "uploaded_at": "2023-03-11T07:38:53Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Solomon203",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2023-03-04 14:26:51",
+        "description": "從臺北市大同區承德路三段仰望明倫社會住宅正面。",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "f99477dbbc126ec9cc98abcd1a44c43114631c2599e865bee5002c8bf0625055"
+      }
+    },
+    "scene-new-taipei-city-hall-2013": {
+      "commons": "File:New Taipei City Hall 20131108.jpg",
+      "retrieved_at": "2026-11-13T08:23:45+08:00",
+      "evidence": {
+        "title": "File:New Taipei City Hall 20131108.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:New_Taipei_City_Hall_20131108.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/New_Taipei_City_Hall_20131108.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 3264,
+        "original_height": 2448,
+        "original_mime": "image/jpeg",
+        "original_sha1": "814cb6cd23ca9605bedc202e3b4bae7a9ad930f5",
+        "uploaded_at": "2015-07-02T23:35:04Z",
+        "license_short": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0",
+        "artist": "Undefined~commonswiki",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2013-11-08 16:12",
+        "description": "New Taipei City Hall, Banqiao District, New Taipei City.",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "eac42732a08b2db79f5e23d77625f7d3ade7abba636c551999917fda94d014d4"
+      }
+    },
+    "scene-new-taipei-council-2017": {
+      "commons": "File:New Taipei City Council building front view 20171028.jpg",
+      "retrieved_at": "2026-11-13T08:23:48+08:00",
+      "evidence": {
+        "title": "File:New Taipei City Council building front view 20171028.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:New_Taipei_City_Council_building_front_view_20171028.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/New_Taipei_City_Council_building_front_view_20171028.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4608,
+        "original_height": 2592,
+        "original_mime": "image/jpeg",
+        "original_sha1": "48a81139cc039edf5eb6fd05f9db9967e3ecfc9c",
+        "uploaded_at": "2017-11-07T12:49:56Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Solomon203",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2017-10-28 13:30:16",
+        "description": "新北市議會大樓正面。",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "91979d8d189c363b24740b89723047eeeafbd42baffb08089b44516a726965e5"
+      }
+    },
+    "scene-new-taipei-zhongyuan-station-2019": {
+      "commons": "File:Zhongyuan Station of Taipei Metro Circular Line 20190828.jpg",
+      "retrieved_at": "2026-11-13T08:23:51+08:00",
+      "evidence": {
+        "title": "File:Zhongyuan Station of Taipei Metro Circular Line 20190828.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Zhongyuan_Station_of_Taipei_Metro_Circular_Line_20190828.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Zhongyuan_Station_of_Taipei_Metro_Circular_Line_20190828.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 5472,
+        "original_height": 3648,
+        "original_mime": "image/jpeg",
+        "original_sha1": "4d145152ea60ba8ea24e86f9f486534310499fb1",
+        "uploaded_at": "2019-11-20T20:13:18Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "Viy4092",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2019-08-28 14:34:17",
+        "description": "位於板南路北側的環狀線中原站出口",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "5b8a1b24cf2da31d6bab6f2e5ea8aa93dc609236877efaf716fc88c9bce71d2c"
+      }
+    },
+    "scene-legislative-yuan-chamber-2017": {
+      "commons": "File:立法院議場.jpg",
+      "retrieved_at": "2026-11-13T08:23:54+08:00",
+      "evidence": {
+        "title": "File:立法院議場.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E7%AB%8B%E6%B3%95%E9%99%A2%E8%AD%B0%E5%A0%B4.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/%E7%AB%8B%E6%B3%95%E9%99%A2%E8%AD%B0%E5%A0%B4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 6000,
+        "original_height": 4000,
+        "original_mime": "image/jpeg",
+        "original_sha1": "7164a13118e9619329f1883e468389340232625a",
+        "uploaded_at": "2017-10-15T10:25:54Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "林高志",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2017-10-03 15:12:26",
+        "description": "立法院議場",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "b3660dda243c8182d3edd915e1e8dfbaa936f5f44b3efdc10efc581ca1ff1b63"
+      }
+    },
+    "scene-executive-yuan-2017": {
+      "commons": "File:行政院中央大樓 2.jpg",
+      "retrieved_at": "2026-11-13T08:23:56+08:00",
+      "evidence": {
+        "title": "File:行政院中央大樓 2.jpg",
+        "page_url": "https://commons.wikimedia.org/wiki/File:%E8%A1%8C%E6%94%BF%E9%99%A2%E4%B8%AD%E5%A4%AE%E5%A4%A7%E6%A8%93_2.jpg",
+        "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/%E8%A1%8C%E6%94%BF%E9%99%A2%E4%B8%AD%E5%A4%AE%E5%A4%A7%E6%A8%93_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "original_width": 4592,
+        "original_height": 3448,
+        "original_mime": "image/jpeg",
+        "original_sha1": "16101e8dc4a11085dca1c90868d3986f1c3196fc",
+        "uploaded_at": "2019-02-16T14:29:13Z",
+        "license_short": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "artist": "寺人孟子",
+        "attribution": null,
+        "credit": "Own work",
+        "date_original": "2017-08-26 13:36:29",
+        "description": "行政院中央大樓,台北市中正區東門次分區梅花里",
+        "gwoia": null,
+        "gwoia_url": null
+      },
+      "download": {
+        "width": 1280,
+        "sha256": "02b14f1d68e84ee95d5da3dd2fde89399e2fd6594ac7126af1f53ffc69b65083"
+      }
+    }
+  }
+}
