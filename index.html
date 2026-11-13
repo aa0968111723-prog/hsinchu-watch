@@ -13,8 +13,9 @@
   <link rel="stylesheet" href="/src/governance.css" />
   <link rel="stylesheet" href="/editorial-depth.css" />
   <link rel="stylesheet" href="/civic-nav.css" />
+  <link rel="stylesheet" href="/bright-civic.css" />
 </head>
-<body>
+<body class="civic-bright">
   <div id="live-banner" class="live-banner hidden"></div>
   <header class="top">
     <div class="wrap">
@@ -44,10 +45,36 @@
     </nav>
   </header>
   <main class="wrap">
+    <section class="civic-section" id="civicHome" aria-labelledby="civicHomeTitle">
+      <p class="civic-kicker">公共事務閱讀檯</p>
+      <h2 class="civic-title" id="civicHomeTitle">這裡保存了哪些紀錄</h2>
+      <p class="civic-lede">政策、工程、民調、各方說法與網路留言分開收錄。點一疊紙，看那一種有多少、最新幾筆是什麼。</p>
+      <div class="civic-stack">
+        <div class="civic-split">
+          <div data-desk><noscript><p class="civic-gapnote">啟用 JavaScript 後會畫出各類筆數。也可以直接到<a href="/archive.html">完整資料頁</a>。</p></noscript></div>
+          <div class="civic-sheet" data-look></div>
+        </div>
+        <p class="civic-gapnote" data-stale hidden></p>
+        <ul class="civic-doors">
+          <li><a class="civic-door civic-tone-sky" href="/governance.html">
+            <span class="civic-door-figure" data-door="governance"><b>—</b><small>件案卷</small></span>
+            <span class="civic-door-name">地方治理觀察</span>
+            <span class="civic-door-about">追蹤台北、新北、新竹縣市的政策與工程・首批試行</span>
+          </a></li>
+          <li><a class="civic-door civic-tone-clay" href="/compare.html#candidateReview">
+            <span class="civic-door-figure" data-door="candidates"><b>—</b><small>位候選人</small></span>
+            <span class="civic-door-name">候選人，同一標準閱讀</span>
+            <span class="civic-door-about" data-door-about="candidates">新竹縣長：鄭朝方、徐欣瑩、朱定瑀；竹北市長：吳旭智、曾聖凱、邱臣遠。依選委會號次排列。</span>
+          </a></li>
+          <li><a class="civic-door civic-tone-sage" href="/archive.html">
+            <span class="civic-door-figure" data-door="archive"><b>—</b><small>筆紀錄</small></span>
+            <span class="civic-door-name">查閱全部已收錄資料</span>
+            <span class="civic-door-about">新聞、政策、民調、匿名留言、公開來源與地方治理，可搜尋、翻頁與匯出</span>
+          </a></li>
+        </ul>
+      </div>
+    </section>
     <p id="delayWarn" class="hidden">資料更新延遲</p>
-    <aside class="governance-entry"><div><a href="/governance.html">地方治理觀察 →</a><p>追蹤台北、新北、新竹縣市的政策與工程・首批試行</p></div><a href="/governance.html#projectList">看追蹤案卷</a></aside>
-    <aside class="candidate-review-entry"><a href="/compare.html#candidateReview">六位候選人，同一標準閱讀 →</a><p>新竹縣長：鄭朝方、徐欣瑩、朱定瑀；竹北市長：吳旭智、曾聖凱、邱臣遠。依選委會號次排列，政策、執行、成本、監督與回應分開看。</p></aside>
-    <aside class="candidate-review-entry"><a href="/archive.html">查閱全部已收錄資料 →</a><p>新聞、政策、民調、匿名留言、公開來源與地方治理，依人物與類型搜尋、完整翻頁及匯出。</p></aside>
     <div class="frontdesk">
     <section id="latestTop" aria-label="最新消息"></section>
     <figure class="pulse" aria-labelledby="pulse-title">
@@ -94,6 +121,7 @@
   </main>
   <footer class="wrap foot" id="footer"></footer>
   <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/civic-ui/home.js"></script>
   <script defer src="/civic-nav.js"></script>
   <script defer src="/page-tools.js"></script>
 </body>

@@ -130,6 +130,15 @@ def ensure_civic_nav(doc):
     primary.insert_after(nav)
     if not doc.select_one('link[href="/civic-nav.css"]'):
         add_tag(doc, doc.head, "link", rel="stylesheet", href="/civic-nav.css")
+    if not doc.select_one('link[href="/bright-civic.css"]'):
+        add_tag(doc, doc.head, "link", rel="stylesheet", href="/bright-civic.css")
+    if doc.body is not None:
+        classes = doc.body.get("class") or []
+        if isinstance(classes, str):
+            classes = classes.split()
+        if "civic-bright" not in classes:
+            classes.append("civic-bright")
+            doc.body["class"] = classes
     if not doc.select_one('script[src="/civic-nav.js"]'):
         add_tag(doc, doc.body, "script", defer="", src="/civic-nav.js")
 
@@ -235,6 +244,8 @@ def main():
     shutil.copyfile(editorial / "archive.html", output / "archive.html")
     if (editorial / "civic.html").exists():
         shutil.copyfile(editorial / "civic.html", output / "civic.html")
+    if (editorial / "ui-lab.html").exists():
+        shutil.copyfile(editorial / "ui-lab.html", output / "ui-lab.html")
     # Governance records belong to the checked editorial release, not the legacy election feed.
     for name in ("governance.json", "governance-registry.json", "candidate-review.json"):
         shutil.copyfile(editorial / "data" / name, output / "data" / name)
