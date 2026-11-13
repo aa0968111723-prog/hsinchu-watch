@@ -134,6 +134,8 @@ export const COUNTY_PARKING_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/openda
 export const COUNTY_PARKING_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=271";
 export const COUNTY_SCHOOL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/350/4e47a693-21da-4c61-b537-19e4b1c2617e.json";
 export const COUNTY_SCHOOL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350";
+export const COUNTY_KINDERGARTEN_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/348/b36fa839-e361-4d3a-b06d-99ae6c78f122.json";
+export const COUNTY_KINDERGARTEN_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=348";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -164,6 +166,15 @@ export function schoolZonePeriod(html) {
   if (!Number.isInteger(roc) || roc < 1 || roc > 300) return { period: null, period_text: null };
   const year = roc < 1911 ? roc + 1911 : roc;
   return { period: String(year), period_text: `${match[1]}年` };
+}
+
+export function kindergartenPeriod(html) {
+  const text = String(html || "").replace(/<[^>]+>/g, " ");
+  const match = text.match(/資料集描述[:：]\s*(\d{2,3})學年度/);
+  if (!match) return { period: null, period_text: null };
+  const roc = Number(match[1]);
+  if (!Number.isInteger(roc) || roc < 1 || roc > 300) return { period: null, period_text: null };
+  return { period: null, period_text: `${match[1]}學年度` };
 }
 
 function originalNumber(value) {
@@ -355,6 +366,42 @@ export function normalizeCountySchools(payload) {
       zone: zone === null || zone === undefined || String(zone).trim() === "" ? null : String(zone).trim(),
     }];
   });
+}
+
+export function normalizeCountyKindergartens(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["名稱"] || "").trim();
+    if (!name) return [];
+    const address = String(row["住址"] || "").trim();
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => address.includes(label)) || "";
+    const category = String(row["主題分類"] || "").trim();
+    const postal = String(row["郵遞區號"] ?? "").trim();
+    return [{
+      name,
+      category: category || null,
+      postal_code: postal || null,
+      address,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+    }];
+  });
+}
+
+export function splitKindergartens(kindergartens) {
+  if (!kindergartens?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: kindergartens.source_url,
+    dataset_url: kindergartens.dataset_url,
+    period: null,
+    period_text: kindergartens.period_text || null,
+    count: kindergartens.count,
+    download_url: "/data/news-intel/kindergartens.json",
+    note: kindergartens.note || "只留名稱、主題分類、郵遞區號和住址。不含電話。學年度維持資料集描述，不換成西元年。",
+  };
+  const download = Array.isArray(kindergartens.kindergartens) ? { ...summary, kindergartens: kindergartens.kindergartens } : null;
+  return { summary, download };
 }
 
 export function splitSchools(schools) {

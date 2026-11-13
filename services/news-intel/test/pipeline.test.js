@@ -287,6 +287,52 @@ test("county school zones keep the description year and the zone text", async ()
   assert.equal(page.includes("沒有月份就不補月") || page.includes("沒有寫年度"), true);
 });
 
+test("county kindergarten roster drops phone numbers and keeps the school year text", async () => {
+  const { kindergartenPeriod, normalizeCountyKindergartens, splitKindergartens } = await import("../src/adapters.js");
+  const rows = normalizeCountyKindergartens(JSON.stringify([
+    { "主題分類": "教保服務", "名稱": "新竹縣竹北市某幼兒園", "郵遞區號": "302", "住址": "新竹縣竹北市光明一路1號", "電話": "不應留下" },
+    { "主題分類": "", "名稱": "地址沒有鄉鎮的幼兒園", "郵遞區號": "", "住址": "新竹縣某路2號", "電話": "也不留下" },
+    { "名稱": " ", "住址": "新竹縣竹北市", "電話": "空白名稱" },
+  ]));
+  assert.deepEqual(rows, [
+    { name: "新竹縣竹北市某幼兒園", category: "教保服務", postal_code: "302", address: "新竹縣竹北市光明一路1號", township: "竹北市", region_id: "zhubei" },
+    { name: "地址沒有鄉鎮的幼兒園", category: null, postal_code: null, address: "新竹縣某路2號", township: null, region_id: null },
+  ]);
+  assert.equal(JSON.stringify(rows).includes("不應留下"), false);
+  assert.deepEqual(kindergartenPeriod("<p>資料集描述：113學年度新竹縣公私立幼兒園名錄</p>"), { period: null, period_text: "113學年度" });
+  assert.deepEqual(kindergartenPeriod("<p>資料集描述：113年名錄</p>"), { period: null, period_text: null });
+  const parts = splitKindergartens({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=348", dataset_url: "https://ws.hsinchu.gov.tw/kindergartens.json", period_text: "113學年度", count: rows.length, kindergartens: rows });
+  assert.equal(parts.summary.period, null);
+  assert.equal(parts.summary.kindergartens, undefined);
+  const kept = await runHour({
+    previous: { articles: [], kindergartens: { count: 4, period_text: "113學年度" } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.kindergartens.count, 4);
+  assert.equal(kept.kindergartens.retained, true);
+  assert.equal(kept.articles.length, 1);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-kindergartens", payload: JSON.stringify([{ "名稱": "新竹縣竹北市某幼兒園", "住址": "新竹縣竹北市光明一路1號", "電話": "不應留下" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-kindergartens", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.kindergartens[0].region_id, "zhubei");
+  assert.equal(JSON.stringify(imported.body).includes("不應留下"), false);
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不含電話"), true);
+  assert.equal(page.includes("不換成西元年"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -940,6 +986,12 @@ test("published news file stays within the real cap", () => {
   assert.ok(parking.lots.every((lot) => !Object.keys(lot).some((key) => /電話|公司|證號|分機/.test(key))));
   assert.ok(parking.lots.filter((lot) => lot.district === "新埔鄉").every((lot) => lot.region_id === null));
   assert.ok(data.schools.count >= 80);
+  if (data.kindergartens) {
+    assert.equal(data.kindergartens.period, null);
+    assert.ok(data.kindergartens.count > 0);
+    assert.equal(data.kindergartens.kindergartens, undefined);
+    assert.equal(JSON.stringify(data.kindergartens).includes("電話"), false);
+  }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);
   const schools = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/school-zones.json", import.meta.url), "utf8"));
