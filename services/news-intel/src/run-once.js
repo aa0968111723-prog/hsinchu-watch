@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitBusShelters, splitCityCatalog, splitHeritage, splitHydrants, splitKindergartens, splitParking, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitBusShelters, splitChargers, splitCityCatalog, splitHeritage, splitHydrants, splitKindergartens, splitParking, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -16,6 +16,7 @@ const hydrantUrl = new URL("../../../public/data/news-intel/hydrants.json", impo
 const shelterUrl = new URL("../../../public/data/news-intel/bus-shelters.json", import.meta.url);
 const toiletUrl = new URL("../../../public/data/news-intel/accessible-toilets.json", import.meta.url);
 const heritageUrl = new URL("../../../public/data/news-intel/heritage-sites.json", import.meta.url);
+const chargerUrl = new URL("../../../public/data/news-intel/chargers.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
 try {
   const existing = JSON.parse(readFileSync(publicUrl, "utf8"));
@@ -49,6 +50,7 @@ try {
     bus_shelters: existing.bus_shelters || null,
     toilets: existing.toilets || null,
     heritage: existing.heritage || null,
+    chargers: existing.chargers || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
     debt: existing.debt || null,
@@ -112,6 +114,10 @@ const heritageParts = splitHeritage(publishable.heritage);
 const heritagePublish = catalogForPublish(heritageParts.download, heritageParts.summary, previous.heritage, (download) => {
   writeFileSync(heritageUrl, JSON.stringify(download));
 });
+const chargerParts = splitChargers(publishable.chargers);
+const chargerPublish = catalogForPublish(chargerParts.download, chargerParts.summary, previous.chargers, (download) => {
+  writeFileSync(chargerUrl, JSON.stringify(download));
+});
 const payload = {
   ok: publishable.ok,
   retained: publishable.retained,
@@ -152,6 +158,7 @@ const payload = {
   bus_shelters: shelterPublish.summary,
   toilets: toiletPublish.summary,
   heritage: heritagePublish.summary,
+  chargers: chargerPublish.summary,
   use_permits: publishable.use_permits ? {
     source_url: publishable.use_permits.source_url,
     dataset_url: publishable.use_permits.dataset_url,

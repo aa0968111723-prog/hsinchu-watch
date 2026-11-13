@@ -55,6 +55,8 @@
   <p id="toilet-status" class="meta"></p>
   <h2>新竹縣古蹟與歷史建築</h2>
   <p id="heritage-status" class="meta"></p>
+  <h2>新竹縣電動機車充電站</h2>
+  <p id="charger-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -141,6 +143,7 @@ const hydrantStatus = document.querySelector("#hydrant-status");
 const shelterStatus = document.querySelector("#shelter-status");
 const toiletStatus = document.querySelector("#toilet-status");
 const heritageStatus = document.querySelector("#heritage-status");
+const chargerStatus = document.querySelector("#charger-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -429,6 +432,22 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       heritageStatus.append(" ", source);
     }
+    const chargers = data.chargers;
+    chargerStatus.textContent = chargers?.count
+      ? `${chargers.count} 處。只留設置單位、地址、郵遞區號和備註。設置單位是店名或公司名。檔案沒有日期欄，不拿抓取時間充當。`
+      : "這一輪沒有充電站清冊，沒有補店名。";
+    if (chargers?.download_url) {
+      const download = document.createElement("a");
+      download.href = chargers.download_url;
+      download.textContent = "下載清冊";
+      chargerStatus.append(" ", download);
+    }
+    if (chargers?.source_url && chargers?.count) {
+      const source = document.createElement("a");
+      source.href = chargers.source_url;
+      source.textContent = "資料集頁";
+      chargerStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -545,6 +564,7 @@ fetch("/data/news-intel/latest.json")
     shelterStatus.textContent = "候車亭清冊讀取失敗。頁面沒有改用假資料。";
     toiletStatus.textContent = "無障礙廁所清冊讀取失敗。頁面沒有改用假資料。";
     heritageStatus.textContent = "古蹟清冊讀取失敗。頁面沒有改用假資料。";
+    chargerStatus.textContent = "充電站清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";

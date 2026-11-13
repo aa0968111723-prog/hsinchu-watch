@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T19:09:38.667Z",
+  "last_success_at": "2026-11-13T19:12:34.108Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -503,6 +503,13 @@
     "count": 75,
     "download_url": "/data/news-intel/heritage-sites.json",
     "note": "只留名稱、類別、指定別、鄉鎮簡稱、地址和權屬原文。鄉鎮沒有寫市鎮鄉就不補字。檔案沒有日期欄，不拿抓取時間充當。"
+  },
+  "chargers": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=248",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/248/2103dcb9-95bb-44f9-b997-921ace6407bc.json",
+    "count": 43,
+    "download_url": "/data/news-intel/chargers.json",
+    "note": "只留設置單位、地址、郵遞區號和備註。設置單位是店名或公司名。檔案沒有日期欄，不拿抓取時間充當。"
   },
   "use_permits": {
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=261",
@@ -1048,6 +1055,6 @@
     "added": [],
     "removed": []
   },
-  "duration_ms": 19553,
+  "duration_ms": 18682,
   "model_review": []
 }

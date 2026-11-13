@@ -150,6 +150,8 @@ export const COUNTY_TOILET_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_TOILET_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=533";
 export const COUNTY_HERITAGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/267/26aab9a2-ca06-4aa6-a878-979c9d32c59b.json";
 export const COUNTY_HERITAGE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=267";
+export const COUNTY_CHARGER_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/248/2103dcb9-95bb-44f9-b997-921ace6407bc.json";
+export const COUNTY_CHARGER_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=248";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -681,6 +683,41 @@ export function splitHeritage(heritage) {
     note: heritage.note || "只留名稱、類別、指定別、鄉鎮簡稱、地址和權屬原文。鄉鎮沒有寫市鎮鄉就不補字。檔案沒有日期欄，不拿抓取時間充當。",
   };
   const download = Array.isArray(heritage.sites) ? { ...summary, sites: heritage.sites } : null;
+  return { summary, download };
+}
+
+export function normalizeCountyChargers(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["設置單位名稱"] || "").trim();
+    if (!name) return [];
+    const address = String(row["地址"] || "").trim();
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => address.includes(label)) || "";
+    const postal = String(row["郵遞區號"] ?? "").trim();
+    const note = String(row["備註"] || "").trim();
+    return [{
+      code: originalNumber(row["編號"]),
+      name,
+      postal_code: postal || null,
+      address: address || null,
+      note: note || null,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+    }];
+  });
+}
+
+export function splitChargers(chargers) {
+  if (!chargers?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: chargers.source_url,
+    dataset_url: chargers.dataset_url,
+    count: chargers.count,
+    download_url: "/data/news-intel/chargers.json",
+    note: chargers.note || "只留設置單位、地址、郵遞區號和備註。設置單位是店名或公司名。檔案沒有日期欄，不拿抓取時間充當。",
+  };
+  const download = Array.isArray(chargers.chargers) ? { ...summary, chargers: chargers.chargers } : null;
   return { summary, download };
 }
 

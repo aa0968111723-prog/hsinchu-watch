@@ -366,6 +366,29 @@ export async function persistHeritage(db, { heritage, now, actor = "scheduler" }
   return { upserted };
 }
 
+export async function persistChargers(db, { chargers, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of chargers?.chargers || []) {
+    const name = String(row?.name || "").trim();
+    if (!name) continue;
+    const code = row.code == null || String(row.code).trim() === "" ? "" : String(row.code).trim();
+    keys.push([code, name]);
+    const address = row.address || null;
+    const existing = await db.prepare("SELECT address FROM ev_chargers WHERE code = ? AND name = ?").bind(code, name).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO ev_chargers (code, name, postal_code, address, note, township, region_id, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, name, row.postal_code || null, address, row.note || null, row.township || null, row.region_id || null, chargers.dataset_url, chargers.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.address ?? null) !== address) {
+      await db.prepare("UPDATE ev_chargers SET postal_code = ?, address = ?, note = ?, township = ?, region_id = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND name = ?").bind(row.postal_code || null, address, row.note || null, row.township || null, row.region_id || null, chargers.dataset_url, chargers.source_url, now, code, name).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "ev_chargers", chargers?.dataset_url, ["code", "name"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_chargers', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

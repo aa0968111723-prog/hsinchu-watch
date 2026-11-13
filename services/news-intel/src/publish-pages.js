@@ -71,6 +71,8 @@ const toiletFile = fileURLToPath(new URL("../../../public/data/news-intel/access
 if (existsSync(toiletFile)) copyFileSync(toiletFile, `${mirror}\\data\\news-intel\\accessible-toilets.json`);
 const heritageFile = fileURLToPath(new URL("../../../public/data/news-intel/heritage-sites.json", import.meta.url));
 if (existsSync(heritageFile)) copyFileSync(heritageFile, `${mirror}\\data\\news-intel\\heritage-sites.json`);
+const chargerFile = fileURLToPath(new URL("../../../public/data/news-intel/chargers.json", import.meta.url));
+if (existsSync(chargerFile)) copyFileSync(chargerFile, `${mirror}\\data\\news-intel\\chargers.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
 const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit", timeout: PUBLISH_TIMEOUT_MS });
 const status = deployed.status ?? 1;

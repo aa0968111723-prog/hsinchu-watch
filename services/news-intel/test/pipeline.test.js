@@ -651,6 +651,49 @@ test("heritage sites keep the short township label and do not rename 新埔鄉",
   assert.equal(page.includes("不補市鎮鄉"), true);
 });
 
+test("ev chargers keep the shop name and map the address township", async () => {
+  const { normalizeCountyChargers, splitChargers } = await import("../src/adapters.js");
+  const rows = normalizeCountyChargers(JSON.stringify([
+    { "編號": "1", "設置單位名稱": "某機車行", "郵遞區號": "302", "地址": "新竹縣竹北市光明一路1號", "備註": "店內" },
+    { "編號": "2", "設置單位名稱": " ", "地址": "新竹縣竹東鎮", "備註": "" },
+  ]));
+  assert.deepEqual(rows, [{
+    code: "1",
+    name: "某機車行",
+    postal_code: "302",
+    address: "新竹縣竹北市光明一路1號",
+    note: "店內",
+    township: "竹北市",
+    region_id: "zhubei",
+  }]);
+  const parts = splitChargers({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=248", dataset_url: "https://ws.hsinchu.gov.tw/chargers.json", count: rows.length, chargers: rows });
+  assert.equal(parts.summary.chargers, undefined);
+  const kept = await runHour({
+    previous: { articles: [], chargers: { count: 2 } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.chargers.count, 2);
+  assert.equal(kept.chargers.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-chargers", payload: JSON.stringify([{ "編號": "9", "設置單位名稱": "竹東車行", "地址": "新竹縣竹東鎮中正路" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-chargers", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.chargers[0].region_id, "zhudong");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("店名或公司名"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1368,6 +1411,13 @@ test("published news file stays within the real cap", () => {
     assert.ok(heritage.sites.every((row) => row.name && row.township && !String(row.township).endsWith("鄉") && !String(row.township).endsWith("鎮") && !String(row.township).endsWith("市")));
     assert.equal(heritage.sites.some((row) => row.township === "新埔" && row.region_id === "xinpu"), true);
     assert.equal(heritage.sites.some((row) => row.township === "新埔鄉"), false);
+  }
+  if (data.chargers) {
+    assert.ok(data.chargers.count > 30);
+    assert.equal(data.chargers.chargers, undefined);
+    const chargers = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/chargers.json", import.meta.url), "utf8"));
+    assert.equal(chargers.chargers.length, data.chargers.count);
+    assert.ok(chargers.chargers.every((row) => row.name && row.address && row.region_id && !Object.hasOwn(row, "phone")));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);
