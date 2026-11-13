@@ -631,6 +631,8 @@ test("city list keeps a dated municipal item and drops a blank date", async () =
   assert.equal(rows.length, 1);
   assert.equal(rows[0].publisher_timestamp, "2026-11-12");
   assert.equal(rows[0].source_url, "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=1");
+  const shell = normalizeCityHtml("<html><title>市政新聞-新竹市政府全球資訊網</title><p>您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript狀態</p></html>");
+  assert.deepEqual(shell, []);
 });
 
 test("final accounts keep blank amounts empty and stay out of the news list", async () => {
