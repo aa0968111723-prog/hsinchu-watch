@@ -262,6 +262,36 @@ test("a retracted source stays out of the next published list", async () => {
   assert.deepEqual(visible.map((article) => article.source_url), ["https://www.hsinchu.gov.tw/live"]);
 });
 
+test("a scheduled success does not revive a retracted article", async () => {
+  const { openNewsDb } = await import("../src/local-db.js");
+  const { persistArticles } = await import("../src/persist.js");
+  const { applyScheduledResult } = await import("../src/index.js");
+  const db = openNewsDb(":memory:");
+  const retracted = {
+    original_title: "新竹縣已撤稿",
+    source_url: "https://www.hsinchu.gov.tw/retracted",
+    publisher_timestamp: "2026-11-13T09:00:00.000Z",
+    region_id: "hsinchu-county",
+    verification_status: "RETRACTED",
+    review_status: "retracted",
+    claim_kind: "official_notice",
+    source_name: "新竹縣政府",
+    source_type: "official_rss",
+  };
+  await persistArticles(db, { articles: [retracted], now: "2026-11-13T01:00:00.000Z" });
+  const fresh = { ...retracted, source_url: "https://www.hsinchu.gov.tw/live", original_title: "新竹縣新公告", verification_status: "SINGLE_SOURCE", review_status: "pending_index" };
+  await applyScheduledResult(db, { articles: [] }, {
+    ok: true,
+    articles: [{ ...retracted, verification_status: "SINGLE_SOURCE", review_status: "pending_index" }, fresh],
+    last_success_at: "2026-11-13T02:00:00.000Z",
+    announcements: [],
+  });
+  const oldRow = await db.prepare("SELECT verification_status FROM articles WHERE source_url = ?").bind(retracted.source_url).first();
+  const visible = await db.prepare("SELECT source_url FROM articles WHERE verification_status != 'RETRACTED'").all();
+  assert.equal(oldRow.verification_status, "RETRACTED");
+  assert.deepEqual(visible.results.map((row) => row.source_url), [fresh.source_url]);
+});
+
 test("local database opens the final-account migration", async () => {
   const { openNewsDb } = await import("../src/local-db.js");
   const db = openNewsDb(":memory:");

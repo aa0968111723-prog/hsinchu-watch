@@ -20,6 +20,11 @@ function tokensFromEnv(env) {
 }
 
 export async function applyScheduledResult(db, previous, result) {
+  if (result?.ok && result.articles?.length) {
+    const hiddenRows = await db.prepare("SELECT source_url FROM articles WHERE review_status IN ('rejected', 'retracted') OR verification_status = 'RETRACTED'").all();
+    const hidden = new Set((hiddenRows.results || []).map((row) => row.source_url));
+    result.articles = result.articles.filter((article) => !hidden.has(article.source_url));
+  }
   await db.prepare(
     "INSERT INTO agent_runs (id, started_at, finished_at, status, article_count, gemini_used, error) VALUES (?, datetime('now'), datetime('now'), ?, ?, ?, ?)"
   ).bind(crypto.randomUUID(), result.ok ? "ok" : "failed", result.articles?.length || 0, result.gemini?.use ? 1 : 0, result.ok ? null : result.error || null).run();
