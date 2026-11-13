@@ -40,10 +40,13 @@
 - [x] `tests/art-library/check_lab.py`：320／390／430／768／1280，獨立預覽與建置後各跑一次
 - [x] `python tools/audit_publication.py`
 - [x] `npm run build`
-- [ ] `npm run test:release`
-- [ ] `npm run test:browser`
+- [x] `npm run test:release`：16 項
+- [x] `npm run test:browser`：九項檢查
+- [x] 在 main `ea7ffc0` 的匯出副本上套用本線檔案，`npm run build` 與瀏覽器驗收
+- [x] `tests/art-library/check_live.py`：回報正式站實際送出的美術庫內容
 
 ## 交接
 
 - [x] `docs/art-library/integration.md`
-- [ ] 推送 `cursor/20261113-art`，核對遠端 SHA
+- [x] 推送 `cursor/20261113-art`，核對遠端 SHA
+- [ ] 第四線改用 `25bf1d4` 之後的版本並發布（正式站目前還是第一個切片）
