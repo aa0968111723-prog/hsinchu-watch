@@ -451,6 +451,9 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.equal(PUBLISH_TIMEOUT_MS < 60 * 60 * 1000, true);
   const { cloudflareApiReachable } = await import("../src/publish-gate.js");
   assert.equal(await cloudflareApiReachable(async () => { throw new Error("timeout"); }), false);
+  let probed = "";
+  assert.equal(await cloudflareApiReachable(async (url) => { probed = url; return { status: 400 }; }), true);
+  assert.equal(probed.includes("/pages/projects/hsinchu-watch"), true);
   assert.equal(await cloudflareApiReachable(async () => ({ status: 403 })), true);
   assert.equal(await cloudflareApiReachable(async () => ({ status: 503 })), false);
   assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "c" }), false);

@@ -7,7 +7,7 @@ export const PUBLISH_TIMEOUT_MS = 90_000;
 
 export async function cloudflareApiReachable(fetchImpl = fetch, timeoutMs = 8000) {
   try {
-    const response = await fetchImpl("https://api.cloudflare.com/client/v4/accounts", { signal: AbortSignal.timeout(timeoutMs) });
+    const response = await fetchImpl("https://api.cloudflare.com/client/v4/accounts/380f907638bc2293fa09da0666ac15fd/pages/projects/hsinchu-watch", { signal: AbortSignal.timeout(timeoutMs) });
     return response.status < 500;
   } catch {
     return false;
