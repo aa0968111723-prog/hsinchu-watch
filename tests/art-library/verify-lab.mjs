@@ -239,6 +239,25 @@ try {
     await context.close();
   }
 
+  // Council desk: choosing a binder never invents a vote tally.
+  {
+    const problems = [];
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+    const page = await openLab(context, problems, '/asset-lab.html?asset=component-council-desk');
+    const dialog = page.locator('#alDetail');
+    await dialog.locator('[data-figure="council-desk"][data-state="live"]').waitFor();
+    assert.equal(await dialog.locator('[data-readout]').textContent(), '提案 · 只讀這一本，不推算另外兩本');
+    await dialog.locator('button[data-binder="2"]').click();
+    await page.waitForFunction(() => document.querySelector('#alDetail [data-readout]').textContent === '決議 · 只讀這一本，不推算另外兩本');
+    await dialog.locator('button[data-act="strike"]').click();
+    await page.waitForFunction(() => document.querySelector('#alDetail [data-readout]').textContent === '決議 · 只讀這一本，不推算另外兩本');
+    assert.equal(/\d{2,}/.test(await dialog.locator('[data-readout]').textContent()), false);
+    assert.deepEqual(problems, [], 'council desk problems');
+    await shot(page, 'lab-1280-detail-council.png');
+    summary.checks.push('council desk binders');
+    await context.close();
+  }
+
   // A deep link opens the same asset.
   {
     const problems = [];

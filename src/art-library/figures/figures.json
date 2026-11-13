@@ -27,6 +27,15 @@
       "uses": ["policy-stage", "public-works", "explainer", "empty-state"],
       "concept": "planned、under_construction、completed、accepted、in_use 各自對應來源事件。完工不是驗收，驗收不是啟用；準備中的文字與目標日期不會點亮該階段。",
       "suggested_use": "治理案卷的進度區塊或方法頁。加上 data-project 就會讀該案卷事件；沒有對上的階段維持空白，不要改顯示成已完成，也不要把百分比進度讀成階段。"
+    },
+    {
+      "folder": "council-desk",
+      "id": "component-council-desk",
+      "title": "議事台",
+      "alt": "立體示意議事台：提案、審查、決議三本夾分開放著，議事槌對準目前選到的那一本。敲槌是示意動作，不是表決結果，也不會把提案推成決議",
+      "uses": ["council", "explainer"],
+      "concept": "提案、審查、決議是三本分開的夾。選一本只讀那一本；敲槌不產生票數或通過結論。",
+      "suggested_use": "方法頁或議會說明旁。不要放在單筆議案旁當成已通過。"
     }
   ]
 }

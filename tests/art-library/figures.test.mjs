@@ -7,6 +7,7 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import * as budget from "../../src/art-library/figures/budget-drawers/model.js";
+import * as council from "../../src/art-library/figures/council-desk/model.js";
 import * as yard from "../../src/art-library/figures/stage-yard/model.js";
 import {
   ORIGINS,
@@ -245,4 +246,26 @@ test("a progress percentage alone never lights a stage, and unbound shows no dat
   for (let time = 0; time < 5; time += FRAME) yard.advance(model, FRAME, true);
   assert.equal(yard.describe(model), "施工 · 2026-10-12 · 有來源事件");
   assert.equal(yard.pegText(model.pegs[2]).includes("77"), false);
+});
+
+test("council desk binders stay separate and a strike invents no vote tally", () => {
+  assert.deepEqual(council.BINDERS.map((binder) => binder.id), ["proposal", "review", "resolution"]);
+  const desk = council.createDesk(0);
+  assert.equal(council.describe(desk), "提案 · 只讀這一本，不推算另外兩本");
+  council.choose(desk, 2);
+  for (let time = 0; time < 5; time += FRAME) council.advance(desk, FRAME, true);
+  assert.equal(desk.chosen, 2);
+  assert.equal(desk.x, council.STOPS[2]);
+  assert.equal(council.describe(desk), "決議 · 只讀這一本，不推算另外兩本");
+  assert.equal(council.strike(desk), true);
+  assert.equal(council.advance(desk, FRAME, true), false, "reduced motion cancels a strike without a result");
+  assert.equal(desk.strike, "idle");
+  assert.equal(desk.gavel.at, council.REST);
+  assert.equal(/\d{2,}/.test(council.describe(desk)), false);
+  assert.equal(council.strike(desk), true);
+  assert.equal(council.strike(desk), false, "a second strike while one is under way is ignored");
+  for (let time = 0; time < 5; time += FRAME) council.advance(desk, FRAME, false);
+  assert.equal(desk.strike, "idle");
+  assert.equal(desk.chosen, 2, "striking never promotes the binder");
+  assert.equal(council.describe(desk), "決議 · 只讀這一本，不推算另外兩本");
 });
