@@ -126,3 +126,75 @@ test("migration creates the article and audit tables", () => {
   assert.match(sql, /approved_twd/);
   assert.match(sql, /spent_twd/);
 });
+
+test("applied migration serves articles and keeps unverified claims out of fact tables", async () => {
+  const { DatabaseSync } = await import("node:sqlite");
+  const { persistArticles, snapshotPayload } = await import("../src/persist.js");
+  const worker = (await import("../src/index.js")).default;
+  const db = new DatabaseSync(":memory:");
+  db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
+  const d1 = {
+    prepare(sql) {
+      const statement = (params) => ({
+        bind(...next) {
+          return statement(next);
+        },
+        async run() {
+          db.prepare(sql).run(...params);
+          return { success: true };
+        },
+        async all() {
+          return { results: db.prepare(sql).all(...params) };
+        },
+        async first() {
+          return db.prepare(sql).get(...params) || null;
+        },
+      });
+      return statement([]);
+    },
+  };
+  const articles = [
+    {
+      original_title: "竹北道路開工",
+      source_url: "https://www.hsinchu.gov.tw/a",
+      publisher_timestamp: "2026-11-13T01:00:00.000Z",
+      region_id: "zhubei",
+      verification_status: "SINGLE_SOURCE",
+      review_status: "pending_index",
+      source_name: "新竹縣政府",
+      source_type: "official_rss",
+      fetched_at: "2026-11-13T02:00:00.000Z",
+    },
+    {
+      original_title: "新竹市民調支持度",
+      source_url: "https://www.cna.com.tw/b",
+      publisher_timestamp: "2026-11-13T01:30:00.000Z",
+      region_id: "hsinchu-city",
+      verification_status: "UNVERIFIED",
+      review_status: "needs_review",
+      source_name: "中央社",
+      source_type: "news_rss",
+      fetched_at: "2026-11-13T02:00:00.000Z",
+    },
+  ];
+  const first = await persistArticles(d1, { articles, now: "2026-11-13T02:00:00.000Z" });
+  const repeat = await persistArticles(d1, { articles, now: "2026-11-13T03:00:00.000Z" });
+  const revised = await persistArticles(d1, {
+    articles: [{ ...articles[0], original_title: "竹北道路開工更正" }],
+    now: "2026-11-13T04:00:00.000Z",
+  });
+  const response = await worker.fetch(new Request("https://news.local/api/v1/news"), { DB: d1 });
+  const body = await response.json();
+  assert.equal(first.inserted, 2);
+  assert.equal(repeat.inserted + repeat.revised, 0);
+  assert.equal(revised.revised, 1);
+  assert.equal(body.articles.length, 2);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM poll_results").get().n, 0);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM project_budgets").get().n, 0);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM review_queue WHERE status = 'open'").get().n, 1);
+  assert.equal(db.prepare("SELECT content_version FROM articles WHERE source_url = ?").get(articles[0].source_url).content_version, 2);
+  const kept = snapshotPayload({ articles: [{ original_title: "舊資料" }], last_success_at: "2026-11-13T01:00:00.000Z" }, { ok: true, articles: [] });
+  assert.equal(kept.replaced, false);
+  assert.equal(kept.articles.length, 1);
+});

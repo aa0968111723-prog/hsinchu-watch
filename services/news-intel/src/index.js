@@ -1,4 +1,5 @@
 import { handleMcp } from "./mcp.js";
+import { persistArticles, snapshotPayload } from "./persist.js";
 import { runHour } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -23,7 +24,7 @@ export default {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/api/v1/news") {
       const rows = env.DB
-        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status FROM articles ORDER BY publisher_timestamp DESC LIMIT 20").all()
+        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status FROM articles ORDER BY publisher_timestamp DESC LIMIT 20").all()
         : { results: [] };
       return Response.json({ articles: rows.results || [], note: "pending_index 不是已查核事實" });
     }
@@ -51,10 +52,12 @@ export default {
     await env.DB.prepare(
       "INSERT INTO agent_runs (id, started_at, finished_at, status, article_count, gemini_used, error) VALUES (?, datetime('now'), datetime('now'), ?, ?, ?, ?)"
     ).bind(crypto.randomUUID(), result.ok ? "ok" : "failed", result.articles.length, result.gemini?.use ? 1 : 0, result.ok ? null : result.error).run();
-    if (result.ok) {
+    const snapshot = snapshotPayload(previous, result);
+    if (snapshot.replaced) {
+      await persistArticles(env.DB, { articles: result.articles, now: result.last_success_at });
       await env.DB.prepare(
         "INSERT INTO published_snapshots (id, articles_json, last_success_at) VALUES (1, ?, ?) ON CONFLICT(id) DO UPDATE SET articles_json = excluded.articles_json, last_success_at = excluded.last_success_at"
-      ).bind(JSON.stringify(result.articles), result.last_success_at).run();
+      ).bind(JSON.stringify(snapshot.articles), snapshot.last_success_at).run();
     }
   },
 };
