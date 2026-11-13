@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -61,6 +61,7 @@ export function mergeRun(previous, result) {
       schools: previous?.schools || null,
       kindergartens: previous?.kindergartens || null,
       cameras: previous?.cameras || null,
+      special_classes: previous?.special_classes || null,
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
       debt: previous?.debt || null,
@@ -84,6 +85,7 @@ export function mergeRun(previous, result) {
     schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
     kindergartens: result.kindergartens === undefined ? (previous?.kindergartens || null) : result.kindergartens,
     cameras: result.cameras === undefined ? (previous?.cameras || null) : result.cameras,
+    special_classes: result.special_classes === undefined ? (previous?.special_classes || null) : result.special_classes,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
@@ -270,6 +272,31 @@ async function loadCountyCameras(fetcher, previous) {
   }
 }
 
+async function loadSpecialClasses(fetcher, previous) {
+  const kept = previous?.special_classes ? { ...previous.special_classes, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_SPECIAL_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const raw = await response.text();
+    const classes = normalizeSpecialClasses(raw);
+    if (!classes.length) return kept;
+    const period = specialClassPeriod(raw);
+    return {
+      source_url: COUNTY_SPECIAL_PAGE,
+      dataset_url: COUNTY_SPECIAL_URL,
+      period: period.period,
+      period_text: period.period_text,
+      count: classes.length,
+      classes,
+      retained: false,
+      note: "只留校名、班級類型和地址。不含電話。日期沿用班級類型欄名，不是抓取時間。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
 async function loadCountyParking(fetcher, previous) {
   const kept = previous?.parking ? { ...previous.parking, retained: true } : null;
   if (typeof fetcher !== "function") return kept;
@@ -423,6 +450,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       schools: await loadCountySchools(fetcher, previous),
       kindergartens: await loadCountyKindergartens(fetcher, previous),
       cameras: await loadCountyCameras(fetcher, previous),
+      special_classes: await loadSpecialClasses(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
       debt: await loadCountyDebt(fetcher, previous),

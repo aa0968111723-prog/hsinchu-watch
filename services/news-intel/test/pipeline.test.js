@@ -378,6 +378,51 @@ test("county speed cameras keep the written limit and are not today's enforcemen
   assert.equal(page.includes("不是今日執法紀錄"), true);
 });
 
+test("special education classes drop phone numbers and keep the column date", async () => {
+  const { normalizeSpecialClasses, specialClassPeriod, splitSpecialClasses } = await import("../src/adapters.js");
+  const payload = JSON.stringify([
+    { "編號": 1, "校名": "竹北國小", "班級類型1120904": "集中式", "地址": "新竹縣竹北市光明一路1號", "電話": "不應留下" },
+    { "編號": 2, "校名": "地址沒有鄉鎮的學校", "班級類型1120904": "", "地址": "新竹縣某路2號", "電話": "也不留下" },
+    { "校名": " ", "班級類型1120904": "分散式", "地址": "新竹縣竹北市", "電話": "空白校名" },
+  ]);
+  const rows = normalizeSpecialClasses(payload);
+  assert.deepEqual(rows, [
+    { code: "1", name: "竹北國小", class_type: "集中式", address: "新竹縣竹北市光明一路1號", township: "竹北市", region_id: "zhubei" },
+    { code: "2", name: "地址沒有鄉鎮的學校", class_type: null, address: "新竹縣某路2號", township: null, region_id: null },
+  ]);
+  assert.equal(JSON.stringify(rows).includes("不應留下"), false);
+  assert.deepEqual(specialClassPeriod(payload), { period: "2023-09-04", period_text: "1120904" });
+  assert.deepEqual(specialClassPeriod(JSON.stringify([{ "校名": "竹北國小", "班級類型": "集中式" }])), { period: null, period_text: null });
+  const parts = splitSpecialClasses({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=11", dataset_url: "https://ws.hsinchu.gov.tw/special.json", period: "2023-09-04", period_text: "1120904", count: rows.length, classes: rows });
+  assert.equal(parts.summary.classes, undefined);
+  const kept = await runHour({
+    previous: { articles: [], special_classes: { count: 3, period_text: "1120904" } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.special_classes.count, 3);
+  assert.equal(kept.special_classes.retained, true);
+  assert.equal(kept.articles.length, 1);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-special-classes", payload } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-special-classes", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.classes[0].region_id, "zhubei");
+  assert.equal(JSON.stringify(imported.body).includes("不應留下"), false);
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("欄名日期不是抓取時間"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1046,6 +1091,15 @@ test("published news file stays within the real cap", () => {
     assert.ok(data.cameras.rows.length > 0);
     assert.ok(data.cameras.rows.every((row) => row.place && row.district && (row.speed_limit === null || typeof row.speed_limit === "string")));
     assert.equal(JSON.stringify(data.cameras.rows).includes("電話"), false);
+  }
+  if (data.special_classes) {
+    assert.equal(data.special_classes.period, "2023-09-04");
+    assert.equal(data.special_classes.period_text, "1120904");
+    assert.ok(data.special_classes.count > 0);
+    assert.equal(data.special_classes.classes, undefined);
+    const classes = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/special-classes.json", import.meta.url), "utf8"));
+    assert.equal(classes.classes.length, data.special_classes.count);
+    assert.ok(classes.classes.every((row) => !Object.hasOwn(row, "phone") && !Object.keys(row).some((key) => key.includes("電話"))));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

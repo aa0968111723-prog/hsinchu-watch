@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitCityCatalog, splitKindergartens, splitParking, splitSchools } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitCityCatalog, splitKindergartens, splitParking, splitSchools, splitSpecialClasses } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -11,6 +11,7 @@ const catalogUrl = new URL("../../../public/data/news-intel/city-catalog.json", 
 const parkingUrl = new URL("../../../public/data/news-intel/parking.json", import.meta.url);
 const schoolUrl = new URL("../../../public/data/news-intel/school-zones.json", import.meta.url);
 const kindergartenUrl = new URL("../../../public/data/news-intel/kindergartens.json", import.meta.url);
+const specialUrl = new URL("../../../public/data/news-intel/special-classes.json", import.meta.url);
 let previous = { articles: [], last_success_at: null };
 try {
   const existing = JSON.parse(readFileSync(publicUrl, "utf8"));
@@ -38,6 +39,7 @@ try {
     schools: existing.schools || null,
     kindergartens: existing.kindergartens || null,
     cameras: existing.cameras || null,
+    special_classes: existing.special_classes || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
     debt: existing.debt || null,
@@ -81,6 +83,10 @@ const kindergartenParts = splitKindergartens(publishable.kindergartens);
 const kindergartenPublish = catalogForPublish(kindergartenParts.download, kindergartenParts.summary, previous.kindergartens, (download) => {
   writeFileSync(kindergartenUrl, JSON.stringify(download));
 });
+const specialParts = splitSpecialClasses(publishable.special_classes);
+const specialPublish = catalogForPublish(specialParts.download, specialParts.summary, previous.special_classes, (download) => {
+  writeFileSync(specialUrl, JSON.stringify(download));
+});
 const payload = {
   ok: publishable.ok,
   retained: publishable.retained,
@@ -116,6 +122,7 @@ const payload = {
   parking: parkingPublish.summary,
   schools: schoolPublish.summary,
   kindergartens: kindergartenPublish.summary,
+  special_classes: specialPublish.summary,
   cameras: publishable.cameras ? {
     source_url: publishable.cameras.source_url,
     dataset_url: publishable.cameras.dataset_url,

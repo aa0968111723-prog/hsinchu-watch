@@ -61,6 +61,8 @@ const schoolFile = fileURLToPath(new URL("../../../public/data/news-intel/school
 if (existsSync(schoolFile)) copyFileSync(schoolFile, `${mirror}\\data\\news-intel\\school-zones.json`);
 const kindergartenFile = fileURLToPath(new URL("../../../public/data/news-intel/kindergartens.json", import.meta.url));
 if (existsSync(kindergartenFile)) copyFileSync(kindergartenFile, `${mirror}\\data\\news-intel\\kindergartens.json`);
+const specialFile = fileURLToPath(new URL("../../../public/data/news-intel/special-classes.json", import.meta.url));
+if (existsSync(specialFile)) copyFileSync(specialFile, `${mirror}\\data\\news-intel\\special-classes.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
 const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit", timeout: PUBLISH_TIMEOUT_MS });
 const status = deployed.status ?? 1;

@@ -138,6 +138,8 @@ export const COUNTY_KINDERGARTEN_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/o
 export const COUNTY_KINDERGARTEN_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=348";
 export const COUNTY_CAMERA_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/297/f65385d7-f178-4cee-8ccc-053c14aadfdb.json";
 export const COUNTY_CAMERA_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=297";
+export const COUNTY_SPECIAL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/11/675f2bb0-640a-4171-a380-85f84decdaf0.json";
+export const COUNTY_SPECIAL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=11";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -438,6 +440,55 @@ export function splitKindergartens(kindergartens) {
     note: kindergartens.note || "只留名稱、主題分類、郵遞區號和住址。不含電話。學年度維持資料集描述，不換成西元年。",
   };
   const download = Array.isArray(kindergartens.kindergartens) ? { ...summary, kindergartens: kindergartens.kindergartens } : null;
+  return { summary, download };
+}
+
+export function specialClassPeriod(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  const label = Array.isArray(rows) ? Object.keys(rows[0] || {}).find((key) => key.startsWith("班級類型")) || "" : "";
+  const match = label.match(/^班級類型(\d{3})(\d{2})(\d{2})$/);
+  if (!match) return { period: null, period_text: null };
+  const roc = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (roc < 1 || roc > 300 || month < 1 || month > 12 || day < 1 || day > 31) return { period: null, period_text: null };
+  const year = roc < 1911 ? roc + 1911 : roc;
+  return { period: `${year}-${match[2]}-${match[3]}`, period_text: `${match[1]}${match[2]}${match[3]}` };
+}
+
+export function normalizeSpecialClasses(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["校名"] || "").trim();
+    if (!name) return [];
+    const classKey = Object.keys(row).find((key) => key.startsWith("班級類型"));
+    const address = String(row["地址"] || "").trim();
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => address.includes(label)) || "";
+    const classType = classKey ? String(row[classKey] ?? "").trim() : "";
+    return [{
+      code: originalNumber(row["編號"]),
+      name,
+      class_type: classType || null,
+      address,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+    }];
+  });
+}
+
+export function splitSpecialClasses(specialClasses) {
+  if (!specialClasses?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: specialClasses.source_url,
+    dataset_url: specialClasses.dataset_url,
+    period: specialClasses.period || null,
+    period_text: specialClasses.period_text || null,
+    count: specialClasses.count,
+    download_url: "/data/news-intel/special-classes.json",
+    note: specialClasses.note || "只留校名、班級類型和地址。不含電話。日期沿用班級類型欄名，不是抓取時間。",
+  };
+  const download = Array.isArray(specialClasses.classes) ? { ...summary, classes: specialClasses.classes } : null;
   return { summary, download };
 }
 

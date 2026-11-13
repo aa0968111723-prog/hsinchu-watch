@@ -43,6 +43,8 @@
   <h2>新竹縣固定式科學儀器</h2>
   <p id="camera-status" class="meta"></p>
   <ol id="cameras"></ol>
+  <h2>新竹縣特殊教育班</h2>
+  <p id="special-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -123,6 +125,7 @@ const schoolStatus = document.querySelector("#school-status");
 const kindergartenStatus = document.querySelector("#kindergarten-status");
 const cameraStatus = document.querySelector("#camera-status");
 const cameraList = document.querySelector("#cameras");
+const specialStatus = document.querySelector("#special-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -316,6 +319,23 @@ fetch("/data/news-intel/latest.json")
       item.textContent = `${row.district || "行政區未填"} ${row.place || "地點未填"} · ${row.offense || "取締項目未填"} · ${speed}`;
       cameraList.append(item);
     }
+    const specialClasses = data.special_classes;
+    const specialPeriodText = specialClasses?.period_text ? `資料期間沿用欄名 ${specialClasses.period_text}。` : "欄名沒有寫日期。";
+    specialStatus.textContent = specialClasses?.count
+      ? `${specialPeriodText}${specialClasses.count} 所。只留校名、班級類型和地址，不含電話。欄名日期不是抓取時間。`
+      : "這一輪沒有特殊教育班名冊，沒有補學校。";
+    if (specialClasses?.download_url) {
+      const download = document.createElement("a");
+      download.href = specialClasses.download_url;
+      download.textContent = "下載名冊";
+      specialStatus.append(" ", download);
+    }
+    if (specialClasses?.source_url && specialClasses?.count) {
+      const source = document.createElement("a");
+      source.href = specialClasses.source_url;
+      source.textContent = "資料集頁";
+      specialStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -426,6 +446,7 @@ fetch("/data/news-intel/latest.json")
     schoolStatus.textContent = "學區資料讀取失敗。頁面沒有改用假資料。";
     kindergartenStatus.textContent = "幼兒園名錄讀取失敗。頁面沒有改用假資料。";
     cameraStatus.textContent = "科學儀器清冊讀取失敗。頁面沒有改用假資料。";
+    specialStatus.textContent = "特殊教育班名冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";
