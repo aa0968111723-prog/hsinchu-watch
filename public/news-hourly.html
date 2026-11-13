@@ -134,9 +134,12 @@ fetch("/data/news-intel/latest.json")
     const articles = Array.isArray(data.articles) ? data.articles.slice(0, 20) : [];
     const when = taipeiStamp(data.last_success_at) || "未知";
     const geminiNote = data.gemini?.called ? "Gemini 有提出候選，尚未當事實。" : "Gemini 未使用。";
-    status.textContent = `成功時間 ${when}。顯示 ${articles.length} 篇。${geminiNote}這是單一來源索引，不是已查核事實。`;
-    if (Number.isFinite(data.duration_ms) && data.duration_ms >= 0) status.textContent += `本輪抓取 ${Math.round(data.duration_ms / 1000)} 秒。`;
-    if (Array.isArray(data.failures) && data.failures.length) status.textContent += `有 ${data.failures.length} 個來源沒讀到。`;
+    let roundNote = "";
+    if (Number.isFinite(data.duration_ms) && data.duration_ms >= 0) roundNote += `本輪抓取 ${Math.round(data.duration_ms / 1000)} 秒。`;
+    if (Array.isArray(data.failures) && data.failures.length) roundNote += `有 ${data.failures.length} 個來源沒讀到。`;
+    status.textContent = articles.length
+      ? `成功時間 ${when}。顯示 ${articles.length} 篇。${geminiNote}這是單一來源索引，不是已查核事實。${roundNote}`
+      : `這一輪沒有可顯示的文章，沒有補假資料。${roundNote}`;
     const diff = data.changes;
     if (diff && Array.isArray(diff.added) && Array.isArray(diff.removed)) {
       changes.textContent = diff.added.length || diff.removed.length
@@ -183,7 +186,6 @@ fetch("/data/news-intel/latest.json")
       link.textContent = "新竹市政府資料開放平臺";
       catalogStatus.append(" ", link);
     }
-    if (!articles.length) status.textContent = "這一輪沒有可顯示的文章，沒有補假資料。";
     for (const button of document.querySelectorAll("[data-region]")) {
       button.addEventListener("click", () => {
         for (const other of document.querySelectorAll("[data-region]")) other.setAttribute("aria-pressed", String(other === button));

@@ -97,6 +97,7 @@ test("round duration is a whole number of seconds", () => {
   const html = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
   assert.equal(html.includes("本輪抓取"), true);
   assert.equal(html.includes("個來源沒讀到。"), true);
+  assert.equal(html.includes("沒有補假資料。${roundNote}"), true);
 });
 
 test("the first news list has no previous diff", () => {

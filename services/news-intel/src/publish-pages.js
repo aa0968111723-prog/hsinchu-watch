@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { homedir } from "node:os";
@@ -51,6 +51,7 @@ if (!api.ok) {
   }, null, 2));
   process.exit(1);
 }
+mkdirSync(`${mirror}\\data\\news-intel`, { recursive: true });
 copyFileSync(fileURLToPath(new URL("../../../public/data/news-intel/latest.json", import.meta.url)), `${mirror}\\data\\news-intel\\latest.json`);
 const catalogFile = fileURLToPath(new URL("../../../public/data/news-intel/city-catalog.json", import.meta.url));
 if (existsSync(catalogFile)) copyFileSync(catalogFile, `${mirror}\\data\\news-intel\\city-catalog.json`);
