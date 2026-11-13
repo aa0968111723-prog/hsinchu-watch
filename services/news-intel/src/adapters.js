@@ -122,6 +122,34 @@ export function normalizeCnaAtom(xml) {
 
 export const CITY_CATALOG_URL = "https://opendata.hccg.gov.tw/OpenDataCSV.aspx";
 export const CITY_CATALOG_LIST = "https://opendata.hccg.gov.tw/OpenDataList.aspx?n=1&sms=9059";
+export const COUNTY_POPULATION_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/339/a3138432-c1c2-475a-8552-7e201bfdb0af.json";
+export const COUNTY_POPULATION_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=339";
+export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
+
+export function populationPeriod(html) {
+  const text = String(html || "").replace(/<[^>]+>/g, " ");
+  const match = text.match(/資料集描述[:：]\s*(\d{2,3})年(\d{1,2})月/);
+  if (!match) return { period: null, period_text: null };
+  const roc = Number(match[1]);
+  const month = Number(match[2]);
+  if (!Number.isInteger(roc) || !Number.isInteger(month) || roc < 1 || month < 1 || month > 12) return { period: null, period_text: null };
+  const year = roc < 1911 ? roc + 1911 : roc;
+  return { period: `${year}-${String(month).padStart(2, "0")}`, period_text: `${match[1]}年${match[2]}月` };
+}
+
+export function normalizeCountyPopulation(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    if (String(row?.["性別"] || "").trim() !== "計") return [];
+    const areaCode = String(row["行政區域代碼"] || "").trim();
+    const areaLabel = String(row["區域別"] || "").trim();
+    if (!areaCode || !areaLabel) return [];
+    const raw = row["總計"];
+    const total = raw === null || raw === undefined || String(raw).trim() === "" ? null : String(raw).trim();
+    return [{ area_code: areaCode, area_label: areaLabel, total }];
+  });
+}
 
 export function catalogForPublish(download, summary, previousCatalog, write) {
   if (!download) return { summary, written: false };

@@ -146,6 +146,55 @@ test("city catalog keeps dataset names and drops contact fields", async () => {
   assert.equal(registry.body.sources.some((source) => source.id === "hccg-opendata-catalog" && source.needs_key === false), true);
 });
 
+test("county population keeps the file total and the D- label", async () => {
+  const { normalizeCountyPopulation, populationPeriod } = await import("../src/adapters.js");
+  const rows = normalizeCountyPopulation(JSON.stringify([
+    { "行政區域代碼": "10004000", "區域別": "D-", "性別": "計", "總計": "5" },
+    { "行政區域代碼": "10004000", "區域別": "D-", "性別": "男", "總計": "1" },
+    { "行政區域代碼": "10004010", "區域別": "竹北市", "性別": "計", "總計": " " },
+  ]));
+  assert.deepEqual(rows, [
+    { area_code: "10004000", area_label: "D-", total: "5" },
+    { area_code: "10004010", area_label: "竹北市", total: null },
+  ]);
+  assert.deepEqual(populationPeriod("<div>資料集描述： 115年10月新竹縣各鄉鎮市現住人口</div>"), { period: "2026-10", period_text: "115年10月" });
+  assert.deepEqual(populationPeriod("<p>115年10月出現在別處</p>"), { period: null, period_text: null });
+  const kept = await runHour({
+    previous: { articles: [], population: { rows: [{ area_code: "10004010", area_label: "竹北市", total: "9" }] } },
+    now: "2026-11-14T01:00:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.population.rows[0].total, "9");
+  assert.equal(kept.population.retained, true);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("資料檔區域別為 D-"), true);
+  assert.equal(page.includes("沒有補 0"), true);
+  const { openNewsDb } = await import("../src/local-db.js");
+  const db = openNewsDb(":memory:");
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    db,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-population", payload: JSON.stringify([{ "行政區域代碼": "10004010", "區域別": "竹北市", "性別": "計", "總計": "5" }, { "行政區域代碼": "10004010", "區域別": "竹北市", "性別": "女", "總計": "2" }]) } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.population.rows.length, 1);
+  assert.equal(imported.body.population.rows[0].total, "5");
+  const stored = await db.prepare("SELECT total_text FROM population_counts WHERE area_code = ?").bind("10004010").first();
+  const budgets = await db.prepare("SELECT COUNT(*) AS n FROM project_budgets").first();
+  const accounts = await db.prepare("SELECT COUNT(*) AS n FROM final_accounts").first();
+  assert.equal(stored.total_text, "5");
+  assert.equal(budgets.n, 0);
+  assert.equal(accounts.n, 0);
+  const registry = await handleMcp({ authorization: "Bearer reader-token", tokens, body: { tool: "list_source_registry" } });
+  const air = registry.body.sources.find((source) => source.id === "moenv-aqx-p-432");
+  assert.equal(air.needs_key, true);
+  assert.equal(air.free, false);
+  const blocked = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "sync_environment_data" } });
+  assert.equal(blocked.status, 409);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -518,6 +567,11 @@ test("published news file stays within the real cap", () => {
     assert.equal(data.city_catalog.datasets, undefined);
     assert.ok(data.city_catalog.count > 0);
   }
+  assert.ok(data.population.rows.length >= 13);
+  assert.match(data.population.period, /^\d{4}-\d{2}$/);
+  assert.equal(data.population.rows.some((row) => row.area_code === "10004000" && row.area_label === "D-"), true);
+  assert.ok(data.population.rows.every((row) => row.total === null || /^\d+$/.test(row.total)));
+  assert.equal(JSON.stringify(data.population).includes("@"), false);
 });
 
 test("a failed council fetch keeps the previous notices", async () => {

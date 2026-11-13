@@ -1,8 +1,8 @@
-import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, normalizeFinalAccounts } from "./adapters.js";
+import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, MOENV_AIR_URL, normalizeCountyPopulation, normalizeFinalAccounts } from "./adapters.js";
 import { authorize, consumeWrite } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
-import { persistPublicRecords } from "./persist.js";
+import { persistPopulation, persistPublicRecords } from "./persist.js";
 import { parsePublisherTimestamp } from "./verify.js";
 
 export const TOOLS = [
@@ -33,6 +33,8 @@ function sources() {
   return [
     ...ADAPTERS.map((adapter) => ({ id: adapter.id, kind: adapter.kind, ...adapter.discover() })),
     { id: "hccg-opendata-catalog", kind: "open_data", url: CITY_CATALOG_URL, docs: CITY_CATALOG_LIST, license: "政府資料開放授權條款", free: true, needs_key: false },
+    { id: "hsc-population", kind: "open_data", url: COUNTY_POPULATION_URL, docs: COUNTY_POPULATION_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
+    { id: "moenv-aqx-p-432", kind: "environment", url: MOENV_AIR_URL, docs: "https://data.moenv.gov.tw/", license: "未取得 api_key，不當作公開來源", free: false, needs_key: true },
   ];
 }
 
@@ -60,6 +62,31 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
   function remember(result) {
     if (idempotencyKey && state?.idempotency && result.status < 500) state.idempotency.set(cacheKey, { status: result.status, body: result.body });
     return result;
+  }
+  if (tool === "import_government_dataset" && input.dataset === "hsc-population") {
+    let raw = input.payload;
+    if (!raw && fetcher) {
+      const response = await fetcher(COUNTY_POPULATION_URL);
+      if (!response.ok) return { status: 502, body: { error: `population_${response.status}` } };
+      raw = await response.text();
+    }
+    if (!raw) return { status: 409, body: { error: "fetcher_unavailable" } };
+    let rows;
+    try {
+      rows = normalizeCountyPopulation(raw);
+    } catch {
+      return { status: 400, body: { error: "invalid_dataset" } };
+    }
+    if (!rows.length) return { status: 409, body: { error: "empty_dataset" } };
+    const population = {
+      source_url: COUNTY_POPULATION_PAGE,
+      dataset_url: COUNTY_POPULATION_URL,
+      period: null,
+      period_text: null,
+      rows,
+    };
+    if (db) await persistPopulation(db, { population, now: new Date().toISOString() });
+    return remember({ status: 200, body: { population, stored: Boolean(db) } });
   }
   if (tool === "import_government_dataset") {
     if (input.dataset !== "hsc-expenditure-final") return { status: 409, body: { error: "adapter_not_connected" } };
@@ -146,7 +173,14 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
   if (tool === "query_public_records") {
     const rows = await db.prepare("SELECT id, title, source_url, published_on FROM government_announcements ORDER BY published_on DESC LIMIT 20").all();
     const accounts = await db.prepare("SELECT year, spent_text, unit, dataset_url, list_url FROM final_accounts ORDER BY year DESC LIMIT 20").all();
-    return { status: 200, body: { records: rows.results || [], final_accounts: accounts.results || [] } };
+    let population = [];
+    try {
+      const people = await db.prepare("SELECT area_code, area_label, total_text, period, period_text FROM population_counts ORDER BY area_code LIMIT 30").all();
+      population = people.results || [];
+    } catch (error) {
+      if (!String(error.message || error).includes("no such table")) throw error;
+    }
+    return { status: 200, body: { records: rows.results || [], final_accounts: accounts.results || [], population } };
   }
   if (tool === "get_review_queue") {
     const rows = await db.prepare("SELECT id, article_id, reason, status FROM review_queue WHERE status = 'open' ORDER BY created_at DESC LIMIT 20").all();

@@ -29,6 +29,9 @@
   <h2>新竹縣歲出決算</h2>
   <p id="account-status" class="meta"></p>
   <ol id="accounts"></ol>
+  <h2>新竹縣現住人口</h2>
+  <p id="population-status" class="meta"></p>
+  <ol id="population"></ol>
   <h2>新竹縣議會公告</h2>
   <p id="notice-status" class="meta"></p>
   <ol id="notices"></ol>
@@ -89,6 +92,8 @@ const changes = document.querySelector("#changes");
 const filterStatus = document.querySelector("#filter-status");
 const list = document.querySelector("#list");
 const accountStatus = document.querySelector("#account-status");
+const populationList = document.querySelector("#population");
+const populationStatus = document.querySelector("#population-status");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
@@ -165,6 +170,23 @@ fetch("/data/news-intel/latest.json")
       const amount = record.spent_amount === null || record.spent_amount === undefined || record.spent_amount === "" ? "欄位是空的" : record.spent_amount;
       addItem(accounts, `${record.year} 年度歲出決算`, record.list_url, `${record.source_name || "新竹縣政府"} · ${amount}`);
     }
+    const people = data.population;
+    const rows = Array.isArray(people?.rows) ? people.rows : [];
+    const periodNote = people?.period_text ? `資料期間沿用來源描述 ${people.period_text}。` : "來源頁沒有寫年月。";
+    populationStatus.textContent = rows.length
+      ? `${periodNote}只列性別為「計」的總計，不另算年齡組。縣合計那列的區域別，資料檔寫的是 D-。`
+      : "這一輪沒有人口數，沒有補 0。";
+    if (people?.source_url && rows.length) {
+      const source = document.createElement("a");
+      source.href = people.source_url;
+      source.textContent = "資料集頁";
+      populationStatus.append(" ", source);
+    }
+    for (const row of rows) {
+      const label = row.area_label === "D-" && row.area_code === "10004000" ? "縣合計（資料檔區域別為 D-）" : row.area_label;
+      const total = row.total === null || row.total === undefined || row.total === "" ? "欄位是空的" : row.total;
+      addItem(populationList, label, people.source_url, `${row.area_code} · ${total}`);
+    }
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
     for (const notice of announcements) {
@@ -205,6 +227,7 @@ fetch("/data/news-intel/latest.json")
     accountStatus.textContent = "決算數字讀取失敗。頁面沒有改用假資料。";
     noticeStatus.textContent = "議會公告讀取失敗。頁面沒有改用假資料。";
     catalogStatus.textContent = "市府目錄讀取失敗。頁面沒有改用假資料。";
+    populationStatus.textContent = "人口數讀取失敗。頁面沒有改用假資料。";
   });
 </script>
 </body>

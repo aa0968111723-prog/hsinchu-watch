@@ -346,5 +346,84 @@
     "removed": []
   },
   "duration_ms": 20413,
-  "model_review": []
+  "model_review": [],
+  "population": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=339",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/339/a3138432-c1c2-475a-8552-7e201bfdb0af.json",
+    "period": "2026-10",
+    "period_text": "115年10月",
+    "rows": [
+      {
+        "area_code": "10004000",
+        "area_label": "D-",
+        "total": "598017"
+      },
+      {
+        "area_code": "10004010",
+        "area_label": "竹北市",
+        "total": "221317"
+      },
+      {
+        "area_code": "10004040",
+        "area_label": "關西鎮",
+        "total": "26938"
+      },
+      {
+        "area_code": "10004030",
+        "area_label": "新埔鎮",
+        "total": "33185"
+      },
+      {
+        "area_code": "10004020",
+        "area_label": "竹東鎮",
+        "total": "97468"
+      },
+      {
+        "area_code": "10004050",
+        "area_label": "湖口鄉",
+        "total": "85128"
+      },
+      {
+        "area_code": "10004080",
+        "area_label": "橫山鄉",
+        "total": "11931"
+      },
+      {
+        "area_code": "10004060",
+        "area_label": "新豐鄉",
+        "total": "60193"
+      },
+      {
+        "area_code": "10004070",
+        "area_label": "芎林鄉",
+        "total": "20288"
+      },
+      {
+        "area_code": "10004100",
+        "area_label": "寶山鄉",
+        "total": "14552"
+      },
+      {
+        "area_code": "10004090",
+        "area_label": "北埔鄉",
+        "total": "8182"
+      },
+      {
+        "area_code": "10004110",
+        "area_label": "峨眉鄉",
+        "total": "4894"
+      },
+      {
+        "area_code": "10004120",
+        "area_label": "尖石鄉",
+        "total": "9547"
+      },
+      {
+        "area_code": "10004130",
+        "area_label": "五峰鄉",
+        "total": "4394"
+      }
+    ],
+    "note": "只列性別為計的總計。人數沿用資料檔原文。縣合計的區域別在資料檔寫 D-，代碼是 10004000。"
+  }
 }

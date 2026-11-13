@@ -111,6 +111,24 @@ export async function persistPublicRecords(db, { records, now, actor = "schedule
   return { inserted };
 }
 
+export async function persistPopulation(db, { population, now, actor = "scheduler" }) {
+  const period = population?.period || "";
+  let upserted = 0;
+  for (const row of population?.rows || []) {
+    if (!row?.area_code || !row.area_label) continue;
+    const total = row.total === undefined || row.total === "" ? null : row.total;
+    const existing = await db.prepare("SELECT total_text, area_label FROM population_counts WHERE area_code = ? AND period = ?").bind(row.area_code, period).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO population_counts (area_code, period, area_label, total_text, period_text, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)").bind(row.area_code, period, row.area_label, total, population.period_text || null, population.dataset_url, population.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.total_text ?? null) !== total || existing.area_label !== row.area_label) {
+      await db.prepare("UPDATE population_counts SET area_label = ?, total_text = ?, period_text = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE area_code = ? AND period = ?").bind(row.area_label, total, population.period_text || null, population.dataset_url, population.source_url, now, row.area_code, period).run();
+    }
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_population', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

@@ -1,5 +1,5 @@
 import { handleMcp } from "./mcp.js";
-import { persistAnnouncements, persistArticles, persistModelReview, persistPublicRecords, snapshotPayload } from "./persist.js";
+import { persistAnnouncements, persistArticles, persistModelReview, persistPopulation, persistPublicRecords, snapshotPayload } from "./persist.js";
 import { runHour, sourceFetch } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -36,6 +36,9 @@ export async function applyScheduledResult(db, previous, result) {
   if (result.ok && result.public_records?.length) {
     await persistPublicRecords(db, { records: result.public_records, now: result.last_success_at });
   }
+  if (result.ok && result.population?.rows?.length && result.population.retained !== true) {
+    await persistPopulation(db, { population: result.population, now: result.last_success_at });
+  }
   if (result.ok && result.model_review?.length) {
     await persistModelReview(db, { proposals: result.model_review, now: result.last_success_at });
   }
@@ -56,7 +59,16 @@ export default {
       const rows = env.DB
         ? await env.DB.prepare("SELECT year, spent_text, unit, dataset_url, list_url, note FROM final_accounts ORDER BY year DESC").all()
         : { results: [] };
-      return Response.json({ records: rows.results || [], note: "spent_text 是資料檔原文，不是驗收或實支" });
+      let population = [];
+      if (env.DB) {
+        try {
+          const people = await env.DB.prepare("SELECT area_code, area_label, total_text, period, period_text, dataset_url, source_url FROM population_counts ORDER BY area_code LIMIT 30").all();
+          population = people.results || [];
+        } catch (error) {
+          if (!String(error.message || error).includes("no such table")) throw error;
+        }
+      }
+      return Response.json({ records: rows.results || [], population, note: "spent_text 是資料檔原文，不是驗收或實支。population 只列資料檔性別為計的總計。" });
     }
     if (request.method === "GET" && url.pathname === "/api/v1/news") {
       const rows = env.DB

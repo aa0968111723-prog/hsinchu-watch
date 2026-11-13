@@ -29,6 +29,7 @@ try {
     announcements: existing.announcements || [],
     public_records: existing.public_records || [],
     city_catalog: existing.city_catalog || null,
+    population: existing.population || null,
   };
 } catch {
   previous = { articles: [], last_success_at: null };
@@ -78,6 +79,14 @@ const payload = {
   announcements: publishable.announcements || [],
   public_records: publishable.public_records || [],
   city_catalog: catalogPublish.summary,
+  population: publishable.population ? {
+    source_url: publishable.population.source_url,
+    dataset_url: publishable.population.dataset_url,
+    period: publishable.population.period,
+    period_text: publishable.population.period_text,
+    rows: publishable.population.rows,
+    note: publishable.population.note,
+  } : null,
   changes: articleChanges(previous.articles, publishable.articles),
   duration_ms: Date.now() - started,
   model_review: publishable.model_review || [],

@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, collectAdapters, normalizeCityCatalog } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, collectAdapters, normalizeCityCatalog, normalizeCountyPopulation, populationPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -40,6 +40,7 @@ export function mergeRun(previous, result) {
       announcements: previous?.announcements || [],
       public_records: previous?.public_records || [],
       city_catalog: previous?.city_catalog || null,
+      population: previous?.population || null,
       model_review: previous?.model_review || [],
     };
   }
@@ -53,8 +54,33 @@ export function mergeRun(previous, result) {
     announcements: result.announcements || [],
     public_records: result.public_records || [],
     city_catalog: result.city_catalog || null,
+    population: result.population === undefined ? (previous?.population || null) : result.population,
     model_review: result.model_review || [],
   };
+}
+
+async function loadCountyPopulation(fetcher, previous) {
+  const kept = previous?.population ? { ...previous.population, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const page = await fetcher(COUNTY_POPULATION_PAGE);
+    const file = await fetcher(COUNTY_POPULATION_URL);
+    if (!page?.ok || !file?.ok || typeof page.text !== "function" || typeof file.text !== "function") return kept;
+    const rows = normalizeCountyPopulation(await file.text());
+    if (!rows.length) return kept;
+    const period = populationPeriod(await page.text());
+    return {
+      source_url: COUNTY_POPULATION_PAGE,
+      dataset_url: COUNTY_POPULATION_URL,
+      period: period.period,
+      period_text: period.period_text,
+      rows,
+      retained: false,
+      note: "只列性別為計的總計。人數沿用資料檔原文。縣合計的區域別在資料檔寫 D-，代碼是 10004000。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadCityCatalog(fetcher, previous) {
@@ -135,6 +161,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       announcements,
       public_records: publicRecords,
       city_catalog: await loadCityCatalog(fetcher, previous),
+      population: await loadCountyPopulation(fetcher, previous),
       model_review: modelReview,
     });
   } catch (error) {
