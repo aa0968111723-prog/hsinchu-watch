@@ -16,6 +16,7 @@ __pycache__/
 *.bak
 *.bak-*
 services/news-intel/state/backups/
+services/news-intel/state/hourly-run.log
 *.sqlite
 *.db
 !public/data/civic/watch.sqlite
