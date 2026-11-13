@@ -51,6 +51,12 @@
       "summary": "搜尋、翻頁並匯出全部符合紀錄。待審來源與已收錄紀錄分開。"
     },
     {
+      "id": "hourly-news",
+      "title": "新竹新聞索引",
+      "href": "/news-hourly.html",
+      "summary": "公開來源最新一輪索引，最多 20 篇。單一來源不是查核，沒有文章時不補假資料。"
+    },
+    {
       "id": "method",
       "title": "方法與來源",
       "href": "/civic.html#method",
