@@ -5,6 +5,12 @@ import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify
 
 export const FETCH_TIMEOUT_MS = 15000;
 
+export function pageUnavailable(html, url) {
+  const text = String(html || "");
+  const finalUrl = String(url || "");
+  return /\/error\/?$/.test(finalUrl) || text.includes("Whitelabel Error Page");
+}
+
 export async function sourceFetch(url, fetcher = fetch) {
   let current = url;
   for (let hop = 0; hop < 4; hop += 1) {
@@ -314,6 +320,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
           date_checked: article.date_checked,
           page_published_at: article.page_published_at,
           feed_time_kind: article.feed_time_kind,
+          source_unavailable: article.source_unavailable === true,
           retained_source: true,
         });
       }
@@ -327,22 +334,26 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
     }));
     const articles = [];
     for (const article of selected) {
-      if (article.retained_source || !allowedUrl(article.source_url)) {
+      if (!allowedUrl(article.source_url)) {
         articles.push(article);
         continue;
       }
       try {
         const response = await fetcher(article.source_url);
-        const html = response?.ok ? await response.text() : "";
+        const html = response?.ok && typeof response.text === "function" ? await response.text() : "";
+        if (!response?.ok || pageUnavailable(html, response?.url || "")) {
+          articles.push({ ...article, source_unavailable: true });
+          continue;
+        }
         const agrees = pageDateAgrees(article.publisher_timestamp, html, dateCheckOptions(article));
         const pagePublishedAt = readPagePublishedAt(html);
         if (agrees === false) {
-          articles.push({ ...article, verification_status: "UNVERIFIED", review_status: "needs_review", fact_fields_allowed: false, date_checked: false, page_published_at: pagePublishedAt });
+          articles.push({ ...article, source_unavailable: false, verification_status: "UNVERIFIED", review_status: "needs_review", fact_fields_allowed: false, date_checked: false, page_published_at: pagePublishedAt });
         } else {
-          articles.push({ ...article, date_checked: agrees, page_published_at: pagePublishedAt });
+          articles.push({ ...article, source_unavailable: false, date_checked: agrees, page_published_at: pagePublishedAt });
         }
       } catch {
-        articles.push({ ...article, date_checked: null });
+        articles.push({ ...article, source_unavailable: true });
       }
     }
     return mergeRun(previous, {

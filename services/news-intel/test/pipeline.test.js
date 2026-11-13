@@ -398,13 +398,17 @@ test("an empty city list keeps the previous city articles", async () => {
       { id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-14T00:00:00.000Z", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } },
     ],
     fetcher: async (url) => {
-      if (String(url).includes("hccg.gov.tw")) throw new Error("retained city page was fetched");
+      if (String(url).includes("hccg.gov.tw")) return { ok: true, status: 200, url: "https://www.hccg.gov.tw/ch/error", text: async () => "<h1>Whitelabel Error Page</h1>" };
       return { ok: true, status: 200, text: async () => "" };
     },
   });
   const city = result.articles.find((article) => article.source_url.includes("municipalnews"));
   assert.equal(city.original_title, "新竹市舊聞");
   assert.equal(city.date_checked, true);
+  assert.equal(city.source_unavailable, true);
+  assert.notEqual(city.verification_status, "UNVERIFIED");
+  const { pageUnavailable } = await import("../src/run.js");
+  assert.equal(pageUnavailable("<html>新竹市公告</html>", "https://www.hccg.gov.tw/a"), false);
 });
 
 test("different wording is not treated as a disputed claim", async () => {
