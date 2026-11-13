@@ -80,7 +80,7 @@ export function selectArticles(candidates, hidden = new Set()) {
     const url = String(item?.source_url || "");
     const title = String(item?.original_title || "").trim();
     const published = parsePublisherTimestamp(item?.publisher_timestamp);
-    if (!url.startsWith("https://") || !title || !published || hidden.has(url) || item.source_id === "hsinchu-county-council" || item.source_id === "hsc-expenditure-final") continue;
+    if (!allowedUrl(url) || !title || !published || hidden.has(url) || item.source_id === "hsinchu-county-council" || item.source_id === "hsc-expenditure-final") continue;
     const fallback = item.source_id === "hsinchu-city-news" ? "hsinchu-city" : "hsinchu-county";
     const region = regionFor(title, item.summary || "") || (OFFICIAL_HSINCHU.has(item.source_id) ? (item.region_id || fallback) : null);
     if (!region) continue;

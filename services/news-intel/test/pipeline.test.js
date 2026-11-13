@@ -121,6 +121,13 @@ test("caps at 20 and collapses reprints", () => {
   ]);
   assert.equal(kept.length, 2);
   assert.deepEqual(kept.find((row) => row.original_title === "竹北道路開工").related_urls, ["https://www.hsinchu.gov.tw/b"]);
+  const outside = selectArticles([
+    { original_title: "竹北道路開工", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13T02:00:00Z", source_id: "hsinchu-county-news" },
+    { original_title: "竹北道路開工", source_url: "https://example.com/reprint", publisher_timestamp: "2026-11-13T01:00:00Z", source_id: "cna-atom" },
+    { original_title: "新竹市外部轉載", source_url: "https://example.com/story", publisher_timestamp: "2026-11-13T03:00:00Z", source_id: "cna-atom" },
+  ]);
+  assert.deepEqual(outside.map((row) => row.source_url), ["https://www.hsinchu.gov.tw/a"]);
+  assert.deepEqual(outside[0].related_urls, []);
   const distinct = linkEvents([
     { original_title: "新竹縣政府今日對外說明這項公共工程的後續進度並且強調第一階段", source_url: "https://www.hsinchu.gov.tw/a" },
     { original_title: "新竹縣政府今日對外說明這項公共工程的後續進度並且強調第二階段", source_url: "https://www.hsinchu.gov.tw/b" },
