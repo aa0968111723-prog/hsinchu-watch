@@ -406,6 +406,22 @@ test("an empty city list keeps the previous city articles", async () => {
   assert.equal(city.date_checked, true);
 });
 
+test("different wording is not treated as a disputed claim", async () => {
+  const { compareClaims, handleMcp: mcp } = await import("../src/mcp.js");
+  assert.equal(compareClaims("新竹市公告", "新竹市公告"), "same");
+  assert.equal(compareClaims("新竹市 公告", "新竹市公告"), "same");
+  assert.equal(compareClaims("20篇", "20篇新聞"), "same");
+  assert.equal(compareClaims("新竹市公告", "新竹縣公告"), "not_compared");
+  assert.equal(compareClaims("115年10月人口598017", "115年11月人口598018"), "disputed");
+  const result = await mcp({
+    authorization: "Bearer verifier-token",
+    tokens,
+    body: { tool: "compare_source_claims", input: { left: "新竹市公告", right: "新竹縣公告" } },
+  });
+  assert.equal(result.status, 200);
+  assert.equal(result.body.relation, "not_compared");
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },

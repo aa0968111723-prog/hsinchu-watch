@@ -46,6 +46,19 @@ async function audit(db, actor, action, target) {
   await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, ?, ?, ?)").bind(crypto.randomUUID(), actor, action, target, new Date().toISOString()).run();
 }
 
+export function compareClaims(left, right) {
+  const compact = (value) => String(value || "").replace(/\s+/g, "");
+  const a = compact(left);
+  const b = compact(right);
+  if (!a || !b) return "incomplete";
+  const numbers = (value) => [...value.matchAll(/\d+(?:\.\d+)?/g)].map((match) => match[0]);
+  const leftNumbers = numbers(a);
+  const rightNumbers = numbers(b);
+  if (leftNumbers.length && rightNumbers.length && leftNumbers.join(",") !== rightNumbers.join(",")) return "disputed";
+  if (a === b || a.includes(b) || b.includes(a)) return "same";
+  return "not_compared";
+}
+
 export async function handleMcp({ authorization, body, tokens, state, db, fetcher }) {
   const tool = body?.tool;
   const input = body?.input || {};
@@ -225,7 +238,7 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
     const left = String(input.left || "").trim();
     const right = String(input.right || "").trim();
     if (!left || !right) return { status: 400, body: { error: "claims_required" } };
-    return { status: 200, body: { relation: left === right ? "same" : "disputed" } };
+    return { status: 200, body: { relation: compareClaims(left, right) } };
   }
   if (tool === "get_latest_successful_run") return { status: 200, body: state?.lastRun || { status: "none" } };
   if (tool === "get_failed_sources") return { status: 200, body: { failures: state?.failures || [] } };
