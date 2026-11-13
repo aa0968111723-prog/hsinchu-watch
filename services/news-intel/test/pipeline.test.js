@@ -172,6 +172,10 @@ test("a failed hour keeps the last successful articles", async () => {
   assert.equal(readPagePublishedAt('"datePublished": "2026-11-13T21:56:00+08:00"'), "2026-11-13T13:56:00.000Z");
   assert.equal(pageDateAgrees("2026-11-13T14:16:16.000Z", '"datePublished": "2026-11-13T21:56:00+08:00"'), false);
   assert.equal(pageDateAgrees("2026-11-13T14:16:16.000Z", '"datePublished": "2026-11-13T21:56:00+08:00"', { dayOnly: true }), true);
+  const { dateCheckOptions } = await import("../src/run.js");
+  assert.equal(pageDateAgrees("2026-11-13T05:55:00.000Z", '"datePublished": "2026-11-13T13:43:22+08:00"', dateCheckOptions({ source_type: "official_rss" })), true);
+  assert.equal(pageDateAgrees("2026-11-13T05:55:00.000Z", '"datePublished": "2026-11-12T13:43:22+08:00"', dateCheckOptions({ source_type: "official_rss" })), false);
+  assert.equal(dateCheckOptions({ source_type: "news_rss", feed_time_kind: "" }).dayOnly, false);
   const { normalizeCnaAtom } = await import("../src/adapters.js");
   const cna = normalizeCnaAtom('<entry><title>竹北開工</title><link href="https://www.cna.com.tw/a"/><updated>2026-11-13T22:16:16+08:00</updated></entry>');
   assert.equal(cna[0].feed_time_kind, "updated");

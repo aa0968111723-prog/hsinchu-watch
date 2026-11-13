@@ -12,6 +12,10 @@ export function sourceFetch(url) {
   });
 }
 
+export function dateCheckOptions(article) {
+  return { dayOnly: article?.feed_time_kind === "updated" || article?.source_type === "official_rss" || article?.source_type === "official_html" };
+}
+
 export function publishableResult(previous, result) {
   if (result?.ok && !(result.articles || []).length && (previous?.articles || []).length) {
     return {
@@ -95,7 +99,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       try {
         const response = await fetcher(article.source_url);
         const html = response?.ok ? await response.text() : "";
-        const agrees = pageDateAgrees(article.publisher_timestamp, html, { dayOnly: article.feed_time_kind === "updated" });
+        const agrees = pageDateAgrees(article.publisher_timestamp, html, dateCheckOptions(article));
         const pagePublishedAt = readPagePublishedAt(html);
         if (agrees === false) {
           articles.push({ ...article, verification_status: "UNVERIFIED", review_status: "needs_review", fact_fields_allowed: false, date_checked: false, page_published_at: pagePublishedAt });
