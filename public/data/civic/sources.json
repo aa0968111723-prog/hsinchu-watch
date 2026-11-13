@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-13T07:58:09+08:00",
+  "generated_at": "2026-11-13T08:01:07+08:00",
   "sources": [
     {
       "id": "taipei-news-rss",
@@ -254,6 +254,31 @@
       "last_http_status": 200,
       "consecutive_failures": 0,
       "records_kept": 3
+    },
+    {
+      "id": "hsc-expenditure-final",
+      "name": "新竹縣歲出決算數",
+      "kind": "final_account",
+      "url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/181/3a4b5634-9141-414a-a0f6-422e45ccab19.json",
+      "list_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181",
+      "region_ids": [
+        "hsinchu-county"
+      ],
+      "office_id": "office:hsinchu-county",
+      "access_method": "open_data_file",
+      "permission": "政府資料開放授權條款",
+      "coverage_note": "新竹縣政府開放資料「歲出決算數-按政事別分」。只留檔內最新 4 個年度的總數。JSON 沒有標單位，不自行換算。缺欄保持 null；資料檔寫 0 的格子才保留 0。這是機關決算數，不是驗收或成效。",
+      "interval_minutes": 1440,
+      "date_field": "年度",
+      "gap": null,
+      "last_attempt_at": "2026-11-13T08:01:07+08:00",
+      "last_success_at": "2026-11-13T08:01:07+08:00",
+      "next_due_at": "2026-11-14T08:01:07+08:00",
+      "health": "ok",
+      "error": null,
+      "last_http_status": 200,
+      "consecutive_failures": 0,
+      "records_kept": 4
     },
     {
       "id": "threads",

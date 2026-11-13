@@ -231,6 +231,23 @@ SOURCES = [
         coverage_note="讀開放資料列表上最新一份決標 XML。只留機關名稱以臺北市、新北市、新竹縣或新竹市開頭的列。2026-11-13 這份最新檔只有臺北市機關，沒有新北市或新竹縣市列；那是這份檔的範圍，不是那些地方的採購件數為 0。決標金額不是支用或驗收。不保存聯絡人與電話。檔案約半月更新，間隔 24 小時。",
         list_url="https://web.pcc.gov.tw/tps/tp/OpenData/showList",
     ),
+    _src(
+        id="hsc-expenditure-final",
+        name="新竹縣歲出決算數",
+        kind="final_account",
+        url="https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/181/3a4b5634-9141-414a-a0f6-422e45ccab19.json",
+        region_ids=["hsinchu-county"],
+        office_id="office:hsinchu-county",
+        access_method="open_data_file",
+        parser="hsc_final_json",
+        interval_minutes=1440,
+        date_field="年度",
+        claim_origin="agency_release",
+        record_kind="final_account",
+        permission="政府資料開放授權條款",
+        coverage_note="新竹縣政府開放資料「歲出決算數-按政事別分」。只留檔內最新 4 個年度的總數。JSON 沒有標單位，不自行換算。缺欄保持 null；資料檔寫 0 的格子才保留 0。這是機關決算數，不是驗收或成效。",
+        list_url="https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181",
+    ),
 ]
 
 GAPS = [

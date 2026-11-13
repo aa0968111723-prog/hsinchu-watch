@@ -460,6 +460,110 @@
       "data_class": null
     },
     {
+      "id": "rec-6476f9ea0bc96b4e",
+      "kind": "final_account",
+      "source_id": "hsc-expenditure-final",
+      "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181",
+      "title": "新竹縣2017年度歲出決算",
+      "published_at": "2017",
+      "collected_at": "2026-11-13T08:01:07+08:00",
+      "checked_at": "2026-11-13T08:01:07+08:00",
+      "date_precision": "year",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府歲出決算。資料檔歲出決算數為 19340599。單位未在欄名標示，不換算。這是機關決算數，不是驗收或成效。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "2017",
+      "data_class": null
+    },
+    {
+      "id": "rec-d9e916ab3b40de9b",
+      "kind": "final_account",
+      "source_id": "hsc-expenditure-final",
+      "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181",
+      "title": "新竹縣2018年度歲出決算",
+      "published_at": "2018",
+      "collected_at": "2026-11-13T08:01:07+08:00",
+      "checked_at": "2026-11-13T08:01:07+08:00",
+      "date_precision": "year",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府歲出決算。資料檔歲出決算數為 20531850.69。單位未在欄名標示，不換算。這是機關決算數，不是驗收或成效。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "2018",
+      "data_class": null
+    },
+    {
+      "id": "rec-8882aa25f9b9e142",
+      "kind": "final_account",
+      "source_id": "hsc-expenditure-final",
+      "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181",
+      "title": "新竹縣2019年度歲出決算",
+      "published_at": "2019",
+      "collected_at": "2026-11-13T08:01:07+08:00",
+      "checked_at": "2026-11-13T08:01:07+08:00",
+      "date_precision": "year",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府歲出決算。資料檔歲出決算數為 23719020.12。單位未在欄名標示，不換算。這是機關決算數，不是驗收或成效。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "2019",
+      "data_class": null
+    },
+    {
+      "id": "rec-86ee3ce555943e70",
+      "kind": "final_account",
+      "source_id": "hsc-expenditure-final",
+      "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=181",
+      "title": "新竹縣2020年度歲出決算",
+      "published_at": "2020",
+      "collected_at": "2026-11-13T08:01:07+08:00",
+      "checked_at": "2026-11-13T08:01:07+08:00",
+      "date_precision": "year",
+      "actor_refs": [
+        {
+          "id": "office:hsinchu-county",
+          "kind": "agency"
+        }
+      ],
+      "region_refs": [
+        "hsinchu-county"
+      ],
+      "text_excerpt": "新竹縣政府歲出決算。資料檔歲出決算數為 25151903.17。單位未在欄名標示，不換算。這是機關決算數，不是驗收或成效。",
+      "claim_origin": "agency_release",
+      "verification_status": "unreviewed",
+      "stats_eligible": false,
+      "native_id": "2020",
+      "data_class": null
+    },
+    {
       "id": "rec-00559933074031ad",
       "kind": "agency_release",
       "source_id": "hsinchu-city-news-html",

@@ -1,30 +1,36 @@
 {
   "schema_version": 1,
-  "etag": "\"6326b9dba51e7df331b9233801134bc6d4c92aa6412f55940e1dc5dc01a89da4\"",
-  "content_hash": "6326b9dba51e7df331b9233801134bc6d4c92aa6412f55940e1dc5dc01a89da4",
-  "generated_at": "2026-11-13T07:58:09+08:00",
-  "last_attempt_at": "2026-11-13T07:58:09+08:00",
-  "last_success_at": "2026-11-13T07:58:09+08:00",
+  "etag": "\"906d25c14e9c26c4a037fded5a7ac84b6724f72941ac5d4278f378ebc8988d12\"",
+  "content_hash": "906d25c14e9c26c4a037fded5a7ac84b6724f72941ac5d4278f378ebc8988d12",
+  "generated_at": "2026-11-13T08:01:07+08:00",
+  "last_attempt_at": "2026-11-13T08:01:07+08:00",
+  "last_success_at": "2026-11-13T08:01:07+08:00",
   "status": "ok",
   "stale_after_minutes": 90,
   "changes": [
     {
       "op": "add",
-      "id": "rec-0a24d0cd70b79b0c",
-      "source_id": "pcc-award-xml",
-      "at": "2026-11-13T07:58:09+08:00"
+      "id": "rec-6476f9ea0bc96b4e",
+      "source_id": "hsc-expenditure-final",
+      "at": "2026-11-13T08:01:07+08:00"
     },
     {
       "op": "add",
-      "id": "rec-7036276fa1a41509",
-      "source_id": "pcc-award-xml",
-      "at": "2026-11-13T07:58:09+08:00"
+      "id": "rec-d9e916ab3b40de9b",
+      "source_id": "hsc-expenditure-final",
+      "at": "2026-11-13T08:01:07+08:00"
     },
     {
       "op": "add",
-      "id": "rec-386740e644198da3",
-      "source_id": "pcc-award-xml",
-      "at": "2026-11-13T07:58:09+08:00"
+      "id": "rec-8882aa25f9b9e142",
+      "source_id": "hsc-expenditure-final",
+      "at": "2026-11-13T08:01:07+08:00"
+    },
+    {
+      "op": "add",
+      "id": "rec-86ee3ce555943e70",
+      "source_id": "hsc-expenditure-final",
+      "at": "2026-11-13T08:01:07+08:00"
     }
   ],
   "changes_truncated": false,
@@ -39,6 +45,7 @@
     "cna-atom": "ok",
     "ptt-hsinchu-atom": "ok",
     "pcc-award-xml": "ok",
+    "hsc-expenditure-final": "ok",
     "threads": "gap",
     "facebook": "gap",
     "instagram": "gap",
