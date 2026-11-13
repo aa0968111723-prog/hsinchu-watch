@@ -33,10 +33,19 @@ export function regionGroup(id) {
   return "";
 }
 
+const BROAD_PLACES = [
+  ["新竹市", "hsinchu-city"],
+  ["新竹縣", "hsinchu-county"],
+  ["竹市", "hsinchu-city"],
+  ["竹縣", "hsinchu-county"],
+];
+const BROAD_NAMES = new Set(BROAD_PLACES.map(([name]) => name));
+
 function matchPlace(text, broadOnly = false) {
   const source = String(text || "");
-  const hits = TOWNS.filter(([name]) => source.includes(name) && (!broadOnly || name === "新竹市" || name === "新竹縣"));
-  const specific = hits.filter(([name]) => name !== "新竹市" && name !== "新竹縣");
+  const names = broadOnly ? BROAD_PLACES : [...TOWNS, ...BROAD_PLACES];
+  const hits = names.filter(([name]) => source.includes(name));
+  const specific = hits.filter(([name]) => !BROAD_NAMES.has(name));
   const pool = specific.length ? specific : hits;
   if (!pool.length) return null;
   pool.sort((left, right) => source.indexOf(left[0]) - source.indexOf(right[0]));

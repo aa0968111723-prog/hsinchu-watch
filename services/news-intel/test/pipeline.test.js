@@ -37,6 +37,8 @@ test("districts stay inside the city or county filter", () => {
   assert.equal(regionFor("湖口再到竹北"), "hukou");
   assert.equal(regionFor("澳洲消防員訪竹縣", "新竹縣行程行經北埔"), "hsinchu-county");
   assert.equal(regionFor("沒有地名", "只有北埔"), null);
+  assert.equal(regionFor("竹市警察局無人機隊成軍"), "hsinchu-city");
+  assert.equal(regionFor("竹縣加嗅系統維護"), "hsinchu-county");
   assert.equal(selectArticles([{ original_title: "澳洲消防員訪竹縣", summary: "行程行經北埔", source_url: "https://www.hsinchu.gov.tw/fire", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news" }])[0].region_id, "hsinchu-county");
   assert.equal(selectArticles([{ original_title: "竹北助選", summary: "新竹縣", source_url: "https://www.cna.com.tw/zb", publisher_timestamp: "2026-11-13", source_id: "cna-atom" }])[0].region_id, "zhubei");
   assert.equal(placeLabel("zhubei"), "新竹縣竹北");
