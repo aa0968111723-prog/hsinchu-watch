@@ -160,6 +160,8 @@ export const COUNTY_FARM_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/
 export const COUNTY_FARM_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=349";
 export const COUNTY_RESCUE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/218/bc8484ef-bd7c-4d4e-ada3-09927e301cb5.json";
 export const COUNTY_RESCUE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=218";
+export const COUNTY_BRIDGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/262/46c9c65a-6261-45a6-ab64-1d8f3ef350ed.json";
+export const COUNTY_BRIDGE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=262";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -886,6 +888,41 @@ export function splitRescue(rescue) {
     note: rescue.note || "車輛數、送醫次數和各類人次沿用原文，不加總。沒有資料期間，不拿抓取時間充當。聯絡人沒有入檔。",
   };
   const download = Array.isArray(rescue.rows) ? { ...summary, rows: rescue.rows } : null;
+  return { summary, download };
+}
+
+export function normalizeCountyBridges(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["橋梁名稱"] || "").trim();
+    const code = String(row?.["編號"] ?? "").trim();
+    if (!name || !code) return [];
+    const township = String(row["所在區鄉"] || "").trim();
+    return [{
+      code,
+      name,
+      township: township || null,
+      region_id: HERITAGE_TOWNS[township] || null,
+      road_class: String(row["道路等級"] || "").trim() || null,
+      length_m: originalNumber(row["橋梁總長度-公尺"]),
+      longitude: originalNumber(row["橋頭GPS經度"]),
+      latitude: originalNumber(row["橋頭GPS緯度"]),
+      structure: String(row["結構型式"] || "").trim() || null,
+    }];
+  });
+}
+
+export function splitBridges(bridges) {
+  if (!bridges?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: bridges.source_url,
+    dataset_url: bridges.dataset_url,
+    count: bridges.count,
+    download_url: "/data/news-intel/bridges.json",
+    note: bridges.note || "鄉鎮沿用資料檔簡稱，不補鎮市鄉。長度和座標沿用原文，長度不加總。檔案沒有日期欄，不拿抓取時間充當。聯絡人沒有入檔。",
+  };
+  const download = Array.isArray(bridges.bridges) ? { ...summary, bridges: bridges.bridges } : null;
   return { summary, download };
 }
 

@@ -484,6 +484,30 @@ export async function persistRescue(db, { rescue, now, actor = "scheduler" }) {
   return { upserted };
 }
 
+export async function persistBridges(db, { bridges, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of bridges?.bridges || []) {
+    const code = String(row?.code || "").trim();
+    const name = String(row?.name || "").trim();
+    if (!code || !name) continue;
+    keys.push([code, name]);
+    const length = row.length_m ?? null;
+    const structure = row.structure || null;
+    const existing = await db.prepare("SELECT length_m, structure FROM county_bridges WHERE code = ? AND name = ?").bind(code, name).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO county_bridges (code, name, township, region_id, road_class, length_m, longitude, latitude, structure, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, name, row.township || null, row.region_id || null, row.road_class || null, length, row.longitude || null, row.latitude || null, structure, bridges.dataset_url, bridges.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.length_m ?? null) !== length || (existing.structure ?? null) !== structure) {
+      await db.prepare("UPDATE county_bridges SET township = ?, region_id = ?, road_class = ?, length_m = ?, longitude = ?, latitude = ?, structure = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND name = ?").bind(row.township || null, row.region_id || null, row.road_class || null, length, row.longitude || null, row.latitude || null, structure, bridges.dataset_url, bridges.source_url, now, code, name).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "county_bridges", bridges?.dataset_url, ["code", "name"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_bridges', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

@@ -67,6 +67,8 @@
   <h2>新竹縣消防救護</h2>
   <p id="rescue-status" class="meta"></p>
   <ol id="rescue"></ol>
+  <h2>新竹縣橋梁</h2>
+  <p id="bridge-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -160,6 +162,7 @@ const ebusList = document.querySelector("#ebuses");
 const farmStatus = document.querySelector("#farm-status");
 const rescueStatus = document.querySelector("#rescue-status");
 const rescueList = document.querySelector("#rescue");
+const bridgeStatus = document.querySelector("#bridge-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -540,6 +543,22 @@ fetch("/data/news-intel/latest.json")
       item.textContent = `${row.region} · 一般車 ${general} · 加護車 ${intensive} · 送醫 ${transports} · 未運送 ${skipped}`;
       rescueList.append(item);
     }
+    const bridges = data.bridges;
+    bridgeStatus.textContent = bridges?.count
+      ? `${bridges.count} 座。鄉鎮沿用資料檔簡稱，不補鎮市鄉。長度和座標沿用原文，長度不加總。檔案沒有日期欄，不拿抓取時間充當。`
+      : "這一輪沒有橋梁清冊，沒有補座數。";
+    if (bridges?.download_url && bridges?.count) {
+      const download = document.createElement("a");
+      download.href = bridges.download_url;
+      download.textContent = "下載清冊";
+      bridgeStatus.append(" ", download);
+    }
+    if (bridges?.source_url && bridges?.count) {
+      const source = document.createElement("a");
+      source.href = bridges.source_url;
+      source.textContent = "資料集頁";
+      bridgeStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -661,6 +680,7 @@ fetch("/data/news-intel/latest.json")
     ebusStatus.textContent = "電動公車路線讀取失敗。頁面沒有改用假資料。";
     farmStatus.textContent = "有機農場清冊讀取失敗。頁面沒有改用假資料。";
     rescueStatus.textContent = "消防救護統計讀取失敗。頁面沒有改用假資料。";
+    bridgeStatus.textContent = "橋梁清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";

@@ -881,6 +881,54 @@ test("rescue statistics keep written counts and do not add case types together",
   assert.equal(page.includes("各類人次不加總"), true);
 });
 
+test("county bridges keep the short township label and the written length", async () => {
+  const { normalizeCountyBridges, splitBridges } = await import("../src/adapters.js");
+  const bridges = normalizeCountyBridges(JSON.stringify([
+    { "編號": "1", "橋梁名稱": "新中正橋2", "所在區鄉": "竹東", "道路等級": "市區道路", "橋梁總長度-公尺": "660", "橋頭GPS經度": "121.06083", "橋頭GPS緯度": "24.77528", "結構型式": "梁式橋" },
+    { "編號": "2", "橋梁名稱": "測試橋", "所在區鄉": "新埔", "道路等級": "鄉道", "橋梁總長度-公尺": "0", "橋頭GPS經度": "", "橋頭GPS緯度": "", "結構型式": "" },
+    { "編號": "3", "橋梁名稱": " ", "所在區鄉": "竹北", "橋梁總長度-公尺": "12" },
+  ]));
+  assert.equal(bridges.length, 2);
+  assert.equal(bridges[0].township, "竹東");
+  assert.equal(bridges[0].region_id, "zhudong");
+  assert.equal(bridges[0].length_m, "660");
+  assert.equal(bridges[0].longitude, "121.06083");
+  assert.equal(bridges[0].total_length, undefined);
+  assert.equal(bridges[1].township, "新埔");
+  assert.equal(bridges[1].region_id, "xinpu");
+  assert.equal(bridges[1].length_m, "0");
+  assert.equal(bridges[1].longitude, null);
+  const parts = splitBridges({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=262", dataset_url: "https://ws.hsinchu.gov.tw/bridges.json", count: 2, bridges });
+  assert.equal(parts.summary.bridges, undefined);
+  assert.equal(parts.download.bridges[1].length_m, "0");
+  const kept = await runHour({
+    previous: { articles: [], bridges: { count: 1, bridges: [{ code: "1", name: "新中正橋2", length_m: "660" }] } },
+    now: "2026-11-14T01:30:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.bridges.bridges[0].length_m, "660");
+  assert.equal(kept.bridges.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-bridges", payload: JSON.stringify([{ "編號": "9", "橋梁名稱": "關西橋", "所在區鄉": "關西", "橋梁總長度-公尺": "18" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-bridges", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.bridges[0].region_id, "guanxi");
+  assert.equal(imported.body.bridges[0].township, "關西");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("長度不加總"), true);
+  assert.equal(page.includes("不補鎮市鄉"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1633,6 +1681,17 @@ test("published news file stays within the real cap", () => {
     const rescue = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/rescue-stats.json", import.meta.url), "utf8"));
     assert.equal(rescue.rows.length, data.rescue.count);
     assert.ok(rescue.rows.every((row) => row.cases && row.cases["急病"] !== undefined && row.total === undefined));
+  }
+  if (data.bridges) {
+    assert.ok(data.bridges.count > 900);
+    assert.equal(data.bridges.bridges, undefined);
+    const bridges = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/bridges.json", import.meta.url), "utf8"));
+    assert.equal(bridges.bridges.length, data.bridges.count);
+    assert.ok(bridges.bridges.every((row) => row.name && row.township && typeof row.length_m === "string" && row.total_length === undefined));
+    assert.equal(JSON.stringify(bridges).includes("03-5518101"), false);
+    const xinpu = bridges.bridges.find((row) => row.township === "新埔");
+    assert.equal(xinpu.region_id, "xinpu");
+    assert.equal(xinpu.township.endsWith("鎮"), false);
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);
