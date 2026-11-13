@@ -35,6 +35,7 @@ try {
     parking: existing.parking || null,
     schools: existing.schools || null,
     visitors: existing.visitors || null,
+    election: existing.election || null,
   };
 } catch {
   previous = { articles: [], last_success_at: null };
@@ -109,6 +110,13 @@ const payload = {
     period_text: publishable.visitors.period_text,
     rows: publishable.visitors.rows,
     note: publishable.visitors.note,
+  } : null,
+  election: publishable.election ? {
+    title: publishable.election.title,
+    source_url: publishable.election.source_url,
+    published_at: null,
+    files: publishable.election.files || [],
+    note: publishable.election.note,
   } : null,
   changes: articleChanges(previous.articles, publishable.articles),
   duration_ms: Date.now() - started,

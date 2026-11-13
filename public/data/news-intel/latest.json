@@ -504,5 +504,33 @@
       }
     ],
     "note": "人次、增減和成長率沿用資料檔原文，不另加總，也不另算。"
+  },
+  "election": {
+    "title": "115年地方公職人員選舉候選人姓名號次抽籤結果",
+    "source_url": "https://web.cec.gov.tw/hccec/article/65398",
+    "published_at": null,
+    "files": [
+      {
+        "label": "1-115年新竹縣縣長選舉候選人抽籤結果1027 pdf 116 KB",
+        "url": "https://web.cec.gov.tw/api/file/d2e6c0e2-4579-4034-ad98-fa2baca90066.pdf"
+      },
+      {
+        "label": "2-115年新竹縣縣議員選舉候選人抽籤結果1027 pdf 166 KB",
+        "url": "https://web.cec.gov.tw/api/file/76561c9b-2eaa-4cee-9b4e-de1f46510459.pdf"
+      },
+      {
+        "label": "3-115年新竹縣鄉鎮市長選舉候選人號次抽籤結果1027 pdf 134 KB",
+        "url": "https://web.cec.gov.tw/api/file/77b4cc63-fcb1-41e9-b0cd-da5493f1dd09.pdf"
+      },
+      {
+        "label": "4-115年新竹縣鄉鎮市民代表選舉候選人抽籤結果1027 pdf 209 KB",
+        "url": "https://web.cec.gov.tw/api/file/e30ea230-638c-48b7-acaa-7f729b7f262c.pdf"
+      },
+      {
+        "label": "5-115年新竹縣村里長選舉候選人抽籤結果1027 pdf 241 KB",
+        "url": "https://web.cec.gov.tw/api/file/896537f4-4c49-471a-a834-b8f9cec1b3bf.pdf"
+      }
+    ],
+    "note": "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。"
   }
 }

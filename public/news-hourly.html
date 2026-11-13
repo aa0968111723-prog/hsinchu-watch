@@ -39,6 +39,9 @@
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
+  <h2>新竹縣選舉委員會公告</h2>
+  <p id="election-status" class="meta"></p>
+  <ol id="election-files"></ol>
   <h2>新竹縣議會公告</h2>
   <p id="notice-status" class="meta"></p>
   <ol id="notices"></ol>
@@ -105,6 +108,8 @@ const parkingStatus = document.querySelector("#parking-status");
 const schoolStatus = document.querySelector("#school-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
+const electionStatus = document.querySelector("#election-status");
+const electionFiles = document.querySelector("#election-files");
 const accounts = document.querySelector("#accounts");
 const noticeStatus = document.querySelector("#notice-status");
 const notices = document.querySelector("#notices");
@@ -249,6 +254,21 @@ fetch("/data/news-intel/latest.json")
       const when = row.roc_year && row.month ? `${row.roc_year}年${row.month}月` : "年月未填";
       addItem(visitors, row.name, visitorData.source_url, `${when} · 人次 ${visits} · 增減 ${change}`);
     }
+    const election = data.election;
+    const electionFilesRows = Array.isArray(election?.files) ? election.files : [];
+    electionStatus.textContent = election?.title
+      ? "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。"
+      : "這一輪沒有選務公告，沒有補名單。";
+    if (election?.source_url && election?.title) {
+      const source = document.createElement("a");
+      source.href = election.source_url;
+      source.textContent = election.title;
+      electionStatus.append(" ", source);
+    }
+    for (const file of electionFilesRows) {
+      if (!String(file.url || "").startsWith("https://web.cec.gov.tw/")) continue;
+      addItem(electionFiles, file.label || "附件", file.url, "附件");
+    }
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
     for (const notice of announcements) {
@@ -293,6 +313,7 @@ fetch("/data/news-intel/latest.json")
     parkingStatus.textContent = "停車場資料讀取失敗。頁面沒有改用假資料。";
     schoolStatus.textContent = "學區資料讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
+    electionStatus.textContent = "選務公告讀取失敗。頁面沒有改用假資料。";
   });
 </script>
 </body>

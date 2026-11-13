@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_ELECTION_PAGE, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, normalizeCityCatalog, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -44,6 +44,7 @@ export function mergeRun(previous, result) {
       parking: previous?.parking || null,
       schools: previous?.schools || null,
       visitors: previous?.visitors || null,
+      election: previous?.election || null,
       model_review: previous?.model_review || [],
     };
   }
@@ -61,8 +62,29 @@ export function mergeRun(previous, result) {
     parking: result.parking === undefined ? (previous?.parking || null) : result.parking,
     schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
+    election: result.election === undefined ? (previous?.election || null) : result.election,
     model_review: result.model_review || [],
   };
+}
+
+async function loadElectionNotice(fetcher, previous) {
+  const kept = previous?.election ? { ...previous.election, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_ELECTION_PAGE);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const notice = normalizeElectionNotice(await response.text());
+    if (!notice?.title) return kept;
+    return {
+      ...notice,
+      source_url: COUNTY_ELECTION_PAGE,
+      published_at: null,
+      retained: false,
+      note: "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。",
+    };
+  } catch {
+    return kept;
+  }
 }
 
 async function loadCountyVisitors(fetcher, previous) {
@@ -240,6 +262,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       parking: await loadCountyParking(fetcher, previous),
       schools: await loadCountySchools(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
+      election: await loadElectionNotice(fetcher, previous),
       model_review: modelReview,
     });
   } catch (error) {

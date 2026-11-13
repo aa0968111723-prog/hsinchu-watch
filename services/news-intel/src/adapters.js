@@ -130,6 +130,7 @@ export const COUNTY_SCHOOL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_SCHOOL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
+export const COUNTY_ELECTION_PAGE = "https://web.cec.gov.tw/hccec/article/65398";
 export const MOENV_AIR_URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432";
 
 export function populationPeriod(html) {
@@ -190,6 +191,21 @@ export function visitorPeriod(rows) {
   const first = periods[0];
   if (periods.some((item) => item.period !== first.period)) return { period: null, period_text: null };
   return first;
+}
+
+export function normalizeElectionNotice(html) {
+  const title = String(html || "").match(/<title>([^<]+)<\/title>/i)?.[1]?.replace(/\s+/g, " ").trim() || "";
+  if (!title) return null;
+  const seen = new Set();
+  const files = [];
+  for (const match of String(html).matchAll(/<a[^>]+href="(https:\/\/web\.cec\.gov\.tw\/api\/file\/[^"]+\.pdf)"[^>]*>([\s\S]*?)<\/a>/gi)) {
+    const url = match[1];
+    if (seen.has(url)) continue;
+    seen.add(url);
+    const label = match[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    files.push({ label: label || "附件", url });
+  }
+  return { title, published_at: null, files };
 }
 
 const PARKING_DISTRICTS = {

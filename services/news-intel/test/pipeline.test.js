@@ -325,6 +325,42 @@ test("county visitor counts stay as written and are not added together", async (
   assert.equal(page.includes("不另加總"), true);
 });
 
+test("an election notice keeps the attachment links and no candidate names", async () => {
+  const { normalizeElectionNotice } = await import("../src/adapters.js");
+  const { allowedUrl } = await import("../src/allowlist.js");
+  const notice = normalizeElectionNotice(`<title>115年地方公職人員選舉候選人姓名號次抽籤結果</title><a href="https://web.cec.gov.tw/api/file/a.pdf">縣長抽籤結果 pdf</a><a href="https://example.com/secret.pdf">不收</a>`);
+  assert.equal(notice.published_at, null);
+  assert.deepEqual(notice.files, [{ label: "縣長抽籤結果 pdf", url: "https://web.cec.gov.tw/api/file/a.pdf" }]);
+  assert.equal(JSON.stringify(notice).includes("鄭朝方"), false);
+  assert.equal(allowedUrl("https://web.cec.gov.tw/hccec/article/65398"), true);
+  assert.equal(allowedUrl("https://cec.gov.tw/a"), false);
+  const kept = await runHour({
+    previous: { articles: [], election: { title: "舊公告", files: [] } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.election.title, "舊公告");
+  assert.equal(kept.election.retained, true);
+  const { openNewsDb } = await import("../src/local-db.js");
+  const db = openNewsDb(":memory:");
+  const synced = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    db,
+    body: { tool: "sync_election_data", input: { html: `<title>115年地方公職人員選舉候選人姓名號次抽籤結果</title><a href="https://web.cec.gov.tw/api/file/a.pdf">縣長抽籤結果 pdf</a>` } },
+  });
+  const candidates = await db.prepare("SELECT COUNT(*) AS n FROM candidates").first();
+  const polls = await db.prepare("SELECT COUNT(*) AS n FROM poll_results").first();
+  assert.equal(synced.status, 200);
+  assert.equal(synced.body.candidates_written, 0);
+  assert.equal(synced.body.published_at, null);
+  assert.equal(candidates.n, 0);
+  assert.equal(polls.n, 0);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不轉寫人名"), true);
+});
+
 test("a hidden url is skipped and the next article fills the list", () => {
   const rows = selectArticles([
     { original_title: "新竹市新公告", source_url: "https://www.hsinchu.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" },
@@ -720,6 +756,11 @@ test("published news file stays within the real cap", () => {
   assert.match(data.visitors.period, /^\d{4}-\d{2}$/);
   assert.equal(data.visitors.total, undefined);
   assert.ok(data.visitors.rows.every((row) => row.name && (row.visits === null || /^\d+$/.test(row.visits)) && (row.change === null || /^-?\d+$/.test(row.change))));
+  assert.equal(data.election.published_at, null);
+  assert.ok(String(data.election.title || "").includes("抽籤結果"));
+  assert.ok(data.election.files.length >= 1);
+  assert.ok(data.election.files.every((file) => String(file.url).startsWith("https://web.cec.gov.tw/api/file/") && String(file.url).endsWith(".pdf")));
+  assert.equal(JSON.stringify(data.election).includes("鄭朝方"), false);
 });
 
 test("a failed council fetch keeps the previous notices", async () => {
