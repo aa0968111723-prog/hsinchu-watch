@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 CORE = ("index", "compare", "topics", "polls", "commentary", "manual", "person")
 PRIMARY = (("總覽", "index"), ("比較", "compare"), ("議題", "topics"),
            ("民調", "polls"), ("評論", "commentary"), ("手動收錄", "manual"))
-MORE = (("完整收錄資料", "/archive.html"), ("候選人多面向", "/compare.html#candidateReview"), ("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
+MORE = (("完整收錄資料", "/archive.html"), ("新聞索引", "/news-hourly.html"), ("候選人多面向", "/compare.html#candidateReview"), ("地方治理追蹤", "/governance.html"), ("政績與政見", "/records.html"), ("議題地圖", "/maps.html"),
         ("指標對照", "/compare-panels.html"), ("逐筆比較", "/reference/compare.html"),
         ("議題立場", "/reference/topics.html"), ("即時與社群", "/reference/index.html"),
         ("陳見賢", "/person.html?id=chen"))
