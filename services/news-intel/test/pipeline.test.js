@@ -382,8 +382,9 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.equal(kept.replaced, false);
   assert.equal(kept.articles.length, 1);
   const { sameSnapshot } = await import("../src/publish-gate.js");
-  const { deployCommand } = await import("../src/publish-gate.js");
+  const { deployCommand, PUBLISH_TIMEOUT_MS } = await import("../src/publish-gate.js");
   assert.match(deployCommand("C:\\mirror", "C:\\wrangler.js"), /node "C:\\wrangler.js" pages deploy .*--commit-message "Publish the hourly Hsinchu news index"/);
+  assert.equal(PUBLISH_TIMEOUT_MS < 60 * 60 * 1000, true);
   assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "c" }), false);
   assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "b" }), true);
   const unconnected = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "sync_poll_metadata" } });

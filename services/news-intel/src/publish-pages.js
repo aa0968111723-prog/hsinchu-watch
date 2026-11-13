@@ -2,7 +2,7 @@ import { copyFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { deployCommand, sameSnapshot } from "./publish-gate.js";
+import { deployCommand, PUBLISH_TIMEOUT_MS, sameSnapshot } from "./publish-gate.js";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
 const mirror = `${process.env.TEMP}\\hsinchu-pages-mirror`;
@@ -32,11 +32,12 @@ if (!sameSnapshot(live, local)) {
 copyFileSync(fileURLToPath(new URL("../../../public/data/news-intel/latest.json", import.meta.url)), `${mirror}\\data\\news-intel\\latest.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
 const wranglerBin = fileURLToPath(new URL("../node_modules/wrangler/bin/wrangler.js", import.meta.url));
-const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit" });
+const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit", timeout: PUBLISH_TIMEOUT_MS });
 const status = deployed.status ?? 1;
 writeFileSync(fileURLToPath(new URL("../state/publish-status.json", import.meta.url)), JSON.stringify({
   published: status === 0,
   status,
+  timed_out: deployed.error?.code === "ETIMEDOUT",
   at: new Date().toISOString(),
 }, null, 2));
 process.exit(status);
