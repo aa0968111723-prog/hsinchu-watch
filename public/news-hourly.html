@@ -40,6 +40,9 @@
   <p id="school-status" class="meta"></p>
   <h2>新竹縣幼兒園名錄</h2>
   <p id="kindergarten-status" class="meta"></p>
+  <h2>新竹縣固定式科學儀器</h2>
+  <p id="camera-status" class="meta"></p>
+  <ol id="cameras"></ol>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -118,6 +121,8 @@ const populationStatus = document.querySelector("#population-status");
 const parkingStatus = document.querySelector("#parking-status");
 const schoolStatus = document.querySelector("#school-status");
 const kindergartenStatus = document.querySelector("#kindergarten-status");
+const cameraStatus = document.querySelector("#camera-status");
+const cameraList = document.querySelector("#cameras");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -293,6 +298,24 @@ fetch("/data/news-intel/latest.json")
       source.textContent = "資料集頁";
       kindergartenStatus.append(" ", source);
     }
+    const cameras = data.cameras;
+    const cameraRows = Array.isArray(cameras?.rows) ? cameras.rows : [];
+    const cameraPeriodText = cameras?.period_text ? `資料期間沿用來源描述 ${cameras.period_text}。` : "來源頁沒有寫表次。";
+    cameraStatus.textContent = cameraRows.length
+      ? `${cameraPeriodText}${cameraRows.length} 處。這是設備清冊，不是今日執法紀錄。速限和座標沿用原文。`
+      : "這一輪沒有科學儀器清冊，沒有補地點。";
+    if (cameras?.source_url && cameraRows.length) {
+      const source = document.createElement("a");
+      source.href = cameras.source_url;
+      source.textContent = "資料集頁";
+      cameraStatus.append(" ", source);
+    }
+    for (const row of cameraRows) {
+      const item = document.createElement("li");
+      const speed = row.speed_limit === null || row.speed_limit === undefined || row.speed_limit === "" ? "速限未填" : `速限 ${row.speed_limit}`;
+      item.textContent = `${row.district || "行政區未填"} ${row.place || "地點未填"} · ${row.offense || "取締項目未填"} · ${speed}`;
+      cameraList.append(item);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -402,6 +425,7 @@ fetch("/data/news-intel/latest.json")
     parkingStatus.textContent = "停車場資料讀取失敗。頁面沒有改用假資料。";
     schoolStatus.textContent = "學區資料讀取失敗。頁面沒有改用假資料。";
     kindergartenStatus.textContent = "幼兒園名錄讀取失敗。頁面沒有改用假資料。";
+    cameraStatus.textContent = "科學儀器清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";

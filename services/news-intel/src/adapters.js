@@ -136,6 +136,8 @@ export const COUNTY_SCHOOL_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendat
 export const COUNTY_SCHOOL_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=350";
 export const COUNTY_KINDERGARTEN_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/348/b36fa839-e361-4d3a-b06d-99ae6c78f122.json";
 export const COUNTY_KINDERGARTEN_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=348";
+export const COUNTY_CAMERA_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/297/f65385d7-f178-4cee-8ccc-053c14aadfdb.json";
+export const COUNTY_CAMERA_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=297";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -175,6 +177,17 @@ export function kindergartenPeriod(html) {
   const roc = Number(match[1]);
   if (!Number.isInteger(roc) || roc < 1 || roc > 300) return { period: null, period_text: null };
   return { period: null, period_text: `${match[1]}學年度` };
+}
+
+export function cameraListPeriod(html) {
+  const text = String(html || "").replace(/<[^>]+>/g, " ");
+  const block = text.match(/資料集描述[:：]\s*(.{0,80})/)?.[1] || "";
+  const match = block.match(/(\d{4})(\d{2})/);
+  if (!match) return { period: null, period_text: null };
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  if (year < 2000 || year > 2100 || month < 1 || month > 12) return { period: null, period_text: null };
+  return { period: `${match[1]}-${match[2]}`, period_text: `${match[1]}${match[2]}` };
 }
 
 function originalNumber(value) {
@@ -385,6 +398,30 @@ export function normalizeCountyKindergartens(payload) {
       address,
       township: township || null,
       region_id: PARKING_DISTRICTS[township] || null,
+    }];
+  });
+}
+
+export function normalizeCountyCameras(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const place = String(row?.["設置地點"] || "").trim();
+    const district = String(row?.["行政區"] || "").trim();
+    if (!place || !district) return [];
+    return [{
+      code: originalNumber(row["編號"]),
+      county: String(row["縣市"] || "").trim() || null,
+      district,
+      region_id: PARKING_DISTRICTS[district] || null,
+      kind: String(row["種類"] || "").trim() || null,
+      offense: String(row["取締項目"] || "").trim() || null,
+      place,
+      latitude: originalNumber(row["緯度"]),
+      longitude: originalNumber(row["經度"]),
+      direction: String(row["拍攝方向"] || "").trim() || null,
+      speed_limit: originalNumber(row["速限"]),
+      station: String(row["轄區分局"] || "").trim() || null,
     }];
   });
 }

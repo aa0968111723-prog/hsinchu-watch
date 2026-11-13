@@ -37,6 +37,7 @@ try {
     parking: existing.parking || null,
     schools: existing.schools || null,
     kindergartens: existing.kindergartens || null,
+    cameras: existing.cameras || null,
     visitors: existing.visitors || null,
     beds: existing.beds || null,
     debt: existing.debt || null,
@@ -115,6 +116,14 @@ const payload = {
   parking: parkingPublish.summary,
   schools: schoolPublish.summary,
   kindergartens: kindergartenPublish.summary,
+  cameras: publishable.cameras ? {
+    source_url: publishable.cameras.source_url,
+    dataset_url: publishable.cameras.dataset_url,
+    period: publishable.cameras.period,
+    period_text: publishable.cameras.period_text,
+    rows: publishable.cameras.rows,
+    note: publishable.cameras.note,
+  } : null,
   visitors: publishable.visitors ? {
     source_url: publishable.visitors.source_url,
     dataset_url: publishable.visitors.dataset_url,

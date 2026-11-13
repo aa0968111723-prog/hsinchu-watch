@@ -333,6 +333,51 @@ test("county kindergarten roster drops phone numbers and keeps the school year t
   assert.equal(page.includes("不換成西元年"), true);
 });
 
+test("county speed cameras keep the written limit and are not today's enforcement", async () => {
+  const { cameraListPeriod, normalizeCountyCameras } = await import("../src/adapters.js");
+  const rows = normalizeCountyCameras(JSON.stringify([
+    { "編號": 1, "縣市": "新竹縣", "行政區": "竹北市", "種類": "固定式", "取締項目": "超速", "設置地點": "縣政一路", "緯度": "24.80", "經度": "121.00", "拍攝方向": "北向", "速限": 0, "電話": "不應留下" },
+    { "編號": 2, "縣市": "新竹縣", "行政區": "新埔鄉", "種類": "固定式", "取締項目": "闖紅燈", "設置地點": "褒忠路", "緯度": "", "經度": "", "速限": "" },
+    { "行政區": "竹北市", "設置地點": " ", "速限": 50 },
+  ]));
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].region_id, "zhubei");
+  assert.equal(rows[0].speed_limit, "0");
+  assert.equal(rows[0].latitude, "24.80");
+  assert.equal(rows[1].region_id, null);
+  assert.equal(rows[1].speed_limit, null);
+  assert.equal(rows[1].latitude, null);
+  assert.equal(JSON.stringify(rows).includes("不應留下"), false);
+  assert.deepEqual(cameraListPeriod("<p>資料集描述：固定式科學儀器執法設備設置地點表202509，本局取締項目列有闖紅燈之地點皆包含越線。</p>"), { period: "2025-09", period_text: "202509" });
+  assert.deepEqual(cameraListPeriod("<p>資料集描述：沒有表次</p><p>電話 03-5518101</p>"), { period: null, period_text: null });
+  const kept = await runHour({
+    previous: { articles: [], cameras: { period_text: "202509", rows: [{ place: "舊點" }] } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.cameras.rows.length, 1);
+  assert.equal(kept.cameras.retained, true);
+  assert.equal(kept.articles.length, 1);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-speed-cameras", payload: JSON.stringify([{ "行政區": "竹東鎮", "設置地點": "東寧路", "速限": "50" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-speed-cameras", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.rows[0].region_id, "zhudong");
+  assert.equal(imported.body.rows[0].speed_limit, "50");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不是今日執法紀錄"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -994,6 +1039,13 @@ test("published news file stays within the real cap", () => {
     const roster = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/kindergartens.json", import.meta.url), "utf8"));
     assert.equal(roster.kindergartens.length, data.kindergartens.count);
     assert.ok(roster.kindergartens.every((row) => !Object.hasOwn(row, "phone") && !Object.keys(row).some((key) => key.includes("電話"))));
+  }
+  if (data.cameras?.rows) {
+    assert.equal(data.cameras.period, "2025-09");
+    assert.equal(data.cameras.period_text, "202509");
+    assert.ok(data.cameras.rows.length > 0);
+    assert.ok(data.cameras.rows.every((row) => row.place && row.district && (row.speed_limit === null || typeof row.speed_limit === "string")));
+    assert.equal(JSON.stringify(data.cameras.rows).includes("電話"), false);
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

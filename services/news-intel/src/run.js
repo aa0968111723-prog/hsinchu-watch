@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyDebt, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyCameras, normalizeCountyDebt, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyVisitors, normalizeElectionNotice, populationPeriod, schoolZonePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -60,6 +60,7 @@ export function mergeRun(previous, result) {
       parking: previous?.parking || null,
       schools: previous?.schools || null,
       kindergartens: previous?.kindergartens || null,
+      cameras: previous?.cameras || null,
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
       debt: previous?.debt || null,
@@ -82,6 +83,7 @@ export function mergeRun(previous, result) {
     parking: result.parking === undefined ? (previous?.parking || null) : result.parking,
     schools: result.schools === undefined ? (previous?.schools || null) : result.schools,
     kindergartens: result.kindergartens === undefined ? (previous?.kindergartens || null) : result.kindergartens,
+    cameras: result.cameras === undefined ? (previous?.cameras || null) : result.cameras,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
@@ -244,6 +246,30 @@ async function loadCountyKindergartens(fetcher, previous) {
   }
 }
 
+async function loadCountyCameras(fetcher, previous) {
+  const kept = previous?.cameras ? { ...previous.cameras, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const page = await fetcher(COUNTY_CAMERA_PAGE);
+    const file = await fetcher(COUNTY_CAMERA_URL);
+    if (!page?.ok || !file?.ok || typeof page.text !== "function" || typeof file.text !== "function") return kept;
+    const rows = normalizeCountyCameras(await file.text());
+    if (!rows.length) return kept;
+    const period = cameraListPeriod(await page.text());
+    return {
+      source_url: COUNTY_CAMERA_PAGE,
+      dataset_url: COUNTY_CAMERA_URL,
+      period: period.period,
+      period_text: period.period_text,
+      rows,
+      retained: false,
+      note: "沿用資料檔的設置地點、取締項目和速限原文。這是設備清冊，不是今日執法紀錄。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
 async function loadCountyParking(fetcher, previous) {
   const kept = previous?.parking ? { ...previous.parking, retained: true } : null;
   if (typeof fetcher !== "function") return kept;
@@ -396,6 +422,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       parking: await loadCountyParking(fetcher, previous),
       schools: await loadCountySchools(fetcher, previous),
       kindergartens: await loadCountyKindergartens(fetcher, previous),
+      cameras: await loadCountyCameras(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
       debt: await loadCountyDebt(fetcher, previous),
