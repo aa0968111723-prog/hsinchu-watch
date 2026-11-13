@@ -44,7 +44,7 @@
 - [x] 截圖存 `docs/map/screenshots/`
 - [x] `docs/map/`：使用方式、資料來源與授權、整合介面、WebGL 評估
 - [x] 既有檢查未被破壞：`python tools/audit_publication.py`、`npm run test:release`、`npm run build`、`npm run test:browser`（2026-11-13 重跑皆 exit 0）
-- [ ] 提交分支、更新檢查點與交接、通知第四線
+- [x] 提交分支、更新檢查點與交接、通知第四線（`abe3ac9` → `origin/cursor/20261113-map`）
 
 ## 之後（不在首批驗收內，列出避免假裝完成）
 
