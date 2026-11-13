@@ -246,6 +246,8 @@ def main():
         shutil.copyfile(editorial / "civic.html", output / "civic.html")
     if (editorial / "ui-lab.html").exists():
         shutil.copyfile(editorial / "ui-lab.html", output / "ui-lab.html")
+    if (editorial / "atlas.html").exists():
+        shutil.copyfile(editorial / "atlas.html", output / "atlas.html")
     # Governance records belong to the checked editorial release, not the legacy election feed.
     for name in ("governance.json", "governance-registry.json", "candidate-review.json"):
         shutil.copyfile(editorial / "data" / name, output / "data" / name)
