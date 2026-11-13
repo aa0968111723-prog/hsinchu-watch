@@ -1,4 +1,5 @@
 import { linkEvents } from "./pipeline.js";
+import { parsePublisherTimestamp } from "./verify.js";
 
 async function digest(text) {
   const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
@@ -74,4 +75,27 @@ export async function persistArticles(db, { articles, now, actor = "scheduler" }
   }
   await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_articles', ?, ?)").bind(crypto.randomUUID(), actor, `inserted=${inserted};revised=${revised}`, now).run();
   return { inserted, revised };
+}
+
+export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
+  let inserted = 0;
+  const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();
+  if (!agency) {
+    await db.prepare("INSERT INTO government_agencies (id, name, region_id) VALUES (?, ?, ?)").bind("hsinchu-county-council", "新竹縣議會", "hsinchu-county").run();
+  }
+  for (const item of announcements || []) {
+    const published = parsePublisherTimestamp(item.publisher_timestamp);
+    const title = String(item.original_title || "").trim();
+    const sourceUrl = String(item.source_url || "");
+    if (!published || !title || !sourceUrl.startsWith("https://www.hcc.gov.tw/")) continue;
+    const existing = await db.prepare("SELECT id, title FROM government_announcements WHERE source_url = ?").bind(sourceUrl).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO government_announcements (id, agency_id, title, source_url, published_on, created_at) VALUES (?, ?, ?, ?, ?, ?)").bind(crypto.randomUUID(), "hsinchu-county-council", title, sourceUrl, published, now).run();
+      inserted += 1;
+    } else if (existing.title !== title) {
+      await db.prepare("UPDATE government_announcements SET title = ?, published_on = ? WHERE id = ?").bind(title, published, existing.id).run();
+    }
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_announcements', ?, ?)").bind(crypto.randomUUID(), actor, `inserted=${inserted}`, now).run();
+  return { inserted };
 }

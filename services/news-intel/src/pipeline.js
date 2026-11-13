@@ -32,15 +32,23 @@ export function normalizeTitle(title) {
   return String(title || "").toLowerCase().replace(/[^\p{Letter}\p{Number}]+/gu, "");
 }
 
+const OFFICIAL_HSINCHU = new Set(["hsinchu-county-news", "hsinchu-city-news", "hsinchu-county-council"]);
+
 export function selectArticles(candidates) {
   const seen = new Set();
   const selected = [];
-  for (const item of candidates || []) {
+  const ranked = [...(candidates || [])].sort((left, right) => {
+    const leftTime = parsePublisherTimestamp(left?.publisher_timestamp) || "";
+    const rightTime = parsePublisherTimestamp(right?.publisher_timestamp) || "";
+    return rightTime.localeCompare(leftTime);
+  });
+  for (const item of ranked) {
     const url = String(item?.source_url || "");
     const title = String(item?.original_title || "").trim();
     const published = parsePublisherTimestamp(item?.publisher_timestamp);
     if (!url.startsWith("https://") || !title || !published) continue;
-    if (!regionFor(`${title} ${item.summary || ""}`)) continue;
+    const region = regionFor(`${title} ${item.summary || ""}`) || (OFFICIAL_HSINCHU.has(item.source_id) ? item.region_id : null);
+    if (!region) continue;
     const key = normalizeTitle(title);
     if (seen.has(url) || seen.has(key)) continue;
     seen.add(url);
@@ -49,7 +57,7 @@ export function selectArticles(candidates) {
       ...item,
       original_title: title,
       source_url: url,
-      region_id: regionFor(`${title} ${item.summary || ""}`),
+      region_id: region,
       publisher_timestamp: published,
       review_status: "pending_index",
     });

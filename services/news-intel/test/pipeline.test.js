@@ -48,6 +48,7 @@ test("blocks private and off-allowlist fetches", () => {
   assert.equal(allowedUrl("http://169.254.169.254/latest"), false);
   assert.equal(allowedUrl("https://example.com/story"), false);
   assert.equal(allowedUrl("https://www.hsinchu.gov.tw/News.aspx"), true);
+  assert.equal(allowedUrl("https://www.hcc.gov.tw/detail?program=151&article=3465"), true);
   const blocked = handleMcp({
     authorization: "Bearer collector-token",
     tokens,
@@ -76,6 +77,21 @@ test("a failed hour keeps the last successful articles", async () => {
   assert.equal(poll.verification_status, "UNVERIFIED");
   assert.equal(poll.fact_fields_allowed, false);
   assert.deepEqual(mergeRun(previous, { ok: false, error: "down" }).articles, previous.articles);
+});
+
+test("newer dated items outrank older ones and council notices keep their source date", async () => {
+  const older = { original_title: "新竹縣舊公告", source_url: "https://www.hsinchu.gov.tw/old", publisher_timestamp: "2026-10-01", source_id: "hsinchu-county-news" };
+  const newer = { original_title: "新竹市新公告", source_url: "https://www.hccg.gov.tw/new", publisher_timestamp: "2026-11-13T09:00:00.000Z", source_id: "hsinchu-city-news" };
+  assert.equal(selectArticles([older, newer])[0].source_url, newer.source_url);
+  const { normalizeCouncilHtml } = await import("../src/adapters.js");
+  const rows = normalizeCouncilHtml(`<main class="new"><section class="new_list"><a href="detail?program=151&article=3465"></a><p class="new-box__date">2026.10.30</p><h4 class="new-box__title">本會第20屆第8次定期會延會變更議事日程表<公告></h4></section><section class="new_list"><a href="detail?program=151&article=3442"></a><p class="new-box__date">2026.10.27</p><h4 class="new-box__title">本會第20屆第8次定期會變更議事日程表</h4></section><section class="trivia-box__list"><a href="detail?article=1"></a><p class="trivia-box-date">2026-02-13</p><h3>活動花絮</h3></section></main>`);
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].original_title, "本會第20屆第8次定期會延會變更議事日程表<公告>");
+  assert.equal(rows[0].publisher_timestamp, "2026-10-30");
+  assert.equal(rows[0].source_url, "https://www.hcc.gov.tw/detail?program=151&article=3465");
+  assert.equal(rows[1].source_url, "https://www.hcc.gov.tw/detail?program=151&article=3442");
+  assert.equal(rows[0].region_id, "hsinchu-county");
+  assert.equal(selectArticles(rows).length, 2);
 });
 
 test("city list keeps a dated municipal item and drops a blank date", async () => {
@@ -194,6 +210,18 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM project_budgets").get().n, 0);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM review_queue WHERE status = 'open'").get().n, 1);
   assert.equal(db.prepare("SELECT content_version FROM articles WHERE source_url = ?").get(articles[0].source_url).content_version, 2);
+  const { persistAnnouncements } = await import("../src/persist.js");
+  const notices = await persistAnnouncements(d1, {
+    announcements: [{ original_title: "本會第20屆第8次定期會延會變更議事日程表", source_url: "https://www.hcc.gov.tw/detail?program=151&article=3465", publisher_timestamp: "2026-10-30" }],
+    now: "2026-11-13T02:00:00.000Z",
+  });
+  const repeated = await persistAnnouncements(d1, {
+    announcements: [{ original_title: "本會第20屆第8次定期會延會變更議事日程表", source_url: "https://www.hcc.gov.tw/detail?program=151&article=3465", publisher_timestamp: "2026-10-30" }],
+    now: "2026-11-13T03:00:00.000Z",
+  });
+  assert.equal(notices.inserted, 1);
+  assert.equal(repeated.inserted, 0);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM government_announcements").get().n, 1);
   const kept = snapshotPayload({ articles: [{ original_title: "舊資料" }], last_success_at: "2026-11-13T01:00:00.000Z" }, { ok: true, articles: [] });
   assert.equal(kept.replaced, false);
   assert.equal(kept.articles.length, 1);

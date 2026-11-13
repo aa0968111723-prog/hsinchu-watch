@@ -1,5 +1,5 @@
 import { handleMcp } from "./mcp.js";
-import { persistArticles, snapshotPayload } from "./persist.js";
+import { persistAnnouncements, persistArticles, snapshotPayload } from "./persist.js";
 import { runHour } from "./run.js";
 
 async function previousSnapshot(env) {
@@ -52,6 +52,9 @@ export default {
     await env.DB.prepare(
       "INSERT INTO agent_runs (id, started_at, finished_at, status, article_count, gemini_used, error) VALUES (?, datetime('now'), datetime('now'), ?, ?, ?, ?)"
     ).bind(crypto.randomUUID(), result.ok ? "ok" : "failed", result.articles.length, result.gemini?.use ? 1 : 0, result.ok ? null : result.error).run();
+    if (result.ok && result.announcements?.length) {
+      await persistAnnouncements(env.DB, { announcements: result.announcements, now: result.last_success_at });
+    }
     const snapshot = snapshotPayload(previous, result);
     if (snapshot.replaced) {
       await persistArticles(env.DB, { articles: result.articles, now: result.last_success_at });
