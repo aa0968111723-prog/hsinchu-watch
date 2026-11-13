@@ -1,14 +1,9 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T17:49:02.337Z",
+  "last_success_at": "2026-11-13T18:10:51.966Z",
   "count": 20,
-  "failures": [
-    {
-      "id": "hsinchu-city-news",
-      "error": "empty_parse"
-    }
-  ],
+  "failures": [],
   "gemini": {
     "use": false,
     "reason": "missing_gemini_key",
@@ -25,6 +20,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T13:56:00.000Z",
       "feed_time_kind": "updated",
+      "source_unavailable": false,
       "source_name": "中央社",
       "related_urls": []
     },
@@ -38,6 +34,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T13:41:00.000Z",
       "feed_time_kind": "updated",
+      "source_unavailable": false,
       "source_name": "中央社",
       "related_urls": []
     },
@@ -51,6 +48,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T09:05:09.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -64,6 +62,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T08:30:57.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -77,6 +76,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T05:43:22.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -90,6 +90,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T02:22:43.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -103,6 +104,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T01:57:13.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -116,106 +118,9 @@
       "date_checked": true,
       "page_published_at": "2026-11-13T01:41:22.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
-    },
-    {
-      "title": "竹市深化2030雙語教育！第四屆英文菁英盃1,178人參賽 高虹安市長：培養學子英語力、接軌國際",
-      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=a7845b3a-7e29-4fcf-8d14-9f1fc586ef17",
-      "published_at": "2026-11-13",
-      "region_id": "hsinchu-city",
-      "verification_status": "SINGLE_SOURCE",
-      "claim_kind": "official_notice",
-      "date_checked": true,
-      "page_published_at": "2026-11-13",
-      "feed_time_kind": "",
-      "source_name": "新竹市政府",
-      "related_urls": [],
-      "source_unavailable": true
-    },
-    {
-      "title": "竹市警察局無人機隊成軍！導入AI提升治安維護與應變效能 高虹安市長：科技助力守護市民",
-      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=62acbba7-4353-4059-8731-6cc64066a914",
-      "published_at": "2026-11-13",
-      "region_id": "hsinchu-city",
-      "verification_status": "SINGLE_SOURCE",
-      "claim_kind": "official_notice",
-      "date_checked": true,
-      "page_published_at": "2026-11-13",
-      "feed_time_kind": "",
-      "source_name": "新竹市政府",
-      "related_urls": [],
-      "source_unavailable": true
-    },
-    {
-      "title": "竹市首屆「茶花公主」8強出爐！高虹安市長：11/21二二八公園決戰 卓文萱壓軸獻唱",
-      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=693982df-c9de-4e1e-97b5-832cb7a28f4c",
-      "published_at": "2026-11-13",
-      "region_id": "hsinchu-city",
-      "verification_status": "SINGLE_SOURCE",
-      "claim_kind": "official_notice",
-      "date_checked": true,
-      "page_published_at": "2026-11-13",
-      "feed_time_kind": "",
-      "source_name": "新竹市政府",
-      "related_urls": [],
-      "source_unavailable": true
-    },
-    {
-      "title": "聯合國總部展出作品跨海來竹市！高虹安市長：以藝術串聯國際交流與在地關懷",
-      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=9061d9ea-013f-447e-9a4e-7c1b59878e58",
-      "published_at": "2026-11-13",
-      "region_id": "hsinchu-city",
-      "verification_status": "SINGLE_SOURCE",
-      "claim_kind": "official_notice",
-      "date_checked": true,
-      "page_published_at": "2026-11-13",
-      "feed_time_kind": "",
-      "source_name": "新竹市政府",
-      "related_urls": [],
-      "source_unavailable": true
-    },
-    {
-      "title": "觀音山新竹金剛手道場致贈570份蔬食便當傳遞愛心 高虹安市長感謝推廣蔬食環保共創永續城市",
-      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=4f2b377c-8322-45ba-b3e2-e300a64cd4d2",
-      "published_at": "2026-11-13",
-      "region_id": "hsinchu-city",
-      "verification_status": "SINGLE_SOURCE",
-      "claim_kind": "official_notice",
-      "date_checked": true,
-      "page_published_at": "2026-11-13",
-      "feed_time_kind": "",
-      "source_name": "新竹市政府",
-      "related_urls": [],
-      "source_unavailable": true
-    },
-    {
-      "title": "《竹塹文獻》三十載薪傳！竹市攜手清大辦竹塹學國際學術研討會 高虹安市長：讓城市記憶走向世界",
-      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=e987929d-2a4f-4af1-8571-5921639e2009",
-      "published_at": "2026-11-13",
-      "region_id": "hsinchu-city",
-      "verification_status": "SINGLE_SOURCE",
-      "claim_kind": "official_notice",
-      "date_checked": true,
-      "page_published_at": "2026-11-13",
-      "feed_time_kind": "",
-      "source_name": "新竹市政府",
-      "related_urls": [],
-      "source_unavailable": true
-    },
-    {
-      "title": "竹市勇奪亞太永續會展獎銀級及永續導覽卓越獎 高虹安市長：讓永續融入市民生活",
-      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=6126e7ec-76fc-4848-9eb8-1519329b9b63",
-      "published_at": "2026-11-13",
-      "region_id": "hsinchu-city",
-      "verification_status": "SINGLE_SOURCE",
-      "claim_kind": "official_notice",
-      "date_checked": true,
-      "page_published_at": "2026-11-13",
-      "feed_time_kind": "",
-      "source_name": "新竹市政府",
-      "related_urls": [],
-      "source_unavailable": true
     },
     {
       "title": "新竹縣地區11月16日至18日辦理加嗅系統維護作業",
@@ -227,6 +132,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T09:17:18.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -240,6 +146,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T07:25:05.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -253,6 +160,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T06:03:30.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -266,6 +174,7 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T05:42:44.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
       "related_urls": []
     },
@@ -279,7 +188,106 @@
       "date_checked": true,
       "page_published_at": "2026-11-12T05:26:35.000Z",
       "feed_time_kind": "",
+      "source_unavailable": false,
       "source_name": "新竹縣政府",
+      "related_urls": []
+    },
+    {
+      "title": "竹縣「逐風趣」深度農旅開跑 串聯3大路線帶您探索客庄與原鄉魅力",
+      "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358180",
+      "published_at": "2026-11-11T07:05:00.000Z",
+      "region_id": "hsinchu-county",
+      "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
+      "date_checked": true,
+      "page_published_at": "2026-11-11T07:05:07.000Z",
+      "feed_time_kind": "",
+      "source_unavailable": false,
+      "source_name": "新竹縣政府",
+      "related_urls": []
+    },
+    {
+      "title": "高中五大方案再添里程碑！竹縣首座公辦公營「竹北實驗高中」今揭牌啟航",
+      "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358176",
+      "published_at": "2026-11-11T04:05:00.000Z",
+      "region_id": "zhubei",
+      "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
+      "date_checked": true,
+      "page_published_at": "2026-11-11T03:54:34.000Z",
+      "feed_time_kind": "",
+      "source_unavailable": false,
+      "source_name": "新竹縣政府",
+      "related_urls": []
+    },
+    {
+      "title": "讓學生成為國際交流舞台上的主角 竹縣東興國中以閱讀開啟臺捷對話",
+      "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358175",
+      "published_at": "2026-11-11T03:50:00.000Z",
+      "region_id": "hsinchu-county",
+      "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
+      "date_checked": true,
+      "page_published_at": "2026-11-11T03:36:27.000Z",
+      "feed_time_kind": "",
+      "source_unavailable": false,
+      "source_name": "新竹縣政府",
+      "related_urls": []
+    },
+    {
+      "title": "新竹縣公辦政見發表會11月18日起登場 縣長政見發表電視+YT直播邀鄉親收看",
+      "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358167",
+      "published_at": "2026-11-11T03:15:00.000Z",
+      "region_id": "hsinchu-county",
+      "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
+      "date_checked": true,
+      "page_published_at": "2026-11-11T03:15:00.000Z",
+      "feed_time_kind": "",
+      "source_unavailable": false,
+      "source_name": "新竹縣政府",
+      "related_urls": []
+    },
+    {
+      "title": "「2026青草湖光影藝術節」盛大開幕！高虹安市長「喚光」點亮湖畔 邀民眾共賞湖光藝術之美",
+      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=1b09d443-b1c7-4af5-8349-275e8034eefe",
+      "published_at": "2026-11-07",
+      "region_id": "hsinchu-city",
+      "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
+      "date_checked": true,
+      "page_published_at": "2026-11-07",
+      "feed_time_kind": "",
+      "source_unavailable": false,
+      "source_name": "新竹市政府",
+      "related_urls": []
+    },
+    {
+      "title": "攜手相伴一甲子！竹市表揚68對鑽石婚夫妻 高虹安市長祝福長輩幸福呷百二",
+      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=7343c132-bf65-4b8c-bc1b-3a192c3fc220",
+      "published_at": "2026-11-07",
+      "region_id": "hsinchu-city",
+      "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
+      "date_checked": true,
+      "page_published_at": "2026-11-07",
+      "feed_time_kind": "",
+      "source_unavailable": false,
+      "source_name": "新竹市政府",
+      "related_urls": []
+    },
+    {
+      "title": "「2026新竹童樂會」孔廟巡迴最終站登場！高虹安市長邀親子11/14齊聚大湳雅公園「能量大集結」",
+      "url": "https://www.hccg.gov.tw/hccg/app/data/view?module=municipalnews&id=30122&serno=1eccd791-6191-4996-a9ce-c2142cee9738",
+      "published_at": "2026-11-07",
+      "region_id": "hsinchu-city",
+      "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
+      "date_checked": true,
+      "page_published_at": "2026-11-07",
+      "feed_time_kind": "",
+      "source_unavailable": false,
+      "source_name": "新竹市政府",
       "related_urls": []
     }
   ],
@@ -568,41 +576,9 @@
     ],
     "note": "只列急性一般病床的許可數和開放數，沿用原文。檔案寫 0 就保留 0。其他床別不加總。"
   },
-  "election": {
-    "title": "115年地方公職人員選舉候選人姓名號次抽籤結果",
-    "source_url": "https://web.cec.gov.tw/hccec/article/65398",
-    "published_at": null,
-    "files": [
-      {
-        "label": "1-115年新竹縣縣長選舉候選人抽籤結果1027 pdf 116 KB",
-        "url": "https://web.cec.gov.tw/api/file/d2e6c0e2-4579-4034-ad98-fa2baca90066.pdf"
-      },
-      {
-        "label": "2-115年新竹縣縣議員選舉候選人抽籤結果1027 pdf 166 KB",
-        "url": "https://web.cec.gov.tw/api/file/76561c9b-2eaa-4cee-9b4e-de1f46510459.pdf"
-      },
-      {
-        "label": "3-115年新竹縣鄉鎮市長選舉候選人號次抽籤結果1027 pdf 134 KB",
-        "url": "https://web.cec.gov.tw/api/file/77b4cc63-fcb1-41e9-b0cd-da5493f1dd09.pdf"
-      },
-      {
-        "label": "4-115年新竹縣鄉鎮市民代表選舉候選人抽籤結果1027 pdf 209 KB",
-        "url": "https://web.cec.gov.tw/api/file/e30ea230-638c-48b7-acaa-7f729b7f262c.pdf"
-      },
-      {
-        "label": "5-115年新竹縣村里長選舉候選人抽籤結果1027 pdf 241 KB",
-        "url": "https://web.cec.gov.tw/api/file/896537f4-4c49-471a-a834-b8f9cec1b3bf.pdf"
-      }
-    ],
-    "note": "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。"
-  },
-  "changes": {
-    "added": [],
-    "removed": []
-  },
-  "duration_ms": 15094,
-  "model_review": [],
   "debt": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=5",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/5/519f61d1-d792-4f7e-8873-46a6f41898ed.json",
     "period": "2026-10",
     "period_text": "截至115年10月底止",
     "unit": "新臺幣元",
@@ -610,8 +586,6 @@
     "short_term": "0",
     "per_person": "8358",
     "self_liquidating": "0",
-    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=5",
-    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/5/519f61d1-d792-4f7e-8873-46a6f41898ed.json",
     "note": "金額沿用欄位原文。單位是欄名寫的新臺幣元。這是未償餘額，不是歲出決算或實支。0 是資料檔的 0。"
   },
   "air": {
@@ -679,5 +653,55 @@
       }
     ],
     "note": "只留檔案裡最新的民國年月。這不是今天的即時空氣。數值沿用原文，欄名沒有單位就不另加。「—」和空值維持未填。"
-  }
+  },
+  "election": {
+    "title": "115年地方公職人員選舉候選人姓名號次抽籤結果",
+    "source_url": "https://web.cec.gov.tw/hccec/article/65398",
+    "published_at": null,
+    "files": [
+      {
+        "label": "1-115年新竹縣縣長選舉候選人抽籤結果1027 pdf 116 KB",
+        "url": "https://web.cec.gov.tw/api/file/d2e6c0e2-4579-4034-ad98-fa2baca90066.pdf"
+      },
+      {
+        "label": "2-115年新竹縣縣議員選舉候選人抽籤結果1027 pdf 166 KB",
+        "url": "https://web.cec.gov.tw/api/file/76561c9b-2eaa-4cee-9b4e-de1f46510459.pdf"
+      },
+      {
+        "label": "3-115年新竹縣鄉鎮市長選舉候選人號次抽籤結果1027 pdf 134 KB",
+        "url": "https://web.cec.gov.tw/api/file/77b4cc63-fcb1-41e9-b0cd-da5493f1dd09.pdf"
+      },
+      {
+        "label": "4-115年新竹縣鄉鎮市民代表選舉候選人抽籤結果1027 pdf 209 KB",
+        "url": "https://web.cec.gov.tw/api/file/e30ea230-638c-48b7-acaa-7f729b7f262c.pdf"
+      },
+      {
+        "label": "5-115年新竹縣村里長選舉候選人抽籤結果1027 pdf 241 KB",
+        "url": "https://web.cec.gov.tw/api/file/896537f4-4c49-471a-a834-b8f9cec1b3bf.pdf"
+      }
+    ],
+    "note": "頁面沒有發布日期，不拿抓取時間充當。號次在附件，這裡不轉寫人名。"
+  },
+  "changes": {
+    "added": [
+      "竹縣「逐風趣」深度農旅開跑 串聯3大路線帶您探索客庄與原鄉魅力",
+      "高中五大方案再添里程碑！竹縣首座公辦公營「竹北實驗高中」今揭牌啟航",
+      "讓學生成為國際交流舞台上的主角 竹縣東興國中以閱讀開啟臺捷對話",
+      "新竹縣公辦政見發表會11月18日起登場 縣長政見發表電視+YT直播邀鄉親收看",
+      "「2026青草湖光影藝術節」盛大開幕！高虹安市長「喚光」點亮湖畔 邀民眾共賞湖光藝術之美",
+      "攜手相伴一甲子！竹市表揚68對鑽石婚夫妻 高虹安市長祝福長輩幸福呷百二",
+      "「2026新竹童樂會」孔廟巡迴最終站登場！高虹安市長邀親子11/14齊聚大湳雅公園「能量大集結」"
+    ],
+    "removed": [
+      "竹市深化2030雙語教育！第四屆英文菁英盃1,178人參賽 高虹安市長：培養學子英語力、接軌國際",
+      "竹市警察局無人機隊成軍！導入AI提升治安維護與應變效能 高虹安市長：科技助力守護市民",
+      "竹市首屆「茶花公主」8強出爐！高虹安市長：11/21二二八公園決戰 卓文萱壓軸獻唱",
+      "聯合國總部展出作品跨海來竹市！高虹安市長：以藝術串聯國際交流與在地關懷",
+      "觀音山新竹金剛手道場致贈570份蔬食便當傳遞愛心 高虹安市長感謝推廣蔬食環保共創永續城市",
+      "《竹塹文獻》三十載薪傳！竹市攜手清大辦竹塹學國際學術研討會 高虹安市長：讓城市記憶走向世界",
+      "竹市勇奪亞太永續會展獎銀級及永續導覽卓越獎 高虹安市長：讓永續融入市民生活"
+    ]
+  },
+  "duration_ms": 22348,
+  "model_review": []
 }
