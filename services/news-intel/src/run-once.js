@@ -31,6 +31,7 @@ try {
 } catch {
   previous = { articles: [], last_success_at: null };
 }
+const started = Date.now();
 let hidden = new Set();
 try {
   hidden = await hiddenSourceUrls();
@@ -74,6 +75,7 @@ const payload = {
   public_records: publishable.public_records || [],
   city_catalog: catalogParts.summary,
   changes: articleChanges(previous.articles, publishable.articles),
+  duration_ms: Date.now() - started,
   model_review: publishable.model_review || [],
 };
 mkdirSync(new URL("../state/", import.meta.url), { recursive: true });
@@ -84,4 +86,4 @@ try {
 }
 writeFileSync(new URL("../state/last-run.json", import.meta.url), JSON.stringify(payload, null, 2));
 if (publishable.ok) writeFileSync(publicUrl, JSON.stringify(payload, null, 2));
-console.log(JSON.stringify({ ok: publishable.ok, retained: publishable.retained, count: publishable.articles.length, failures: publishable.failures, gemini: publishable.gemini }, null, 2));
+console.log(JSON.stringify({ ok: publishable.ok, retained: publishable.retained, count: publishable.articles.length, failures: publishable.failures, gemini: publishable.gemini, duration_ms: payload.duration_ms }, null, 2));

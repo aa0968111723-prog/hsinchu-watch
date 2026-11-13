@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { authorize } from "../src/auth.js";
 import { allowedUrl } from "../src/allowlist.js";
-import { articleChanges, decideGemini, linkEvents, placeLabel, regionFor, regionGroup, selectArticles } from "../src/pipeline.js";
+import { articleChanges, decideGemini, formatDuration, linkEvents, placeLabel, regionFor, regionGroup, selectArticles } from "../src/pipeline.js";
 import { handleMcp } from "../src/mcp.js";
 import { mergeRun, runHour } from "../src/run.js";
 import { publicationFields } from "../src/verify.js";
@@ -68,6 +68,15 @@ test("the http mcp entry replays the same write", async () => {
   assert.equal(replay.status, 202);
   assert.equal(replayBody.replayed, true);
   assert.equal(replayBody.accepted, 1);
+});
+
+test("round duration is a whole number of seconds", () => {
+  assert.equal(formatDuration(22_400), "本輪抓取 22 秒。");
+  assert.equal(formatDuration(0), "本輪抓取 0 秒。");
+  assert.equal(formatDuration(-1), "");
+  const html = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(html.includes("本輪抓取"), true);
+  assert.equal(html.includes("個來源沒讀到，既有資料保留。"), true);
 });
 
 test("the first news list has no previous diff", () => {

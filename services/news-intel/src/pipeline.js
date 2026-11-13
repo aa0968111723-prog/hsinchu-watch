@@ -107,6 +107,11 @@ export function selectArticles(candidates, hidden = new Set()) {
   return selected;
 }
 
+export function formatDuration(ms) {
+  if (!Number.isFinite(ms) || ms < 0) return "";
+  return `本輪抓取 ${Math.round(ms / 1000)} 秒。`;
+}
+
 export function articleChanges(previous, next) {
   const before = previous || [];
   if (!before.length) return null;
