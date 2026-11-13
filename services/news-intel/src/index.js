@@ -24,16 +24,18 @@ export default {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/api/v1/news") {
       const rows = env.DB
-        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status FROM articles ORDER BY publisher_timestamp DESC LIMIT 20").all()
+        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status FROM articles WHERE review_status NOT IN ('rejected', 'retracted') AND verification_status != 'RETRACTED' ORDER BY publisher_timestamp DESC LIMIT 20").all()
         : { results: [] };
       return Response.json({ articles: rows.results || [], note: "pending_index 不是已查核事實" });
     }
     if (request.method === "POST" && url.pathname === "/mcp") {
       const body = await request.json().catch(() => null);
-      const result = handleMcp({
+      const result = await handleMcp({
         authorization: request.headers.get("authorization"),
         body,
         tokens: tokensFromEnv(env),
+        db: env.DB,
+        fetcher: (target) => fetch(target, { headers: { "user-agent": "HsinchuNewsIntel/0.1" } }),
       });
       return Response.json(result.body, { status: result.status });
     }

@@ -31,11 +31,11 @@ test("caps at 20 and collapses reprints", () => {
   assert.equal(reprints[0].article_ids.length, 2);
 });
 
-test("anonymous and under-scoped writes are rejected", () => {
+test("anonymous and under-scoped writes are rejected", async () => {
   assert.equal(authorize(null, "submit_article_batch", tokens).status, 401);
   assert.equal(authorize("Bearer reader-token", "submit_article_batch", tokens).status, 403);
   assert.equal(authorize("Bearer collector-token", "retract_article", tokens).status, 403);
-  const accepted = handleMcp({
+  const accepted = await handleMcp({
     authorization: "Bearer collector-token",
     tokens,
     body: { tool: "submit_article_batch", input: { articles: [{ original_title: "竹北開工", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13" }] } },
@@ -44,12 +44,12 @@ test("anonymous and under-scoped writes are rejected", () => {
   assert.equal(accepted.body.accepted, 1);
 });
 
-test("blocks private and off-allowlist fetches", () => {
+test("blocks private and off-allowlist fetches", async () => {
   assert.equal(allowedUrl("http://169.254.169.254/latest"), false);
   assert.equal(allowedUrl("https://example.com/story"), false);
   assert.equal(allowedUrl("https://www.hsinchu.gov.tw/News.aspx"), true);
   assert.equal(allowedUrl("https://www.hcc.gov.tw/detail?program=151&article=3465"), true);
-  const blocked = handleMcp({
+  const blocked = await handleMcp({
     authorization: "Bearer collector-token",
     tokens,
     body: { tool: "fetch_source_document", input: { url: "https://example.com/secret" } },
@@ -123,20 +123,20 @@ test("a failed council fetch keeps the previous notices", async () => {
   assert.equal(result.ok, true);
   assert.equal(result.announcements.length, 1);
   assert.equal(result.announcements[0].title, "舊公告");
-  const registry = handleMcp({ authorization: "Bearer reader-token", tokens, body: { tool: "list_source_registry" } });
+  const registry = await handleMcp({ authorization: "Bearer reader-token", tokens, body: { tool: "list_source_registry" } });
   assert.equal(registry.body.sources.some((source) => source.id === "hsinchu-county-council" && source.url === "https://www.hcc.gov.tw/" && source.needs_key === false), true);
-  const failed = handleMcp({ authorization: "Bearer reader-token", tokens, state: { failures: [{ id: "hsinchu-county-council", error: "timeout" }] }, body: { tool: "get_failed_sources" } });
+  const failed = await handleMcp({ authorization: "Bearer reader-token", tokens, state: { failures: [{ id: "hsinchu-county-council", error: "timeout" }] }, body: { tool: "get_failed_sources" } });
   assert.equal(failed.body.failures[0].id, "hsinchu-county-council");
 });
 
-test("mcp checks dates, duplicates, and refuses unverified facts", () => {
-  const date = handleMcp({
+test("mcp checks dates, duplicates, and refuses unverified facts", async () => {
+  const date = await handleMcp({
     authorization: "Bearer verifier-token",
     tokens,
     body: { tool: "verify_publication_date", input: { publisher_timestamp: "不是日期" } },
   });
   assert.equal(date.body.accepted, false);
-  const dupes = handleMcp({
+  const dupes = await handleMcp({
     authorization: "Bearer verifier-token",
     tokens,
     body: { tool: "detect_duplicate_articles", input: { articles: [
@@ -145,7 +145,7 @@ test("mcp checks dates, duplicates, and refuses unverified facts", () => {
     ] } },
   });
   assert.equal(dupes.body.events, 1);
-  const refused = handleMcp({
+  const refused = await handleMcp({
     authorization: "Bearer publisher-token",
     tokens,
     body: { tool: "approve_verified_article", input: { verification_status: "SINGLE_SOURCE" } },
@@ -245,4 +245,20 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   const kept = snapshotPayload({ articles: [{ original_title: "舊資料" }], last_success_at: "2026-11-13T01:00:00.000Z" }, { ok: true, articles: [] });
   assert.equal(kept.replaced, false);
   assert.equal(kept.articles.length, 1);
+  const { sameSnapshot } = await import("../src/publish-gate.js");
+  assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "c" }), false);
+  assert.equal(sameSnapshot({ index: "a", civic: "b" }, { index: "a", civic: "b" }), true);
+  const unconnected = await handleMcp({ authorization: "Bearer collector-token", tokens, body: { tool: "sync_poll_metadata" } });
+  assert.equal(unconnected.status, 409);
+  const rejected = await handleMcp({ authorization: "Bearer publisher-token", tokens, db: d1, body: { tool: "reject_article", input: { source_url: articles[1].source_url } } });
+  const retracted = await handleMcp({ authorization: "Bearer admin-token", tokens, db: d1, body: { tool: "retract_article", input: { source_url: articles[0].source_url } } });
+  const after = await worker.fetch(new Request("https://news.local/api/v1/news"), { DB: d1 });
+  const visible = await after.json();
+  assert.equal(rejected.status, 200);
+  assert.equal(retracted.status, 200);
+  assert.equal(visible.articles.length, 0);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM articles").get().n, 2);
+  const found = await handleMcp({ authorization: "Bearer reader-token", tokens, db: d1, body: { tool: "search_existing_articles", input: { query: "竹北道路開工更正" } } });
+  assert.equal(found.body.articles.length, 1);
+  assert.equal(found.body.articles[0].verification_status, "RETRACTED");
 });
