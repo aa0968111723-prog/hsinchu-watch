@@ -35,6 +35,10 @@ test("districts stay inside the city or county filter", () => {
   assert.equal(regionFor("香山高中，新竹市"), "hsinchu-city-xiangshan");
   assert.equal(regionFor("新竹縣政府公告"), "hsinchu-county");
   assert.equal(regionFor("湖口再到竹北"), "hukou");
+  assert.equal(regionFor("澳洲消防員訪竹縣", "新竹縣行程行經北埔"), "hsinchu-county");
+  assert.equal(regionFor("沒有地名", "只有北埔"), null);
+  assert.equal(selectArticles([{ original_title: "澳洲消防員訪竹縣", summary: "行程行經北埔", source_url: "https://www.hsinchu.gov.tw/fire", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news" }])[0].region_id, "hsinchu-county");
+  assert.equal(selectArticles([{ original_title: "竹北助選", summary: "新竹縣", source_url: "https://www.cna.com.tw/zb", publisher_timestamp: "2026-11-13", source_id: "cna-atom" }])[0].region_id, "zhubei");
   assert.equal(placeLabel("zhubei"), "新竹縣竹北");
   assert.equal(placeLabel("hsinchu-city-xiangshan"), "新竹市香山");
   const html = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");

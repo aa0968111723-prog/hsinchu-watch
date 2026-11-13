@@ -33,14 +33,18 @@ export function regionGroup(id) {
   return "";
 }
 
-export function regionFor(text) {
+function matchPlace(text, broadOnly = false) {
   const source = String(text || "");
-  const hits = TOWNS.filter(([name]) => source.includes(name));
+  const hits = TOWNS.filter(([name]) => source.includes(name) && (!broadOnly || name === "新竹市" || name === "新竹縣"));
   const specific = hits.filter(([name]) => name !== "新竹市" && name !== "新竹縣");
   const pool = specific.length ? specific : hits;
   if (!pool.length) return null;
   pool.sort((left, right) => source.indexOf(left[0]) - source.indexOf(right[0]));
   return pool[0][1];
+}
+
+export function regionFor(title, summary = "") {
+  return matchPlace(title) || matchPlace(summary, true);
 }
 
 const PLACE_LABELS = Object.fromEntries(TOWNS.map(([name, id]) => [id, name === "新竹市" || name === "新竹縣" ? name : `${name.startsWith("新竹") ? "" : regionGroup(id) === "hsinchu-city" ? "新竹市" : "新竹縣"}${name}`]));
@@ -68,7 +72,8 @@ export function selectArticles(candidates, hidden = new Set()) {
     const title = String(item?.original_title || "").trim();
     const published = parsePublisherTimestamp(item?.publisher_timestamp);
     if (!url.startsWith("https://") || !title || !published || hidden.has(url) || item.source_id === "hsinchu-county-council" || item.source_id === "hsc-expenditure-final") continue;
-    const region = regionFor(`${title} ${item.summary || ""}`) || (OFFICIAL_HSINCHU.has(item.source_id) ? item.region_id : null);
+    const fallback = item.source_id === "hsinchu-city-news" ? "hsinchu-city" : "hsinchu-county";
+    const region = regionFor(title, item.summary || "") || (OFFICIAL_HSINCHU.has(item.source_id) ? (item.region_id || fallback) : null);
     if (!region) continue;
     const key = normalizeTitle(title);
     if (seen.has(url) || seen.has(key)) continue;
