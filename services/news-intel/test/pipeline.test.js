@@ -437,6 +437,9 @@ test("a failed scheduled round keeps the previous database rows", async () => {
     verification_status: "SINGLE_SOURCE",
     review_status: "pending_index",
     claim_kind: "official_notice",
+    date_checked: true,
+    page_published_at: "2026-11-13T09:00:00.000Z",
+    feed_time_kind: "published",
     source_name: "新竹縣政府",
     source_type: "official_rss",
     fetched_at: "2026-11-13T10:00:00.000Z",
@@ -451,6 +454,8 @@ test("a failed scheduled round keeps the previous database rows", async () => {
   const visible = await (await import("../src/index.js")).default.fetch(new Request("https://news.local/api/v1/news"), { DB: d1 });
   const body = await visible.json();
   assert.equal(body.articles[0].claim_kind, "official_notice");
+  assert.equal(body.articles[0].date_checked, 1);
+  assert.equal(body.articles[0].page_published_at, "2026-11-13T09:00:00.000Z");
   assert.equal(stored.claim_kind, "official_notice");
   assert.equal(snapshot.last_success_at, "2026-11-13T10:00:00.000Z");
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM agent_runs").get().n, 2);
