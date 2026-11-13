@@ -228,6 +228,7 @@ test("blocks private and off-allowlist fetches", async () => {
   assert.equal(allowedUrl("https://example.com/story"), false);
   assert.equal(allowedUrl("https://www.hsinchu.gov.tw/News.aspx"), true);
   assert.equal(allowedUrl("https://cna.com.tw/news/a"), true);
+  assert.equal(allowedUrl("https://www.cna.com.tw/news/a"), true);
   assert.equal(allowedUrl("https://hsinchu.gov.tw/a"), false);
   assert.equal(allowedUrl("https://www.hcc.gov.tw/detail?program=151&article=3465"), true);
   const blocked = await handleMcp({
