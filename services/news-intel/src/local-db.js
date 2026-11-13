@@ -10,13 +10,15 @@ export function openNewsDb(file) {
   for (const name of ["0001_init.sql", "0002_snapshot.sql", "0003_final_accounts.sql"]) {
     db.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), "utf8"));
   }
-  for (const statement of readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8").split(";")) {
+  for (const name of ["0004_article_dates.sql", "0005_related_urls.sql"]) {
+    for (const statement of readFileSync(new URL(`../migrations/${name}`, import.meta.url), "utf8").split(";")) {
     const sql = statement.trim();
     if (!sql) continue;
     try {
       db.exec(sql);
     } catch (error) {
       if (!String(error.message || error).includes("duplicate column")) throw error;
+    }
     }
   }
   return {

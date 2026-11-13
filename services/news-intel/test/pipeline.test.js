@@ -503,6 +503,7 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0005_related_urls.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
       const statement = (params) => ({
@@ -534,6 +535,7 @@ test("applied migration serves articles and keeps unverified claims out of fact 
       source_name: "新竹縣政府",
       source_type: "official_rss",
       fetched_at: "2026-11-13T02:00:00.000Z",
+      related_urls: ["https://www.cna.com.tw/related", "http://example.com/no"],
     },
     {
       original_title: "新竹市民調支持度",
@@ -559,6 +561,7 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   assert.equal(repeat.inserted + repeat.revised, 0);
   assert.equal(revised.revised, 1);
   assert.equal(body.articles.length, 2);
+  assert.deepEqual(body.articles.find((article) => article.source_url === "https://www.hsinchu.gov.tw/a").related_urls, ["https://www.cna.com.tw/related"]);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM poll_results").get().n, 0);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM project_budgets").get().n, 0);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM review_queue WHERE status = 'open'").get().n, 1);
@@ -631,6 +634,7 @@ test("a failed scheduled round keeps the previous database rows", async () => {
   db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0005_related_urls.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {
       const statement = (params) => ({
@@ -683,6 +687,7 @@ test("final account text stays unchanged in the database and the read API", asyn
   db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0004_article_dates.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0005_related_urls.sql", import.meta.url), "utf8"));
   db.exec(readFileSync(new URL("../migrations/0003_final_accounts.sql", import.meta.url), "utf8"));
   const d1 = {
     prepare(sql) {

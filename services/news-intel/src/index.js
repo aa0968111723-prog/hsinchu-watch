@@ -58,9 +58,18 @@ export default {
     }
     if (request.method === "GET" && url.pathname === "/api/v1/news") {
       const rows = env.DB
-        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status, claim_kind, date_checked, page_published_at, feed_time_kind FROM articles WHERE review_status NOT IN ('rejected', 'retracted') AND verification_status != 'RETRACTED' ORDER BY publisher_timestamp DESC LIMIT 20").all()
+        ? await env.DB.prepare("SELECT id, original_title, source_url, publisher_timestamp, region_id, verification_status, review_status, claim_kind, date_checked, page_published_at, feed_time_kind, related_urls FROM articles WHERE review_status NOT IN ('rejected', 'retracted') AND verification_status != 'RETRACTED' ORDER BY publisher_timestamp DESC LIMIT 20").all()
         : { results: [] };
-      return Response.json({ articles: rows.results || [], note: "pending_index 不是已查核事實" });
+      const articles = (rows.results || []).map((row) => {
+        let related = [];
+        try {
+          related = JSON.parse(row.related_urls || "[]");
+        } catch {
+          related = [];
+        }
+        return { ...row, related_urls: Array.isArray(related) ? related : [] };
+      });
+      return Response.json({ articles, note: "pending_index 不是已查核事實" });
     }
     if (request.method === "POST" && url.pathname === "/mcp") {
       const body = await request.json().catch(() => null);
