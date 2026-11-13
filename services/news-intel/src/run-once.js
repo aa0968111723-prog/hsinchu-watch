@@ -46,6 +46,7 @@ const payload = {
     claim_kind: article.claim_kind,
     date_checked: article.date_checked,
     page_published_at: article.page_published_at || null,
+    feed_time_kind: article.feed_time_kind || "",
     source_name: article.source_name,
   })),
   announcements: result.announcements || [],

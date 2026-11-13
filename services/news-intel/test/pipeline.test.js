@@ -134,6 +134,10 @@ test("a failed hour keeps the last successful articles", async () => {
   const { readPagePublishedAt } = await import("../src/verify.js");
   assert.equal(readPagePublishedAt('"datePublished": "2026-11-13T21:56:00+08:00"'), "2026-11-13T13:56:00.000Z");
   assert.equal(pageDateAgrees("2026-11-13T14:16:16.000Z", '"datePublished": "2026-11-13T21:56:00+08:00"'), false);
+  assert.equal(pageDateAgrees("2026-11-13T14:16:16.000Z", '"datePublished": "2026-11-13T21:56:00+08:00"', { dayOnly: true }), true);
+  const { normalizeCnaAtom } = await import("../src/adapters.js");
+  const cna = normalizeCnaAtom('<entry><title>竹北開工</title><link href="https://www.cna.com.tw/a"/><updated>2026-11-13T22:16:16+08:00</updated></entry>');
+  assert.equal(cna[0].feed_time_kind, "updated");
   assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", '"datePublished": "2026-11-13 17:05:09"'), true);
   assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", '"datePublished": "2026-11-12 17:05:09"'), false);
   assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", "<p>沒有日期</p>"), null);

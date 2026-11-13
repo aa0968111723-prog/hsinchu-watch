@@ -105,10 +105,13 @@ export function normalizeFinalAccounts(payload) {
 export function normalizeCnaAtom(xml) {
   return items(xml, "entry").map((block) => {
     const link = block.match(/<link[^>]+href="([^"]+)"/i)?.[1] || "";
+    const published = textOf(block, "published");
+    const updated = textOf(block, "updated");
     return {
       original_title: textOf(block, "title"),
       source_url: decode(link),
-      publisher_timestamp: textOf(block, "published") || textOf(block, "updated"),
+      publisher_timestamp: published || updated,
+      feed_time_kind: published ? "published" : updated ? "updated" : "",
       summary: textOf(block, "summary").slice(0, 180),
       source_name: "中央社",
       source_type: "news_rss",

@@ -53,10 +53,10 @@ export function readPagePublishedAt(html) {
   return new Date(parsed).toISOString();
 }
 
-export function pageDateAgrees(publishedAt, html) {
+export function pageDateAgrees(publishedAt, html, options = {}) {
   const pageTime = readPagePublishedAt(html);
   if (!pageTime) return null;
-  if (/^\d{4}-\d{2}-\d{2}$/.test(pageTime) || /^\d{4}-\d{2}-\d{2}$/.test(String(publishedAt))) {
+  if (options.dayOnly || /^\d{4}-\d{2}-\d{2}$/.test(pageTime) || /^\d{4}-\d{2}-\d{2}$/.test(String(publishedAt))) {
     return taipeiDay(pageTime) === taipeiDay(publishedAt);
   }
   const feedTime = Date.parse(publishedAt);

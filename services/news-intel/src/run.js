@@ -74,7 +74,7 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
       try {
         const response = await fetcher(article.source_url);
         const html = response?.ok ? await response.text() : "";
-        const agrees = pageDateAgrees(article.publisher_timestamp, html);
+        const agrees = pageDateAgrees(article.publisher_timestamp, html, { dayOnly: article.feed_time_kind === "updated" });
         const pagePublishedAt = readPagePublishedAt(html);
         if (agrees === false) {
           articles.push({ ...article, verification_status: "UNVERIFIED", review_status: "needs_review", fact_fields_allowed: false, date_checked: false, page_published_at: pagePublishedAt });

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T15:25:10.936Z",
+  "last_success_at": "2026-11-13T15:27:28.525Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -15,10 +15,11 @@
       "url": "https://www.cna.com.tw/news/aipl/202611130318.aspx",
       "published_at": "2026-11-13T14:16:16.000Z",
       "region_id": "hsinchu-county",
-      "verification_status": "UNVERIFIED",
+      "verification_status": "SINGLE_SOURCE",
       "claim_kind": "candidate_statement",
-      "date_checked": false,
+      "date_checked": true,
       "page_published_at": "2026-11-13T13:56:00.000Z",
+      "feed_time_kind": "updated",
       "source_name": "中央社"
     },
     {
@@ -26,10 +27,11 @@
       "url": "https://www.cna.com.tw/news/aipl/202611130315.aspx",
       "published_at": "2026-11-13T14:01:16.000Z",
       "region_id": "hsinchu-county",
-      "verification_status": "UNVERIFIED",
+      "verification_status": "SINGLE_SOURCE",
       "claim_kind": "candidate_statement",
-      "date_checked": false,
+      "date_checked": true,
       "page_published_at": "2026-11-13T13:41:00.000Z",
+      "feed_time_kind": "updated",
       "source_name": "中央社"
     },
     {
@@ -41,6 +43,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-13",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -52,6 +55,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-13",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -63,6 +67,7 @@
       "claim_kind": "project_progress",
       "date_checked": true,
       "page_published_at": "2026-11-13",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -74,6 +79,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-13",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -85,6 +91,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-13",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -96,6 +103,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-13",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -107,6 +115,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-12",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -118,6 +127,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-12",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -129,6 +139,7 @@
       "claim_kind": "project_progress",
       "date_checked": true,
       "page_published_at": "2026-11-12",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -140,6 +151,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-12",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -151,6 +163,7 @@
       "claim_kind": "project_progress",
       "date_checked": true,
       "page_published_at": "2026-11-12",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -162,6 +175,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-11",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -173,6 +187,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-11",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -184,6 +199,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-11",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -195,6 +211,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-11",
+      "feed_time_kind": "",
       "source_name": "新竹縣政府"
     },
     {
@@ -206,6 +223,7 @@
       "claim_kind": "official_notice",
       "date_checked": true,
       "page_published_at": "2026-11-06",
+      "feed_time_kind": "",
       "source_name": "新竹市政府"
     },
     {
@@ -217,6 +235,7 @@
       "claim_kind": "project_progress",
       "date_checked": true,
       "page_published_at": "2026-10-28",
+      "feed_time_kind": "",
       "source_name": "新竹市政府"
     },
     {
@@ -228,6 +247,7 @@
       "claim_kind": "project_progress",
       "date_checked": true,
       "page_published_at": "2026-09-16",
+      "feed_time_kind": "",
       "source_name": "新竹市政府"
     }
   ],
