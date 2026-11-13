@@ -160,6 +160,8 @@ export const COUNTY_EBUS_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/
 export const COUNTY_EBUS_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=313";
 export const COUNTY_FARM_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/349/3850959e-7d70-4bd9-9225-e0be5e0821ec.json";
 export const COUNTY_FARM_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=349";
+export const COUNTY_TREE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/12/68167c51-f4a2-4e23-8c2f-0021e2557ae0.json";
+export const COUNTY_TREE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=12";
 export const COUNTY_RESCUE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/218/bc8484ef-bd7c-4d4e-ada3-09927e301cb5.json";
 export const COUNTY_RESCUE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=218";
 export const COUNTY_BRIDGE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/262/46c9c65a-6261-45a6-ab64-1d8f3ef350ed.json";
@@ -1013,6 +1015,45 @@ export function normalizeCountyDischarge(payload) {
       cumulative: originalNumber(row["累計量_m3"]),
     }];
   });
+}
+
+export function normalizeCountyTrees(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const species = String(row?.["樹種"] || "").trim();
+    const place = String(row?.["生長地點"] || "").trim();
+    if (!species || !place) return [];
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => place.includes(label)) || "";
+    return [{
+      code: originalNumber(row["編號"]),
+      species,
+      age_years: originalNumber(row["樹齡-年"]),
+      height_m: originalNumber(row["樹高-m"]),
+      girth_m: originalNumber(row["胸圍-m"]),
+      diameter_m: originalNumber(row["胸徑-m"]),
+      crown_m2: originalNumber(row["冠幅-m2"]),
+      place,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+      ownership: String(row["土地權屬"] || "").trim() || null,
+      coord_x: originalNumber(row["座標X"]),
+      coord_y: originalNumber(row["座標Y"]),
+    }];
+  });
+}
+
+export function splitTrees(trees) {
+  if (!trees?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: trees.source_url,
+    dataset_url: trees.dataset_url,
+    count: trees.count,
+    download_url: "/data/news-intel/old-trees.json",
+    note: trees.note || "樹種、生長地點、樹齡和測量值沿用原文。空白測量留空，不補 0。座標沿用原文，不換成經緯度。沒有日期欄，不拿抓取時間充當。聯絡人沒有入檔。",
+  };
+  const download = Array.isArray(trees.trees) ? { ...summary, trees: trees.trees } : null;
+  return { summary, download };
 }
 
 export function normalizeSpecialClasses(payload) {

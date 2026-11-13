@@ -1,4 +1,4 @@
-import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_JUNIOR_PAGE, COUNTY_JUNIOR_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_CRASH_PAGE, COUNTY_CRASH_URL, COUNTY_DISCHARGE_PAGE, COUNTY_DISCHARGE_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyCrashes, normalizeCountyDebt, normalizeCountyDischarge, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, schoolZonePeriod, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts, normalizeSpecialClasses, summarizeUsePermits, toiletUpdatePeriod } from "./adapters.js";
+import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_JUNIOR_PAGE, COUNTY_JUNIOR_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_TREE_PAGE, COUNTY_TREE_URL, COUNTY_RESCUE_PAGE, COUNTY_RESCUE_URL, COUNTY_BRIDGE_PAGE, COUNTY_BRIDGE_URL, COUNTY_RIVER_PAGE, COUNTY_RIVER_URL, COUNTY_CRASH_PAGE, COUNTY_CRASH_URL, COUNTY_DISCHARGE_PAGE, COUNTY_DISCHARGE_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBridges, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyCrashes, normalizeCountyDebt, normalizeCountyDischarge, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountyRescue, normalizeCountyRiver, normalizeCountySchools, schoolZonePeriod, normalizeCountyToilets, normalizeCountyTrees, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts, normalizeSpecialClasses, summarizeUsePermits, toiletUpdatePeriod } from "./adapters.js";
 import { authorize, consumeWrite } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
@@ -44,6 +44,7 @@ function sources() {
     { id: "hsc-gas-stations", kind: "transport", url: COUNTY_GAS_URL, docs: COUNTY_GAS_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-electric-buses", kind: "transport", url: COUNTY_EBUS_URL, docs: COUNTY_EBUS_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-organic-farms", kind: "agriculture", url: COUNTY_FARM_URL, docs: COUNTY_FARM_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
+    { id: "hsc-old-trees", kind: "environment", url: COUNTY_TREE_URL, docs: COUNTY_TREE_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-rescue-stats", kind: "public_safety", url: COUNTY_RESCUE_URL, docs: COUNTY_RESCUE_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-bridges", kind: "transport", url: COUNTY_BRIDGE_URL, docs: COUNTY_BRIDGE_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-river-quality", kind: "environment", url: COUNTY_RIVER_URL, docs: COUNTY_RIVER_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
@@ -344,6 +345,23 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
     }
     if (!rows.length) return { status: 409, body: { error: "empty_dataset" } };
     return remember({ status: 200, body: { count: rows.length, rows, stored: false } });
+  }
+  if (tool === "import_government_dataset" && input.dataset === "hsc-old-trees") {
+    let raw = input.payload;
+    if (!raw && fetcher) {
+      const response = await fetcher(COUNTY_TREE_URL);
+      if (!response.ok) return { status: 502, body: { error: `trees_${response.status}` } };
+      raw = await response.text();
+    }
+    if (!raw) return { status: 409, body: { error: "fetcher_unavailable" } };
+    let trees;
+    try {
+      trees = normalizeCountyTrees(raw);
+    } catch {
+      return { status: 400, body: { error: "invalid_dataset" } };
+    }
+    if (!trees.length) return { status: 409, body: { error: "empty_dataset" } };
+    return remember({ status: 200, body: { count: trees.length, trees, stored: false } });
   }
   if (tool === "import_government_dataset" && input.dataset === "hsc-organic-farms") {
     let raw = input.payload;

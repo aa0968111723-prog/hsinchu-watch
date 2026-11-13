@@ -1102,6 +1102,54 @@ test("discharge rows keep the written cumulative instead of adding the daily flo
   assert.equal(page.includes("不另加總"), true);
 });
 
+test("old trees keep blank measurements empty and the written ownership", async () => {
+  const { normalizeCountyTrees, splitTrees } = await import("../src/adapters.js");
+  const trees = normalizeCountyTrees(JSON.stringify([
+    { "編號": "1", "樹種": "榕樹", "樹齡-年": "250", "樹高-m": "", "胸圍-m": "0", "胸徑-m": "2.22", "冠幅-m2": "221.2", "生長地點": "竹北市隘口里福昌宮旁", "土地權屬": "伯公地", "座標X": "253635", "座標Y": "2744148" },
+    { "編號": "2", "樹種": " ", "生長地點": "關西鎮某地", "樹齡-年": "10" },
+  ]));
+  assert.equal(trees.length, 1);
+  assert.equal(trees[0].species, "榕樹");
+  assert.equal(trees[0].place, "竹北市隘口里福昌宮旁");
+  assert.equal(trees[0].region_id, "zhubei");
+  assert.equal(trees[0].age_years, "250");
+  assert.equal(trees[0].height_m, null);
+  assert.equal(trees[0].girth_m, "0");
+  assert.equal(trees[0].ownership, "伯公地");
+  assert.equal(trees[0].coord_x, "253635");
+  assert.equal(trees[0].latitude, undefined);
+  const parts = splitTrees({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=12", dataset_url: "https://ws.hsinchu.gov.tw/trees.json", count: 1, trees });
+  assert.equal(parts.summary.trees, undefined);
+  assert.equal(parts.download.trees[0].height_m, null);
+  const kept = await runHour({
+    previous: { articles: [], trees: { count: 1, trees: [{ code: "1", species: "榕樹", place: "竹北市隘口里福昌宮旁", height_m: null, age_years: "250" }] } },
+    now: "2026-11-14T02:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.trees.trees[0].age_years, "250");
+  assert.equal(kept.trees.trees[0].height_m, null);
+  assert.equal(kept.trees.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-old-trees", payload: JSON.stringify([{ "編號": "9", "樹種": "茄苳樹", "樹齡-年": "116", "生長地點": "關西鎮中山路", "土地權屬": "私" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-old-trees", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.trees[0].region_id, "guanxi");
+  assert.equal(imported.body.trees[0].ownership, "私");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("空白測量留空"), true);
+  assert.equal(page.includes("不換成經緯度"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1908,6 +1956,16 @@ test("published news file stays within the real cap", () => {
     assert.equal(data.discharge.rows.at(-1).cumulative, "602249");
     assert.ok(data.discharge.rows.every((row) => /^\d{8}$/.test(row.date) && typeof row.daily_flow === "string" && typeof row.cumulative === "string" && row.total === undefined));
     assert.equal(JSON.stringify(data.discharge).includes("03-5518101"), false);
+  }
+  if (data.trees) {
+    assert.equal(data.trees.count, 56);
+    assert.equal(data.trees.trees, undefined);
+    const trees = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/old-trees.json", import.meta.url), "utf8"));
+    assert.equal(trees.trees.length, 56);
+    assert.ok(trees.trees.every((row) => row.species && row.place && row.region_id && typeof row.age_years === "string"));
+    assert.ok(trees.trees.some((row) => row.height_m === null));
+    assert.ok(trees.trees.some((row) => row.ownership === "伯公地"));
+    assert.equal(JSON.stringify(trees).includes("03-5518101"), false);
   }
   assert.ok(data.visitors.rows.length >= 1);
   assert.match(data.visitors.period, /^\d{4}-\d{2}$/);

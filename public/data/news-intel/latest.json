@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T20:53:43.248Z",
+  "last_success_at": "2026-11-13T20:57:04.274Z",
   "count": 20,
   "failures": [
     {
@@ -538,6 +538,13 @@
     "count": 111,
     "download_url": "/data/news-intel/organic-farms.json",
     "note": "只留經營者名稱、地址、驗證機構、證書字號、效期、狀態、面積原文和產品品項。效期不另判今天是否仍有效。面積不加總。"
+  },
+  "trees": {
+    "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=12",
+    "dataset_url": "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/12/68167c51-f4a2-4e23-8c2f-0021e2557ae0.json",
+    "count": 56,
+    "download_url": "/data/news-intel/old-trees.json",
+    "note": "樹種、生長地點、樹齡和測量值沿用原文。空白測量留空，不補 0。座標沿用原文，不換成經緯度。沒有日期欄，不拿抓取時間充當。聯絡人沒有入檔。"
   },
   "rescue": {
     "source_url": "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=218",
@@ -1502,6 +1509,6 @@
     "added": [],
     "removed": []
   },
-  "duration_ms": 23336,
+  "duration_ms": 18091,
   "model_review": []
 }

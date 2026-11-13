@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { ADAPTERS, catalogForPublish, splitBridges, splitBusShelters, splitChargers, splitCityCatalog, splitFarms, splitGasStations, splitHeritage, splitHydrants, splitJuniorHigh, splitKindergartens, splitParking, splitRescue, splitRiver, splitSchools, splitSpecialClasses, splitToilets } from "./adapters.js";
+import { ADAPTERS, catalogForPublish, splitBridges, splitBusShelters, splitChargers, splitCityCatalog, splitFarms, splitGasStations, splitHeritage, splitHydrants, splitJuniorHigh, splitKindergartens, splitParking, splitRescue, splitRiver, splitSchools, splitSpecialClasses, splitToilets, splitTrees } from "./adapters.js";
 import { articleChanges } from "./pipeline.js";
 import { backupPreviousNews } from "./backup.js";
 import { hiddenSourceUrls, storeRun, withoutHidden } from "./local-db.js";
@@ -20,6 +20,7 @@ const heritageUrl = new URL("../../../public/data/news-intel/heritage-sites.json
 const chargerUrl = new URL("../../../public/data/news-intel/chargers.json", import.meta.url);
 const gasUrl = new URL("../../../public/data/news-intel/gas-stations.json", import.meta.url);
 const farmUrl = new URL("../../../public/data/news-intel/organic-farms.json", import.meta.url);
+const treeUrl = new URL("../../../public/data/news-intel/old-trees.json", import.meta.url);
 const rescueUrl = new URL("../../../public/data/news-intel/rescue-stats.json", import.meta.url);
 const bridgeUrl = new URL("../../../public/data/news-intel/bridges.json", import.meta.url);
 const riverUrl = new URL("../../../public/data/news-intel/river-quality.json", import.meta.url);
@@ -61,6 +62,7 @@ try {
     gas_stations: existing.gas_stations || null,
     electric_buses: existing.electric_buses || null,
     farms: existing.farms || null,
+    trees: existing.trees || null,
     rescue: existing.rescue || null,
     bridges: existing.bridges || null,
     river: existing.river || null,
@@ -145,6 +147,10 @@ const farmParts = splitFarms(publishable.farms);
 const farmPublish = catalogForPublish(farmParts.download, farmParts.summary, previous.farms, (download) => {
   writeFileSync(farmUrl, JSON.stringify(download));
 });
+const treeParts = splitTrees(publishable.trees);
+const treePublish = catalogForPublish(treeParts.download, treeParts.summary, previous.trees, (download) => {
+  writeFileSync(treeUrl, JSON.stringify(download));
+});
 const rescueParts = splitRescue(publishable.rescue);
 const rescuePublish = catalogForPublish(rescueParts.download, rescueParts.summary, previous.rescue, (download) => {
   writeFileSync(rescueUrl, JSON.stringify(download));
@@ -201,6 +207,7 @@ const payload = {
   chargers: chargerPublish.summary,
   gas_stations: gasPublish.summary,
   farms: farmPublish.summary,
+  trees: treePublish.summary,
   rescue: rescuePublish.summary,
   bridges: bridgePublish.summary,
   river: riverPublish.summary,

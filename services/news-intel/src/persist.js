@@ -607,6 +607,30 @@ export async function persistDischarge(db, { discharge, now, actor = "scheduler"
   return { upserted };
 }
 
+export async function persistTrees(db, { trees, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of trees?.trees || []) {
+    const code = String(row?.code || "").trim();
+    const place = String(row?.place || "").trim();
+    const species = String(row?.species || "").trim();
+    if (!code || !place || !species) continue;
+    keys.push([code, place]);
+    const height = row.height_m ?? null;
+    const existing = await db.prepare("SELECT height_m, ownership FROM old_trees WHERE code = ? AND place = ?").bind(code, place).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO old_trees (code, species, place, township, region_id, age_years, height_m, girth_m, diameter_m, crown_m2, ownership, coord_x, coord_y, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(code, species, place, row.township || null, row.region_id || null, row.age_years || null, height, row.girth_m || null, row.diameter_m || null, row.crown_m2 || null, row.ownership || null, row.coord_x || null, row.coord_y || null, trees.dataset_url, trees.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.height_m ?? null) !== height || (existing.ownership ?? null) !== (row.ownership || null)) {
+      await db.prepare("UPDATE old_trees SET species = ?, township = ?, region_id = ?, age_years = ?, height_m = ?, girth_m = ?, diameter_m = ?, crown_m2 = ?, ownership = ?, coord_x = ?, coord_y = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE code = ? AND place = ?").bind(species, row.township || null, row.region_id || null, row.age_years || null, height, row.girth_m || null, row.diameter_m || null, row.crown_m2 || null, row.ownership || null, row.coord_x || null, row.coord_y || null, trees.dataset_url, trees.source_url, now, code, place).run();
+      upserted += 1;
+    }
+  }
+  await deleteMissing(db, "old_trees", trees?.dataset_url, ["code", "place"], keys);
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_trees', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();
