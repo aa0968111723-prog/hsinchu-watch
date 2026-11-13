@@ -108,9 +108,15 @@ function addItem(parent, title, url, meta, group, related) {
     extra.className = "meta";
     extra.append("相關報導");
     for (const href of links) {
+      let host = "";
+      try {
+        host = new URL(href).host.replace(/^www\./, "");
+      } catch {
+        continue;
+      }
       const rel = document.createElement("a");
       rel.href = href;
-      rel.textContent = new URL(href).host.replace(/^www\./, "");
+      rel.textContent = host;
       extra.append(" ", rel);
     }
     item.append(extra);

@@ -24,6 +24,8 @@ test("news times are shown in Taipei and date-only values stay unchanged", async
   const pageStamp = new Function(`${source[0]}; return taipeiStamp;`)();
   assert.equal(pageStamp("2026-11-13T14:16:16.000Z"), taipeiStamp("2026-11-13T14:16:16.000Z"));
   assert.equal(html.includes('type="module"'), false);
+  assert.equal(html.includes("new URL(href).host"), true);
+  assert.equal(html.includes("catch {"), true);
 });
 
 test("districts stay inside the city or county filter", () => {
