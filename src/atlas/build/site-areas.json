@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "note": "每個已定位案卷的現地範圍。fetch-osm.mjs 依 bbox 向 OpenStreetMap API 讀取一次並快取；build-site-context.mjs 再裁成現地圖資。bbox 為 [西, 南, 東, 北]。",
+  "api": "https://api.openstreetmap.org/api/0.6/map.json",
+  "relation_api": "https://api.openstreetmap.org/api/0.6/relation/{id}/full.json",
+  "min_interval_ms": 2500,
+  "sites": [
+    {
+      "project_id": "taipei-peiying-housing",
+      "bbox": [121.5444, 25.0765, 121.5524, 25.0835],
+      "focus": [121.548438, 25.079967],
+      "half_m": [330, 330],
+      "relations_full": [3298928],
+      "relations_full_note": "基隆河水域多邊形跨出範圍，另讀完整 relation 才能閉合"
+    },
+    {
+      "project_id": "new-taipei-siyuan-footbridge",
+      "bbox": [121.4553, 25.0577, 121.4637, 25.0652],
+      "focus": [121.459841, 25.060478],
+      "half_m": [330, 330],
+      "relations_full": []
+    },
+    {
+      "project_id": "hsinchu-county-baozhong-road",
+      "bbox": [121.0285, 24.8275, 121.0445, 24.8465],
+      "focus": [121.0363, 24.8370],
+      "half_m": [620, 900],
+      "relations_full": [4557366],
+      "relations_full_note": "鳳山溪水域多邊形跨出範圍，另讀完整 relation 才能閉合"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# 原始下載與中間產物不進版控；來源網址、下載時間與 sha256 記在 public/data/geo/manifest.json
+.cache/

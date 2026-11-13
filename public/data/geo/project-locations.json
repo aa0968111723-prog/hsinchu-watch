@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-13T08:47:50+08:00",
+  "reviewed_at": "2026-11-13",
+  "based_on": {
+    "governance_reviewed_at": "2026-11-12",
+    "governance_files": [
+      "public/data/governance.json",
+      "public/data/governance-registry.json"
+    ]
+  },
+  "scope_note": "治理首批四個案卷的位置查核。三案有可核對座標，一案只有地段地號而列入待定位。這不是各地完整工程清單。",
+  "crs": "GeoJSON WGS84，座標順序 [經度, 緯度]",
+  "precision_legend": {
+    "site": "機關公布的基地點位或可對應到基地範圍",
+    "street": "原文寫到路段起迄或路口，座標取該路段或路口，不是構造物的實測位置",
+    "area": "只能確定在某個行政區或地段範圍內",
+    "unknown": "沒有可核對的座標，不畫在地圖上"
+  },
+  "summary": {
+    "total": 4,
+    "located": 3,
+    "pending": 1,
+    "by_precision": {
+      "site": 1,
+      "street": 2,
+      "unknown": 1
+    }
+  },
+  "sources": [
+    {
+      "id": "taipei-heo-map",
+      "name": "水利工程處「重要主題專案」地圖（嵌於工程頁）",
+      "publisher": "臺北市政府工務局水利工程處",
+      "kind": "agency_map",
+      "url": "https://www.google.com/maps/d/viewer?mid=1Qv4dZzjEBq5LTKIax9slTVax7qCBuxI",
+      "data_url": "https://www.google.com/maps/d/kml?mid=1Qv4dZzjEBq5LTKIax9slTVax7qCBuxI&forcekml=1",
+      "embedded_on": "https://heo.gov.taipei/cp.aspx?n=DEDCC5E8E17CD3FB",
+      "checked_at": "2026-11-13"
+    },
+    {
+      "id": "taipei-peiying",
+      "name": "培英公共住宅工程資料",
+      "publisher": "臺北市政府工務局水利工程處",
+      "kind": "project_page",
+      "url": "https://heo.gov.taipei/cp.aspx?n=DEDCC5E8E17CD3FB",
+      "registry_source_id": "taipei-peiying",
+      "checked_at": "2026-11-13"
+    },
+    {
+      "id": "ntp-wedid-siyuan",
+      "name": "新北市政府施政成果網：新莊區思源路跨越新北大道人行天橋新建工程",
+      "publisher": "新北市政府",
+      "kind": "project_page",
+      "url": "https://wedid.ntpc.gov.tw/Governance/Detail/kdqlJDJpPQje",
+      "linked_from": "https://www.publicwork.ntpc.gov.tw/home.jsp?id=512cdd6f20d79814",
+      "checked_at": "2026-11-13"
+    },
+    {
+      "id": "ntp-works",
+      "name": "在建工程專區",
+      "publisher": "新北市政府工務局",
+      "kind": "project_register",
+      "url": "https://www.publicwork.ntpc.gov.tw/home.jsp?id=512cdd6f20d79814",
+      "registry_source_id": "ntp-works",
+      "checked_at": "2026-11-13"
+    },
+    {
+      "id": "hsc-baozhong",
+      "name": "褒忠路道路拓寬工程開工公告",
+      "publisher": "新竹縣政府",
+      "kind": "agency_release",
+      "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&sms=8603&s=358194",
+      "registry_source_id": "hsc-baozhong",
+      "checked_at": "2026-11-13"
+    },
+    {
+      "id": "hcc-xiangshan",
+      "name": "香山四號道路補辦土地徵收公告",
+      "publisher": "新竹市政府地政處",
+      "kind": "official_notice",
+      "url": "https://land.hccg.gov.tw/news/?mode=data&id=1159&parent_id=10004&type_id=10588&vc=c6c43670fef5fd8bd5237394956448ee",
+      "registry_source_id": "hcc-xiangshan",
+      "checked_at": "2026-11-13"
+    },
+    {
+      "id": "nlsc-townvillage",
+      "name": "國土測繪圖資服務雲：點位所在行政區與地段查詢",
+      "publisher": "內政部國土測繪中心",
+      "kind": "official_api",
+      "url": "https://api.nlsc.gov.tw/other/TownVillagePointQuery/{lon}/{lat}/4326",
+      "checked_at": "2026-11-13"
+    },
+    {
+      "id": "osm",
+      "name": "OpenStreetMap",
+      "publisher": "OpenStreetMap contributors",
+      "kind": "community_map",
+      "url": "https://www.openstreetmap.org/",
+      "license": "odbl-1.0",
+      "checked_at": "2026-11-13"
+    }
+  ],
+  "locations": [
+    {
+      "project_id": "taipei-peiying-housing",
+      "region_id": "taipei",
+      "district": {
+        "id": "63000040",
+        "name": "中山區",
+        "basis": "座標對 districts.geojson 做點在多邊形內判斷，並與原文行政區相符"
+      },
+      "location_text": "選定位於中山區永安里並鄰近明水公園的「培英公共住宅」為本府公共住宅政策推動之標竿計畫，本基地面積2,898.24平方公尺",
+      "location_text_source_id": "taipei-peiying",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.548438,
+          25.079967
+        ]
+      },
+      "anchor": [
+        121.548438,
+        25.079967
+      ],
+      "location_precision": "site",
+      "coordinate_source": {
+        "source_id": "taipei-heo-map",
+        "url": "https://www.google.com/maps/d/viewer?mid=1Qv4dZzjEBq5LTKIax9slTVax7qCBuxI",
+        "checked_at": "2026-11-13",
+        "basis": "主辦機關在工程頁嵌入的官方地圖上，名為「臺北市中山區培英基地公共住宅新建工程」的標記點；標記說明連回同一工程頁。",
+        "published_as": "Latitude: 25.07996665017　Longitude: 121.548438130461"
+      },
+      "corroboration": [
+        {
+          "kind": "nlsc_village",
+          "source_id": "nlsc-townvillage",
+          "url": "https://api.nlsc.gov.tw/other/TownVillagePointQuery/121.548438130461/25.07996665017/4326",
+          "checked_at": "2026-11-13",
+          "result": "臺北市中山區永安里（北安段三小段）",
+          "agrees_with": "工程頁原文「中山區永安里」"
+        },
+        {
+          "kind": "osm_site_polygon",
+          "source_id": "osm",
+          "extract": "taipei-peiying-housing",
+          "relation": 9603522,
+          "official_area_m2": 2898.24,
+          "max_marker_distance_m": 30,
+          "compares_with": "工程頁原文「基地面積2,898.24平方公尺」",
+          "note": "OpenStreetMap 是志願者製圖，這裡只當旁證。",
+          "osm": {
+            "ref": "relation/9603522",
+            "version": 3,
+            "timestamp": "2020-03-01T16:10:45Z",
+            "url": "https://www.openstreetmap.org/relation/9603522"
+          },
+          "osm_name": "培英社會住宅(施工中)",
+          "osm_area_m2": 2480,
+          "difference_pct": -14.4,
+          "marker_inside": false,
+          "marker_distance_m": 5.2
+        },
+        {
+          "kind": "osm_feature_distance",
+          "source_id": "osm",
+          "extract": "taipei-peiying-housing",
+          "relation": 4730757,
+          "label": "明水公園",
+          "compares_with": "工程頁原文「鄰近明水公園」",
+          "osm": {
+            "ref": "relation/4730757",
+            "version": 3,
+            "timestamp": "2020-06-24T07:15:47Z",
+            "url": "https://www.openstreetmap.org/relation/4730757"
+          },
+          "osm_name": "明水公園",
+          "distance_m": 38
+        }
+      ],
+      "caveats": [
+        "座標是機關地圖上的一個標記點，不是建物輪廓的實測角點。",
+        "標記點在 OpenStreetMap 所畫施工範圍的邊緣外側數公尺，兩者並不完全重合。"
+      ],
+      "pending": null,
+      "site_context": "sites/taipei-peiying-housing.geojson",
+      "site_frame": {
+        "center": [
+          121.548438,
+          25.079967
+        ],
+        "half_m": [
+          330,
+          330
+        ]
+      }
+    },
+    {
+      "project_id": "new-taipei-siyuan-footbridge",
+      "region_id": "new-taipei",
+      "district": {
+        "id": "65000050",
+        "name": "新莊區",
+        "basis": "座標對 districts.geojson 做點在多邊形內判斷，並與原文行政區相符"
+      },
+      "location_text": "本案新建天橋位於新莊區新北大道及思源路口，跨越新北大道銜接捷運環狀線Y20新北產業園區站空橋電梯，橋梁長度達72公尺(58公尺 14公尺)",
+      "location_text_source_id": "ntp-wedid-siyuan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.459841,
+          25.060478
+        ]
+      },
+      "anchor": [
+        121.459841,
+        25.060478
+      ],
+      "location_precision": "street",
+      "coordinate_source": {
+        "source_id": "osm",
+        "url": "https://www.openstreetmap.org/node/9948702060",
+        "checked_at": "2026-11-13",
+        "basis": "原文所載「新北大道及思源路口」：取 OpenStreetMap 上思源路與新北大道三段中心線相交的五個路口節點的平均位置。這是路口位置，不是天橋落墩或梯口的實測位置。",
+        "elements": [
+          {
+            "ref": "node/2480081283",
+            "version": 7,
+            "timestamp": "2020-01-20T15:55:57Z",
+            "url": "https://www.openstreetmap.org/node/2480081283"
+          },
+          {
+            "ref": "node/1214520665",
+            "version": 9,
+            "timestamp": "2020-06-19T06:07:16Z",
+            "url": "https://www.openstreetmap.org/node/1214520665"
+          },
+          {
+            "ref": "node/2480081279",
+            "version": 6,
+            "timestamp": "2020-06-19T06:07:16Z",
+            "url": "https://www.openstreetmap.org/node/2480081279"
+          },
+          {
+            "ref": "node/5497817989",
+            "version": 5,
+            "timestamp": "2020-06-20T03:19:16Z",
+            "url": "https://www.openstreetmap.org/node/5497817989"
+          },
+          {
+            "ref": "node/9948702060",
+            "version": 1,
+            "timestamp": "2022-08-12T05:57:51Z",
+            "url": "https://www.openstreetmap.org/node/9948702060"
+          }
+        ],
+        "selection": "思源路與新北大道各車道中心線的共用節點（路口號誌節點）",
+        "node_spread_m": 15.8
+      },
+      "corroboration": [
+        {
+          "kind": "osm_feature_distance",
+          "source_id": "osm",
+          "extract": "new-taipei-siyuan-footbridge",
+          "node": 2083320848,
+          "label": "環狀線 Y20 新北產業園區站",
+          "compares_with": "原文「銜接捷運環狀線Y20新北產業園區站」",
+          "osm": {
+            "ref": "node/2083320848",
+            "version": 24,
+            "timestamp": "2024-10-10T14:44:44Z",
+            "url": "https://www.openstreetmap.org/node/2083320848"
+          },
+          "osm_name": "新北產業園區",
+          "osm_ref": "Y20",
+          "distance_m": 88
+        }
+      ],
+      "caveats": [
+        "OpenStreetMap 尚未畫出這座施工中的天橋；圖釘在路口中心。"
+      ],
+      "pending": null,
+      "site_context": "sites/new-taipei-siyuan-footbridge.geojson",
+      "site_frame": {
+        "center": [
+          121.459841,
+          25.060478
+        ],
+        "half_m": [
+          330,
+          330
+        ]
+      }
+    },
+    {
+      "project_id": "hsinchu-county-baozhong-road",
+      "region_id": "hsinchu-county",
+      "district": {
+        "id": "10004030",
+        "name": "新埔鎮",
+        "basis": "座標對 districts.geojson 做點在多邊形內判斷，並與原文行政區相符"
+      },
+      "location_text": "縣道117線18K+480-19K+840(褒忠路)道路拓寬工程……工程改善範圍自義民路路口起，向南跨越鳳山溪至縣道118線(文山路)交會處，全長1360公尺（含280公尺的褒忠大橋）",
+      "location_text_source_id": "hsc-baozhong",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            121.036669,
+            24.843159
+          ],
+          [
+            121.036653,
+            24.842889
+          ],
+          [
+            121.036641,
+            24.842723
+          ],
+          [
+            121.036627,
+            24.842527
+          ],
+          [
+            121.036612,
+            24.842308
+          ],
+          [
+            121.036596,
+            24.842063
+          ],
+          [
+            121.036578,
+            24.841807
+          ],
+          [
+            121.03649,
+            24.84063
+          ],
+          [
+            121.036485,
+            24.840506
+          ],
+          [
+            121.036377,
+            24.839007
+          ],
+          [
+            121.03636,
+            24.838571
+          ],
+          [
+            121.036205,
+            24.835843
+          ],
+          [
+            121.03617,
+            24.835356
+          ],
+          [
+            121.036155,
+            24.835043
+          ],
+          [
+            121.036142,
+            24.834784
+          ],
+          [
+            121.036152,
+            24.834388
+          ],
+          [
+            121.036241,
+            24.833036
+          ],
+          [
+            121.03629,
+            24.832427
+          ],
+          [
+            121.036313,
+            24.832057
+          ],
+          [
+            121.036354,
+            24.831449
+          ],
+          [
+            121.036387,
+            24.830816
+          ]
+        ]
+      },
+      "anchor": [
+        121.03627,
+        24.836988
+      ],
+      "location_precision": "street",
+      "coordinate_source": {
+        "source_id": "osm",
+        "url": "https://www.openstreetmap.org/way/321933726",
+        "checked_at": "2026-11-13",
+        "basis": "新聞稿所載起迄「自義民路路口起，向南跨越鳳山溪至縣道118線(文山路)交會處」對應的縣道117線現有道路中心線，幾何取自 OpenStreetMap。圖釘放在線段中點，只代表路段，不代表工區中心。",
+        "elements": [
+          {
+            "ref": "way/321933725",
+            "version": 7,
+            "timestamp": "2025-08-16T04:10:29Z",
+            "url": "https://www.openstreetmap.org/way/321933725"
+          },
+          {
+            "ref": "way/321933726",
+            "version": 8,
+            "timestamp": "2025-08-16T04:10:29Z",
+            "url": "https://www.openstreetmap.org/way/321933726"
+          },
+          {
+            "ref": "way/692965545",
+            "version": 5,
+            "timestamp": "2025-08-16T04:10:29Z",
+            "url": "https://www.openstreetmap.org/way/692965545"
+          }
+        ],
+        "selection": "縣道117線（褒忠路、褒忠大橋）現有道路中心線，自與義民路三段相交的節點到與縣道118線文山路相交的節點",
+        "computed_length_m": 1375,
+        "official_length_m": 1360,
+        "difference_pct": 1.1
+      },
+      "corroboration": [
+        {
+          "kind": "length_check",
+          "official_length_m": 1360,
+          "compares_with": "新聞稿「全長1360公尺」",
+          "computed_length_m": 1375,
+          "difference_pct": 1.1
+        }
+      ],
+      "caveats": [
+        "線段是現有道路中心線，拓寬後的路權範圍與橋梁新址未收錄。"
+      ],
+      "pending": null,
+      "site_context": "sites/hsinchu-county-baozhong-road.geojson",
+      "site_frame": {
+        "center": [
+          121.0363,
+          24.837
+        ],
+        "half_m": [
+          620,
+          900
+        ]
+      }
+    },
+    {
+      "project_id": "hsinchu-city-xiangshan-four",
+      "region_id": "hsinchu-city",
+      "district": null,
+      "location_text": "新竹市政府辦理「新竹市香山四號道路工程（補辦）」，奉准徵收坐落本市長興段731地號等6筆土地，合計面積0.009059公頃。",
+      "location_text_source_id": "hcc-xiangshan",
+      "geometry": null,
+      "anchor": null,
+      "location_precision": "unknown",
+      "coordinate_source": null,
+      "corroboration": [],
+      "caveats": [
+        "這筆是補辦土地徵收公告，不能據以判斷道路是否已施工或通車。"
+      ],
+      "pending": {
+        "reason": "公告只寫地段地號（長興段731地號等6筆），沒有地址、路段起迄或座標；本站尚未取得可逐筆核對的地號座標。",
+        "clues": [
+          {
+            "text": "國土測繪中心點位查詢在香山區海山里長興街上的取樣點回傳「長興段」，可知該地段在香山區海山里一帶。這只是查找線索，不是工程位置。",
+            "source_id": "nlsc-townvillage",
+            "url": "https://api.nlsc.gov.tw/other/TownVillagePointQuery/120.9106120/24.7568317/4326",
+            "checked_at": "2026-11-13"
+          }
+        ],
+        "next_step": "取得公告附件的六筆地號清冊，對照地籍圖後再定位。"
+      },
+      "site_context": null,
+      "site_frame": null
+    }
+  ]
+}
