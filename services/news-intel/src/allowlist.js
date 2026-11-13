@@ -3,6 +3,7 @@ export const ALLOWED_HOSTS = new Set([
   "www.hcc.gov.tw",
   "www.hccg.gov.tw",
   "www.cna.com.tw",
+  "cna.com.tw",
   "data.gov.tw",
   "ws.hsinchu.gov.tw",
   "web.pcc.gov.tw",
