@@ -6,7 +6,7 @@
 What reaches public/ is decided here and nowhere else:
   * the licence on the Commons file page must be on the allowlist below;
   * the entry must be marked `reviewed` with an `alt` written after looking at the picture;
-  * portraits must meet the shared square standard.
+  * portraits must meet the shared square standard, and also ship a shared 3:4 card crop.
 Anything else is reported and left out. Evidence of each licence, as read on the
 day it was retrieved, is kept in sources.lock.json.
 """
@@ -42,6 +42,9 @@ UA = "hsinchu-watch-art-library/0.2 (https://github.com/aa0968111723-prog/hsinch
 SCENE_WIDTHS = (480, 800, 1280)
 PORTRAIT_WIDTHS = (128, 256)
 PORTRAIT_SIZE = 256
+# Shared card crop for person cards: width × height, 3:4.
+CARD_SIZE = (360, 480)
+CARD_HEIGHTS = (480, 240)
 CC_LICENCE = re.compile(r"CC BY(-SA)? [1-4]\.\d( [a-z]{2})?")
 CC_URLS = {
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -175,7 +178,8 @@ def credit_line(evidence: dict, licence: str) -> str:
 
 def save(image: Image.Image, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    image = image.convert("RGB")
+    # Crop/resize leaves buffer state that can make pillow-avif emit huge broken files.
+    image = Image.frombytes("RGB", image.size, image.convert("RGB").tobytes())
     suffix = path.suffix.lower()
     if suffix == ".jpg":
         image.save(path, format="JPEG", quality=85, optimize=True, progressive=True)
@@ -229,6 +233,27 @@ def resized(image: Image.Image, width: int) -> Image.Image:
     if width >= image.width:
         return image.copy()
     return image.resize((width, round(image.height * width / image.width)), Image.LANCZOS)
+
+
+def scale_box(box: dict, from_size: tuple[int, int], to_size: tuple[int, int]) -> tuple[int, int, int, int]:
+    """Map a crop box recorded on `from_size` onto `to_size`."""
+    sx = to_size[0] / from_size[0]
+    sy = to_size[1] / from_size[1]
+    left = round(box["x"] * sx)
+    top = round(box["y"] * sy)
+    width = round(box["w"] * sx)
+    height = round(box["h"] * sy)
+    return left, top, width, height
+
+
+def card_of(remote: Image.Image, box: dict, original_size: tuple[int, int]) -> Image.Image:
+    """Crop the shared 3:4 card from a Commons download, without colour grading."""
+    left, top, width, height = scale_box(box, original_size, remote.size)
+    if width < 1 or height < 1 or left < 0 or top < 0 or left + width > remote.width or top + height > remote.height:
+        raise Rejected(f"3:4 card crop {box} does not fit the download {remote.size}")
+    if abs(width / height - CARD_SIZE[0] / CARD_SIZE[1]) > 0.02:
+        raise Rejected(f"3:4 card crop is {width}×{height}, not 3:4")
+    return remote.crop((left, top, left + width, top + height)).resize(CARD_SIZE, Image.LANCZOS)
 
 
 def difference(a: Image.Image, b: Image.Image, size: int = 64) -> float:
@@ -437,11 +462,47 @@ class Library:
                 save(scaled, path)
                 files.append(record(path, "responsive"))
                 written.add(path)
+
+        card_box = entry.get("card_3x4")
+        if not card_box:
+            raise Rejected("portrait is missing the shared 3:4 card crop")
+        original_size = (evidence["original_width"], evidence["original_height"])
+        if abs(card_box["w"] / card_box["h"] - CARD_SIZE[0] / CARD_SIZE[1]) > 0.02:
+            raise Rejected("card_3x4 in sources.json is not 3:4 on the Commons original")
+        name = entry["commons"].split(":", 1)[1]
+        fetch_width = min(1600, evidence["original_width"])
+        remote_bytes = fetch(
+            "https://commons.wikimedia.org/wiki/Special:FilePath/"
+            + urllib.parse.quote(name)
+            + f"?width={fetch_width}"
+        )
+        with Image.open(io.BytesIO(remote_bytes)) as remote:
+            remote = remote.convert("RGB")
+            card = card_of(remote, card_box, original_size)
+        for height in CARD_HEIGHTS:
+            width = round(height * CARD_SIZE[0] / CARD_SIZE[1])
+            scaled = card if height == CARD_SIZE[1] else card.resize((width, height), Image.LANCZOS)
+            for suffix, role in ((".jpg", "card"), (".webp", "card"), (".avif", "card")):
+                path = folder / f"{entry['id']}-3x4-{height}{suffix}"
+                save(scaled, path)
+                files.append(record(path, role, "統一 3:4 頭肩卡，未調色、未修圖。"))
+                written.add(path)
+
         clean_folder(folder, written)
         primary = next(item for item in files if item["role"] == "fallback")
         if (primary["width"], primary["height"]) != (PORTRAIT_SIZE, PORTRAIT_SIZE):
             raise Rejected("fallback portrait is not the standard square")
+        card_primary = next(
+            item for item in files
+            if item["role"] == "card" and item["format"] == "jpeg" and item["height"] == CARD_SIZE[1]
+        )
+        if (card_primary["width"], card_primary["height"]) != CARD_SIZE:
+            raise Rejected("3:4 card is not the shared card size")
         described = evidence["description"] or evidence["title"]
+        square_change = (
+            f"自原檔取頭肩範圍（左上 {crop['x']},{crop['y']}，邊長 {crop['size']} 像素）縮為 {PORTRAIT_SIZE} 正方形，再轉 AVIF、WebP。未調色、未修圖。"
+            if crop else f"沿用站上既有 {PORTRAIT_SIZE} 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。"
+        )
         asset.update({
             "files": files,
             "dimensions": {"width": PORTRAIT_SIZE, "height": PORTRAIT_SIZE, "unit": "px"},
@@ -449,11 +510,17 @@ class Library:
             "checksum_of": primary["path"],
             "palette": palette_of(square),
             "crop": crop,
+            "card_3x4": card_box,
+            "card_dimensions": {"width": CARD_SIZE[0], "height": CARD_SIZE[1], "unit": "px"},
             "changes": (
-                f"自原檔取頭肩範圍（左上 {crop['x']},{crop['y']}，邊長 {crop['size']} 像素）縮為 {PORTRAIT_SIZE} 正方形，再轉 AVIF、WebP。未調色、未修圖。"
-                if crop else f"沿用站上既有 {PORTRAIT_SIZE} 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。"
+                square_change
+                + f" 另自 Commons 原檔取 3:4 頭肩卡（原圖座標左上 {card_box['x']},{card_box['y']}，"
+                f"{card_box['w']}×{card_box['h']}）縮為 {CARD_SIZE[0]}×{CARD_SIZE[1]}，並轉 AVIF、WebP。"
             ),
-            "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+            "suggested_use": (
+                "人物卡與候選人閱讀。正方形檔供既有頭像；3:4 卡（files 裡 role=card）供人物卡。"
+                "同一組人不要混用不同臉部比例。"
+            ),
             "identity": {
                 "basis": f"Commons 檔案頁說明「{described}」，來源 {evidence['credit'] or '未列'}。",
                 "site_file_check": (

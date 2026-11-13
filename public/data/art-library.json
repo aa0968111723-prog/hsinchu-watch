@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-13T09:49:22+08:00",
+  "generated_at": "2026-11-13T09:59:17+08:00",
   "publication": "publication-ready",
   "note": "assets 只收來源與授權已核對、可公開使用的素材。gaps 是缺口紀錄，沒有圖檔。待審候選來源不在這個檔案裡。",
   "regions": [
@@ -127,7 +127,15 @@
     "shape": "square",
     "framing": "頭肩正面。",
     "colour": "不調色、不修圖。",
-    "note": "吳旭智、徐欣瑩、鄭朝方沿用站上既有的 256 正方形檔，是各自 Commons 原檔靠上方的正方形裁切。邱臣遠的官方照是半身照，裁成頭肩，裁切框記在紀錄裡。四張的臉部大小還不一致：頭頂到下巴占畫面高度，吳旭智約六成，另外三位約八到九成，鄭朝方的頭頂貼到上緣。統一比例的版本列在待辦。"
+    "note": "吳旭智、徐欣瑩、鄭朝方沿用站上既有的 256 正方形檔，是各自 Commons 原檔靠上方的正方形裁切。邱臣遠的官方照是半身照，裁成頭肩，裁切框記在紀錄裡。正方形組的臉部大小仍不一致；人物卡請改用下方 3:4 卡。",
+    "card": {
+      "width": 360,
+      "height": 480,
+      "ratio": "3:4",
+      "framing": "頭肩正面，四人同一比例。",
+      "colour": "不調色、不修圖。",
+      "note": "裁切框寫在各肖像的 card_3x4，座標是 Commons 原圖像素。邱臣遠裁掉舉手，只留頭肩。"
+    }
   },
   "assets": [
     {
@@ -157,7 +165,7 @@
       "alt": "吳旭智官方肖像，頭肩正面，淺藍背景",
       "focal_point": {
         "x": 0.52,
-        "y": 0.5
+        "y": 0.42
       },
       "source": {
         "host": "Wikimedia Commons",
@@ -222,6 +230,72 @@
           "height": 256,
           "bytes": 4630,
           "checksum": "e057bf8a2d5c6281cb94088dfef2c36f78e47cd7e1b399b62031b2877237b942"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-3x4-480.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 23117,
+          "checksum": "ec9b9903159b0f0ea88abcdf436c8934798f7dce8d05896e87349a77062eb10e",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-3x4-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 11266,
+          "checksum": "7168756085e502378e62df25d4f42a0fe547f25dd3f50ddf67cf0ed7777f6046",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-3x4-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 8846,
+          "checksum": "5342c685c41fb0e2c0051f98d15e68383484f828d579a65042970b13552ee16d",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-3x4-240.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 8207,
+          "checksum": "48a8bbdf50af034a7d5564411ab96eea200ec2ee2189b7b08180e825f309e0b3",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-3x4-240.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 4276,
+          "checksum": "dafc0c80c3506b0134e190471a9a6ded9e93ddcb46b63a2a371bc43804db4002",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-wu-moi/portrait-wu-moi-3x4-240.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 3408,
+          "checksum": "13586b51cbe19c162ba66292659f8a57f5c26b6026adeb51b9664377023f456a",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
         }
       ],
       "dimensions": {
@@ -259,8 +333,19 @@
         }
       ],
       "crop": null,
-      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。",
-      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "card_3x4": {
+        "x": 291,
+        "y": 61,
+        "w": 1379,
+        "h": 1839
+      },
+      "card_dimensions": {
+        "width": 360,
+        "height": 480,
+        "unit": "px"
+      },
+      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。 另自 Commons 原檔取 3:4 頭肩卡（原圖座標左上 291,61，1379×1839）縮為 360×480，並轉 AVIF、WebP。",
+      "suggested_use": "人物卡與候選人閱讀。正方形檔供既有頭像；3:4 卡（files 裡 role=card）供人物卡。同一組人不要混用不同臉部比例。",
       "identity": {
         "basis": "Commons 檔案頁說明「吳旭智議員」，來源 https://cand.moi.gov.tw/of/home.jsp。",
         "site_file_check": "站上檔是 Commons 原檔靠上方的正方形裁切。逐格比對後最接近的一格，64 像素灰階平均差 6.15（0 為相同；對照組裡換成別人的官方照是 42 以上）。",
@@ -294,7 +379,7 @@
       "alt": "徐欣瑩官方肖像，頭肩正面，白色背景",
       "focal_point": {
         "x": 0.5,
-        "y": 0.5
+        "y": 0.42
       },
       "source": {
         "host": "Wikimedia Commons",
@@ -359,6 +444,72 @@
           "height": 256,
           "bytes": 3862,
           "checksum": "9e1caaa8419aa634876fd379c557781bea57c4defcbb04ea5deaa8e11cd7a5fc"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-3x4-480.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 20410,
+          "checksum": "28a4380f4474068540146b8624f3e4f040883933314bb0783b23012b48025a09",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-3x4-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 8212,
+          "checksum": "7c445c418e4b9ab189d18d6f8c76b118e9efa3335a75597afbb5535c2cd01d59",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-3x4-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 6827,
+          "checksum": "e7348e13e03f1a2cd33312a5e1380cc99a5ba578faa2bb7fff1ad020862a6870",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-3x4-240.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 8105,
+          "checksum": "942d450e2702d67a739df2af633fa1b39d717c893ff1ae76a0d0c7f32c17ebfe",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-3x4-240.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 3866,
+          "checksum": "651528e2105ba3443f0e02b283d28b8015062f6155b47bdb3bdd8d1b69151e49",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-xu-ly/portrait-xu-ly-3x4-240.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 3125,
+          "checksum": "318b97f65e67a3646c431612f1c8b130dc5d8cc4b3da2707cf945dc475e4e651",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
         }
       ],
       "dimensions": {
@@ -396,8 +547,19 @@
         }
       ],
       "crop": null,
-      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。",
-      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "card_3x4": {
+        "x": 2,
+        "y": 0,
+        "w": 415,
+        "h": 554
+      },
+      "card_dimensions": {
+        "width": 360,
+        "height": 480,
+        "unit": "px"
+      },
+      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。 另自 Commons 原檔取 3:4 頭肩卡（原圖座標左上 2,0，415×554）縮為 360×480，並轉 AVIF、WebP。",
+      "suggested_use": "人物卡與候選人閱讀。正方形檔供既有頭像；3:4 卡（files 裡 role=card）供人物卡。同一組人不要混用不同臉部比例。",
       "identity": {
         "basis": "Commons 檔案頁說明「徐欣瑩第八屆立法委員肖像。」，來源 https://www.ly.gov.tw/Pages/List.aspx?nodeid=1731。",
         "site_file_check": "站上檔是 Commons 原檔靠上方的正方形裁切。逐格比對後最接近的一格，64 像素灰階平均差 7.87（0 為相同；對照組裡換成別人的官方照是 42 以上）。",
@@ -431,7 +593,7 @@
       "alt": "鄭朝方官方肖像，頭肩正面，白色背景",
       "focal_point": {
         "x": 0.5,
-        "y": 0.5
+        "y": 0.4
       },
       "source": {
         "host": "Wikimedia Commons",
@@ -496,6 +658,72 @@
           "height": 256,
           "bytes": 4440,
           "checksum": "bb481202f964928dcc3da07a728211b0c4d5ec26a44b16c801b02df9ef5fa377"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-3x4-480.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 19230,
+          "checksum": "62af5ffbcd7a9fcf62c61291a67e31b1023e753c0968d2d386588ee17659d164",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-3x4-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 8880,
+          "checksum": "14757e78e7d900272430bc765aa27b973efe1d22e004250acf902711bd13237a",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-3x4-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 7611,
+          "checksum": "b13477f60ee0d6640b1b00ae4b1d33c672e0c872b329018447fe95506eac49cb",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-3x4-240.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 7574,
+          "checksum": "8cab8932e2dbca262f554a04eefc2b40c16288f21c508849aa824e57455e3280",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-3x4-240.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 3666,
+          "checksum": "92c2be21c8a259f0ae908e5d530803f6a9277629d9735fbda046875d367fbf58",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-zheng-moi/portrait-zheng-moi-3x4-240.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 3082,
+          "checksum": "c8565f5b963239c1b9ac29e2bebc93001f94b1fe1697ad44b2e44c5157e05bb4",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
         }
       ],
       "dimensions": {
@@ -533,8 +761,19 @@
         }
       ],
       "crop": null,
-      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。",
-      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "card_3x4": {
+        "x": 0,
+        "y": 5,
+        "w": 404,
+        "h": 538
+      },
+      "card_dimensions": {
+        "width": 360,
+        "height": 480,
+        "unit": "px"
+      },
+      "changes": "沿用站上既有 256 正方形檔，另轉 AVIF、WebP 與 128 像素縮圖。未調色、未修圖。 另自 Commons 原檔取 3:4 頭肩卡（原圖座標左上 0,5，404×538）縮為 360×480，並轉 AVIF、WebP。",
+      "suggested_use": "人物卡與候選人閱讀。正方形檔供既有頭像；3:4 卡（files 裡 role=card）供人物卡。同一組人不要混用不同臉部比例。",
       "identity": {
         "basis": "Commons 檔案頁說明「新竹縣竹北市公所 鄭朝方」，來源 新竹縣竹北市公所鄭朝方。",
         "site_file_check": "站上檔是 Commons 原檔靠上方的正方形裁切。逐格比對後最接近的一格，64 像素灰階平均差 5.51（0 為相同；對照組裡換成別人的官方照是 42 以上）。",
@@ -568,7 +807,7 @@
       "alt": "邱臣遠官方肖像，頭肩正面，灰色背景。取自新竹市政府副市長任內的半身官方照",
       "focal_point": {
         "x": 0.5,
-        "y": 0.5
+        "y": 0.38
       },
       "source": {
         "host": "Wikimedia Commons",
@@ -643,6 +882,72 @@
           "height": 256,
           "bytes": 4210,
           "checksum": "6d5e4b059e385a0f1ebe7ae5b62139e2bc343f19e2e20f12ca1799b07cde0703"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-3x4-480.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 20412,
+          "checksum": "b2eafdde395f06cb9f41d808b7011977c4f03237d9bca732db3463f1926f6883",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-3x4-480.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 8896,
+          "checksum": "2d20f82005c52a6580d72ec72d93746284cae8e5522659583268d1439a35d82f",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-3x4-480.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 360,
+          "height": 480,
+          "bytes": 6836,
+          "checksum": "711f1ba32d8b278d9b748cd5ec595df605762f3325d01781029d29bb0ef64b0d",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-3x4-240.jpg",
+          "format": "jpeg",
+          "mime": "image/jpeg",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 7076,
+          "checksum": "8325ff1b0922b24f6c242aaf43226634149c8c9ffbc39b88c73932328ba3cde7",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-3x4-240.webp",
+          "format": "webp",
+          "mime": "image/webp",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 3406,
+          "checksum": "d9d6ff1d956253d6af4d8018bd749115d96bc4f3131e88f02e6fe88bb9630427",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
+        },
+        {
+          "path": "art-library/portraits/portrait-chiu-hccg/portrait-chiu-hccg-3x4-240.avif",
+          "format": "avif",
+          "mime": "image/avif",
+          "role": "card",
+          "width": 180,
+          "height": 240,
+          "bytes": 2683,
+          "checksum": "326b96a71fcd6cf6f3bc67528e47125b02f6f18836cb10acf10c92978a4935ac",
+          "note": "統一 3:4 頭肩卡，未調色、未修圖。"
         }
       ],
       "dimensions": {
@@ -684,8 +989,19 @@
         "y": 134,
         "size": 390
       },
-      "changes": "自原檔取頭肩範圍（左上 412,134，邊長 390 像素）縮為 256 正方形，再轉 AVIF、WebP。未調色、未修圖。",
-      "suggested_use": "人物卡與候選人閱讀。所有人用同一正方形頭肩比例，不要另裁成不同臉部大小。",
+      "card_3x4": {
+        "x": 307,
+        "y": 60,
+        "w": 600,
+        "h": 800
+      },
+      "card_dimensions": {
+        "width": 360,
+        "height": 480,
+        "unit": "px"
+      },
+      "changes": "自原檔取頭肩範圍（左上 412,134，邊長 390 像素）縮為 256 正方形，再轉 AVIF、WebP。未調色、未修圖。 另自 Commons 原檔取 3:4 頭肩卡（原圖座標左上 307,60，600×800）縮為 360×480，並轉 AVIF、WebP。",
+      "suggested_use": "人物卡與候選人閱讀。正方形檔供既有頭像；3:4 卡（files 裡 role=card）供人物卡。同一組人不要混用不同臉部比例。",
       "identity": {
         "basis": "Commons 檔案頁說明「新竹市副市長邱臣遠肖像」，來源 https://www.hccg.gov.tw/ch/home.jsp?id=30217&amp;parentpath=0,7。",
         "site_file_check": "站上檔與 Commons 原檔位元組相同（SHA-1 一致）。",
@@ -1053,8 +1369,8 @@
           "role": "responsive",
           "width": 480,
           "height": 343,
-          "bytes": 17541,
-          "checksum": "82cd5f0caa92834be8575186d7e3ee574297688429ec7f198f29d6f1d1ecf04d"
+          "bytes": 17004,
+          "checksum": "3c8a3c1482cabd286f42da16e0af3ae80e6d3ebe2a7c603c19d6878c5b4b40d4"
         },
         {
           "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-480.webp",
@@ -1073,8 +1389,8 @@
           "role": "responsive",
           "width": 800,
           "height": 571,
-          "bytes": 46551,
-          "checksum": "3a292a284b47026b8fe07e3d27a7567bfb795a4e2b40c21d4152f64da3afdca2"
+          "bytes": 46014,
+          "checksum": "ed301ec4d5740e01a1c8589664dc72119b7e3ef77d3a5060d06991b1d993d639"
         },
         {
           "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-800.webp",
@@ -1093,8 +1409,8 @@
           "role": "responsive",
           "width": 1280,
           "height": 914,
-          "bytes": 116756,
-          "checksum": "7b1e8754531b83a51c469f6645758ac6859c663046408bc39b466a8e4edb0332"
+          "bytes": 116219,
+          "checksum": "8829f62416c914757c14e9947cb4641c26bd2a2a69c93481ab1e53e8bcbaccb2"
         },
         {
           "path": "art-library/scenes/scene-taipei-city-hall/scene-taipei-city-hall-1280.webp",
@@ -1202,8 +1518,8 @@
           "role": "responsive",
           "width": 480,
           "height": 320,
-          "bytes": 15441,
-          "checksum": "581236394e661dac9328977aa846b12e4e150ad6a9b5e638459d1f962a5b805e"
+          "bytes": 14904,
+          "checksum": "21c00ae326f7958755cd3a1078b535cc3cf462f7120b19ce8443ee603cf5dd0a"
         },
         {
           "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-480.webp",
@@ -1222,8 +1538,8 @@
           "role": "responsive",
           "width": 800,
           "height": 533,
-          "bytes": 42143,
-          "checksum": "2feb6eada7bb600d13e7ea5f4e48f2205b2ffdbb281960de4f1ab8390b7a6de9"
+          "bytes": 41606,
+          "checksum": "1a44eae91a2ab293d7fca7c1d92dad03a47847a18a43128ac27d275f0ebc442b"
         },
         {
           "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-800.webp",
@@ -1242,8 +1558,8 @@
           "role": "responsive",
           "width": 1280,
           "height": 853,
-          "bytes": 113133,
-          "checksum": "6f08772da085fdbd6110aa76c0d9d1c4ad530ed6bb4f6162124faf35b66227c4"
+          "bytes": 112596,
+          "checksum": "7b5405d98b665af18c1c6179a3675bdf8c252e8d2d114df20bf74aa019e5a474"
         },
         {
           "path": "art-library/scenes/scene-new-taipei-fire-hq-2016/scene-new-taipei-fire-hq-2016-1280.webp",
@@ -1651,8 +1967,8 @@
           "role": "responsive",
           "width": 480,
           "height": 270,
-          "bytes": 17558,
-          "checksum": "d71cf2c449d07fad1b27cefc895fe5435f073f253dde7cf763dd16d210d8bcb2"
+          "bytes": 17021,
+          "checksum": "87fe51cfdf4ccb629325a54ce8f119de08be20f4f9ebaebb49b4e459be145fdc"
         },
         {
           "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-480.webp",
@@ -1671,8 +1987,8 @@
           "role": "responsive",
           "width": 800,
           "height": 450,
-          "bytes": 49083,
-          "checksum": "651085e55b0f86194807ead1b39465161b434acd64bb3cb9f7183f61cdcc14a7"
+          "bytes": 48546,
+          "checksum": "1e5639675270cb703ee451225de7a5ba53ecc7353d7db1edca5d8c6c6d68929c"
         },
         {
           "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-800.webp",
@@ -1691,8 +2007,8 @@
           "role": "responsive",
           "width": 1280,
           "height": 720,
-          "bytes": 131020,
-          "checksum": "4b9342b12be1beec6e3fe55a34cdaccf4c49dfb5dc67456fee85197a661ae9b9"
+          "bytes": 130483,
+          "checksum": "674d2c8c48904a343d479f5dbb381690558299a0df70b72de9029bdb588fc83c"
         },
         {
           "path": "art-library/scenes/scene-zhubei-skyline-2023/scene-zhubei-skyline-2023-1280.webp",
@@ -1800,8 +2116,8 @@
           "role": "responsive",
           "width": 480,
           "height": 360,
-          "bytes": 22017,
-          "checksum": "fd2fd510720376bd3502d1f657d8f09a83f9f6f698d4b4e52aed88a4455bfdd1"
+          "bytes": 21456,
+          "checksum": "73948369bf53afcd5f3c84ae95e4059674e1309a0eab4cc42b556487d74e796a"
         },
         {
           "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-480.webp",
@@ -1820,8 +2136,8 @@
           "role": "responsive",
           "width": 800,
           "height": 600,
-          "bytes": 61609,
-          "checksum": "96bff5d7250bbd2aad35aac83c7fe8377d1b8be472d0d741f11a5141d51a6fca"
+          "bytes": 61048,
+          "checksum": "4ae5221b6e306047402af96160acda86993c0846857341ce6fec66f705ca6511"
         },
         {
           "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-800.webp",
@@ -1840,8 +2156,8 @@
           "role": "responsive",
           "width": 1280,
           "height": 960,
-          "bytes": 169485,
-          "checksum": "57444b18f644aa3873dc56c36d3fe8a08f99c239b6e9964ea4685b510768d96c"
+          "bytes": 168924,
+          "checksum": "088f6f088aa368f6a1c3bacfd601dc68417ea5f591cbf55c52335062ddf4cb6b"
         },
         {
           "path": "art-library/scenes/scene-touqian-thsr-bridge-2020/scene-touqian-thsr-bridge-2020-1280.webp",

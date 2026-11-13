@@ -9,7 +9,7 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const site = (path) => `/${String(path).replace(/^\/+/, "")}`;
 const FIELDS = ["q", "region", "kind", "use", "license", "review"];
 const ROLE_LABELS = {
-  original: "原檔", fallback: "相容用", responsive: "響應式", preview: "靜態預覽",
+  original: "原檔", fallback: "相容用", responsive: "響應式", card: "3:4 人物卡", preview: "靜態預覽",
   fragment: "嵌入片段", page: "獨立頁", module: "模組", shared: "共用",
 };
 
@@ -98,8 +98,16 @@ function matchesGap(gap, filters) {
 
 /** <picture> with AVIF and WebP sources and a JPEG fallback, or a plain image for vector previews. */
 function pictureOf(asset, { sizes, limit = Infinity, eager = false }) {
-  const responsive = asset.files.filter((file) => file.role === "responsive" && file.width <= limit);
-  const fallback = asset.files.find((file) => file.role === "fallback") || asset.files.find((file) => file.role === "preview") || asset.files[0];
+  // Portraits prefer the shared 3:4 card when present; squares stay available as fallback files.
+  const cards = asset.files.filter((file) => file.role === "card");
+  const useCard = cards.some((file) => file.format === "jpeg");
+  const pool = useCard ? cards : asset.files.filter((file) => file.role === "responsive" || file.role === "fallback" || file.role === "preview");
+  const responsive = pool.filter((file) => (file.role === "card" || file.role === "responsive") && file.format !== "jpeg" && (file.width || 0) <= limit);
+  const fallback = (
+    useCard
+      ? pool.filter((file) => file.format === "jpeg").sort((a, b) => b.height - a.height)[0]
+      : asset.files.find((file) => file.role === "fallback") || asset.files.find((file) => file.role === "preview") || asset.files[0]
+  );
   const image = el("img", {
     src: site(fallback.path), alt: asset.alt, width: fallback.width, height: fallback.height,
     loading: eager ? "eager" : "lazy", decoding: "async",
