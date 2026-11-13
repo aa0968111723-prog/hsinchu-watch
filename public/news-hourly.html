@@ -48,8 +48,9 @@ fetch("/data/news-intel/latest.json")
     const when = data.last_success_at || "未知";
     status.textContent = `成功時間 ${when}。顯示 ${articles.length} 篇。Gemini 未使用。這是單一來源索引，不是已查核事實。`;
     for (const article of articles) {
-      const claimLabels = { candidate_statement: "候選人說法", poll: "民調", legal_status: "司法程序", commentary: "評論", official_notice: "官方公告", news_report: "新聞報導" };
-      addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${article.verification_status || "UNVERIFIED"}`);
+      const claimLabels = { candidate_statement: "候選人說法", poll: "民調", legal_status: "司法程序", commentary: "評論", official_notice: "官方公告", news_report: "新聞報導", project_progress: "工程進度說法" };
+      const statusLabels = { SINGLE_SOURCE: "單一來源", UNVERIFIED: "尚未查證", VERIFIED_OFFICIAL: "官方已核對", VERIFIED_MULTI_SOURCE: "多來源已核對", DISPUTED: "說法衝突", CORRECTED: "已更正", RETRACTED: "已撤下" };
+      addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${statusLabels[article.verification_status] || "尚未查證"}`);
     }
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";
