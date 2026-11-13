@@ -12,6 +12,18 @@ export function sourceFetch(url) {
   });
 }
 
+export function publishableResult(previous, result) {
+  if (result?.ok && !(result.articles || []).length && (previous?.articles || []).length) {
+    return {
+      ...result,
+      retained: true,
+      articles: previous.articles,
+      last_success_at: previous.last_success_at || result.last_success_at,
+    };
+  }
+  return result;
+}
+
 export function mergeRun(previous, result) {
   if (!result.ok) {
     return {

@@ -10,6 +10,15 @@ import { publicationFields } from "../src/verify.js";
 
 const tokens = { reader: "reader-token", collector: "collector-token", verifier: "verifier-token", publisher: "publisher-token", admin: "admin-token" };
 
+test("an empty successful hour keeps the previous news list", async () => {
+  const { publishableResult } = await import("../src/run.js");
+  const previous = { articles: [{ original_title: "新竹縣仍在", source_url: "https://www.hsinchu.gov.tw/live" }], last_success_at: "2026-11-13T01:00:00.000Z" };
+  const kept = publishableResult(previous, { ok: true, articles: [], last_success_at: "2026-11-13T02:00:00.000Z" });
+  assert.equal(kept.retained, true);
+  assert.equal(kept.articles.length, 1);
+  assert.equal(kept.last_success_at, "2026-11-13T01:00:00.000Z");
+});
+
 test("source fetches give up before the next hourly run", async () => {
   const { FETCH_TIMEOUT_MS } = await import("../src/run.js");
   const { PUBLISH_TIMEOUT_MS } = await import("../src/publish-gate.js");
