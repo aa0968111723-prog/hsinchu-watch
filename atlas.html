@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>政策與工程地圖｜地方治理觀察</title>
+  <meta name="description" content="台北、新北、新竹縣市政策與工程的位置地圖。圖釘只放在有可核對座標的位置，每案附位置原文、座標依據、七個階段的紀錄與官方來源；沒有座標的案卷列在待定位清單。">
+  <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/src/styles.css"><link rel="stylesheet" href="/src/mobile.css"><link rel="stylesheet" href="/editorial-depth.css"><link rel="stylesheet" href="/src/atlas/atlas.css">
+</head><body class="atlas-page">
+<header class="top"><div class="wrap"><div><h1>政策與工程地圖</h1><p class="sub">真實位置・官方紀錄・待定位清單</p></div><p class="status" id="atlasStatus">首批試行</p></div>
+<nav class="wrap nav" aria-label="主選單"><a class="active" href="/atlas.html">地圖</a><a href="#atlasCases">案卷</a><a href="#atlasPending">待定位</a><a href="#atlasSources">來源</a><a href="/governance.html">治理</a><a href="/index.html">選舉</a></nav></header>
+<main class="wrap atlas-main" id="atlasApp" data-state="loading">
+  <section class="atl-intro" aria-labelledby="atlasTitle">
+    <p class="atl-eyebrow">政策與工程地圖 / ATLAS</p>
+    <h2 id="atlasTitle">這項工程在哪裡，紀錄走到哪一步？</h2>
+    <p>圖釘只放在有可核對座標的位置。每一案都附位置原文、座標依據與官方來源；找不到座標的案卷留在待定位清單，不拿行政區中心代替工地。</p>
+    <p id="atlasCoverage" class="atl-coverage">正在讀取試行範圍。</p>
+  </section>
+  <div id="atlasGaps" class="atl-gaps" role="alert" hidden></div>
+
+  <div class="atl-workspace">
+    <section class="atl-map" id="atlasMap" aria-labelledby="atlasMapTitle">
+      <div class="atl-mapbar">
+        <h2 id="atlasMapTitle" class="atl-visually-hidden">地圖</h2>
+        <nav id="atlasCrumbs" class="atl-crumbs" aria-label="地圖層級"><span aria-current="true">四地區總覽</span></nav>
+        <div class="atl-viewswitch" role="group" aria-label="視角">
+          <button type="button" id="atlasView-plan" aria-pressed="true">平面</button>
+          <button type="button" id="atlasView-iso" aria-pressed="false">立體示意</button>
+        </div>
+      </div>
+      <div id="atlasStageBar" class="atl-stagebar" role="group" aria-label="依政策階段篩選：選一個階段，只顯示有那個階段紀錄的案卷"></div>
+      <div class="atl-canvas-wrap">
+        <div id="atlasCanvas" class="atl-canvas" tabindex="0" role="group" aria-label="政策與工程地圖" aria-describedby="atlasKeys">
+          <figure class="atl-fallback"><img src="/img/atlas/overview-plan.svg" alt="台北、新北、新竹縣市政策與工程地圖的靜態總覽圖" width="900" height="620"><figcaption>靜態總覽圖。互動地圖載入後會取代這張圖。</figcaption></figure>
+        </div>
+        <div class="atl-zoom-tools" role="group" aria-label="縮放與重設">
+          <button type="button" id="atlasZoomIn" aria-label="放大">＋</button>
+          <button type="button" id="atlasZoomOut" aria-label="縮小" disabled>－</button>
+          <button type="button" id="atlasZoomReset" aria-label="重設視角" disabled>重設</button>
+        </div>
+        <div class="atl-hud" aria-hidden="true"><span id="atlasScale" class="atl-scale" hidden></span><span id="atlasCenter" class="atl-center"></span></div>
+        <p id="atlasHover" class="atl-hover" role="status" aria-live="polite"></p>
+      </div>
+      <p id="atlasViewNote" class="atl-viewnote">平面視角：正北朝上，比例尺隨縮放更新。</p>
+      <div class="atl-maptools">
+        <button type="button" id="atlasShare">分享目前位置</button>
+        <p id="atlasShareOut" class="atl-share-out" role="status" aria-live="polite"></p>
+      </div>
+      <p id="atlasKeys" class="atl-keys">操作：拖曳平移、雙指或 Ctrl＋滾輪縮放、點兩下放大。鍵盤先用 Tab 移到地圖，方向鍵平移，＋ 與 － 縮放，0 重設；再按 Tab 逐一選圖釘，Enter 開來源卡，Esc 關閉。</p>
+      <details class="atl-legend">
+        <summary>圖例</summary>
+        <div class="atl-legend-grid">
+          <div><h3>圖釘上的字</h3><p>七個階段裡，最新一個有紀錄的階段：<span class="atl-chip" data-stage="planning"><b>規</b>規劃</span><span class="atl-chip" data-stage="approval"><b>核</b>核定</span><span class="atl-chip" data-stage="construction"><b>施</b>施工</span><span class="atl-chip" data-stage="completion"><b>完</b>完工</span><span class="atl-chip" data-stage="acceptance"><b>驗</b>驗收</span><span class="atl-chip" data-stage="opening"><b>啟</b>啟用</span><span class="atl-chip" data-stage="outcome"><b>效</b>成效</span><span class="atl-chip" data-stage="none"><b>·</b>七階段未收錄</span></p><p>字只表示紀錄到哪一格，不是完成度，也不是評分。</p></div>
+          <div><h3>釘尖與精度</h3><p><span class="atl-key" data-key="site"></span>實線圓：機關公布的基地點位。</p><p><span class="atl-key" data-key="street"></span>虛線圓：原文寫到的路段或路口，不是構造物的實測位置。</p><p><span class="atl-key" data-key="route"></span>橘線：有起迄的路段，圖釘放在線段中點。</p></div>
+          <div><h3>顏色與厚度</h3><p>地區的底色只用來分辨縣市，不代表任何數值。立體示意視角的厚度與桌面配件是插畫，地面位置和平面圖完全相同。</p></div>
+        </div>
+      </details>
+      <div id="atlasRegionArt" class="atl-regionart" hidden></div>
+    </section>
+
+    <div class="atl-side">
+      <aside id="atlasDetail" class="atl-detail" data-sheet="closed" data-empty="" aria-label="來源卡">
+        <div class="atl-sheet-bar">
+          <button type="button" id="atlasSheetHandle" class="atl-sheet-handle" aria-expanded="false" aria-controls="atlasDetailBody"><i aria-hidden="true"></i><span>展開來源卡</span></button>
+          <button type="button" class="atl-close" data-close-detail aria-label="關閉來源卡">關閉</button>
+        </div>
+        <div id="atlasDetailBody" class="atl-detail-body" data-detail-body><div class="atl-detail-empty"><h2 id="atlasDetailTitle">正在讀取案卷</h2></div></div>
+      </aside>
+      <section id="atlasCases" class="atl-cases" aria-labelledby="atlasCasesTitle">
+        <div class="atl-cases-head"><h2 id="atlasCasesTitle">案卷列表</h2><p id="atlasCount" role="status" aria-live="polite"></p></div>
+        <details id="atlasFilterBox" class="atl-filterbox" open>
+          <summary>篩選地區、議題與關鍵字</summary>
+          <form id="atlasFilters" class="atl-filters" aria-label="篩選案卷">
+            <label>地區<select id="atlasRegion"><option value="">全部地區</option></select></label>
+            <label>議題<select id="atlasTopic"><option value="">全部議題</option></select></label>
+            <label class="atl-search">找案卷、機關或行政區<input id="atlasQuery" type="search" placeholder="例如：住宅、新埔" autocomplete="off"></label>
+            <label class="atl-check"><input id="atlasFavOnly" type="checkbox">只看收藏</label>
+            <button type="reset">重設篩選</button>
+          </form>
+        </details>
+        <ul id="atlasList" class="atl-list" aria-label="案卷列表，與地圖同步；上下方向鍵可在案卷間移動"><li class="atl-empty">正在讀取官方案卷。</li></ul>
+        <button type="button" id="atlasExport" disabled>匯出目前清單 CSV</button>
+        <p id="atlasStorageNote" class="atl-note">收藏只存在這個瀏覽器。</p>
+      </section>
+    </div>
+  </div>
+
+  <section class="panel atl-timeline" id="atlasTimeline" aria-labelledby="atlasTimelineTitle">
+    <p class="atl-eyebrow">時間軸</p>
+    <h2 id="atlasTimelineTitle">每筆紀錄落在哪一天</h2>
+    <p>紀錄日期照來源的精度畫：有日期的是圓點，只到月份的是長條。機關目標另外用空心標記，表示還沒發生。點一個標記會選取那個案卷。</p>
+    <div id="atlasTimelineBody"><p class="atl-note">正在讀取。</p></div>
+  </section>
+
+  <section class="panel" id="atlasPending" aria-labelledby="atlasPendingTitle">
+    <p class="atl-eyebrow">待定位</p>
+    <h2 id="atlasPendingTitle">還沒有可核對座標的案卷</h2>
+    <p>這些案卷沒有畫在地圖上。原因與下一步寫在這裡，補到可核對的座標後才會放上圖釘。</p>
+    <div id="atlasPendingBody"><p class="atl-note">正在讀取。</p></div>
+  </section>
+
+  <section class="panel atl-method" id="atlasMethod" aria-labelledby="atlasMethodTitle">
+    <p class="atl-eyebrow">閱讀方式</p>
+    <h2 id="atlasMethodTitle">地圖上看得到什麼、看不到什麼</h2>
+    <div class="atl-method-grid">
+      <div><h3>位置有三種精度</h3><p>基地點位來自機關公布的座標；路段或路口來自原文寫的起迄，座標取道路中心線；只知道行政區的不畫圖釘。每一案的來源卡都列出座標依據與查閱日。</p></div>
+      <div><h3>七個階段分開記</h3><p>規劃、核定、施工、完工、驗收、啟用與實際成效各自一格。來源有寫才標色，沒寫就是未收錄。完工不等於驗收，100% 工程進度也不等於啟用或成效。</p></div>
+      <div><h3>經費三欄分開</h3><p>核定經費、決標金額與實際支用用同一個刻度並排。沒有數字的欄位不畫橫條，不當成 0，也不拿來算執行率。</p></div>
+      <div><h3>人物只記來源寫的關係</h3><p>主辦機關、補助計畫與出席典禮是不同的關係。公告或新聞提到某人，不代表工程由他決定，本站不據此歸功或歸咎。</p></div>
+    </div>
+    <p>這是人工整理的首批案卷，不是各地完整工程清單，也沒有自動更新。待定位與待補表示本站尚未收錄，不代表機關沒有公開。</p>
+  </section>
+
+  <section class="panel" id="atlasSources" aria-labelledby="atlasSourcesTitle">
+    <p class="atl-eyebrow">來源與授權</p>
+    <h2 id="atlasSourcesTitle">底圖、座標與圖資從哪裡來</h2>
+    <div class="atl-method-grid">
+      <div><h3>行政界線</h3><p>內政部國土測繪中心「鄉鎮市區界線（TWD97經緯度）」1140318 版，依<a href="https://data.gov.tw/license" target="_blank" rel="noopener noreferrer">政府資料開放授權條款－第1版</a>使用。本站做過簡化（約 40 公尺），只適合看行政區相對位置，不能當地籍或界址依據。</p><p><a href="https://data.gov.tw/dataset/7441" target="_blank" rel="noopener noreferrer">資料集頁面</a></p></div>
+      <div><h3>現地道路與建物輪廓</h3><p>© OpenStreetMap contributors，依 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">ODbL 1.0</a> 使用，本站的衍生圖資也以 ODbL 釋出。這是志願者製圖，只作現地脈絡，不是工程的官方範圍。</p></div>
+      <div><h3>案卷座標的來源</h3><ul id="atlasCoordSources" class="atl-sourcelist"><li class="atl-note">正在讀取。</li></ul></div>
+      <div><h3>資料檔</h3><ul class="atl-sourcelist"><li><a href="/data/geo/project-locations.json">案卷位置與待定位清單（JSON）</a></li><li><a href="/data/geo/project-stages.json">七階段對照（JSON）</a></li><li><a href="/data/geo/manifest.json">圖資清單：來源、下載時間與雜湊（JSON）</a></li><li><a href="/data/governance.json">治理案卷（JSON）</a></li></ul></div>
+    </div>
+    <p>立體示意視角的底座、尺規與指北盤是原創插畫，用 anatomy 繪圖工具組（MIT 授權）以程式產生，沒有使用任何外部圖片。</p>
+  </section>
+
+  <noscript><p class="atl-gaps">這個頁面需要 JavaScript 才能操作地圖。上方是靜態總覽圖；位置與待定位清單可以直接讀 <a href="/data/geo/project-locations.json">案卷位置 JSON</a>，案卷內容在 <a href="/governance.html">地方治理</a>頁。</p></noscript>
+</main>
+<footer class="wrap foot">政策與工程地圖・試行版　<a href="/governance.html">地方治理觀察</a> · <a href="/index.html">新竹選情資料庫</a> · <a href="https://github.com/aa0968111723-prog/hsinchu-watch">程式與資料</a></footer>
+<script type="module" src="/src/atlas/main.js"></script><script defer src="/page-tools.js"></script>
+</body></html>

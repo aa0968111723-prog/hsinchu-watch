@@ -1,0 +1,73 @@
+/* 地圖場景的材質與顏色。頁面（atlas.css）與靜態替代圖（render-static.mjs）共用這一份。
+   kit 的四階明暗由 --anatomy-* 變數決定；每種材質在自己的群組上改寫變數，立體感與顏色就一起換。 */
+.atl-svg, .atl-svg.iso[data-theme="light"] {
+  --anatomy-paper: #fbf8f1; --anatomy-face: #ffffff; --anatomy-top: #fdfbf5;
+  --anatomy-shade-0: #dcd6c8; --anatomy-shade-1: #e5e0d3; --anatomy-shade-2: #ede9de; --anatomy-shade-3: #f4f1e8;
+  --anatomy-hi: #4a5964; --anatomy-mid: #8d9aa3; --anatomy-lo: #b5bfc6; --anatomy-faint: #d2d9dd; --anatomy-lit: #e4572e;
+  --anatomy-halo: #7d8576; --anatomy-halo-opacity: .26; --anatomy-dot: #4a5964;
+  --anatomy-weight: .6px;
+  --atl-ink: #33424d; --atl-accent: #e4572e;
+  display: block; overflow: hidden;
+}
+.atl-svg path, .atl-svg circle, .atl-svg ellipse { vector-effect: non-scaling-stroke; }
+
+/* 材質 */
+.atl-wood { --anatomy-paper: #f1e2c8; --anatomy-top: #f6ead4; --anatomy-shade-0: #d6bf9b; --anatomy-shade-1: #dfcbab; --anatomy-shade-2: #e8d6ba; --anatomy-shade-3: #eedfc7; --anatomy-hi: #8c7150; --anatomy-mid: #b0977a; --anatomy-lo: #c9b598; --anatomy-faint: #dbcbb1; }
+.atl-brass { --anatomy-paper: #f3e2a8; --anatomy-top: #f9edc2; --anatomy-shade-0: #d6bb70; --anatomy-shade-1: #e0c882; --anatomy-shade-2: #ead595; --anatomy-shade-3: #f1dfa6; --anatomy-hi: #8a7330; --anatomy-mid: #ae9750; --anatomy-lo: #c8b36f; --anatomy-faint: #dac98c; }
+.atl-sea { --anatomy-paper: #cfe6ef; --anatomy-top: #d7ecf3; --anatomy-shade-0: #a5cbda; --anatomy-shade-1: #b1d4e1; --anatomy-shade-2: #bddce7; --anatomy-shade-3: #c8e3ec; --anatomy-hi: #5d8ca1; --anatomy-mid: #82acbe; --anatomy-lo: #a0c5d3; --anatomy-faint: #b7d6e1; }
+.atl-land { --anatomy-shade-0: #d2c7ae; --anatomy-shade-1: #dbd1bb; --anatomy-shade-2: #e4dcc8; --anatomy-shade-3: #ebe4d3; }
+.atl-plateau { --anatomy-shade-0: #c9b497; --anatomy-shade-1: #d4c1a6; --anatomy-shade-2: #decdb5; --anatomy-shade-3: #e7d8c3; }
+.atl-furniture .atl-needle { stroke-width: 1.3px; }
+.atl-furniture .iso-face-text { fill: #a08a63; font-family: "Noto Serif TC", Georgia, serif; font-weight: 700; letter-spacing: 0; }
+
+/* 平面視角的海與經緯線 */
+.atl-sea-flat { fill: #d7ecf3; stroke: none; }
+.atl-graticule { fill: none; stroke: #b3d4e0; stroke-width: .6px; stroke-dasharray: 2 5; }
+
+/* 陸地 */
+.atl-land-top { fill: #ece7da; stroke: none; }
+.atl-neighbor { fill: #ece7da; stroke: #d6cebd; stroke-width: .6px; stroke-linejoin: round; }
+.atl-plateau-top { fill: #f3ead9; stroke: none; }
+
+/* 四個地區的柔和色票：只用來分辨行政區，不代表任何數值或評價。 */
+.atl-r-taipei { --region-tint: #f9d9c4; --region-line: #e0a987; --region-ink: #8a4b2a; }
+.atl-r-new-taipei { --region-tint: #d8ecd0; --region-line: #9cc79a; --region-ink: #3f6b45; }
+.atl-r-hsinchu-county { --region-tint: #fbeab3; --region-line: #dcc06a; --region-ink: #7a6220; }
+.atl-r-hsinchu-city { --region-tint: #ddd7f3; --region-line: #aba0d6; --region-ink: #544a86; }
+.atl-district { fill: var(--region-tint, #f3ead9); stroke: var(--region-line, #cdbfa9); stroke-width: .6px; stroke-linejoin: round; cursor: pointer; transition: fill 140ms; }
+.atl-district.is-low { fill: color-mix(in srgb, var(--region-tint, #f3ead9) 42%, #ece7da); stroke: color-mix(in srgb, var(--region-line, #cdbfa9) 55%, #ece7da); }
+.atl-district:hover, .atl-district[data-hover] { fill: color-mix(in srgb, var(--region-tint, #f3ead9) 62%, #ffffff); }
+.atl-district[data-active] { fill: color-mix(in srgb, var(--region-tint, #f3ead9) 50%, #ffffff); stroke: var(--region-ink, #6b5a48); stroke-width: 1.4px; }
+.atl-region-edge { fill: none; stroke: #77695a; stroke-width: 1.2px; stroke-linejoin: round; pointer-events: none; }
+.atl-region-edge.is-low { stroke: #ab9f8f; stroke-width: .8px; }
+.atl-block-lines { pointer-events: none; }
+
+/* 案卷線段（道路等有起迄的工程） */
+.atl-route-casing { fill: none; stroke: #fffdf8; stroke-width: 6px; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.atl-route { fill: none; stroke: var(--atl-accent); stroke-width: 3px; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+
+/* 地名 */
+.atl-label { font: 600 12px/1 "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; fill: #3f4c56; paint-order: stroke; stroke: #fffdf8; stroke-width: 3px; stroke-linejoin: round; text-anchor: middle; dominant-baseline: central; pointer-events: none; user-select: none; }
+.atl-label[data-kind="region"] { font-size: 15px; font-weight: 700; letter-spacing: .1em; fill: #2f3b44; stroke-width: 4px; }
+.atl-label[data-kind="neighbor"] { font-size: 11px; font-weight: 500; fill: #9a9282; stroke: #f3efe4; }
+.atl-label[data-low] { fill: #7b7566; font-weight: 500; }
+
+/* 圖釘：尖端是核對過的座標；釘頭的字是七階段中最新有紀錄的一格。 */
+.atl-pin-art { --pin: #d5d9dc; --pin-ink: #2c3740; }
+.atl-pin-art[data-stage="planning"] { --pin: #b9c5ea; }
+.atl-pin-art[data-stage="approval"] { --pin: #a3cdf0; }
+.atl-pin-art[data-stage="construction"] { --pin: #ffc57f; }
+.atl-pin-art[data-stage="completion"] { --pin: #a0dcb6; }
+.atl-pin-art[data-stage="acceptance"] { --pin: #84d5ca; }
+.atl-pin-art[data-stage="opening"] { --pin: #f5aabb; }
+.atl-pin-art[data-stage="outcome"] { --pin: #ccb7f0; }
+.atl-pin-ground { fill: #fffdf8; stroke: var(--pin-ink); stroke-width: 1.2px; }
+.atl-pin-art[data-precision="street"] .atl-pin-ground { fill: none; stroke-dasharray: 2.4 2; }
+.atl-pin-hole { fill: var(--pin-ink); }
+.atl-pin-stem { fill: none; stroke: var(--pin-ink); stroke-width: 1.6px; stroke-linecap: round; }
+.atl-pin-shadow { fill: #4a5964; opacity: .16; }
+.atl-pin-head { fill: var(--pin); stroke: var(--pin-ink); stroke-width: 1.4px; }
+.atl-pin-rim { fill: none; stroke: #ffffff; stroke-width: 1.6px; opacity: .85; }
+.atl-pin-glyph { font: 700 13px/1 "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; fill: var(--pin-ink); text-anchor: middle; dominant-baseline: central; }
+.atl-pin-star { fill: #f2b01e; stroke: #8a6410; stroke-width: .8px; }
+.atl-pin-select { fill: none; stroke: var(--atl-accent, #e4572e); stroke-width: 2.4px; opacity: 0; }

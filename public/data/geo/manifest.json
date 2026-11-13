@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-13T08:21:34+08:00",
+  "licenses": {
+    "ogdl-tw-1.0": {
+      "name": "政府資料開放授權條款－第1版",
+      "url": "https://data.gov.tw/license",
+      "attribution": "內政部國土測繪中心",
+      "note": "可重製、改作、編輯與公開傳輸，須標示資料提供機關；與 CC BY 4.0 相容。"
+    },
+    "odbl-1.0": {
+      "name": "Open Database License (ODbL) 1.0",
+      "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "attribution": "© OpenStreetMap contributors",
+      "note": "衍生資料庫須以相同授權釋出並標示來源；見 https://www.openstreetmap.org/copyright"
+    }
+  },
+  "crs_note": "來源坐標系統為 TWD97[2020] 經緯度（GRS80）。與 WGS84 的差距在公尺級以內，小於本檔簡化容許誤差，未另做基準轉換；座標順序為 [經度, 緯度]。",
+  "boundaries": {
+    "tool": {
+      "name": "mapshaper",
+      "version": "0.7.101",
+      "invocation": "npx -y mapshaper@0.7.101"
+    },
+    "simplify": {
+      "districts_interval_m": 40,
+      "taiwan_interval_m": 300,
+      "taiwan_min_island_km2": 1,
+      "precision_deg": 0.00001
+    },
+    "sources": {
+      "county": {
+        "publisher": "內政部國土測繪中心",
+        "dataset_id": 7442,
+        "dataset_title": "直轄市、縣市界線(TWD97經緯度)",
+        "dataset_url": "https://data.gov.tw/dataset/7442",
+        "download_url": "https://www.tgos.tw/tgos/VirtualDir/Product/1cd4f4c9-6b01-4cf9-bf6c-23a73aa17d24/直轄市、縣(市)界線1140318.zip",
+        "license": "ogdl-tw-1.0",
+        "data_version": "1140318",
+        "data_version_note": "檔名所示版本為民國114年3月18日",
+        "retrieved_at": "2026-11-13T07:50:44+08:00",
+        "http_last_modified": "Thu, 10 Apr 2025 06:20:29 GMT",
+        "raw_bytes": 3762381,
+        "raw_sha256": "9ff4d337e03a711d7e17caaf4d0c46a0fe2c6bd3660b321a2e35123030d8491c",
+        "source_prj": "GEOGCS[\"GCS_TWD97[2020]\",DATUM[\"D_TWD_1997\",SPHEROID[\"GRS_1980\",6378137.0,298.257222101]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"
+      },
+      "town": {
+        "publisher": "內政部國土測繪中心",
+        "dataset_id": 7441,
+        "dataset_title": "鄉鎮市區界線(TWD97經緯度)",
+        "dataset_url": "https://data.gov.tw/dataset/7441",
+        "download_url": "https://www.tgos.tw/tgos/VirtualDir/Product/3fe61d4a-ca23-4f45-8aca-4a536f40f290/鄉(鎮、市、區)界線1140318.zip",
+        "license": "ogdl-tw-1.0",
+        "data_version": "1140318",
+        "data_version_note": "檔名所示版本為民國114年3月18日",
+        "retrieved_at": "2026-11-13T07:50:50+08:00",
+        "http_last_modified": "Thu, 10 Apr 2025 06:23:04 GMT",
+        "raw_bytes": 12801023,
+        "raw_sha256": "c5dc6c0f9a8cc1aad6758a0a6fb81b203718b37f42c5aa8e684262ca24a7d9dd",
+        "source_prj": "GEOGCS[\"GCS_TWD97[2020]\",DATUM[\"D_TWD_1997\",SPHEROID[\"GRS_1980\",6378137.0,298.257222101]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"
+      }
+    },
+    "files": [
+      {
+        "path": "public/data/geo/boundaries/districts.geojson",
+        "bytes": 274391,
+        "sha256": "b829d91a70fad7b3c3158b2a1e10851e3b182c9feacb1fd5113c96e2b22feec7",
+        "features": 57,
+        "vertices": 12384,
+        "bbox": [
+          120.87454,
+          24.42738,
+          122.00693,
+          25.29998
+        ]
+      },
+      {
+        "path": "public/data/geo/boundaries/regions.geojson",
+        "bytes": 97045,
+        "sha256": "868019563a0daeb3f9c5e790cfe27b5667dcb6f2ad6a37a66d2ae7c4027a3b37",
+        "features": 4,
+        "vertices": 4564,
+        "bbox": [
+          120.87454,
+          24.42738,
+          122.00693,
+          25.29998
+        ]
+      },
+      {
+        "path": "public/data/geo/boundaries/scope-outline.geojson",
+        "bytes": 65787,
+        "sha256": "68729deaa4970a914ddb487684722fda3c4643fb48655d9945e4c4d7f6670051",
+        "features": 1,
+        "vertices": 3101,
+        "bbox": [
+          120.87454,
+          24.42738,
+          122.00693,
+          25.29998
+        ]
+      },
+      {
+        "path": "public/data/geo/boundaries/neighbors.geojson",
+        "bytes": 127701,
+        "sha256": "732e4e1305d8d164946610ffbd4f6bc2853874d354c570d6d1f2bccc17b4d442",
+        "features": 7,
+        "vertices": 6015,
+        "bbox": [
+          120.45656,
+          24.15,
+          122.10782,
+          25.63335
+        ]
+      },
+      {
+        "path": "public/data/geo/boundaries/land-outline.geojson",
+        "bytes": 38898,
+        "sha256": "a9cb9b1f327a0e047e3a6969e15c93ad381c28d7943157e68d379784d24619ba",
+        "features": 1,
+        "vertices": 1807,
+        "bbox": [
+          120.45656,
+          24.15,
+          122.10782,
+          25.63335
+        ]
+      },
+      {
+        "path": "public/data/geo/boundaries/taiwan-counties.geojson",
+        "bytes": 86012,
+        "sha256": "1714b7935b99da7c8dfa83ce647bc77889650720bfb4e9e270bc08b9d12233f0",
+        "features": 22,
+        "vertices": 4255,
+        "bbox": [
+          116.7166,
+          20.6973,
+          123.4937,
+          26.383
+        ]
+      }
+    ]
+  },
+  "site_context": {
+    "source": {
+      "name": "OpenStreetMap",
+      "api": "https://api.openstreetmap.org/api/0.6/map.json",
+      "license": "odbl-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "copyright_url": "https://www.openstreetmap.org/copyright"
+    },
+    "note": "每個已定位案卷一個現地方框；衍生資料依 ODbL 1.0 釋出。",
+    "files": [
+      {
+        "path": "public/data/geo/sites/taipei-peiying-housing.geojson",
+        "project_id": "taipei-peiying-housing",
+        "bytes": 196596,
+        "sha256": "cedafd0f2a1c15d0925ed3649e110af65fdfed68e17fe885832f79b968a9d73f",
+        "features": 554,
+        "counts": {
+          "green": 15,
+          "water": 1,
+          "construction": 3,
+          "road": 223,
+          "rail": 6,
+          "building": 305,
+          "station": 1
+        },
+        "source_retrieved_at": "2026-11-13T08:00:55+08:00"
+      },
+      {
+        "path": "public/data/geo/sites/new-taipei-siyuan-footbridge.geojson",
+        "project_id": "new-taipei-siyuan-footbridge",
+        "bytes": 67703,
+        "sha256": "cb0e763d3a92f9cd6064b0c23a579b27dd60139ff4a0226fb0d1c59efa083de9",
+        "features": 179,
+        "counts": {
+          "green": 7,
+          "construction": 3,
+          "road": 93,
+          "rail": 12,
+          "building": 62,
+          "station": 2
+        },
+        "source_retrieved_at": "2026-11-13T08:00:59+08:00"
+      },
+      {
+        "path": "public/data/geo/sites/hsinchu-county-baozhong-road.geojson",
+        "project_id": "hsinchu-county-baozhong-road",
+        "bytes": 174566,
+        "sha256": "7482ee179fa06543420afdcdc6e172d045a4a6224e43b196ee45c21bacf4638d",
+        "features": 537,
+        "counts": {
+          "field": 7,
+          "green": 10,
+          "water": 9,
+          "waterline": 84,
+          "road": 264,
+          "planned_road": 12,
+          "building": 151
+        },
+        "source_retrieved_at": "2026-11-13T08:01:03+08:00"
+      }
+    ]
+  },
+  "project_locations": {
+    "path": "public/data/geo/project-locations.json",
+    "bytes": 16486,
+    "sha256": "371c3fb6cc01eab15865fad648bb4611d8383a4bc7c74783196260f428d3539a",
+    "reviewed_at": "2026-11-13",
+    "total": 4,
+    "located": 3,
+    "pending": 1,
+    "by_precision": {
+      "site": 1,
+      "street": 2,
+      "unknown": 1
+    }
+  }
+}

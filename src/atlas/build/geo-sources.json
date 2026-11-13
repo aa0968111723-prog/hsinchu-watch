@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "note": "地圖底圖的原始來源。build-boundaries.mjs 依此下載、核對並轉檔；授權文字以來源頁為準。",
+  "licenses": {
+    "ogdl-tw-1.0": {
+      "name": "政府資料開放授權條款－第1版",
+      "url": "https://data.gov.tw/license",
+      "attribution": "內政部國土測繪中心",
+      "note": "可重製、改作、編輯與公開傳輸，須標示資料提供機關；與 CC BY 4.0 相容。"
+    },
+    "odbl-1.0": {
+      "name": "Open Database License (ODbL) 1.0",
+      "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "attribution": "© OpenStreetMap contributors",
+      "note": "衍生資料庫須以相同授權釋出並標示來源；見 https://www.openstreetmap.org/copyright"
+    }
+  },
+  "regions": [
+    { "id": "taipei", "county_code": "63000", "name": "臺北市", "display_name": "台北市" },
+    { "id": "new-taipei", "county_code": "65000", "name": "新北市", "display_name": "新北市" },
+    { "id": "hsinchu-county", "county_code": "10004", "name": "新竹縣", "display_name": "新竹縣" },
+    { "id": "hsinchu-city", "county_code": "10018", "name": "新竹市", "display_name": "新竹市" }
+  ],
+  "neighbors": {
+    "note": "只作周邊底圖：與四個地區相鄰、會出現在圖框內的縣市，裁到 clip_bbox。不在本站案卷涵蓋範圍內。",
+    "county_codes": ["10017", "68000", "10002", "10005", "66000", "10008", "10015"],
+    "clip_bbox": [120.45, 24.15, 122.35, 25.75]
+  },
+  "boundaries": {
+    "county": {
+      "dataset_id": 7442,
+      "dataset_title": "直轄市、縣市界線(TWD97經緯度)",
+      "dataset_url": "https://data.gov.tw/dataset/7442",
+      "publisher": "內政部國土測繪中心",
+      "license": "ogdl-tw-1.0",
+      "download_url": "https://www.tgos.tw/tgos/VirtualDir/Product/1cd4f4c9-6b01-4cf9-bf6c-23a73aa17d24/直轄市、縣(市)界線1140318.zip",
+      "cache_name": "nlsc-county-1140318.zip",
+      "layer": "COUNTY_MOI_1140318",
+      "data_version": "1140318",
+      "data_version_note": "檔名所示版本為民國114年3月18日"
+    },
+    "town": {
+      "dataset_id": 7441,
+      "dataset_title": "鄉鎮市區界線(TWD97經緯度)",
+      "dataset_url": "https://data.gov.tw/dataset/7441",
+      "publisher": "內政部國土測繪中心",
+      "license": "ogdl-tw-1.0",
+      "download_url": "https://www.tgos.tw/tgos/VirtualDir/Product/3fe61d4a-ca23-4f45-8aca-4a536f40f290/鄉(鎮、市、區)界線1140318.zip",
+      "cache_name": "nlsc-town-1140318.zip",
+      "layer": "TOWN_MOI_1140318",
+      "data_version": "1140318",
+      "data_version_note": "檔名所示版本為民國114年3月18日"
+    }
+  },
+  "tool": { "name": "mapshaper", "version": "0.7.101", "invocation": "npx -y mapshaper@0.7.101" },
+  "simplify": {
+    "districts_interval_m": 40,
+    "taiwan_interval_m": 300,
+    "taiwan_min_island_km2": 1,
+    "precision_deg": 0.00001
+  }
+}

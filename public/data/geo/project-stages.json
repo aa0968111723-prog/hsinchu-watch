@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-13",
+  "based_on": { "governance_reviewed_at": "2026-11-12", "governance_files": ["public/data/governance.json", "public/data/governance-registry.json"] },
+  "note": "把治理案卷的官方紀錄逐項對到七個階段。每一格只寫來源有寫的事；沒有紀錄就是未收錄，不從前後階段推算。這份對照是人工整理，案卷更新後需要重新核對。",
+  "stages": [
+    { "id": "planning", "label": "規劃" },
+    { "id": "approval", "label": "核定" },
+    { "id": "construction", "label": "施工" },
+    { "id": "completion", "label": "完工" },
+    { "id": "acceptance", "label": "驗收" },
+    { "id": "opening", "label": "啟用" },
+    { "id": "outcome", "label": "實際成效" }
+  ],
+  "status_legend": {
+    "documented": "來源記載這個階段已經發生，並有日期",
+    "stated_undated": "來源提到這個階段，但沒有寫日期",
+    "in_preparation": "來源寫正在準備，結果尚未收錄",
+    "not_recorded": "本站尚未收錄這個階段的紀錄，不代表沒有發生"
+  },
+  "sources": [
+    { "id": "ntp-wedid-siyuan", "name": "新北市政府施政成果網：新莊區思源路跨越新北大道人行天橋新建工程", "agency": "新北市政府", "url": "https://wedid.ntpc.gov.tw/Governance/Detail/kdqlJDJpPQje", "kind": "project_page", "source_updated_at": null, "checked_at": "2026-11-13", "note": "由治理來源目錄的「在建工程專區」表列連結進入；治理來源目錄尚未收錄這一頁。" }
+  ],
+  "projects": [
+    {
+      "project_id": "taipei-peiying-housing",
+      "stages": {
+        "planning": { "status": "not_recorded", "note": "工程頁有緣起說明，沒有規劃時程。" },
+        "approval": { "status": "not_recorded" },
+        "construction": { "status": "documented", "date": "2020-02-25", "precision": "day", "label": "開工", "source_id": "taipei-peiying", "quote": "開工日期：109年2月25日" },
+        "completion": { "status": "documented", "date": "2026-06-01", "precision": "day", "label": "完工", "source_id": "taipei-peiying", "quote": "完工日期：115年6月1日", "note": "100% 是機關公布的工程進度，基準日同為 2026-06-01。" },
+        "acceptance": { "status": "in_preparation", "date": "2026-09", "precision": "month", "label": "準備驗收與點交", "source_id": "taipei-peiying", "quote": "115年9月實際施工項目：準備後續驗收、點交及使用執照取得作業", "note": "驗收結果、點交與使用執照文件尚未收錄。" },
+        "opening": { "status": "not_recorded", "note": "入住或營運資料尚未收錄。" },
+        "outcome": { "status": "not_recorded" }
+      },
+      "latest_documented_stage": "completion",
+      "other_records": [
+        { "kind": "contract_award", "label": "決標", "date": "2019-10-01", "precision": "day", "source_id": "taipei-peiying", "quote": "決標日期：108年10月1日" }
+      ],
+      "figures": [
+        { "label": "工程金額", "value_twd": 938240000, "source_id": "taipei-peiying", "quote": "工程金額：9億3,824萬元", "note": "工程頁用語是「工程金額」，沒有註明是核定經費還是決標金額，所以不填入核定、決標或實支任何一欄。" }
+      ],
+      "facts": [
+        { "label": "建築規模", "text": "地下3層、地上14層，1棟；七至十四樓公共住宅96戶", "source_id": "taipei-peiying", "quote": "預計規劃興建地下3層地上14層1棟建築物……七至十四樓住宅部分可提供公共住宅96戶" }
+      ],
+      "relations": [
+        { "type": "agency", "name": "臺北市政府工務局水利工程處", "relation": "implementing", "relation_label": "主辦機關", "source_id": "taipei-peiying", "quote": "主辦工務所：臺北市政府工務局水利工程處 南門工務所" }
+      ]
+    },
+    {
+      "project_id": "new-taipei-siyuan-footbridge",
+      "stages": {
+        "planning": { "status": "not_recorded" },
+        "approval": { "status": "not_recorded" },
+        "construction": { "status": "documented", "date": "2025-12", "precision": "month", "label": "開工", "source_id": "ntp-wedid-siyuan", "quote": "本府養護工程處已於114年12月開工，預計115年12月底完工", "note": "在建工程表列的 77.25% 沒有標示數字基準日。" },
+        "completion": { "status": "not_recorded", "note": "來源只有預定期程（2026年12月），不是完工紀錄。" },
+        "acceptance": { "status": "not_recorded" },
+        "opening": { "status": "not_recorded" },
+        "outcome": { "status": "not_recorded" }
+      },
+      "latest_documented_stage": "construction",
+      "other_records": [],
+      "figures": [],
+      "facts": [
+        { "label": "橋梁長度", "text": "72公尺", "source_id": "ntp-wedid-siyuan", "quote": "橋梁長度達72公尺(58公尺 14公尺)" }
+      ],
+      "relations": [
+        { "type": "agency", "name": "新北市政府養護工程處", "relation": "implementing", "relation_label": "主辦機關", "source_id": "ntp-works", "quote": "主辦機關：新北市政府養護工程處" }
+      ]
+    },
+    {
+      "project_id": "hsinchu-county-baozhong-road",
+      "stages": {
+        "planning": { "status": "not_recorded" },
+        "approval": { "status": "stated_undated", "date": null, "precision": null, "label": "經費核定", "source_id": "hsc-baozhong", "quote": "獲得交通部「生活圈道路交通系統建設計畫」補助，核定經費為9億7521萬元", "note": "新聞稿寫到核定經費，沒有寫核定日期。" },
+        "construction": { "status": "documented", "date": "2026-11-12", "precision": "day", "label": "開工動土", "source_id": "hsc-baozhong", "quote": "新竹縣政府於今(12)日舉辦「縣道117線18K+480-19K+840(褒忠路)道路拓寬工程」開工動土典禮", "note": "這是動土典禮日期；施工進度百分比尚未收錄。" },
+        "completion": { "status": "not_recorded", "note": "來源只有機關目標（2028年10月完工通車），不是完工紀錄。" },
+        "acceptance": { "status": "not_recorded" },
+        "opening": { "status": "not_recorded" },
+        "outcome": { "status": "not_recorded" }
+      },
+      "latest_documented_stage": "construction",
+      "other_records": [],
+      "figures": [
+        { "label": "中央款", "value_twd": 770420000, "source_id": "hsc-baozhong", "quote": "其中7億7042萬元(79％)為中央款", "note": "核定經費的來源分攤，不是實際支用。" },
+        { "label": "地方配合款", "value_twd": 204790000, "source_id": "hsc-baozhong", "quote": "地方配合款2億479萬元(21％)", "note": "核定經費的來源分攤，不是實際支用。" }
+      ],
+      "facts": [
+        { "label": "工程範圍", "text": "全長1,360公尺，含280公尺的褒忠大橋；路寬拓為18公尺", "source_id": "hsc-baozhong", "quote": "全長1360公尺（含280公尺的褒忠大橋），原本狹窄的路幅將全面拓寬至18公尺" },
+        { "label": "預計工期", "text": "690日曆天", "source_id": "hsc-baozhong", "quote": "預計工期為690日曆天" }
+      ],
+      "relations": [
+        { "type": "agency", "name": "新竹縣政府", "relation": "implementing", "relation_label": "主辦機關", "source_id": "hsc-baozhong", "quote": "新竹縣政府於今(12)日舉辦……開工動土典禮" },
+        { "type": "agency", "name": "交通部", "relation": "funding", "relation_label": "補助計畫", "source_id": "hsc-baozhong", "quote": "獲得交通部「生活圈道路交通系統建設計畫」補助" },
+        { "type": "person", "name": "楊文科", "office": "新竹縣長", "relation": "attended_ceremony", "relation_label": "出席開工動土典禮", "source_id": "hsc-baozhong", "quote": "縣長楊文科、新埔鎮長陳英樓、立委徐欣瑩等民意代表手持金鏟動土" },
+        { "type": "person", "name": "陳英樓", "office": "新埔鎮長", "relation": "attended_ceremony", "relation_label": "出席開工動土典禮", "source_id": "hsc-baozhong", "quote": "縣長楊文科、新埔鎮長陳英樓、立委徐欣瑩等民意代表手持金鏟動土" },
+        { "type": "person", "name": "徐欣瑩", "office": "立法委員", "relation": "attended_ceremony", "relation_label": "出席開工動土典禮", "source_id": "hsc-baozhong", "quote": "縣長楊文科、新埔鎮長陳英樓、立委徐欣瑩等民意代表手持金鏟動土" }
+      ],
+      "relations_note": "職稱照新聞稿寫法。出席典禮是來源記載的參與方式，不代表個人對核定、經費或工程成果的責任歸屬。"
+    },
+    {
+      "project_id": "hsinchu-city-xiangshan-four",
+      "stages": {
+        "planning": { "status": "not_recorded" },
+        "approval": { "status": "not_recorded" },
+        "construction": { "status": "not_recorded" },
+        "completion": { "status": "not_recorded" },
+        "acceptance": { "status": "not_recorded" },
+        "opening": { "status": "not_recorded" },
+        "outcome": { "status": "not_recorded" }
+      },
+      "latest_documented_stage": null,
+      "stage_note": "目前只有補辦土地徵收的公告。補辦是事後補齊土地程序，無法從這筆紀錄判斷道路工程在哪個階段。",
+      "other_records": [
+        { "kind": "land_expropriation_approval", "label": "內政部准予徵收", "date": "2026-11-05", "precision": "day", "source_id": "hcc-xiangshan", "quote": "奉內政部115年11月5日台內地字第1150265564號函奉准徵收" },
+        { "kind": "land_expropriation_notice", "label": "土地徵收公告（補辦）", "date": "2026-11-11", "precision": "day", "source_id": "hcc-xiangshan", "quote": "公告日期：2026/11/11　發文字號：府地用字第11501943171號" }
+      ],
+      "figures": [],
+      "facts": [
+        { "label": "徵收土地", "text": "長興段731地號等6筆，合計0.009059公頃", "source_id": "hcc-xiangshan", "quote": "奉准徵收坐落本市長興段731地號等6筆土地，合計面積0.009059公頃" }
+      ],
+      "relations": [
+        { "type": "agency", "name": "新竹市政府地政處", "relation": "notice_issuer", "relation_label": "公告機關", "source_id": "hcc-xiangshan", "quote": "新竹市政府辦理「新竹市香山四號道路工程（補辦）」" }
+      ]
+    }
+  ]
+}
