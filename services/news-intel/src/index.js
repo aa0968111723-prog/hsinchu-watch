@@ -19,6 +19,23 @@ function tokensFromEnv(env) {
   };
 }
 
+export async function applyScheduledResult(db, previous, result) {
+  await db.prepare(
+    "INSERT INTO agent_runs (id, started_at, finished_at, status, article_count, gemini_used, error) VALUES (?, datetime('now'), datetime('now'), ?, ?, ?, ?)"
+  ).bind(crypto.randomUUID(), result.ok ? "ok" : "failed", result.articles?.length || 0, result.gemini?.use ? 1 : 0, result.ok ? null : result.error || null).run();
+  if (result.ok && result.announcements?.length) {
+    await persistAnnouncements(db, { announcements: result.announcements, now: result.last_success_at });
+  }
+  const snapshot = snapshotPayload(previous, result);
+  if (snapshot.replaced) {
+    await persistArticles(db, { articles: result.articles, now: result.last_success_at });
+    await db.prepare(
+      "INSERT INTO published_snapshots (id, articles_json, last_success_at) VALUES (1, ?, ?) ON CONFLICT(id) DO UPDATE SET articles_json = excluded.articles_json, last_success_at = excluded.last_success_at"
+    ).bind(JSON.stringify(snapshot.articles), snapshot.last_success_at).run();
+  }
+  return snapshot;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -51,18 +68,6 @@ export default {
       now: new Date().toISOString(),
     });
     if (!env.DB) return;
-    await env.DB.prepare(
-      "INSERT INTO agent_runs (id, started_at, finished_at, status, article_count, gemini_used, error) VALUES (?, datetime('now'), datetime('now'), ?, ?, ?, ?)"
-    ).bind(crypto.randomUUID(), result.ok ? "ok" : "failed", result.articles.length, result.gemini?.use ? 1 : 0, result.ok ? null : result.error).run();
-    if (result.ok && result.announcements?.length) {
-      await persistAnnouncements(env.DB, { announcements: result.announcements, now: result.last_success_at });
-    }
-    const snapshot = snapshotPayload(previous, result);
-    if (snapshot.replaced) {
-      await persistArticles(env.DB, { articles: result.articles, now: result.last_success_at });
-      await env.DB.prepare(
-        "INSERT INTO published_snapshots (id, articles_json, last_success_at) VALUES (1, ?, ?) ON CONFLICT(id) DO UPDATE SET articles_json = excluded.articles_json, last_success_at = excluded.last_success_at"
-      ).bind(JSON.stringify(snapshot.articles), snapshot.last_success_at).run();
-    }
+    await applyScheduledResult(env.DB, previous, result);
   },
 };

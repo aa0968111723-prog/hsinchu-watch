@@ -48,7 +48,8 @@ fetch("/data/news-intel/latest.json")
     const when = data.last_success_at || "未知";
     status.textContent = `成功時間 ${when}。顯示 ${articles.length} 篇。Gemini 未使用。這是單一來源索引，不是已查核事實。`;
     for (const article of articles) {
-      addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${article.verification_status || "UNVERIFIED"}`);
+      const claimLabels = { candidate_statement: "候選人說法", poll: "民調", legal_status: "司法程序", commentary: "評論", official_notice: "官方公告", news_report: "新聞報導" };
+      addItem(list, article.title, article.url, `${article.source_name || "來源未標"} · ${article.published_at || "日期未知"} · ${claimLabels[article.claim_kind] || "未分類"} · ${article.verification_status || "UNVERIFIED"}`);
     }
     const announcements = Array.isArray(data.announcements) ? data.announcements : [];
     noticeStatus.textContent = announcements.length ? `顯示 ${announcements.length} 則議會公告，日期沿用來源頁。` : "這一輪沒有議會公告，沒有補假資料。";

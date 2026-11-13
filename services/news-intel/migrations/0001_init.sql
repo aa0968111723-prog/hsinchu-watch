@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS articles (
   source_license TEXT,
   verification_status TEXT NOT NULL,
   review_status TEXT NOT NULL,
+  claim_kind TEXT,
   content_hash TEXT NOT NULL,
   content_version INTEGER NOT NULL DEFAULT 1,
   attribution TEXT,

@@ -75,7 +75,11 @@ test("a failed hour keeps the last successful articles", async () => {
   assert.equal(failed.last_success_at, "2026-11-13T01:00:00+08:00");
   const poll = publicationFields({ original_title: "新竹市民調支持度", source_url: "https://www.cna.com.tw/a", publisher_timestamp: "2026-11-13", source_type: "news_rss", summary: "支持度" });
   assert.equal(poll.verification_status, "UNVERIFIED");
+  assert.equal(poll.claim_kind, "poll");
   assert.equal(poll.fact_fields_allowed, false);
+  const speech = publicationFields({ original_title: "吳旭智：將持續爭取選民認同", source_url: "https://www.cna.com.tw/b", publisher_timestamp: "2026-11-13T14:16:16.000Z", source_type: "news_rss" });
+  assert.equal(speech.claim_kind, "candidate_statement");
+  assert.equal(speech.fact_fields_allowed, false);
   assert.deepEqual(mergeRun(previous, { ok: false, error: "down" }).articles, previous.articles);
 });
 
@@ -263,4 +267,46 @@ test("applied migration serves articles and keeps unverified claims out of fact 
   const found = await handleMcp({ authorization: "Bearer reader-token", tokens, db: d1, body: { tool: "search_existing_articles", input: { query: "竹北道路開工更正" } } });
   assert.equal(found.body.articles.length, 1);
   assert.equal(found.body.articles[0].verification_status, "RETRACTED");
+});
+
+test("a failed scheduled round keeps the previous database rows", async () => {
+  const { DatabaseSync } = await import("node:sqlite");
+  const { applyScheduledResult } = await import("../src/index.js");
+  const db = new DatabaseSync(":memory:");
+  db.exec(readFileSync(new URL("../migrations/0001_init.sql", import.meta.url), "utf8"));
+  db.exec(readFileSync(new URL("../migrations/0002_snapshot.sql", import.meta.url), "utf8"));
+  const d1 = {
+    prepare(sql) {
+      const statement = (params) => ({
+        bind(...next) { return statement(next); },
+        async run() { db.prepare(sql).run(...params); return { success: true }; },
+        async all() { return { results: db.prepare(sql).all(...params) }; },
+        async first() { return db.prepare(sql).get(...params) || null; },
+      });
+      return statement([]);
+    },
+  };
+  const article = {
+    original_title: "新竹縣道路公告",
+    source_url: "https://www.hsinchu.gov.tw/a",
+    publisher_timestamp: "2026-11-13T09:00:00.000Z",
+    region_id: "hsinchu-county",
+    verification_status: "SINGLE_SOURCE",
+    review_status: "pending_index",
+    claim_kind: "official_notice",
+    source_name: "新竹縣政府",
+    source_type: "official_rss",
+    fetched_at: "2026-11-13T10:00:00.000Z",
+  };
+  const first = await applyScheduledResult(d1, { articles: [] }, { ok: true, articles: [article], last_success_at: "2026-11-13T10:00:00.000Z", announcements: [] });
+  const second = await applyScheduledResult(d1, { articles: [article], last_success_at: "2026-11-13T10:00:00.000Z" }, { ok: false, articles: [article], error: "all_sources_failed", announcements: [] });
+  const stored = db.prepare("SELECT original_title, claim_kind FROM articles").get();
+  const snapshot = db.prepare("SELECT last_success_at FROM published_snapshots WHERE id = 1").get();
+  assert.equal(first.replaced, true);
+  assert.equal(second.replaced, false);
+  assert.equal(stored.original_title, "新竹縣道路公告");
+  assert.equal(stored.claim_kind, "official_notice");
+  assert.equal(snapshot.last_success_at, "2026-11-13T10:00:00.000Z");
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM agent_runs").get().n, 2);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM project_budgets").get().n, 0);
 });

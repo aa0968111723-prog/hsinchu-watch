@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T14:50:06.985Z",
+  "last_success_at": "2026-11-13T14:52:55.031Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -15,6 +15,7 @@
       "published_at": "2026-11-13T14:16:16.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "candidate_statement",
       "source_name": "中央社"
     },
     {
@@ -23,6 +24,7 @@
       "published_at": "2026-11-13T14:01:16.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "candidate_statement",
       "source_name": "中央社"
     },
     {
@@ -31,6 +33,7 @@
       "published_at": "2026-11-13T09:05:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -39,6 +42,7 @@
       "published_at": "2026-11-13T08:30:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -47,6 +51,7 @@
       "published_at": "2026-11-13T05:55:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -55,6 +60,7 @@
       "published_at": "2026-11-13T02:22:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -63,6 +69,7 @@
       "published_at": "2026-11-13T01:57:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -71,6 +78,7 @@
       "published_at": "2026-11-13T01:41:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -79,6 +87,7 @@
       "published_at": "2026-11-12T09:17:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -87,6 +96,7 @@
       "published_at": "2026-11-12T07:25:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -95,6 +105,7 @@
       "published_at": "2026-11-12T06:15:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -103,6 +114,7 @@
       "published_at": "2026-11-12T05:42:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -111,6 +123,7 @@
       "published_at": "2026-11-12T05:26:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -119,6 +132,7 @@
       "published_at": "2026-11-11T07:05:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -127,6 +141,7 @@
       "published_at": "2026-11-11T04:05:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -135,6 +150,7 @@
       "published_at": "2026-11-11T03:50:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -143,6 +159,7 @@
       "published_at": "2026-11-11T03:15:00.000Z",
       "region_id": "hsinchu-county",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹縣政府"
     },
     {
@@ -151,6 +168,7 @@
       "published_at": "2026-11-06",
       "region_id": "hsinchu-city",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹市政府"
     },
     {
@@ -159,6 +177,7 @@
       "published_at": "2026-10-28",
       "region_id": "hsinchu-city-xiangshan",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹市政府"
     },
     {
@@ -167,6 +186,7 @@
       "published_at": "2026-09-16",
       "region_id": "hsinchu-city",
       "verification_status": "SINGLE_SOURCE",
+      "claim_kind": "official_notice",
       "source_name": "新竹市政府"
     }
   ],

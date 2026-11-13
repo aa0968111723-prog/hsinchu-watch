@@ -41,6 +41,7 @@ const payload = {
     published_at: article.publisher_timestamp,
     region_id: article.region_id,
     verification_status: article.verification_status,
+    claim_kind: article.claim_kind,
     source_name: article.source_name,
   })),
   announcements: result.announcements || [],

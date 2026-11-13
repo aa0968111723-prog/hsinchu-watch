@@ -9,6 +9,18 @@ export function parsePublisherTimestamp(value) {
 }
 
 const HIGH_RISK = ["民調", "支持度", "起訴", "羈押", "判決", "預算執行率", "完工驗收"];
+const CANDIDATE_WORDS = ["助選", "政見", "候選人", "掃街", "造勢", "拜票"];
+const LEGAL_WORDS = ["搜索", "偵查", "交保", "聲押", "起訴", "羈押", "判決"];
+
+export function claimKind(article) {
+  const blob = `${article?.original_title || ""} ${article?.summary || ""}`;
+  if (blob.includes("民調") || blob.includes("支持度")) return "poll";
+  if (LEGAL_WORDS.some((word) => blob.includes(word))) return "legal_status";
+  if (article?.source_type === "official_rss" || article?.source_type === "official_html") return "official_notice";
+  if (article?.source_type === "news_rss" && (CANDIDATE_WORDS.some((word) => blob.includes(word)) || String(article?.original_title || "").includes("："))) return "candidate_statement";
+  if (blob.includes("評論") || blob.includes("社論")) return "commentary";
+  return "news_report";
+}
 
 export function classifyArticle(article) {
   if (!article?.publisher_timestamp || !article?.source_url) return "UNVERIFIED";
@@ -24,6 +36,7 @@ export function publicationFields(article) {
   return {
     verification_status: status,
     review_status: status === "UNVERIFIED" ? "needs_review" : "pending_index",
+    claim_kind: claimKind(article),
     fact_fields_allowed: status === "VERIFIED_OFFICIAL" || status === "VERIFIED_MULTI_SOURCE",
   };
 }
