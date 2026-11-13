@@ -31,5 +31,6 @@ if (!sameSnapshot(live, local)) {
 }
 copyFileSync(fileURLToPath(new URL("../../../public/data/news-intel/latest.json", import.meta.url)), `${mirror}\\data\\news-intel\\latest.json`);
 copyFileSync(fileURLToPath(new URL("../../../public/news-hourly.html", import.meta.url)), `${mirror}\\news-hourly.html`);
-const deployed = spawnSync(deployCommand(mirror), { cwd: root, shell: true, stdio: "inherit" });
+const wranglerBin = fileURLToPath(new URL("../node_modules/wrangler/bin/wrangler.js", import.meta.url));
+const deployed = spawnSync(deployCommand(mirror, existsSync(wranglerBin) ? wranglerBin : ""), { cwd: root, shell: true, stdio: "inherit" });
 process.exit(deployed.status ?? 1);
