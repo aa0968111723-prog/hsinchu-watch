@@ -498,7 +498,10 @@ test("published news file stays within the real cap", () => {
   assert.ok(data.count <= 20);
   assert.equal(data.gemini.use, false);
   assert.equal(data.gemini.called, false);
-  assert.ok(data.articles.every((article) => article.title && article.url.startsWith("https://")));
+  assert.ok(data.articles.every((article) => article.title && allowedUrl(article.url)));
+  assert.equal(typeof data.duration_ms, "number");
+  assert.ok(data.duration_ms >= 0);
+  assert.ok(Array.isArray(data.changes?.added) && Array.isArray(data.changes?.removed));
   assert.ok(data.articles.every((article) => article.verification_status !== "VERIFIED_OFFICIAL" && article.verification_status !== "VERIFIED_MULTI_SOURCE"));
   const taipeiDay = (value) => {
     const text = String(value || "");

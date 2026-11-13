@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T16:27:49.018Z",
+  "last_success_at": "2026-11-13T16:49:02.360Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -345,5 +345,6 @@
     "added": [],
     "removed": []
   },
+  "duration_ms": 20413,
   "model_review": []
 }
