@@ -1,7 +1,7 @@
 {
   "ok": true,
   "retained": false,
-  "last_success_at": "2026-11-13T15:18:24.790Z",
+  "last_success_at": "2026-11-13T15:25:10.936Z",
   "count": 20,
   "failures": [],
   "gemini": {
@@ -40,7 +40,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-13T09:05:09.000Z",
+      "page_published_at": "2026-11-13",
       "source_name": "新竹縣政府"
     },
     {
@@ -51,7 +51,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-13T08:30:57.000Z",
+      "page_published_at": "2026-11-13",
       "source_name": "新竹縣政府"
     },
     {
@@ -59,10 +59,10 @@
       "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358228",
       "published_at": "2026-11-13T05:55:00.000Z",
       "region_id": "hsinchu-county",
-      "verification_status": "UNVERIFIED",
+      "verification_status": "SINGLE_SOURCE",
       "claim_kind": "project_progress",
-      "date_checked": false,
-      "page_published_at": "2026-11-13T05:43:22.000Z",
+      "date_checked": true,
+      "page_published_at": "2026-11-13",
       "source_name": "新竹縣政府"
     },
     {
@@ -73,7 +73,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-13T02:22:43.000Z",
+      "page_published_at": "2026-11-13",
       "source_name": "新竹縣政府"
     },
     {
@@ -84,7 +84,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-13T01:57:13.000Z",
+      "page_published_at": "2026-11-13",
       "source_name": "新竹縣政府"
     },
     {
@@ -95,7 +95,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-13T01:41:22.000Z",
+      "page_published_at": "2026-11-13",
       "source_name": "新竹縣政府"
     },
     {
@@ -106,7 +106,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-12T09:17:18.000Z",
+      "page_published_at": "2026-11-12",
       "source_name": "新竹縣政府"
     },
     {
@@ -117,7 +117,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-12T07:25:05.000Z",
+      "page_published_at": "2026-11-12",
       "source_name": "新竹縣政府"
     },
     {
@@ -125,10 +125,10 @@
       "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358194",
       "published_at": "2026-11-12T06:15:00.000Z",
       "region_id": "hsinchu-county",
-      "verification_status": "UNVERIFIED",
+      "verification_status": "SINGLE_SOURCE",
       "claim_kind": "project_progress",
-      "date_checked": false,
-      "page_published_at": "2026-11-12T06:03:30.000Z",
+      "date_checked": true,
+      "page_published_at": "2026-11-12",
       "source_name": "新竹縣政府"
     },
     {
@@ -139,7 +139,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-12T05:42:44.000Z",
+      "page_published_at": "2026-11-12",
       "source_name": "新竹縣政府"
     },
     {
@@ -150,7 +150,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "project_progress",
       "date_checked": true,
-      "page_published_at": "2026-11-12T05:26:35.000Z",
+      "page_published_at": "2026-11-12",
       "source_name": "新竹縣政府"
     },
     {
@@ -161,7 +161,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-11T07:05:07.000Z",
+      "page_published_at": "2026-11-11",
       "source_name": "新竹縣政府"
     },
     {
@@ -169,10 +169,10 @@
       "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358176",
       "published_at": "2026-11-11T04:05:00.000Z",
       "region_id": "hsinchu-county",
-      "verification_status": "UNVERIFIED",
+      "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
-      "date_checked": false,
-      "page_published_at": "2026-11-11T03:54:34.000Z",
+      "date_checked": true,
+      "page_published_at": "2026-11-11",
       "source_name": "新竹縣政府"
     },
     {
@@ -180,10 +180,10 @@
       "url": "https://www.hsinchu.gov.tw/News_Content.aspx?n=153&s=358175",
       "published_at": "2026-11-11T03:50:00.000Z",
       "region_id": "hsinchu-county",
-      "verification_status": "UNVERIFIED",
+      "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
-      "date_checked": false,
-      "page_published_at": "2026-11-11T03:36:27.000Z",
+      "date_checked": true,
+      "page_published_at": "2026-11-11",
       "source_name": "新竹縣政府"
     },
     {
@@ -194,7 +194,7 @@
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
       "date_checked": true,
-      "page_published_at": "2026-11-11T03:15:00.000Z",
+      "page_published_at": "2026-11-11",
       "source_name": "新竹縣政府"
     },
     {
@@ -204,8 +204,8 @@
       "region_id": "hsinchu-city",
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "official_notice",
-      "date_checked": null,
-      "page_published_at": null,
+      "date_checked": true,
+      "page_published_at": "2026-11-06",
       "source_name": "新竹市政府"
     },
     {
@@ -215,8 +215,8 @@
       "region_id": "hsinchu-city-xiangshan",
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "project_progress",
-      "date_checked": null,
-      "page_published_at": null,
+      "date_checked": true,
+      "page_published_at": "2026-10-28",
       "source_name": "新竹市政府"
     },
     {
@@ -226,8 +226,8 @@
       "region_id": "hsinchu-city",
       "verification_status": "SINGLE_SOURCE",
       "claim_kind": "project_progress",
-      "date_checked": null,
-      "page_published_at": null,
+      "date_checked": true,
+      "page_published_at": "2026-09-16",
       "source_name": "新竹市政府"
     }
   ],
