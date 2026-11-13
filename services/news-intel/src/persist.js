@@ -459,6 +459,31 @@ export async function persistFarms(db, { farms, now, actor = "scheduler" }) {
   return { upserted };
 }
 
+export async function persistRescue(db, { rescue, now, actor = "scheduler" }) {
+  const keys = [];
+  let upserted = 0;
+  for (const row of rescue?.rows || []) {
+    const region = String(row?.region || "").trim();
+    if (!region) continue;
+    keys.push(region);
+    const general = row.general_ambulances || null;
+    const existing = await db.prepare("SELECT general_ambulances, transports FROM rescue_stats WHERE region = ?").bind(region).first();
+    if (!existing) {
+      await db.prepare("INSERT INTO rescue_stats (region, region_id, general_ambulances, intensive_ambulances, transports, not_transported, dataset_url, source_url, fetched_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)").bind(region, row.region_id || null, general, row.intensive_ambulances || null, row.transports || null, row.not_transported || null, rescue.dataset_url, rescue.source_url, now).run();
+      upserted += 1;
+    } else if ((existing.general_ambulances ?? null) !== general || (existing.transports ?? null) !== (row.transports || null)) {
+      await db.prepare("UPDATE rescue_stats SET region_id = ?, general_ambulances = ?, intensive_ambulances = ?, transports = ?, not_transported = ?, dataset_url = ?, source_url = ?, fetched_at = ? WHERE region = ?").bind(row.region_id || null, general, row.intensive_ambulances || null, row.transports || null, row.not_transported || null, rescue.dataset_url, rescue.source_url, now, region).run();
+      upserted += 1;
+    }
+  }
+  if (keys.length && rescue?.dataset_url) {
+    const placeholders = keys.map(() => "?").join(",");
+    await db.prepare(`DELETE FROM rescue_stats WHERE dataset_url = ? AND region NOT IN (${placeholders})`).bind(rescue.dataset_url, ...keys).run();
+  }
+  await db.prepare("INSERT INTO audit_logs (id, actor, action, target, created_at) VALUES (?, ?, 'persist_rescue', ?, ?)").bind(crypto.randomUUID(), actor, `upserted=${upserted}`, now).run();
+  return { upserted };
+}
+
 export async function persistAnnouncements(db, { announcements, now, actor = "scheduler" }) {
   let inserted = 0;
   const agency = await db.prepare("SELECT id FROM government_agencies WHERE id = ?").bind("hsinchu-county-council").first();

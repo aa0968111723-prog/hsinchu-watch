@@ -831,6 +831,56 @@ test("organic farms keep the written expiry and do not judge it as still valid",
   assert.equal(page.includes("不另判今天是否仍有效"), true);
 });
 
+test("rescue statistics keep written counts and do not add case types together", async () => {
+  const { normalizeCountyRescue, splitRescue } = await import("../src/adapters.js");
+  const rows = normalizeCountyRescue(JSON.stringify([
+    {
+      "區域別": "竹北市",
+      "月底救護車輛數_一般救護車-說明": "0",
+      "月底救護車輛數_加護救護車-說明": "1",
+      "救護出勤次數_送醫次數-說明": "2",
+      "救護出勤次數_未運送次數-說明": "3",
+      "急救送醫人次_急病-說明": "4",
+      "急救送醫人次_車禍受傷-說明": "5",
+    },
+    { "區域別": " " },
+  ]));
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].region_id, "zhubei");
+  assert.equal(rows[0].general_ambulances, "0");
+  assert.equal(rows[0].cases["急病"], "4");
+  assert.equal(rows[0].cases["車禍受傷"], "5");
+  assert.equal(rows[0].total, undefined);
+  const parts = splitRescue({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=218", dataset_url: "https://ws.hsinchu.gov.tw/rescue.json", count: 1, rows });
+  assert.equal(parts.summary.rows[0].cases, undefined);
+  assert.equal(parts.download.rows[0].cases["急病"], "4");
+  const kept = await runHour({
+    previous: { articles: [], rescue: { count: 2, rows: [{ region: "竹北市", general_ambulances: "0" }] } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.rescue.rows[0].general_ambulances, "0");
+  assert.equal(kept.rescue.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-rescue-stats", payload: JSON.stringify([{ "區域別": "湖口鄉", "月底救護車輛數_一般救護車-說明": "1", "急救送醫人次_急病-說明": "8" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-rescue-stats", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.rows[0].region_id, "hukou");
+  assert.equal(imported.body.rows[0].cases["急病"], "8");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("各類人次不加總"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1576,6 +1626,13 @@ test("published news file stays within the real cap", () => {
     const farms = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/organic-farms.json", import.meta.url), "utf8"));
     assert.equal(farms.farms.length, data.farms.count);
     assert.ok(farms.farms.every((row) => row.name && row.status && (row.valid_until === null || /^\d{4}\/\d{2}\/\d{2}$/.test(row.valid_until)) && (row.area === null || typeof row.area === "string")));
+  }
+  if (data.rescue?.rows) {
+    assert.equal(data.rescue.count, data.rescue.rows.length);
+    assert.ok(data.rescue.rows.every((row) => row.region && row.region_id && !row.cases && (row.general_ambulances === null || typeof row.general_ambulances === "string")));
+    const rescue = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/rescue-stats.json", import.meta.url), "utf8"));
+    assert.equal(rescue.rows.length, data.rescue.count);
+    assert.ok(rescue.rows.every((row) => row.cases && row.cases["急病"] !== undefined && row.total === undefined));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

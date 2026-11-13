@@ -158,6 +158,8 @@ export const COUNTY_EBUS_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/
 export const COUNTY_EBUS_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=313";
 export const COUNTY_FARM_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/349/3850959e-7d70-4bd9-9225-e0be5e0821ec.json";
 export const COUNTY_FARM_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=349";
+export const COUNTY_RESCUE_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/218/bc8484ef-bd7c-4d4e-ada3-09927e301cb5.json";
+export const COUNTY_RESCUE_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=218";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -822,6 +824,68 @@ export function splitFarms(farms) {
     note: farms.note || "只留經營者名稱、地址、驗證機構、證書字號、效期、狀態、面積原文和產品品項。效期不另判今天是否仍有效。面積不加總。",
   };
   const download = Array.isArray(farms.farms) ? { ...summary, farms: farms.farms } : null;
+  return { summary, download };
+}
+
+const RESCUE_CASES = [
+  ["急病", "急救送醫人次_急病"],
+  ["疑似毒藥物中毒", "急救送醫人次_疑似毒藥物中毒"],
+  ["疑似一氧化碳中毒", "急救送醫人次_疑似一氧化碳中毒"],
+  ["癲癇或抽搐", "急救送醫人次_癲癇或抽搐"],
+  ["路倒", "急救送醫人次_路倒"],
+  ["行為急症或精神異常", "急救送醫人次_行為急症或精神異常"],
+  ["孕婦急產", "急救送醫人次_孕婦急產"],
+  ["溺水", "急救送醫人次_溺水"],
+  ["非創傷心肺停止", "急救送醫人次_非創傷類到院前心肺功能停止"],
+  ["非創傷其他", "急救送醫人次_非創傷類其他"],
+  ["一般外傷", "急救送醫人次_一般外傷"],
+  ["車禍受傷", "急救送醫人次_車禍受傷"],
+  ["墜落傷", "急救送醫人次_墜落傷"],
+  ["穿刺傷", "急救送醫人次_穿刺傷"],
+  ["燒燙傷", "急救送醫人次_燒燙傷"],
+  ["電擊傷", "急救送醫人次_電擊傷"],
+  ["生物咬螫傷", "急救送醫人次_生物咬螫傷"],
+  ["創傷心肺停止", "急救送醫人次_創傷類到院前心肺功能停止"],
+  ["創傷其他", "急救送醫人次_創傷類其他"],
+];
+
+function rescueField(row, prefix) {
+  const key = Object.keys(row || {}).find((name) => name.startsWith(prefix));
+  return key ? originalNumber(row[key]) : null;
+}
+
+export function normalizeCountyRescue(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const region = String(row?.["區域別"] || "").trim();
+    if (!region) return [];
+    const cases = {};
+    for (const [label, prefix] of RESCUE_CASES) cases[label] = rescueField(row, prefix);
+    return [{
+      region,
+      region_id: PARKING_DISTRICTS[region] || null,
+      general_ambulances: rescueField(row, "月底救護車輛數_一般救護車"),
+      intensive_ambulances: rescueField(row, "月底救護車輛數_加護救護車"),
+      transports: rescueField(row, "救護出勤次數_送醫次數"),
+      not_transported: rescueField(row, "救護出勤次數_未運送次數"),
+      cases,
+    }];
+  });
+}
+
+export function splitRescue(rescue) {
+  if (!rescue?.count) return { summary: null, download: null };
+  const shortRows = (rescue.rows || []).map(({ cases, ...row }) => row);
+  const summary = {
+    source_url: rescue.source_url,
+    dataset_url: rescue.dataset_url,
+    count: rescue.count,
+    rows: shortRows,
+    download_url: "/data/news-intel/rescue-stats.json",
+    note: rescue.note || "車輛數、送醫次數和各類人次沿用原文，不加總。沒有資料期間，不拿抓取時間充當。聯絡人沒有入檔。",
+  };
+  const download = Array.isArray(rescue.rows) ? { ...summary, rows: rescue.rows } : null;
   return { summary, download };
 }
 
