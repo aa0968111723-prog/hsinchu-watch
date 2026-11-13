@@ -130,6 +130,10 @@ test("a failed hour keeps the last successful articles", async () => {
   const speech = publicationFields({ original_title: "吳旭智：將持續爭取選民認同", source_url: "https://www.cna.com.tw/b", publisher_timestamp: "2026-11-13T14:16:16.000Z", source_type: "news_rss" });
   assert.equal(speech.claim_kind, "candidate_statement");
   assert.equal(speech.fact_fields_allowed, false);
+  const { pageDateAgrees } = await import("../src/verify.js");
+  assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", '"datePublished": "2026-11-13 17:05:09"'), true);
+  assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", '"datePublished": "2026-11-12 17:05:09"'), false);
+  assert.equal(pageDateAgrees("2026-11-13T09:05:00.000Z", "<p>沒有日期</p>"), null);
   const project = publicationFields({ original_title: "新竹市立棒球場改善工程正式完工", source_url: "https://www.hccg.gov.tw/a", publisher_timestamp: "2026-11-01", source_type: "official_html" });
   assert.equal(project.claim_kind, "project_progress");
   assert.equal(project.fact_fields_allowed, false);

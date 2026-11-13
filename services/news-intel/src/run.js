@@ -1,6 +1,7 @@
 import { collectAdapters } from "./adapters.js";
+import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
-import { publicationFields } from "./verify.js";
+import { pageDateAgrees, publicationFields } from "./verify.js";
 
 export function mergeRun(previous, result) {
   if (!result.ok) {
@@ -59,11 +60,30 @@ export async function runHour({ fetcher, adapters, env, previous, now }) {
     const publicRecords = accountsFailed ? (previous?.public_records || []) : freshRecords;
     const proposals = called ? await env.propose() : [];
     const modelReview = acceptModelProposals(proposals);
-    const articles = selectArticles(collected.candidates).map((article) => ({
+    const selected = selectArticles(collected.candidates).map((article) => ({
       ...article,
       ...publicationFields(article),
       fetched_at: now,
     }));
+    const articles = [];
+    for (const article of selected) {
+      if (!allowedUrl(article.source_url)) {
+        articles.push(article);
+        continue;
+      }
+      try {
+        const response = await fetcher(article.source_url);
+        const html = response?.ok ? await response.text() : "";
+        const agrees = pageDateAgrees(article.publisher_timestamp, html);
+        if (agrees === false) {
+          articles.push({ ...article, verification_status: "UNVERIFIED", review_status: "needs_review", fact_fields_allowed: false, date_checked: false });
+        } else {
+          articles.push({ ...article, date_checked: agrees });
+        }
+      } catch {
+        articles.push({ ...article, date_checked: null });
+      }
+    }
     return mergeRun(previous, {
       ok: true,
       articles,
