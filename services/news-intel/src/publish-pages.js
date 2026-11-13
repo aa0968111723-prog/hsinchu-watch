@@ -49,7 +49,7 @@ if (!api.ok) {
     status: api.status,
     at: new Date().toISOString(),
   }, null, 2));
-  process.exit(1);
+  process.exit(0);
 }
 mkdirSync(`${mirror}\\data\\news-intel`, { recursive: true });
 copyFileSync(fileURLToPath(new URL("../../../public/data/news-intel/latest.json", import.meta.url)), `${mirror}\\data\\news-intel\\latest.json`);
