@@ -1,4 +1,4 @@
-import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyDebt, normalizeCountyElectricBuses, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts, normalizeSpecialClasses, summarizeUsePermits, toiletUpdatePeriod } from "./adapters.js";
+import { ADAPTERS, CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, MOENV_AIR_URL, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyDebt, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeFinalAccounts, normalizeSpecialClasses, summarizeUsePermits, toiletUpdatePeriod } from "./adapters.js";
 import { authorize, consumeWrite } from "./auth.js";
 import { allowedUrl } from "./allowlist.js";
 import { linkEvents, regionFor, selectArticles } from "./pipeline.js";
@@ -42,6 +42,7 @@ function sources() {
     { id: "hsc-chargers", kind: "transport", url: COUNTY_CHARGER_URL, docs: COUNTY_CHARGER_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-gas-stations", kind: "transport", url: COUNTY_GAS_URL, docs: COUNTY_GAS_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-electric-buses", kind: "transport", url: COUNTY_EBUS_URL, docs: COUNTY_EBUS_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
+    { id: "hsc-organic-farms", kind: "agriculture", url: COUNTY_FARM_URL, docs: COUNTY_FARM_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-visitors", kind: "open_data", url: COUNTY_VISITOR_URL, docs: COUNTY_VISITOR_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-hospital-beds", kind: "health", url: COUNTY_BED_URL, docs: COUNTY_BED_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
     { id: "hsc-public-debt", kind: "governance", url: COUNTY_DEBT_URL, docs: COUNTY_DEBT_PAGE, license: "政府資料開放授權條款", free: true, needs_key: false },
@@ -231,6 +232,23 @@ export async function handleMcp({ authorization, body, tokens, state, db, fetche
     };
     if (db) await persistPopulation(db, { population, now: new Date().toISOString() });
     return remember({ status: 200, body: { population, stored: Boolean(db) } });
+  }
+  if (tool === "import_government_dataset" && input.dataset === "hsc-organic-farms") {
+    let raw = input.payload;
+    if (!raw && fetcher) {
+      const response = await fetcher(COUNTY_FARM_URL);
+      if (!response.ok) return { status: 502, body: { error: `farms_${response.status}` } };
+      raw = await response.text();
+    }
+    if (!raw) return { status: 409, body: { error: "fetcher_unavailable" } };
+    let farms;
+    try {
+      farms = normalizeCountyFarms(raw);
+    } catch {
+      return { status: 400, body: { error: "invalid_dataset" } };
+    }
+    if (!farms.length) return { status: 409, body: { error: "empty_dataset" } };
+    return remember({ status: 200, body: { count: farms.length, farms, stored: false } });
   }
   if (tool === "import_government_dataset" && input.dataset === "hsc-electric-buses") {
     let raw = input.payload;

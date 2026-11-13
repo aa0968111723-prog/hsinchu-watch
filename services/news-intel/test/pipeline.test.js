@@ -787,6 +787,50 @@ test("electric bus routes keep the written route number separate from the route 
   assert.equal(page.includes("不互相改寫"), true);
 });
 
+test("organic farms keep the written expiry and do not judge it as still valid", async () => {
+  const { normalizeCountyFarms, splitFarms } = await import("../src/adapters.js");
+  const rows = normalizeCountyFarms(JSON.stringify([
+    { "編號": "1", "農產品經營業者名稱": "某農場", "郵遞區號": "302", "通訊地址": "新竹縣竹北市光明一路1號", "驗證機構名稱": "某機構", "證書字號-有機": "A1", "驗證效期": "2021/11/01", "驗證狀態": "通過", "LandPublicArea": "0", "產品品項": "茶" },
+    { "編號": "2", "農產品經營業者名稱": "地址沒有鄉鎮", "通訊地址": "某路2號", "驗證效期": "2022/02/27", "驗證狀態": "通過", "LandPublicArea": "" },
+    { "編號": "3", "農產品經營業者名稱": " ", "驗證狀態": "通過" },
+  ]));
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].region_id, "zhubei");
+  assert.equal(rows[0].valid_until, "2021/11/01");
+  assert.equal(rows[0].status, "通過");
+  assert.equal(rows[0].area, "0");
+  assert.equal(rows[1].region_id, null);
+  assert.equal(rows[1].area, null);
+  const parts = splitFarms({ source_url: "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=349", dataset_url: "https://ws.hsinchu.gov.tw/farms.json", count: rows.length, farms: rows });
+  assert.equal(parts.summary.farms, undefined);
+  const kept = await runHour({
+    previous: { articles: [], farms: { count: 8 } },
+    now: "2026-11-14T01:20:00.000Z",
+    adapters: [{ id: "hsinchu-county-news", async fetch() { return ""; }, normalize() { return [{ original_title: "新竹縣道路公告", source_url: "https://www.hsinchu.gov.tw/a", publisher_timestamp: "2026-11-13", source_id: "hsinchu-county-news", source_name: "新竹縣政府", source_type: "official_rss" }]; } }],
+    fetcher: async () => ({ ok: false, status: 503 }),
+  });
+  assert.equal(kept.farms.count, 8);
+  assert.equal(kept.farms.retained, true);
+  const imported = await handleMcp({
+    authorization: "Bearer collector-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-organic-farms", payload: JSON.stringify([{ "編號": "9", "農產品經營業者名稱": "竹東農場", "通訊地址": "新竹縣竹東鎮", "驗證效期": "2023/07/25", "驗證狀態": "通過", "LandPublicArea": "1.5" }]) } },
+  });
+  const refused = await handleMcp({
+    authorization: "Bearer reader-token",
+    tokens,
+    body: { tool: "import_government_dataset", input: { dataset: "hsc-organic-farms", payload: "[]" } },
+  });
+  assert.equal(imported.status, 200);
+  assert.equal(imported.body.stored, false);
+  assert.equal(imported.body.farms[0].valid_until, "2023/07/25");
+  assert.equal(imported.body.farms[0].area, "1.5");
+  assert.equal(imported.body.farms[0].region_id, "zhudong");
+  assert.equal(refused.status, 403);
+  const page = readFileSync(new URL("../../../public/news-hourly.html", import.meta.url), "utf8");
+  assert.equal(page.includes("不另判今天是否仍有效"), true);
+});
+
 test("county visitor counts stay as written and are not added together", async () => {
   const { normalizeCountyVisitors, visitorPeriod } = await import("../src/adapters.js");
   const rows = normalizeCountyVisitors(JSON.stringify([
@@ -1525,6 +1569,13 @@ test("published news file stays within the real cap", () => {
     assert.ok(data.electric_buses.rows.length > 0);
     assert.ok(data.electric_buses.rows.every((row) => row.route && typeof row.route_number === "string" && typeof row.vehicles === "string"));
     assert.equal(data.electric_buses.rows.some((row) => row.route.includes("7") && row.route_number !== "7"), true);
+  }
+  if (data.farms) {
+    assert.ok(data.farms.count > 80);
+    assert.equal(data.farms.farms, undefined);
+    const farms = JSON.parse(readFileSync(new URL("../../../public/data/news-intel/organic-farms.json", import.meta.url), "utf8"));
+    assert.equal(farms.farms.length, data.farms.count);
+    assert.ok(farms.farms.every((row) => row.name && row.status && (row.valid_until === null || /^\d{4}\/\d{2}\/\d{2}$/.test(row.valid_until)) && (row.area === null || typeof row.area === "string")));
   }
   assert.match(data.schools.period, /^\d{4}$/);
   assert.equal(data.schools.schools, undefined);

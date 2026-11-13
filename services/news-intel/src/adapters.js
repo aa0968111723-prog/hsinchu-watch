@@ -156,6 +156,8 @@ export const COUNTY_GAS_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8
 export const COUNTY_GAS_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=347";
 export const COUNTY_EBUS_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/313/1e32f0e4-e3ea-4c01-b650-3757a08fae07.json";
 export const COUNTY_EBUS_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=313";
+export const COUNTY_FARM_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/349/3850959e-7d70-4bd9-9225-e0be5e0821ec.json";
+export const COUNTY_FARM_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=349";
 export const COUNTY_VISITOR_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/1546/7ae1ed04-7a39-435f-b9e6-8d0d99c90199.json";
 export const COUNTY_VISITOR_PAGE = "https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1546";
 export const COUNTY_BED_URL = "https://ws.hsinchu.gov.tw/001/Upload/1/opendata/8774/238/92b948fd-e0ef-4e82-b2fb-bec53cf84a04.json";
@@ -778,6 +780,49 @@ export function normalizeCountyElectricBuses(payload) {
       model: String(row["車輛型號"] || "").trim() || null,
     }];
   });
+}
+
+export function normalizeCountyFarms(payload) {
+  const rows = typeof payload === "string" ? JSON.parse(payload) : payload;
+  if (!Array.isArray(rows)) return [];
+  return rows.flatMap((row) => {
+    const name = String(row?.["農產品經營業者名稱"] || "").trim();
+    if (!name) return [];
+    const address = String(row["通訊地址"] || "").trim();
+    const township = Object.keys(PARKING_DISTRICTS).find((label) => address.includes(label)) || "";
+    const postal = String(row["郵遞區號"] ?? "").trim();
+    const expiry = String(row["驗證效期"] ?? "").trim();
+    const status = String(row["驗證狀態"] ?? "").trim();
+    const products = String(row["產品品項"] || "").trim();
+    return [{
+      code: originalNumber(row["編號"]),
+      name,
+      postal_code: postal || null,
+      address: address || null,
+      township: township || null,
+      region_id: PARKING_DISTRICTS[township] || null,
+      certifier: String(row["驗證機構名稱"] || "").trim() || null,
+      transition_cert: String(row["證書字號-轉型"] || "").trim() || null,
+      organic_cert: String(row["證書字號-有機"] || "").trim() || null,
+      valid_until: expiry || null,
+      status: status || null,
+      area: originalNumber(row.LandPublicArea),
+      products: products || null,
+    }];
+  });
+}
+
+export function splitFarms(farms) {
+  if (!farms?.count) return { summary: null, download: null };
+  const summary = {
+    source_url: farms.source_url,
+    dataset_url: farms.dataset_url,
+    count: farms.count,
+    download_url: "/data/news-intel/organic-farms.json",
+    note: farms.note || "只留經營者名稱、地址、驗證機構、證書字號、效期、狀態、面積原文和產品品項。效期不另判今天是否仍有效。面積不加總。",
+  };
+  const download = Array.isArray(farms.farms) ? { ...summary, farms: farms.farms } : null;
+  return { summary, download };
 }
 
 export function normalizeSpecialClasses(payload) {

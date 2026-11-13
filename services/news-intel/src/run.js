@@ -1,4 +1,4 @@
-import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyDebt, normalizeCountyElectricBuses, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
+import { CITY_CATALOG_LIST, CITY_CATALOG_URL, COUNTY_AIR_PAGE, COUNTY_AIR_URL, COUNTY_BED_PAGE, COUNTY_BED_URL, COUNTY_CAMERA_PAGE, COUNTY_CAMERA_URL, COUNTY_DEBT_PAGE, COUNTY_DEBT_URL, COUNTY_ELECTION_PAGE, COUNTY_KINDERGARTEN_PAGE, COUNTY_KINDERGARTEN_URL, COUNTY_PARKING_PAGE, COUNTY_PARKING_URL, COUNTY_POPULATION_PAGE, COUNTY_POPULATION_URL, COUNTY_SCHOOL_PAGE, COUNTY_SCHOOL_URL, COUNTY_SPECIAL_PAGE, COUNTY_SPECIAL_URL, COUNTY_PERMIT_PAGE, COUNTY_PERMIT_URL, COUNTY_HYDRANT_PAGE, COUNTY_HYDRANT_URL, COUNTY_SHELTER_PAGE, COUNTY_SHELTER_URL, COUNTY_TOILET_PAGE, COUNTY_TOILET_URL, COUNTY_HERITAGE_PAGE, COUNTY_HERITAGE_URL, COUNTY_CHARGER_PAGE, COUNTY_CHARGER_URL, COUNTY_GAS_PAGE, COUNTY_GAS_URL, COUNTY_EBUS_PAGE, COUNTY_EBUS_URL, COUNTY_FARM_PAGE, COUNTY_FARM_URL, COUNTY_VISITOR_PAGE, COUNTY_VISITOR_URL, cameraListPeriod, collectAdapters, kindergartenPeriod, normalizeCityCatalog, normalizeCountyAir, normalizeCountyBeds, normalizeCountyBusShelters, normalizeCountyCameras, normalizeCountyChargers, normalizeCountyDebt, normalizeCountyElectricBuses, normalizeCountyFarms, normalizeCountyGasStations, normalizeCountyHeritage, normalizeCountyHydrants, normalizeCountyKindergartens, normalizeCountyParking, normalizeCountyPopulation, normalizeCountySchools, normalizeCountyToilets, normalizeCountyVisitors, normalizeElectionNotice, normalizeSpecialClasses, populationPeriod, schoolZonePeriod, specialClassPeriod, summarizeUsePermits, toiletUpdatePeriod, visitorPeriod } from "./adapters.js";
 import { allowedUrl } from "./allowlist.js";
 import { acceptModelProposals, decideGemini, selectArticles } from "./pipeline.js";
 import { pageDateAgrees, publicationFields, readPagePublishedAt } from "./verify.js";
@@ -70,6 +70,7 @@ export function mergeRun(previous, result) {
       chargers: previous?.chargers || null,
       gas_stations: previous?.gas_stations || null,
       electric_buses: previous?.electric_buses || null,
+      farms: previous?.farms || null,
       visitors: previous?.visitors || null,
       beds: previous?.beds || null,
       debt: previous?.debt || null,
@@ -102,6 +103,7 @@ export function mergeRun(previous, result) {
     chargers: result.chargers === undefined ? (previous?.chargers || null) : result.chargers,
     gas_stations: result.gas_stations === undefined ? (previous?.gas_stations || null) : result.gas_stations,
     electric_buses: result.electric_buses === undefined ? (previous?.electric_buses || null) : result.electric_buses,
+    farms: result.farms === undefined ? (previous?.farms || null) : result.farms,
     visitors: result.visitors === undefined ? (previous?.visitors || null) : result.visitors,
     beds: result.beds === undefined ? (previous?.beds || null) : result.beds,
     debt: result.debt === undefined ? (previous?.debt || null) : result.debt,
@@ -282,6 +284,27 @@ async function loadCountyCameras(fetcher, previous) {
       rows,
       retained: false,
       note: "沿用資料檔的設置地點、取締項目和速限原文。這是設備清冊，不是今日執法紀錄。",
+    };
+  } catch {
+    return kept;
+  }
+}
+
+async function loadCountyFarms(fetcher, previous) {
+  const kept = previous?.farms ? { ...previous.farms, retained: true } : null;
+  if (typeof fetcher !== "function") return kept;
+  try {
+    const response = await fetcher(COUNTY_FARM_URL);
+    if (!response?.ok || typeof response.text !== "function") return kept;
+    const farms = normalizeCountyFarms(await response.text());
+    if (!farms.length) return kept;
+    return {
+      source_url: COUNTY_FARM_PAGE,
+      dataset_url: COUNTY_FARM_URL,
+      count: farms.length,
+      farms,
+      retained: false,
+      note: "只留經營者名稱、地址、驗證機構、證書字號、效期、狀態、面積原文和產品品項。效期不另判今天是否仍有效。面積不加總。",
     };
   } catch {
     return kept;
@@ -645,6 +668,7 @@ export async function runHour({ fetcher, adapters, env, previous, now, hidden = 
       chargers: await loadCountyChargers(fetcher, previous),
       gas_stations: await loadCountyGasStations(fetcher, previous),
       electric_buses: await loadCountyElectricBuses(fetcher, previous),
+      farms: await loadCountyFarms(fetcher, previous),
       visitors: await loadCountyVisitors(fetcher, previous),
       beds: await loadCountyBeds(fetcher, previous),
       debt: await loadCountyDebt(fetcher, previous),

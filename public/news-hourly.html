@@ -62,6 +62,8 @@
   <h2>新竹縣電動公車</h2>
   <p id="ebus-status" class="meta"></p>
   <ol id="ebuses"></ol>
+  <h2>新竹縣有機農場</h2>
+  <p id="farm-status" class="meta"></p>
   <h2>新竹縣觀光遊憩人次</h2>
   <p id="visitor-status" class="meta"></p>
   <ol id="visitors"></ol>
@@ -152,6 +154,7 @@ const chargerStatus = document.querySelector("#charger-status");
 const gasStatus = document.querySelector("#gas-status");
 const ebusStatus = document.querySelector("#ebus-status");
 const ebusList = document.querySelector("#ebuses");
+const farmStatus = document.querySelector("#farm-status");
 const visitorStatus = document.querySelector("#visitor-status");
 const visitors = document.querySelector("#visitors");
 const electionStatus = document.querySelector("#election-status");
@@ -490,6 +493,22 @@ fetch("/data/news-intel/latest.json")
       item.textContent = `${row.route} · ${number} · ${vehicles} · ${row.brand || "廠牌未填"} · ${row.model || "型號未填"}`;
       ebusList.append(item);
     }
+    const farms = data.farms;
+    farmStatus.textContent = farms?.count
+      ? `${farms.count} 筆。驗證狀態和效期沿用原文，不另判今天是否仍有效。面積不加總。`
+      : "這一輪沒有有機農場清冊，沒有補名稱。";
+    if (farms?.download_url) {
+      const download = document.createElement("a");
+      download.href = farms.download_url;
+      download.textContent = "下載清冊";
+      farmStatus.append(" ", download);
+    }
+    if (farms?.source_url && farms?.count) {
+      const source = document.createElement("a");
+      source.href = farms.source_url;
+      source.textContent = "資料集頁";
+      farmStatus.append(" ", source);
+    }
     const visitorData = data.visitors;
     const visitorRows = Array.isArray(visitorData?.rows) ? visitorData.rows : [];
     const visitorPeriodText = visitorData?.period_text ? `資料期間沿用資料檔 ${visitorData.period_text}。` : "資料檔的年月不一致或沒有寫。";
@@ -609,6 +628,7 @@ fetch("/data/news-intel/latest.json")
     chargerStatus.textContent = "充電站清冊讀取失敗。頁面沒有改用假資料。";
     gasStatus.textContent = "加油站清冊讀取失敗。頁面沒有改用假資料。";
     ebusStatus.textContent = "電動公車路線讀取失敗。頁面沒有改用假資料。";
+    farmStatus.textContent = "有機農場清冊讀取失敗。頁面沒有改用假資料。";
     visitorStatus.textContent = "遊憩人次讀取失敗。頁面沒有改用假資料。";
     bedStatus.textContent = "病床數讀取失敗。頁面沒有改用假資料。";
     airStatus.textContent = "懸浮微粒讀取失敗。頁面沒有改用假資料。";
